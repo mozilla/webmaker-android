@@ -1,0 +1,12 @@
+CACHE MANIFEST
+# Version 1
+
+index.css
+index.html
+index.js
+
+NETWORK:
+*
+
+FALLBACK:
+/ fallback.html

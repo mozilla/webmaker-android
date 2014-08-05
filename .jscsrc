@@ -1,0 +1,13 @@
+{
+    "preset": "crockford",
+    
+    "disallowMultipleVarDecl": true,
+    "disallowSpacesInNamedFunctionExpression": null,
+    "disallowSpacesInFunctionDeclaration": null,
+    "maximumLineLength": {
+        "value": 80,
+        "allowComments": true,
+        "allowRegex": true
+    },
+    "requireMultipleVarDecl": null
+}

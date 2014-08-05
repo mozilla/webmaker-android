@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<svg width="512px" height="512px" viewBox="0 0 512 512" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:sketch="http://www.bohemiancoding.com/sketch/ns">
+    <!-- Generator: Sketch 3.0.4 (8053) - http://www.bohemiancoding.com/sketch -->
+    <title>me_off</title>
+    <desc>Created with Sketch.</desc>
+    <defs></defs>
+    <g id="Icons" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd" sketch:type="MSPage">
+        <g id="me_off" sketch:type="MSArtboardGroup" fill="#2A4D50">
+            <path d="M259.851158,216.615385 C320.610842,216.615385 369.900789,170.830769 369.900789,110.828308 C369.900789,50.8455385 320.610842,0 259.851158,0 C199.091474,0 149.821474,50.8455385 149.821474,110.828308 C149.821474,170.830769 199.091474,216.615385 259.851158,216.615385 L259.851158,216.615385 Z M452.602579,368.423385 C452.602579,368.423385 452.602579,368.423385 452.602579,368.384 C452.602579,315.844923 408.219684,270.532923 343.949263,248.989538 L259.891053,332.032 L175.773,248.989538 C111.502579,270.513231 67.1196842,315.825231 67.1196842,368.384 L67.1196842,368.423385 L67,368.423385 C67,421.139692 77.6319474,470.232615 95.7042632,512 L423.978105,512 C442.050421,470.232615 452.682368,421.139692 452.682368,368.423385 L452.602579,368.423385 L452.602579,368.423385 Z" id="Profile-2" sketch:type="MSShapeGroup"></path>
+        </g>
+    </g>
+</svg>
