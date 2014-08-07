@@ -11,5 +11,5 @@ module.exports = {
         appCell: require('../../components/appCell')
     },
     template: require('./index.html'),
-    data: {}
+    data: require('./data.json')
 };

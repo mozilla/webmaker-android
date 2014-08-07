@@ -7,5 +7,5 @@ module.exports = {
         navigationBar: require('../../components/navigationBar')
     },
     template: require('./index.html'),
-    data: {}
+    data: require('./data.json')
 };
