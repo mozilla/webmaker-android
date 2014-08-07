@@ -4,8 +4,23 @@ module.exports = {
     id: 'discover',
     components: {
         tabBar: require('../../components/tabBar'),
-        navigationBar: require('../../components/navigationBar')
+        navigationBar: require('../../components/navigationBar'),
+        discoverCell: require('../../components/discoverCell')
     },
     template: require('./index.html'),
-    data: {}
+    data: {
+        cells: [
+            {
+                id: 1234,
+                url: 'https://a.makes.org/lkjahsdf',
+                name: 'Narrador',
+                description: 'Lorem ipsum dolor sit amet.',
+                user: {
+                    name: 'Pedro',
+                    location: 'Brazil',
+                    description: 'Tour Guide'
+                }
+            }
+        ]
+    }
 };
