@@ -40,7 +40,7 @@ module.exports = {
 ```
 
 #### Components
-Components look just like views in terms of structure (because they are the same!) but are designed to be rendered inside of a view. For this reason, we keep them logically seperated in a directory called `components` at the top level of the project. A component is rendered by a view via the `v-component` directive.
+Components look just like views in terms of structure (because they are the same!) but are designed to be rendered inside of a view. For this reason, we keep them logically separated in a directory called `components` at the top level of the project. A component is rendered by a view via the `v-component` directive.
 
 ```html
 <div v-component="myComponent"></div>
