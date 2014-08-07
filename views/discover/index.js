@@ -9,7 +9,7 @@ module.exports = {
     },
     template: require('./index.html'),
     data: {
-        cells: [
+        personas: [
             {
                 id: 1234,
                 url: 'https://a.makes.org/lkjahsdf',
