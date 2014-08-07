@@ -1,5 +1,6 @@
 BROWSERIFY = ./node_modules/.bin/browserify
-LESSC = ./node_modules/.bin/lessc
+WATCHIFY = ./node_modules/.bin/watchify
+TARGET = -e ./lib/index.js -t partialify -o ./build/index.js
 
 JSCS = ./node_modules/.bin/jscs --reporter=inline
 JSHINT = ./node_modules/.bin/jshint
@@ -9,12 +10,14 @@ MOCHA = ./node_modules/.bin/mocha
 
 build:
 	@make clean
-	$(BROWSERIFY) ./lib/index.js > ./build/index.js
-	$(LESSC) ./styles/index.less > ./build/index.css
+	$(BROWSERIFY) $(TARGET)
 	cp -av ./static/. ./build/
 
 clean:
 	rm -rf ./build/*
+
+dev:
+	$(WATCHIFY) $(TARGET)
 
 # ------------------------------------------------------------------------------
 
@@ -38,4 +41,4 @@ test:
 
 # ------------------------------------------------------------------------------
 
-.PHONY: build clean lint unit integration test
+.PHONY: build clean dev lint unit integration test

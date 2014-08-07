@@ -1,0 +1,45 @@
+footer {
+    position: fixed;
+    left: 0;
+    bottom: 0;
+
+    width: 100%;
+    height: 45px;
+    border-top: 1px solid #F6F7F7;
+}
+
+footer ul {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+    overflow: hidden;
+}
+
+footer ul li {
+    float: left;
+    width: 25%;
+    height: 42px;
+
+    text-align: center;
+    font-size: 8pt;
+    font-weight: normal;
+    border-bottom: 3px solid white;
+}
+
+footer a {
+    display: block;
+    width: 100%;
+    height: 100%;
+}
+
+footer svg {
+    margin-top: 10px;
+}
+
+footer li.active {
+    border-bottom-color: #00B0B5;
+}
+
+footer li.active g {
+    fill: #00B0B5;
+}

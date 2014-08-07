@@ -1,0 +1,24 @@
+header {
+    position: fixed;
+    left: 0;
+    top: 0;
+
+    width: 100%;
+    height: 45px;
+    border-bottom: 1px solid #F6F7F7;
+}
+
+header h1 {
+    display: block;
+    margin: 8px auto 0 auto;
+    
+    color: #00B0B5;
+    text-align: center;
+    font-size: 16pt;
+    font-weight: 200;
+    font-style: italic;
+}
+
+header button {
+    // @todo
+}

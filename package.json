@@ -16,9 +16,12 @@
   },
   "devDependencies": {
     "browserify": "5.9.1",
+    "insert-css": "~0.2.0",
     "jscs": "mdevils/node-jscs",
     "jshint": "2.5.2",
     "less": "1.7.4",
-    "mocha": "1.21.3"
+    "mocha": "1.21.3",
+    "partialify": "~3.1.1",
+    "watchify": "~1.0.1"
   }
 }
