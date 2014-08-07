@@ -20,16 +20,5 @@
     "installs_allowed_from": [
         "*"
     ],
-    "permissions": {},
-    "default_locale": "en",
-    "locales": {
-        "en": {
-            "name": "Firefox OS Boilerplate App",
-            "description": "Boilerplate Firefox OS app with example use cases to get started"
-        },
-        "en-US": {
-            "name": "Firefox OS Boilerplate App",
-            "description": "Boilerplate Firefox OS app with example use cases to get started"
-        }
-    }
+    "permissions": {}
 }
