@@ -53,12 +53,23 @@ Static assets (such as images, icons, and the webapp manifest) are contained wit
 
 ---
 
-### To Build
+### Getting Up & Running
+
+To get a local version of `wookiee` running, you'll need a few tools installed on your system first. If you haven't already, you'll want to install [git](http://git-scm.com/) and [node](http://nodejs.org/). Once you have those items installed:
+```bash
+git clone git@github.com:mozillafordevelopment/wookiee.git
+cd wookiee
+npm install
+```
+
+#### Build
+Once you have `wookiee` installed, you'll want to build it so you can run it within your web browser (or device simulator). To do this, simply type the following and then open the `index.html` file that appears in the newly created `build` directory:
 ```bash
 make build
 ```
 
-### To Test
+#### Testing
+If you make changes to `wookiee`, you can test them by running:
 ```bash
 make test
 ```
