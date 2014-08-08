@@ -1,0 +1,24 @@
+<html>
+    <head>
+        <meta charset="utf-8">
+        <link rel="stylesheet" href="../../node_modules/mocha/mocha.css" />
+    </head>
+    <body>
+        <div id="mocha"></div>
+        <script src="../../node_modules/mocha/mocha.js"></script>
+        <script src="./assert.js"></script>
+        <script>
+            mocha.ui('bdd');
+            mocha.reporter('html');
+        </script>
+
+        <!-- Import tests -->
+        <script src="../integration/spec.js"></script>
+    
+        <!-- Run tests -->
+        <script>
+            if (window.mochaPhantomJS) { mochaPhantomJS.run(); }
+            else { mocha.run(); }
+        </script>
+    </body>
+</html>

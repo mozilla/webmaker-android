@@ -1,5 +1,7 @@
 ## wookiee
 
+[![Build Status](https://travis-ci.org/mozillafordevelopment/wookiee.svg)](https://travis-ci.org/mozillafordevelopment/wookiee)
+
 ### Structure
 Wookiee is structured around a number of lightweight composable `CommonJS` modules that provide abstractions for routing, XHR, IndexedDB, i18n, and MVVM. Bundling for distribution is handled by [browserify](https://github.com/substack/node-browserify). Testing is handled by [mocha](https://github.com/visionmedia/mocha) and [phantomjs](http://phantomjs.org/).
 

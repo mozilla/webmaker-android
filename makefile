@@ -5,6 +5,8 @@ TARGET = -e ./lib/index.js -t partialify -o ./build/index.js
 JSCS = ./node_modules/.bin/jscs --reporter=inline
 JSHINT = ./node_modules/.bin/jshint
 MOCHA = ./node_modules/.bin/mocha
+MOCHAPHANTOMJS = ./node_modules/.bin/mocha-phantomjs
+PHANTOMJS = ./node_modules/.bin/phantomjs
 
 # ------------------------------------------------------------------------------
 
@@ -29,10 +31,10 @@ lint:
 	$(JSCS) ./test/**/*.js
 
 unit:
-	$(MOCHA) ./test/unit/*.js
+	$(MOCHA) -R spec ./test/unit/*.js
 
 integration:
-	$(MOCHA) ./test/integration/*.js
+	$(MOCHAPHANTOMJS) -p $(PHANTOMJS) -R spec ./test/fixtures/runner.html
 
 test:
 	@make lint
