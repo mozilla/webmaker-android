@@ -25,10 +25,12 @@ dev:
 
 lint:
 	$(JSHINT) ./lib/*.js
-	$(JSHINT) ./test/**/*.js
+	$(JSHINT) ./test/integration/*.js
+	$(JSHINT) ./test/unit/*.js
 
 	$(JSCS) ./lib/*.js
-	$(JSCS) ./test/**/*.js
+	$(JSCS) ./test/integration/*.js
+	$(JSCS) ./test/unit/*.js
 
 unit:
 	$(MOCHA) -R spec ./test/unit/*.js
