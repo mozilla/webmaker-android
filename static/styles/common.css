@@ -1,9 +1,13 @@
-body {
+body, html {
     margin: 0;
     padding: 0;
-    height: 100%;
+    background-color: #F6F7F7;
 }
 
 * {
     font-family: "FiraSans", "Fira Sans", "Fira Sans OT", sans-serif;
+}
+
+#app {
+    height: 100%;
 }
