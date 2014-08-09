@@ -1,0 +1,11 @@
+#appCell {
+    height: 72px;
+    background-color: white;
+    border-bottom: 1px solid #E7E7E7;
+}
+
+#appCell a {
+    display: block;
+    width: 100%;
+    height: 100%;
+}

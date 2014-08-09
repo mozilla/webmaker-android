@@ -1,7 +1,7 @@
 require('insert-css')(require('./index.css'));
 
 module.exports = {
-    id: 'discover',
+    id: 'profile',
     components: {
         tabBar: require('../../components/tabBar'),
         navigationBar: require('../../components/navigationBar')

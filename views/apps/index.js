@@ -4,7 +4,7 @@ var xhr = require('xhr');
 var storage = require('localforage');
 
 module.exports = {
-    id: 'discover',
+    id: 'apps',
     components: {
         tabBar: require('../../components/tabBar'),
         navigationBar: require('../../components/navigationBar'),
