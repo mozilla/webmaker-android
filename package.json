@@ -22,9 +22,9 @@
     "jshint": "2.5.2",
     "less": "1.7.4",
     "mocha": "1.21.3",
-    "mocha-phantomjs": "~3.5.0",
+    "mocha-phantomjs": "3.5.0",
     "partialify": "3.1.1",
-    "phantomjs": "~1.9.7-15",
+    "phantomjs": "1.9.7-15",
     "watchify": "1.0.1"
   }
 }
