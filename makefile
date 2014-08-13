@@ -20,7 +20,8 @@ build:
 	$(LESSC) -x ./build/styles/common.less ./build/styles/common.css
 
 clean:
-	rm -rf ./build/*
+	rm -rf ./build
+	mkdir build
 
 dev:
 	$(WATCHIFY) $(TARGET)
