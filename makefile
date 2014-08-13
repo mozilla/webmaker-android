@@ -16,7 +16,8 @@ build:
 	cp -av ./static/. ./build/
 
 clean:
-	rm -rf ./build/*
+	rm -rf ./build
+	mkdir build
 
 dev:
 	$(WATCHIFY) $(TARGET)
