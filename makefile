@@ -1,4 +1,5 @@
 BROWSERIFY = ./node_modules/.bin/browserify
+LESSC = ./node_modules/.bin/lessc
 WATCHIFY = ./node_modules/.bin/watchify
 TARGET = -e ./lib/index.js -t partialify -o ./build/index.js
 
@@ -14,6 +15,9 @@ build:
 	@make clean
 	$(BROWSERIFY) $(TARGET)
 	cp -av ./static/. ./build/
+	cat `find ./views -name "*.less"` > ./build/styles/views.less
+	cat `find ./components -name "*.less"` > ./build/styles/components.less
+	$(LESSC) -x ./build/styles/common.less ./build/styles/common.css
 
 clean:
 	rm -rf ./build/*

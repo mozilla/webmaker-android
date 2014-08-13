@@ -17,7 +17,6 @@
   },
   "devDependencies": {
     "browserify": "5.9.1",
-    "insert-css": "0.2.0",
     "jscs": "mdevils/node-jscs",
     "jshint": "2.5.2",
     "less": "1.7.4",
