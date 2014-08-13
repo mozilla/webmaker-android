@@ -2,10 +2,49 @@
     height: 72px;
     background-color: white;
     border-bottom: 1px solid #E7E7E7;
+    list-style: none;
+    padding: 0;
+    color: #797C7F;
+    line-height: 1.4;
 }
 
 #appCell a {
-    display: block;
-    width: 100%;
+    display: flex;
+    align-items: center;
     height: 100%;
+    text-decoration: none;
+    color: inherit;
+    &:hover {
+      color: #32B2D2
+    }
+
+    .name,
+    .author {
+      display: block;
+    }
+
+    .author {
+      font-size: 0.8em; // to replace with small
+      font-weight: lighter;
+    }
+
+    .left, .right {
+      float: left;
+      width: 50%;
+      padding: 10px;
+    }
+    .right {
+      text-align: right;
+    }
+    .app-icon,
+    .user-icon {
+      width: 50px;
+      height: 50px;
+      display: block;
+      float: right;
+      margin-left: 5px;
+    }
+    .app-icon {
+      border-radius: 50%;
+    }
 }

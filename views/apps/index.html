@@ -1,5 +1,7 @@
 <div v-component="navigationBar"></div>
 <ul>
+    <lh>Apps I've Created</lh>
+    <li v-component="appCell" v-repeat="created"></li>
     <lh>Apps I've Installed</lh>
     <li v-component="appCell" v-repeat="installed"></li>
 </ul>
