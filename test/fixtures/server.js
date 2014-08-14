@@ -1,6 +1,9 @@
 var http = require('http');
+var path = require('path');
 var Static = require('node-static');
-var server = new Static.Server(__dirname + '/../../build');
+
+var server = new Static.Server(path.join(__dirname, '../../build'));
+var port = process.env.PORT || 8080;
 
 http.createServer(function (req, res) {
     req.addListener('end', function () {
@@ -8,6 +11,6 @@ http.createServer(function (req, res) {
             server.serveFile('/index.html', 404, {}, req, res);
         });
     }).resume();
-}).listen(8080);
+}).listen(port);
 
-console.log('Listening on 8080');
+console.log('Listening on ' + port);
