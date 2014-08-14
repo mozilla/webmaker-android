@@ -26,6 +26,9 @@ clean:
 dev:
 	$(NODEMON) -x "make build -f" makefile
 
+serve:
+	node ./test/fixtures/server.js
+
 # ------------------------------------------------------------------------------
 
 lint:
@@ -50,4 +53,4 @@ test:
 
 # ------------------------------------------------------------------------------
 
-.PHONY: build clean dev lint unit integration test
+.PHONY: build clean dev serve lint unit integration test
