@@ -1,6 +1,6 @@
 BROWSERIFY = ./node_modules/.bin/browserify
 LESSC = ./node_modules/.bin/lessc
-WATCHIFY = ./node_modules/.bin/watchify
+NODEMON = ./node_modules/.bin/nodemon
 TARGET = -e ./lib/index.js -t partialify -o ./build/index.js
 
 JSCS = ./node_modules/.bin/jscs --reporter=inline
@@ -24,7 +24,7 @@ clean:
 	mkdir build
 
 dev:
-	$(WATCHIFY) $(TARGET)
+	$(NODEMON) -x "make build -f" makefile
 
 # ------------------------------------------------------------------------------
 
