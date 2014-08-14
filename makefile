@@ -24,7 +24,7 @@ clean:
 	mkdir build
 
 dev:
-	$(NODEMON) -x "make build -f" makefile
+	$(NODEMON) -x "make build -f" makefile -e "js,less,html,json" --ignore "build/*"
 
 serve:
 	node ./test/fixtures/server.js
