@@ -22,7 +22,7 @@
     "less": "1.7.4",
     "mocha": "1.21.3",
     "mocha-phantomjs": "3.5.0",
-    "node-appcache-generator": "git://github.com/secretrobotron/node-appcache-generator.git#master",
+    "node-appcache-generator": "secretrobotron/node-appcache-generator",
     "partialify": "3.1.1",
     "phantomjs": "1.9.7-15",
     "watchify": "1.0.1"
