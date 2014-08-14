@@ -1,3 +1,24 @@
 <div v-component="navigationBar"></div>
-{{name}} {{location}} {{description}}
+
+<div class="row">
+  <div class="left"></div>
+  <div class="right">
+  </div>
+</div>
+
+<div id="profile-header">
+  <div class="profile-avatar" style="background-image: url({{avatar}});"></div>
+  <div class="profile-info"><strong>{{name}}</strong> from <strong>{{location}}</strong></div>
+</div>
+
+<form id="profile-details">
+  <div class="form-group">
+    <label for="name">Name</label>
+    <input name="name" type="text" v-model="name">
+  </div>
+  <div class="form-group">
+    <label for="location">Location</label>
+    <input name="location" type="text" v-model="location">
+  </div>
+</form>
 <div v-component="tabBar"></div>
