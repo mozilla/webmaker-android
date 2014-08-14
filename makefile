@@ -18,6 +18,11 @@ build:
 	cat `find ./views -name "*.less"` > ./build/styles/views.less
 	cat `find ./components -name "*.less"` > ./build/styles/components.less
 	$(LESSC) -x ./build/styles/common.less ./build/styles/common.css
+	node_modules/node-appcache-generator/bin/node-appcache \
+		--manifest ./build/manifest.appcache \
+		--directory ./build/ \
+		--fallback "/ fallback.html" \
+		--network "*,http://*,https://*"
 
 clean:
 	rm -rf ./build
