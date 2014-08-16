@@ -1,4 +1,3 @@
-var xhr = require('xhr');
 var storage = require('localforage');
 
 module.exports = {
