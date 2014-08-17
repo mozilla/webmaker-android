@@ -1,24 +1,26 @@
-## wookiee
+## Mobile Appmaker
 
-[![Build Status](https://travis-ci.org/mozillafordevelopment/wookiee.svg)](https://travis-ci.org/mozillafordevelopment/wookiee)
+[![Build Status](https://travis-ci.org/mozillafordevelopment/mobile-appmaker.svg)](https://travis-ci.org/mozillafordevelopment/mobile-appmaker)
+[![devDependency Status](https://david-dm.org/mozillafordevelopment/mobile-appmaker/dev-status.svg)](https://david-dm.org/mozillafordevelopment/mobile-appmaker#info=devDependencies)
+
+### Background
+Mobile Appmaker is a product exploring how to radically lower the entry to creating and distributing mobile applications through on-device authoring.
 
 ### Structure
-Wookiee is structured around a number of lightweight composable `CommonJS` modules that provide abstractions for routing, XHR, IndexedDB, i18n, and MVVM. Bundling for distribution is handled by [browserify](https://github.com/substack/node-browserify). Testing is handled by [mocha](https://github.com/visionmedia/mocha) and [phantomjs](http://phantomjs.org/).
+Mobile Appmaker is structured around a number of lightweight composable `CommonJS` modules that provide abstractions for routing, XHR, IndexedDB, i18n, and MVVM. Bundling for distribution is handled by [browserify](https://github.com/substack/node-browserify). Testing is handled by [mocha](https://github.com/visionmedia/mocha) and [phantomjs](http://phantomjs.org/).
 
 #### Views
-Views and components are the basic building blocks of wookiee. Views are the highest level object and represent a discrete screen such as "Discover" or "App Details". Both are defined via the MVVM abstractions provided by [Vue.js](https://github.com/yyx990803/vue).
+Views and components are the basic building blocks of Appmaker. Views are the highest level object and represent a discrete screen such as "Discover" or "App Details". Both are defined via the MVVM abstractions provided by [Vue.js](https://github.com/yyx990803/vue).
 
 Anatomy of a view:
 ```
 myView
     -> index.js
     -> index.html
-    -> index.css
+    -> index.less
 ```
 
 ```js
-require('insert-css')(require('./index.css'));
-
 module.exports = {
     id: 'myView',
     components: {
@@ -55,21 +57,21 @@ Static assets (such as images, icons, and the webapp manifest) are contained wit
 
 ### Getting Up & Running
 
-To get a local version of `wookiee` running, you'll need a few tools installed on your system first. If you haven't already, you'll want to install [git](http://git-scm.com/) and [node](http://nodejs.org/). Once you have those items installed:
+To get a local version of `mobile-appmaker` running, you'll need a few tools installed on your system first. If you haven't already, you'll want to install [git](http://git-scm.com/) and [node](http://nodejs.org/). Once you have those items installed:
 ```bash
-git clone git@github.com:mozillafordevelopment/wookiee.git
-cd wookiee
+git clone git@github.com:mozillafordevelopment/mobile-appmaker.git
+cd mobile-appmaker
 npm install
 ```
 
 #### Build
-Once you have `wookiee` installed, you'll want to build it so you can run it within your web browser (or device simulator). To do this, simply type the following and then open the `index.html` file that appears in the newly created `build` directory:
+Once you have `mobile-appmaker` installed, you'll want to build it so you can run it within your web browser (or device simulator). To do this, simply type the following and then open the `index.html` file that appears in the newly created `build` directory:
 ```bash
 make build
 ```
 
 #### Testing
-If you make changes to `wookiee`, you can test them by running:
+If you make changes to `mobile-appmaker`, you can test them by running:
 ```bash
 make test
 ```
