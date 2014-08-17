@@ -1,6 +1,7 @@
 {
     "preset": "crockford",
     
+    "disallowDanglingUnderscores": null,
     "disallowMultipleVarDecl": true,
     "disallowSpacesInNamedFunctionExpression": null,
     "disallowSpacesInFunctionDeclaration": null,
@@ -9,5 +10,15 @@
         "allowComments": true,
         "allowRegex": true
     },
+    "requireCurlyBraces": [
+       "else",
+       "for",
+       "while",
+       "do",
+       "try",
+       "catch",
+       "case",
+       "default"
+    ],
     "requireMultipleVarDecl": null
 }
