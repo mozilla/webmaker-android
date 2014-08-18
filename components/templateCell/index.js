@@ -1,5 +1,5 @@
 module.exports = {
-    id: 'discoverCell',
+    id: 'templateCell',
     template: require('./index.html'),
     data: {}
 };

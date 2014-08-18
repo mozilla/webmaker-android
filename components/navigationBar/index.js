@@ -1,5 +1,5 @@
 module.exports = {
-    id: 'tabBar',
+    id: 'navigationBar',
     template: require('./index.html'),
     data: {}
 };

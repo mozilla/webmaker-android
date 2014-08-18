@@ -3,10 +3,10 @@ module.exports = {
     components: {
         tabBar: require('../../components/tabBar'),
         navigationBar: require('../../components/navigationBar'),
-        discoverCell: require('../../components/discoverCell')
+        templateCell: require('../../components/templateCell')
     },
     template: require('./index.html'),
     data: {
-        personas: require('./data.json')
+        personas: require('../../lib/templates.json')
     }
 };

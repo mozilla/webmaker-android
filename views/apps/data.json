@@ -1,33 +1,11 @@
 {
     "created": [
         {
-            "id": 1234,
-            "url": "https://a.makes.org/lkjahsdf",
-            "name": "Narrador",
-            "icon": "http://placekitten.com/g/300/300",
-            "description": "Lorem ipsum dolor sit amet"
-        },
-        {
-            "id": 1235,
-            "url": "https://a.makes.org/lkjwewewedf",
-            "name": "Living Doc",
-            "icon": "http://placekitten.com/g/300/300",
-            "description": "Lorem ipsum dolor sit amet"
-        }
-    ],
-    "installed": [
-        {
-            "id": 1238,
-            "url": "https://c.makes.org/lkjahsdf",
-            "name": "Jaipur Tours",
-            "icon": "http://placekitten.com/g/250/250",
-            "description": "Lorem ipsum dolor sit amet",
-            "user": {
-                "name": "Sanjay",
-                "avatar": "http://placekitten.com/g/251/251",
-                "location": "India",
-                "description": "A tour"
-            }
+            "id": "ce0e0809-204e-4086-ab90-7c9cef628aa6",
+            "url": "/puppy-time",
+            "name": "Puppy Time",
+            "icon": "/images/placeholder_00.png",
+            "description": "I can haz puppies."
         }
     ]
 }

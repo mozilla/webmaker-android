@@ -1,5 +1,3 @@
-var storage = require('localforage');
-
 module.exports = {
     id: 'apps',
     components: {
