@@ -1,0 +1,48 @@
+#makeBar {
+    position: fixed;
+    left: 0;
+    top: 0;
+    z-index: 1;
+
+    width: 100%;
+    height: 45px;
+    background-color: @system;
+
+    ul {
+        list-style: none;
+        padding: 0;
+        margin: 0;
+        overflow: hidden;
+    }
+
+    ul li {
+        float: left;
+        width: 33.3%;
+        height: 44px;
+
+        text-align: center;
+        font-size: 8pt;
+        font-weight: normal;
+        border-bottom: 3px solid @system;
+    }
+
+    a {
+        display: block;
+        width: 100%;
+        height: 100%;
+
+        color: @white;
+        text-decoration: none;
+        font-size: 1.4em;
+        font-weight: 200;
+        margin-top: 10px;
+    }
+
+    li.active {
+        border-bottom-color: @highlight;
+    }
+
+    li.active a {
+        color: @highlight;
+    }
+}
