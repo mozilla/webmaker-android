@@ -1,5 +1,5 @@
 #profile {
-    margin: 46px 0 46px 0;
+    margin: 44px 0 44px 0;
 }
 
 #profile-details {
@@ -13,14 +13,19 @@
     justify-content: center;
     text-align: center;
     color: #1CB0B4;
+
     .profile-avatar,
     .profile-info {
         width: 50%;
         float: left;
     }
+    
     .profile-avatar {
-        height: 0;
+        height: 150px;
         padding-bottom: 50%;
         background-size: cover;
+        background-image: url(/images/avatar.png);
+        background-color: @white;
+        overflow-y: hidden;
     }
 }

@@ -1,3 +1,5 @@
+var model = require('../../lib/model');
+
 module.exports = {
     id: 'profile',
     components: {
@@ -5,5 +7,12 @@ module.exports = {
         navigationBar: require('../../components/navigationBar')
     },
     template: require('./index.html'),
-    data: require('./data.json')
+    created: function () {
+        this.$data = model.user;
+    },
+    detached: function () {
+        model.user.name = this.$data.name;
+        model.user.location = this.$data.location;
+        model.user.avatar = this.$data.avatar;
+    }
 };
