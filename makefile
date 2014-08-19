@@ -39,10 +39,16 @@ serve:
 
 lint:
 	$(JSHINT) ./lib/*.js
+	$(JSHINT) ./blocks/**/*.js
+	$(JSHINT) ./components/**/*.js
+	$(JSHINT) ./views/**/*.js
 	$(JSHINT) ./test/integration/*.js
 	$(JSHINT) ./test/unit/*.js
 
 	$(JSCS) ./lib/*.js
+	$(JSCS) ./blocks/**/*.js
+	$(JSCS) ./components/**/*.js
+	$(JSCS) ./views/**/*.js
 	$(JSCS) ./test/integration/*.js
 	$(JSCS) ./test/unit/*.js
 
