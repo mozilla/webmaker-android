@@ -8,8 +8,5 @@ module.exports = {
         for (var i = 0; i < attr.length; i++) {
             target.setAttribute(attr[i].id, attr[i].value);
         }
-    },
-    detached: function () {
-        // @todo
     }
 };
