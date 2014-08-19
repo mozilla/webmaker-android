@@ -1,0 +1,181 @@
+[
+    {
+        "id": "d5c3ee43-5bbf-483c-8e70-0ac035c5f990",
+        "name": "Journalist",
+        "icon": "/images/placeholder_journalist.png",
+        "author": {
+            "name": "Sanjay",
+            "location": "Jaipur",
+            "avatar": "/images/avatar_journalist.png"
+        },
+        "blocks": [
+            {
+                "id": "image",
+                "attributes": [
+                    {
+                        "id": "src",
+                        "label": "Image URL",
+                        "type": "string",
+                        "value": "https://encrypted-tbn1.gstatic.com/images?q=tbn:ANd9GcSL853qPCjCn4HpQOnxmFP08JRmS_RDL6bPnRm4tiRcLzKauj1IxQ"
+                    }
+                ]
+            },
+            {
+                "id": "headline",
+                "attributes": [
+                    {
+                        "id": "innerHTML",
+                        "label": "Text Value",
+                        "type": "string",
+                        "value": "Only 4% of Total Users on 3G"
+                    },
+                    {
+                        "id": "color",
+                        "label": "Text Color",
+                        "type": "color",
+                        "value": "#000"
+                    }
+                ]
+            },
+            {
+                "id": "copy",
+                "attributes": [
+                    {
+                        "id": "innerHTML",
+                        "label": "Text Value",
+                        "type": "string",
+                        "value": "Only 4.15% of the total mobile phone users have started enjoying third generation mobile broadband data services, according to regulator.\n\nAfter the private mobile phone operators of the country launched 3G services at the end of October last year, the total number of 3G users crossed 48.45 lakh till the end of July this year.\n\nThe number of total active SIM cards stood at 11.68 crore, said Bangladesh Telecommunication Regulatory Commission (BTRC) data.\n\nRecently, BTRC collected the number of 3G users of the country as the regulator inspected the 3G service roll-out and network quality of the operators.\n\nAccording to the data, Robi, the third largest operator in the country in terms of total active users, became the market leader with 13.05 lakh 3G connections.\n\nThe number of total active SIM users of Robi reached 2.42 crore as of July 2014."
+                    },
+                    {
+                        "id": "color",
+                        "label": "Text Color",
+                        "type": "color",
+                        "value": "#000"
+                    }
+                ]
+            },
+            {
+                "id": "image",
+                "attributes": [
+                    {
+                        "id": "src",
+                        "label": "Image URL",
+                        "type": "string",
+                        "value": "http://farm4.static.flickr.com/3085/2546669411_5ed4a9c5d9.jpg"
+                    }
+                ]
+            },
+            {
+                "id": "headline",
+                "attributes": [
+                    {
+                        "id": "innerHTML",
+                        "label": "Text Value",
+                        "type": "string",
+                        "value": "Heavy Rainfall Expected"
+                    },
+                    {
+                        "id": "color",
+                        "label": "Text Color",
+                        "type": "color",
+                        "value": "#000"
+                    }
+                ]
+            },
+            {
+                "id": "copy",
+                "attributes": [
+                    {
+                        "id": "innerHTML",
+                        "label": "Text Value",
+                        "type": "string",
+                        "value": "A weather forecast report has expected that a heavy to very heavy rainfall may arise at places over Dhaka, Khulna, Barisal, Chittagong and Sylhet divisions during the next twenty four hours commencing at 11 am on Saturday, BSS reports.\n\nThe rainfall may cause landslide at places over the hilly regions of Chittagong and Sylhet divisions, the report said.\n\nLocal cautionary signal No-three is suggested to keep hoist in Maritime ports of Chittagong, Cox's Bazar, Mongla and Payra.\n\nAll fishing boats and trawlers over North Bay have been advised to remain close to the coast and proceed with caution till further notice, it added.\n\nThe highest rainfall was recorded by 256 millimeters (mm) for last 24 hours at Sandwip followed by 241 mm held at Teknaf."
+                    },
+                    {
+                        "id": "color",
+                        "label": "Text Color",
+                        "type": "color",
+                        "value": "#000"
+                    }
+                ]
+            }
+        ]
+    },
+    {
+        "id": "000d1745-5d3c-4997-ac0c-15df68bbbecb",
+        "name": "Medic",
+        "icon": "/images/placeholder_medic.png",
+        "author": {
+            "name": "Pedro",
+            "location": "São Paulo",
+            "avatar": "/images/avatar_medic.png"
+        },
+        "blocks": []
+    },
+    {
+        "id": "a7ac2775-bd9d-40b5-a26c-43e8452da768",
+        "name": "Teacher",
+        "icon": "/images/placeholder_teacher.png",
+        "author": {
+            "name": "Andrew",
+            "location": "Detroit",
+            "avatar": "/images/avatar_teacher.png"
+        },
+        "blocks": []
+    },
+    {
+        "id": "229abeb3-aa7d-453d-8082-96f8f1b0bfd8",
+        "name": "Family",
+        "icon": "/images/placeholder_family.png",
+        "author": {
+            "name": "Pedro",
+            "location": "São Paulo",
+            "avatar": "/images/avatar_family.png"
+        },
+        "blocks": []
+    },
+    {
+        "id": "5c22ae09-eeb5-4faf-aeb2-756da98790bf",
+        "name": "Scientist",
+        "icon": "/images/placeholder_scientist.png",
+        "author": {
+            "name": "Pedro",
+            "location": "São Paulo",
+            "avatar": "/images/avatar_scientist.png"
+        },
+        "blocks": []
+    },
+    {
+        "id": "b9483c11-077e-4396-84e2-c0454c36a741",
+        "name": "Blogger",
+        "icon": "/images/placeholder_blogger.png",
+        "author": {
+            "name": "Pedro",
+            "location": "São Paulo",
+            "avatar": "/images/avatar_blogger.png"
+        },
+        "blocks": []
+    },
+    {
+        "id": "41e8be7e-4381-4afd-82ac-861171cd7434",
+        "name": "Student",
+        "icon": "/images/placeholder_student.png",
+        "author": {
+            "name": "Pedro",
+            "location": "São Paulo",
+            "avatar": "/images/avatar_student.png"
+        },
+        "blocks": []
+    },
+    {
+        "id": "3617a58c-3103-47dd-a767-60cd84ed7ef7",
+        "name": "Activist",
+        "icon": "/images/placeholder_activist.png",
+        "author": {
+            "name": "Pedro",
+            "location": "São Paulo",
+            "avatar": "/images/avatar_activist.png"
+        },
+        "blocks": []
+    }
+]

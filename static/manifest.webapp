@@ -1,17 +1,14 @@
 {
     "version": "1.0.0",
-    "name": "Webmaker",
+    "name": "Appmaker",
     "launch_path": "/index.html",
     "description": "",
     "icons": {
-        "16": "/images/logo16.png",
-        "32": "/images/logo32.png",
-        "48": "/images/logo48.png",
-        "60": "/images/logo60.png",
-        "64": "/images/logo64.png",
-        "90": "/images/logo90.png",
-        "120": "/images/logo120.png",
-        "128": "/images/logo128.png"
+        "32": "/images/icon32.png",
+        "64": "/images/icon64.png",
+        "128": "/images/icon128.png",
+        "256": "/images/icon256.png",
+        "512": "/images/icon512.png"
     },
     "developer": {
         "name": "Mozilla",

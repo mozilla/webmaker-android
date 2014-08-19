@@ -17,6 +17,7 @@ build:
 	cp -av ./static/. ./build/
 	cat `find ./views -name "*.less"` > ./build/styles/views.less
 	cat `find ./components -name "*.less"` > ./build/styles/components.less
+	cat `find ./blocks -name "*.less"` > ./build/styles/blocks.less
 	$(LESSC) -x ./build/styles/common.less ./build/styles/common.css
 	node_modules/node-appcache-generator/bin/node-appcache \
 		--manifest ./build/manifest.appcache \
@@ -38,10 +39,16 @@ serve:
 
 lint:
 	$(JSHINT) ./lib/*.js
+	$(JSHINT) ./blocks/**/*.js
+	$(JSHINT) ./components/**/*.js
+	$(JSHINT) ./views/**/*.js
 	$(JSHINT) ./test/integration/*.js
 	$(JSHINT) ./test/unit/*.js
 
 	$(JSCS) ./lib/*.js
+	$(JSCS) ./blocks/**/*.js
+	$(JSCS) ./components/**/*.js
+	$(JSCS) ./views/**/*.js
 	$(JSCS) ./test/integration/*.js
 	$(JSCS) ./test/unit/*.js
 

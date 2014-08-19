@@ -1,9 +1,11 @@
-@import "./normalize";
+@import "normalize";
+@import "forms";
+@import "colors";
 
 body, html {
     margin: 0;
     padding: 0;
-    background-color: #F6F7F7;
+    background-color: @background;
 }
 
 * {
@@ -22,11 +24,10 @@ body, html {
     height: 100%;
 }
 
-@import "forms";
-
 /**
  * Temp files
  * Generated & recycled by the build script
  */
-@import "./views";
-@import "./components";
+@import "views";
+@import "components";
+@import "blocks";

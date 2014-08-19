@@ -5,6 +5,7 @@
     "disallowMultipleVarDecl": true,
     "disallowSpacesInNamedFunctionExpression": null,
     "disallowSpacesInFunctionDeclaration": null,
+    "requireLineFeedAtFileEnd": true,
     "maximumLineLength": {
         "value": 80,
         "allowComments": true,
@@ -16,9 +17,7 @@
        "while",
        "do",
        "try",
-       "catch",
-       "case",
-       "default"
+       "catch"
     ],
     "requireMultipleVarDecl": null
 }

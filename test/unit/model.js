@@ -22,13 +22,17 @@ describe('Model', function () {
         it('should have the expected history', function () {
             assert.deepEqual(model.history, {
                 ftu: true,
-                path: '/'
+                path: null
             });
         });
 
         it('should have the expected user', function () {
             // @todo
-            assert.deepEqual(model.user, {});
+            assert.deepEqual(model.user, {
+                name: null,
+                location: null,
+                avatar: null
+            });
         });
 
         it('should have the expected apps', function () {

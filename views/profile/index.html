@@ -1,14 +1,12 @@
 <div v-component="navigationBar"></div>
 
-<div class="row">
-  <div class="left"></div>
-  <div class="right">
-  </div>
-</div>
-
 <div id="profile-header">
-  <div class="profile-avatar" style="background-image: url({{avatar}});"></div>
-  <div class="profile-info"><strong>{{name}}</strong> from <strong>{{location}}</strong></div>
+  <div class="profile-avatar" style="background-image: url(/images/avatar.png);"></div>
+  <div class="profile-info">
+    <strong>{{name}}</strong>
+    <span v-if="location"> from </span>
+    <strong>{{location}}</strong>
+  </div>
 </div>
 
 <form id="profile-details">
