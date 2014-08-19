@@ -1,10 +1,10 @@
 #templateCell {
     height: 72px;
     background-color: white;
-    border-bottom: 1px solid #E7E7E7;
+    border-bottom: 1px solid @lightGrey;
     list-style: none;
     padding: 0;
-    color: #797C7F;
+    color: @black;
     line-height: 1.4;
 }
 
@@ -14,9 +14,6 @@
     height: 100%;
     text-decoration: none;
     color: inherit;
-    &:hover {
-      color: #32B2D2
-    }
 
     .name,
     .author {
@@ -25,7 +22,8 @@
 
     .author {
       font-size: 0.8em; // to replace with small
-      font-weight: lighter;
+      font-weight: 200;
+      color: @mediumGrey;
     }
 
     .left, .right {
