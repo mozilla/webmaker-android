@@ -57,7 +57,7 @@ Static assets (such as images, icons, and the webapp manifest) are contained wit
 
 ---
 
-### Getting Up & Running
+### Getting Started
 
 To get a local version of `mobile-appmaker` running, you'll need a few tools installed on your system first. If you haven't already, you'll want to install [git](http://git-scm.com/) and [node](http://nodejs.org/). Once you have those items installed:
 ```bash
@@ -66,10 +66,15 @@ cd mobile-appmaker
 npm install
 ```
 
-#### Build
-Once you have `mobile-appmaker` installed, you'll want to build it so you can run it within your web browser (or device simulator). To do this, simply type the following and then open the `index.html` file that appears in the newly created `build` directory:
+#### Build & Run
+Once you have `mobile-appmaker` installed, you'll want to build it so you can run it within your web browser (or device simulator). To do this, simply type the following:
 ```bash
 make build
+```
+
+Once the build process is complete, you can run a version locally:
+```bash
+make serve
 ```
 
 #### Testing
