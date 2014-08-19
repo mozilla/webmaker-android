@@ -4,6 +4,7 @@ make build
 
 cd build
 git init
+git checkout -b gh-pages
 git config user.name "Travis-CI"
 git add .
 git commit -m "Deploy"
