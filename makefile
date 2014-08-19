@@ -1,4 +1,4 @@
-SHELL := /bin/bash
+SHELL = /bin/bash
 BROWSERIFY = ./node_modules/.bin/browserify
 LESSC = ./node_modules/.bin/lessc
 NODEMON = ./node_modules/.bin/nodemon
