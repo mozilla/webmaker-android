@@ -1,3 +1,8 @@
 language: node_js
 node_js:
-    - '0.10'
+- '0.10'
+script: npm run-script deploy
+env:
+  global:
+  - GH_REF: github.com/mozillafordevelopment/mobile-appmaker
+  - secure: aN3mP/+VTMPrsvxwx+2XOa77Sr2kkJ0w0eZvzDnSrqp2EUc2QJ8V46sDsxfOCEBboY97UOv3O2qKJcn08+sR90PFJEdIT/jEV6eInfQWfmVkmN/lY/6uNXCAezlIQK5hIOMr4w4Te6T8hbhNNmg/4x6V37SzkkAPogzFDAzk6E8=
