@@ -6,6 +6,8 @@
 ### Background
 Mobile Appmaker is a product exploring how to radically lower the entry to creating and distributing mobile applications through on-device authoring.
 
+![](https://cloud.githubusercontent.com/assets/747641/3974620/6f9cced4-27f7-11e4-9738-3d3c5296d37e.png)
+
 ### Structure
 Mobile Appmaker is structured around a number of lightweight composable `CommonJS` modules that provide abstractions for routing, XHR, IndexedDB, i18n, and MVVM. Bundling for distribution is handled by [browserify](https://github.com/substack/node-browserify). Testing is handled by [mocha](https://github.com/visionmedia/mocha) and [phantomjs](http://phantomjs.org/).
 
