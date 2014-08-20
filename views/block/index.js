@@ -3,10 +3,6 @@ var view = require('../../lib/view');
 
 module.exports = view.extend({
     id: 'block',
-    components: {
-        tabBar: require('../../components/tabBar'),
-        navigationBar: require('../../components/navigationBar')
-    },
     template: require('./index.html'),
     data: {
         back: true

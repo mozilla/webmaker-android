@@ -2,10 +2,6 @@ var view = require('../../lib/view');
 
 module.exports = view.extend({
     id: 'profile',
-    components: {
-        tabBar: require('../../components/tabBar'),
-        navigationBar: require('../../components/navigationBar')
-    },
     template: require('./index.html'),
     created: function () {
         this.$data = this.model.user;
