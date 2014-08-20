@@ -37,7 +37,7 @@ describe('Model', function () {
 
         it('should have the expected apps', function () {
             // @todo
-            assert.deepEqual(model.apps, []);
+            assert.equal(model.apps.length, 1);
         });
     });
 });
