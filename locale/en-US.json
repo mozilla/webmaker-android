@@ -8,11 +8,19 @@
         "description": ""
     },
     "name from location": {
-        "message": "<strong>{{name}}</strong> from <strong>{{location}}</strong>",
+        "message": " <strong>{{name}}</strong><span v-if=\"location\"> from </span><strong>{{location}}</strong>",
         "description": ""
     },
     "by user.name": {
         "message": "by {{user.name}}",
         "description": ""
+    },
+    "Me": {
+        "message": "Me",
+        "description": ""
+    },
+    "Templates": {
+      "message": "Templates",
+      "description": ""
     }
 }

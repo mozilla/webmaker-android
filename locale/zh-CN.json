@@ -1,0 +1,26 @@
+{
+    "Name": {
+        "message": "名称",
+        "description": "m"
+    },
+    "Location": {
+        "message": "所在地",
+        "description": ""
+    },
+    "name from location": {
+        "message": "<strong>{{name}}</strong><span v-if=\"location\">来自</span><strong>{{location}}</strong>",
+        "description": ""
+    },
+    "by user.name": {
+        "message": "创建者 {{user.name}}",
+        "description": ""
+    },
+    "Me": {
+        "message": "我",
+        "description": ""
+    },
+    "Templates": {
+      "message": "模板",
+      "description": ""
+    }
+}
