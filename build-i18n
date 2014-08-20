@@ -7,6 +7,7 @@ function run() {
     var langMap = {};
     var args = process.argv.splice(2);
     var dir = args[0];
+    // I should probably redo this as transformable streams later but oh well
     fs.readdirSync(dir).forEach(function (filename) {
         if (path.extname(filename) !== '.json' ) return;
         var code = path.basename(filename, '.json');
