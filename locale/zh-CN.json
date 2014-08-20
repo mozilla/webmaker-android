@@ -22,5 +22,13 @@
     "Templates": {
       "message": "模板",
       "description": ""
+    },
+    "Apps": {
+      "message": "手机软件",
+      "description": ""
+    },
+    "Details": {
+      "message": "",
+      "description": ""
     }
 }

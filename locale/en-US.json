@@ -22,5 +22,13 @@
     "Templates": {
       "message": "Templates",
       "description": ""
+    },
+    "Apps": {
+      "message": "Apps",
+      "description": ""
+    },
+    "Details": {
+      "message": "Details",
+      "description": ""
     }
 }
