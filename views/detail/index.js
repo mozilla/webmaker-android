@@ -1,4 +1,6 @@
-module.exports = {
+var view = require('../../lib/view');
+
+module.exports = view.extend({
     id: 'detail',
     components: {
         tabBar: require('../../components/tabBar'),
@@ -6,4 +8,4 @@ module.exports = {
     },
     template: require('./index.html'),
     data: {}
-};
+});

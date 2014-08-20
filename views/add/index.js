@@ -1,8 +1,8 @@
 var templates = require('../../lib/templates.json');
+var view = require('../../lib/view');
 
-module.exports = {
+module.exports = view.extend({
     id: 'add',
-    components: {},
     template: require('./index.html'),
     created: function () {
         var self = this;
@@ -17,4 +17,4 @@ module.exports = {
             }
         }
     }
-};
+});

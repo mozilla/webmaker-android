@@ -1,6 +1,7 @@
 var templates = require('../../lib/templates.json');
+var view = require('../../lib/view');
 
-module.exports = {
+module.exports = view.extend({
     id: 'block',
     components: {
         tabBar: require('../../components/tabBar'),
@@ -26,4 +27,4 @@ module.exports = {
     detached: function () {
         // @todo
     }
-};
+});

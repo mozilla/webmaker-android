@@ -1,15 +1,8 @@
 var templates = require('../../lib/templates.json');
+var view = require('../../lib/view');
 
-module.exports = {
+module.exports = view.extend({
     id: 'edit',
-    components: {
-        makeBar: require('../../components/makeBar'),
-        navigationBar: require('../../components/navigationBar'),
-
-        image: require('../../blocks/image'),
-        headline: require('../../blocks/headline'),
-        copy: require('../../blocks/copy')
-    },
     template: require('./index.html'),
     created: function () {
         var self = this;
@@ -24,4 +17,4 @@ module.exports = {
             }
         }
     }
-};
+});

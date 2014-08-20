@@ -9,5 +9,7 @@ module.exports = {
                 global.history.back();
             });
         }
+
+        // this.$dispatch('ping', 'hello world');
     }
 };
