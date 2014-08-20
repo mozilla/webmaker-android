@@ -38,7 +38,7 @@
                 ]
             },
             {
-                "id": "copy",
+                "id": "paragraph",
                 "attributes": [
                     {
                         "id": "innerHTML",
@@ -83,7 +83,7 @@
                 ]
             },
             {
-                "id": "copy",
+                "id": "paragraph",
                 "attributes": [
                     {
                         "id": "innerHTML",
