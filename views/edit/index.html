@@ -2,5 +2,5 @@
 <div v-component="navigationBar" style="top: 44px"></div>
 <a class="add" href="/make/{{id}}/add">+</a>
 <div id="blocks">
-    <div v-component="{{id}}" v-repeat="blocks"></div>
+    <a v-component="{{id}}" v-repeat="blocks" href="/make/{{id}}/block"></a>
 </div>
