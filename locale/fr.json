@@ -1,0 +1,18 @@
+{
+    "Name": {
+        "message": "Nom",
+        "description": ""
+    },
+    "Location": {
+        "message": "Habite à",
+        "description": ""
+    },
+    "name from location": {
+        "message": "<strong>{{name}}</strong> de <strong>{{location}}</strong>",
+        "description": ""
+    },
+    "by user.name": {
+        "message": "Créé par {{user.name}}",
+        "description": ""
+    }
+}

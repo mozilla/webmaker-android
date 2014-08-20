@@ -1,0 +1,18 @@
+{
+    "Name": {
+        "message": "Name",
+        "description": ""
+    },
+    "Location": {
+        "message": "Location",
+        "description": ""
+    },
+    "name from location": {
+        "message": "<strong>{{name}}</strong> from <strong>{{location}}</strong>",
+        "description": ""
+    },
+    "by user.name": {
+        "message": "by {{user.name}}",
+        "description": ""
+    }
+}
