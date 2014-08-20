@@ -7,6 +7,9 @@ module.exports = {
         navigationBar: require('../../components/navigationBar')
     },
     template: require('./index.html'),
+    data: {
+        back: true
+    },
     created: function () {
         var self = this;
         var target = this.$parent.$data.target;

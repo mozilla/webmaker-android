@@ -6,7 +6,7 @@ module.exports = {
         var button = this.$el.getElementsByTagName('button')[0];
         if (typeof button !== 'undefined') {
             button.addEventListener('click', function (e) {
-                history.back();
+                global.history.back();
             });
         }
     }
