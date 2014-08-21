@@ -10,11 +10,14 @@ MOCHA = ./node_modules/.bin/mocha
 MOCHAPHANTOMJS = ./node_modules/.bin/mocha-phantomjs
 PHANTOMJS = ./node_modules/.bin/phantomjs
 
+BUILDLOCALE = ./build-i18n
 # ------------------------------------------------------------------------------
 
 build:
 	@make clean
+	$(BUILDLOCALE) ./locale > ./lib/langs.js
 	$(BROWSERIFY) $(TARGET)
+	rm -rf ./lib/langs.js
 	cp -av ./static/. ./build/
 	cat `find ./views -name "*.less"` > ./build/styles/views.less
 	cat `find ./components -name "*.less"` > ./build/styles/components.less
@@ -66,4 +69,4 @@ test:
 
 # ------------------------------------------------------------------------------
 
-.PHONY: build clean dev serve lint unit integration test
+.PHONY: build i18n clean dev serve lint unit integration test

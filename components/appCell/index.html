@@ -1,7 +1,7 @@
 <a href="/apps{{url}}">
     <div class="left">
         <span class="name">{{name}}</span>
-        <span v-if="user" class="author">by {{user.name}}</span>
+        <span v-if="user" class="author" v-bind-html="by user.name"></span>
     </div>
 
     <div class="right">

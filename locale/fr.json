@@ -1,0 +1,34 @@
+{
+    "Name": {
+        "message": "Nom",
+        "description": ""
+    },
+    "Location": {
+        "message": "Habite à",
+        "description": ""
+    },
+    "name from location": {
+        "message": "<strong>{{name}}</strong><span v-if=\"location\"> de </span><strong>{{location}}</strong>",
+        "description": ""
+    },
+    "by user.name": {
+        "message": "Créé par {{user.name}}",
+        "description": ""
+    },
+    "Me": {
+        "message": "Moi",
+        "description": ""
+    },
+    "Templates": {
+      "message": "Modèles",
+      "description": ""
+    },
+    "Apps": {
+      "message": "Applis",
+      "description": ""
+    },
+    "Details": {
+      "message": "Détails",
+      "description": ""
+    }
+}
