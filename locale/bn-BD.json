@@ -1,0 +1,58 @@
+{
+    "Name": {
+        "message": "নাম",
+        "description": "Label on the profile page, e.g. Name: Kate, Location: Canada"
+    },
+    "Location": {
+        "message": "অবস্থান",
+        "description": "Label on the profile, e.g. Name: Kate, Location: Canada"
+    },
+    "name from location": {
+        "message": " <strong>{{name}}</strong><span v-if=\"location\"> </span><strong>{{location}}</strong> থেকে",
+        "description": "E.g. Kate from Canada, sorry for all the html"
+    },
+    "by user.name": {
+        "message": "{{user.name}}",
+        "description": "For apps, e.g. My Cool App, by {{user.name}}"
+    },
+    "Me": {
+        "message": "আমি",
+        "description": "Title for profile page"
+    },
+    "Templates": {
+      "message": "টেমপ্লেট",
+      "description": "Title for app templates, starter projects/styles to create new apps"
+    },
+    "Apps": {
+      "message": "অ্যাপ",
+      "description": "These are mobile apps, to run on a phone"
+    },
+    "Details": {
+      "message": "বিস্তারিত",
+      "description": "Title for Details page, where the details of the app are listed"
+    },
+    "Apps I've Created": {
+      "message": "আমার বানানো অ্যাপসমূহ",
+      "description": "Title for the list of apps I've created"
+    },
+    "Journalist": {
+      "message": "সাংবাদিক",
+      "description": "Title for an app for journalists"
+    },
+    "Play": {
+      "message": "দেখুন",
+      "description": "Button that, if clicked, shows the end product of the app"
+    },
+    "Edit": {
+      "message": "সম্পাদনা",
+      "description": "Button for allowing user to edit the app"
+    },
+    "Text": {
+      "message": "লেখা",
+      "description": "Type of block that can be added to the app"
+    },
+    "Image": {
+      "message": "ছবি",
+      "description": "Type of block that can be added to the app"
+    }
+}
