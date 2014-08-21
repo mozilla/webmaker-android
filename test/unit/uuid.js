@@ -21,19 +21,23 @@ function hasDuplicates (array) {
 }
 
 describe('UUID', function () {
-    it ('should be a function', function () {
-        assert.equal(typeof uuid, 'function');
+    describe('interface', function () {
+        it ('should be a function', function () {
+            assert.equal(typeof uuid, 'function');
+        });
+
+        it ('should return a string', function () {
+            assert.equal(typeof uuid(), 'string');
+        });
     });
 
-    it ('should return a string', function () {
-        assert.equal(typeof uuid(), 'string');
-    });
+    describe('RFC', function () {
+        it ('should return a string of the expected length', function () {
+            assert.equal(uuid().length, 36);
+        });
 
-    it ('should return a string of the expected length', function () {
-        assert.equal(uuid().length, 36);
-    });
-
-    it ('should not repeat', function () {
-        assert.equal(hasDuplicates(suite), false);
+        it ('should not repeat', function () {
+            assert.equal(hasDuplicates(suite), false);
+        });
     });
 });
