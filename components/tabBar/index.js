@@ -6,7 +6,8 @@ module.exports = {
         var el = this.$el;
         var inputs = document.querySelectorAll('input, te');
         function onFocus(e) {
-            if (['input', 'textarea'].indexOf(e.target.tagName.toLowerCase()) <= -1) {
+            var tagName = e.target.tagName.toLowerCase();
+            if (['input', 'textarea'].indexOf(tagName) <= -1) {
                 return;
             }
             el.style.opacity = 0;
