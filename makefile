@@ -10,7 +10,8 @@ MOCHA = ./node_modules/.bin/mocha
 MOCHAPHANTOMJS = ./node_modules/.bin/mocha-phantomjs
 PHANTOMJS = ./node_modules/.bin/phantomjs
 
-BUILDLOCALE = ./build-i18n
+BUILDLOCALE = ./build-i18n.js
+
 # ------------------------------------------------------------------------------
 
 build:

@@ -1,0 +1,47 @@
+[
+    {
+        "id": "image",
+        "attributes": [
+            {
+                "id": "src",
+                "label": "Image URL",
+                "type": "string",
+                "value": ""
+            }
+        ]
+    },
+    {
+        "id": "headline",
+        "attributes": [
+            {
+                "id": "innerHTML",
+                "label": "Text",
+                "type": "string",
+                "value": ""
+            },
+            {
+                "id": "color",
+                "label": "Color",
+                "type": "color",
+                "value": "#000"
+            }
+        ]
+    },
+    {
+        "id": "paragraph",
+        "attributes": [
+            {
+                "id": "innerHTML",
+                "label": "Text",
+                "type": "string",
+                "value": ""
+            },
+            {
+                "id": "color",
+                "label": "Color",
+                "type": "color",
+                "value": "#000"
+            }
+        ]
+    }
+]

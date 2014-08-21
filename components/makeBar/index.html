@@ -1,11 +1,11 @@
 <ul>
-    <li v-class="active:mode === 'play'">
+    <li class="button">
+        <a href="/apps">&lt;</a>
+    </li>
+    <li v-class="active:params.mode === 'play'">
         <a href="/make/{{id}}/play">Play</a>
     </li>
-    <li v-class="active:mode === 'edit'">
+    <li v-class="active:params.mode === 'edit'">
         <a href="/make/{{id}}/edit">Edit</a>
-    </li>
-    <li v-class="active:mode === 'data'">
-        <a href="/make/{{id}}/data">Data</a>
     </li>
 </ul>

@@ -1,12 +1,10 @@
-module.exports = {
+var view = require('../../lib/view');
+
+module.exports = view.extend({
     id: 'templates',
-    components: {
-        tabBar: require('../../components/tabBar'),
-        navigationBar: require('../../components/navigationBar'),
-        templateCell: require('../../components/templateCell')
-    },
     template: require('./index.html'),
     data: {
+        title: 'Templates',
         personas: require('../../lib/templates.json')
     }
-};
+});
