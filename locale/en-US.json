@@ -31,8 +31,8 @@
       "message": "Details",
       "description": "Title for Details page, where the details of the app are listed"
     },
-    "App's I've Created": {
-      "message": "App's I've Created",
+    "Apps I've Created": {
+      "message": "Apps I've Created",
       "description": "Title for the list of apps I've created"
     },
     "Journalist": {
@@ -54,5 +54,57 @@
     "Image": {
       "message": "Image",
       "description": "Type of block that can be added to the app"
+    },
+    "Next": {
+      "message": "Next",
+      "description": "Button, meaning 'Next page'"
+    },
+    "Apps made by _": {
+      "message": "Apps made by: <span v-cycle=\"personas\"></span>",
+      "description": "Only translate 'Apps made by:', do NOT replace the word 'personas'. Move the <span>...</span> to wherever the words students, activists, journalists etc. would be in the sentence."
+    },
+    "vendors": {
+      "message": "vendors",
+      "description": ""
+    },
+    "students": {
+      "message": "students",
+      "description": "To be replaced in the sentence: Apps made by students"
+    },
+    "activists": {
+      "message": "activists",
+      "description": "To be replaced in the sentence: Apps made by activists"
+    },
+    "journalists": {
+      "message": "journalists",
+      "description": ""
+    },
+    "teachers": {
+      "message": "teachers",
+      "description": ""
+    },
+    "parents": {
+      "message": "parents",
+      "description": ""
+    },
+    "doctors": {
+      "message": "doctors",
+      "description": ""
+    },
+    "scientists": {
+      "message": "scientists",
+      "description": ""
+    },
+    "you": {
+      "message": "you",
+      "description": ""
+    },
+    "Create and share app templates with people all around the world": {
+      "message": "Create and share app templates with people all around the world",
+      "description": "Description for first time experience"
+    },
+    "You can create your own app. Just open a template and edit!": {
+      "message": "You can create your own app. Just open a template and edit!",
+      "description": ""
     }
 }

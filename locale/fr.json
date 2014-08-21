@@ -30,5 +30,77 @@
     "Details": {
       "message": "Détails",
       "description": ""
+    },
+    "Apps I've Created": {
+      "message": "Applis que j'ai créé",
+      "description": "Title for the list of apps I've created"
+    },
+    "Journalist": {
+      "message": "Journaliste",
+      "description": "Title for an app for journalists"
+    },
+    "Play": {
+      "message": "Lire",
+      "description": "Button that, if clicked, shows the end product of the app"
+    },
+    "Edit": {
+      "message": "Modifier",
+      "description": "Button for allowing user to edit the app"
+    },
+    "Text": {
+      "message": "Texte",
+      "description": "Type of block that can be added to the app"
+    },
+    "Image": {
+      "message": "Image",
+      "description": "Type of block that can be added to the app"
+    },
+    "Next": {
+      "message": "Suivante",
+      "description": "Button, meaning 'Next page'"
+    },
+    "Apps made by _": {
+      "message": "Applis créé par: <span v-cycle=\"personas\"></span>",
+      "description": "Only translate 'Apps made by:', do NOT replace the word 'personas'. Move the <span>...</span> to wherever the words students, activists, journalists etc. would be in the sentence."
+    },
+    "vendors": {
+      "message": "des fournisseurs",
+      "description": "To be replaced in the sentence: Apps made by vendors"
+    },
+    "students": {
+      "message": "des élèves",
+      "description": "To be replaced in the sentence: Apps made by students"
+    },
+    "activists": {
+      "message": "des activistes",
+      "descripti∂on": "To be replaced in the sentence: Apps made by activists"
+    },
+    "journalists": {
+      "message": "des journalistes",
+      "description": ""
+    },
+    "teachers": {
+      "message": "des professeurs",
+      "description": ""
+    },
+    "parents": {
+      "message": "des parents",
+      "description": ""
+    },
+    "doctors": {
+      "message": "des médecins",
+      "description": ""
+    },
+    "scientists": {
+      "message": "des scientifiques",
+      "description": ""
+    },
+    "you": {
+      "message": "vous",
+      "description": ""
+    },
+    "Create and share app templates with people all around the world": {
+      "message": "Créer et partager des modèles d'applis partout dans le monde",
+      "description": "Description for first time experience"
     }
 }
