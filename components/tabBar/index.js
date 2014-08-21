@@ -5,7 +5,10 @@ module.exports = {
     attached: function () {
         var el = this.$el;
         var inputs = document.querySelectorAll('input, te');
-        function onFocus() {
+        function onFocus(e) {
+            if (['input', 'textarea'].indexOf(e.target.tagName.toLowerCase()) <= -1) {
+                return;
+            }
             el.style.opacity = 0;
         }
         function onBlur() {
