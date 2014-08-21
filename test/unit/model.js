@@ -22,7 +22,7 @@ describe('Model', function () {
         it('should have the expected history', function () {
             assert.deepEqual(model.history, {
                 ftu: true,
-                path: null
+                path: '/ftu'
             });
         });
 
