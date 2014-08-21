@@ -1,8 +1,16 @@
 language: node_js
 node_js:
 - '0.10'
-script: npm run-script deploy
-env:
-  global:
-  - GH_REF: github.com/mozillafordevelopment/mobile-appmaker
-  - secure: j6YlqyWYlxXnwgBroP9l/0grZ1PGv7hDYJWGDLuFScZUHRVv2TgzysGPxzxlee3uq3LYWjGOER8NtWuiOE8tyelbYYlUXzh/erTnBFzf2UzWo378u3TKqmkV7gtqp3ak/IdYCGBcSnbhDFMOIlKXMybb/eVMuomk/33IUqHd6EQ=
+before_deploy:
+  - make build
+deploy:
+  skip_cleanup: true
+  provider: s3
+  access_key_id: AKIAJUDCXY7KKU5CCV2A
+  secret_access_key:
+    secure: FNSin2ITqcIkPzHSh1Bwa22OtdkkqdWTYKRzIJ2pqmoVlIZLVdoICe8kATccgquub/F7vxz6PRx80C7ooJVBHE9OeECPHTSkyb0aC9lfroxEVG6CtG2gfILKw5T5EB7kWCmNW4xniiRQDF7bBMEzusQ8wMJEYDo1UwHp1kRvt6o=
+  bucket: mobile-appmaker
+  local-dir: build
+  on:
+    branch: master
+    repo: mozillafordevelopment/mobile-appmaker
