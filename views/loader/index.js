@@ -10,7 +10,7 @@ module.exports = view.extend({
 
             var path = self.model.history.path;
             if (path === '/') path = '/templates';
-            self.page(self.model.history.path);
+            self.page(path);
         });
     }
 });
