@@ -5,8 +5,7 @@
     "url": "https://github.com/mozillafordevelopment/mobile-appmaker"
   },
   "scripts": {
-    "test": "make test",
-    "deploy": "./deploy-ghpages.sh"
+    "test": "make test"
   },
   "dependencies": {
     "extend": "1.3.0",
