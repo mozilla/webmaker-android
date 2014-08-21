@@ -3,6 +3,9 @@ var view = require('../../lib/view');
 module.exports = view.extend({
     id: 'profile',
     template: require('./index.html'),
+    data: {
+        title: 'Profile'
+    },
     created: function () {
         this.$data = this.model.user;
     },
