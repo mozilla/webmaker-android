@@ -15,6 +15,10 @@
         "message": "Créé par {{user.name}}",
         "description": ""
     },
+    "by author": {
+        "message": "Créé par {{author.name}}",
+        "description": ""
+    },
     "Me": {
         "message": "Moi",
         "description": ""

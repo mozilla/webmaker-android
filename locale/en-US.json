@@ -15,6 +15,10 @@
         "message": "by {{user.name}}",
         "description": "For apps, e.g. My Cool App, by {{user.name}}"
     },
+    "by author": {
+      "message": "by {{author.name}}",
+      "description": "For apps, e.g. My Cool App, by {{user.name}}"
+    },
     "Me": {
         "message": "Me",
         "description": "Title for profile page"
