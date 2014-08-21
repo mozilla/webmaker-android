@@ -1,0 +1,34 @@
+{
+    "Name": {
+        "message": "Name",
+        "description": ""
+    },
+    "Location": {
+        "message": "Location",
+        "description": ""
+    },
+    "name from location": {
+        "message": " <strong>{{name}}</strong><span v-if=\"location\"> from </span><strong>{{location}}</strong>",
+        "description": ""
+    },
+    "by user.name": {
+        "message": "by {{user.name}}",
+        "description": ""
+    },
+    "Me": {
+        "message": "Me",
+        "description": ""
+    },
+    "Templates": {
+      "message": "Templates",
+      "description": ""
+    },
+    "Apps": {
+      "message": "Apps",
+      "description": ""
+    },
+    "Details": {
+      "message": "Details",
+      "description": ""
+    }
+}
