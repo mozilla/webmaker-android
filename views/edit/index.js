@@ -6,7 +6,7 @@ module.exports = view.extend({
     template: require('./index.html'),
     created: function () {
         var self = this;
-        var target = this.$parent.$data.target;
+        var target = this.$parent.$data.params.id;
 
         // Bind correct template to $data
         for (var i = 0; i < templates.length; i++) {

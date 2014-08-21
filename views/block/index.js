@@ -5,6 +5,7 @@ module.exports = view.extend({
     id: 'block',
     template: require('./index.html'),
     data: {
+        title: 'Edit',
         back: true
     },
     created: function () {
