@@ -1,8 +1,7 @@
-var uuid = require('node-uuid');
-
 var model = require('../../lib/model');
-var view = require('../../lib/view');
 var templates = require('../../lib/templates.json');
+var uuid = require('../../lib/uuid');
+var view = require('../../lib/view');
 
 module.exports = view.extend({
     id: 'templates',
@@ -31,7 +30,7 @@ module.exports = view.extend({
             var clone = getTemplateClone(id);
 
             // Prepare the clone for use
-            clone.id = uuid.v4();
+            clone.id = uuid();
             clone.name = 'Untitled App';
             clone.author = model.user;
 
