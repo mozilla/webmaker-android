@@ -1,34 +1,58 @@
 {
     "Name": {
         "message": "Name",
-        "description": ""
+        "description": "Label on the profile page, e.g. Name: Kate, Location: Canada"
     },
     "Location": {
         "message": "Location",
-        "description": ""
+        "description": "Label on the profile, e.g. Name: Kate, Location: Canada"
     },
     "name from location": {
         "message": " <strong>{{name}}</strong><span v-if=\"location\"> from </span><strong>{{location}}</strong>",
-        "description": ""
+        "description": "E.g. Kate from Canada, sorry for all the html"
     },
     "by user.name": {
         "message": "by {{user.name}}",
-        "description": ""
+        "description": "For apps, e.g. My Cool App, by {{user.name}}"
     },
     "Me": {
         "message": "Me",
-        "description": ""
+        "description": "Title for profile page"
     },
     "Templates": {
       "message": "Templates",
-      "description": ""
+      "description": "Title for app templates, starter projects/styles to create new apps"
     },
     "Apps": {
       "message": "Apps",
-      "description": ""
+      "description": "These are mobile apps, to run on a phone"
     },
     "Details": {
       "message": "Details",
-      "description": ""
+      "description": "Title for Details page, where the details of the app are listed"
+    },
+    "App's I've Created": {
+      "message": "App's I've Created",
+      "description": "Title for the list of apps I've created"
+    },
+    "Journalist": {
+      "message": "Journalist",
+      "description": "Title for an app for journalists"
+    },
+    "Play": {
+      "message": "Play",
+      "description": "Button that, if clicked, shows the end product of the app"
+    },
+    "Edit": {
+      "message": "Edit",
+      "description": "Button for allowing user to edit the app"
+    },
+    "Text": {
+      "message": "Text",
+      "description": "Type of block that can be added to the app"
+    },
+    "Image": {
+      "message": "Image",
+      "description": "Type of block that can be added to the app"
     }
 }
