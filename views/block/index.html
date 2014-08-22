@@ -1,8 +1,8 @@
 <div v-component="navigationBar"></div>
 <form id="attributes">
-    <div class="form-group">
-        <label for="name">Label</label>
-        <input name="name" type="text" v-model="name">
+    <div class="form-group" v-repeat="attributes">
+        <label for="{{id}}">{{ label | i18n }}</label>
+        <input name="{{id}}" type="text" v-model="value">
     </div>
 </form>
 <div v-component="tabBar"></div>

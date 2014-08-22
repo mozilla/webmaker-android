@@ -13,6 +13,10 @@ module.exports = view.extend({
                 if (path === '/') path = '/templates';
                 self.page(path);
             }
+
+            if (window.location.pathname.indexOf('/make')) {
+                self.page('/apps');
+            }
         });
     }
 });

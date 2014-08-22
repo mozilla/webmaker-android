@@ -1,5 +1,11 @@
+var Make = require('../../lib/make');
 var templates = require('../../lib/templates.json');
 var view = require('../../lib/view');
+
+var id = null;
+var index = null;
+var target = null;
+var block = null;
 
 module.exports = view.extend({
     id: 'block',
@@ -10,18 +16,18 @@ module.exports = view.extend({
     },
     created: function () {
         var self = this;
-        var target = this.$parent.$data.target;
 
-        // Bind correct template to $data
-        for (var i = 0; i < templates.length; i++) {
-            if (templates[i].id === target) {
-                self.$data = templates[i];
-                self.$data.title = 'Untitled App';
-                break;
-            }
-        }
+        // Fetch app
+        id = self.$parent.$data.params.id;
+        index = self.$parent.$data.params.index;
+        target = new Make(id);
+        block = target.meta.blocks[index];
+
+        // Bind app
+        self.$data = block;
     },
     detached: function () {
-        // @todo
+        var self = this;
+        target.update(index, self.$data.attributes);
     }
 });
