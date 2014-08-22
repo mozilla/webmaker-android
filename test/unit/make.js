@@ -10,11 +10,12 @@ describe('Make', function () {
     describe('instance', function () {
         it('should exist', function () {
             assert.equal(typeof instance, 'object');
+            assert.equal(typeof instance.meta, 'object');
         });
 
         it('should include the expected metadata', function () {
-            assert.equal(instance.id, id);
-            assert.equal(instance.name, 'Sample App');
+            assert.equal(instance.meta.id, id);
+            assert.equal(instance.meta.name, 'Sample App');
         });
     });
 
@@ -24,13 +25,13 @@ describe('Make', function () {
         instance.insert('paragraph');
 
         it('should include the inserted blocks', function () {
-            assert.equal(instance.blocks.length, 3);
+            assert.equal(instance.meta.blocks.length, 3);
         });
 
         it('should be in the correct order', function () {
             var types = [];
-            for (var i = 0; i < instance.blocks.length; i++) {
-                types.push(instance.blocks[i].id);
+            for (var i = 0; i < instance.meta.blocks.length; i++) {
+                types.push(instance.meta.blocks[i].id);
             }
             assert.deepEqual(types, ['paragraph', 'headline', 'image']);
         });
@@ -53,7 +54,10 @@ describe('Make', function () {
         ]);
 
         it('should update the block attributes', function () {
-            assert.equal(instance.blocks[0].attributes[0].value, 'Hello World');
+            assert.equal(
+                instance.meta.blocks[0].attributes[0].value,
+                'Hello World'
+            );
         });
     });
 });
