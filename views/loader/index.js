@@ -8,9 +8,11 @@ module.exports = view.extend({
         self.model.restore(function (err) {
             if (err) throw new Error('Could not restore user state.');
 
-            var path = self.model.history.path;
-            if (path === '/') path = '/templates';
-            self.page(path);
+            if (window.location.pathname === '/') {
+                var path = self.model.history.path;
+                if (path === '/') path = '/templates';
+                self.page(path);
+            }
         });
     }
 });
