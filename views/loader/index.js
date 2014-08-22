@@ -8,13 +8,23 @@ module.exports = view.extend({
         self.model.restore(function (err) {
             if (err) throw new Error('Could not restore user state.');
 
-            if (window.location.pathname === '/') {
-                var path = self.model.history.path;
-                if (path === '/') path = '/templates';
-                self.page(path);
+            var pathname = window.location.pathname;
+            console.log('[Loader] ' + pathname);
+
+            // If cold start, restore from history
+            if (pathname === '/' || pathname === '/index.html') {
+                var restore = self.model.history.path;
+                console.log('[Loader] Restore to ' + restore);
+                if (restore === '/' || restore === '/index.html') {
+                    restore = '/templates';
+                }
+
+                // Redirect
+                self.page(restore);
             }
 
-            if (window.location.pathname.indexOf('/make')) {
+            // If within a "make", redirect to apps list
+            if (window.location.pathname.indexOf('/make') !== -1) {
                 self.page('/apps');
             }
         });
