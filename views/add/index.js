@@ -31,7 +31,7 @@ module.exports = view.extend({
             var id = self.$parent.$data.params.id;
             var target = new Make(id);
             target.insert(block);
-            
+
             // Add to model & redirect to editor
             self.page(href);
         }
