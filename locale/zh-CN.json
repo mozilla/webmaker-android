@@ -15,6 +15,10 @@
         "message": "创建者 {{user.name}}",
         "description": ""
     },
+    "by author": {
+        "message": "创建者 {{author.name}}",
+        "description": ""
+    },
     "Me": {
         "message": "我",
         "description": ""
