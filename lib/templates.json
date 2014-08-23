@@ -16,7 +16,7 @@
                         "id": "src",
                         "label": "Image URL",
                         "type": "string",
-                        "value": "https://encrypted-tbn1.gstatic.com/images?q=tbn:ANd9GcSL853qPCjCn4HpQOnxmFP08JRmS_RDL6bPnRm4tiRcLzKauj1IxQ"
+                        "value": "/content/journalist_3g.jpg"
                     }
                 ]
             },
@@ -61,7 +61,7 @@
                         "id": "src",
                         "label": "Image URL",
                         "type": "string",
-                        "value": "http://farm4.static.flickr.com/3085/2546669411_5ed4a9c5d9.jpg"
+                        "value": "/content/journalist_weather.jpg"
                     }
                 ]
             },
