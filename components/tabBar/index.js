@@ -10,10 +10,10 @@ module.exports = {
             if (['input', 'textarea'].indexOf(tagName) <= -1) {
                 return;
             }
-            el.style.opacity = 0;
+            el.style.display = 'none';
         }
         function onBlur() {
-            el.style.opacity = '';
+            el.style.display = 'block';
         }
         document.addEventListener('focus', onFocus, true);
         document.addEventListener('blur', onBlur, true);
