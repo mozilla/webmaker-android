@@ -105,6 +105,10 @@
     },
     "Create and share app templates with people all around the world": {
       "message": "তৈরি করুন এবং সারা বিশ্বের মানুষের সঙ্গে সব অ্যাপ্লিকেশন টেমপ্লেট শেয়ার করুন",
-      "description": "Description for first time experience"
+      "description": "Description for first time experience 1/2"
+    },
+    "You can create your own app. Just open a template and edit!": {
+      "message": "আপনি আপনার নিজস্ব অ্যাপ্লিকেশন তৈরি করতে পারেন. শুধু একটি টেমপ্লেট খুলুন এবং সম্পাদনা করুন!",
+      "description": "Description for first time experience 2/2"
     }
 }
