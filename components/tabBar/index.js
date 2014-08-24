@@ -6,6 +6,7 @@ module.exports = {
         var el = this.$el;
         var inputs = document.querySelectorAll('input, te');
         function onFocus(e) {
+            if (!e.target.tagName) return;
             var tagName = e.target.tagName.toLowerCase();
             if (['input', 'textarea'].indexOf(tagName) <= -1) {
                 return;
