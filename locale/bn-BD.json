@@ -15,6 +15,10 @@
         "message": "{{user.name}}",
         "description": "For apps, e.g. My Cool App, by {{user.name}}"
     },
+    "by author": {
+        "message": "{{author.name}}",
+        "description": ""
+    },
     "Me": {
         "message": "আমি",
         "description": "Title for profile page"
@@ -54,5 +58,53 @@
     "Image": {
       "message": "ছবি",
       "description": "Type of block that can be added to the app"
+    },
+    "Next": {
+      "message": "পরবর্তী",
+      "description": "Button, meaning 'Next page'"
+    },
+    "Apps made by _": {
+      "message": "অ্যাপস দ্বারা তৈরি: <span v-cycle=\"personas\"></span>",
+      "description": "Only translate 'Apps made by:', do NOT replace the word 'personas'. Move the <span>...</span> to wherever the words students, activists, journalists etc. would be in the sentence."
+    },
+    "vendors": {
+      "message": "বিক্রেতারা",
+      "description": "To be replaced in the sentence: Apps made by vendors"
+    },
+    "students": {
+      "message": "ছাত্র",
+      "description": "To be replaced in the sentence: Apps made by students"
+    },
+    "activists": {
+      "message": "কর্মী",
+      "descripti∂on": "To be replaced in the sentence: Apps made by activists"
+    },
+    "journalists": {
+      "message": "সাংবাদিক",
+      "description": ""
+    },
+    "teachers": {
+      "message": "শিক্ষক",
+      "description": ""
+    },
+    "parents": {
+      "message": "বাবা",
+      "description": ""
+    },
+    "doctors": {
+      "message": "ডাক্তার",
+      "description": ""
+    },
+    "scientists": {
+      "message": "বিজ্ঞানীরা",
+      "description": ""
+    },
+    "you": {
+      "message": "আপনি",
+      "description": ""
+    },
+    "Create and share app templates with people all around the world": {
+      "message": "তৈরি করুন এবং সারা বিশ্বের মানুষের সঙ্গে সব অ্যাপ্লিকেশন টেমপ্লেট শেয়ার করুন",
+      "description": "Description for first time experience"
     }
 }
