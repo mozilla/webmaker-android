@@ -1,7 +1,7 @@
 var block = require('../../lib/block');
 
 module.exports = block.extend({
-    id: 'sms',
+    className: 'sms',
     template: require('./index.html'),
     ready: function () {
         var self = this;

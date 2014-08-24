@@ -1,6 +1,6 @@
 var block = require('../../lib/block');
 
 module.exports = block.extend({
-    id: 'paragraph',
+    className: 'paragraph',
     template: require('./index.html')
 });
