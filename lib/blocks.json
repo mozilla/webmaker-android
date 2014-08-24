@@ -43,5 +43,22 @@
                 "value": "darkgray"
             }
         ]
+    },
+    {
+        "id": "sms",
+        "attributes": [
+            {
+                "id": "value",
+                "label": "Phone #",
+                "type": "string",
+                "value": "+18005555555"
+            },
+            {
+                "id": "innerHTML",
+                "label": "Label",
+                "type": "string",
+                "value": "Send SMS"
+            }
+        ]
     }
 ]
