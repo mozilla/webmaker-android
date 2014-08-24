@@ -33,7 +33,7 @@
                         "id": "color",
                         "label": "Text Color",
                         "type": "color",
-                        "value": "#000"
+                        "value": "black"
                     }
                 ]
             },
@@ -50,7 +50,7 @@
                         "id": "color",
                         "label": "Text Color",
                         "type": "color",
-                        "value": "#000"
+                        "value": "black"
                     }
                 ]
             },
@@ -78,7 +78,7 @@
                         "id": "color",
                         "label": "Text Color",
                         "type": "color",
-                        "value": "#000"
+                        "value": "black"
                     }
                 ]
             },
@@ -95,7 +95,7 @@
                         "id": "color",
                         "label": "Text Color",
                         "type": "color",
-                        "value": "#000"
+                        "value": "black"
                     }
                 ]
             }
