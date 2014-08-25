@@ -110,5 +110,9 @@
     "You can create your own app. Just open a template and edit!": {
       "message": "You can create your own app. Just open a template and edit!",
       "description": ""
+    },
+    "Get Started": {
+        "message": "Get Started",
+        "description": "Button meaning: Get started making apps"
     }
 }
