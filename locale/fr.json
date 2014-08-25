@@ -106,5 +106,9 @@
     "Create and share app templates with people all around the world": {
       "message": "Créer et partager des modèles d'applis partout dans le monde",
       "description": "Description for first time experience"
+    },
+    "Remove": {
+      "message": "Supprimer",
+      "description": "Button for removing (deleting) a block"
     }
 }
