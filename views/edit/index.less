@@ -34,4 +34,22 @@
             }
         }
     }
+    #name-input {
+        position: fixed;
+        left: 0;
+        top: 44px;
+        z-index: 1;
+        height: 45px;
+
+        color: @highlight;
+        text-align: center;
+        font-size: 16pt;
+        font-weight: 400;
+        font-style: italic;
+        margin: 0;
+        &:focus {
+            border: 1px dashed @turquoise;
+            outline: none;
+        }
+    }
 }
