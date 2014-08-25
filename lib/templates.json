@@ -3,6 +3,7 @@
         "id": "d5c3ee43-5bbf-483c-8e70-0ac035c5f990",
         "name": "Journalist",
         "icon": "/images/placeholder_journalist.png",
+        "active": true,
         "author": {
             "name": "Sanjay",
             "location": "Jaipur",
@@ -103,8 +104,21 @@
     },
     {
         "id": "000d1745-5d3c-4997-ac0c-15df68bbbecb",
+        "name": "Vendor",
+        "icon": "/images/placeholder_vendor.png",
+        "active": true,
+        "author": {
+            "name": "Pedro",
+            "location": "São Paulo",
+            "avatar": "/images/avatar_vendor.png"
+        },
+        "blocks": []
+    },
+    {
+        "id": "000d1745-5d3c-4997-ac0c-15df68bbbecb",
         "name": "Medic",
         "icon": "/images/placeholder_medic.png",
+        "active": false,
         "author": {
             "name": "Pedro",
             "location": "São Paulo",
@@ -116,6 +130,7 @@
         "id": "a7ac2775-bd9d-40b5-a26c-43e8452da768",
         "name": "Teacher",
         "icon": "/images/placeholder_teacher.png",
+        "active": false,
         "author": {
             "name": "Andrew",
             "location": "Detroit",
@@ -127,6 +142,7 @@
         "id": "229abeb3-aa7d-453d-8082-96f8f1b0bfd8",
         "name": "Family",
         "icon": "/images/placeholder_family.png",
+        "active": false,
         "author": {
             "name": "Pedro",
             "location": "São Paulo",
@@ -138,6 +154,7 @@
         "id": "5c22ae09-eeb5-4faf-aeb2-756da98790bf",
         "name": "Scientist",
         "icon": "/images/placeholder_scientist.png",
+        "active": false,
         "author": {
             "name": "Pedro",
             "location": "São Paulo",
@@ -149,6 +166,7 @@
         "id": "b9483c11-077e-4396-84e2-c0454c36a741",
         "name": "Blogger",
         "icon": "/images/placeholder_blogger.png",
+        "active": false,
         "author": {
             "name": "Pedro",
             "location": "São Paulo",
@@ -160,6 +178,7 @@
         "id": "41e8be7e-4381-4afd-82ac-861171cd7434",
         "name": "Student",
         "icon": "/images/placeholder_student.png",
+        "active": false,
         "author": {
             "name": "Pedro",
             "location": "São Paulo",
@@ -171,6 +190,7 @@
         "id": "3617a58c-3103-47dd-a767-60cd84ed7ef7",
         "name": "Activist",
         "icon": "/images/placeholder_activist.png",
+        "active": false,
         "author": {
             "name": "Pedro",
             "location": "São Paulo",
