@@ -108,11 +108,119 @@
         "icon": "/images/placeholder_vendor.png",
         "active": true,
         "author": {
-            "name": "Ashish",
+            "name": "Yousuf",
             "location": "",
             "avatar": "/images/avatar_vendor.png"
         },
-        "blocks": []
+        "blocks": [
+            {
+                "id": "headline",
+                "attributes": [
+                    {
+                        "id": "innerHTML",
+                        "label": "Text Value",
+                        "type": "string",
+                        "value": "Yousuf's Tea Shop"
+                    },
+                    {
+                        "id": "color",
+                        "label": "Text Color",
+                        "type": "color",
+                        "value": "black"
+                    }
+                ]
+            },
+            {
+                "id": "paragraph",
+                "attributes": [
+                    {
+                        "id": "innerHTML",
+                        "label": "Text Value",
+                        "type": "string",
+                        "value": "Niketon Housing Society, 1219 Dhaka, Bangladesh"
+                    },
+                    {
+                        "id": "color",
+                        "label": "Text Color",
+                        "type": "color",
+                        "value": "black"
+                    }
+                ]
+            },
+            {
+                "id": "image",
+                "attributes": [
+                    {
+                        "id": "src",
+                        "label": "Image URL",
+                        "type": "string",
+                        "value": "/content/vendor_mirzapore.jpg"
+                    }
+                ]
+            },
+            {
+                "id": "paragraph",
+                "attributes": [
+                    {
+                        "id": "innerHTML",
+                        "label": "Text Value",
+                        "type": "string",
+                        "value": "Mirzapore - Tk210.35"
+                    },
+                    {
+                        "id": "color",
+                        "label": "Text Color",
+                        "type": "color",
+                        "value": "darkGray"
+                    }
+                ]
+            },
+            {
+                "id": "image",
+                "attributes": [
+                    {
+                        "id": "src",
+                        "label": "Image URL",
+                        "type": "string",
+                        "value": "/content/vendor_assam.jpg"
+                    }
+                ]
+            },
+            {
+                "id": "paragraph",
+                "attributes": [
+                    {
+                        "id": "innerHTML",
+                        "label": "Text Value",
+                        "type": "string",
+                        "value": "Assam - Tk240.10"
+                    },
+                    {
+                        "id": "color",
+                        "label": "Text Color",
+                        "type": "color",
+                        "value": "darkGray"
+                    }
+                ]
+            },
+            {
+                "id": "sms",
+                "attributes": [
+                    {
+                        "id": "value",
+                        "label": "Phone #",
+                        "type": "string",
+                        "value": "+18005555555"
+                    },
+                    {
+                        "id": "innerHTML",
+                        "label": "Label",
+                        "type": "string",
+                        "value": "Place Order"
+                    }
+                ]
+            }
+        ]
     },
     {
         "id": "000d1745-5d3c-4997-ac0c-15df68bbbecb",
