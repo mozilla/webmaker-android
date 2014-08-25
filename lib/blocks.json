@@ -6,7 +6,7 @@
                 "id": "src",
                 "label": "Image URL",
                 "type": "string",
-                "value": ""
+                "value": "/images/placeholder.png"
             }
         ]
     },
@@ -17,13 +17,13 @@
                 "id": "innerHTML",
                 "label": "Text",
                 "type": "string",
-                "value": ""
+                "value": "I am a Headline"
             },
             {
                 "id": "color",
                 "label": "Color",
                 "type": "color",
-                "value": "#000"
+                "value": "darkgray"
             }
         ]
     },
@@ -34,13 +34,30 @@
                 "id": "innerHTML",
                 "label": "Text",
                 "type": "string",
-                "value": ""
+                "value": "I am a paragraph. You can tap on me to change my color or what I say."
             },
             {
                 "id": "color",
                 "label": "Color",
                 "type": "color",
-                "value": "#000"
+                "value": "darkgray"
+            }
+        ]
+    },
+    {
+        "id": "sms",
+        "attributes": [
+            {
+                "id": "value",
+                "label": "Phone #",
+                "type": "string",
+                "value": "+18005555555"
+            },
+            {
+                "id": "innerHTML",
+                "label": "Label",
+                "type": "string",
+                "value": "Send SMS"
             }
         ]
     }

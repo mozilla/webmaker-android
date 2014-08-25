@@ -3,6 +3,7 @@
         "id": "d5c3ee43-5bbf-483c-8e70-0ac035c5f990",
         "name": "Journalist",
         "icon": "/images/placeholder_journalist.png",
+        "active": true,
         "author": {
             "name": "Sanjay",
             "location": "Jaipur",
@@ -16,7 +17,7 @@
                         "id": "src",
                         "label": "Image URL",
                         "type": "string",
-                        "value": "https://encrypted-tbn1.gstatic.com/images?q=tbn:ANd9GcSL853qPCjCn4HpQOnxmFP08JRmS_RDL6bPnRm4tiRcLzKauj1IxQ"
+                        "value": "/content/journalist_3g.jpg"
                     }
                 ]
             },
@@ -33,7 +34,7 @@
                         "id": "color",
                         "label": "Text Color",
                         "type": "color",
-                        "value": "#000"
+                        "value": "black"
                     }
                 ]
             },
@@ -50,7 +51,7 @@
                         "id": "color",
                         "label": "Text Color",
                         "type": "color",
-                        "value": "#000"
+                        "value": "black"
                     }
                 ]
             },
@@ -61,7 +62,7 @@
                         "id": "src",
                         "label": "Image URL",
                         "type": "string",
-                        "value": "http://farm4.static.flickr.com/3085/2546669411_5ed4a9c5d9.jpg"
+                        "value": "/content/journalist_weather.jpg"
                     }
                 ]
             },
@@ -78,7 +79,7 @@
                         "id": "color",
                         "label": "Text Color",
                         "type": "color",
-                        "value": "#000"
+                        "value": "black"
                     }
                 ]
             },
@@ -95,7 +96,127 @@
                         "id": "color",
                         "label": "Text Color",
                         "type": "color",
-                        "value": "#000"
+                        "value": "black"
+                    }
+                ]
+            }
+        ]
+    },
+    {
+        "id": "000d1745-5d3c-4997-ac0c-15df68bbbecb",
+        "name": "Vendor",
+        "icon": "/images/placeholder_vendor.png",
+        "active": true,
+        "author": {
+            "name": "Yousuf",
+            "location": "",
+            "avatar": "/images/avatar_vendor.png"
+        },
+        "blocks": [
+            {
+                "id": "headline",
+                "attributes": [
+                    {
+                        "id": "innerHTML",
+                        "label": "Text Value",
+                        "type": "string",
+                        "value": "Yousuf's Tea Shop"
+                    },
+                    {
+                        "id": "color",
+                        "label": "Text Color",
+                        "type": "color",
+                        "value": "black"
+                    }
+                ]
+            },
+            {
+                "id": "paragraph",
+                "attributes": [
+                    {
+                        "id": "innerHTML",
+                        "label": "Text Value",
+                        "type": "string",
+                        "value": "Niketon Housing Society, 1219 Dhaka, Bangladesh"
+                    },
+                    {
+                        "id": "color",
+                        "label": "Text Color",
+                        "type": "color",
+                        "value": "black"
+                    }
+                ]
+            },
+            {
+                "id": "image",
+                "attributes": [
+                    {
+                        "id": "src",
+                        "label": "Image URL",
+                        "type": "string",
+                        "value": "/content/vendor_mirzapore.jpg"
+                    }
+                ]
+            },
+            {
+                "id": "paragraph",
+                "attributes": [
+                    {
+                        "id": "innerHTML",
+                        "label": "Text Value",
+                        "type": "string",
+                        "value": "Mirzapore - Tk210.35"
+                    },
+                    {
+                        "id": "color",
+                        "label": "Text Color",
+                        "type": "color",
+                        "value": "darkGray"
+                    }
+                ]
+            },
+            {
+                "id": "image",
+                "attributes": [
+                    {
+                        "id": "src",
+                        "label": "Image URL",
+                        "type": "string",
+                        "value": "/content/vendor_assam.jpg"
+                    }
+                ]
+            },
+            {
+                "id": "paragraph",
+                "attributes": [
+                    {
+                        "id": "innerHTML",
+                        "label": "Text Value",
+                        "type": "string",
+                        "value": "Assam - Tk240.10"
+                    },
+                    {
+                        "id": "color",
+                        "label": "Text Color",
+                        "type": "color",
+                        "value": "darkGray"
+                    }
+                ]
+            },
+            {
+                "id": "sms",
+                "attributes": [
+                    {
+                        "id": "value",
+                        "label": "Phone #",
+                        "type": "string",
+                        "value": "+18005555555"
+                    },
+                    {
+                        "id": "innerHTML",
+                        "label": "Label",
+                        "type": "string",
+                        "value": "Place Order"
                     }
                 ]
             }
@@ -105,9 +226,10 @@
         "id": "000d1745-5d3c-4997-ac0c-15df68bbbecb",
         "name": "Medic",
         "icon": "/images/placeholder_medic.png",
+        "active": false,
         "author": {
-            "name": "Pedro",
-            "location": "São Paulo",
+            "name": "Aya",
+            "location": "",
             "avatar": "/images/avatar_medic.png"
         },
         "blocks": []
@@ -116,9 +238,10 @@
         "id": "a7ac2775-bd9d-40b5-a26c-43e8452da768",
         "name": "Teacher",
         "icon": "/images/placeholder_teacher.png",
+        "active": false,
         "author": {
-            "name": "Andrew",
-            "location": "Detroit",
+            "name": "Deepa",
+            "location": "",
             "avatar": "/images/avatar_teacher.png"
         },
         "blocks": []
@@ -127,9 +250,10 @@
         "id": "229abeb3-aa7d-453d-8082-96f8f1b0bfd8",
         "name": "Family",
         "icon": "/images/placeholder_family.png",
+        "active": false,
         "author": {
-            "name": "Pedro",
-            "location": "São Paulo",
+            "name": "Sita",
+            "location": "",
             "avatar": "/images/avatar_family.png"
         },
         "blocks": []
@@ -138,9 +262,10 @@
         "id": "5c22ae09-eeb5-4faf-aeb2-756da98790bf",
         "name": "Scientist",
         "icon": "/images/placeholder_scientist.png",
+        "active": false,
         "author": {
-            "name": "Pedro",
-            "location": "São Paulo",
+            "name": "Paola",
+            "location": "",
             "avatar": "/images/avatar_scientist.png"
         },
         "blocks": []
@@ -149,9 +274,10 @@
         "id": "b9483c11-077e-4396-84e2-c0454c36a741",
         "name": "Blogger",
         "icon": "/images/placeholder_blogger.png",
+        "active": false,
         "author": {
-            "name": "Pedro",
-            "location": "São Paulo",
+            "name": "Emma",
+            "location": "",
             "avatar": "/images/avatar_blogger.png"
         },
         "blocks": []
@@ -160,9 +286,10 @@
         "id": "41e8be7e-4381-4afd-82ac-861171cd7434",
         "name": "Student",
         "icon": "/images/placeholder_student.png",
+        "active": false,
         "author": {
             "name": "Pedro",
-            "location": "São Paulo",
+            "location": "",
             "avatar": "/images/avatar_student.png"
         },
         "blocks": []
@@ -171,9 +298,10 @@
         "id": "3617a58c-3103-47dd-a767-60cd84ed7ef7",
         "name": "Activist",
         "icon": "/images/placeholder_activist.png",
+        "active": false,
         "author": {
-            "name": "Pedro",
-            "location": "São Paulo",
+            "name": "Richard",
+            "location": "",
             "avatar": "/images/avatar_activist.png"
         },
         "blocks": []

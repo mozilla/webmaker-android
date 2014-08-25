@@ -2,6 +2,9 @@ var Make = require('../../lib/make');
 var templates = require('../../lib/templates.json');
 var view = require('../../lib/view');
 
+var id = null;
+var target = null;
+
 module.exports = view.extend({
     id: 'add',
     template: require('./index.html'),
@@ -9,8 +12,8 @@ module.exports = view.extend({
         var self = this;
 
         // Fetch app
-        var id = self.$parent.$data.params.id;
-        var target = new Make(id).meta;
+        id = self.$parent.$data.params.id;
+        target = new Make(id).meta;
 
         // Bind app
         self.$data = target;
@@ -41,5 +44,13 @@ module.exports = view.extend({
         for (var i = 0; i < targets.length; i++) {
             targets[i].addEventListener('click', clickHandler);
         }
+
+        // Apply click handler to parent element
+        self.$el.addEventListener('click', function (e) {
+            if (e.target.id === 'add') {
+                e.preventDefault();
+                self.page('/make/' + id + '/edit');
+            }
+        });
     }
 });

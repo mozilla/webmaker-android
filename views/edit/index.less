@@ -6,7 +6,7 @@
         width: 95%;
         height: 44px;
 
-        margin: 2.5%;
+        margin: 15px 2.5% 20px 2.5%;
         border: 1px dashed @highlight;
         background-color: transparent;
 
@@ -17,14 +17,21 @@
     }
 
     #blocks {
+        position: absolute;
+        top: 160px;
+        width: 100%;
         transform: scale(0.95, 0.95);
-        margin-top: -45px;
+        transform-origin: 50% top;
 
         div, a {
             display: block;
             border: 1px dashed @highlight;
-            margin: 10px 0;
+            margin-bottom: 15px;
             text-decoration: none;
+
+            img {
+                margin-bottom: -4px;
+            }
         }
     }
 }
