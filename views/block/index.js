@@ -22,9 +22,13 @@ module.exports = view.extend({
         index = self.$parent.$data.params.index;
         target = new Make(id);
         block = target.meta.blocks[index];
-
         // Bind app
         self.$data = block;
+        self.$data.remove = function (e) {
+            e.preventDefault();
+            target.remove(index);
+            global.history.back();
+        };
     },
     detached: function () {
         var self = this;
