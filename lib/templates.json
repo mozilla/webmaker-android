@@ -108,8 +108,8 @@
         "icon": "/images/placeholder_vendor.png",
         "active": true,
         "author": {
-            "name": "Pedro",
-            "location": "São Paulo",
+            "name": "Ashish",
+            "location": "",
             "avatar": "/images/avatar_vendor.png"
         },
         "blocks": []
@@ -120,8 +120,8 @@
         "icon": "/images/placeholder_medic.png",
         "active": false,
         "author": {
-            "name": "Pedro",
-            "location": "São Paulo",
+            "name": "Aya",
+            "location": "",
             "avatar": "/images/avatar_medic.png"
         },
         "blocks": []
@@ -132,8 +132,8 @@
         "icon": "/images/placeholder_teacher.png",
         "active": false,
         "author": {
-            "name": "Andrew",
-            "location": "Detroit",
+            "name": "Deepa",
+            "location": "",
             "avatar": "/images/avatar_teacher.png"
         },
         "blocks": []
@@ -144,8 +144,8 @@
         "icon": "/images/placeholder_family.png",
         "active": false,
         "author": {
-            "name": "Pedro",
-            "location": "São Paulo",
+            "name": "Sita",
+            "location": "",
             "avatar": "/images/avatar_family.png"
         },
         "blocks": []
@@ -156,8 +156,8 @@
         "icon": "/images/placeholder_scientist.png",
         "active": false,
         "author": {
-            "name": "Pedro",
-            "location": "São Paulo",
+            "name": "Paola",
+            "location": "",
             "avatar": "/images/avatar_scientist.png"
         },
         "blocks": []
@@ -168,8 +168,8 @@
         "icon": "/images/placeholder_blogger.png",
         "active": false,
         "author": {
-            "name": "Pedro",
-            "location": "São Paulo",
+            "name": "Emma",
+            "location": "",
             "avatar": "/images/avatar_blogger.png"
         },
         "blocks": []
@@ -181,7 +181,7 @@
         "active": false,
         "author": {
             "name": "Pedro",
-            "location": "São Paulo",
+            "location": "",
             "avatar": "/images/avatar_student.png"
         },
         "blocks": []
@@ -192,8 +192,8 @@
         "icon": "/images/placeholder_activist.png",
         "active": false,
         "author": {
-            "name": "Pedro",
-            "location": "São Paulo",
+            "name": "Richard",
+            "location": "",
             "avatar": "/images/avatar_activist.png"
         },
         "blocks": []
