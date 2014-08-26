@@ -114,5 +114,9 @@
     "Get Started": {
         "message": "Get Started",
         "description": "Button meaning: Get started making apps"
+    },
+    "Remove": {
+      "message": "Remove",
+      "description": "Button for removing (deleting) a block"
     }
 }
