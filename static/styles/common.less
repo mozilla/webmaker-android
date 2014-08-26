@@ -1,12 +1,18 @@
 @import "normalize";
+@import "variables";
+@import "mixins";
 @import "forms";
 @import "colors";
 @import "buttons";
+@import "transitions";
+
 
 body, html {
     margin: 0;
     padding: 0;
     background-color: @background;
+    height: 100%;
+    overflow-y: auto;
 }
 
 * {
@@ -16,13 +22,19 @@ body, html {
 *,
 *:before,
 *:after {
-  -moz-box-sizing: border-box;
-  -webkit-box-sizing: border-box;
-  box-sizing: border-box;
- }
+    -moz-box-sizing: border-box;
+    -webkit-box-sizing: border-box;
+    box-sizing: border-box;
+}
 
 #app {
     height: 100%;
+    position: relative;
+}
+
+.main {
+    height: 100%;
+    overflow: auto;
 }
 
 /**
