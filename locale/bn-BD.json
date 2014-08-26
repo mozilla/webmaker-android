@@ -24,91 +24,95 @@
         "description": "Title for profile page"
     },
     "Templates": {
-      "message": "টেমপ্লেট",
-      "description": "Title for app templates, starter projects/styles to create new apps"
+        "message": "টেমপ্লেট",
+        "description": "Title for app templates, starter projects/styles to create new apps"
     },
     "Apps": {
-      "message": "অ্যাপ",
-      "description": "These are mobile apps, to run on a phone"
+        "message": "অ্যাপ",
+        "description": "These are mobile apps, to run on a phone"
     },
     "Details": {
-      "message": "বিস্তারিত",
-      "description": "Title for Details page, where the details of the app are listed"
+        "message": "বিস্তারিত",
+        "description": "Title for Details page, where the details of the app are listed"
     },
     "Apps I've Created": {
-      "message": "আমার বানানো অ্যাপসমূহ",
-      "description": "Title for the list of apps I've created"
+        "message": "আমার বানানো অ্যাপসমূহ",
+        "description": "Title for the list of apps I've created"
     },
     "Journalist": {
-      "message": "সাংবাদিক",
-      "description": "Title for an app for journalists"
+        "message": "সাংবাদিক",
+        "description": "Title for an app for journalists"
     },
     "Play": {
-      "message": "দেখুন",
-      "description": "Button that, if clicked, shows the end product of the app"
+        "message": "দেখুন",
+        "description": "Button that, if clicked, shows the end product of the app"
     },
     "Edit": {
-      "message": "সম্পাদনা",
-      "description": "Button for allowing user to edit the app"
+        "message": "সম্পাদনা",
+        "description": "Button for allowing user to edit the app"
     },
     "Text": {
-      "message": "লেখা",
-      "description": "Type of block that can be added to the app"
+        "message": "লেখা",
+        "description": "Type of block that can be added to the app"
     },
     "Image": {
-      "message": "ছবি",
-      "description": "Type of block that can be added to the app"
+        "message": "ছবি",
+        "description": "Type of block that can be added to the app"
     },
     "Next": {
-      "message": "পরবর্তী",
-      "description": "Button, meaning 'Next page'"
+        "message": "পরবর্তি",
+        "description": "Button, meaning 'Next page'"
     },
     "Apps made by _": {
-      "message": "অ্যাপস দ্বারা তৈরি: <span v-cycle=\"personas\"></span>",
-      "description": "Only translate 'Apps made by:', do NOT replace the word 'personas'. Move the <span>...</span> to wherever the words students, activists, journalists etc. would be in the sentence."
+        "message": "অ্যাপ বানিয়েছে: <span v-cycle=\"personas\"></span>",
+        "description": "Only translate 'Apps made by:', do NOT replace the word 'personas'. Move the <span>...</span> to wherever the words students, activists, journalists etc. would be in the sentence."
     },
     "vendors": {
-      "message": "বিক্রেতারা",
-      "description": "To be replaced in the sentence: Apps made by vendors"
+        "message": "বিক্রেতারা",
+        "description": ""
     },
     "students": {
-      "message": "ছাত্র",
-      "description": "To be replaced in the sentence: Apps made by students"
+        "message": "শিক্ষার্থী",
+        "description": "To be replaced in the sentence: Apps made by students"
     },
     "activists": {
-      "message": "কর্মী",
-      "descripti∂on": "To be replaced in the sentence: Apps made by activists"
+        "message": "স্বেচ্ছাসেবক",
+        "description": "To be replaced in the sentence: Apps made by activists"
     },
     "journalists": {
-      "message": "সাংবাদিক",
-      "description": ""
+        "message": "সাংবাদিক",
+        "description": ""
     },
     "teachers": {
-      "message": "শিক্ষক",
-      "description": ""
+        "message": "শিক্ষক",
+        "description": ""
     },
     "parents": {
-      "message": "বাবা",
-      "description": ""
+        "message": "অভিভাবক",
+        "description": ""
     },
     "doctors": {
-      "message": "ডাক্তার",
-      "description": ""
+        "message": "চিকিৎসক",
+        "description": ""
     },
     "scientists": {
-      "message": "বিজ্ঞানীরা",
-      "description": ""
+        "message": "বিজ্ঞানী",
+        "description": ""
     },
     "you": {
-      "message": "আপনি",
-      "description": ""
+        "message": "তুমি",
+        "description": ""
     },
     "Create and share app templates with people all around the world": {
-      "message": "তৈরি করুন এবং সারা বিশ্বের মানুষের সঙ্গে সব অ্যাপ্লিকেশন টেমপ্লেট শেয়ার করুন",
-      "description": "Description for first time experience 1/2"
+        "message": "অ্যাপের টেমপ্লেট বানান এবং পৃথিবীর সকলের সাথে তা শেয়ার করুন",
+        "description": "Description for first time experience"
     },
     "You can create your own app. Just open a template and edit!": {
-      "message": "আপনি আপনার নিজস্ব অ্যাপ্লিকেশন তৈরি করতে পারেন. শুধু একটি টেমপ্লেট খুলুন এবং সম্পাদনা করুন!",
-      "description": "Description for first time experience 2/2"
+        "message": "আপনি আপনার নিজের অ্যাপ বানাতে পারেন। শুধুমাত্র একটি টেমপ্লেট খুলুন এবং সম্পাদনা করুন।!",
+        "description": ""
+    },
+    "Get Started": {
+        "message": "আসুন শুরু করি",
+        "description": "Button meaning: Get started making apps"
     }
 }
