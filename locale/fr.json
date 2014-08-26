@@ -59,6 +59,10 @@
       "message": "Image",
       "description": "Type of block that can be added to the app"
     },
+    "SMS": {
+      "message": "SMS",
+      "description": "a text, as in 'Send a text message' (on a mobile phone)"
+    },
     "Next": {
       "message": "Suivante",
       "description": "Button, meaning 'Next page'"
