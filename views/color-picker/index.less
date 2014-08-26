@@ -1,0 +1,28 @@
+#color-picker {
+    padding: 46px 0 46px 0;
+    .swatches {
+        &.primary {
+            border-bottom: 1px solid @lightGrey;
+        }
+        .clearfix;
+        list-style: none;
+        padding: 0 5% 5% 0;
+        margin: 0;
+        li {
+            float: left;
+            margin: 5% 0 0 5%;
+            width: 14%;
+            height: 0;
+            padding-bottom: 14%;
+            transition: box-shadow 0.1s ease-in;
+            &.transparent {
+                box-shadow: 0 0 0 1px @lightGrey;
+                background: linear-gradient(135deg, #aebcbf 0%, #6e7774 50%, @white 51%, @white 100%);
+            }
+            &.selected {
+                box-shadow: 0 0 0 4px @turquoise;
+            }
+        }
+    }
+}
+
