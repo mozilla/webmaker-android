@@ -2,7 +2,7 @@
 
 <div id="profile-header">
   <div class="profile-avatar" style="background-image: url(/images/avatar_prompt.png);"></div>
-  <div class="profile-info" v-bind-html="'name from location'"></div>
+  <div class="profile-info" v-class="profile-info-padded: name || location"  v-bind-html="'name from location'"></div>
 </div>
 
 <form id="profile-details">
