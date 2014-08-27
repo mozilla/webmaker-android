@@ -1,9 +1,14 @@
 <div v-component="navigationBar"></div>
 <ul class="swatches primary">
-    <li class="transparent" v-on="click: onSelect"></li>
-    <li v-repeat="primaryColors" style="background-color:{{hex}};" v-on="click: onSelect"></li>
+    <li v-repeat="color: primaryColors"
+        style="background-color:{{color}};"
+        v-class="selected: selectedColor === color, transparent: color === 'transparent'"
+        v-on="click: onSelect(color)"></li>
 </ul>
 <ul class="swatches">
-    <li v-repeat="colors" style="background-color:{{hex}};" v-on="click: onSelect"></li>
+    <li v-repeat="color: colors"
+        style="background-color:{{color}};"
+        v-class="selected: selectedColor === color"
+        v-on="click: onSelect(color)"></li>
 </ul>
 <div v-component="tabBar"></div>

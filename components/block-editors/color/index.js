@@ -1,5 +1,4 @@
 module.exports = {
     id: 'string-editor',
-    template: require('./index.html'),
-    data: {}
+    template: require('./index.html')
 };
