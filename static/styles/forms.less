@@ -1,9 +1,11 @@
 label,
-input {
+input,
+.input {
     display: block;
 }
 
-input {
+input,
+.input {
     display: block;
     width: 100%;
     padding: 8px 10px;
@@ -15,6 +17,22 @@ input {
     background: @white;
     border: 1px solid @lightGrey;
     border-radius: 0px;
+
+    // for links
+    color: inherit;
+    text-decoration: none;
+
+    &.color-input {
+        text-transform: capitalize;
+    }
+}
+
+.input-swatch {
+    float: left;
+    width: 18px;
+    height: 18px;
+    margin-right: 8px;
+    border: 1px solid @lightGrey;
 }
 
 label {

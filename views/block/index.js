@@ -11,8 +11,8 @@ module.exports = view.extend({
     id: 'block',
     template: require('./index.html'),
     components: {
-       'string-editor': require('../../components/block-editors/string'),
-       'color-editor': require('../../components/block-editors/color')
+        'string-editor': require('../../components/block-editors/string'),
+        'color-editor': require('../../components/block-editors/color')
     },
     data: {
         title: 'Edit',

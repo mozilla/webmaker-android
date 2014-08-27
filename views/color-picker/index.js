@@ -12,7 +12,8 @@ module.exports = view.extend({
         make = new Make(id);
         $data.blockIndex = self.$parent.$data.params.index;
         $data.block = make.meta.blocks[$data.blockIndex];
-        $data.colorIndex = utils.findInArray($data.block.attributes, 'id', 'color');
+        var attrs = $data.block.attributes;
+        $data.colorIndex = utils.findInArray(attrs, 'id', 'color');
         $data.selectedColor = $data.block.attributes[$data.colorIndex].value;
     },
     detached: function () {
