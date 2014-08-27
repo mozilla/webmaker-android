@@ -17,9 +17,15 @@
         width: 50%;
         float: left;
     }
-    
+    .profile-info {
+        transition: padding 0.3s ease-in; // Temporary: Until image picker finished
+        &.profile-info-padded {
+            padding: 40px 10px;
+        }
+    }
     .profile-avatar {
-        height: 150px;
+        display: none; // Temporary: Until image picker finished
+        height: 0; // height created by padding, since it's relative to width
         padding-bottom: 50%;
         background-size: cover;
         background-image: url(/images/avatar.png);
