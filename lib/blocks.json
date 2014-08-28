@@ -23,7 +23,7 @@
                 "id": "color",
                 "label": "Color",
                 "type": "color",
-                "value": "darkgray"
+                "value": "#333444"
             }
         ]
     },
@@ -40,7 +40,7 @@
                 "id": "color",
                 "label": "Color",
                 "type": "color",
-                "value": "darkgray"
+                "value": "#333444"
             }
         ]
     },

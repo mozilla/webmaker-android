@@ -122,5 +122,9 @@
     "Remove": {
       "message": "Remove",
       "description": "Button for removing (deleting) a block"
+    },
+    "Select Color": {
+      "message": "Select Color",
+      "description": "Title for the color picker"
     }
 }

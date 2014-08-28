@@ -23,10 +23,10 @@ module.exports = view.extend({
                 self.page(restore);
             }
 
-            // If within a "make", redirect to apps list
-            if (window.location.pathname.indexOf('/make') !== -1) {
-                self.page('/apps');
-            }
+            //If within a "make", redirect to apps list
+            // if (window.location.pathname.indexOf('/make') !== -1) {
+            //     self.page('/apps');
+            // }
         });
     }
 });
