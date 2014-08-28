@@ -2,6 +2,14 @@ var view = require('../../lib/view');
 var Make = require('../../lib/make');
 var utils = require('../../lib/utils');
 
+var colorGroups = [
+    '#333444',
+    '#FC5D5E',
+    '#FEE444',
+    '#1CB0B4',
+    '#31ABDF'
+];
+
 module.exports = view.extend({
     id: 'color-picker',
     template: require('./index.html'),
@@ -15,36 +23,34 @@ module.exports = view.extend({
         var attrs = $data.block.attributes;
         $data.colorIndex = utils.findInArray(attrs, 'id', 'color');
         $data.selectedColor = $data.block.attributes[$data.colorIndex].value;
-    },
-    detached: function () {
-        var $data = this.$data;
-        $data.block.attributes[$data.colorIndex].value = $data.selectedColor;
-        make.update($data.blockIndex, $data.block.attributes);
+        $data.colors.forEach(function (arr, i) {
+            arr.forEach(function (color) {
+                if (color === $data.selectedColor) {
+                    $data.selectedGroup =  i;
+                }
+            });
+            $data.selectedGroup = $data.selectedGroup || 0;
+        });
     },
     data: {
         back: true,
         title: 'Select Color',
         onSelect: function (color) {
-            this.$data.selectedColor = color;
+            var $data = this.$data;
+            $data.selectedColor = color;
+            $data.block.attributes[$data.colorIndex].value = $data.selectedColor;
+            make.update($data.blockIndex, $data.block.attributes);
         },
-        primaryColors: [
-            'transparent',
-            '#FC5D5E',
-            '#FEE444',
-            '#1CB0B4',
-            '#31ABDF'
-        ],
-        colors: [
-            'black',
-            'purple',
-            'salmon',
-            'green',
-            'blue',
-            'pink',
-            'yellow',
-            'violet',
-            'orange',
-            'red'
-        ]
+        onGroupSelect: function (i) {
+            this.$data.selectedGroup = i;
+        },
+        colorGroups: colorGroups,
+        colors: colorGroups.map(function (base) {
+            var tints = [];
+            for (var i = -5; i < 10; i++) {
+                tints.push(utils.shadeColor(base, i * 6));
+            }
+            return tints;
+        })
     }
 });
