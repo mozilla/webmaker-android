@@ -8,7 +8,10 @@ var port = process.env.PORT || 8080;
 http.createServer(function (req, res) {
     req.addListener('end', function () {
         server.serve(req, res, function () {
-            server.serveFile('/index.html', 404, {}, req, res);
+            server.serveFile('/index.html', 200, {}, req, res).on('error', function (err) {
+                res.statusCode = 404;
+                res.end('BUILDING...');
+            });
         });
     }).resume();
 }).listen(port);
