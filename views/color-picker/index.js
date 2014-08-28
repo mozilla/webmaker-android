@@ -37,9 +37,10 @@ module.exports = view.extend({
         title: 'Select Color',
         onSelect: function (color) {
             var $data = this.$data;
+            var attrs = $data.block.attributes;
             $data.selectedColor = color;
-            $data.block.attributes[$data.colorIndex].value = $data.selectedColor;
-            make.update($data.blockIndex, $data.block.attributes);
+            attrs[$data.colorIndex].value = $data.selectedColor;
+            make.update($data.blockIndex, attrs);
         },
         onGroupSelect: function (i) {
             this.$data.selectedGroup = i;
