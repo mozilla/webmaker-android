@@ -7,6 +7,6 @@ module.exports = function () {
 
     src.pipe(browserify({
         insertGlobals: false,
-        transform: ['partialify']
+        transform: ['partialify', 'folderify']
     })).pipe(dest);
 };
