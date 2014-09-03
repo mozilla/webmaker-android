@@ -2,3 +2,4 @@
 /node_modules
 npm-*
 /build/*
+/locale/index.js
