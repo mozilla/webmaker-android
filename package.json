@@ -28,6 +28,7 @@
     "node-appcache-generator": "louisstow/node-appcache-generator",
     "node-static": "0.7.4",
     "partialify": "3.1.1",
-    "folderify": "^0.6.0"
+    "phantomjs": "1.9.7-15",
+    "bulkify": "1.0.2"
   }
 }

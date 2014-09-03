@@ -1,6 +1,9 @@
+var bulk = require('bulk-require');
+
 var Make = require('../../lib/make');
 var templates = require('../../lib/templates.json');
 var view = require('../../lib/view');
+var blocks = bulk(__dirname + '/../../blocks', '**/*.js');
 
 var id = null;
 var target = null;
@@ -8,6 +11,9 @@ var target = null;
 module.exports = view.extend({
     id: 'add',
     template: require('./index.html'),
+    data: {
+        blocks: blocks
+    },
     created: function () {
         var self = this;
 

@@ -4,6 +4,7 @@ module.exports = block.extend({
     className: 'headline',
     template: require('./index.html'),
     data: {
+        name: 'Headline',
         attributes: {
             innerHTML: {
                 label: 'Text',

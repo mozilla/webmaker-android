@@ -4,15 +4,18 @@ module.exports = block.extend({
     className: 'sms',
     template: require('./index.html'),
     data: {
-        value: {
-            label: 'Phone #',
-            type: 'string',
-            value: '+18005555555'
-        },
-        innerHTML: {
-            label: 'Label',
-            type: 'string',
-            value: 'Send SMS'
+        name: 'SMS',
+        attributes: {
+            value: {
+                label: 'Phone #',
+                type: 'string',
+                value: '+18005555555'
+            },
+            innerHTML: {
+                label: 'Label',
+                type: 'string',
+                value: 'Send SMS'
+            }
         }
     },
     ready: function () {
