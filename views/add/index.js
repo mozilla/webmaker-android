@@ -1,6 +1,8 @@
 var Make = require('../../lib/make');
 var templates = require('../../lib/templates.json');
 var view = require('../../lib/view');
+var Blocks = require('../../lib/blocks');
+var blocks = new Blocks();
 
 var id = null;
 var target = null;
@@ -8,6 +10,9 @@ var target = null;
 module.exports = view.extend({
     id: 'add',
     template: require('./index.html'),
+    data: {
+        blocks: blocks
+    },
     created: function () {
         var self = this;
 
@@ -27,13 +32,13 @@ module.exports = view.extend({
             e.preventDefault();
 
             // Attributes
-            var block = e.currentTarget.getAttribute('data-block');
+            var blockId = e.currentTarget.getAttribute('data-block');
             var href = e.currentTarget.getAttribute('href');
 
             // Add block to make
             var id = self.$parent.$data.params.id;
             var target = new Make(id);
-            target.insert(block);
+            target.insert(blockId);
 
             // Add to model & redirect to editor
             self.page(href);
