@@ -21,8 +21,7 @@ module.exports = view.extend({
         $data.blockIndex = self.$parent.$data.params.index;
         $data.block = make.meta.blocks[$data.blockIndex];
         var attrs = $data.block.attributes;
-        $data.colorIndex = utils.findInArray(attrs, 'id', 'color');
-        $data.selectedColor = $data.block.attributes[$data.colorIndex].value;
+        $data.selectedColor = $data.block.attributes.color.value;
         $data.colors.forEach(function (arr, i) {
             arr.forEach(function (color) {
                 if (color === $data.selectedColor) {
@@ -39,7 +38,7 @@ module.exports = view.extend({
             var $data = this.$data;
             var attrs = $data.block.attributes;
             $data.selectedColor = color;
-            attrs[$data.colorIndex].value = $data.selectedColor;
+            attrs.color.value = $data.selectedColor;
             make.update($data.blockIndex, attrs);
         },
         onGroupSelect: function (i) {

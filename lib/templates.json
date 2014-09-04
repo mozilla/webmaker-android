@@ -12,93 +12,93 @@
         "blocks": [
             {
                 "id": "image",
-                "attributes": [
-                    {
+                "attributes": {
+                    "src": {
                         "id": "src",
                         "label": "Image URL",
                         "type": "string",
                         "value": "/content/journalist_3g.jpg"
                     }
-                ]
+                }
             },
             {
                 "id": "headline",
-                "attributes": [
-                    {
+                "attributes": {
+                    "innerHTML" : {
                         "id": "innerHTML",
                         "label": "Text Value",
                         "type": "string",
                         "value": "Only 4% of Total Users on 3G"
                     },
-                    {
+                    "color" : {
                         "id": "color",
                         "label": "Text Color",
                         "type": "color",
                         "value": "#000000"
                     }
-                ]
+                }
             },
             {
                 "id": "paragraph",
-                "attributes": [
-                    {
+                "attributes": {
+                    "innerHTML": {
                         "id": "innerHTML",
                         "label": "Text Value",
                         "type": "string",
                         "value": "Only 4.15% of the total mobile phone users have started enjoying third generation mobile broadband data services, according to regulator.\n\nAfter the private mobile phone operators of the country launched 3G services at the end of October last year, the total number of 3G users crossed 48.45 lakh till the end of July this year.\n\nThe number of total active SIM cards stood at 11.68 crore, said Bangladesh Telecommunication Regulatory Commission (BTRC) data.\n\nRecently, BTRC collected the number of 3G users of the country as the regulator inspected the 3G service roll-out and network quality of the operators.\n\nAccording to the data, Robi, the third largest operator in the country in terms of total active users, became the market leader with 13.05 lakh 3G connections.\n\nThe number of total active SIM users of Robi reached 2.42 crore as of July 2014."
                     },
-                    {
+                    "color": {
                         "id": "color",
                         "label": "Text Color",
                         "type": "color",
                         "value": "#000000"
                     }
-                ]
+                }
             },
             {
                 "id": "image",
-                "attributes": [
-                    {
+                "attributes": {
+                    "src": {
                         "id": "src",
                         "label": "Image URL",
                         "type": "string",
                         "value": "/content/journalist_weather.jpg"
                     }
-                ]
+                }
             },
             {
                 "id": "headline",
-                "attributes": [
-                    {
+                "attributes": {
+                    "innerHTML": {
                         "id": "innerHTML",
                         "label": "Text Value",
                         "type": "string",
                         "value": "Heavy Rainfall Expected"
                     },
-                    {
+                    "color": {
                         "id": "color",
                         "label": "Text Color",
                         "type": "color",
                         "value": "#000000"
                     }
-                ]
+                }
             },
             {
                 "id": "paragraph",
-                "attributes": [
-                    {
+                "attributes": {
+                    "innerHTML": {
                         "id": "innerHTML",
                         "label": "Text Value",
                         "type": "string",
                         "value": "A weather forecast report has expected that a heavy to very heavy rainfall may arise at places over Dhaka, Khulna, Barisal, Chittagong and Sylhet divisions during the next twenty four hours commencing at 11 am on Saturday, BSS reports.\n\nThe rainfall may cause landslide at places over the hilly regions of Chittagong and Sylhet divisions, the report said.\n\nLocal cautionary signal No-three is suggested to keep hoist in Maritime ports of Chittagong, Cox's Bazar, Mongla and Payra.\n\nAll fishing boats and trawlers over North Bay have been advised to remain close to the coast and proceed with caution till further notice, it added.\n\nThe highest rainfall was recorded by 256 millimeters (mm) for last 24 hours at Sandwip followed by 241 mm held at Teknaf."
                     },
-                    {
+                    "color": {
                         "id": "color",
                         "label": "Text Color",
                         "type": "color",
                         "value": "#000000"
                     }
-                ]
+                }
             }
         ]
     },
@@ -115,110 +115,110 @@
         "blocks": [
             {
                 "id": "headline",
-                "attributes": [
-                    {
+                "attributes": {
+                    "innerHTML": {
                         "id": "innerHTML",
                         "label": "Text Value",
                         "type": "string",
                         "value": "Yousuf's Tea Shop"
                     },
-                    {
+                    "color": {
                         "id": "color",
                         "label": "Text Color",
                         "type": "color",
                         "value": "#000000"
                     }
-                ]
+                }
             },
             {
                 "id": "paragraph",
-                "attributes": [
-                    {
+                "attributes": {
+                    "innerHTML": {
                         "id": "innerHTML",
                         "label": "Text Value",
                         "type": "string",
                         "value": "Niketon Housing Society, 1219 Dhaka, Bangladesh"
                     },
-                    {
+                    "color": {
                         "id": "color",
                         "label": "Text Color",
                         "type": "color",
                         "value": "#000000"
                     }
-                ]
+                }
             },
             {
                 "id": "image",
-                "attributes": [
-                    {
+                "attributes": {
+                    "src": {
                         "id": "src",
                         "label": "Image URL",
                         "type": "string",
                         "value": "/content/vendor_mirzapore.jpg"
                     }
-                ]
+                }
             },
             {
                 "id": "paragraph",
-                "attributes": [
-                    {
+                "attributes": {
+                    "innerHTML": {
                         "id": "innerHTML",
                         "label": "Text Value",
                         "type": "string",
                         "value": "Mirzapore - Tk210.35"
                     },
-                    {
+                    "color": {
                         "id": "color",
                         "label": "Text Color",
                         "type": "color",
                         "value": "#333444"
                     }
-                ]
+                }
             },
             {
                 "id": "image",
-                "attributes": [
-                    {
+                "attributes": {
+                    "src": {
                         "id": "src",
                         "label": "Image URL",
                         "type": "string",
                         "value": "/content/vendor_assam.jpg"
                     }
-                ]
+                }
             },
             {
                 "id": "paragraph",
-                "attributes": [
-                    {
+                "attributes": {
+                    "innerHTML": {
                         "id": "innerHTML",
                         "label": "Text Value",
                         "type": "string",
                         "value": "Assam - Tk240.10"
                     },
-                    {
+                    "color": {
                         "id": "color",
                         "label": "Text Color",
                         "type": "color",
                         "value": "#333444"
                     }
-                ]
+                }
             },
             {
                 "id": "sms",
-                "attributes": [
-                    {
+                "attributes": {
+                    "value": {
                         "id": "value",
                         "label": "Phone #",
                         "type": "string",
                         "value": "+18005555555"
                     },
-                    {
+                    "innerHTML": {
                         "id": "innerHTML",
                         "label": "Label",
                         "type": "string",
                         "value": "Place Order"
                     }
-                ]
+                }
             }
         ]
     },
