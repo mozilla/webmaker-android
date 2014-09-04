@@ -5,6 +5,7 @@ module.exports = block.extend({
     template: require('./index.html'),
     data: {
         name: 'Headline',
+        icon: '/images/blocks_text.png',
         attributes: {
             innerHTML: {
                 label: 'Text',

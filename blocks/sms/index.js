@@ -5,6 +5,7 @@ module.exports = block.extend({
     template: require('./index.html'),
     data: {
         name: 'SMS',
+        icon: '/images/blocks_sms.png',
         attributes: {
             value: {
                 label: 'Phone #',

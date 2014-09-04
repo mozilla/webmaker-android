@@ -1,8 +1,8 @@
 <ul>
-    <li v-repeat="blocks">
-        <a data-block="{{$key}}" href="/make/{{$key}}/edit">
-            <img src="/images/blocks_{{$key}}.png" alt="{{data.name}}" />
-            <p>{{ data.name | i18n }}</p>
+    <li v-repeat="block: blocks">
+        <a data-block="{{block.id}}" href="/make/{{id}}/edit">
+            <img src="{{block.icon}}" alt="{{block.name}}" />
+            <p>{{ block.name | i18n }}</p>
         </a>
     </li>
 </ul>
