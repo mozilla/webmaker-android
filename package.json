@@ -13,7 +13,8 @@
     "localforage": "thisandagain/localforage#browserify",
     "page": "1.3.7",
     "vue": "0.10.6",
-    "watchjs": "0.0.0"
+    "watchjs": "0.0.0",
+    "clone": "0.1.18"
   },
   "devDependencies": {
     "del": "0.1.2",
@@ -29,6 +30,7 @@
     "node-static": "0.7.4",
     "partialify": "3.1.1",
     "phantomjs": "1.9.7-15",
-    "bulkify": "1.0.2"
+    "bulkify": "1.0.2",
+    "mockrequire": "0.0.3"
   }
 }

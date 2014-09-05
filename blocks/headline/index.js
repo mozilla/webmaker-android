@@ -1,6 +1,4 @@
-var block = require('../../lib/block');
-
-module.exports = block.extend({
+module.exports = {
     className: 'headline',
     template: require('./index.html'),
     data: {
@@ -19,4 +17,4 @@ module.exports = block.extend({
             }
         }
     }
-});
+};

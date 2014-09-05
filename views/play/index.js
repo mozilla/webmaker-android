@@ -1,4 +1,4 @@
-var Make = require('../../lib/make');
+var App = require('../../lib/app');
 var templates = require('../../lib/templates.json');
 var view = require('../../lib/view');
 
@@ -10,10 +10,10 @@ module.exports = view.extend({
 
         // Fetch app
         var id = self.$parent.$data.params.id;
-        var target = new Make(id).meta;
+        var app = new App(id);
 
         // Bind app
-        self.$data = target;
-        self.title = target.name;
+        self.$data.app = app.data;
+        self.title = app.data.name;
     }
 });

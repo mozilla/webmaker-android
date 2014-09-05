@@ -108,10 +108,7 @@ Blocks are [vue.js components](http://vuejs.org/guide/composition.html), created
 To start, this is the bare minimum required for your block to be registered:
 
 ```js
-// Require block class
-var block = require('../../lib/block');
-
-module.exports = block.extend({
+module.exports = {
     // Added to element containing the block
     className: 'phonecall',
     // Require the template in this file
@@ -132,7 +129,7 @@ module.exports = block.extend({
             }
         }
     }
-});
+};
 ```
 
 You must include a `name` and `icon` in the `data` object so that your block can be displayed in the "Add a block" menu. You should also include the editable attributes of the block in an object keyed on `id`.
