@@ -69,12 +69,10 @@ describe('App', function () {
             app.insert('headline');
             assert.equal(app.data.blocks[0].id, 'headline');
         });
-        it('should throw if the blockId does not exist', function () {
-            assert.throws(function () {
-                app.insert('banana');
-            }, function (err) {
-                return err.message === 'Block type banana not found.'
-            });
+        it('should do nothing if the blockId does not exist', function () {
+            var oldLength = app.data.blocks.length;
+            app.insert('banana');
+            assert.equal(app.data.blocks.length, oldLength)
         });
     });
 
@@ -83,12 +81,10 @@ describe('App', function () {
             app.remove(0);
             assert.equal(app.data.blocks.length, 0);
         });
-        it('should throw if the block index does not exist', function () {
-            assert.throws(function () {
-                app.remove(100);
-            }, function (err) {
-                return err.message === 'Block with index 100 does not exist.'
-            });
+        it('should do nothing if the block index does not exist', function () {
+            var oldLength = app.data.blocks.length;
+            app.remove(100);
+            assert.equal(app.data.blocks.length, oldLength);
         });
     });
 
