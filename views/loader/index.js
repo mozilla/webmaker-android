@@ -1,4 +1,5 @@
 var view = require('../../lib/view');
+var i18n = require('../../lib/i18n');
 
 module.exports = view.extend({
     id: 'loader',
@@ -7,6 +8,8 @@ module.exports = view.extend({
         var self = this;
         self.model.restore(function (err) {
             if (err) throw new Error('Could not restore user state.');
+
+            i18n.setLocale(self.model.locale, true);
 
             var pathname = window.location.pathname;
             console.log('[Loader] ' + pathname);
