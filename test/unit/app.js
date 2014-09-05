@@ -45,7 +45,8 @@ var mockBlocks = function (id) {
 
 var App = mockrequire('../../lib/app', {
     './model': mockModel,
-    './blocks': mockBlocks
+    './blocks': mockBlocks,
+    'clone': require('clone')
 });
 
 var app = new App(mockId);
