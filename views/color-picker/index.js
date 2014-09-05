@@ -1,5 +1,5 @@
 var view = require('../../lib/view');
-var Make = require('../../lib/make');
+var App = require('../../lib/app');
 var utils = require('../../lib/utils');
 
 var colorGroups = [
@@ -9,6 +9,7 @@ var colorGroups = [
     '#1CB0B4',
     '#31ABDF'
 ];
+var app = null;
 
 module.exports = view.extend({
     id: 'color-picker',
@@ -17,9 +18,9 @@ module.exports = view.extend({
         var self = this;
         var $data = self.$data;
         var id = self.$parent.$data.params.id;
-        make = new Make(id);
+        app = new App(id);
         $data.blockIndex = self.$parent.$data.params.index;
-        $data.block = make.meta.blocks[$data.blockIndex];
+        $data.block = app.data.blocks[$data.blockIndex];
         var attrs = $data.block.attributes;
         $data.selectedColor = $data.block.attributes.color.value;
         $data.colors.forEach(function (arr, i) {
@@ -39,7 +40,6 @@ module.exports = view.extend({
             var attrs = $data.block.attributes;
             $data.selectedColor = color;
             attrs.color.value = $data.selectedColor;
-            make.update($data.blockIndex, attrs);
         },
         onGroupSelect: function (i) {
             this.$data.selectedGroup = i;

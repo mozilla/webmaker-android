@@ -1,11 +1,11 @@
-var Make = require('../../lib/make');
+var App = require('../../lib/app');
 var templates = require('../../lib/templates.json');
 var view = require('../../lib/view');
 var Blocks = require('../../lib/blocks');
 var blocks = new Blocks();
 
 var id = null;
-var target = null;
+var app = null;
 
 module.exports = view.extend({
     id: 'add',
@@ -18,11 +18,11 @@ module.exports = view.extend({
 
         // Fetch app
         id = self.$parent.$data.params.id;
-        target = new Make(id).meta;
+        app = new App(id);
 
         // Bind app
-        self.$data = target;
-        self.title = target.name;
+        self.$data.app = app.data;
+        self.title = app.data.name;
     },
     ready: function () {
         var self = this;
@@ -36,9 +36,7 @@ module.exports = view.extend({
             var href = e.currentTarget.getAttribute('href');
 
             // Add block to make
-            var id = self.$parent.$data.params.id;
-            var target = new Make(id);
-            target.insert(blockId);
+            app.insert(blockId);
 
             // Add to model & redirect to editor
             self.page(href);
