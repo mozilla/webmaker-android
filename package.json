@@ -32,6 +32,6 @@
     "phantomjs": "1.9.7-15",
     "bulkify": "1.0.2",
     "mockrequire": "0.0.3",
-    "webmaker-download-locales": "^0.1.4"
+    "webmaker-download-locales": "0.1.4"
   }
 }
