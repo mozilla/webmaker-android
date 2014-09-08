@@ -33,7 +33,7 @@ gulp.task('unit', unit);
 gulp.task('test', ['lint', 'unit']);
 
 // Watch
-gulp.task('watch', function () {
+gulp.task('watch', ['build'], function () {
     gulp.watch(['./{blocks,components,lib,static,views}/**/*.{js,json,less,html}', './locale/en_US/*.json'], ['re-build']);
 });
 
