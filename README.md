@@ -66,15 +66,15 @@ cd mobile-appmaker
 npm install
 ```
 
-This will also build the project and pull down localization files for you.
-
 #### Build & Run
 Once you have `mobile-appmaker` installed, you'll want to run the server and watch process so your files will be re-built when you make changes:
 ```bash
 gulp dev
 ```
 
-Visit http://localhost:8080 in your browser.
+This will also build the project and pull down localization files for you. Visit http://localhost:8080 in your browser to start developing.
+
+If you want to build the project without running the server, run `gulp build`.
 
 
 #### Testing
