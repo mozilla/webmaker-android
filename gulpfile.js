@@ -1,4 +1,5 @@
 var gulp = require('gulp');
+var webserver = require('gulp-webserver');
 
 var clean = require('./gulp/clean');
 var downloadLocales = require('./gulp/download-locales');
@@ -11,8 +12,6 @@ var jshint = require('./gulp/jshint');
 var jscs = require('./gulp/jscs');
 var unit = require('./gulp/unit');
 
-var server = require('./gulp/server');
-
 // Build
 gulp.task('clean', clean);
 gulp.task('download-locales', ['clean'], downloadLocales);
@@ -22,7 +21,7 @@ gulp.task('browserify', ['clean', 'locale'], browserify);
 gulp.task('less', ['clean'], less);
 gulp.task('build', ['less', 'browserify'], cache);
 
-gulp.task('re-locale', locale);
+gulp.task('re-locale', ['clean'], locale);
 gulp.task('re-browserify', ['clean', 're-locale'], browserify);
 gulp.task('re-build', ['less', 're-browserify'], cache);
 
@@ -38,5 +37,13 @@ gulp.task('watch', function () {
     gulp.watch(['./{blocks,components,lib,static,views}/**/*.{js,json,less,html}', './locale/en_US/*.json'], ['re-build']);
 });
 
-// Serve
-gulp.task('server', server);
+// Serve + Watch
+gulp.task('dev', ['watch'], function() {
+  gulp.src('build')
+    .pipe(webserver({
+        port: 8080,
+        livereload: true,
+        open: true,
+        fallback: 'index.html'
+    }));
+});
