@@ -1,0 +1,130 @@
+{
+    "scientists": {
+        "message": "scientists",
+        "description": ""
+    },
+    "Me": {
+        "message": "Me",
+        "description": "Title for profile page"
+    },
+    "by user.name": {
+        "message": "by {{user.name}}",
+        "description": "For apps, e.g. My Cool App, by {{user.name}}"
+    },
+    "you": {
+        "message": "you",
+        "description": ""
+    },
+    "You can create your own app. Just open a template and edit!": {
+        "message": "You can create your own app. Just open a template and edit!",
+        "description": ""
+    },
+    "Details": {
+        "message": "Details",
+        "description": "Title for Details page, where the details of the app are listed"
+    },
+    "Get Started": {
+        "message": "Get Started",
+        "description": "Button meaning: Get started making apps"
+    },
+    "Apps": {
+        "message": "Apps",
+        "description": "These are mobile apps, to run on a phone"
+    },
+    "by author": {
+        "message": "by {{author.name}}",
+        "description": "For apps, e.g. My Cool App, by {{user.name}}"
+    },
+    "Image": {
+        "message": "Image",
+        "description": "Type of block that can be added to the app"
+    },
+    "Name": {
+        "message": "Name",
+        "description": "Label on the profile page, e.g. Name: Kate, Location: Canada"
+    },
+    "activists": {
+        "message": "activists",
+        "description": "To be replaced in the sentence: Apps made by activists"
+    },
+    "Apps I've Created": {
+        "message": "Apps I've Created",
+        "description": "Title for the list of apps I've created"
+    },
+    "Templates": {
+        "message": "Templates",
+        "description": "Title for app templates, starter projects/styles to create new apps"
+    },
+    "SMS": {
+        "message": "SMS",
+        "description": "a text, as in 'Send a text message' (on a mobile phone)"
+    },
+    "name from location": {
+        "message": " <strong>{{name}}</strong><span v-if=\"location\"> from </span><strong>{{location}}</strong>",
+        "description": "E.g. Kate from Canada, sorry for all the html"
+    },
+    "students": {
+        "message": "students",
+        "description": "To be replaced in the sentence: Apps made by students"
+    },
+    "Create and share app templates with people all around the world": {
+        "message": "Create and share app templates with people all around the world",
+        "description": "Description for first time experience"
+    },
+    "Remove": {
+        "message": "Remove",
+        "description": "Button for removing (deleting) a block"
+    },
+    "vendors": {
+        "message": "vendors",
+        "description": ""
+    },
+    "journalists": {
+        "message": "journalists",
+        "description": ""
+    },
+    "Journalist": {
+        "message": "Journalist",
+        "description": "Title for an app for journalists"
+    },
+    "parents": {
+        "message": "parents",
+        "description": ""
+    },
+    "Select Color": {
+        "message": "Select Color",
+        "description": "Title for the color picker"
+    },
+    "Location": {
+        "message": "Location",
+        "description": "Label on the profile, e.g. Name: Kate, Location: Canada"
+    },
+    "Edit": {
+        "message": "Edit",
+        "description": "Button for allowing user to edit the app"
+    },
+    "Apps made by _": {
+        "message": "Apps made by: <span v-cycle=\"personas\"></span>",
+        "description": "Only translate 'Apps made by:', do NOT replace the word 'personas'. Move the <span>...</span> to wherever the words students, activists, journalists etc. would be in the sentence."
+    },
+    "Next": {
+        "message": "Next",
+        "description": "Button, meaning 'Next page'"
+    },
+    "Play": {
+        "message": "Play",
+        "description": "Button that, if clicked, shows the end product of the app"
+    },
+    "Text": {
+        "message": "Text",
+        "description": "Type of block that can be added to the app"
+    },
+    "teachers": {
+        "message": "teachers",
+        "description": ""
+    },
+    "doctors": {
+        "message": "doctors",
+        "description": ""
+    }
+}

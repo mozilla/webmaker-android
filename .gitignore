@@ -2,4 +2,5 @@
 /node_modules
 npm-*
 /build/*
-/locale/index.js
+/locale/*
+!/locale/en_US/mobile-appmaker.json

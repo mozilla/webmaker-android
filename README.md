@@ -67,21 +67,32 @@ npm install
 ```
 
 #### Build & Run
-Once you have `mobile-appmaker` installed, you'll want to build it so you can run it within your web browser (or device simulator). To do this, simply type the following:
+Once you have `mobile-appmaker` installed, you'll want to run the server and watch process so your files will be re-built when you make changes:
 ```bash
-gulp build
+gulp dev
 ```
 
-Once the build process is complete, you can run a version locally:
-```bash
-gulp server
-```
+This will also build the project and pull down localization files for you. Visit http://localhost:8080 in your browser to start developing.
+
+If you want to build the project without running the server, run `gulp build`.
+
 
 #### Testing
 If you make changes to `mobile-appmaker`, you can test them by running:
 ```bash
 gulp test
 ```
+
+### Localizing
+If you want to pull down localizations from Transifex, our translation service,you should run:
+
+```bash
+gulp build
+```
+
+You can look at any localization by visiting http://localhost:8080?locale={country code} in your browser. For example, for French, you would visit http://localhost:8080?locale=fr.
+
+You should only add new strings to `locale/en_US/mobile-webmaker.json`. To update any other language, go to the [Transifex project](transifex.com/projects/p/webmaker/resource/mobile-appmaker).
 
 ---
 

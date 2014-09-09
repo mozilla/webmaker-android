@@ -5,11 +5,12 @@ var path = require('path');
 module.exports = function (callback) {
     var langMap = Object.create(null);
 
-    glob('./locale/*.json', function (err, files) {
+    glob('./locale/**/mobile-appmaker.json', function (err, files) {
         if (err) return callback(err);
 
         files.forEach(function (filename) {
-            var code = path.basename(filename, '.json');
+            var dirs = filename.split(path.sep);
+            var code = dirs[dirs.length - 2].replace('_', '-');
 
             // Remove descriptions
             var temp = {};
@@ -28,4 +29,5 @@ module.exports = function (callback) {
 
         fs.writeFile('./locale/index.js', file, callback);
     });
+
 };

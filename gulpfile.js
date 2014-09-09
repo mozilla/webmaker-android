@@ -1,6 +1,8 @@
 var gulp = require('gulp');
+var webserver = require('gulp-webserver');
 
 var clean = require('./gulp/clean');
+var downloadLocales = require('./gulp/download-locales');
 var locale = require('./gulp/locale');
 var browserify = require('./gulp/browserify');
 var less = require('./gulp/less');
@@ -10,15 +12,18 @@ var jshint = require('./gulp/jshint');
 var jscs = require('./gulp/jscs');
 var unit = require('./gulp/unit');
 
-var server = require('./gulp/server');
-
 // Build
 gulp.task('clean', clean);
-gulp.task('locale', locale);
+gulp.task('download-locales', ['clean'], downloadLocales);
+gulp.task('locale', ['download-locales'], locale);
+
 gulp.task('browserify', ['clean', 'locale'], browserify);
-gulp.task('less', ['browserify'], less);
-gulp.task('cache', ['less'], cache);
-gulp.task('build', ['cache']);
+gulp.task('less', ['clean'], less);
+gulp.task('build', ['less', 'browserify'], cache);
+
+gulp.task('re-locale', ['clean'], locale);
+gulp.task('re-browserify', ['clean', 're-locale'], browserify);
+gulp.task('re-build', ['less', 're-browserify'], cache);
 
 // Test
 gulp.task('jshint', jshint);
@@ -28,9 +33,17 @@ gulp.task('unit', unit);
 gulp.task('test', ['lint', 'unit']);
 
 // Watch
-gulp.task('watch', function () {
-    gulp.watch('./{blocks,components,lib,static,views}/**/*.{js,json,less,html}', ['build']);
+gulp.task('watch', ['build'], function () {
+    gulp.watch(['./{blocks,components,lib,static,views}/**/*.{js,json,less,html}', './locale/en_US/*.json'], ['re-build']);
 });
 
-// Serve
-gulp.task('server', server);
+// Serve + Watch
+gulp.task('dev', ['watch'], function() {
+  gulp.src('build')
+    .pipe(webserver({
+        port: 8080,
+        livereload: true,
+        open: true,
+        fallback: 'index.html'
+    }));
+});
