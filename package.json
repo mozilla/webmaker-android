@@ -32,7 +32,7 @@
     "phantomjs": "1.9.7-15",
     "bulkify": "1.0.2",
     "mockrequire": "0.0.3",
-    "webmaker-download-locales": "0.2.3",
+    "webmaker-download-locales": "0.2.4",
     "gulp-webserver": "0.8.0"
   }
 }
