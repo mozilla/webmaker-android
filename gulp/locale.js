@@ -9,6 +9,8 @@ module.exports = function (callback) {
         if (err) return callback(err);
 
         files.forEach(function (filename) {
+            filename = path.join(filename);
+
             var dirs = filename.split(path.sep);
             var code = dirs[dirs.length - 2].replace('_', '-');
 
