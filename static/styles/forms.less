@@ -51,3 +51,26 @@ label {
 form .form-group:last-of-type {
     margin-bottom: 0;
 }
+
+/*********************************************************
+* Input groups
+*/
+
+.input-group {
+    display: flex;
+    input {
+        width: auto;
+        flex-grow: 1;
+    }
+    .input-group-addon {
+        padding: 8px 10px;
+        background: @lightGrey;
+        border: 1px solid darken(@lightGrey, 5%);
+        &:last-child {
+            border-left: 0;
+        }
+        &:first-child {
+            border-right: 0;
+        }
+    }
+}
