@@ -1,2 +1,4 @@
-<button v-if="back" v-on="click: goBack">&lt;</button>
+<button class="back" v-if="back" v-on="click: goBack">&lt;</button>
+<button v-if="cancel" v-on="click: goBack">{{'Cancel' | i18n}}</button>
 <h1>{{title | i18n}}</h1>
+<button v-if="onDone" v-on="click: onDone">{{'Done' | i18n}}</button>
