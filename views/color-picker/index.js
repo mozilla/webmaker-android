@@ -43,6 +43,7 @@ module.exports = view.extend({
         },
         onGroupSelect: function (i) {
             this.$data.selectedGroup = i;
+            this.onSelect(colorGroups[i]);
         },
         colorGroups: colorGroups,
         colors: colorGroups.map(function (base) {

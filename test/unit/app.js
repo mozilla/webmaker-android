@@ -20,12 +20,12 @@ var mockModel = {
 
 // blocks doesn't frickin work because we can't require html files *cries*
 var mockBlocks = function (id) {
-    this.headline = {
-        id: 'headline',
-        className: 'headline',
-        template: '<h1></h1>',
+    this.text = {
+        id: 'text',
+        className: 'text',
+        template: '<p></p>',
         data: {
-            name: 'Headline',
+            name: 'Text',
             icon: '/images/blocks_text.png',
             attributes: {
                 innerHTML: {
@@ -67,8 +67,8 @@ describe('App', function () {
 
     describe('insert', function () {
         it('should insert a block', function () {
-            app.insert('headline');
-            assert.equal(app.data.blocks[0].id, 'headline');
+            app.insert('text');
+            assert.equal(app.data.blocks[0].id, 'text');
         });
         it('should do nothing if the blockId does not exist', function () {
             var oldLength = app.data.blocks.length;

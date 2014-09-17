@@ -1,6 +1,14 @@
 var App = require('../../lib/app');
 var templates = require('../../lib/templates.json');
 var view = require('../../lib/view');
+var bulk = require('bulk-require');
+var editorModels = bulk(__dirname + '/../../components/block-editors', '**/*.js');
+
+// Rename editor components
+for (var id in editorModels) {
+    editorModels[id + '-editor'] = editorModels[id];
+    delete editorModels[id];
+}
 
 var id = null;
 var app = null;
@@ -10,10 +18,7 @@ var block = null;
 module.exports = view.extend({
     id: 'block',
     template: require('./index.html'),
-    components: {
-        'string-editor': require('../../components/block-editors/string'),
-        'color-editor': require('../../components/block-editors/color')
-    },
+    components: editorModels,
     data: {
         title: 'Edit',
         back: true

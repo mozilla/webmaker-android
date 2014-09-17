@@ -12,6 +12,11 @@
         text-align: center;
         width: 100%;
     }
+    &.btn-dark {
+        background: @turquoise;
+        border-color: @turquoise;
+        color: white;
+    }
     &.btn-remove {
         font-style: italic;
         color: @red;
@@ -23,13 +28,72 @@
     display: block;
     position: absolute;
     width: 100%;
-    height: 55px;
+    height: 50px;
     bottom: 0;
     left: 0;
 
-    padding: 16px 0;
+    padding: 14px 0;
     color: @turquoise;
     background-color: #FFF;
     text-align: center;
     text-decoration: none;
+}
+
+/*********************************************************
+* Toggle
+*/
+.btn-toggle {
+    margin: 10px 32px;
+    height: @toggle-height;
+    position: relative;
+    .btn {
+        height: @toggle-height;
+        position: absolute;
+        float: left;
+        width: 50%;
+        padding: 0;
+        line-height: @toggle-height;
+        &:first-child {
+            border-radius: @toggle-radius 0 0 @toggle-radius;
+            left: 0;
+            &::after {
+                content: '';
+                position: absolute;
+                left: 100%;
+                border-left: none;
+                border-radius: 0 @toggle-radius @toggle-radius 0;
+            }
+        }
+        &:last-child {
+            right: 0;
+            border-radius: 0 @toggle-radius @toggle-radius 0;
+            &::before {
+                content: '';
+                position: absolute;
+                right: 100%;
+                border-right: none;
+                border-radius: @toggle-radius 0 0 @toggle-radius;
+            }
+        }
+        background-color: @turquoise;
+        color: fade(@white, 70%);
+        border-color: @turquoise;
+        &::before,
+        &::after {
+            width: @toggle-radius;
+            height: @toggle-height;
+            top: -1px;
+            background-color: @turquoise;
+            border: 1px solid @turquoise;
+        }
+        &.btn-toggle-on {
+            z-index: 1;
+            background-color: white;
+            color: @turquoise;
+            &::before,
+            &::after {
+                background-color: white;
+            }
+        }
+    }
 }
