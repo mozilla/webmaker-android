@@ -7,31 +7,39 @@
     width: 100%;
     height: @header-height;
     border-bottom: 1px solid @lightGrey;
-    background-color: white;
+    background-color: @white;
+    text-align: center;
 
     h1 {
-        display: block;
-        margin: 8px auto 0 auto;
+        display: inline-block;
+        margin: 10px auto 0 auto;
         color: @highlight;
         text-align: center;
         font-size: 16pt;
         font-weight: 400;
-        font-style: italic;
     }
 
     button {
-        // display: none;
         position: absolute;
-        left: 0;
         top: 0;
-
-        width: 40px;
+        min-width: 40px;
         height: 100%;
-
-        background: @white;
+        background: none;
+        color: @highlight;
         border: none;
         outline: none;
-        font-size: 1.4em;
-        color: @highlight;
+        padding: 5px 20px 0;
+
+        &:first-child {
+            left: 0;
+        }
+        &:last-child {
+            right: 0;
+        }
+        &.back {
+            padding-top: 0;
+            font-size: 1.4em;
+        }
+
     }
 }
