@@ -1,8 +1,7 @@
 var mockrequire = require('mockrequire');
 var assert = require('assert');
-
 var mockId = '000d1745-5d3c-4997-ac0c-15df68bbbecz';
-var mockModel = {
+var mockModelInstance = {
     apps: [
         {
             id: mockId,
@@ -16,6 +15,9 @@ var mockModel = {
             blocks: []
         }
     ]
+};
+var mockModel = function() {
+    return mockModelInstance;
 };
 
 // blocks doesn't frickin work because we can't require html files *cries*
@@ -56,7 +58,7 @@ describe('App', function () {
         it('should have expected properties', function () {
             assert.equal(app.id, mockId);
             assert.equal(app.index, 0);
-            assert.equal(app.data, mockModel.apps[0]);
+            assert.equal(app.data, mockModelInstance.apps[0]);
         });
 
         it('should have expected functions', function () {

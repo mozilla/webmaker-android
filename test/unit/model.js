@@ -1,7 +1,10 @@
 window = {};
 
 var assert = require('assert');
-var model = require('../../lib/model');
+var model = require('../../lib/model')({
+    memory: true,
+    noConnect: true
+});
 
 describe('Model', function () {
     describe('interface', function () {
