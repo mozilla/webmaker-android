@@ -1,6 +1,5 @@
 window = {};
 
-
 var assert = require('assert');
 var utils = require('../../lib/utils');
 

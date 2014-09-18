@@ -14,7 +14,7 @@
     "vue": "0.10.6",
     "watchjs": "0.0.0",
     "clone": "0.1.18",
-    "makedrive": "0.0.41"
+    "makedrive": "0.0.42"
   },
   "devDependencies": {
     "del": "0.1.2",
