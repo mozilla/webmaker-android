@@ -1,5 +1,6 @@
 window = {};
 
+
 var assert = require('assert');
 var utils = require('../../lib/utils');
 
@@ -31,6 +32,20 @@ describe('utils', function () {
         it('should stop at #000000 and #FFFFFF', function () {
             assert.equal(utils.shadeColor('#000000', -50), '#000000');
             assert.equal(utils.shadeColor('#ffffff', 50), '#ffffff');
+        });
+    });
+
+    describe('getQueryParameter', function () {
+        location = {
+            href: 'http://test.com:9090?hello=world&number=42',
+            search: '?hello=world&number=42'
+        };
+
+        it('should parse a queryString given a url', function () {
+            assert.equal(utils.getQueryParameter(location.href, 'number'), 42);
+        });
+        it('should parse a queryString from window.location', function () {
+            assert.equal(utils.getQueryParameter('hello'), 'world');
         });
     });
 
