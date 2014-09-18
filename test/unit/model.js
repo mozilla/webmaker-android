@@ -1,8 +1,7 @@
 window = {};
 
 var assert = require('assert');
-var Model = require('../../lib/model-class');
-var model = new Model({
+var model = require('../../lib/model')({
     memory: true,
     noConnect: true
 });

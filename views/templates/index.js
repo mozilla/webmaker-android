@@ -1,4 +1,4 @@
-var model = require('../../lib/model');
+var model = require('../../lib/model')();
 var templates = require('../../lib/templates.json');
 var uuid = require('../../lib/uuid');
 var view = require('../../lib/view');
