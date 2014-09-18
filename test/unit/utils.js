@@ -35,18 +35,4 @@ describe('utils', function () {
         });
     });
 
-    describe('getQueryParameter', function () {
-        location = {
-            href: 'http://test.com:9090?hello=world&number=42',
-            search: '?hello=world&number=42'
-        };
-
-        it('should parse a queryString given a url', function () {
-            assert.equal(utils.getQueryParameter(location.href, 'number'), 42);
-        });
-        it('should parse a queryString from window.location', function () {
-            assert.equal(utils.getQueryParameter('hello'), 'world');
-        });
-    });
-
 });
