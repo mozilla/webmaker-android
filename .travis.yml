@@ -13,4 +13,4 @@ deploy:
   local-dir: build
   on:
     branch: master
-    repo: mozillafordevelopment/mobile-appmaker
+    repo: mozillafordevelopment/webmaker-app

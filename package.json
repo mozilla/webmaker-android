@@ -1,8 +1,8 @@
 {
-  "name": "mobile-appmaker",
+  "name": "webmaker",
   "repository": {
     "type": "git",
-    "url": "https://github.com/mozillafordevelopment/mobile-appmaker"
+    "url": "https://github.com/mozillafordevelopment/webmaker-app"
   },
   "scripts": {
     "test": "gulp test"

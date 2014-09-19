@@ -1,18 +1,18 @@
-## Mobile Appmaker
+## Webmaker App
 
-[![Build Status](https://travis-ci.org/mozillafordevelopment/mobile-appmaker.svg)](https://travis-ci.org/mozillafordevelopment/mobile-appmaker)
-[![devDependency Status](https://david-dm.org/mozillafordevelopment/mobile-appmaker/dev-status.svg)](https://david-dm.org/mozillafordevelopment/mobile-appmaker#info=devDependencies)
+[![Build Status](https://travis-ci.org/mozillafordevelopment/webmaker-app.svg)](https://travis-ci.org/mozillafordevelopment/webmaker-app)
+[![devDependency Status](https://david-dm.org/mozillafordevelopment/webmaker-app/dev-status.svg)](https://david-dm.org/mozillafordevelopment/webmaker-app#info=devDependencies)
 
 ### Background
-Mobile Appmaker is a product exploring how to radically lower the entry to creating and distributing mobile applications through on-device authoring.
+Mozilla Webmaker is all about building a new generation of digital creators and webmakers, giving people the tools and skills they need to move from using the web to actively making the web. To this end, the Webmaker App is an entry point to the Webmaker community that provides a radically simple interface for creating mobile application directly on device. In conjunction with our ongoing device launches for Firefox OS, our goal is to enable users in developing markets such as Bangladesh, India, and Kenya to engage in the creation and sharing of applications that enrich their lives.
 
 ![](https://cloud.githubusercontent.com/assets/747641/3974620/6f9cced4-27f7-11e4-9738-3d3c5296d37e.png)
 
 ### Structure
-Mobile Appmaker is structured around a number of lightweight composable `CommonJS` modules that provide abstractions for routing, XHR, IndexedDB, i18n, and MVVM. Bundling for distribution is handled by [browserify](https://github.com/substack/node-browserify). Testing is handled by [mocha](https://github.com/visionmedia/mocha) and [phantomjs](http://phantomjs.org/).
+The Webmaker App is structured around a number of lightweight composable `CommonJS` modules that provide abstractions for routing, XHR, IndexedDB, i18n, and MVVM. Bundling for distribution is handled by [browserify](https://github.com/substack/node-browserify). Testing is handled by [mocha](https://github.com/visionmedia/mocha) and [phantomjs](http://phantomjs.org/).
 
 #### Views
-Views and components are the basic building blocks of Appmaker. Views are the highest level object and represent a discrete screen such as "Discover" or "App Details". Both are defined via the MVVM abstractions provided by [Vue.js](https://github.com/yyx990803/vue).
+Views and components are the basic building blocks of the Webmaker App. Views are the highest level object and represent a discrete screen such as "Discover" or "App Details". Both are defined via the MVVM abstractions provided by [Vue.js](https://github.com/yyx990803/vue).
 
 Anatomy of a view:
 ```
@@ -59,15 +59,15 @@ Static assets (such as images, icons, and the webapp manifest) are contained wit
 
 ### Getting Started
 
-To get a local version of `mobile-appmaker` running, you'll need a few tools installed on your system first. If you haven't already, you'll want to install [git](http://git-scm.com/), [node](http://nodejs.org/), and [gulp](http://gulpjs.com/). Once you have those items installed:
+To get a local version of `webmaker-app` running, you'll need a few tools installed on your system first. If you haven't already, you'll want to install [git](http://git-scm.com/), [node](http://nodejs.org/), and [gulp](http://gulpjs.com/). Once you have those items installed:
 ```bash
-git clone git@github.com:mozillafordevelopment/mobile-appmaker.git
-cd mobile-appmaker
+git clone git@github.com:mozillafordevelopment/webmaker-app.git
+cd webmaker-app
 npm install
 ```
 
 #### Build & Run
-Once you have `mobile-appmaker` installed, you'll want to run the server and watch process so your files will be re-built when you make changes:
+Once you have `webmaker-app` installed, you'll want to run the server and watch process so your files will be re-built when you make changes:
 ```bash
 gulp dev
 ```
@@ -78,7 +78,7 @@ If you want to build the project without running the server, run `gulp build`.
 
 
 #### Testing
-If you make changes to `mobile-appmaker`, you can test them by running:
+If you make changes to `webmaker-app`, you can test them by running:
 ```bash
 gulp test
 ```
@@ -92,7 +92,7 @@ gulp build
 
 You can look at any localization by visiting http://localhost:8080?locale={country code} in your browser. For example, for French, you would visit http://localhost:8080?locale=fr.
 
-You should only add new strings to `locale/en_US/mobile-webmaker.json`. To update any other language, go to the [Transifex project](transifex.com/projects/p/webmaker/resource/mobile-appmaker).
+You should only add new strings to `locale/en_US/mobile-webmaker.json`. To update any other language, go to the [Transifex project](transifex.com/projects/p/webmaker/resource/webmaker-app).
 
 ---
 
