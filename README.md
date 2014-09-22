@@ -187,10 +187,10 @@ Everything in the data object is available to the template, so you can also add 
 Let's create a template for our `phonecall` block:
 
 ```html
-<button v-click="callMe">{{ attributes.label.value }}</button>
+<button v-on="{ click: callMe }">{{ attributes.label.value }}</button>
 ```
 
-Everything in the `data` object on our `phonecall` constructor is available to the template. We can easily add the `label` attribute as text inside our button. We also added a `callMe` callback to an event-listener using the vue.js `v-click` directive. You can look at a list of all built-in directives [here](http://vuejs.org/api/directives.html).
+Everything in the `data` object on our `phonecall` constructor is available to the template. We can easily add the `label` attribute as text inside our button. We also added a `callMe` callback to an event-listener using the vue.js `v-on` directive. You can look at a list of all built-in directives [here](http://vuejs.org/api/directives.html).
 
 ### index.less
 
