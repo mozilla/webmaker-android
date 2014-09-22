@@ -10,6 +10,11 @@ module.exports = {
                 type: 'string',
                 value: '+18005555555'
             },
+            messageBody: {
+                label: 'Message',
+                type: 'string',
+                value: '',
+            },
             innerHTML: {
                 label: 'Label',
                 type: 'string',
@@ -21,6 +26,7 @@ module.exports = {
         var self = this;
         self.$el.addEventListener('click', function (e) {
             if (!window.MozActivity) return;
+
             if (self.$parent.$parent.$data.params.mode !== 'play') return;
 
             e.preventDefault();
@@ -28,7 +34,8 @@ module.exports = {
                 name: 'new',
                 data: {
                     type: 'websms/sms',
-                    number: e.target.getAttribute('value')
+                    number: self.$data.attributes.value.value,
+                    body: self.$data.attributes.messageBody.value,
                 }
             });
         });
