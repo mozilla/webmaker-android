@@ -25,19 +25,12 @@ module.exports = {
     ready: function () {
         var self = this;
         self.$el.addEventListener('click', function (e) {
-            if (!window.MozActivity) return;
-
             if (self.$parent.$parent.$data.params.mode !== 'play') return;
-
             e.preventDefault();
-            new MozActivity({
-                name: 'new',
-                data: {
-                    type: 'websms/sms',
-                    number: self.$data.attributes.value.value,
-                    body: self.$data.attributes.messageBody.value,
-                }
-            });
+
+            var number = self.$data.attributes.value.value;
+            var body = self.$data.attributes.messageBody.value
+            window.location = 'sms:' + number + '?body=' + body;
         });
     }
 };
