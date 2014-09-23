@@ -2,7 +2,7 @@ module.exports = {
     className: 'phone',
     template: require('./index.html'),
     data: {
-        name: 'phone',
+        name: 'Phone',
         icon: '/images/blocks_phone.png',
         attributes: {
             number: {
