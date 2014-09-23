@@ -1,10 +1,4 @@
-<a class="cell" v-class="disable: !active" data-id="{{id}}" href="/make/{{id}}/play">
-    <div class="left">
-        <span class="name">{{name}}</span>
-        <span v-if="author" class="author" v-bind-html="'by author'"></span>
-    </div>
-    <div class="right">
-        <img class="app-icon" src="{{icon}}">
-        <!-- <img v-if="author" class="author-icon" src="{{author.avatar}}"> -->
-    </div>
+<a class="cell" data-id="{{id}}" href="/make/{{id}}/play">
+    <img class="app-icon" src="{{icon}}">
+    <div class="name">{{name}}</div>
 </a>

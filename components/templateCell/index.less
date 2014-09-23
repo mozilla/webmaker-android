@@ -1,52 +1,44 @@
 #templateCell {
-    height: 72px;
-    background-color: white;
-    border-bottom: 1px solid @lightGrey;
-    list-style: none;
-    padding: 0;
-    color: @black;
-    line-height: 1.4;
+    width: 50%;
+    height: 160px;
+    overflow: hidden;
+    float: left;
 
-    .disable {
-      opacity: 0.4;
-    }
+    list-style: none;
+    border-width: 0 1px 1px 0;
+    border-style: solid;
+    border-color: white;
+    background-color: @turquoise;
+
+    &:nth-child(even) { border-right: 0; }
+    &:nth-child(2n+0) { background-color: @red; }
+    &:nth-child(3n+0) { background-color: @blue; }
+    &:nth-child(4n+0) { background-color: @purple; }
+    &:nth-child(5n+0) { background-color: @red; }
+    &:nth-child(6n+0) { background-color: @turquoise; }
 }
 
 #templateCell a {
-    display: flex;
-    align-items: center;
+    display: block;
+    width: 100%;
     height: 100%;
+
     text-decoration: none;
     color: inherit;
 
-    .name,
-    .author {
-      display: block;
-    }
-
-    .author {
-      font-size: 0.8em; // to replace with small
-      font-weight: 400;
-      color: @mediumGrey;
-    }
-
-    .left, .right {
-      float: left;
-      width: 50%;
-      padding: 10px;
-    }
-    .right {
-      text-align: right;
-    }
-    .app-icon,
-    .author-icon {
-      width: 50px;
-      height: 50px;
-      display: block;
-      float: right;
-      margin-left: 5px;
-    }
     .app-icon {
-      border-radius: 50%;
+        display: block;
+        width: 70px;
+        height: 70px;
+        margin: 30px auto 8px auto;
+    }
+
+    .name {
+        display: block;
+        width: 100%;
+
+        color: @white;
+        font-size: 0.85em;
+        text-align: center;
     }
 }
