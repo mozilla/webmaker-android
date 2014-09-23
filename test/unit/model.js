@@ -40,7 +40,7 @@ describe('Model', function () {
 
         it('should have the expected apps', function () {
             // @todo
-            assert.equal(model.apps.length, 1);
+            assert.equal(model.apps.length, 0);
         });
     });
 });
