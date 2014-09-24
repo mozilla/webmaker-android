@@ -29,7 +29,7 @@ module.exports = {
             e.preventDefault();
 
             var number = self.$data.attributes.value.value;
-            var body = self.$data.attributes.messageBody.value
+            var body = self.$data.attributes.messageBody.value;
             window.location = 'sms:' + number + '?body=' + body;
         });
     }
