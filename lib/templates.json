@@ -251,7 +251,336 @@
             "location": "",
             "avatar": "/images/avatar_teacher.png"
         },
-        "blocks": []
+        "blocks": [
+            {
+                "id": "text",
+                "attributes": {
+                    "innerHTML": {
+                        "id": "innerHTML",
+                        "label": "Text Value",
+                        "type": "string",
+                        "value": "Lesson Plan: Build an App"
+                    },
+                    "color": {
+                        "id": "color",
+                        "label": "Text Color",
+                        "type": "color",
+                        "value": "#000000"
+                    },
+                    "font-size": {
+                        "label": "Font Size",
+                        "type": "font-size",
+                        "value": "18"
+                    }
+                }
+            },
+            {
+                "id": "text",
+                "attributes": {
+                    "innerHTML": {
+                        "id": "innerHTML",
+                        "label": "Text Value",
+                        "type": "string",
+                        "value": "This Webmaker template can help you make a lesson plan. The lesson in this template describes how to make an app. Edit the details below to make a lesson on your own topic. Share your new app to spread the learning."
+                    },
+                    "color": {
+                        "id": "color",
+                        "label": "Text Color",
+                        "type": "color",
+                        "value": "#999999"
+                    }
+                }
+            },
+            {
+                "id": "text",
+                "attributes": {
+                    "innerHTML": {
+                        "id": "innerHTML",
+                        "label": "Text Value",
+                        "type": "string",
+                        "value": "Step 1 - Install Mobile Webmaker"
+                    },
+                    "color": {
+                        "id": "color",
+                        "label": "Text Color",
+                        "type": "color",
+                        "value": "#333444"
+                    }
+                }
+            },
+            {
+                "id": "text",
+                "attributes": {
+                    "innerHTML": {
+                        "id": "innerHTML",
+                        "label": "Text Value",
+                        "type": "string",
+                        "value": "<ol><li>Go to <a href='#'>mobile.webmaker.org</a> on your mobile device.</li> <li>Tap the install button and follow the instructions on your screen.</li></ol>"
+                    },
+                    "color": {
+                        "id": "color",
+                        "label": "Text Color",
+                        "type": "color",
+                        "value": "#999999"
+                    }
+                }
+            },
+            {
+                "id": "text",
+                "attributes": {
+                    "innerHTML": {
+                        "id": "innerHTML",
+                        "label": "Text Value",
+                        "type": "string",
+                        "value": "Step 2 - Browse Mobile Webmaker"
+                    },
+                    "color": {
+                        "id": "color",
+                        "label": "Text Color",
+                        "type": "color",
+                        "value": "#333444"
+                    }
+                }
+            },
+            {
+                "id": "text",
+                "attributes": {
+                    "innerHTML": {
+                        "id": "innerHTML",
+                        "label": "Text Value",
+                        "type": "string",
+                        "value": "<ol><li>Read the welcome screens to learn about webmaker.</li> <li>Use the first and the third button on the main menu to: <ul> <li>Browse Discover to see the Apps made with Webmaker.</li> <li>Enter your profile.</li> </ul> </li> </ol>"
+                    },
+                    "color": {
+                        "id": "color",
+                        "label": "Text Color",
+                        "type": "color",
+                        "value": "#999999"
+                    }
+                }
+            },
+            {
+                "id": "text",
+                "attributes": {
+                    "innerHTML": {
+                        "id": "innerHTML",
+                        "label": "Text Value",
+                        "type": "string",
+                        "value": "Step 3 - Open a Template"
+                    },
+                    "color": {
+                        "id": "color",
+                        "label": "Text Color",
+                        "type": "color",
+                        "value": "#333444"
+                    }
+                }
+            },
+            {
+                "id": "text",
+                "attributes": {
+                    "innerHTML": {
+                        "id": "innerHTML",
+                        "label": "Text Value",
+                        "type": "string",
+                        "value": "<ol><li>Browse and choose a template.</li> <li>Tap to open and preview the template.</li> <li>Tap 'Edit' to make a new app from this template.</li></ol>"
+                    },
+                    "color": {
+                        "id": "color",
+                        "label": "Text Color",
+                        "type": "color",
+                        "value": "#999999"
+                    }
+                }
+            },
+            {
+                "id": "text",
+                "attributes": {
+                    "innerHTML": {
+                        "id": "innerHTML",
+                        "label": "Text Value",
+                        "type": "string",
+                        "value": "Step 4 - Examine the Bricks"
+                    },
+                    "color": {
+                        "id": "color",
+                        "label": "Text Color",
+                        "type": "color",
+                        "value": "#333444"
+                    }
+                }
+            },
+            {
+                "id": "text",
+                "attributes": {
+                    "innerHTML": {
+                        "id": "innerHTML",
+                        "label": "Text Value",
+                        "type": "string",
+                        "value": "An app is made of bricks. Each brick does one thing, like display text or show an image for example. Your template includes several bricks already. You can tap a brick to edit it, or tap the plus sign to add another one."
+                    },
+                    "color": {
+                        "id": "color",
+                        "label": "Text Color",
+                        "type": "color",
+                        "value": "#999999"
+                    }
+                }
+            },
+            {
+                "id": "text",
+                "attributes": {
+                    "innerHTML": {
+                        "id": "innerHTML",
+                        "label": "Text Value",
+                        "type": "string",
+                        "value": "Step 5 - Add a Brick"
+                    },
+                    "color": {
+                        "id": "color",
+                        "label": "Text Color",
+                        "type": "color",
+                        "value": "#333444"
+                    }
+                }
+            },
+            {
+                "id": "text",
+                "attributes": {
+                    "innerHTML": {
+                        "id": "innerHTML",
+                        "label": "Text Value",
+                        "type": "string",
+                        "value": "<ol><li>Tap the plus sign to add a brick to your app.</li> <li>Browse the options and then tap Text to add a text brick.</li></ol>"
+                    },
+                    "color": {
+                        "id": "color",
+                        "label": "Text Color",
+                        "type": "color",
+                        "value": "#999999"
+                    }
+                }
+            },
+            {
+                "id": "text",
+                "attributes": {
+                    "innerHTML": {
+                        "id": "innerHTML",
+                        "label": "Text Value",
+                        "type": "string",
+                        "value": "Step 6 - Edit a Brick"
+                    },
+                    "color": {
+                        "id": "color",
+                        "label": "Text Color",
+                        "type": "color",
+                        "value": "#333444"
+                    }
+                }
+            },
+            {
+                "id": "text",
+                "attributes": {
+                    "innerHTML": {
+                        "id": "innerHTML",
+                        "label": "Text Value",
+                        "type": "string",
+                        "value": "<ol><li>Tap your new text brick.</li> <li>Change the text, its size and color.</li> <li>Tap the back arrow at the top of the screen when you are done, or tap remove to delete the brick.</li></ol>"
+                    },
+                    "color": {
+                        "id": "color",
+                        "label": "Text Color",
+                        "type": "color",
+                        "value": "#999999"
+                    }
+                }
+            },
+            {
+                "id": "text",
+                "attributes": {
+                    "innerHTML": {
+                        "id": "innerHTML",
+                        "label": "Text Value",
+                        "type": "string",
+                        "value": "Step 7 - Name & View Your App"
+                    },
+                    "color": {
+                        "id": "color",
+                        "label": "Text Color",
+                        "type": "color",
+                        "value": "#333444"
+                    }
+                }
+            },
+            {
+                "id": "text",
+                "attributes": {
+                    "innerHTML": {
+                        "id": "innerHTML",
+                        "label": "Text Value",
+                        "type": "string",
+                        "value": "<ol><li>Tap 'Untitled App' at the top of your screen. Give your app a unique name.</li> <li>Tap 'Play' at the top of the screen to preview your app.</li></ol>"
+                    },
+                    "color": {
+                        "id": "color",
+                        "label": "Text Color",
+                        "type": "color",
+                        "value": "#999999"
+                    }
+                }
+            },
+            {
+                "id": "text",
+                "attributes": {
+                    "innerHTML": {
+                        "id": "innerHTML",
+                        "label": "Text Value",
+                        "type": "string",
+                        "value": "Congratulations!"
+                    },
+                    "color": {
+                        "id": "color",
+                        "label": "Text Color",
+                        "type": "color",
+                        "value": "#333444"
+                    }
+                }
+            },
+            {
+                "id": "text",
+                "attributes": {
+                    "innerHTML": {
+                        "id": "innerHTML",
+                        "label": "Text Value",
+                        "type": "string",
+                        "value": "You have now made your own app from the template. Make as many as you like. In the next lesson, you will learn how to share your app with friends and the Webmaker community."
+                    },
+                    "color": {
+                        "id": "color",
+                        "label": "Text Color",
+                        "type": "color",
+                        "value": "#999999"
+                    }
+                }
+            },
+            {
+                "id": "sms",
+                "attributes": {
+                    "value": {
+                        "id": "value",
+                        "label": "Phone #",
+                        "type": "string",
+                        "value": "+18005555555"
+                    },
+                    "innerHTML": {
+                        "id": "innerHTML",
+                        "label": "Label",
+                        "type": "string",
+                        "value": "Share Lesson"
+                    }
+                }
+            }
+        ]
     },
     {
         "id": "229abeb3-aa7d-453d-8082-96f8f1b0bfd8",
