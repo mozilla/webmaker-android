@@ -270,7 +270,7 @@
                     "font-size": {
                         "label": "Font Size",
                         "type": "font-size",
-                        "value": "18"
+                        "value": "22"
                     }
                 }
             },
@@ -298,6 +298,45 @@
                         "id": "innerHTML",
                         "label": "Text Value",
                         "type": "string",
+                        "value": "*Time*: 30 minutes\n*Materials*: FirefoxOS phone\n *Objective*: This lesson will teach students to make an app for their mobile phone. Students will gain a stronger understanding of what mobile apps are and what they can do. Students will also build confidence in their ability to make apps for themselves, their family and community.\n*Intro*: Mobile apps can be fun and useful. An app made by you can be even more fun and useful!"
+                    },
+                    "color": {
+                        "id": "color",
+                        "label": "Text Color",
+                        "type": "color",
+                        "value": "#333444"
+                    }
+                }
+            },
+            {
+                "id": "text",
+                "attributes": {
+                    "innerHTML": {
+                        "id": "innerHTML",
+                        "label": "Text Value",
+                        "type": "string",
+                        "value": "Activity"
+                    },
+                    "color": {
+                        "id": "color",
+                        "label": "Text Color",
+                        "type": "color",
+                        "value": "#333444"
+                    },
+                    "font-size": {
+                        "label": "Font Size",
+                        "type": "font-size",
+                        "value": "22"
+                    }
+                }
+            },
+            {
+                "id": "text",
+                "attributes": {
+                    "innerHTML": {
+                        "id": "innerHTML",
+                        "label": "Text Value",
+                        "type": "string",
                         "value": "Step 1 - Install Mobile Webmaker"
                     },
                     "color": {
@@ -315,7 +354,7 @@
                         "id": "innerHTML",
                         "label": "Text Value",
                         "type": "string",
-                        "value": "<ol><li>Go to <a href='#'>mobile.webmaker.org</a> on your mobile device.</li> <li>Tap the install button and follow the instructions on your screen.</li></ol>"
+                        "value": " - Go to mobile.webmaker.org [coming soon] on your mobile device.\n  - Tap the install button and follow the instructions on your screen."
                     },
                     "color": {
                         "id": "color",
@@ -349,7 +388,7 @@
                         "id": "innerHTML",
                         "label": "Text Value",
                         "type": "string",
-                        "value": "<ol><li>Read the welcome screens to learn about webmaker.</li> <li>Use the first and the third button on the main menu to: <ul> <li>Browse Discover to see the Apps made with Webmaker.</li> <li>Enter your profile.</li> </ul> </li> </ol>"
+                        "value": " - Read the welcome screens to learn about webmaker.\n  - Use the first and the third button on the main menu to:  - Browse Discover to see the Apps made with Webmaker.\n   - Enter your profile."
                     },
                     "color": {
                         "id": "color",
@@ -383,7 +422,7 @@
                         "id": "innerHTML",
                         "label": "Text Value",
                         "type": "string",
-                        "value": "<ol><li>Browse and choose a template.</li> <li>Tap to open and preview the template.</li> <li>Tap 'Edit' to make a new app from this template.</li></ol>"
+                        "value": " - Browse and choose a template.\n  - Tap to open and preview the template.\n  - Tap 'Edit' to make a new app from this template."
                     },
                     "color": {
                         "id": "color",
@@ -451,7 +490,7 @@
                         "id": "innerHTML",
                         "label": "Text Value",
                         "type": "string",
-                        "value": "<ol><li>Tap the plus sign to add a brick to your app.</li> <li>Browse the options and then tap Text to add a text brick.</li></ol>"
+                        "value": " - Tap the plus sign to add a brick to your app.\n  - Browse the options and then tap Text to add a text brick."
                     },
                     "color": {
                         "id": "color",
@@ -485,7 +524,7 @@
                         "id": "innerHTML",
                         "label": "Text Value",
                         "type": "string",
-                        "value": "<ol><li>Tap your new text brick.</li> <li>Change the text, its size and color.</li> <li>Tap the back arrow at the top of the screen when you are done, or tap remove to delete the brick.</li></ol>"
+                        "value": " - Tap your new text brick.\n  - Change the text, its size and color.\n  - Tap the back arrow at the top of the screen when you are done, or tap remove to delete the brick."
                     },
                     "color": {
                         "id": "color",
@@ -519,7 +558,7 @@
                         "id": "innerHTML",
                         "label": "Text Value",
                         "type": "string",
-                        "value": "<ol><li>Tap 'Untitled App' at the top of your screen. Give your app a unique name.</li> <li>Tap 'Play' at the top of the screen to preview your app.</li></ol>"
+                        "value": " - Tap 'Untitled App' at the top of your screen. Give your app a unique name.\n  - Tap 'Play' at the top of the screen to preview your app."
                     },
                     "color": {
                         "id": "color",
@@ -536,7 +575,29 @@
                         "id": "innerHTML",
                         "label": "Text Value",
                         "type": "string",
-                        "value": "Congratulations!"
+                        "value": "Congratulations!\nYou made an app."
+                    },
+                    "color": {
+                        "id": "color",
+                        "label": "Text Color",
+                        "type": "color",
+                        "value": "#ff00ff"
+                    },
+                    "font-size": {
+                        "label": "Font Size",
+                        "type": "font-size",
+                        "value": "22"
+                    }
+                }
+            },
+            {
+                "id": "text",
+                "attributes": {
+                    "innerHTML": {
+                        "id": "innerHTML",
+                        "label": "Text Value",
+                        "type": "string",
+                        "value": "Going Further"
                     },
                     "color": {
                         "id": "color",
@@ -553,7 +614,7 @@
                         "id": "innerHTML",
                         "label": "Text Value",
                         "type": "string",
-                        "value": "You have now made your own app from the template. Make as many as you like. In the next lesson, you will learn how to share your app with friends and the Webmaker community."
+                        "value": "Now that you know how to make a basic app, what kind of apps would you like to make? Are there popular apps that you would like to make more personal? Are there fun things you could share with your friends? Are there small problems you could help solve for your family or community?"
                     },
                     "color": {
                         "id": "color",
