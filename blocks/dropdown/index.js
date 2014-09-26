@@ -6,13 +6,13 @@ module.exports = {
         icon: '/images/blocks_text.png',
         attributes: {
 			label: {
-				label: 'Text',
+				label: 'Label',
 				type: 'string',
 				value: 'I am the label',
 				skipAutoRender: true
 			},
 			elements: {
-				label: 'Elements',
+				label: 'Values',
 				type: 'list',
 				skipAutoRender: true,
 				items: ['']
