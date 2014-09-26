@@ -8,17 +8,26 @@ module.exports = {
 			min: {
 				label: 'Minimum Number',
 				type: 'number',
-				value: '0'
+				value: '0',
+				skipAutoRender: true
 			},
 			max: {
 				label: 'Maximum Number',
 				type: 'number',
-				value: '100'
+				value: '100',
+				skipAutoRender: true
 			},
 			step: {
 				label: 'Steps when incrementing / decrementing',
 				type: 'number',
-				value: '1'
+				value: '1',
+				skipAutoRender: true
+			},
+			label: {
+				label: 'Label',
+				type: 'string',
+				value: 'I am your Label',
+				skipAutoRender: true
 			}
         }
     },

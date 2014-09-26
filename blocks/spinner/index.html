@@ -1,1 +1,2 @@
-<input type="number" value="{{attributes.min.value}}">
+<label for="block_{{$index}}">{{attributes.label.value}}</label>
+<input id="block_{{$index}}" type="number" value="{{attributes.min.value}}" min="{{attributes.min.value}}" max="{{attributes.max.value}}" step="{{attributes.step.value}}">
