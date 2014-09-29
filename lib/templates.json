@@ -287,7 +287,7 @@
         "blocks": []
     },
     {
-        "id": "41e8be7e-4381-4afd-82ac-861171cd7434",
+        "id": "41e8be7e-4381-4afd-82ac-861171cd9999",
         "name": "Student",
         "icon": "/images/placeholder_student.png",
         "author": {
@@ -296,6 +296,44 @@
             "avatar": "/images/avatar_student.png"
         },
         "blocks": []
+    },
+    {
+        "id": "41e8be7e-4381-4afd-82ac-861171cd1111",
+        "name": "Safety",
+        "icon": "/images/placeholder_safety.png",
+        "author": {
+            "name": "Pedro",
+            "location": "",
+            "avatar": "/images/avatar_student.png"
+        },
+        "blocks": [
+            {
+                "id": "phone",
+                "attributes": {
+                    "number": {
+                        "label": "Phone #",
+                        "type": "string",
+                        "value": "+18005555555"
+                    },
+                    "innerHTML": {
+                        "label": "Label",
+                        "type": "string",
+                        "value": "Call Campus Safety"
+                    }
+                }
+            },
+            {
+                "id": "image",
+                "attributes": {
+                    "src": {
+                        "id": "src",
+                        "label": "Image URL",
+                        "type": "string",
+                        "value": "/content/campus_safety.gif"
+                    }
+                }
+            },
+        ]
     },
     {
         "id": "3617a58c-3103-47dd-a767-60cd84ed7ef7",
