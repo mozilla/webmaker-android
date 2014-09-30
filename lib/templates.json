@@ -644,6 +644,235 @@
         ]
     },
     {
+        "id": "a7ac2775-bd9d-40b5-a26c-43e847777777",
+        "name": "How To",
+        "icon": "/images/placeholder_howto.png",
+        "author": {
+            "name": "Deepa",
+            "location": "",
+            "avatar": "/images/avatar_teacher.png"
+        },
+        "blocks": [
+            {
+                "id": "text",
+                "attributes": {
+                    "innerHTML": {
+                        "id": "innerHTML",
+                        "label": "Text Value",
+                        "type": "string",
+                        "value": "HOW TO GUIDE"
+                    },
+                    "color": {
+                        "id": "color",
+                        "label": "Text Color",
+                        "type": "color",
+                        "value": "#4d4e53"
+                    },
+                    "font-size": {
+                        "label": "Font Size",
+                        "type": "font-size",
+                        "value": "12"
+                    }
+                }
+            },
+            {
+                "id": "text",
+                "attributes": {
+                    "innerHTML": {
+                        "id": "innerHTML",
+                        "label": "Text Value",
+                        "type": "string",
+                        "value": "How to Make a Box Guitar"
+                    },
+                    "color": {
+                        "id": "color",
+                        "label": "Text Color",
+                        "type": "color",
+                        "value": "#328F70"
+                    },
+                    "font-size": {
+                        "label": "Font Size",
+                        "type": "font-size",
+                        "value": "22"
+                    }
+                }
+            },
+            {
+                "id": "text",
+                "attributes": {
+                    "innerHTML": {
+                        "id": "innerHTML",
+                        "label": "Text Value",
+                        "type": "string",
+                        "value": "Whether making this fun toy for yourself or for your child, a homemade guitar is an easy and creative way to make music from household items."
+                    },
+                    "color": {
+                        "id": "color",
+                        "label": "Text Color",
+                        "type": "color",
+                        "value": "#333444"
+                    }
+                }
+            },
+            {
+                "id": "image",
+                "attributes": {
+                    "src": {
+                        "id": "src",
+                        "label": "Image URL",
+                        "type": "string",
+                        "value": "/content/howto_guitar_1.jpg"
+                    }
+                }
+            },
+            {
+                "id": "text",
+                "attributes": {
+                    "innerHTML": {
+                        "id": "innerHTML",
+                        "label": "Text Value",
+                        "type": "string",
+                        "value": "Part 1 - Find a carboard box, cut a large hole in the middle of one side, and then 5 smaller holes to the left and the right of the large one."
+                    },
+                    "color": {
+                        "id": "color",
+                        "label": "Text Color",
+                        "type": "color",
+                        "value": "#333444"
+                    }
+                }
+            },
+            {
+                "id": "image",
+                "attributes": {
+                    "src": {
+                        "id": "src",
+                        "label": "Image URL",
+                        "type": "string",
+                        "value": "/content/howto_guitar_2.jpg"
+                    }
+                }
+            },
+            {
+                "id": "text",
+                "attributes": {
+                    "innerHTML": {
+                        "id": "innerHTML",
+                        "label": "Text Value",
+                        "type": "string",
+                        "value": "Part 2 - Take 5 rubber bands and cut them open.\n\nTie a knot on one end of a rubber band. Push the other end through the first small hole and then stretch it across the big hole to the other side. Push it down through this hole and tie another knot.\n\nRepeat this for the other 4 rubber bands."
+                    },
+                    "color": {
+                        "id": "color",
+                        "label": "Text Color",
+                        "type": "color",
+                        "value": "#333444"
+                    }
+                }
+            },
+            {
+                "id": "image",
+                "attributes": {
+                    "src": {
+                        "id": "src",
+                        "label": "Image URL",
+                        "type": "string",
+                        "value": "/content/howto_guitar_3.jpg"
+                    }
+                }
+            },
+            {
+                "id": "text",
+                "attributes": {
+                    "innerHTML": {
+                        "id": "innerHTML",
+                        "label": "Text Value",
+                        "type": "string",
+                        "value": "Part 3 - Create your guitar neck with a stick or cardboard tube."
+                    },
+                    "color": {
+                        "id": "color",
+                        "label": "Text Color",
+                        "type": "color",
+                        "value": "#333444"
+                    }
+                }
+            },
+            {
+                "id": "image",
+                "attributes": {
+                    "src": {
+                        "id": "src",
+                        "label": "Image URL",
+                        "type": "string",
+                        "value": "/content/howto_guitar_4.jpg"
+                    }
+                }
+            },
+            {
+                "id": "text",
+                "attributes": {
+                    "innerHTML": {
+                        "id": "innerHTML",
+                        "label": "Text Value",
+                        "type": "string",
+                        "value": "Ta-da! Now play a song!"
+                    },
+                    "color": {
+                        "id": "color",
+                        "label": "Text Color",
+                        "type": "color",
+                        "value": "#328F70"
+                    },
+                    "font-size": {
+                        "label": "Font Size",
+                        "type": "font-size",
+                        "value": "22"
+                    }
+                }
+            },
+            {
+                "id": "text",
+                "attributes": {
+                    "innerHTML": {
+                        "id": "innerHTML",
+                        "label": "Text Value",
+                        "type": "string",
+                        "value": "CREATIVE COMMONS"
+                    },
+                    "color": {
+                        "id": "color",
+                        "label": "Text Color",
+                        "type": "color",
+                        "value": "#4d4e53"
+                    },
+                    "font-size": {
+                        "label": "Font Size",
+                        "type": "font-size",
+                        "value": "12"
+                    }
+                }
+            },
+            {
+                "id": "text",
+                "attributes": {
+                    "innerHTML": {
+                        "id": "innerHTML",
+                        "label": "Text Value",
+                        "type": "string",
+                        "value": "Article based on http://www.wikihow.com/Make-a-Rubber-Band-Guitar.\n\nShared under a Creative Commons License http://creativecommons.org/licenses/by-nc-sa/3.0/."
+                    },
+                    "color": {
+                        "id": "color",
+                        "label": "Text Color",
+                        "type": "color",
+                        "value": "#333444"
+                    }
+                }
+            },
+        ]
+    },
+    {
         "id": "229abeb3-aa7d-453d-8082-96f8f1b0bfd8",
         "name": "Family",
         "icon": "/images/placeholder_family.png",
