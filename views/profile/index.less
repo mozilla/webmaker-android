@@ -5,14 +5,16 @@
 #profile-details {}
 
 #profile-header {
-    background: #FEE444;
+    position: relative;
+    background: @highlight;
     display: flex;
     align-items: center;
     justify-content: center;
     text-align: center;
-    color: #1CB0B4;
+    color: @white;
 
     .profile-avatar,
+    .profile-details,
     .profile-info {
         width: 50%;
         float: left;
@@ -21,7 +23,12 @@
         transition: padding 0.3s ease-in; // Temporary: Until image picker finished
         &.profile-info-padded {
             padding: 40px 10px;
+            height: 100%;
         }
+    }
+    .profile-details {
+        padding-bottom: 50%;
+        position: relative;
     }
     .profile-avatar {
         display: none; // Temporary: Until image picker finished
@@ -32,4 +39,52 @@
         background-color: @white;
         overflow-y: hidden;
     }
+    .profile-container {
+        width: 100%;
+        float: left;
+    }
+    .profile-inputs {
+        position: absolute;
+        width: 80%;
+        padding-top: 25%;
+        margin-left: 10%;
+    }
+    .edit-icon {
+        position: absolute;
+        bottom: 5%;
+        cursor: pointer;
+        right: 5%;
+    }
+}
+
+input {
+    color: @black;
+    height: 15%;
+    min-height: 20px;
+    max-height: 30px;
+    padding-bottom: 0px;
+    padding-top: 0px;
+    margin-bottom: 20px;
+}
+
+ul {
+    margin: 0;
+    padding: 0;
+    padding-bottom: 40px;
+}
+
+lh {
+    display: block;
+    padding: 10px;
+    color: @black;
+    font-weight: 400;
+    font-size: 0.8em;
+    border-bottom: 1px solid @lightGrey;
+}
+
+button {
+    width: 50px;
+    background: @mediumGrey;
+    margin-left: 5px;
+    font-size: 14px;
 }
