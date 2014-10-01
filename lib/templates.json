@@ -916,13 +916,113 @@
         },
         "blocks": [
             {
+                "id": "text",
+                "attributes": {
+                    "innerHTML": {
+                        "id": "innerHTML",
+                        "label": "Text Value",
+                        "type": "string",
+                        "value": "Salsa Saturdays"
+                    },
+                    "color": {
+                        "id": "color",
+                        "label": "Text Color",
+                        "type": "color",
+                        "value": "#c03731"
+                    },
+                    "font-size": {
+                        "label": "Font Size",
+                        "type": "font-size",
+                        "value": "24"
+                    }
+                }
+            },
+            {
+                "id": "text",
+                "attributes": {
+                    "innerHTML": {
+                        "id": "innerHTML",
+                        "label": "Text Value",
+                        "type": "string",
+                        "value": "NEXT EVENT"
+                    },
+                    "color": {
+                        "id": "color",
+                        "label": "Text Color",
+                        "type": "color",
+                        "value": "#c03731"
+                    },
+                    "font-size": {
+                        "label": "Font Size",
+                        "type": "font-size",
+                        "value": "12"
+                    }
+                }
+            },
+            {
+                "id": "text",
+                "attributes": {
+                    "innerHTML": {
+                        "id": "innerHTML",
+                        "label": "Text Value",
+                        "type": "string",
+                        "value": "When: Saturday, 20 December 2014 at 8pm.\n\nWhere: The Student Lounge"
+                    },
+                    "color": {
+                        "id": "color",
+                        "label": "Text Color",
+                        "type": "color",
+                        "value": "#333333"
+                    },
+                }
+            },
+            {
+                "id": "text",
+                "attributes": {
+                    "innerHTML": {
+                        "id": "innerHTML",
+                        "label": "Text Value",
+                        "type": "string",
+                        "value": "PREVIOUS EVENTS"
+                    },
+                    "color": {
+                        "id": "color",
+                        "label": "Text Color",
+                        "type": "color",
+                        "value": "#c03731"
+                    },
+                    "font-size": {
+                        "label": "Font Size",
+                        "type": "font-size",
+                        "value": "12"
+                    }
+                }
+            },
+            {
+                "id": "text",
+                "attributes": {
+                    "innerHTML": {
+                        "id": "innerHTML",
+                        "label": "Text Value",
+                        "type": "string",
+                        "value": "**27 September 2014**"
+                    },
+                    "color": {
+                        "id": "color",
+                        "label": "Text Color",
+                        "type": "color",
+                        "value": "#333333"
+                    },
+                }
+            },
+            {
                 "id": "image",
                 "attributes": {
                     "src": {
                         "id": "src",
                         "label": "Image URL",
                         "type": "string",
-                        "value": "/content/club_salsa.gif"
+                        "value": "/content/club_by-nc-sa_trey_ratcliff.jpg"
                     }
                 }
             },
@@ -933,29 +1033,7 @@
                         "id": "innerHTML",
                         "label": "Text Value",
                         "type": "string",
-                        "value": "Next Event"
-                    },
-                    "color": {
-                        "id": "color",
-                        "label": "Text Color",
-                        "type": "color",
-                        "value": "#333333"
-                    },
-                    "font-size": {
-                        "label": "Font Size",
-                        "type": "font-size",
-                        "value": "18"
-                    }
-                }
-            },
-            {
-                "id": "text",
-                "attributes": {
-                    "innerHTML": {
-                        "id": "innerHTML",
-                        "label": "Text Value",
-                        "type": "string",
-                        "value": "Saturday, 20 December 2014 at 8pm.\n\nIn the Student Lounge"
+                        "value": "Photo by Trey Ratcliff\n\n(CC BY-NC-SA) http://creativecommons.org/licenses/by-nc-sa/4.0/"
                     },
                     "color": {
                         "id": "color",
@@ -972,7 +1050,7 @@
                         "id": "innerHTML",
                         "label": "Text Value",
                         "type": "string",
-                        "value": "Previous Events"
+                        "value": "**23 August 2014**"
                     },
                     "color": {
                         "id": "color",
@@ -980,10 +1058,16 @@
                         "type": "color",
                         "value": "#333333"
                     },
-                    "font-size": {
-                        "label": "Font Size",
-                        "type": "font-size",
-                        "value": "18"
+                }
+            },
+            {
+                "id": "image",
+                "attributes": {
+                    "src": {
+                        "id": "src",
+                        "label": "Image URL",
+                        "type": "string",
+                        "value": "/content/club_by_vincent_jarousseau.jpg"
                     }
                 }
             },
@@ -994,24 +1078,7 @@
                         "id": "innerHTML",
                         "label": "Text Value",
                         "type": "string",
-                        "value": "Saturday, 27 September 2014 - https://www.flickr.com/photos/salsasaturdays/sets/72157641746811354/"
-                    },
-                    "color": {
-                        "id": "color",
-                        "label": "Text Color",
-                        "type": "color",
-                        "value": "#999999"
-                    },
-                }
-            },
-            {
-                "id": "text",
-                "attributes": {
-                    "innerHTML": {
-                        "id": "innerHTML",
-                        "label": "Text Value",
-                        "type": "string",
-                        "value": "Saturday, 23 August 2014 - https://www.flickr.com/photos/salsasaturdays/sets/72157641746811354/"
+                        "value": "Photo by Vincent Jarousseau\n\n(CC BY) http://creativecommons.org/licenses/by/4.0/"
                     },
                     "color": {
                         "id": "color",
