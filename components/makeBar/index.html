@@ -8,4 +8,7 @@
     <li v-class="active:params.mode === 'edit'">
         <a href="/make/{{id}}/edit">{{ 'Edit' | i18n }}</a>
     </li>
+	<li v-class="active:params.mode === 'data'">
+		<a href="/make/{{id}}/data">{{ 'Data' | i18n }}</a>
+	</li>
 </ul>
