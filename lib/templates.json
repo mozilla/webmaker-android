@@ -226,6 +226,12 @@
                         "label": "Label",
                         "type": "string",
                         "value": "Place Order"
+                    },
+                    "messageBody": {
+                        "id": "messageBody",
+                        "label": "Message body",
+                        "type": "string",
+                        "value": "I would like to place an order"
                     }
                 }
             }
