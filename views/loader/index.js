@@ -6,6 +6,7 @@ module.exports = view.extend({
     template: require('./index.html'),
     ready: function () {
         var self = this;
+
         self.model.restore(function (err) {
             if (err) throw new Error('Could not restore user state.');
 

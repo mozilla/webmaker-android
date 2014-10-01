@@ -1,27 +1,41 @@
 <div v-component="navigationBar"></div>
 
 <!-- <div id="profile-header">
-    <div class="profile-container">
-        <div class="profile-avatar" style="background-image: url(/images/avatar_prompt.png);"></div>
-        <div class="profile-details">
-            <form class="profile-inputs">
-                <div v-if="!editing" v-bind-html="'name from location'"></div>
-                <div v-if="editing" style="height: 100%;">
-                    <input name="name" placeholder="{{ 'Your name' | i18n }}" type="text" v-model="name">
-                    <input name="location" placeholder="{{ 'Your location' | i18n }}" type="text" v-model="location">
-                    <button type="button" v-on="click: save()">Save</button><button v-on="click: cancel()" type="button">Cancel</button>
-                </div>
-            </form>
-            <i v-if="!editing" class="fa fa-pencil fa-2x edit-icon" v-on="click: editing = true"></i>
-        </div>
-    </div>
+  <div class="profile-avatar" style="background-image: url({{user.avatar}});"></div>
+  <div class="profile-info" v-class="profile-info-padded: user.username" >{{ user.username }}</div>
 </div> -->
 
-<ul>
-    <lh><h3>{{ "My Apps" | i18n }}</h3></lh>
-    <li v-component="appCell" v-repeat="myApps"></li>
-</ul>
+<div class="profile-details">
 
-<button class="btn btn-remove" v-on="click: clean">Clear All Data</button>
+   <!--  <form class="profile-inputs">
+        <div v-if="!editing" v-bind-html="'name from location'"></div>
+        <div v-if="editing" style="height: 100%;">
+            <input name="name" placeholder="{{ 'Your name' | i18n }}" type="text" v-model="name">
+            <input name="location" placeholder="{{ 'Your location' | i18n }}" type="text" v-model="location">
+            <button type="button" v-on="click: save()">Save</button><button v-on="click: cancel()" type="button">Cancel</button>
+        </div>
+    </form>
+    <i v-if="!editing" class="fa fa-pencil fa-2x edit-icon" v-on="click: editing = true"></i> -->
+
+  <ul>
+      <lh><h3>{{ "My Apps" | i18n }}</h3></lh>
+      <li v-component="appCell" v-repeat="myApps"></li>
+  </ul>
+
+  <div class="form-group">
+    <button class="btn btn-remove btn-block" v-on="click: clean">Delete all my data!</button>
+  </div>
+
+  <div v-show="!user.username" class="form-group">
+    <button class="btn btn-block" v-on="click: login">Login</button>
+  </div>
+  <div v-show="user.username" class="form-group">
+    <a href="http://webmakerlogin.alicoding.com/account" class="btn btn-block">{{user.username}} - Edit profile</a>
+  </div>
+  <div v-show="user.username" class="form-group">
+    <button class="btn btn-block" v-on="click: logout">Logout</button>
+  </div>
+
+</div>
 
 <div v-component="tabBar"></div>
