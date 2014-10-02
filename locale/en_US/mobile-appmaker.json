@@ -1,7 +1,7 @@
 {
     "scientists": {
         "message": "scientists",
-        "description": ""
+        "description": "To be replaced in the sentence: Apps made by scientists"
     },
     "Me": {
         "message": "Me",
@@ -13,11 +13,11 @@
     },
     "you": {
         "message": "you",
-        "description": ""
+        "description": "To be replaced in the sentence: Apps made by you"
     },
     "You can create your own app. Just open a template and edit!": {
         "message": "You can create your own app. Just open a template and edit!",
-        "description": ""
+        "description": "Description for creating an app by opening a template and editing"
     },
     "Details": {
         "message": "Details",
@@ -77,11 +77,11 @@
     },
     "vendors": {
         "message": "vendors",
-        "description": ""
+        "description": "To be replaced in the sentence: Apps made by vendors"
     },
     "journalists": {
         "message": "journalists",
-        "description": ""
+        "description": "To be replaced in the sentence: Apps made by journalists"
     },
     "Journalist": {
         "message": "Journalist",
@@ -89,7 +89,7 @@
     },
     "parents": {
         "message": "parents",
-        "description": ""
+        "description": "To be replaced in the sentence: Apps made by parents"
     },
     "Select Color": {
         "message": "Select Color",
@@ -121,11 +121,11 @@
     },
     "teachers": {
         "message": "teachers",
-        "description": ""
+        "description": "To be replaced in the sentence: Apps made by teachers"
     },
     "doctors": {
         "message": "doctors",
-        "description": ""
+        "description": "To be replaced in the sentence: Apps made by doctors"
     },
     "Message": {
       "message": "Message",
@@ -133,6 +133,6 @@
     },
     "Place call": {
       "message": "Place call",
-      "description": ""
+      "description": "Button for placing a call"
     }
 }
