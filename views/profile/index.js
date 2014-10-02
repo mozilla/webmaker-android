@@ -6,6 +6,27 @@ module.exports = view.extend({
     data: {
         title: 'Profile'
     },
+    methods: {
+      clean: function (e) {
+        var sh = this.model._fs.Shell();
+        var fs = this.model._fs;
+        var sync = fs.sync;
+          fs.stat('/', function(e, stat) {
+          if (!stat.isDirectory()) {
+            fs.unlink('/', function(e) {
+              sync.request();
+            });
+          } else {
+            sh.rm('/', {
+              recursive: true
+            }, function(e) {
+              console.log(e);
+              sync.request();
+            });
+          }
+        });
+      }
+    },
     created: function () {
         this.$data = this.model.user;
     },

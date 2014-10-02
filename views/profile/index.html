@@ -13,6 +13,7 @@
   <div class="form-group">
     <label for="location">{{ 'Location' | i18n }}</label>
     <input name="location" type="text" v-model="location">
+    <button class="btn" v-on="click: clean">Delete all my data!</button>
   </div>
 </form>
 <div v-component="tabBar"></div>
