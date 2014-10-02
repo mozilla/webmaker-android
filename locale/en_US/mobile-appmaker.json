@@ -60,7 +60,7 @@
         "description": "a text, as in 'Send a text message' (on a mobile phone)"
     },
     "name from location": {
-        "message": " <strong>{{name}}</strong><span v-if=\"location\"> from </span><strong>{{location}}</strong>",
+        "message": " <strong>{{name}}</strong><span v-if=\"location\"><br/> from <br/></span><strong>{{location}}</strong>",
         "description": "E.g. Kate from Canada, sorry for all the html"
     },
     "students": {

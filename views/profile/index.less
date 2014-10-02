@@ -1,35 +1,88 @@
 #profile {
     .header-space;
-}
 
-#profile-details {}
-
-#profile-header {
-    background: #FEE444;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    text-align: center;
-    color: #1CB0B4;
-
-    .profile-avatar,
-    .profile-info {
-        width: 50%;
-        float: left;
+    input {
+        color: @black;
+        height: 15%;
+        min-height: 20px;
+        max-height: 30px;
+        padding-bottom: 0px;
+        padding-top: 0px;
+        margin-bottom: 20px;
     }
-    .profile-info {
-        transition: padding 0.3s ease-in; // Temporary: Until image picker finished
-        &.profile-info-padded {
-            padding: 40px 10px;
+
+    ul {
+        margin: 0 0 10px 0;
+        padding: 0;
+    }
+
+    lh {
+        display: block;
+        height: 34px;
+        padding: 0 10px;
+
+        color: @darkGrey;
+        font-weight: 600;
+        font-size: 0.7em;
+        border-bottom: 1px solid @lightGrey;
+    }
+
+    button {
+        width: 100%;
+        height: 50px;
+        margin-bottom: 6px;
+    }
+
+    #profile-header {
+        position: relative;
+        background: @highlight;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        text-align: center;
+        color: @white;
+
+        .profile-avatar,
+        .profile-details,
+        .profile-info {
+            width: 50%;
+            float: left;
         }
-    }
-    .profile-avatar {
-        display: none; // Temporary: Until image picker finished
-        height: 0; // height created by padding, since it's relative to width
-        padding-bottom: 50%;
-        background-size: cover;
-        background-image: url(/images/avatar.png);
-        background-color: @white;
-        overflow-y: hidden;
+        .profile-info {
+            transition: padding 0.3s ease-in; // Temporary: Until image picker finished
+            &.profile-info-padded {
+                padding: 40px 10px;
+                height: 100%;
+            }
+        }
+        .profile-details {
+            padding-bottom: 50%;
+            position: relative;
+        }
+        .profile-avatar {
+            display: none; // Temporary: Until image picker finished
+            height: 0; // height created by padding, since it's relative to width
+            padding-bottom: 50%;
+            background-size: cover;
+            background-image: url(/images/avatar.png);
+            background-color: @white;
+            overflow-y: hidden;
+        }
+        .profile-container {
+            width: 100%;
+            float: left;
+        }
+        .profile-inputs {
+            position: absolute;
+            width: 80%;
+            padding-top: 25%;
+            margin-left: 10%;
+        }
+        .edit-icon {
+            position: absolute;
+            bottom: 5%;
+            cursor: pointer;
+            right: 5%;
+        }
     }
 }
