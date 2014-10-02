@@ -22,6 +22,8 @@ i18n.bind(locale, Vue);
 // App json
 var json = window.App;
 
+i18n.setLocale('en-US', true);
+
 var app = new Vue({
     el: '#app',
     components: componentList,
