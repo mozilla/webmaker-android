@@ -3,7 +3,7 @@
   "version": "0.0.0",
   "repository": {
     "type": "git",
-    "url": "https://github.com/k88hudson/webmaker-app"
+    "url": "https://github.com/mozillafordevelopment/webmaker-app"
   },
   "scripts": {
     "test": "gulp test"
