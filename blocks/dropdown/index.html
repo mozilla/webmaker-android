@@ -1,5 +1,6 @@
 <label for="block_{{$index}}">{{attributes.label.value}}</label>
 
 <select id="block_{{$index}}">
+	<option selected disabled>Select from list</option>
 	<option v-repeat="attributes.elements.items" v-model="$value" value="{{$index}}"></option>
 </select>
