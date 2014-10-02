@@ -1,4 +1,60 @@
-label[for="dropdown"] + ul > li
+label[for="dropdown"] + ul
 {
-    margin-bottom: 15px;
+    .tip.tip-remove {
+        float: right;
+        margin-top: -32px;
+    }
+
+    li {
+        margin-bottom: 15px;
+    }
+
+    input {
+        width: 100%;
+        animation-duration: 3s;
+        animation-name: giveSpace;
+    }
+
+    *
+    {
+        animation-fill-mode: forwards;
+    }
+
+    input:focus {
+        animation-duration: 1s;
+        animation-name: giveSpace;
+        & + .tip.tip-remove {
+            animation-duration: 1s;
+            animation-name: blendIn;
+        }
+    }
+
+    input:not(:focus) {
+        animation-duration: 1s;
+        animation-name: takeSpace;
+        & + .tip.tip-remove {
+            animation-duration: 1s;
+            animation-name: blendOut;
+        }
+    }
+
+    @keyframes blendIn {
+        from {opacity: 0;}
+        to {opacity: 1;}
+    }
+
+    @keyframes blendOut {
+        from {opacity: 1;}
+        to {opacity: 0;}
+    }
+
+    @keyframes giveSpace {
+        from {width: 100%;}
+        to {width: calc(~"100% - 32px");}
+    }
+
+    @keyframes takeSpace {
+        from {width: calc(~"100% - 32px");}
+        to {width: 100%;}
+    }
 }

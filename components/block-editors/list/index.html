@@ -2,8 +2,8 @@
 
 <ul>
 	<li v-repeat="items" class="item-{{$index}}">
-		<input type="text" placeholder="{{'Option' | i18n}} {{$index+1}}" v-model="$value" v-on="input: items.$set($index, $value)">
-		<!--<span class="remove" v-on="click: items.$remove($index)">{{ "remove" | i18n }}</span>-->
+		<input type="text" placeholder="{{'Option' | i18n}} {{$index+1}}" v-model="$value" v-on="input: items.$set($index, $value), focus: alert('!')">
+		<span class="tip tip-remove" v-on="click: items.$remove($index)"></span>
 	</li>
 </ul>
 
