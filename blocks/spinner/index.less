@@ -1,3 +1,44 @@
 .spinner {
-    padding: 14px;
+    @buttonWidth: 40px;
+    @buttonFontSize: 36px;
+    @inputPadding: 14px;
+
+    padding: @inputPadding;
+
+    button, input[type="number"] {
+        display: inline;
+    }
+
+    button {
+        font-size: @buttonFontSize;
+        color: @turquoise;
+        background-color: white;
+        width: @buttonWidth;
+        height: @buttonWidth + 1;
+        line-height: @buttonFontSize;
+        border: 1px solid @lightGrey;
+        padding: 0;
+        margin: 0;
+        &:first-of-type {
+            border-radius: 5px 0 0 5px;
+            top: 6px;
+            left: 5px;
+            position: relative;
+        }
+        &:last-of-type {
+            border-radius: 0 5px 5px 0;
+            top: 6px;
+            left: -5px;
+            position: relative;
+        }
+    }
+
+
+    input[type="number"] {
+        padding-left: 0;
+        padding-right: 0;
+        text-align: center;
+        color: @turquoise;
+        width: calc(~"100% - " (2 * @buttonWidth + 9));
+    }
 }

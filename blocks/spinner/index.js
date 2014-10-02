@@ -5,12 +5,31 @@ module.exports = {
         name: '+/- Button',
         icon: '/images/blocks_text.png',
         attributes: {
+            label: {
+                label: 'Title',
+                type: 'string',
+                value: '',
+                placeholder: 'Your title goes here',
+                skipAutoRender: true
+            },
+            color: {
+                label: 'Title Text Color',
+                type: 'color',
+                value: '#638093'
+            },
 			min: {
 				label: 'Minimum Number',
 				type: 'number',
 				value: '0',
 				skipAutoRender: true
 			},
+            current: {
+                label: 'Initial Number',
+                type: 'number',
+                value: '',
+                placeholder: 'same as minimum number',
+                skipAutoRender: true
+            },
 			max: {
 				label: 'Maximum Number',
 				type: 'number',
@@ -18,24 +37,31 @@ module.exports = {
 				skipAutoRender: true
 			},
 			step: {
-				label: 'Steps when incrementing / decrementing',
+				label: 'Increment by',
 				type: 'number',
 				value: '1',
-				skipAutoRender: true
-			},
-			label: {
-				label: 'Label',
-				type: 'string',
-				value: 'I am your Label',
 				skipAutoRender: true
 			}
         }
     },
 	ready: function() {
 		var self = this;
+        if (self.attributes.current.value === 'undefined' || self.attributes.current.value === '') self.attributes.current.value = self.attributes.min.value;
 
 		if(self.$parent.$parent.$data.params.mode !== 'play') {
-			self.$el.querySelector('input').disabled = 'disabled';
+			var inputElements = self.$el.querySelectorAll('input, button');
+            for (var i = 0; i < inputElements.length; i++) {
+                inputElements[i].disabled = 'disabled';
+            }
 		}
-	}
+        if(self.$parent.$parent.$data.params.mode === 'edit') {
+            if (self.attributes.current.value === self.attributes.min.value) self.attributes.current.value = '';
+        }
+	},
+    stepUp: function() {
+        this.querySelector('input[type="number"]').stepUp();
+    },
+    stepDown: function() {
+        this.querySelector('input[type="number"]').stepDown();
+    }
 };

@@ -1,2 +1,4 @@
 <label for="block_{{$index}}">{{attributes.label.value}}</label>
-<input id="block_{{$index}}" type="number" value="{{attributes.min.value}}" min="{{attributes.min.value}}" max="{{attributes.max.value}}" step="{{attributes.step.value}}">
+<button type="button" v-on="click: stepDown()">-</button>
+<input id="block_{{$index}}" type="number" value="{{attributes.current.value}}" min="{{attributes.min.value}}" max="{{attributes.max.value}}" step="{{attributes.step.value}}">
+<button type="button" v-on="click: stepUp()">+</button>
