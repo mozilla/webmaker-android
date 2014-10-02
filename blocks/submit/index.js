@@ -6,10 +6,15 @@ module.exports = {
         icon: '/images/blocks_text.png',
         attributes: {
 			innerHTML: {
-				label: 'Label',
+				label: 'Button Text',
 				type: 'string',
-				value: 'Submit Data'
-			}
+				value: 'Submit'
+			},
+            color: {
+                label: 'Button Color',
+                type: 'color',
+                value: '#32B2D2'
+            }
 		}
     }
 };
