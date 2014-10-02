@@ -36,6 +36,7 @@
     "mockrequire": "0.0.3",
     "webmaker-download-locales": "0.2.4",
     "gulp-webserver": "0.8.0",
-    "gulp-file": "0.1.0"
+    "gulp-file": "0.1.0",
+    "request": "2.44.0"
   }
 }
