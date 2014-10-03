@@ -5,28 +5,29 @@ module.exports = view.extend({
     id: 'profile',
     template: require('./index.html'),
     data: {
-        title: 'My Profile'
+        title: 'My Profile',
+        back: false
     },
     methods: {
-      clean: function (e) {
-        var sh = this.model._fs.Shell();
-        var fs = this.model._fs;
-        var sync = fs.sync;
-          fs.stat('/', function(e, stat) {
-          if (!stat.isDirectory()) {
-            fs.unlink('/', function(e) {
-              sync.request();
+        clean: function (e) {
+            var sh = this.model._fs.Shell();
+            var fs = this.model._fs;
+            var sync = fs.sync;
+            fs.stat('/', function(e, stat) {
+                if (!stat.isDirectory()) {
+                    fs.unlink('/', function(e) {
+                        sync.request();
+                    });
+                } else {
+                    sh.rm('/', {
+                        recursive: true
+                    }, function(e) {
+                        console.log(e);
+                        sync.request();
+                    });
+                }
             });
-          } else {
-            sh.rm('/', {
-              recursive: true
-            }, function(e) {
-              console.log(e);
-              sync.request();
-            });
-          }
-        });
-      }
+        }
     },
     created: function () {
         var user = clone(this.model.user);
