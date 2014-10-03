@@ -6,6 +6,9 @@ var page = require('page');
 module.exports = view.extend({
     id: 'edit',
     template: require('./index.html'),
+    data: {
+        cancel: '/profile'
+    },
     created: function () {
         var self = this;
 
@@ -15,9 +18,10 @@ module.exports = view.extend({
 
         // Bind app
         self.$data.app = app.data;
+        self.$data.onDone = '/make/' + id + '/share';
         self.$data.removeApp = function() {
             app.removeApp();
-            page('/discover');
+            page('/profile');
         };
     }
 });

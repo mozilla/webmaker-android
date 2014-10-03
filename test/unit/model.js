@@ -8,9 +8,9 @@ var model = require('../../lib/model')({
 describe('Model', function () {
     describe('interface', function () {
         it('should expose expected objects', function () {
-            assert.equal(typeof model.history, 'object');
-            assert.equal(typeof model.user, 'object');
-            assert.equal(typeof model.apps, 'object');
+            assert.equal(typeof model.data.history, 'object');
+            assert.equal(typeof model.data.user, 'object');
+            assert.equal(typeof model.data.apps, 'object');
         });
 
         it('should expose expected functions', function () {
@@ -22,7 +22,7 @@ describe('Model', function () {
 
     describe('first run', function () {
         it('should have the expected history', function () {
-            assert.deepEqual(model.history, {
+            assert.deepEqual(model.data.history, {
                 ftu: true,
                 path: '/ftu'
             });
@@ -30,12 +30,12 @@ describe('Model', function () {
 
         it('should have the expected user', function () {
             // @todo
-            assert.deepEqual(model.user, {});
+            assert.deepEqual(model.data.user, {});
         });
 
         it('should have the expected apps', function () {
             // @todo
-            assert.equal(model.apps.length, 0);
+            assert.equal(model.data.apps.length, 0);
         });
     });
 });

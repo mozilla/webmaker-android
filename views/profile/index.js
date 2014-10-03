@@ -1,5 +1,6 @@
 var view = require('../../lib/view');
 var clone = require('clone');
+var page = require('page');
 var auth = require('../../lib/auth');
 
 module.exports = view.extend({
@@ -10,10 +11,6 @@ module.exports = view.extend({
         back: false
     },
     methods: {
-        login: function (e) {
-            e.preventDefault();
-            auth.login();
-        },
         logout: function (e) {
             e.preventDefault();
             auth.logout();
@@ -38,10 +35,13 @@ module.exports = view.extend({
             });
         }
     },
-    created: function () {
+    ready: function () {
         var self = this;
+        auth.on('logout', function () {
+            page('/login');
+        });
 
-        self.$data.user = clone(this.model.user);
+        self.$data.user = self.model.data.user;
         // Default to editing mode if the user have not filled out their profile
         // if (this.$data.name || this.$data.location) {
         //     this.$data.editing = false;
@@ -49,7 +49,7 @@ module.exports = view.extend({
         //     this.$data.editing = true;
         // }
 
-        this.$data.myApps = clone(this.model.apps);
+        this.$data.myApps = self.model.data.apps;
 
         // this.$data.cancel = function () {
         //     this.$data.name = user.name;
@@ -65,13 +65,6 @@ module.exports = view.extend({
         //     this.model.save();
         //     this.$data.myApps = clone(this.model.apps);
         // };
-
-        auth.on('login', function (user) {
-            self.$data.user = user;
-        });
-        auth.on('logout', function (assertion, email) {
-            self.$data.user = {};
-        });
 
     }
 });

@@ -7,6 +7,6 @@ module.exports = view.extend({
         title: 'Discover'
     },
     created: function () {
-        this.$data.created = this.model.apps;
+        this.$data.created = this.model.data.apps;
     }
 });

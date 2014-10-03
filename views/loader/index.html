@@ -1,1 +1,2 @@
-<img src="/images/loader.gif" alt="Loading..." />
+<img v-if="user.username" src="/images/loader.gif" alt="Loading..." />
+<button v-if="!user.username" class="btn btn-block" v-on="click: login">Log in</button>
