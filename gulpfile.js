@@ -21,7 +21,7 @@ gulp.task('locale', ['download-locales'], locale);
 gulp.task('less', ['clean'], less);
 gulp.task('browserify', ['clean', 'locale'], browserify);
 gulp.task('publish', ['less'], publish);
-gulp.task('build', ['less', 'browserify', 'publish'], cache);
+gulp.task('build', ['less', 'browserify'], cache);
 
 gulp.task('re-locale', ['clean'], locale);
 gulp.task('re-browserify', ['clean', 're-locale'], browserify);
