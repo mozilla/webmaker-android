@@ -1,12 +1,10 @@
 module.exports = {
     className: 'input-block',
     template: require('./index.html'),
+	lazy: false,
     data: {
         name: 'Input',
         icon: '/images/blocks_text.png',
-
-		test: 'my test value',
-
         attributes: {
 			value: {
 				label: 'Value',
@@ -22,15 +20,26 @@ module.exports = {
 			}
         }
     },
+	methods: {
+		reportDataChange: function(self) {
+			self.$dispatch('dataChange',
+				self.$index,
+				self.$el.querySelector('input').value
+			);
+		}
+	},
 	ready: function() {
 		var self = this;
 
 		if(self.$parent.$parent.$data.params.mode !== 'play') {
 			self.$el.querySelector('input').disabled = 'disabled';
+		} else {
+			// register block on data object
+			self.$dispatch('dataChange',
+				self.$index,
+				self.$data.attributes.value.value,
+				self.$data.attributes.label.value
+			);
 		}
-
-		this.$watch('attributes.value.value', function (value, mutation) {
-			console.log('input value changed');
-		})
 	}
 };

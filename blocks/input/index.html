@@ -1,4 +1,3 @@
 <label for="block_{{$index}}">{{attributes.label.value}}</label>
-<form>
-	<input id="block_{{$index}}" v-on="click: this.$dispatch('ping', this)" v-on="change: this.$dispatch('dataChange', '{{$index}}', 'MYKEY', '{{test}}')" type="text" v-model="{{test}}">
-</form>
+
+<input id="block_{{$index}}" v-on="input: reportDataChange(this)" type="text" value="{{attributes.value.value}}">
