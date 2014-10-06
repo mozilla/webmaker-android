@@ -17,7 +17,7 @@
     "watchjs": "0.0.0",
     "clone": "0.1.18",
     "makedrive": "0.0.45",
-    "webmaker-auth-client": "0.2.5"
+    "webmaker-auth-client": "0.2.6"
   },
   "devDependencies": {
     "del": "0.1.2",
