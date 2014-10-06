@@ -1,6 +1,7 @@
 var App = require('../../lib/app');
 var templates = require('../../lib/templates.json');
 var view = require('../../lib/view');
+var page = require('page');
 
 module.exports = view.extend({
     id: 'edit',
@@ -14,5 +15,9 @@ module.exports = view.extend({
 
         // Bind app
         self.$data.app = app.data;
+        self.$data.removeApp = function() {
+            app.removeApp();
+            page('/discover');
+        };
     }
 });

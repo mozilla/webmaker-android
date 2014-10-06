@@ -34,13 +34,13 @@
             {
                 "id": "text",
                 "attributes": {
-                    "innerHTML" : {
+                    "innerHTML": {
                         "id": "innerHTML",
                         "label": "Text Value",
                         "type": "string",
                         "value": "Only 4% of Total Users on 3G"
                     },
-                    "color" : {
+                    "color": {
                         "id": "color",
                         "label": "Text Color",
                         "type": "color",
@@ -226,6 +226,12 @@
                         "label": "Label",
                         "type": "string",
                         "value": "Place Order"
+                    },
+                    "messageBody": {
+                        "id": "messageBody",
+                        "label": "Message body",
+                        "type": "string",
+                        "value": "I would like to place an order"
                     }
                 }
             }
@@ -869,7 +875,7 @@
                         "value": "#333444"
                     }
                 }
-            },
+            }
         ]
     },
     {
@@ -973,7 +979,7 @@
                         "label": "Text Color",
                         "type": "color",
                         "value": "#333333"
-                    },
+                    }
                 }
             },
             {
@@ -1012,7 +1018,7 @@
                         "label": "Text Color",
                         "type": "color",
                         "value": "#333333"
-                    },
+                    }
                 }
             },
             {
@@ -1040,7 +1046,7 @@
                         "label": "Text Color",
                         "type": "color",
                         "value": "#999999"
-                    },
+                    }
                 }
             },
             {
@@ -1057,7 +1063,7 @@
                         "label": "Text Color",
                         "type": "color",
                         "value": "#333333"
-                    },
+                    }
                 }
             },
             {
@@ -1085,9 +1091,9 @@
                         "label": "Text Color",
                         "type": "color",
                         "value": "#999999"
-                    },
+                    }
                 }
-            },
+            }
         ]
     },
     {
@@ -1125,7 +1131,7 @@
                         "value": "/content/campus_safety.gif"
                     }
                 }
-            },
+            }
         ]
     },
     {
