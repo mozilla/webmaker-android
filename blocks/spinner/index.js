@@ -58,10 +58,12 @@ module.exports = {
             if (self.attributes.current.value === self.attributes.min.value) self.attributes.current.value = '';
         }
 	},
-    stepUp: function() {
-        this.querySelector('input[type="number"]').stepUp();
-    },
-    stepDown: function() {
-        this.querySelector('input[type="number"]').stepDown();
+    methods :{
+        stepUp: function() {
+            this.$el.querySelector('input[type="number"]').stepUp();
+        },
+        stepDown: function() {
+            this.$el.querySelector('input[type="number"]').stepDown();
+        }
     }
 };

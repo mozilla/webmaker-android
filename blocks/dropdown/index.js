@@ -13,7 +13,7 @@ module.exports = {
 				skipAutoRender: true
 			},
             color: {
-                label: 'Color',
+                label: 'Title Text Color',
                 type: 'color',
                 value: '#638093'
             },

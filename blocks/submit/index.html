@@ -1,8 +1,7 @@
-<p style="display:none;"></p>
 <button
-	style="background-color: {{ attributes.color.value }}"
+	style="background-color: {{attributes.color.value}}"
+	data-test="{{attributes.innerHTML.value}}"
 	v-on="click: save"
-	v-html="{{ attributes.innerHTML.label | i18n }}"
 >
-	{{ attributes.innerHTML.label | i18n }}
+	{{attributes.innerHTML.value}}
 </button>
