@@ -1,0 +1,4 @@
+<label for="{{id}}">{{ label | i18n }}</label>
+<select class="dropdownChoiceSelect" v-model="value">
+	<option v-repeat="options" value="{{$index}}" class="option-{{$index}}">{{ $value | i18n }}</option>
+</select>
