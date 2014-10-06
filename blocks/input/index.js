@@ -29,10 +29,18 @@ module.exports = {
     },
 	methods: {
 		reportDataChange: function(self) {
-			self.$dispatch('dataChange',
-				self.$index,
-				self.$el.querySelector('input').value
-			);
+			console.log(self.$data);
+			if(self.$data.attributes.inputType.value == 0) {
+				self.$dispatch('dataChange',
+					self.$index,
+					self.$el.querySelector('input').value
+				);
+			} else {
+				self.$dispatch('dataChange',
+					self.$index,
+					self.$el.querySelector('textarea').innerHTML
+				);
+			}
 		}
 	},
 	ready: function() {
