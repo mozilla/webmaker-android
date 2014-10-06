@@ -1,11 +1,12 @@
 var App = require('../../lib/app');
 var templates = require('../../lib/templates.json');
 var view = require('../../lib/view');
+var Data = require('../../lib/data');
 
 module.exports = view.extend({
     id: 'data',
     template: require('./index.html'),
-	collectedData: {},
+	currentDataSets: {},
     created: function () {
         var self = this;
 
@@ -18,11 +19,8 @@ module.exports = view.extend({
         self.title = app.data.name;
 
 		// Fetch collected Data
-		self.collectedData = {
-			0: {'name': 'fgsdfgsdfg', 'age': '12'},
-			1: {'name': 'dsfgd', 'age': '13'},
-			2: {'name': 'fgsdfsfdgdsf gsdfg', 'age': '15'},
-			3: {'name': 'cxvbcvbx', 'age': '35'}
-		};
+		var data = new Data(id);
+		self.currentDataSets = data.getAllDataSets();
+		console.log(self.currentDataSets);
     }
 });
