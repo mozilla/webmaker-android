@@ -8,12 +8,14 @@ module.exports = {
 			innerHTML: {
 				label: 'Button Text',
 				type: 'string',
-				value: 'Submit'
+				value: 'Submit',
+                skipAutoRender: true
 			},
             color: {
                 label: 'Button Color',
                 type: 'color',
-                value: '#32B2D2'
+                value: '#32B2D2',
+                skipAutoRender: true
             }
 		}
     },
