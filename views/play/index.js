@@ -20,8 +20,12 @@ module.exports = view.extend({
 		// Listen for Data Submitted by the User
 		var data = new Data(id);
 
-		self.$on('dataChange', function(blockId, key, value) {
-			data.collect(blockId, key, value);
+		self.$on('dataChange', function(index, value, label) {
+			data.collect(index, value, label);
+		});
+
+		self.$on('dataSave', function() {
+			data.save();
 		});
     }
 });

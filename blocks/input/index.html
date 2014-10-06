@@ -1,5 +1,3 @@
 <label for="block_{{$index}}">{{attributes.label.value}}</label>
-<form>
-	<input v-if="attributes.inputType.value == 0" id="block_{{$index}}" v-on="click: this.$dispatch('ping', this)" v-on="change: this.$dispatch('dataChange', '{{$index}}', 'MYKEY', '{{test}}')" type="text" v-model="{{test}}">
-	<textarea v-if="attributes.inputType.value == 1" id="block_{{$index}}" v-on="click: this.$dispatch('ping', this)" v-on="change: this.$dispatch('dataChange', '{{$index}}', 'MYKEY', '{{test}}')" v-model="{{test}}"></textarea>
-</form>
+<input v-if="attributes.inputType.value == 0" id="block_{{$index}}" v-on="input: reportDataChange(this)" type="text" value="{{attributes.value.value}}">
+<textarea v-if="attributes.inputType.value == 1" id="block_{{$index}}" v-on="input: reportDataChange(this)">{{attributes.value.value}}</textarea>

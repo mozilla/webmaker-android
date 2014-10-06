@@ -1,2 +1,8 @@
 <p style="display:none;"></p>
-<button style="background-color: {{ attributes.color.value }}" v-html="{{ attributes.innerHTML.label | i18n }}">{{ attributes.innerHTML.label | i18n }}</button>
+<button
+	style="background-color: {{ attributes.color.value }}"
+	v-on="click: save"
+	v-html="{{ attributes.innerHTML.label | i18n }}"
+>
+	{{ attributes.innerHTML.label | i18n }}
+</button>
