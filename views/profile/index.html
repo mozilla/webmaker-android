@@ -27,13 +27,13 @@
   </div>
 
   <div v-show="!user.username" class="form-group">
-    <button class="btn btn-block" v-on="click: login">Login</button>
+    <button class="btn btn-block" v-on="click: login">{{ "Login" | i18n }}</button>
   </div>
   <div v-show="user.username" class="form-group">
     <a href="http://webmakerlogin.alicoding.com/account" class="btn btn-block">{{user.username}} - Edit profile</a>
   </div>
   <div v-show="user.username" class="form-group">
-    <button class="btn btn-block" v-on="click: logout">Logout</button>
+    <button class="btn btn-block" v-on="click: logout">{{ "Logout" | i18n }}</button>
   </div>
 
 </div>
