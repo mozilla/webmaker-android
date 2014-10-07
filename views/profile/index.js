@@ -1,5 +1,6 @@
 var view = require('../../lib/view');
 var clone = require('clone');
+var auth = require('../../lib/auth');
 
 module.exports = view.extend({
     id: 'profile',
@@ -9,6 +10,14 @@ module.exports = view.extend({
         back: false
     },
     methods: {
+        login: function (e) {
+            e.preventDefault();
+            auth.login();
+        },
+        logout: function (e) {
+            e.preventDefault();
+            auth.logout();
+        },
         clean: function (e) {
             var sh = this.model._fs.Shell();
             var fs = this.model._fs;
@@ -30,9 +39,9 @@ module.exports = view.extend({
         }
     },
     created: function () {
-        var user = clone(this.model.user);
-        this.$data = this.model.user;
+        var self = this;
 
+        self.$data.user = clone(this.model.user);
         // Default to editing mode if the user have not filled out their profile
         // if (this.$data.name || this.$data.location) {
         //     this.$data.editing = false;
@@ -56,10 +65,13 @@ module.exports = view.extend({
         //     this.model.save();
         //     this.$data.myApps = clone(this.model.apps);
         // };
-    },
-    detached: function () {
-        // this.model.user.name = this.$data.name;
-        // this.model.user.location = this.$data.location;
-        // this.model.user.avatar = this.$data.avatar;
+
+        auth.on('login', function (user) {
+            self.$data.user = user;
+        });
+        auth.on('logout', function (assertion, email) {
+            self.$data.user = {};
+        });
+
     }
 });
