@@ -1,5 +1,4 @@
 window = {};
-
 var assert = require('assert');
 var model = require('../../lib/model')({
     memory: true,
@@ -31,11 +30,7 @@ describe('Model', function () {
 
         it('should have the expected user', function () {
             // @todo
-            assert.deepEqual(model.user, {
-                name: null,
-                location: null,
-                avatar: null
-            });
+            assert.deepEqual(model.user, {});
         });
 
         it('should have the expected apps', function () {

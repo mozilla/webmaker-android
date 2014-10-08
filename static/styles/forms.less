@@ -48,13 +48,13 @@ label {
     margin-bottom: 5px;
 }
 
-.form-group {
+.form-group,
+.checkbox {
     padding: 14px;
     margin: 0;
-}
-
-form .form-group:last-of-type {
-    margin-bottom: 0;
+    p {
+        margin-bottom: 0;
+    }
 }
 
 ::-moz-placeholder {
@@ -83,3 +83,21 @@ form .form-group:last-of-type {
         }
     }
 }
+
+/*********************************************************
+* Checkbox
+*/
+
+.checkbox {
+    position: relative;
+    min-height: 20px;
+    label {
+        padding-left: 30px;
+    }
+    input[type="checkbox"] {
+        position: absolute;
+        width: 30px;
+        margin: 4px 0 0 -30px;
+    }
+}
+

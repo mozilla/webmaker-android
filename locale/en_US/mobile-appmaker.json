@@ -3,8 +3,8 @@
         "message": "scientists",
         "description": "To be replaced in the sentence: Apps made by scientists"
     },
-    "Me": {
-        "message": "Me",
+    "My Profile": {
+        "message": "My Profile",
         "description": "Title for profile page"
     },
     "by user.name": {
@@ -87,6 +87,46 @@
         "message": "Journalist",
         "description": "Title for an app for journalists"
     },
+    "Vendor": {
+        "message": "Vendor",
+        "description": "Title for an app for vendors"
+    },
+    "Blank": {
+        "message": "Blank",
+        "description": "Title for a blank app template"
+    },
+    "Teacher": {
+        "message": "Teacher",
+        "description": "Title for an app for teachers"
+    },
+    "Medic": {
+        "message": "Medic",
+        "description": "Title for an app for medics"
+    },
+    "How To": {
+        "message": "How To",
+        "description": "Title for a how-to app"
+    },
+    "Family": {
+        "message": "Family",
+        "description": "Title for an app for families"
+    },
+    "Blogger": {
+        "message": "Blogger",
+        "description": "Title for an app for bloggers"
+    },
+    "Club": {
+        "message": "Club",
+        "description": "Title for an app for clubs"
+    },
+    "Safety": {
+        "message": "Safety",
+        "description": "Title for a safety app"
+    },
+    "Activist": {
+        "message": "Activist",
+        "description": "Title for an app for activists"
+    },
     "parents": {
         "message": "parents",
         "description": "To be replaced in the sentence: Apps made by parents"
@@ -134,5 +174,41 @@
     "Place call": {
       "message": "Place call",
       "description": "Button for placing a call"
+    },
+    "Login": {
+      "message": "Login",
+      "description": "Login button (logs user into Webmaker Mobile)"
+    },
+    "Logout": {
+      "message": "Logout",
+      "description": "Logout button (logs user out of Webmaker Mobile)"
+    },
+    "Delete App": {
+      "message": "Delete App",
+      "description": "Button to delete entire app"
+    },
+    "Untitled App": {
+      "message": "Untitled App",
+      "description": "Default name for a new app"
+    },
+    "Text Value": {
+      "message": "Text Value",
+      "description": "Label for attribute of text block: the text value"
+    },
+    "Text Colour": {
+      "message": "Text Colour",
+      "description": "Label for attribute of text block: the colour of the text"
+    },
+    "Phone": {
+      "message": "Phone",
+      "description": "Type of block - creates a button that calls a number"
+    },
+    "Phone #": {
+      "message": "Phone #",
+      "description": "Label for Phone # attribute on call/sms block"
+    },
+    "Label": {
+      "message": "Label",
+      "description": "The label on a button (for sms/calling)"
     }
 }

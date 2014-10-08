@@ -1,0 +1,28 @@
+<div v-component="navigationBar"></div>
+<div class="form-group">
+  <label for="email">Email</label>
+  <input type="text" id="email" v-model="email">
+  <p><button class="btn" v-on="click: login">Choose a different email</button></p>
+</div>
+<form>
+  <div class="form-group">
+    <label for="username">Choose a username</label>
+    <input type="text" id="username" v-model="user.username">
+  </div>
+  <div class="checkbox">
+    <label for="mailing-list">
+      <input type="checkbox" id="mailing-list" v-model="user.mailingList">
+      Send me email updates about Mozilla Webmaker and other projects
+    </label>
+  </div>
+  <div class="checkbox">
+    <label for="terms">
+      <input type="checkbox" id="terms" v-model="user.terms">
+      I agree to your terms and conditions
+    </label>
+  </div>
+</form>
+
+<div v-component="tabBar"></div>
+
+
