@@ -1,0 +1,63 @@
+table.dataViewDataSet {
+
+    @borderColor: @mediumGrey;
+    @dataUnread: @lightGrey;
+    @dataRead: @white;
+
+    width: 100%;
+
+    border-top: 1px solid @borderColor;
+    border-bottom: 1px solid @borderColor;
+    background-color: @dataRead;
+    &.unread {
+        background-color: @dataUnread;
+    }
+
+    &:not(:last-of-type)
+    {
+        margin-bottom: -1px;
+    }
+
+    th, td
+    {
+        font-size: 14px;
+        color: @darkGrey;
+    }
+
+    th {
+        padding: 10px 14px;
+        font-weight: medium;
+    }
+
+    td {
+        padding: 0 14px;
+        line-height: 16.5px;
+    }
+
+    thead {
+        border-bottom: 1px solid @borderColor;
+
+        th {
+            &:first-of-type {
+                text-align: left;
+            }
+            &:last-of-type {
+                text-align: right;
+            }
+        }
+    }
+
+    tbody {
+        display: block;
+        padding: 8px 0;
+
+        td {
+            display: block;
+            margin: 8px 0;
+
+            &:last-of-type {
+                color: @mediumGrey;
+            }
+        }
+    }
+}
