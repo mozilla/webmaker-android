@@ -1,10 +1,4 @@
 <div v-component="makeBar" v-with="app"></div>
 <div v-component="navigationBar" style="top: 44px"></div>
 
-Applications Data Dump
-<br>
-<br>
-
-<div style="border: 1px solid red; margin:4px; padding:4px;" v-repeat="data: currentDataSets">
-	{{data}}
-</div>
+<div v-component="dataRepresentation" v-with="dataSet : currentDataSets"></div>
