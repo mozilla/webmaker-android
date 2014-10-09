@@ -7,17 +7,38 @@
     background-color: @turquoise;
     font-size: 8px;
     border-radius: 999px;
-}
 
-.tip-remove {
-    background-color: @red;
-}
+    &.tip-remove {
+        background-color: @red;
 
-.tip-remove:after {
-    //.fa-times;
-    content: 'x';
-    font-size: 18px;
-    text-align: center;
-    margin-left: 8px;
-    line-height: 22px;
+        &:after {
+            //.fa-times;
+            content: 'x';
+            font-size: 18px;
+            text-align: center;
+            margin-left: 8px;
+            line-height: 22px;
+        }
+    }
+
+    &.tip-checkmark {
+        background-color: @white;
+        border: 1px solid @mediumGrey;
+        border-radius: 24px;
+
+        input[type=checkbox]:checked + & {
+            background-color: @red;
+
+            &:after {
+                //.fa-times;
+                content: '✔';
+                color: @white;
+                font-size: 25px;
+                text-align: center;
+                margin-left: -5px;
+                position: relative;
+                top: -5px;
+            }
+        }
+    }
 }
