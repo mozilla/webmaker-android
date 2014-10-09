@@ -6,9 +6,5 @@ module.exports = {
             e.preventDefault();
             global.history.back();
         }
-    },
-    created: function () {
-        var self = this;
-        var onDone = self.$data.onDone;
     }
 };
