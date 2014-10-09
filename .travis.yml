@@ -2,14 +2,14 @@ language: node_js
 node_js:
 - '0.10'
 before_deploy:
-  - ./node_modules/.bin/gulp build
+- ./node_modules/.bin/gulp build
 deploy:
   skip_cleanup: true
   provider: s3
-  access_key_id: AKIAJUDCXY7KKU5CCV2A
+  access_key_id: AKIAJKJTAESA5KSRVZHQ
   secret_access_key:
-    secure: FNSin2ITqcIkPzHSh1Bwa22OtdkkqdWTYKRzIJ2pqmoVlIZLVdoICe8kATccgquub/F7vxz6PRx80C7ooJVBHE9OeECPHTSkyb0aC9lfroxEVG6CtG2gfILKw5T5EB7kWCmNW4xniiRQDF7bBMEzusQ8wMJEYDo1UwHp1kRvt6o=
-  bucket: mobile-appmaker
+    secure: cmZMfUZ4X8utFiFcRSK17aPd3jiQ2Fab/xMKcwXuBgD1jQXda0i+4GkQZ5jSoim1Vd7oNapRp+s2hfK4eOtc9OUWcaA4S6oISg75tm6yMZq1tSABtgk1Z7FSbZNwH8iw6qITlHuXd4mwhayDqLiZlzbcS/h/K45pswE5963MlF8=
+  bucket: webmaker-app
   local-dir: build
   on:
     branch: master
