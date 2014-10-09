@@ -4,5 +4,3 @@
 <h1>{{title | i18n}}</h1>
 <button v-if="typeof onDone === 'function'" v-on="click: onDone">{{'Done' | i18n}}</button>
 <a v-if="typeof onDone === 'string'" href="{{onDone}}">{{'Done' | i18n}}</a>
-
-
