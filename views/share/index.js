@@ -30,12 +30,6 @@ module.exports = view.extend({
 
         // Bind user
         self.$data.user = self.model.data.user;
-        // auth.on('login', function (user) {
-        //     self.$data.user = user;
-        // });
-        // auth.on('logout', function (user) {
-        //     self.$data.user = {};
-        // });
 
         // Share message
         var message = i18n.get('share_message').replace('{{app.name}}', app.data.name);

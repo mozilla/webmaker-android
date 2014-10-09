@@ -1,4 +1,3 @@
-var page = require('page');
 module.exports = {
     id: 'navigationBar',
     template: require('./index.html'),

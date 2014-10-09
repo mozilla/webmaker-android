@@ -41,8 +41,5 @@ module.exports = view.extend({
         auth.on('newuser', function (assertion, email) {
             self.$data.email = email;
         });
-        // auth.on('login', function () {
-        //     global.history.back();
-        // });
     }
 });
