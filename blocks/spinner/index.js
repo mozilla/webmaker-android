@@ -2,7 +2,7 @@ module.exports = {
     className: 'spinner',
     template: require('./index.html'),
     data: {
-        name: '+/- Button',
+        name: 'Counter',
         icon: '/images/blocks_text.png',
         attributes: {
             label: {
