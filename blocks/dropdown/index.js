@@ -25,12 +25,27 @@ module.exports = {
 			}
         }
     },
+    methods: {
+        reportDataChange: function(self) {
+            self.$dispatch('dataChange',
+                this.$index,
+                self.$el.querySelector('select').value
+            );
+        }
+    },
 	ready: function() {
 		var self = this;
 
 		if(self.$parent.$parent.$data.params.mode !== 'play') {
 			self.$el.querySelector('select').disabled = 'disabled';
 			self.$el.querySelector('select').style.pointerEvents = 'none';
-		}
+		} else {
+            // register block on data object
+            self.$dispatch('dataChange',
+                self.$index,
+                '',
+                self.$data.attributes.label.value
+            );
+        }
 	}
 };

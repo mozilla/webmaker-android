@@ -53,7 +53,15 @@ module.exports = {
             for (var i = 0; i < inputElements.length; i++) {
                 inputElements[i].disabled = 'disabled';
             }
-		}
+		} else {
+            // register block on data object
+            self.$dispatch('dataChange',
+                self.$index,
+                '',
+                self.$data.attributes.label.value
+            );
+        }
+
         if(self.$parent.$parent.$data.params.mode === 'edit') {
             if (self.attributes.current.value === self.attributes.min.value) self.attributes.current.value = '';
         }
@@ -64,6 +72,12 @@ module.exports = {
         },
         stepDown: function() {
             this.$el.querySelector('input[type="number"]').stepDown();
+        },
+        reportDataChange: function(self) {
+            self.$dispatch('dataChange',
+                this.$index,
+                self.$el.querySelector('input[type="number"]').value
+            );
         }
     }
 };
