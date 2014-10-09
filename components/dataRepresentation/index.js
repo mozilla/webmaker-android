@@ -1,7 +1,7 @@
 module.exports = {
-    id: 'dataView',
+    id: 'dataRepresentation',
     template: require('./index.html'),
     data: {
-        
+
     }
 };

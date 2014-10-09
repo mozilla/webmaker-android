@@ -1,0 +1,17 @@
+<table v-repeat="data: dataSet" class="dataRepresentationDataSet" v-class="unread : !dataSet.isRead">
+    <thead>
+        <tr>
+            <th>Submitted {{data.submitted}}</th>
+            <th>
+                <input style="visibility: hidden;" id="dataRepresentationDataSetMarkRead-{{$index}}" type="checkbox" name="markRead" v-model="dataSet.isRead">
+                <label for="dataRepresentationDataSetMarkRead-{{$index}}" class="tip tip-checkmark"></label>
+            </th>
+        </tr>
+    </thead>
+    <tbody>
+        <tr v-repeat="dataBlock: data.dataBlocks">
+            <td>{{dataBlock.label}}</td>
+            <td>{{dataBlock.value}}</td>
+        </tr>
+    </tbody>
+</table>
