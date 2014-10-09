@@ -29,18 +29,10 @@ module.exports = {
     },
 	methods: {
 		reportDataChange: function(self) {
-			console.log(self.$data);
-			if(self.$data.attributes.inputType.value == 0) {
-				self.$dispatch('dataChange',
-					self.$index,
-					self.$el.querySelector('input').value
-				);
-			} else {
-				self.$dispatch('dataChange',
-					self.$index,
-					self.$el.querySelector('textarea').innerHTML
-				);
-			}
+			self.$dispatch('dataChange',
+				this.$index,
+				self.$el.value
+			);
 		}
 	},
 	ready: function() {
@@ -53,7 +45,7 @@ module.exports = {
 			// register block on data object
 			self.$dispatch('dataChange',
 				self.$index,
-				self.$data.attributes.value.value,
+				'',
 				self.$data.attributes.label.value
 			);
 		}
