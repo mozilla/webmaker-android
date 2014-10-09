@@ -7,10 +7,6 @@
         "message": "My Profile",
         "description": "Title for profile page"
     },
-    "by user.name": {
-        "message": "by {{user.name}}",
-        "description": "For apps, e.g. My Cool App, by {{user.name}}"
-    },
     "you": {
         "message": "you",
         "description": "To be replaced in the sentence: Apps made by you"
@@ -31,9 +27,9 @@
         "message": "Apps",
         "description": "These are mobile apps, to run on a phone"
     },
-    "by author": {
-        "message": "by {{author.name}}",
-        "description": "For apps, e.g. My Cool App, by {{user.name}}"
+    "by _": {
+        "message": "by {{name}}",
+        "description": "For apps, e.g. My Cool App, by {{name}}"
     },
     "Image": {
         "message": "Image",
@@ -210,5 +206,21 @@
     "Label": {
       "message": "Label",
       "description": "The label on a button (for sms/calling)"
+    },
+    "share_message": {
+      "message": "Check out the app \"{{app.name}}\" I made with Mozilla Webmaker",
+      "description": "Message that gets sent when a published app is shared to friends"
+    },
+    "App": {
+      "message": "App",
+      "description": "Title for app detail page"
+    },
+    "Cancel": {
+      "message": "Cancel",
+      "description": "Cancel button"
+    },
+    "Done": {
+      "message": "Done",
+      "description": "Done button"
     }
 }

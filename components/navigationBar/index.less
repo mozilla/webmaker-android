@@ -19,7 +19,8 @@
         font-weight: 400;
     }
 
-    button {
+    button,
+    a {
         position: absolute;
         top: 0;
         min-width: 40px;
@@ -29,6 +30,9 @@
         border: none;
         outline: none;
         padding: 5px 20px 0;
+        line-height: (@header-height - 10s);
+        text-decoration: none;
+        font-size: 13px;
 
         &:first-child {
             left: 0;

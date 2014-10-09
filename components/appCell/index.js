@@ -1,5 +1,5 @@
 module.exports = {
-    id: 'appCell',
+    className: 'app-cell',
     template: require('./index.html'),
     data: {}
 };
