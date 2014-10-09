@@ -37,9 +37,6 @@ module.exports = view.extend({
     },
     ready: function () {
         var self = this;
-        auth.on('logout', function () {
-            page('/login');
-        });
 
         self.$data.user = self.model.data.user;
         // Default to editing mode if the user have not filled out their profile
