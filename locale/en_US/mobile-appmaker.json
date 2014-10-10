@@ -87,9 +87,9 @@
         "message": "Vendor",
         "description": "Title for an app for vendors"
     },
-    "Blank": {
-        "message": "Blank",
-        "description": "Title for a blank app template"
+    "From Scratch": {
+        "message": "From Scratch",
+        "description": "Title for a blank app template. 'From Scratch' is an idiom that describes making something from the beginning with basic ingredients."
     },
     "Teacher": {
         "message": "Teacher",
