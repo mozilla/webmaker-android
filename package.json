@@ -18,8 +18,7 @@
     "clone": "0.1.18",
     "makedrive": "0.0.45",
     "webmaker-auth-client": "0.2.8",
-    "xhr": "1.16.1",
-    "bulk-require": "^0.2.1"
+    "xhr": "1.16.1"
   },
   "devDependencies": {
     "del": "0.1.2",
@@ -40,6 +39,7 @@
     "webmaker-download-locales": "0.2.4",
     "gulp-webserver": "0.8.0",
     "gulp-file": "0.1.0",
-    "request": "2.44.0"
+    "request": "2.44.0",
+    "bulk-require": "0.2.1"
   }
 }
