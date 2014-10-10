@@ -25,7 +25,7 @@ module.exports = {
     ready: function () {
         var self = this;
         self.$el.addEventListener('click', function (e) {
-            if (self.$parent.$parent.$data.params.mode !== 'play') return;
+            if (self.isEditing) return;
             e.preventDefault();
 
             var number = self.$data.attributes.value.value;
