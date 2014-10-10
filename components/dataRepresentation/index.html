@@ -1,9 +1,14 @@
-<table v-repeat="data: dataSet" class="dataRepresentationDataSet" v-class="unread : !dataSet.isRead">
+<div class="dataRepresentationSelectAll">
+    <input style="display: none;" id="dataRepresentationDataSetMarkRead-All" type="checkbox" name="markReadAll" v-model="allRead" v-on="change: toggleReadAll(this)">
+    <label for="dataRepresentationDataSetMarkRead-All">Select all</label>
+    <label for="dataRepresentationDataSetMarkRead-All" class="tip tip-checkmark"></label>
+</div>
+<table v-repeat="data: dataSet" class="dataRepresentationDataSet" v-class="unread : !data.isRead">
     <thead>
         <tr>
-            <th>Submitted {{data.submitted}}</th>
+            <th>Submitted {{formatUnixTime(data.submitted)}}</th>
             <th>
-                <input style="visibility: hidden;" id="dataRepresentationDataSetMarkRead-{{$index}}" type="checkbox" name="markRead" v-model="dataSet.isRead">
+                <input style="display: none;" id="dataRepresentationDataSetMarkRead-{{$index}}" type="checkbox" name="markRead" v-model="data.isRead" v-on="change: notifyToggleRead()">
                 <label for="dataRepresentationDataSetMarkRead-{{$index}}" class="tip tip-checkmark"></label>
             </th>
         </tr>
@@ -15,3 +20,4 @@
         </tr>
     </tbody>
 </table>
+<button type="button" class="dataRepresentationRemoveButton btn btn-remove" v-on="click: removeSelected()">Delete Selected</button>
