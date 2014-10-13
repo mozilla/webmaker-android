@@ -10,6 +10,7 @@ module.exports = {
             
         },
         currentDataSets: {},
+        isInteractive: false
     },
     ready: function (){
         var self = this;

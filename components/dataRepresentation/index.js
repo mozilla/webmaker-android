@@ -2,7 +2,8 @@ module.exports = {
     id: 'dataRepresentation',
     template: require('./index.html'),
     data: {
-        allRead: false
+        allRead: false,
+        isInteractive: true
     },
     methods: {
         formatUnixTime: function(unix) {
