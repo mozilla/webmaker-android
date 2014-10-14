@@ -4,7 +4,7 @@ var path = require('path');
 
 module.exports = {
     copyPublishAssets: function (dest) {
-        gulp.src(path.join(__dirname, './build/publish-assets/**/*, -./build/publsh-assets/app.js'))
+        gulp.src(path.join(__dirname, './build/publish-assets/**/*'))
             .pipe(gulp.dest(dest));
     }
 };
