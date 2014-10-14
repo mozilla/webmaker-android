@@ -1,0 +1,1 @@
+module.exports = {"LOGIN_URL":"http://login-dev.mofodev.net","PUBLISH_ENDPOINT":"http://webmaker-app-publisher.mofodev.net/publish","DISABLE_LOGIN":false,"MAKEDRIVE_URL":"ws://makedrive.mofodev.net"};

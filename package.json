@@ -40,6 +40,7 @@
     "gulp-webserver": "0.8.0",
     "gulp-file": "0.1.0",
     "request": "2.44.0",
-    "bulk-require": "0.2.1"
+    "bulk-require": "0.2.1",
+    "habitat": "^2.0.0"
   }
 }

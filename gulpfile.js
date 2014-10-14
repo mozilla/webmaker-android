@@ -1,6 +1,7 @@
 var gulp = require('gulp');
 var webserver = require('gulp-webserver');
 
+var config = require('./gulp/config');
 var clean = require('./gulp/clean');
 var downloadLocales = require('./gulp/download-locales');
 var locale = require('./gulp/locale');
@@ -13,8 +14,11 @@ var jshint = require('./gulp/jshint');
 var jscs = require('./gulp/jscs');
 var unit = require('./gulp/unit');
 
+// Config
+gulp.task('config', config);
+
 // Build
-gulp.task('clean', clean);
+gulp.task('clean', ['config'], clean);
 gulp.task('download-locales', ['clean'], downloadLocales);
 gulp.task('locale', ['download-locales'], locale);
 
@@ -37,7 +41,12 @@ gulp.task('test', ['lint', 'unit']);
 
 // Watch
 gulp.task('watch', ['build'], function () {
-    gulp.watch(['./{blocks,components,lib,static,views,publish}/**/*.{js,json,less,html}', './locale/en_US/*.json'], ['re-build']);
+    gulp.watch([
+        './{blocks,components,lib,static,views,publish}/**/*.{js,json,less,html}',
+        './locale/en_US/*.json',
+        './config/*.env',
+        '.env'
+    ],['re-build']);
 });
 
 // Serve + Watch
