@@ -3,7 +3,7 @@
     <label for="dataRepresentationDataSetMarkRead-All">Select all</label>
     <label for="dataRepresentationDataSetMarkRead-All" class="tip tip-checkmark"></label>
 </div>
-<table v-repeat="data: dataSet" class="dataRepresentationDataSet" v-class="unread : !data.isRead">
+<table v-repeat="data: dataSet | orderBy sortKey !sortOldest" class="dataRepresentationDataSet" v-class="unread : !data.isRead">
     <thead>
         <tr>
             <th>Submitted {{formatUnixTime(data.submitted)}}</th>

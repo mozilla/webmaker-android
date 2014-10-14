@@ -3,7 +3,9 @@ module.exports = {
     template: require('./index.html'),
     data: {
         allRead: false,
-        isInteractive: true
+        isInteractive: true,
+        sortOldest: false,
+        sortKey: 'submitted'
     },
     methods: {
         formatUnixTime: function(unix) {
