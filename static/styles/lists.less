@@ -1,3 +1,26 @@
+.list-reset {
+    .list-reset;
+}
+
+/*********************************************************
+* For button lists
+*/
+.list-btns {
+    .list-reset;
+
+    // You must add .btn to all a/button elements
+    .btn {
+        display: block;
+        border-color: @lightGrey;
+        border-top-width: 0;
+        color: @turquoise;
+    }
+    li:first-child .btn {
+        border-top-width: 1px;
+    }
+}
+
+
 /*********************************************************
 * For cell-styled lists, such as the 'My apps' list on profile
 * or the AppCell component
