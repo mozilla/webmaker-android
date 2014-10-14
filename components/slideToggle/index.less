@@ -1,0 +1,47 @@
+#slideToggle {
+
+    z-index: 1;
+    width: 100%;
+    background-color: @system;
+    background-color: #DDD;
+
+    .bottom-label {
+      width: 49%;
+      display: inline-block;
+      text-align: center;
+      padding: 12px 0;
+      color: white;
+      cursor: pointer;
+      opacity: .4;
+    }
+
+    .wrapper {
+      position: relative;
+      background: @turquoise;
+      margin: 0 auto;
+      border-radius: 30px;
+    }
+
+    .button {
+      border: solid 1px @turquoise;
+      color: @turquoise;
+      height: 100%;
+      position: absolute;
+      left: 0;
+      top: 0;
+      padding: 12px 0;
+      background: white;
+      width: 50%;
+      text-align: center;
+      border-radius: 30px;
+    }
+
+    li.active {
+      border-bottom-color: @highlight;
+      background: white;
+    }
+
+    li.active a {
+      color: @highlight;
+    }
+}
