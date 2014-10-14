@@ -47,8 +47,8 @@
         "message": "Apps I've Created",
         "description": "Title for the list of apps I've created"
     },
-    "Templates": {
-        "message": "Templates",
+    "Make": {
+        "message": "Make",
         "description": "Title for app templates, starter projects/styles to create new apps"
     },
     "SMS": {
