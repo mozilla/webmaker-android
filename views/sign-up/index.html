@@ -7,7 +7,7 @@
 <form>
   <div class="form-group">
     <label for="username">Choose a username</label>
-    <input type="text" id="username" v-model="user.username" v-on="keyup:checkName| key">>
+    <input type="text" id="username" v-model="user.username" onchange="checkUsernameExists()">>
   </div>
   <div class="checkbox">
     <label for="mailing-list">
