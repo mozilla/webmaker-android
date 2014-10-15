@@ -36,12 +36,13 @@ module.exports = view.extend({
         },
         checkUsernameExists: function() {
         var self = this;
+
         if(!self.$data.user.username)
             return;
 
-        response = auth.post('/check-username', JSON.parse('{"username": "'+ self.$data.user.username +'"}'));
-        if(response.exists)
-            console.log("Username already exists");
+        auth.checkUsername(self.$data.user.username, function(error, message){
+            console.log("Finished checking for username: " + message); 
+        });
 
         }
     },
