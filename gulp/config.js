@@ -8,7 +8,8 @@ var env = new habitat('publish');
 var expose = [
     'LOGIN_URL',
     'PUBLISH_ENDPOINT',
-    'MAKEDRIVE_URL'
+    'MAKEDRIVE_URL',
+    'OFFLINE'
 ];
 
 habitat.load('.env');
