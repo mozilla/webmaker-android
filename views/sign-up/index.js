@@ -33,6 +33,16 @@ module.exports = view.extend({
                 console.log('done!');
             });
 
+        },
+        checkUsernameExists: function() {
+        var self = this;
+        if(!self.$data.user.username)
+            return;
+
+        response = auth.post('/check-username', JSON.parse('{"username": "'+ self.$data.user.username +'"}'));
+        if(response.exists)
+            console.log("Username already exists");
+
         }
     },
     created: function () {
@@ -41,15 +51,5 @@ module.exports = view.extend({
         auth.on('newuser', function (assertion, email) {
             self.$data.email = email;
         });
-    }, 
-    checkUsernameExists: function() {
-        var self = this;
-        if(!self.$data.user.username)
-            return;
-
-        response = auth.post('/check-username', JSON.parse({"username": "'+ self.$data.user.username +'"}));
-        if(response.exists)
-            console.log("Username already exists");
-
     }
 });
