@@ -2,12 +2,37 @@ module.exports = {
     id: 'slideToggle',
     template: require('./index.html'),
     ready : function(){
-      console.log(this.$el);
+      var that = this;
+      this.direction = "left";
+      this.leftOption = this.$el.getAttribute("left") || "left";
+      this.rightOption = this.$el.getAttribute("right") || "right";
+      this.updateUI();
+    },
+    toggleSettings : {
+      left : "blam",
+      right : "jam"
     },
     methods: {
+      updateUI : function(){
+        if(this.direction === "left"){
+          this.currentOption = this.leftOption;
+        } else {
+          this.currentOption = this.rightOption;
+        }
+      },
       onClick: function (e) {
-        console.log("hi");
-        this.$el.className = 'left';
+        this.direction = e.target.getAttribute("data-direction");
+        var event = new Event('toggleChange', {
+            'details' : {
+              toggleName : 'jam',
+              selectedOption: this.direction
+            },
+            'bubbles': true,
+            'cancelable': true
+        });
+        window.dispatchEvent(event);
+        console.log(event);
+        this.updateUI();
       }
     }
 };
