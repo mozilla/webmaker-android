@@ -34,6 +34,25 @@ body, html {
     .header-space;
 }
 
+.overlay {
+    position: fixed;
+    top: 0;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    background: fade(@black, 70%);
+    z-index: @modal-overlay-z-index;
+
+    visibility: hidden;
+    opacity: 0;
+    transition: visibility 0s 0.2s, opacity 2s linear;
+    &.on {
+        visibility: visible;
+        opacity: 1;
+        transition: opacity 0.2s linear;
+    }
+}
+
 /*********************************************************
 * Generic components
 */

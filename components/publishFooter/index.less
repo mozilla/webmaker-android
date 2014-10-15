@@ -1,0 +1,35 @@
+#publish-footer {
+    position: fixed;
+    left: 0;
+    bottom: 0;
+    width: 100%;
+    z-index: @modal-z-index;
+    color: @black;
+
+    background: @lightGreyUnsaturated;
+
+    .footer-btn {
+        font-size: @text-size-small;
+        color: @darkGrey;
+        border: none;
+        border-top: 1px solid @lightGrey;
+        border-bottom: 1px solid darken(@lightGreyUnsaturated, 5%);
+        padding: 5px;
+        &:focus,
+        &:active {
+            outline: none;
+        }
+    }
+
+    .details {
+        text-align: center;
+        .text-small {
+            margin-bottom: 10px;
+        }
+        p {
+            margin-top: 0;
+            margin-bottom: 20px;
+        }
+    }
+
+}
