@@ -32,7 +32,7 @@ gulp.task('re-build', ['less', 're-browserify', 're-publish'], cache);
 gulp.task('jshint', jshint);
 gulp.task('jscs', jscs);
 gulp.task('lint', ['jshint', 'jscs']);
-gulp.task('unit', unit);
+gulp.task('unit', ['re-build'], unit);
 gulp.task('test', ['lint', 'unit']);
 
 // Watch
@@ -46,7 +46,6 @@ gulp.task('dev', ['watch'], function() {
     .pipe(webserver({
         port: 8080,
         livereload: true,
-        open: true,
         fallback: 'index.html'
     }));
 });

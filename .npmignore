@@ -1,0 +1,5 @@
+.DS_Store
+/node_modules
+npm-*
+/locale/*
+!/locale/en_US/mobile-appmaker.json
