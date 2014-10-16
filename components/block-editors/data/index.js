@@ -4,7 +4,6 @@ module.exports = {
     id: 'data-editor',
     template: require('./index.html'),
 	data: {
-        value: false,
         options: ['Newest', 'Oldest'],
         currentDataSets: {},
         isInteractive: true

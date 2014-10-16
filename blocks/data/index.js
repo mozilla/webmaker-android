@@ -22,7 +22,8 @@ module.exports = {
             }
         },
         currentDataSets: {},
-        isInteractive: false
+        isInteractive: false,
+        sortOldest: false
     },
     ready: function (){
         var self = this;
