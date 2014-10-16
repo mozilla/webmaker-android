@@ -909,7 +909,87 @@
             "location": "",
             "avatar": "/images/avatar_blogger.png"
         },
-        "blocks": []
+		"blocks": [
+            {
+                "id": "image",
+                "attributes": {
+                    "src": {
+                        "id": "src",
+                        "label": "Image URL",
+                        "type": "string",
+                        "value": "/content/blog_leaves.jpg"
+                    }
+                }
+            },
+            {
+                "id": "text",
+                "attributes": {
+                    "innerHTML": {
+                        "id": "innerHTML",
+                        "label": "Text Value",
+                        "type": "string",
+                        "value": "Today I went for a walk in the forest!"
+                    },
+                    "color": {
+                        "id": "color",
+                        "label": "Text Color",
+                        "type": "color",
+                        "value": "#000000"
+                    }
+                }
+            },
+            {
+                "id": "text",
+                "attributes": {
+                    "innerHTML": {
+                        "id": "innerHTML",
+                        "label": "Text Value",
+                        "type": "string",
+                        "value": "It was a beautiful day to go for a walk, because the weather was perfect for a photo. It was the middle of fall and the trees were beginning to turn a fiery red, contrasting with the luscious green in the background."
+                    },
+                    "color": {
+                        "id": "color",
+                        "label": "Text Color",
+                        "type": "color",
+                        "value": "#000000"
+                    }
+                }
+            },
+            {
+                "id": "text",
+                "attributes": {
+                    "innerHTML": {
+                        "id": "innerHTML",
+                        "label": "Text Value",
+                        "type": "string",
+                        "value": "Heavy Rainfall Might Be Expected"
+                    },
+                    "color": {
+                        "id": "color",
+                        "label": "Text Color",
+                        "type": "color",
+                        "value": "#000000"
+                    }
+                }
+            },
+            {
+                "id": "text",
+                "attributes": {
+                    "innerHTML": {
+                        "id": "innerHTML",
+                        "label": "Text Value",
+                        "type": "string",
+                        "value": "I couldn't decide whether to keep walking, because the weather might turn foul. I guess I'll turn it in for the day. \nYours truly, James Laverty"
+                    },
+                    "color": {
+                        "id": "color",
+                        "label": "Text Color",
+                        "type": "color",
+                        "value": "#000000"
+                    }
+                }
+            }
+        ]
     },
     {
         "id": "41e8be7e-4381-4afd-82ac-861171c55555",
