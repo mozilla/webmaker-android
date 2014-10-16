@@ -35,15 +35,20 @@ module.exports = view.extend({
 
         },
         checkUsernameExists: function() {
-        var self = this;
+            var self = this;
 
-        if(!self.$data.user.username)
-            return;
+            if(!self.$data.user.username)
+                return;
 
-        auth.checkUsername(self.$data.user.username, function(error, message){
-            console.log("Finished checking for username: " + message); 
-        });
+            auth.checkUsername(self.$data.user.username, function(error, message){
+                //console.log("Finished checking username: " + message); 
+                var errBox = document.getElementById("usernameError");
 
+                if(message === "Username taken")
+                    errBox.innerHTML = "Sorry, that name's been snagged! Please try another.";
+                else
+                    errBox.innerHTML = "";
+            });
         }
     },
     created: function () {
