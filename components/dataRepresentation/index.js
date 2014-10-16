@@ -20,7 +20,6 @@ module.exports = {
                 var data = dataSet[i];
                 if (data && !data.isRead) allRead = false;
             }
-            console.log(allRead);
             allRead = allDataRead;
         },
         toggleReadAll: function() {
@@ -38,10 +37,10 @@ module.exports = {
             for (i = 0; i < dataSet.length; i++) {
                 var data = dataSet[i];
                 if (data && data.isRead) {
-                    console.log(data);
-                    data.$delete();
+                    dataSet.$remove(i);
                 }
             }
+            //this.toggleReadAll();
         }
     }
 };
