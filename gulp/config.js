@@ -12,19 +12,23 @@ var expose = [
     'OFFLINE'
 ];
 
-habitat.load('.env');
-habitat.load('./config/defaults.env');
-
-var keys = Object.keys(process.env);
-var all = {};
-
-// We can't use habitat.all because of this bug
-// https://github.com/brianloveswords/habitat/issues/13
-keys.forEach(function (key) {
-    if (expose.indexOf(key) > -1) all[key] = habitat.get(key);
-});
-
 module.exports = function () {
+
+    // Load configuration
+    var env = process.env.NODE_ENV;
+    habitat.load('.env');
+    if (env === 'MOFODEV') {
+        habitat.load('./config/mofodev.env');
+    }
+    habitat.load('./config/defaults.env');
+
+    var keys = Object.keys(process.env);
+    var all = {};
+
+    keys.forEach(function (key) {
+        if (expose.indexOf(key) > -1) all[key] = habitat.get(key);
+    });
+
     var string = 'module.exports = ' + JSON.stringify(all) + ';';
     file('index.js', string)
         .pipe(gulp.dest('./config'));

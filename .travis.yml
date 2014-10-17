@@ -1,6 +1,9 @@
 language: node_js
 node_js:
 - '0.10'
+env:
+  - NODE_ENV=NPM
+  - NODE_ENV=MOFODEV
 before_deploy:
 - ./node_modules/.bin/gulp build
 deploy:
