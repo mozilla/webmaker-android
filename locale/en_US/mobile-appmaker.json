@@ -147,8 +147,8 @@
         "message": "Next",
         "description": "Button, meaning 'Next page'"
     },
-    "Play": {
-        "message": "Play",
+    "Preview": {
+        "message": "Preview",
         "description": "Button that, if clicked, shows the end product of the app"
     },
     "Text": {
