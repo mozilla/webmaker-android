@@ -213,15 +213,15 @@
     },
     "Email": {
       "message": "Email",
-      "description": "Label for Email field"
+      "description": "Label on sign-up page"
     },
     "Choose a username": {
       "message": "Choose a username",
-      "description": "Label for Choose a username"
+      "description": "Label on sign-up page"
     }, 
     "Send me email updates about Mozilla Webmaker and other projects": {
       "message": "Send me email updates about Mozilla Webmaker and other projects",
-      "description": "Label for subscribing to email updates for checkbox"
+      "description": "Label for checkbox on sign-up page"
     },
     "I agree to your terms and conditions": {
       "message": "I agree to your terms and conditions",
@@ -230,5 +230,6 @@
     "Choose a different email": {
       "message": "Choose a different email",
       "description": "Button for choosing a different email "
-    }
+    },
+    
 }
