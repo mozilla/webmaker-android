@@ -222,5 +222,17 @@
     "Done": {
       "message": "Done",
       "description": "Done button"
+    },
+    "Sorry, that name has already been snagged! Please try another.": {
+        "message": "Sorry, that name has already been snagged! Please try another.",
+        "description": "Error message informing user the name they are typing in on sign-up page has already been taken. The term 'snagged' is an idiom for taken."
+    },
+    "Send me email updates about Mozilla Webmaker and other projects": {
+        "message": "Send me email updates about Mozilla Webmaker and other projects",
+        "description": "Agreeing to recieve email updates about Mozilla Webmaker and other projects"
+    },
+    "I agree to your terms and conditions": {
+        "message": "I agree to your terms and conditions",
+        "description": "User agreeing to terms and conditions for Mozilla Webmaker"
     }
 }

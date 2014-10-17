@@ -12,6 +12,9 @@ module.exports = view.extend({
             mailingList: true
         },
         login: auth.login,
+        errors: {
+            usernameTaken: false
+        }
     },
     methods: {
         onDone: function () {
@@ -36,18 +39,17 @@ module.exports = view.extend({
         },
         checkUsernameExists: function() {
             var self = this;
-
-            if(!self.$data.user.username)
+            if(!self.$data.user.username) {
                 return;
+            }
 
             auth.checkUsername(self.$data.user.username, function(error, message){
-                //console.log("Finished checking username: " + message); 
-                var errBox = document.getElementById("usernameError");
-
-                if(message === "Username taken")
-                    errBox.innerHTML = "Sorry, that name's been snagged! Please try another.";
-                else
-                    errBox.innerHTML = "";
+                if(error && message === 'Username taken') {
+                    self.$data.errors.usernameTaken = true;
+                }
+                else {
+                    self.$data.errors.usernameTaken = false;
+                }
             });
         }
     },
