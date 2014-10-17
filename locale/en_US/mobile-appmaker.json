@@ -207,6 +207,26 @@
       "message": "Label",
       "description": "The label on a button (for sms/calling)"
     },
+    "Email": {
+      "message": "Email",
+      "description": "Label on sign-up page"
+    },
+    "Choose a username": {
+      "message": "Choose a username",
+      "description": "Label on sign-up page"
+    }, 
+    "Send me email updates about Mozilla Webmaker and other projects": {
+      "message": "Send me email updates about Mozilla Webmaker and other projects",
+      "description": "Label for checkbox on sign-up page"
+    },
+    "I agree to your terms and conditions": {
+      "message": "I agree to your terms and conditions",
+      "description": "Label for terms and conditions checkbox"
+    },
+    "Choose a different email": {
+      "message": "Choose a different email",
+      "description": "Button for choosing a different email "
+    },
     "share_message": {
       "message": "Check out the app \"{{app.name}}\" I made with Mozilla Webmaker",
       "description": "Message that gets sent when a published app is shared to friends"
