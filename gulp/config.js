@@ -9,7 +9,8 @@ var expose = [
     'LOGIN_URL',
     'PUBLISH_ENDPOINT',
     'MAKEDRIVE_URL',
-    'OFFLINE'
+    'OFFLINE',
+    'PUBLISH_DEV_MODE'
 ];
 
 module.exports = function () {
