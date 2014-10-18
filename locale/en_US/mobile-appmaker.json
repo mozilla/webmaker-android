@@ -1,6 +1,6 @@
 {
-    "scientists": {
-        "message": "scientists",
+    "scientist": {
+        "message": "scientist",
         "description": "To be replaced in the sentence: Apps made by scientists"
     },
     "My Profile": {
