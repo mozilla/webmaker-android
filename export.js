@@ -2,7 +2,7 @@
 var gulp = require('gulp');
 var path = require('path');
 
-var buildDir = __dirname + '/build';
+var buildDir = __dirname + '/build/';
 
 function handleError(stream, cb) {
     stream.on('end', function() {
@@ -15,19 +15,17 @@ function handleError(stream, cb) {
 
 module.exports = {
     copySharedAssets: function (dest, cb) {
-        var s = gulp.src([
-            buildDir + '/content',
-            buildDir + '/fonts',
-            buildDir + '/images',
-            buildDir + '/styles'
-        ]).pipe(gulp.dest(dest));
+        var dirs = ['content/**/*', 'fonts/**/*', 'images/**/*', 'styles/**/*.css']
+        var s = gulp.src(dirs.map(function (dir) {
+            return buildDir + dir;
+        }), {base: buildDir}).pipe(gulp.dest(dest));
         handleError(s, cb);
     },
     copyPublishAssets: function (dest, cb) {
         var s = gulp.src([
-            buildDir + '/publish-assets/**/*',
+            buildDir + 'publish-assets/**/*',
             // Exclude sample app.js
-            '!' + buildDir + '/publish-assets/app.js'
+            '!' + buildDir + 'publish-assets/app.js'
         ]).pipe(gulp.dest(dest));
         handleError(s, cb);
     }
