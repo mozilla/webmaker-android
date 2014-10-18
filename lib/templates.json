@@ -1247,7 +1247,7 @@
                         "id":"color",
                         "label":"Text Color",
                         "type":"color",
-                        "value":"#000000"
+                        "value":"#AAAAAA"
                     },
                     "font-size":{
                         "label":"Font Size",
@@ -1269,7 +1269,7 @@
                         "id":"color",
                         "label":"Text Color",
                         "type":"color",
-                        "value":"#000000"
+                        "value":"#AAAAAA"
                     },
                     "font-size":{
                         "label":"Font Size",
