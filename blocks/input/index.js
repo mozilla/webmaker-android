@@ -38,7 +38,7 @@ module.exports = {
 	ready: function() {
 		var self = this;
 
-		if(self.$parent.$parent.$data.params.mode !== 'play') {
+		if(self.isEditing) {
 			if (self.$el.querySelector('input')) self.$el.querySelector('input').disabled = 'disabled';
             if (self.$el.querySelector('textfield')) self.$el.querySelector('textfield').disabled = 'disabled';
 		} else {

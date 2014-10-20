@@ -48,23 +48,23 @@ module.exports = {
 		var self = this;
         if (self.attributes.current.value === 'undefined' || self.attributes.current.value === '') self.attributes.current.value = self.attributes.min.value;
 
-		if(self.$parent.$parent.$data.params.mode !== 'play') {
+		if(self.isEditing) {
 			var inputElements = self.$el.querySelectorAll('input, button');
             for (var i = 0; i < inputElements.length; i++) {
                 inputElements[i].disabled = 'disabled';
             }
-		} else {
-            // register block on data object
-            self.$dispatch('dataChange',
-                self.$index,
-                '',
-                self.$data.attributes.label.value
-            );
-        }
 
-        if(self.$parent.$parent.$data.params.mode === 'edit') {
-            if (self.attributes.current.value === self.attributes.min.value) self.attributes.current.value = '';
-        }
+			if(self.attributes.current.value === self.attributes.min.value) {
+				self.attributes.current.value = '';
+			}
+		} else {
+			// register block on data object
+			self.$dispatch('dataChange',
+				self.$index,
+				'',
+				self.$data.attributes.label.value
+			);
+		}
 	},
     methods :{
         stepUp: function() {

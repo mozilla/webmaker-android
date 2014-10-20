@@ -36,7 +36,7 @@ module.exports = {
 	ready: function() {
 		var self = this;
 
-		if(self.$parent.$parent.$data.params.mode !== 'play') {
+		if(self.isEditing) {
 			self.$el.querySelector('select').disabled = 'disabled';
 			self.$el.querySelector('select').style.pointerEvents = 'none';
 		} else {
