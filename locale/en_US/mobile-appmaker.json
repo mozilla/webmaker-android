@@ -259,8 +259,8 @@
       "message": "You don't have any apps yet.",
       "description": "Message that is displayed in the profile when current user has no apps"
     },
-    "Featured": {
-      "message": "Featured",
+    "Featured Apps": {
+      "message": "Featured Apps",
       "description": "Featured apps (title for Discover page)"
     },
     "Near Me": {
