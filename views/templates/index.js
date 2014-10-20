@@ -1,4 +1,3 @@
-var model = require('../../lib/model')();
 var templates = require('../../lib/templates.json');
 var uuid = require('../../lib/uuid');
 var view = require('../../lib/view');
@@ -8,7 +7,7 @@ module.exports = view.extend({
     id: 'templates',
     template: require('./index.html'),
     data: {
-        title: 'Templates',
+        title: 'Make',
         templates: templates
     },
     ready: function () {
@@ -33,10 +32,10 @@ module.exports = view.extend({
             // Prepare the clone for use
             clone.id = uuid();
             clone.name = i18n.get('Untitled App');
-            clone.author = model.user;
+            clone.author = self.model.data.user;
 
             // Add to model & redirect to editor
-            model.apps.unshift(clone);
+            self.model.data.apps.unshift(clone);
             self.page('/make/' + clone.id + '/play');
         }
 

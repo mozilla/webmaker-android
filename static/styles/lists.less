@@ -1,0 +1,83 @@
+.list-reset {
+    .list-reset;
+}
+
+/*********************************************************
+* For button lists
+*/
+.list-btns {
+    .list-reset;
+
+    // You must add .btn to all a/button elements
+    .btn {
+        display: block;
+        border-color: @lightGrey;
+        border-top-width: 0;
+        color: @turquoise;
+    }
+    li:first-child .btn {
+        border-top-width: 1px;
+    }
+}
+
+
+/*********************************************************
+* For cell-styled lists, such as the 'My apps' list on profile
+* or the AppCell component
+*/
+.list-cell {
+    .list-reset;
+
+    li {
+        height: @list-cell-height;
+        background-color: white;
+        border-bottom: 1px solid @lightGrey;
+        line-height: 1.4;
+    }
+
+    lh {
+        .section-heading();
+    }
+
+}
+
+// Can be an <a> or <div>
+.cell {
+    display: flex;
+    align-items: center;
+    // height: @list-cell-height;
+    text-decoration: none;
+    color: inherit;
+
+    .disable {
+        opacity: 0.4;
+    }
+
+    // For left and right sections
+    .left, .right {
+      float: left;
+      width: 50%;
+      padding: @list-cell-padding;
+    }
+    .right {
+      text-align: right;
+    }
+
+    // Typography styles
+    .title {
+      display: block;
+    }
+    .description {
+      font-size: 0.8em; // to replace with small
+      font-weight: 400;
+      color: @mediumGrey;
+    }
+
+    // Icons
+    .icon {
+        width: 50px;
+        height: 50px;
+        display: block;
+        float: left;
+    }
+}

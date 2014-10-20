@@ -17,24 +17,27 @@
     </form>
     <i v-if="!editing" class="fa fa-pencil fa-2x edit-icon" v-on="click: editing = true"></i> -->
 
-  <ul>
-      <lh><h3>{{ "My Apps" | i18n }}</h3></lh>
+  <ul class="list-cell">
+      <lh>{{ "My Apps" | i18n }}</lh>
       <li v-component="appCell" v-repeat="myApps"></li>
   </ul>
 
-  <div class="form-group">
-    <button class="btn btn-remove btn-block" v-on="click: clean">Delete all my data!</button>
+  <div class="no-apps" v-show="myApps.length == 0">
+    <p>{{ "No Apps Message" | i18n }}</p>
+    <a href="/templates" class="btn btn-block btn-dark">{{ "Make an App" | i18n }}</a>
   </div>
 
-  <div v-show="!user.username" class="form-group">
-    <button class="btn btn-block" v-on="click: login">{{ "Login" | i18n }}</button>
-  </div>
-  <div v-show="user.username" class="form-group">
-    <a href="http://webmakerlogin.alicoding.com/account" class="btn btn-block">{{user.username}} - Edit profile</a>
-  </div>
-  <div v-show="user.username" class="form-group">
-    <button class="btn btn-block" v-on="click: logout">{{ "Logout" | i18n }}</button>
-  </div>
+  <ul class="menu">
+    <li v-show="user.username" class="form-group">
+      <a href="http://login-dev.mofodev.net/account">{{ "Edit my Profile" | i18n }} ({{user.username}})</a>
+    </li>
+    <li class="form-group">
+      <a v-on="click: clean">{{ "Delete my Apps" | i18n }}</a>
+    </li>
+    <li v-show="user.username" class="form-group">
+      <a v-on="click: logout">{{ "Sign Out" | i18n }}</a>
+    </li>
+  </ul>
 
 </div>
 

@@ -5,3 +5,4 @@ npm-*
 /build/*
 /locale/*
 !/locale/en_US/mobile-appmaker.json
+config/index.js

@@ -1,14 +1,6 @@
-<ul>
-    <li class="button">
-        <a href="/templates">&lt;</a>
-    </li>
-    <li v-class="active:params.mode === 'play'">
-        <a href="/make/{{id}}/play">{{ 'Play' | i18n }}</a>
-    </li>
-    <li v-class="active:params.mode === 'edit'">
-        <a href="/make/{{id}}/edit">{{ 'Edit' | i18n }}</a>
-    </li>
-	<li v-class="active:params.mode === 'data'">
-		<a href="/make/{{id}}/data">{{ 'Data' | i18n }}</a>
-	</li>
-</ul>
+<div class="slideToggle">
+  <div class="wrapper">
+    <a v-class="active:params.mode === 'play'" href="/make/{{id}}/play">{{ 'Preview' | i18n }}</a>
+    <a v-class="active:params.mode === 'edit'" href="/make/{{id}}/edit">{{ 'Edit' | i18n }}</a>
+  </div>
+</div>
