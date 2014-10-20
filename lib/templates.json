@@ -909,7 +909,7 @@
             "location": "",
             "avatar": "/images/avatar_blogger.png"
         },
-		"blocks": [
+        "blocks": [
             {
                 "id": "image",
                 "attributes": {
