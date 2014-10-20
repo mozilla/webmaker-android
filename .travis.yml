@@ -1,16 +1,28 @@
 language: node_js
 node_js:
 - '0.10'
+env:
+  - NODE_ENV=MOFODEV
 before_deploy:
 - ./node_modules/.bin/gulp build
 deploy:
-  skip_cleanup: true
-  provider: s3
-  access_key_id: AKIAJKJTAESA5KSRVZHQ
-  secret_access_key:
-    secure: cmZMfUZ4X8utFiFcRSK17aPd3jiQ2Fab/xMKcwXuBgD1jQXda0i+4GkQZ5jSoim1Vd7oNapRp+s2hfK4eOtc9OUWcaA4S6oISg75tm6yMZq1tSABtgk1Z7FSbZNwH8iw6qITlHuXd4mwhayDqLiZlzbcS/h/K45pswE5963MlF8=
-  bucket: webmaker-app
-  local-dir: build
-  on:
-    branch: master
-    repo: mozillafordevelopment/webmaker-app
+  - provider: npm
+    skip_cleanup: true
+    email: k88hudson@gmail.com
+    api_key:
+      secure: QEf5u7DDH71imF/Fn+9rh3LWIWWkft4y0LYtdW7W2TLZAYZaQPPhLyH9zauRAdrwQZ/YbY4KZcFtMvMwfu4xn7PLNgx/aOcnsTIsdgcxC3ONyGxxR685WsfWkFR+dQKcuzZl/YCb+iCCKNaKLUKWe6ogbDGQL8YazEzH4xA0lUw=
+    on:
+      tags: true
+      repo: mozillafordevelopment/webmaker-app
+      all_branches: true
+  - provider: s3
+    skip_cleanup: true
+    access_key_id: AKIAJKJTAESA5KSRVZHQ
+    secret_access_key:
+      secure: cmZMfUZ4X8utFiFcRSK17aPd3jiQ2Fab/xMKcwXuBgD1jQXda0i+4GkQZ5jSoim1Vd7oNapRp+s2hfK4eOtc9OUWcaA4S6oISg75tm6yMZq1tSABtgk1Z7FSbZNwH8iw6qITlHuXd4mwhayDqLiZlzbcS/h/K45pswE5963MlF8=
+    bucket: webmaker-app
+    local-dir: build
+    on:
+      branch: master
+      repo: mozillafordevelopment/webmaker-app
+

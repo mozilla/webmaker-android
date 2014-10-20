@@ -7,7 +7,7 @@ module.exports = view.extend({
     id: 'templates',
     template: require('./index.html'),
     data: {
-        title: 'Templates',
+        title: 'Make',
         templates: templates
     },
     ready: function () {
