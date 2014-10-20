@@ -19,7 +19,8 @@
     "makedrive": "0.0.53",
     "webmaker-auth-client": "0.2.8",
     "xhr": "1.16.1",
-    "gulp": "3.8.8"
+    "gulp": "3.8.8",
+	"firebase": "1.1.2"
   },
   "devDependencies": {
     "del": "0.1.2",
