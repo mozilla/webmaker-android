@@ -15,19 +15,75 @@
         "name": "Journalist",
         "icon": "/images/placeholder_journalist.png",
         "author": {
-            "name": "",
+            "name": "Rafid Daoud",
             "location": "",
             "avatar": ""
         },
         "blocks": [
             {
+                "id": "text",
+                "attributes": {
+                    "innerHTML": {
+                        "id": "innerHTML",
+                        "label": "Text Value",
+                        "type": "string",
+                        "value": "News / Greater Toronto Area"
+                    },
+                    "color": {
+                        "id": "color",
+                        "label": "Text Color",
+                        "type": "color",
+                        "value": "#0000FF"
+                    }
+                }
+            },
+            {
+                "id": "text",
+                "attributes": {
+                    "innerHTML": {
+                        "id": "innerHTML",
+                        "label": "Text Value",
+                        "type": "string",
+                        "value": "The Air Show at the CNE"
+                    },
+                    "color": {
+                        "id": "color",
+                        "label": "Text Color",
+                        "type": "color",
+                        "value": "#000000"
+                    },
+                    "font-size": {
+                        "label": "Font Size",
+                        "type": "font-size",
+                        "value": "40"
+                    }
+                }
+            },
+            {
+                "id": "text",
+                "attributes": {
+                    "innerHTML": {
+                        "id": "innerHTML",
+                        "label": "Text Value",
+                        "type": "string",
+                        "value": "A fascinating and thrilling show at the Canadian National Exhibition"
+                    },
+                    "color": {
+                        "id": "color",
+                        "label": "Text Color",
+                        "type": "color",
+                        "value": "#AAAAAA"
+                    }
+                }
+            },
+            {
                 "id": "image",
                 "attributes": {
                     "src": {
                         "id": "src",
                         "label": "Image URL",
                         "type": "string",
-                        "value": "/content/journalist_3g.jpg"
+                        "value": "/content/newspaper_planes.jpg"
                     }
                 }
             },
@@ -38,7 +94,51 @@
                         "id": "innerHTML",
                         "label": "Text Value",
                         "type": "string",
-                        "value": "Only 4% of Total Users on 3G"
+                        "value": "Photo by Rafid Daoud"
+                    },
+                    "color": {
+                        "id": "color",
+                        "label": "Text Color",
+                        "type": "color",
+                        "value": "#AAAAAA"
+                    },
+                    "font-size": {
+                        "label": "Font Size",
+                        "type": "font-size",
+                        "value": "12"
+                    }
+                }
+            },
+            {
+                "id": "text",
+                "attributes": {
+                    "innerHTML": {
+                        "id": "innerHTML",
+                        "label": "Text Value",
+                        "type": "string",
+                        "value": "Canadian forces snowbirds pilots taking formation for their next performance"
+                    },
+                    "color": {
+                        "id": "color",
+                        "label": "Text Color",
+                        "type": "color",
+                        "value": "#AAAAAA"
+                    },
+                    "font-size": {
+                        "label": "Font Size",
+                        "type": "font-size",
+                        "value": "12"
+                    }
+                }
+            },
+            {
+                "id": "text",
+                "attributes": {
+                    "innerHTML": {
+                        "id": "innerHTML",
+                        "label": "Text Value",
+                        "type": "string",
+                        "value": "By: Rafid / Seneca College, Published on Fri Oct 17, 2014"
                     },
                     "color": {
                         "id": "color",
@@ -55,52 +155,7 @@
                         "id": "innerHTML",
                         "label": "Text Value",
                         "type": "string",
-                        "value": "Only 4.15% of the total mobile phone users have started enjoying third generation mobile broadband data services, according to regulator.\n\nAfter the private mobile phone operators of the country launched 3G services at the end of October last year, the total number of 3G users crossed 48.45 lakh till the end of July this year.\n\nThe number of total active SIM cards stood at 11.68 crore, said Bangladesh Telecommunication Regulatory Commission (BTRC) data.\n\nRecently, BTRC collected the number of 3G users of the country as the regulator inspected the 3G service roll-out and network quality of the operators.\n\nAccording to the data, Robi, the third largest operator in the country in terms of total active users, became the market leader with 13.05 lakh 3G connections.\n\nThe number of total active SIM users of Robi reached 2.42 crore as of July 2014."
-                    },
-                    "color": {
-                        "id": "color",
-                        "label": "Text Color",
-                        "type": "color",
-                        "value": "#000000"
-                    }
-                }
-            },
-            {
-                "id": "image",
-                "attributes": {
-                    "src": {
-                        "id": "src",
-                        "label": "Image URL",
-                        "type": "string",
-                        "value": "/content/journalist_weather.jpg"
-                    }
-                }
-            },
-            {
-                "id": "text",
-                "attributes": {
-                    "innerHTML": {
-                        "id": "innerHTML",
-                        "label": "Text Value",
-                        "type": "string",
-                        "value": "Heavy Rainfall Expected"
-                    },
-                    "color": {
-                        "id": "color",
-                        "label": "Text Color",
-                        "type": "color",
-                        "value": "#000000"
-                    }
-                }
-            },
-            {
-                "id": "text",
-                "attributes": {
-                    "innerHTML": {
-                        "id": "innerHTML",
-                        "label": "Text Value",
-                        "type": "string",
-                        "value": "A weather forecast report has expected that a heavy to very heavy rainfall may arise at places over Dhaka, Khulna, Barisal, Chittagong and Sylhet divisions during the next twenty four hours commencing at 11 am on Saturday, BSS reports.\n\nThe rainfall may cause landslide at places over the hilly regions of Chittagong and Sylhet divisions, the report said.\n\nLocal cautionary signal No-three is suggested to keep hoist in Maritime ports of Chittagong, Cox's Bazar, Mongla and Payra.\n\nAll fishing boats and trawlers over North Bay have been advised to remain close to the coast and proceed with caution till further notice, it added.\n\nThe highest rainfall was recorded by 256 millimeters (mm) for last 24 hours at Sandwip followed by 241 mm held at Teknaf."
+                        "value": "The air show at Canada National Exhibition in Toronto Ontario. It took place on August 30th 2014 through September 1st 2014. The show had two types of air crafts do their tricks. First, were fighter jets that were very fast almost the speed of sound. Then came the planes pictured above and they performed many tricks and had many different formations."
                     },
                     "color": {
                         "id": "color",
@@ -547,7 +602,7 @@
                         "id": "innerHTML",
                         "label": "Text Value",
                         "type": "string",
-                        "value": "Step 7 - Name & View Your App"
+                        "value": "Step 7 - Name &amp; View Your App"
                     },
                     "color": {
                         "id": "color",

@@ -1,11 +1,15 @@
 {
-    "scientists": {
-        "message": "scientists",
+    "scientist": {
+        "message": "scientist",
         "description": "To be replaced in the sentence: Apps made by scientists"
     },
     "My Profile": {
         "message": "My Profile",
         "description": "Title for profile page"
+    },
+    "Edit my Profile": {
+        "message": "Edit my Profile",
+        "description": "Button label for action to edit users profile"
     },
     "you": {
         "message": "you",
@@ -50,6 +54,10 @@
     "Make": {
         "message": "Make",
         "description": "Title for app templates, starter projects/styles to create new apps"
+    },
+    "Make an App": {
+        "message": "Make an App",
+        "description": "Button label for action to make a new app"
     },
     "SMS": {
         "message": "SMS",
@@ -147,8 +155,8 @@
         "message": "Next",
         "description": "Button, meaning 'Next page'"
     },
-    "Play": {
-        "message": "Play",
+    "Preview": {
+        "message": "Preview",
         "description": "Button that, if clicked, shows the end product of the app"
     },
     "Text": {
@@ -175,13 +183,17 @@
       "message": "Login",
       "description": "Login button (logs user into Webmaker Mobile)"
     },
-    "Logout": {
-      "message": "Logout",
-      "description": "Logout button (logs user out of Webmaker Mobile)"
+    "Sign Out": {
+      "message": "Sign Out",
+      "description": "Button label for button that logs user out of Webmaker Mobile"
     },
     "Delete App": {
       "message": "Delete App",
       "description": "Button to delete entire app"
+    },
+    "Delete my Apps": {
+      "message": "Delete my Apps",
+      "description": "Button to delete all of a user's apps"
     },
     "Untitled App": {
       "message": "Untitled App",
@@ -207,6 +219,26 @@
       "message": "Label",
       "description": "The label on a button (for sms/calling)"
     },
+    "Email": {
+      "message": "Email",
+      "description": "Label on sign-up page"
+    },
+    "Choose a username": {
+      "message": "Choose a username",
+      "description": "Label on sign-up page"
+    },
+    "Send me email updates about Mozilla Webmaker and other projects": {
+      "message": "Send me email updates about Mozilla Webmaker and other projects",
+      "description": "Label for checkbox on sign-up page"
+    },
+    "I agree to your terms and conditions": {
+      "message": "I agree to your terms and conditions",
+      "description": "Label for terms and conditions checkbox"
+    },
+    "Choose a different email": {
+      "message": "Choose a different email",
+      "description": "Button for choosing a different email "
+    },
     "share_message": {
       "message": "Check out the app \"{{app.name}}\" I made with Mozilla Webmaker",
       "description": "Message that gets sent when a published app is shared to friends"
@@ -222,5 +254,10 @@
     "Done": {
       "message": "Done",
       "description": "Done button"
+    },
+    "No Apps Message": {
+      "message": "You don't have any apps yet.",
+      "description": "Message that is displayed in the profile when current user has no apps"
     }
+
 }

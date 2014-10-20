@@ -41,7 +41,7 @@ module.exports = view.extend({
             if (self.$data.isPublishing) return;
 
             function onSynced() {
-                publish(id, function (err, data) {
+                publish(id, self.$data.user.username, function (err, data) {
                     self.$data.isPublishing = false;
                     if (err) return console.error(err);
                     app.data.url = data.url;
