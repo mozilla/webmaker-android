@@ -13,6 +13,11 @@ module.exports = view.extend({
         login: function (e) {
             e.preventDefault();
             auth.login();
+        },
+        goOffline: function (e) {
+            e.preventDefault();
+            this.model.offlineConnect();
+            this.page('/templates');
         }
     }
 });

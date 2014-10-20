@@ -3,13 +3,13 @@
 <div class="sign-in">
     <div v-if="!offline" >
         <button class="btn-next" v-on="click: login">{{ 'Sign In' | i18n }}</button>
-        <a class="btn-next btn-guest" href="/templates">{{ 'Try as Guest' | i18n }}</a>
+        <a href="#" class="btn-next btn-guest" v-on="click: goOffline">{{ 'Try as Guest' | i18n }}</a>
         <p>
             {{ 'Guest Explanation' | i18n }}
         </p>
     </div>
     <div v-if="offline" >
-        <a class="btn-next" href="/templates">{{ 'Try in Offline Mode' | i18n }}</a>
+        <a href="#" class="btn-next" v-on="click: goOffline">{{ 'Try in Offline Mode' | i18n }}</a>
         <p>
             {{ 'Offline Mode Explanation' | i18n }}
         </p>
