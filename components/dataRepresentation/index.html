@@ -1,5 +1,5 @@
 <div v-if="isInteractive" class="dataRepresentationSelectAll">
-    <input style="display: none;" id="dataRepresentationDataSetMarkSelected-All" type="checkbox" name="markAllSelected" v-model="allSelected" v-on="change: toggleSelectAll(this)">
+    <input style="display: none;" id="dataRepresentationDataSetMarkSelected-All" type="checkbox" name="markAllSelected" v-model="allSelected">
     <label for="dataRepresentationDataSetMarkSelected-All">Select all</label>
     <label for="dataRepresentationDataSetMarkSelected-All" class="tip tip-checkmark"></label>
 </div>
@@ -8,7 +8,7 @@
         <tr>
             <th>Submitted {{formatUnixTime(data.submitted)}}</th>
             <th>
-                <input style="display: none;" id="dataRepresentationDataSetMarkSelected-{{$index}}" type="checkbox" name="markSelected" v-model="data.isSelected" v-on="change: notifyToggleSelected()">
+                <input style="display: none;" id="dataRepresentationDataSetMarkSelected-{{$index}}" type="checkbox" name="markSelected" v-model="data.isSelected">
                 <label for="dataRepresentationDataSetMarkSelected-{{$index}}" class="tip tip-checkmark"></label>
             </th>
         </tr>

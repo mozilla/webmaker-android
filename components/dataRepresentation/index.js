@@ -2,7 +2,6 @@ module.exports = {
     id: 'dataRepresentation',
     template: require('./index.html'),
     data: {
-        allSelected: false,
         isInteractive: true,
         sortOldest: false,
         sortKey: 'submitted'
@@ -19,37 +18,31 @@ module.exports = {
             };
             return date.toLocaleTimeString('en-US', options);
         },
-        notifyToggleSelected: function() {
-            var allSelected = this.allSelected;
-            var dataSet = this.$data.dataSet;
-            var allDataSelected = true;
-            for (i = 0; i < dataSet.length; i++) {
-                var data = dataSet[i];
-                if (data && !data.isSelected) allSelected = false;
-            }
-            allSelected = allDataSelected;
-        },
-        toggleSelectAll: function() {
-            this.allSelected = !this.allSelected;
-            var allSelected = this.allSelected;
-            var dataSet = this.$data.dataSet;
-            for (i = 0; i < dataSet.length; i++) {
-                var data = dataSet[i];
-                if (data) data.isSelected = allSelected;
-            }
-        },
         removeSelected: function()
         {
-            var dataSet = this.$data.dataSet;
-            console.log(dataSet[1]);
-            for (i = 0; i <= dataSet.length; i++) {
-                var data = dataSet[i];
-                if (data && data.isSelected) {
-                    console.log('data out of dataset with index ' + i + ' is selected and should be deleted');
-                    dataSet.$remove(i);
+            this.$data.dataSet = this.$data.dataSet.filter(function(dataSet) {
+                return dataSet ? !dataSet.isSelected : false;
+            });
+        }
+    },
+    computed: {
+        allSelected: {
+            $get: function() {
+                if (!this.$data) return false;
+                var dataSet = this.$data.dataSet;
+                var selected = true;
+                for (i = 0; i < dataSet.length; i++) {
+                    if (dataSet[i] && !dataSet[i].isSelected) selected = false;
+                }
+                return selected;
+            },
+            $set: function() {
+                var dataSet = this.$data.dataSet;
+                var selected = !this.allSelected;
+                for (i = 0; i < dataSet.length; i++) {
+                    if (dataSet[i]) dataSet[i].isSelected = selected;
                 }
             }
-            //this.toggleReadAll();
         }
     }
 };
