@@ -282,5 +282,13 @@
     "Near Me": {
       "message": "Near Me",
       "description": "Apps made near the user (title for Discover page)"
+    },
+    "errorAppNotFound": {
+      "message": "Sorry, this app was not found. Go back to your <a href='/profile'>profile</a>?",
+      "description": "Error message for app details/editing/play view when the app is not found"
+    },
+    "errorDefault": {
+      "message": "errorDefault",
+      "description": "Oops! There was an error. Go back to your <a href='/profile'>profile</a>?"
     }
 }
