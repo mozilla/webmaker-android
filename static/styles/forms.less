@@ -22,6 +22,48 @@ textarea,
     // for links
     color: inherit;
     text-decoration: none;
+
+    // Errors
+    &.error {
+        border-color: lighten(@red, 20%);
+    }
+}
+
+input,
+textarea,
+.input,
+.checkbox label,
+.form-error {
+    +.form-error {
+        background: @red;
+        color: white;
+        position: relative;
+        top: -1px;
+        padding: 8px;
+        font-size: 13px;
+        line-height: 1.2;
+        // triangle
+        &:before {
+            content: '';
+            display: block;
+            position: absolute;
+            bottom: 100%;
+            left: 20px;
+            width: 0;
+            height: 0;
+            border-left: 8px solid transparent;
+            border-right: 8px solid transparent;
+            border-bottom: 8px solid @red;
+        }
+    }
+}
+
+.form-error + .form-error {
+    background: darken(@red, 5%);
+    &:before {
+        content: none;
+        display: none;
+    }
 }
 
 textarea {
@@ -100,4 +142,3 @@ input[type="checkbox"] {
         margin: 4px 0 0 -30px;
     }
 }
-
