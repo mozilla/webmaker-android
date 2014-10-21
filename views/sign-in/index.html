@@ -1,4 +1,4 @@
-<div class="bottom animated fadeIn">
+<div class="bottom">
     <div v-if="!offline" >
         <a v-if="username" href="/profile" class="btn-next">{{ 'Get Started' | i18n }}</a>
         <button v-if="!username" class="btn-next" v-on="click: login">{{ 'Sign In' | i18n }}</button>
