@@ -36,7 +36,7 @@ module.exports = view.extend({
 
             function onClear(err) {
                 sync.request();
-                page('/ftu-3');
+                page('/sign-in');
             }
 
             fs.stat('/', function(e, stat) {
