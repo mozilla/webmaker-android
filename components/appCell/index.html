@@ -1,7 +1,7 @@
 <a class="cell" data-id="{{id}}" href="/make/{{id}}/play">
     <div class="left">
         <span class="title">{{name}}</span>
-        <span v-if="author" class="description" v-bind-html="'by _'" v-with="{name: author.username|| 'Guest'}"></span>
+        <span v-if="author" class="description" v-bind-html="'by _'" v-with="{name: author.username|| guestKey}"></span>
     </div>
     <div class="right">
         <img class="app-icon" src="{{icon}}">
