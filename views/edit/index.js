@@ -17,11 +17,11 @@ module.exports = view.extend({
         var app = new App(id);
 
         // Bind app
-        self.$data.app = app.data;
+        self.$data.app = app.data || {};
         self.$data.onDone = '/make/' + id + '/share';
         self.$data.removeApp = function() {
             app.removeApp();
-            page('/profile');
+            self.page('/profile');
         };
     }
 });
