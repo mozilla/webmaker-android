@@ -10,58 +10,44 @@ module.exports = view.extend({
         title: 'My Profile',
         back: false
     },
+    computed: {
+        user: function () {
+            return this.model.data.user;
+        },
+        myApps: function () {
+            // temporary hack to only show current user's data
+            var username = this.model.data.user.username;
+            var myApps = this.model.data.apps.filter(function (app) {
+                return app.author.username === username;
+            });
+            return myApps;
+        }
+    },
     methods: {
         logout: function (e) {
             e.preventDefault();
             auth.logout();
         },
         clean: function (e) {
-            var sh = this.model._fs.Shell();
-            var fs = this.model._fs;
+            var self = this;
+            var sh = self.model._fs.Shell();
+            var fs = self.model._fs;
             var sync = fs.sync;
+
+            function onClear(err) {
+                sync.request();
+                page('/ftu-3');
+            }
+
             fs.stat('/', function(e, stat) {
                 if (!stat.isDirectory()) {
-                    fs.unlink('/', function(e) {
-                        sync.request();
-                    });
+                    fs.unlink('/', onClear);
                 } else {
                     sh.rm('/', {
                         recursive: true
-                    }, function(e) {
-                        console.log(e);
-                        sync.request();
-                    });
+                    }, onClear);
                 }
             });
         }
-    },
-    ready: function () {
-        var self = this;
-
-        self.$data.user = self.model.data.user;
-        // Default to editing mode if the user have not filled out their profile
-        // if (this.$data.name || this.$data.location) {
-        //     this.$data.editing = false;
-        // } else {
-        //     this.$data.editing = true;
-        // }
-
-        this.$data.myApps = self.model.data.apps;
-
-        // this.$data.cancel = function () {
-        //     this.$data.name = user.name;
-        //     this.$data.location = user.location;
-        //     this.$data.editing = false;
-        // };
-
-        // this.$data.save = function () {
-        //     this.$data.editing = false;
-        //     this.model.user.name = this.$data.name;
-        //     this.model.user.location = this.$data.location;
-        //     this.model.user.avatar = this.$data.avatar;
-        //     this.model.save();
-        //     this.$data.myApps = clone(this.model.apps);
-        // };
-
     }
 });
