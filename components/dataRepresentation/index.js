@@ -10,7 +10,14 @@ module.exports = {
     methods: {
         formatUnixTime: function(unix) {
             var date = new Date(unix);
-            return date.toString();
+            var options = {
+                year: 'numeric',
+                month: 'numeric',
+                day: 'numeric',
+                hour: '2-digit',
+                minute: '2-digit'
+            };
+            return date.toLocaleTimeString('en-US', options);
         },
         notifyToggleRead: function() {
             var allRead = this.allRead;
