@@ -2,7 +2,7 @@ module.exports = {
     id: 'dataRepresentation',
     template: require('./index.html'),
     data: {
-        allRead: false,
+        allSelected: false,
         isInteractive: true,
         sortOldest: false,
         sortKey: 'submitted'
@@ -19,31 +19,33 @@ module.exports = {
             };
             return date.toLocaleTimeString('en-US', options);
         },
-        notifyToggleRead: function() {
-            var allRead = this.allRead;
+        notifyToggleSelected: function() {
+            var allSelected = this.allSelected;
             var dataSet = this.$data.dataSet;
-            var allDataRead = true;
+            var allDataSelected = true;
             for (i = 0; i < dataSet.length; i++) {
                 var data = dataSet[i];
-                if (data && !data.isRead) allRead = false;
+                if (data && !data.isSelected) allSelected = false;
             }
-            allRead = allDataRead;
+            allSelected = allDataSelected;
         },
-        toggleReadAll: function() {
-            this.allRead = !this.allRead;
-            var allRead = this.allRead;
+        toggleSelectAll: function() {
+            this.allSelected = !this.allSelected;
+            var allSelected = this.allSelected;
             var dataSet = this.$data.dataSet;
             for (i = 0; i < dataSet.length; i++) {
                 var data = dataSet[i];
-                if (data) data.isRead = allRead;
+                if (data) data.isSelected = allSelected;
             }
         },
         removeSelected: function()
         {
             var dataSet = this.$data.dataSet;
-            for (i = 0; i < dataSet.length; i++) {
+            console.log(dataSet[1]);
+            for (i = 0; i <= dataSet.length; i++) {
                 var data = dataSet[i];
-                if (data && data.isRead) {
+                if (data && data.isSelected) {
+                    console.log('data out of dataset with index ' + i + ' is selected and should be deleted');
                     dataSet.$remove(i);
                 }
             }
