@@ -15,7 +15,12 @@ module.exports = view.extend({
             return this.model.data.user;
         },
         myApps: function () {
-            return this.model.data.apps;
+            // temporary hack to only show current user's data
+            var username = this.model.data.user.username;
+            var myApps = this.model.data.apps.filter(function (app) {
+                return app.author.username === username;
+            });
+            return myApps;
         }
     },
     methods: {
@@ -24,21 +29,23 @@ module.exports = view.extend({
             auth.logout();
         },
         clean: function (e) {
-            var sh = this.model._fs.Shell();
-            var fs = this.model._fs;
+            var self = this;
+            var sh = self.model._fs.Shell();
+            var fs = self.model._fs;
             var sync = fs.sync;
+
+            function onClear(err) {
+                sync.request();
+                page('/ftu-3');
+            }
+
             fs.stat('/', function(e, stat) {
                 if (!stat.isDirectory()) {
-                    fs.unlink('/', function(e) {
-                        sync.request();
-                    });
+                    fs.unlink('/', onClear);
                 } else {
                     sh.rm('/', {
                         recursive: true
-                    }, function(e) {
-                        console.log(e);
-                        sync.request();
-                    });
+                    }, onClear);
                 }
             });
         }
