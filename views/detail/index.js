@@ -16,6 +16,6 @@ module.exports = view.extend({
 
         // Bind app
         self.$data.id = id;
-        self.$data.app = app.data;
+        self.$data.app = app.data || {};
     }
 });

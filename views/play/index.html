@@ -1,3 +1,6 @@
-<div v-component="navigationBar"></div>
-<div v-component="{{id}}" v-repeat="app.blocks"></div>
-<div v-component="makeBar" v-with="app"></div>
+<div v-component="navigationBar" v-with="title: app.name"></div>
+<div v-if="!app.id" v-component="alert" type="error" message="errorAppNotFound"></div>
+<div v-if="app.id">
+    <div v-component="{{id}}" v-repeat="app.blocks"></div>
+    <div v-component="makeBar" v-with="app"></div>
+</div>

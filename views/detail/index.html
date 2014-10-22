@@ -1,24 +1,26 @@
 <div v-component="navigationBar"></div>
-<header>
-    <img class="app-icon" src="{{app.icon}}" alt="{{app.name}}">
-    <hgroup>
-        <h3>{{app.name}}</h3>
-        <p class="text-light">by Kate</p>
-    </hgroup>
-</header>
-<ul id="detail-share">
-    <li><a href="/make/{{id}}/share">
-        <span class="fa fa-2x fa-fw fa-share-alt"></span><br>Share</a>
-    </li>
-    <li><a href="/make/{{id}}/play">
-        <span class="fa fa-2x fa-fw fa-eye"></span><br>Open</a>
-    </li>
-    <li><a href="" class="disabled">
-        <span class="fa fa-2x fa-fw fa-list"></span><br>Data</a>
-    </li>
-</ul>
-<p v-if="app.url" class="text-center">
-    <a href="{{app.url}}">View published app</a>
-</p>
-
+<div v-if="!app.id" v-component="alert" type="error" message="errorAppNotFound"></div>
+<div v-if="app.id">
+    <header>
+        <img class="app-icon" src="{{app.icon}}" alt="{{app.name}}">
+        <hgroup>
+            <h3>{{app.name}}</h3>
+            <p class="text-light">by Kate</p>
+        </hgroup>
+    </header>
+    <ul id="detail-share">
+        <li><a href="/make/{{id}}/share">
+            <span class="fa fa-2x fa-fw fa-share-alt"></span><br>Share</a>
+        </li>
+        <li><a href="/make/{{id}}/play">
+            <span class="fa fa-2x fa-fw fa-eye"></span><br>Open</a>
+        </li>
+        <li><a href="" class="disabled">
+            <span class="fa fa-2x fa-fw fa-list"></span><br>Data</a>
+        </li>
+    </ul>
+    <p v-if="app.url" class="text-center">
+        <a href="{{app.url}}">View published app</a>
+    </p>
+</div>
 <div v-component="tabBar"></div>

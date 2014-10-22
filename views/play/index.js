@@ -17,8 +17,7 @@ module.exports = view.extend({
         var app = new App(id);
 
         // Bind app
-        self.$data.app = app.data;
-        self.title = app.data.name;
+        self.$data.app = app.data || {};
 
         self.$data.onDone = '/make/' + id + '/share';
 

@@ -31,6 +31,10 @@
         "message": "Apps",
         "description": "These are mobile apps, to run on a phone"
     },
+    "My Apps": {
+        "message": "My Apps",
+        "description": "Mobile apps I have created"
+    },
     "by _": {
         "message": "by {{name}}",
         "description": "For apps, e.g. My Cool App, by {{name}}"
@@ -179,9 +183,29 @@
       "message": "Place call",
       "description": "Button for placing a call"
     },
-    "Login": {
-      "message": "Login",
-      "description": "Login button (logs user into Webmaker Mobile)"
+    "Sign In": {
+      "message": "Sign In",
+      "description": "Sign In button label (logs user into Webmaker Mobile)"
+    },
+    "Try as Guest": {
+      "message": "Try as Guest",
+      "description": "Label for action that allows a user to use the app without signing in."
+    },
+    "Guest": {
+      "message": "Guest",
+      "description": "Label for author when the user is in trial mode"
+    },
+    "Guest Explanation": {
+      "message": "Guests can build, but not publish apps.",
+      "description": "Explains the effect of using the app as a not signed in guest."
+    },
+    "Try in Offline Mode": {
+      "message": "Try in Offline Mode",
+      "description": "Label for action that allows a user to use the app without signing in when the device is not connected to the internet."
+    },
+    "Offline Mode Explanation": {
+      "message": "This device isn't connected to the internet, so you won't be able to publish any apps.",
+      "description": "Explains effect of using the app without an internet connection"
     },
     "Sign Out": {
       "message": "Sign Out",
@@ -258,6 +282,37 @@
     "No Apps Message": {
       "message": "You don't have any apps yet.",
       "description": "Message that is displayed in the profile when current user has no apps"
+    },
+    "Featured Apps": {
+      "message": "Featured Apps",
+      "description": "Featured apps (title for Discover page)"
+    },
+    "Near Me": {
+      "message": "Near Me",
+      "description": "Apps made near the user (title for Discover page)"
+    },
+    "Sorry, that name has already been snagged! Please try another.": {
+        "message": "Sorry, that name has already been snagged! Please try another.",
+        "description": "Error message informing user the name they are typing in on sign-up page has already been taken. The term 'snagged' is an idiom for taken."
+    },
+    "Send me email updates about Mozilla Webmaker and other projects": {
+        "message": "Send me email updates about Mozilla Webmaker and other projects",
+        "description": "Agreeing to recieve email updates about Mozilla Webmaker and other projects"
+    },
+    "I agree to your terms and conditions": {
+        "message": "I agree to your terms and conditions",
+        "description": "User agreeing to terms and conditions for Mozilla Webmaker"
+    },
+    "errorAppNotFound": {
+      "message": "Sorry, this app was not found. Go back to your <a href='/profile'>profile</a>?",
+      "description": "Error message for app details/editing/play view when the app is not found"
+    },
+    "errorDefault": {
+      "message": "errorDefault",
+      "description": "Oops! There was an error. Go back to your <a href='/profile'>profile</a>?"
+    },
+    "Discover": {
+      "message": "Discover",
+      "description": "Title for the Discover page (a listing of apps users can choose from)"
     }
-
 }

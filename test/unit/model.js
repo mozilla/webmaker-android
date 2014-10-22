@@ -24,7 +24,7 @@ describe('Model', function () {
         it('should have the expected history', function () {
             assert.deepEqual(model.data.history, {
                 ftu: true,
-                path: '/ftu'
+                path: '/sign-in'
             });
         });
 

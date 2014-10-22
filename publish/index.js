@@ -11,6 +11,7 @@ var blocks = clone(bulk(__dirname + '/../blocks', '**/*.js'));
 var componentList = {};
 componentList.navigationBar = require('../components/navigationBar');
 componentList.publishFooter = require('../components/publishFooter');
+componentList.alert = require('../components/alert');
 
 // Load all components
 for (var id in blocks) {
