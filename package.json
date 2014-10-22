@@ -22,26 +22,27 @@
     "gulp": "3.8.8"
   },
   "devDependencies": {
+    "bulk-require": "0.2.1",
+    "bulkify": "1.0.2",
     "del": "0.1.2",
     "fs-extra": "~0.11.1",
     "glob": "4.0.5",
     "gulp-browserify": "0.5.0",
+    "gulp-file": "0.1.0",
     "gulp-jscs": "1.1.2",
     "gulp-jshint": "1.8.4",
     "gulp-less": "1.3.5",
     "gulp-mocha": "1.0.0",
+    "gulp-plumber": "^0.6.6",
+    "gulp-webserver": "0.8.0",
+    "habitat": "3.0.0",
+    "mockrequire": "0.0.3",
     "node-appcache-generator": "k88hudson/node-appcache-generator",
     "node-static": "0.7.4",
     "partialify": "3.1.1",
     "phantomjs": "1.9.7-15",
-    "bulkify": "1.0.2",
-    "mockrequire": "0.0.3",
-    "webmaker-download-locales": "0.2.4",
-    "gulp-webserver": "0.8.0",
-    "gulp-file": "0.1.0",
     "request": "2.44.0",
-    "bulk-require": "0.2.1",
-    "habitat": "3.0.0",
-    "tv4": "^1.1.4"
+    "tv4": "^1.1.4",
+    "webmaker-download-locales": "0.2.4"
   }
 }
