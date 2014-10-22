@@ -1,23 +1,27 @@
-<div style="display: {{isInteractive ? 'table' : 'none'}};" class="dataRepresentationSelectAll">
-    <input style="display: none;" id="dataRepresentationDataSetMarkRead-All" type="checkbox" name="markReadAll" v-model="allRead" v-on="change: toggleReadAll(this)">
-    <label for="dataRepresentationDataSetMarkRead-All">Select all</label>
-    <label for="dataRepresentationDataSetMarkRead-All" class="tip tip-checkmark"></label>
+<div v-if="isInteractive" class="dataRepresentationSelectAll">
+    <input style="display: none;" id="dataRepresentationDataSetMarkSelected-All" type="checkbox" name="markAllSelected" v-model="allSelected">
+    <label for="dataRepresentationDataSetMarkSelected-All">Select all</label>
+    <label for="dataRepresentationDataSetMarkSelected-All" class="tip tip-checkmark"></label>
 </div>
-<table v-repeat="data: dataSet | orderBy sortKey !sortOldest" class="dataRepresentationDataSet" v-class="unread : !data.isRead">
-    <thead>
+<table v-repeat="data: dataSet | orderBy sortKey !sortOldest" class="dataRepresentationDataSet" v-class="unread : !data.isRead && isInteractive">
+    <thead v-if="isInteractive">
         <tr>
             <th>Submitted {{formatUnixTime(data.submitted)}}</th>
             <th>
-                <input style="display: none;" id="dataRepresentationDataSetMarkRead-{{$index}}" type="checkbox" name="markRead" v-model="data.isRead" v-on="change: notifyToggleRead()">
-                <label style="display: {{isInteractive ? 'block' : 'none'}};" for="dataRepresentationDataSetMarkRead-{{$index}}" class="tip tip-checkmark"></label>
+                <input style="display: none;" id="dataRepresentationDataSetMarkSelected-{{$index}}" type="checkbox" name="markSelected" v-model="data.isSelected">
+                <label for="dataRepresentationDataSetMarkSelected-{{$index}}" class="tip tip-checkmark"></label>
             </th>
         </tr>
     </thead>
     <tbody>
+        <tr>
+            <td>Time</td>
+            <td>{{formatUnixTime(data.submitted)}}</td>
+        </tr>
         <tr v-repeat="dataBlock: data.dataBlocks">
             <td>{{dataBlock.label}}</td>
             <td>{{dataBlock.value}}</td>
         </tr>
     </tbody>
 </table>
-<button style="display: {{isInteractive ? 'table' : 'none'}};" type="button" class="dataRepresentationRemoveButton btn btn-remove" v-on="click: removeSelected()">Delete Selected</button>
+<button v-if="isInteractive" type="button" class="dataRepresentationRemoveButton btn btn-remove" v-on="click: removeSelected()">Delete Selected</button>

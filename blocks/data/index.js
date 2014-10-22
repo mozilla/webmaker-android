@@ -14,10 +14,10 @@ module.exports = {
                 placeholder: 'Responses',
                 skipAutoRender: true
             },
-            data: {
-                label: 'Sorting',
-                type: 'data',
-                value: false,
+            color: {
+                label: 'Header and Title Text Color',
+                type: 'color',
+                value: '#36494A',
                 skipAutoRender: true
             }
         },
