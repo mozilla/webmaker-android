@@ -12,6 +12,9 @@ module.exports = view.extend({
             mailingList: true
         },
         login: auth.login,
+        errors: {
+            usernameTaken: false
+        }
     },
     methods: {
         onDone: function () {
@@ -33,6 +36,21 @@ module.exports = view.extend({
                 console.log('done!');
             });
 
+        },
+        checkUsernameExists: function() {
+            var self = this;
+            if(!self.$data.user.username) {
+                return;
+            }
+
+            auth.checkUsername(self.$data.user.username, function(error, message){
+                if(error && message === 'Username taken') {
+                    self.$data.errors.usernameTaken = true;
+                }
+                else {
+                    self.$data.errors.usernameTaken = false;
+                }
+            });
         }
     },
     created: function () {
