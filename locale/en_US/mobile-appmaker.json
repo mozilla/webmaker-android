@@ -31,6 +31,10 @@
         "message": "Apps",
         "description": "These are mobile apps, to run on a phone"
     },
+    "My Apps": {
+        "message": "My Apps",
+        "description": "Mobile apps I have created"
+    },
     "by _": {
         "message": "by {{name}}",
         "description": "For apps, e.g. My Cool App, by {{name}}"
@@ -187,6 +191,10 @@
       "message": "Try as Guest",
       "description": "Label for action that allows a user to use the app without signing in."
     },
+    "Guest": {
+      "message": "Guest",
+      "description": "Label for author when the user is in trial mode"
+    },
     "Guest Explanation": {
       "message": "Guests can build, but not publish apps.",
       "description": "Explains the effect of using the app as a not signed in guest."
@@ -302,5 +310,9 @@
     "errorDefault": {
       "message": "errorDefault",
       "description": "Oops! There was an error. Go back to your <a href='/profile'>profile</a>?"
+    },
+    "Discover": {
+      "message": "Discover",
+      "description": "Title for the Discover page (a listing of apps users can choose from)"
     }
 }
