@@ -18,29 +18,39 @@ module.exports = {
             };
             return date.toLocaleTimeString('en-US', options);
         },
-        removeSelected: function()
+        actionButton: function()
         {
-            this.$data.dataSet = this.$data.dataSet.filter(function(dataSet) {
-                return dataSet ? !dataSet.isSelected : false;
-            });
+            if (this.countSelected === 0)
+            {
+                //nothing in here ;( maybe you want to create some link sharing logic in here
+            }
+            else
+            {
+                this.$data.dataSet = this.$data.dataSet.filter(function(dataSet) {
+                    return dataSet ? !dataSet.isSelected : false;
+                });
+            }
         }
     },
     computed: {
+        countSelected: function() {
+            if (!this.$data) return false;
+            var dataSet = this.$data.dataSet;
+            var count = 0;
+            for (i = 0; i < dataSet.length; i++) {
+                if (dataSet[i] && dataSet[i].isSelected) count++;
+            }
+            return count;
+        },
         allSelected: {
             $get: function() {
                 if (!this.$data) return false;
-                var dataSet = this.$data.dataSet;
-                var selected = true;
-                for (i = 0; i < dataSet.length; i++) {
-                    if (dataSet[i] && !dataSet[i].isSelected) selected = false;
-                }
-                return selected;
+                return this.$data.dataSet.length !== 0 && this.countSelected === this.$data.dataSet.length;
             },
-            $set: function() {
+            $set: function(toValue) {
                 var dataSet = this.$data.dataSet;
-                var selected = !this.allSelected;
                 for (i = 0; i < dataSet.length; i++) {
-                    if (dataSet[i]) dataSet[i].isSelected = selected;
+                    if (dataSet[i]) dataSet[i].isSelected = toValue;
                 }
             }
         }

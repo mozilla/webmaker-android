@@ -1,7 +1,7 @@
 <div v-if="isInteractive" class="dataRepresentationSelectAll">
     <input style="display: none;" id="dataRepresentationDataSetMarkSelected-All" type="checkbox" name="markAllSelected" v-model="allSelected">
     <label for="dataRepresentationDataSetMarkSelected-All">Select all</label>
-    <label for="dataRepresentationDataSetMarkSelected-All" class="tip tip-checkmark"></label>
+    <label for="dataRepresentationDataSetMarkSelected-All" class="tip tip-checkmark fa fa-check"></label>
 </div>
 <table v-repeat="data: dataSet | orderBy sortKey !sortOldest" class="dataRepresentationDataSet" v-class="unread : !data.isRead && isInteractive">
     <thead v-if="isInteractive">
@@ -9,7 +9,7 @@
             <th>Submitted {{formatUnixTime(data.submitted)}}</th>
             <th>
                 <input style="display: none;" id="dataRepresentationDataSetMarkSelected-{{$index}}" type="checkbox" name="markSelected" v-model="data.isSelected">
-                <label for="dataRepresentationDataSetMarkSelected-{{$index}}" class="tip tip-checkmark"></label>
+                <label for="dataRepresentationDataSetMarkSelected-{{$index}}" class="tip tip-checkmark fa fa-check"></label>
             </th>
         </tr>
     </thead>
@@ -24,4 +24,4 @@
         </tr>
     </tbody>
 </table>
-<button v-if="isInteractive" type="button" class="dataRepresentationRemoveButton btn btn-remove" v-on="click: removeSelected()">Delete Selected</button>
+<button v-if="isInteractive" type="button" class="dataRepresentationActionButton btn" v-class="btn-share: countSelected === 0, btn-remove: countSelected >= 1, " v-on="click: actionButton()"></button>
