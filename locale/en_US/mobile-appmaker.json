@@ -294,5 +294,13 @@
     "I agree to your terms and conditions": {
         "message": "I agree to your terms and conditions",
         "description": "User agreeing to terms and conditions for Mozilla Webmaker"
+    },
+    "errorAppNotFound": {
+      "message": "Sorry, this app was not found. Go back to your <a href='/profile'>profile</a>?",
+      "description": "Error message for app details/editing/play view when the app is not found"
+    },
+    "errorDefault": {
+      "message": "errorDefault",
+      "description": "Oops! There was an error. Go back to your <a href='/profile'>profile</a>?"
     }
 }

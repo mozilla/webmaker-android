@@ -1,0 +1,6 @@
+<div class="alert alert-{{type || 'error'}}">
+    <div class="alert-icon">
+        <span class="fa {{icon}}"></span>
+    </div>
+    <div v-bind-html="message || 'errorDefault'"></div>
+</div>
