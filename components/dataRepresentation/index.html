@@ -25,4 +25,7 @@
         </tr>
     </tbody>
 </table>
+
+<div v-if="countSelected == 0" class="noDataInfo">{{ 'No Data available' | i18n }}</div>
+
 <button v-if="isInteractive" type="button" class="dataRepresentationActionButton btn" v-class="btn-share: countSelected === 0, btn-remove: countSelected >= 1, " v-on="click: actionButton()"></button>
