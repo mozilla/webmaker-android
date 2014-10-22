@@ -6,7 +6,7 @@
     padding: @inputPadding;
 
     button, input[type="number"] {
-        display: inline;
+        display: inline-block;
     }
 
     button {
@@ -21,24 +21,21 @@
         margin: 0;
         &:first-of-type {
             border-radius: 5px 0 0 5px;
-            top: 6px;
-            left: 5px;
-            position: relative;
+            float: left;
         }
         &:last-of-type {
             border-radius: 0 5px 5px 0;
-            top: 6px;
-            left: -5px;
-            position: relative;
+            float: right;
         }
     }
-
 
     input[type="number"] {
         padding-left: 0;
         padding-right: 0;
+        border-left: none;
+        border-right: none;
         text-align: center;
         color: @turquoise;
-        width: calc(~"100% - " (2 * @buttonWidth + 9));
+        width: calc(~"100% - " (2 * @buttonWidth));
     }
 }
