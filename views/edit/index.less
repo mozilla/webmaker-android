@@ -2,11 +2,13 @@
     padding: 44px 0 25px 0;
 
     a.add {
-        display: block;
+        display: flex;
+        justify-content: center;
+        align-items: center;
         width: 95%;
         height: 44px;
 
-        margin: 15px 2.5% 20px 2.5%;
+        margin: 21px 2.5% 15px 2.5%;
         border: 1px dashed @highlight;
         background-color: transparent;
 
@@ -37,13 +39,12 @@
         left: 0;
         top: 0;
         z-index: 1;
-        height: 45px;
+        height: 50px;
 
         color: @highlight;
         text-align: center;
-        font-size: 16pt;
+        font-size: 1.1em;
         font-weight: 400;
-        font-style: italic;
         margin: 0;
         &:focus {
             border: 1px dashed @turquoise;
