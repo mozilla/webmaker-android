@@ -7,25 +7,26 @@
     color: @white;
     background-color: @turquoise;
     font-size: 8px;
-    border-radius: 999px;
+    border-radius: 100%;
+    user-select: none;
+    -moz-user-select: none;
+    cursor: pointer;
 
     &.tip-remove {
         background-color: @red;
+        border: 1px solid @mediumGrey;
+        font-size: @tipSize - 3;
+        line-height: @tipSize;
 
-        &:after {
-            //.fa-times;
-            content: 'x';
-            font-size: 18px;
-            text-align: center;
-            margin-left: 8px;
-            line-height: 22px;
+        &:before, &:after {
+            color: @white;
+            margin-left: 3px;
         }
     }
 
     &.tip-checkmark {
         background-color: @white;
         border: 1px solid @mediumGrey;
-        border-radius: 100%;
         font-size: @tipSize - 5;
         line-height: @tipSize;
 
