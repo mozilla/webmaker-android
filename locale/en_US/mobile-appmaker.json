@@ -303,13 +303,17 @@
         "message": "I agree to your terms and conditions",
         "description": "User agreeing to terms and conditions for Mozilla Webmaker"
     },
+    "error404": {
+      "message": "Sorry, we couldn't find this page. Would you like to <a href='/sign-in'>go back to the start</a>?",
+      "description": "Error message for 404"
+    },
     "errorAppNotFound": {
       "message": "Sorry, this app was not found. Go back to your <a href='/profile'>profile</a>?",
       "description": "Error message for app details/editing/play view when the app is not found"
     },
     "errorDefault": {
-      "message": "errorDefault",
-      "description": "Oops! There was an error. Go back to your <a href='/profile'>profile</a>?"
+      "message": "Oops! There was an error. Go back to your <a href='/profile'>profile</a>?",
+      "description": "Default error message for alert component"
     },
     "Discover": {
       "message": "Discover",
