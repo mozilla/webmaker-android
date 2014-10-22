@@ -1,3 +1,4 @@
+<div v-if="isInteractive" v-component="switch" v-with="value : sortOldest, options : sortOptions"></div>
 <div v-if="isInteractive" class="dataRepresentationSelectAll">
     <input style="display: none;" id="dataRepresentationDataSetMarkSelected-All" type="checkbox" name="markAllSelected" v-model="allSelected">
     <label for="dataRepresentationDataSetMarkSelected-All">Select all</label>
