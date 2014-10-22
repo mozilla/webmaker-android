@@ -4,7 +4,7 @@ module.exports = {
     paramAttributes: ['type', 'message'],
     computed: {
         icon: function () {
-            return this.type === 'success' ? 'fa-check-circle' : 'fa-times-circle'
+            return this.type === 'success' ? 'fa-check-circle' : 'fa-times-circle';
         }
     }
 };
