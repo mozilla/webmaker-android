@@ -1,0 +1,17 @@
+<div class="bottom">
+    <div v-if="!offline" >
+        <a v-if="username" href="/profile" class="btn-next">{{ 'Get Started' | i18n }}</a>
+        <button v-if="!username" class="btn-next" v-on="click: login">{{ 'Sign In' | i18n }}</button>
+        <a href="#" class="btn-next btn-guest" v-on="click: goOffline">{{ 'Try as Guest' | i18n }}</a>
+        <p>
+            {{ 'Guest Explanation' | i18n }}
+        </p>
+    </div>
+    <div v-if="offline" >
+        <a href="#" class="btn-next" v-on="click: goOffline">{{ 'Try in Offline Mode' | i18n }}</a>
+        <p>
+            {{ 'Offline Mode Explanation' | i18n }}
+        </p>
+    </div>
+</div>
+
