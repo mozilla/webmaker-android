@@ -1,11 +1,8 @@
 <div v-component="navigationBar"></div>
 
-<div class="form-group">
-    <label for="email">{{ 'Email' | i18n }}</label>
-    <input type="text" id="email" v-model="email">
-    <p>
-        <button class="btn" v-on="click: login">{{ 'Choose a different email' | i18n }}</button>
-    </p>
+<div class="email">
+    <h3>{{ 'Email' | i18n }}</h3>
+    {{ email || 'your@email.com' }} - <a v-on="click: login">{{ 'Change' | i18n }}</a>
 </div>
 
 <form>
@@ -16,7 +13,7 @@
             {{'Sorry, that name has already been snagged! Please try another.' | i18n}}
         </div>
     </div>
-    
+
     <div class="checkbox">
         <label for="mailing-list">
             <input type="checkbox" id="mailing-list" v-model="user.mailingList">
