@@ -7,4 +7,4 @@
 	</li>
 </ul>
 
-<button type="button" class="btn btn-block btn-add" v-on="click: items.push('')">{{ 'Add Option' | i18n }}</button>
+<button type="button" class="btn btn-block btn-add" v-on="click: items.$set(items.length, '')">{{ 'Add Option' | i18n }}</button>
