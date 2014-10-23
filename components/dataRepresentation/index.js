@@ -43,6 +43,9 @@ module.exports = {
             }
             return count;
         },
+		countDataSets: function() {
+			return this.$data.dataSet.length;
+		},
         allSelected: {
             $get: function() {
                 if (!this.$data) return false;
