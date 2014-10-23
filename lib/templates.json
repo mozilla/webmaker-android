@@ -934,17 +934,6 @@
         ]
     },
     {
-        "id": "229abeb3-aa7d-453d-8082-96f8f1b0bfd8",
-        "name": "Family",
-        "icon": "/images/placeholder_family.png",
-        "author": {
-            "name": "Sita",
-            "location": "",
-            "avatar": "/images/avatar_family.png"
-        },
-        "blocks": []
-    },
-    {
         "id": "5c22ae09-eeb5-4faf-aeb2-756da98790bf",
         "name": "Scientist",
         "icon": "/images/placeholder_scientist.png",
@@ -952,6 +941,17 @@
             "name": "Paola",
             "location": "",
             "avatar": "/images/avatar_scientist.png"
+        },
+        "blocks": []
+    },
+    {
+        "id": "229abeb3-aa7d-453d-8082-96f8f1b0bfd8",
+        "name": "Family",
+        "icon": "/images/placeholder_family.png",
+        "author": {
+            "name": "Sita",
+            "location": "",
+            "avatar": "/images/avatar_family.png"
         },
         "blocks": []
     },
