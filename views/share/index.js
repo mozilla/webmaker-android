@@ -36,13 +36,20 @@ module.exports = view.extend({
         var message = i18n.get('share_message').replace('{{app.name}}', app.data.name);
         self.$data.shareMessage = message;
 
+
         // Publish
         var sync = self.model._sync;
+        var syncTimeout;
+        var isSynced = false;
+        sync.once('completed', function() {
+            isSynced = true;
+        });
         self.$data.onDone = function () {
             if (self.$data.isPublishing) return;
 
             function onSynced() {
                 publish(id, self.$data.user.username, function (err, data) {
+                    global.clearTimeout(syncTimeout);
                     self.$data.isPublishing = false;
                     if (err) {
                         console.error(err);
@@ -60,10 +67,16 @@ module.exports = view.extend({
             // Show spinner
             self.$data.isPublishing = true;
 
-            // Sync makedrive - todo. Request doesn't seem to work
-            // sync.once('completed', onSynced);
-            // sync.request();
-            onSynced();
+            if (!isSynced) {
+                syncTimeout = global.setTimeout(function() {
+                    self.$data.isPublishing = false;
+                    self.$data.error = 'Oops! Your publish is taking too long';
+                }, 15000);
+                sync.once('completed', onSynced);
+
+            } else {
+                onSynced();
+            }
 
         };
 
