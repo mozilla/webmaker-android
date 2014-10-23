@@ -49,7 +49,7 @@ module.exports = {
         if (self.attributes.current.value === 'undefined' || self.attributes.current.value === '') self.attributes.current.value = self.attributes.min.value;
 
 		if(self.isEditing) {
-			var inputElements = self.$el.querySelectorAll('input, button');
+			var inputElements = self.$el.querySelectorAll('input');
             for (var i = 0; i < inputElements.length; i++) {
                 inputElements[i].disabled = 'disabled';
             }
