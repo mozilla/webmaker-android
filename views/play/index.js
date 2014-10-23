@@ -17,6 +17,6 @@ module.exports = view.extend({
         // Bind app
         self.$data.app = app.data || {};
 
-        self.$data.onDone = '/make/' + id + '/share';
+        self.$data.onDone = '/make/' + id + '/share?publish=true';
     }
 });

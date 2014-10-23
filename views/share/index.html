@@ -1,20 +1,15 @@
 <div v-component="navigationBar"></div>
 
 <form v-show="!isPublishing">
-    {{test}}
+
     <div v-show="error" v-component="alert" type="error" message="{{error}}"></div>
-    <h3 v-show="app.url" class="section">URL</h3>
-    <div v-show="app.url" class="form-group">
-        <a href="{{app.url}}">{{app.url}}</a>
+    <div v-show="!error">
+        <h3 class="section">Share via SMS</h3>
+        <div v-show="user.username" class="form-group">
+            <textarea name="share-message" v-model="shareMessage" class="textarea-large"></textarea>
+        </div>
     </div>
 
-    <h3 class="section">Share by SMS</h3>
-    <div class="form-group" v-show="!user.username">
-        <button v-on="click: login" class="btn btn-block">Log in or sign up</button>
-    </div>
-    <div v-show="user.username" class="form-group">
-        <textarea name="share-message" v-model="shareMessage" class="textarea-large"></textarea>
-    </div>
 </form>
 
 <div v-show="isPublishing" id="loader">

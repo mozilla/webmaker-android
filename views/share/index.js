@@ -11,15 +11,22 @@ module.exports = view.extend({
     data: {
         title: 'Share',
         cancel: true,
-        error: false
+        error: false,
+        isPublishing: true
     },
     methods: {
         login: function (e) {
             e.preventDefault();
             auth.login();
+        },
+        onDone: function () {
+            var self = this;
+            var sms = 'sms:?body=' + encodeURIComponent(self.$data.shareMessage);
+            window.location = sms;
+            page('/make/' + self.$parent.$data.params.id + '/detail');
         }
     },
-    created: function () {
+    ready: function () {
         var self = this;
 
         // Fetch app
@@ -34,51 +41,43 @@ module.exports = view.extend({
 
         // Share message
         var message = i18n.get('share_message').replace('{{app.name}}', app.data.name);
-        self.$data.shareMessage = message;
+        self.$data.shareMessage = message + ': ' + app.data.url;
 
+        if (!global.location.search.match('publish=true') && app.data.url) {
+            self.$data.isPublishing = false;
+            return;
+        }
 
         // Publish
+        console.log('Starting publish...');
+
         var sync = self.model._sync;
-        var syncTimeout;
         var isSynced = false;
-        sync.once('completed', function() {
-            isSynced = true;
-        });
-        self.$data.onDone = function () {
-            if (self.$data.isPublishing) return;
+        var syncTimeout;
 
-            function onSynced() {
-                publish(id, self.$data.user.username, function (err, data) {
-                    global.clearTimeout(syncTimeout);
-                    self.$data.isPublishing = false;
-                    if (err) {
-                        console.error(err);
-                        self.$data.error = (err.status || 'Error') + ': ' + err.message;
-                        return;
-                    }
-                    self.$data.error = false;
-                    app.data.url = data.url;
-                    var sms = 'sms:?body=' + encodeURI(self.$data.shareMessage) + ' ' + data.url;
-                    window.location = sms;
-                    page('/make/' + id + '/detail');
-                });
-            }
+        function onSynced() {
+            publish(id, self.$data.user.username, function (err, data) {
+                global.clearTimeout(syncTimeout);
+                self.$data.isPublishing = false;
+                if (err) {
+                    console.error(err);
+                    self.$data.error = (err.status || 'Error') + ': ' + err.message;
+                    return;
+                }
+                console.log('Published!');
+                self.$data.error = false;
+                app.data.url = data.url;
+                self.$data.shareMessage = message + ': ' + data.url;
+            });
+        }
 
-            // Show spinner
-            self.$data.isPublishing = true;
+        syncTimeout = global.setTimeout(function() {
+            console.log('timed out');
+            self.$data.isPublishing = false;
+            self.$data.error = 'Oops! Your publish is taking too long';
+        }, 15000);
 
-            if (!isSynced) {
-                syncTimeout = global.setTimeout(function() {
-                    self.$data.isPublishing = false;
-                    self.$data.error = 'Oops! Your publish is taking too long';
-                }, 15000);
-                sync.once('completed', onSynced);
-
-            } else {
-                onSynced();
-            }
-
-        };
+        sync.once('completed', onSynced);
 
     }
 });
