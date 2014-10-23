@@ -1,6 +1,6 @@
 var templates = require('../../lib/templates.json');
-var uuid = require('../../lib/uuid');
 var view = require('../../lib/view');
+var App = require('../../lib/app');
 var i18n = require('../../lib/i18n');
 
 module.exports = view.extend({
@@ -13,30 +13,13 @@ module.exports = view.extend({
     ready: function () {
         var self = this;
 
-        // Template clone helper
-        function getTemplateClone (id) {
-            for (var i = 0; i < templates.length; i++) {
-                if (templates[i].id === id) {
-                    return JSON.parse(JSON.stringify(templates[i]));
-                }
-            }
-        }
-
         // Click handler
         function clickHandler (e) {
             e.preventDefault();
 
             var id = e.currentTarget.getAttribute('data-id');
-            var clone = getTemplateClone(id);
-
-            // Prepare the clone for use
-            clone.id = uuid();
-            clone.name = i18n.get('Untitled App');
-            clone.author = self.model.data.user;
-
-            // Add to model & redirect to editor
-            self.model.data.apps.unshift(clone);
-            self.page('/make/' + clone.id + '/edit');
+            var app = App.createApp({template: id, name: i18n.get('Untitled App')});
+            self.page('/make/' + app.id + '/edit');
         }
 
         // Apply click handler to each cell
