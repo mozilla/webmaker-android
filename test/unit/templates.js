@@ -74,7 +74,7 @@ var authorSchema = {
 			pattern: '(^/images/.*)|'
 		}
 	},
-	required: ['name', 'location', 'avatar']
+	required: ['username', 'location', 'avatar']
 };
 
 // Template schemas
