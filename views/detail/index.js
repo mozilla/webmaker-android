@@ -8,8 +8,7 @@ module.exports = view.extend({
     template: require('./index.html'),
     data: {
         back: true,
-        title: 'App',
-        isTemplate: false
+        title: 'App'
     },
     methods: {
         create: function () {
@@ -27,7 +26,7 @@ module.exports = view.extend({
         var app = new App(id).data;
         if (!app) {
             app = templates[utils.findInArray(templates, 'id', id)] || {};
-            self.$data.isTemplate = true
+            self.$data.isTemplate = true;
         }
 
         // Bind app
