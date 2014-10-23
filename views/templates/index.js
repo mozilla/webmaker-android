@@ -36,7 +36,7 @@ module.exports = view.extend({
 
             // Add to model & redirect to editor
             self.model.data.apps.unshift(clone);
-            self.page('/make/' + clone.id + '/play');
+            self.page('/make/' + clone.id + '/edit');
         }
 
         // Apply click handler to each cell
