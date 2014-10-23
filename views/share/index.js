@@ -11,6 +11,7 @@ module.exports = view.extend({
     data: {
         title: 'Share',
         cancel: true,
+        error: false
     },
     methods: {
         login: function (e) {
@@ -43,7 +44,12 @@ module.exports = view.extend({
             function onSynced() {
                 publish(id, self.$data.user.username, function (err, data) {
                     self.$data.isPublishing = false;
-                    if (err) return console.error(err);
+                    if (err) {
+                        console.error(err);
+                        self.$data.error = (err.status || 'Error') + ': ' + err.message;
+                        return;
+                    }
+                    self.$data.error = false;
                     app.data.url = data.url;
                     var sms = 'sms:?body=' + encodeURI(self.$data.shareMessage) + ' ' + data.url;
                     window.location = sms;
