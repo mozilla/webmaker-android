@@ -8,14 +8,27 @@ module.exports = view.extend({
     template: require('./index.html'),
     data: {
         back: true,
-        title: 'App'
+        title: 'App',
+        isTemplate: false
+    },
+    methods: {
+        create: function () {
+            var self = this;
+            var app = App.createApp({
+                data: self.$data.app
+            });
+            self.page('/make/' + app.id + '/edit');
+        }
     },
     created: function () {
         var self = this;
         // Fetch app
         var id = self.$parent.$data.params.id;
         var app = new App(id).data;
-        if (!app) app = templates[utils.findInArray(templates, 'id', id)] || {};
+        if (!app) {
+            app = templates[utils.findInArray(templates, 'id', id)] || {};
+            self.$data.isTemplate = true
+        }
 
         // Bind app
         self.$data.id = id;

@@ -1,7 +1,6 @@
 var templates = require('../../lib/templates.json');
 var view = require('../../lib/view');
 var App = require('../../lib/app');
-var i18n = require('../../lib/i18n');
 
 module.exports = view.extend({
     id: 'templates',
@@ -18,7 +17,7 @@ module.exports = view.extend({
             e.preventDefault();
 
             var id = e.currentTarget.getAttribute('data-id');
-            var app = App.createApp({template: id, name: i18n.get('Untitled App')});
+            var app = App.createApp({template: id});
             self.page('/make/' + app.id + '/edit');
         }
 

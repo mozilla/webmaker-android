@@ -1,5 +1,6 @@
 var mockrequire = require('mockrequire');
 var assert = require('assert');
+
 var templates = require('../../lib/templates.json');
 var mockId = '000d1745-5d3c-4997-ac0c-15df68bbbecz';
 var mockModelInstance = {
@@ -49,7 +50,12 @@ var mockBlocks = function (id) {
 var App = mockrequire('../../lib/app', {
     './model': mockModel,
     './blocks': mockBlocks,
-    'clone': require('clone')
+    'clone': require('clone'),
+    './i18n': {
+        get: function(key) {
+            return key;
+        }
+    }
 });
 
 var app = new App(mockId);
