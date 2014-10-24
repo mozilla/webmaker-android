@@ -1,46 +1,47 @@
-ul {
+label[for="dropdown"] + ul
+{
     list-style: none inside;
     margin: 0;
     padding: 0;
-}
-
-label[for="dropdown"] + ul
-{
-    .tip.tip-remove {
-        float: right;
-        margin-top: -32px;
-    }
+    overflow: hidden;
 
     li {
         margin-bottom: 15px;
-    }
+        white-space: nowrap;
+        width: calc(~"100% + 50px");
 
-    input {
-        width: 100%;
-        animation-duration: 3s;
-        animation-name: giveSpace;
-    }
-
-    *
-    {
-        animation-fill-mode: forwards;
-    }
-
-    input:focus {
-        animation-duration: 0.4s;
-        animation-name: giveSpace;
-        & + .tip.tip-remove {
-            animation-duration: 0.4s;
-            animation-name: blendIn;
+        > * {
+            display: inline-block;
+            animation-fill-mode: forwards;
         }
-    }
 
-    input:not(:focus) {
-        animation-duration: 0.4s;
-        animation-name: takeSpace;
-        & + .tip.tip-remove {
-            animation-duration: 0.4s;
-            animation-name: blendOut;
+        input {
+            width: calc(~"100% - 50px");
+            animation-duration: 3s;
+            animation-name: giveSpace;
+
+            &:not(:focus) {
+                animation-duration: 0.4s;
+                animation-name: takeSpace;
+                & + .tip.tip-remove {
+                    animation-duration: 0.4s;
+                    animation-name: blendOut;
+                }
+            }
+
+            &:focus {
+                animation-duration: 0.4s;
+                animation-name: giveSpace;
+                & + .tip.tip-remove {
+                    animation-duration: 0.4s;
+                    animation-name: blendIn;
+                }
+            }
+        }
+
+        .tip.tip-remove {
+            position: relative;
+            top: 3px;
         }
     }
 
@@ -55,12 +56,12 @@ label[for="dropdown"] + ul
     }
 
     @keyframes giveSpace {
-        from {width: 100%;}
-        to {width: calc(~"100% - 32px");}
+        from {width: calc(~"100% - 50px");}
+        to {width: calc(~"100% - 50px - 32px");}
     }
 
     @keyframes takeSpace {
-        from {width: calc(~"100% - 32px");}
-        to {width: 100%;}
+        from {width: calc(~"100% - 50px - 32px");}
+        to {width: calc(~"100% - 50px");}
     }
 }

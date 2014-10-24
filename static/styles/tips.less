@@ -15,12 +15,14 @@
     &.tip-remove {
         background-color: @red;
         border: 1px solid @mediumGrey;
-        font-size: @tipSize - 3;
+        font-size: @tipSize - 6;
         line-height: @tipSize;
 
         &:before, &:after {
             color: @white;
-            margin-left: 3px;
+            position: relative !important;
+            top: -1px !important;
+            left: 4px !important;
         }
     }
 
