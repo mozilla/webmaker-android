@@ -1,5 +1,6 @@
 <div v-if="!app.id" v-component="alert" type="error" message="errorAppNotFound"></div>
 <div v-if="app.id">
+    <div v-component="navigationBar" v-with="title: 'Edit'"></div>
     <input id="name-input" type="text" v-model="app.name">
     <a class="add" href="/make/{{app.id}}/add">+</a>
     <div id="blocks">
