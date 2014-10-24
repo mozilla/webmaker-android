@@ -83,7 +83,9 @@ module.exports = view.extend({
             self.$data.error = 'Oops! Your publish is taking too long';
         }, PUBLISH_TIMEOUT);
 
-        sync.once('completed', onSynced);
+        onSynced();
+
+        // sync.once('completed', onSynced);
 
     }
 });

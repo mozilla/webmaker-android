@@ -1,7 +1,11 @@
-<button class="back" v-if="back" v-on="click: goBack">&lt;</button>
+<button v-if="back === true" class="back" v-on="click: goBack">&lt;</button>
+<a v-if="typeof back === 'string'" class="back" href="{{back}}">&lt;</a>
+
 <button v-if="cancel === true" v-on="click: goBack">{{'Cancel' | i18n}}</button>
 <a v-if="typeof cancel === 'string'" href="{{cancel}}">{{'Cancel' | i18n}}</a>
+
 <h1>{{title | i18n}}</h1>
-<button v-if="typeof onDone === 'function'" v-on="click: onDone" v-class="disabled: doneDisabled">{{'Done' | i18n}}
+
+<button v-if="typeof onDone === 'function'" v-on="click: onDone" v-class="disabled: doneDisabled">{{doneLabel || 'Done' | i18n}}
 </button>
-<a v-if="typeof onDone === 'string'" href="{{onDone}}" v-class="disabled: doneDisabled">{{'Done' | i18n}}</a>
+<a v-if="typeof onDone === 'string'" href="{{onDone}}" v-class="disabled: doneDisabled">{{doneLabel || 'Done' | i18n}}</a>

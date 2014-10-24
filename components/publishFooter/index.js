@@ -2,7 +2,8 @@ module.exports = {
     id: 'publish-footer',
     template: require('./index.html'),
     data: {
-        showFooter: false
+        showFooter: false,
+        showInstall: false
     },
     methods: {
         toggleShowFooter: function (e) {
@@ -23,6 +24,29 @@ module.exports = {
         overlay.addEventListener('click', function () {
             self.toggleShowFooter();
         }, false);
+
+        if (navigator.mozApps) {
+            var manifestUrl = location.href + 'manifest.webapp';
+            self.$data.install = function install(e) {
+                e.preventDefault();
+                var installLocFind = navigator.mozApps.install(manifestUrl);
+                installLocFind.onsuccess = function (data) {
+                    self.$data.showInstall = false;
+                };
+                installLocFind.onerror = function() {
+                    alert('Sorry, we could not install this app: ' + installLocFind.error.name);
+                };
+            };
+
+            var installCheck = navigator.mozApps.checkInstalled(manifestUrl);
+            installCheck.onsuccess = function() {
+                if (installCheck.result) {
+                    self.$data.showInstall = false;
+                } else {
+                    self.$data.showInstall = true;
+                }
+            };
+        }
 
         self.toggleOverlay = function (show) {
             if (show) {

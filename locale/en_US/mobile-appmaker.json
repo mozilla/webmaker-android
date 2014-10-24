@@ -342,5 +342,9 @@
     "Data": {
       "message": "Data",
       "description": "Look at the data collected by an app"
+    },
+    "Publish": {
+      "message": "Publish",
+      "description": "Button label for publishing the current app"
     }
 }

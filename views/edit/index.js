@@ -7,7 +7,8 @@ module.exports = view.extend({
     id: 'edit',
     template: require('./index.html'),
     data: {
-        cancel: '/profile'
+        back: '/profile',
+        doneLabel: 'Publish'
     },
     created: function () {
         var self = this;
