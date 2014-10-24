@@ -1,5 +1,7 @@
 var mockrequire = require('mockrequire');
 var assert = require('assert');
+
+var templates = require('../../lib/templates.json');
 var mockId = '000d1745-5d3c-4997-ac0c-15df68bbbecz';
 var mockModelInstance = {
     data: { apps: [
@@ -8,7 +10,7 @@ var mockModelInstance = {
             name: 'Sample App',
             icon: '/images/placeholder_puppy.png',
             author: {
-                name: 'Andrew',
+                username: 'Andrew',
                 location: 'Portland',
                 avatar: '/images/avatar_puppy.png'
             },
@@ -48,12 +50,17 @@ var mockBlocks = function (id) {
 var App = mockrequire('../../lib/app', {
     './model': mockModel,
     './blocks': mockBlocks,
-    'clone': require('clone')
+    'clone': require('clone'),
+    './i18n': {
+        get: function(key) {
+            return key;
+        }
+    }
 });
 
 var app = new App(mockId);
 
-describe('App', function () {
+describe('App instance', function () {
     describe('interface', function () {
         it('should have expected properties', function () {
             assert.equal(app.id, mockId);
@@ -92,5 +99,25 @@ describe('App', function () {
     });
 
 });
+
+describe('App', function () {
+    describe('#createApp', function () {
+        it('should be a function', function () {
+            assert.equal(typeof App, 'function');
+        });
+        it('should return undefined when no template or data is passed in', function () {
+            assert.equal(typeof App.createApp(), 'undefined');
+            assert.equal(typeof App.createApp({template: 'notrealid'}), 'undefined');
+        });
+        it('should return an app instance for valid template id', function () {
+            var template = templates[2];
+            var app = App.createApp({template: template.id, name: 'Bob is my cat'});
+            assert.ok(app instanceof App);
+            assert.ok(app.id && app.id !== template.id);
+            assert.equal(app.data.name, 'Bob is my cat');
+        });
+    });
+});
+
 
 

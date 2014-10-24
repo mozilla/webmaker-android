@@ -5,10 +5,10 @@
         <p class="text-small">Make your own app at</p>
         <p><a href="http://webmaker-app.mofodev.net" class="btn btn-dark btn-block">Mozilla Webmaker</a></p>
         <!-- Can't show these until we have manifest + discover implemented -->
-       <!--  <ul class="list-btns">
-            <li><a class="btn" href="">Add to Homescreen</a></li>
-            <li><a class="btn" href="">Learn more abut this app</a></li>
-            <li><a class="btn" href="">Share App</a></li>
-        </ul> -->
+        <ul class="list-btns">
+            <li v-if="showInstall"><a class="btn" href="#" v-on="click: install">Add to Homescreen</a></li>
+          <!--   <li><a class="btn" href="">Learn more abut this app</a></li>
+            <li><a class="btn" href="">Share App</a></li> -->
+        </ul>
     </div>
 </div>

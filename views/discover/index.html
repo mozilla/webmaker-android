@@ -14,7 +14,7 @@ TODO: Restore this toggle when we have implemented 'nearby' view.
 
     <ul class="list-cell" v-show="mode === 'featured'">
         <lh>{{ "Featured Apps" | i18n }}</lh>
-        <li v-component="appCell" v-repeat="apps.featured"></li>
+        <li v-component="appCell" v-repeat="apps.featured" mode="detail"></li>
     </ul>
 
     <ul class="list-cell" v-show="mode === 'nearby'">

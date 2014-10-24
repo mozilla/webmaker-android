@@ -4,7 +4,7 @@
         "name": "From Scratch",
         "icon": "/images/placeholder_blank.png",
         "author": {
-            "name": "",
+            "username": "",
             "location": "",
             "avatar": ""
         },
@@ -15,7 +15,7 @@
         "name": "Journalist",
         "icon": "/images/placeholder_journalist.png",
         "author": {
-            "name": "Rafid Daoud",
+            "username": "Rafid Daoud",
             "location": "",
             "avatar": ""
         },
@@ -172,7 +172,7 @@
         "name": "Vendor",
         "icon": "/images/placeholder_vendor.png",
         "author": {
-            "name": "Yousuf",
+            "username": "Yousuf",
             "location": "",
             "avatar": "/images/avatar_vendor.png"
         },
@@ -297,7 +297,7 @@
         "name": "Medic",
         "icon": "/images/placeholder_medic.png",
         "author": {
-            "name": "Aya",
+            "username": "Aya",
             "location": "",
             "avatar": "/images/avatar_medic.png"
         },
@@ -308,7 +308,7 @@
         "name": "Teacher",
         "icon": "/images/placeholder_teacher.png",
         "author": {
-            "name": "Deepa",
+            "username": "Deepa",
             "location": "",
             "avatar": "/images/avatar_teacher.png"
         },
@@ -709,7 +709,7 @@
         "name": "How To",
         "icon": "/images/placeholder_howto.png",
         "author": {
-            "name": "Deepa",
+            "username": "Deepa",
             "location": "",
             "avatar": "/images/avatar_teacher.png"
         },
@@ -938,7 +938,7 @@
         "name": "Scientist",
         "icon": "/images/placeholder_scientist.png",
         "author": {
-            "name": "Paola",
+            "username": "Paola",
             "location": "",
             "avatar": "/images/avatar_scientist.png"
         },
@@ -949,7 +949,7 @@
         "name": "Family",
         "icon": "/images/placeholder_family.png",
         "author": {
-            "name": "Sita",
+            "username": "Sita",
             "location": "",
             "avatar": "/images/avatar_family.png"
         },
@@ -960,7 +960,7 @@
         "name": "Blogger",
         "icon": "/images/placeholder_blogger.png",
         "author": {
-            "name": "Emma",
+            "username": "Emma",
             "location": "",
             "avatar": "/images/avatar_blogger.png"
         },
@@ -1051,7 +1051,7 @@
         "name": "Club",
         "icon": "/images/placeholder_student.png",
         "author": {
-            "name": "Pedro",
+            "username": "Pedro",
             "location": "",
             "avatar": "/images/avatar_student.png"
         },
@@ -1236,7 +1236,7 @@
         "name": "Safety",
         "icon": "/images/placeholder_safety.png",
         "author": {
-            "name": "Pedro",
+            "username": "Pedro",
             "location": "",
             "avatar": "/images/avatar_student.png"
         },
@@ -1274,7 +1274,7 @@
         "name": "Activist",
         "icon": "/images/placeholder_activist.png",
         "author": {
-            "name": "Richard",
+            "username": "Richard",
             "location": "",
             "avatar": "/images/avatar_activist.png"
         },

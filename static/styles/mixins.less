@@ -13,7 +13,17 @@
 
 // For .main containers
 .header-space() {
-    padding: @header-height 0 @footer-height 0;
+  padding: @header-height 0 0;
+}
+.footer-space() {
+  margin-bottom: @tabBar-height;
+}
+
+// For full pages
+.full-page() {
+  padding: 0;
+  margin: 0;
+  height: 100%;
 }
 
 // Headings for list-cell, forms
@@ -35,4 +45,10 @@
     list-style: none;
     padding: 0;
     margin: 0;
+}
+
+.text-truncate() {
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
 }

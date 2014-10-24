@@ -259,12 +259,12 @@
       "message": "I agree to your terms and conditions",
       "description": "Label for terms and conditions checkbox"
     },
-    "Choose a different email": {
-      "message": "Choose a different email",
-      "description": "Button for choosing a different email "
+    "Change": {
+      "message": "Change",
+      "description": "Link for changing things, like choosing a different email address for your account"
     },
     "share_message": {
-      "message": "Check out the app \"{{app.name}}\" I made with Mozilla Webmaker",
+      "message": "Check out the app {{app.name}} I made with Mozilla Webmaker",
       "description": "Message that gets sent when a published app is shared to friends"
     },
     "App": {
@@ -318,5 +318,33 @@
     "Discover": {
       "message": "Discover",
       "description": "Title for the Discover page (a listing of apps users can choose from)"
+    },
+    "Make &amp; share": {
+      "message": "Make &amp; share",
+      "description": "Part 1 of 2 for sign-in view headline"
+    },
+    "the web": {
+      "message": "the web",
+      "description": "Part 2 of 2 for sign-in view headline"
+    },
+    "Share": {
+      "message": "Share",
+      "description": "Share an app"
+    },
+    "Open": {
+      "message": "Open",
+      "description": "Open an app"
+    },
+    "Create": {
+      "message": "Create",
+      "description": "Create an app"
+    },
+    "Data": {
+      "message": "Data",
+      "description": "Look at the data collected by an app"
+    },
+    "Publish": {
+      "message": "Publish",
+      "description": "Button label for publishing the current app"
     }
 }
