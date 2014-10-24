@@ -20,17 +20,14 @@ module.exports = {
             };
             return date.toLocaleTimeString('en-US', options);
         },
-        actionButton: function()
-        {
-            if (this.countSelected === 0)
-            {
-                //nothing in here ;( maybe you want to create some link sharing logic in here
-            }
-            else
-            {
-                this.$data.dataSet = this.$data.dataSet.filter(function(dataSet) {
-                    return dataSet ? !dataSet.isSelected : false;
-                });
+        actionButton: function() {
+			var self = this;
+            if(this.countSelected > 0) {
+				for(i = 0; i < self.$data.dataSet.length; i++) {
+					if(self.$data.dataSet[i].isSelected) {
+						self.$dispatch('dataDelete', self.$data.dataSet[i].firebaseId);
+					}
+				}
             }
         }
     },

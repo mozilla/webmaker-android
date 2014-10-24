@@ -28,5 +28,10 @@ module.exports = view.extend({
             self.$data.initialDataLoaded = true;
 			self.currentDataSets = currentDataSets;
 		});
+
+		// listen for deletion requests
+		self.$on('dataDelete', function(firebaseId) {
+			data.delete(firebaseId);
+		});
     }
 });
