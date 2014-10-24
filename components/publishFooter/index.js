@@ -44,7 +44,7 @@ module.exports = {
                     self.$data.showInstall = false;
                 } else {
                     self.$data.showInstall = true;
-                };
+                }
             };
         }
 
