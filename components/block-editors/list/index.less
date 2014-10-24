@@ -20,22 +20,12 @@ label[for="dropdown"] + ul
 
         input {
             width: calc(~"100% - 50px");
-            animation-duration: 3s;
-            animation-name: giveSpace;
-            -webkit-animation-duration: 3s;
-            -webkit-animation-name: giveSpace;
 
             &:not(:focus) {
                 animation-duration: 0.4s;
                 animation-name: takeSpace;
                 -webkit-animation-duration: 0.4s;
                 -webkit-animation-name: takeSpace;
-                & + .tip.tip-remove {
-                    animation-duration: 0.4s;
-                    animation-name: blendOut;
-                    -webkit-animation-duration: 0.4s;
-                    -webkit-animation-name: blendOut;
-                }
             }
 
             &:focus {
@@ -43,12 +33,6 @@ label[for="dropdown"] + ul
                 animation-name: giveSpace;
                 -webkit-animation-duration: 0.4s;
                 -webkit-animation-name: giveSpace;
-                & + .tip.tip-remove {
-                    animation-duration: 0.4s;
-                    animation-name: blendIn;
-                    -webkit-animation-duration: 0.4s;
-                    -webkit-animation-name: blendIn;
-                }
             }
         }
 
@@ -56,16 +40,6 @@ label[for="dropdown"] + ul
             position: relative;
             top: 3px;
         }
-    }
-
-    @keyframes blendIn {
-        from {opacity: 0;}
-        to {opacity: 1;}
-    }
-
-    @keyframes blendOut {
-        from {opacity: 1;}
-        to {opacity: 0;}
     }
 
     @keyframes giveSpace {
@@ -76,16 +50,6 @@ label[for="dropdown"] + ul
     @keyframes takeSpace {
         from {width: calc(~"100% - 50px - 32px");}
         to {width: calc(~"100% - 50px");}
-    }
-
-    @-webkit-keyframes blendIn {
-        from {opacity: 0;}
-        to {opacity: 1;}
-    }
-
-    @-webkit-keyframes blendOut {
-        from {opacity: 1;}
-        to {opacity: 0;}
     }
 
     @-webkit-keyframes giveSpace {
