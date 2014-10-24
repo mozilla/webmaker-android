@@ -264,7 +264,7 @@
       "description": "Link for changing things, like choosing a different email address for your account"
     },
     "share_message": {
-      "message": "Check out the app \"{{app.name}}\" I made with Mozilla Webmaker",
+      "message": "Check out the app {{app.name}} I made with Mozilla Webmaker",
       "description": "Message that gets sent when a published app is shared to friends"
     },
     "App": {
@@ -326,5 +326,21 @@
     "the web": {
       "message": "the web",
       "description": "Part 2 of 2 for sign-in view headline"
+    },
+    "Share": {
+      "message": "Share",
+      "description": "Share an app"
+    },
+    "Open": {
+      "message": "Open",
+      "description": "Open an app"
+    },
+    "Create": {
+      "message": "Create",
+      "description": "Create an app"
+    },
+    "Data": {
+      "message": "Data",
+      "description": "Look at the data collected by an app"
     }
 }

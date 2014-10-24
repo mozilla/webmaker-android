@@ -1,4 +1,5 @@
 .app-cell .cell {
+  display: flex;
     .app-icon,
     .author-icon {
       width: 50px;
@@ -9,5 +10,15 @@
     }
     .app-icon {
       border-radius: 50%;
+    }
+    .title {
+      .text-truncate;
+    }
+    .left, .right {
+      float: none;
+      width: auto;
+    }
+    .left {
+      flex-grow: 1;
     }
 }
