@@ -21,14 +21,18 @@ module.exports = {
                 skipAutoRender: true
             }
         },
-        currentDataSets: {},
+        currentDataSets: [],
         isInteractive: false,
         sortOldest: false
     },
     ready: function (){
         var self = this;
 		// Fetch collected Data
-		var data = new Data('foooobar');
-		self.currentDataSets = data.getAllDataSets();
+
+		/*var data = new Data('foooobar');
+		self.currentDataSets = [];
+		data.getAllDataSets(function(currentDataSets) {
+			self.currentDataSets = currentDataSets;
+		});*/
     }
 };

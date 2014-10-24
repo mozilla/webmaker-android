@@ -6,7 +6,6 @@ var Data = require('../../lib/data');
 module.exports = view.extend({
     id: 'data',
     template: require('./index.html'),
-	currentDataSets: {},
     created: function () {
         var self = this;
 
@@ -20,7 +19,10 @@ module.exports = view.extend({
 
 		// Fetch collected Data
 		var data = new Data(id);
-		self.currentDataSets = data.getAllDataSets();
-		console.log(self.currentDataSets);
+
+		self.currentDataSets = [];
+		data.getAllDataSets(function(currentDataSets) {
+			self.currentDataSets = currentDataSets;
+		});
     }
 });
