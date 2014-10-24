@@ -19,10 +19,13 @@ module.exports = view.extend({
     methods: {
         onDone: function () {
             var self = this;
-            if (!self.$data.user.username) {
+            if (!self.$data.user.username || self.$data.errors.usernameTaken) {
                 return;
             }
             if (!self.$data.user.terms) {
+                return;
+            }
+            if (self.$data.errors.timeout) {
                 return;
             }
 
@@ -59,5 +62,10 @@ module.exports = view.extend({
         auth.on('newuser', function (assertion, email) {
             self.$data.email = email;
         });
+        setTimeout(function() {
+            auth.logout();
+            self.model.offlineConnect();
+            self.page('/sign-in');
+        }, 10000);
     }
 });

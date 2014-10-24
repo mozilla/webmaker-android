@@ -9,7 +9,7 @@
     <div class="form-group">
         <label for="username">{{ 'Choose a username' | i18n }}</label>
         <input type="text" id="username" v-model="user.username" v-on="keyup: checkUsernameExists">
-        <div class="error" id="usernameTaken" v-if="show: errors.usernameTaken">
+        <div class="form-error" id="usernameTaken" v-if="show: errors.usernameTaken">
             {{'Sorry, that name has already been snagged! Please try another.' | i18n}}
         </div>
     </div>
