@@ -27,12 +27,15 @@ module.exports = {
     },
     ready: function (){
         var self = this;
-		// Fetch collected Data
 
-		/*var data = new Data('foooobar');
+		// Fetch collected Data
 		self.currentDataSets = [];
-		data.getAllDataSets(function(currentDataSets) {
-			self.currentDataSets = currentDataSets;
-		});*/
+		if(!self.isEditing) {
+			var data = new Data(self.$parent.$parent.$data.app.id);
+
+			data.getAllDataSets(function(currentDataSets) {
+				self.currentDataSets = currentDataSets;
+			});
+		}
     }
 };
