@@ -61,7 +61,7 @@ module.exports = {
 			// register block on data object
 			self.$dispatch('dataChange',
 				self.$index,
-				'',
+				self.$el.querySelector('input[type="number"]').value,
 				self.$data.attributes.label.value
 			);
 		}
