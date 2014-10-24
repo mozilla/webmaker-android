@@ -14,6 +14,7 @@ label[for="dropdown"] + ul
 
         > * {
             display: inline-block;
+            animation-fill-mode: forwards;
             -webkit-animation-fill-mode: forwards;
         }
 
@@ -25,25 +26,27 @@ label[for="dropdown"] + ul
             -webkit-animation-name: giveSpace;
 
             &:not(:focus) {
-                animation-duration: @animation-duration;
+                animation-duration: 0.4s;
                 animation-name: takeSpace;
-                -webkit-animation-duration: @animation-duration;
+                -webkit-animation-duration: 0.4s;
                 -webkit-animation-name: takeSpace;
                 & + .tip.tip-remove {
-                    animation-duration: @animation-duration;
+                    animation-duration: 0.4s;
                     animation-name: blendOut;
-                    -webkit-animation-duration: @animation-duration;
+                    -webkit-animation-duration: 0.4s;
                     -webkit-animation-name: blendOut;
                 }
             }
 
             &:focus {
-                -webkit-animation-duration: @animation-duration;
+                animation-duration: 0.4s;
+                animation-name: giveSpace;
+                -webkit-animation-duration: 0.4s;
                 -webkit-animation-name: giveSpace;
                 & + .tip.tip-remove {
-                    animation-duration: @animation-duration;
+                    animation-duration: 0.4s;
                     animation-name: blendIn;
-                    -webkit-animation-duration: @animation-duration;
+                    -webkit-animation-duration: 0.4s;
                     -webkit-animation-name: blendIn;
                 }
             }
@@ -74,8 +77,6 @@ label[for="dropdown"] + ul
         from {width: calc(~"100% - 50px - 32px");}
         to {width: calc(~"100% - 50px");}
     }
-
-
 
     @-webkit-keyframes blendIn {
         from {opacity: 0;}
