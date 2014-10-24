@@ -29,8 +29,10 @@ module.exports = view.extend({
 		});
 
 		self.$on('dataSave', function() {
-			data.save();
-			self.$broadcast('dataSave');
+			if(data.getCurrentCollectedCount() > 0) {
+				data.save();
+				self.$broadcast('dataSaveSuccess');
+			}
 		});
     }
 });
