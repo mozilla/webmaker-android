@@ -1,6 +1,6 @@
 <div v-component="navigationBar" v-with="title: app.name"></div>
 <div v-if="!app.id" v-component="alert" type="error" message="errorAppNotFound"></div>
 <div v-if="app.id">
-	<div v-component="dataRepresentation" v-with="dataSet : currentDataSets"></div>
+	<div v-component="dataRepresentation" v-with="dataSet : currentDataSets, initialDataLoaded : initialDataLoaded"></div>
 	<div v-component="makeBar" v-with="app"></div>
 </div>

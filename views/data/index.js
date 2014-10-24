@@ -6,6 +6,9 @@ var Data = require('../../lib/data');
 module.exports = view.extend({
     id: 'data',
     template: require('./index.html'),
+    data: {
+      initialDataLoaded: false
+    },
     created: function () {
         var self = this;
 
@@ -22,6 +25,7 @@ module.exports = view.extend({
 
 		self.currentDataSets = [];
 		data.getAllDataSets(function(currentDataSets) {
+            self.$data.initialDataLoaded = true;
 			self.currentDataSets = currentDataSets;
 		});
     }

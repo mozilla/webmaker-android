@@ -5,7 +5,8 @@ module.exports = {
         isInteractive: true,
         sortOldest: false,
         sortKey: 'submitted',
-        sortOptions: ['Newest', 'Oldest']
+        sortOptions: ['Newest', 'Oldest'],
+        initialDataLoaded: false
     },
     methods: {
         formatUnixTime: function(unix) {
