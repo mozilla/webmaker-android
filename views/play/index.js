@@ -29,7 +29,10 @@ module.exports = view.extend({
 		});
 
 		self.$on('dataSave', function() {
-			data.save();
+			if(data.getCurrentCollectedCount() > 0) {
+				data.save();
+				self.$broadcast('dataSaveSuccess');
+			}
 		});
     }
 });
