@@ -2,6 +2,6 @@
 <button v-if="cancel === true" v-on="click: goBack">{{'Cancel' | i18n}}</button>
 <a v-if="typeof cancel === 'string'" href="{{cancel}}">{{'Cancel' | i18n}}</a>
 <h1>{{title | i18n}}</h1>
-<button v-if="typeof onDone === 'function'" v-on="click: onDone">{{'Done' | i18n}}
+<button v-if="typeof onDone === 'function'" v-on="click: onDone" v-class="disabled: doneDisabled">{{'Done' | i18n}}
 </button>
-<a v-if="typeof onDone === 'string'" href="{{onDone}}">{{'Done' | i18n}}</a>
+<a v-if="typeof onDone === 'string'" href="{{onDone}}" v-class="disabled: doneDisabled">{{'Done' | i18n}}</a>

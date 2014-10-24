@@ -16,18 +16,19 @@ module.exports = view.extend({
             usernameTaken: false
         }
     },
+    computed: {
+        doneDisabled: function () {
+            var self = this;
+            return !self.$data.user.username ||
+                !self.$data.user.terms ||
+                !auth._assertion ||
+                self.$data.errors.usernameTaken;
+        }
+    },
     methods: {
         onDone: function () {
             var self = this;
-            if (!self.$data.user.username || self.$data.errors.usernameTaken) {
-                return;
-            }
-            if (!self.$data.user.terms) {
-                return;
-            }
-            if (self.$data.errors.timeout) {
-                return;
-            }
+            if (self.$data.doneDisabled) return;
 
             auth.createUser({
                 assertion: auth._assertion,
@@ -66,6 +67,6 @@ module.exports = view.extend({
             auth.logout();
             self.model.offlineConnect();
             self.page('/sign-in');
-        }, 10000);
+        }, 60000);
     }
 });

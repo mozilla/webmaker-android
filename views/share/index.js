@@ -5,6 +5,8 @@ var publish = require('../../lib/publish');
 var auth = require('../../lib/auth');
 var page = require('page');
 
+var PUBLISH_TIMEOUT = 20000;
+
 module.exports = view.extend({
     id: 'share',
     template: require('./index.html'),
@@ -12,7 +14,8 @@ module.exports = view.extend({
         title: 'Share',
         cancel: true,
         error: false,
-        isPublishing: true
+        isPublishing: true,
+        doneDisabled: true
     },
     methods: {
         login: function (e) {
@@ -21,6 +24,7 @@ module.exports = view.extend({
         },
         onDone: function () {
             var self = this;
+            if (!self.$data.app.url) return;
             var sms = 'sms:?body=' + encodeURIComponent(self.$data.shareMessage);
             window.location = sms;
             page('/make/' + self.$parent.$data.params.id + '/detail');
@@ -50,6 +54,7 @@ module.exports = view.extend({
 
         // Publish
         console.log('Starting publish...');
+        self.$data.doneDisabled = true;
 
         var sync = self.model._sync;
         var isSynced = false;
@@ -66,6 +71,7 @@ module.exports = view.extend({
                 }
                 console.log('Published!');
                 self.$data.error = false;
+                self.$data.doneDisabled = false;
                 app.data.url = data.url;
                 self.$data.shareMessage = message + ': ' + data.url;
             });
@@ -75,7 +81,7 @@ module.exports = view.extend({
             console.log('timed out');
             self.$data.isPublishing = false;
             self.$data.error = 'Oops! Your publish is taking too long';
-        }, 15000);
+        }, PUBLISH_TIMEOUT);
 
         sync.once('completed', onSynced);
 
