@@ -113,11 +113,26 @@
     }
 
     .noDataInfo {
+        @loadingIndicatorSize: 20px;
         border-bottom: 1px solid @borderColor;
         border-top: 1px solid @borderColor;
         margin-top: -1px;
         padding: 10px 14px;
+        min-height: 2 * 10px + @loadingIndicatorSize;
         font-size: 14px;
         color: @darkGrey;
+
+        display: table;
+        width: 100%;
+
+        > * {
+            display: table-cell;
+            vertical-align: middle;
+        }
+
+        > #loadingIndicator {
+            width: @loadingIndicatorSize; height: @loadingIndicatorSize;
+            float: right;
+        }
     }
 }

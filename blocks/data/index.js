@@ -22,11 +22,15 @@ module.exports = {
             }
         },
         currentDataSets: [],
+        initialDataLoaded: false,
         isInteractive: false,
         sortOldest: false
     },
+
     ready: function (){
         var self = this;
+
+        if (!self.$data || !self.$data.currentDataSets || self.$data.currentDataSets.length === 0) self.$data.initialDataLoaded = false;
 
 		// Fetch collected Data
 		self.currentDataSets = [];
@@ -34,8 +38,12 @@ module.exports = {
 			var data = new Data(self.$parent.$parent.$data.app.id);
 
 			data.getAllDataSets(function(currentDataSets) {
-				self.currentDataSets = currentDataSets;
+                self.$data.initialDataLoaded = true;
+                self.currentDataSets = currentDataSets;
 			});
 		}
+        else {
+            self.$data.initialDataLoaded = true;
+        }
     }
 };
