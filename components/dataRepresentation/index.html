@@ -26,7 +26,10 @@
     </tbody>
 </table>
 
-<div v-if="countDataSets == 0 && initialDataLoaded" class="noDataInfo">{{ 'No Data available' | i18n }}</div>
-<div v-if="countDataSets == 0 && !initialDataLoaded" v-component="loadingIndicator"></div>
+<div class="noDataInfo" v-if="countDataSets == 0">
+    <div v-if="initialDataLoaded">{{ 'No Data available' | i18n }}</div>
+    <div v-if="!initialDataLoaded" v-component="loadingIndicator"></div>
+</div>
+
 
 <button v-if="isInteractive && countDataSets > 0" type="button" class="dataRepresentationActionButton btn" v-class="btn-share: countSelected === 0, btn-remove: countSelected >= 1, " v-on="click: actionButton()"></button>
