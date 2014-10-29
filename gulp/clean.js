@@ -12,7 +12,7 @@ module.exports = function (callback) {
 
         var file = '';
         for (var i in files) {
-            file += fs.readFileSync(files[i]) + '\n';
+            file += "@import '" + files[i] + "'; \n";
         }
         fs.writeFile('./build/styles/bundle.less', file, callback);
     });
