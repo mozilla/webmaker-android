@@ -34,19 +34,14 @@ module.exports = view.extend({
             var fs = self.model._fs;
             var sync = fs.sync;
 
-            function onClear(err) {
-                sync.request();
-                page('/sign-in');
-            }
-
-            fs.stat('/', function(e, stat) {
-                if (!stat.isDirectory()) {
-                    fs.unlink('/', onClear);
-                } else {
-                    sh.rm('/', {
-                        recursive: true
-                    }, onClear);
+            var username = this.model.data.user.username;
+            this.model.data.apps.forEach(function (app, index) {
+                if(app.author.username === username) {
+                    delete self.model.data.apps[index];
                 }
+            });
+            self.model.save(function() {
+                page('/sign-in');
             });
         }
     }
