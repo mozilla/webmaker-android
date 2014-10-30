@@ -1,19 +1,22 @@
 var App = require('../../lib/app');
-var templates = require('../../lib/templates.json');
 var view = require('../../lib/view');
 var bulk = require('bulk-require');
 var editorModels = bulk(__dirname + '/../../components/block-editors', '**/*.js');
 
-// Rename editor components
-for (var id in editorModels) {
-    editorModels[id + '-editor'] = editorModels[id];
-    delete editorModels[id];
-}
-
-var id = null;
 var app = null;
 var index = null;
 var block = null;
+var id = null;
+
+// Rename editor components
+for (id in editorModels) {
+    if(editorModels.hasOwnProperty(id)) {
+        editorModels[id + '-editor'] = editorModels[id];
+        delete editorModels[id];
+    }
+}
+
+id = null;
 
 module.exports = view.extend({
     id: 'block',

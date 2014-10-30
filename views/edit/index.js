@@ -1,7 +1,5 @@
 var App = require('../../lib/app');
-var templates = require('../../lib/templates.json');
 var view = require('../../lib/view');
-var page = require('page');
 
 module.exports = view.extend({
     id: 'edit',

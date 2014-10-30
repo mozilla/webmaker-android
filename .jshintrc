@@ -1,0 +1,17 @@
+{
+    "undef": true,
+    "unused": "vars",
+    "eqeqeq": true,
+    "forin": true,
+    "immed": true,
+    "indent": 4,
+    "latedef": true,
+    "noarg": true,
+    "nonew": true,
+    "plusplus": false,
+    "trailing": true,
+    "expr": true,
+    "node": true,
+    "browser": true,
+    "devel": true
+}
