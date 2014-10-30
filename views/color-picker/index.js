@@ -21,7 +21,6 @@ module.exports = view.extend({
         app = new App(id);
         $data.blockIndex = self.$parent.$data.params.index;
         $data.block = app.data.blocks[$data.blockIndex];
-        var attrs = $data.block.attributes;
         $data.selectedColor = $data.block.attributes.color.value;
         $data.colors.forEach(function (arr, i) {
             arr.forEach(function (color) {

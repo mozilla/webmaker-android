@@ -1,5 +1,4 @@
 var view = require('../../lib/view');
-var clone = require('clone');
 var page = require('page');
 var auth = require('../../lib/auth');
 
@@ -30,9 +29,6 @@ module.exports = view.extend({
         },
         clean: function (e) {
             var self = this;
-            var sh = self.model._fs.Shell();
-            var fs = self.model._fs;
-            var sync = fs.sync;
 
             var username = this.model.data.user.username;
             this.model.data.apps.forEach(function (app, index) {

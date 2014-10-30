@@ -1,5 +1,3 @@
-var Vue = require('vue');
-
 module.exports = {
     className: 'slide-toggle',
     template: require('./index.html'),

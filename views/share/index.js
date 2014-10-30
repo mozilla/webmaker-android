@@ -57,7 +57,6 @@ module.exports = view.extend({
         self.$data.doneDisabled = true;
 
         var sync = self.model._sync;
-        var isSynced = false;
         var syncTimeout;
 
         function onSynced() {

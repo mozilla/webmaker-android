@@ -1,5 +1,4 @@
 var App = require('../../lib/app');
-var templates = require('../../lib/templates.json');
 var view = require('../../lib/view');
 var Blocks = require('../../lib/blocks');
 var blocks = new Blocks();
