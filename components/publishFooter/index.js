@@ -10,6 +10,10 @@ module.exports = {
             if (e) e.preventDefault();
             this.$data.showFooter = !this.$data.showFooter;
             this.toggleOverlay(this.$data.showFooter);
+        },
+        share: function (e) {
+            e.preventDefault();
+            window.location = 'sms:?body=' + window.location;
         }
     },
     created: function () {
@@ -25,7 +29,10 @@ module.exports = {
             self.toggleShowFooter();
         }, false);
 
-        if (navigator.mozApps) {
+        // Currently disabled due to single-app-per-origin restriction
+        var allowInstall = false;
+
+        if (allowInstall && navigator.mozApps) {
             var manifestUrl = location.href + 'manifest.webapp';
             self.$data.install = function install(e) {
                 e.preventDefault();
@@ -37,7 +44,6 @@ module.exports = {
                     alert('Sorry, we could not install this app: ' + installLocFind.error.name);
                 };
             };
-
             var installCheck = navigator.mozApps.checkInstalled(manifestUrl);
             installCheck.onsuccess = function() {
                 if (installCheck.result) {
