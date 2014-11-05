@@ -18,7 +18,7 @@ deploy:
       tags: true
       repo: mozillafordevelopment/webmaker-app
       all_branches: true
-      condition: $NODE_ENV=NPM
+      condition: $NODE_ENV = NPM
   - provider: s3
     skip_cleanup: true
     access_key_id: AKIAJPR2NZFHZBHKSDAQ
@@ -30,7 +30,7 @@ deploy:
       all_branches: true
       tags: true
       repo: mozillafordevelopment/webmaker-app
-      condition: $NODE_ENV=STAGING
+      condition: $NODE_ENV = STAGING
   - provider: s3
     skip_cleanup: true
     access_key_id: AKIAJKJTAESA5KSRVZHQ
@@ -41,4 +41,4 @@ deploy:
     on:
       branch: master
       repo: mozillafordevelopment/webmaker-app
-      condition: $NODE_ENV=MOFODEV
+      condition: $NODE_ENV = MOFODEV
