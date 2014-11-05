@@ -2,10 +2,14 @@ language: node_js
 node_js:
 - '0.10'
 env:
+  matrix:
+  - NODE_ENV=NPM
+  - NODE_ENV=STAGING
   - NODE_ENV=MOFODEV
 before_deploy:
 - ./node_modules/.bin/gulp build
 deploy:
+  matrix:
   - provider: npm
     skip_cleanup: true
     email: k88hudson@gmail.com
@@ -17,6 +21,17 @@ deploy:
       all_branches: true
   - provider: s3
     skip_cleanup: true
+    access_key_id: AKIAJPR2NZFHZBHKSDAQ
+    secret_access_key:
+      secure: AUmOFvnG0aTxXu+GUpe54RWmpg9W/1aws7+9TPNPVuYZW9v4pOC+51rhsIkPAVY6llm6GgoOv90/EhfgWyeypJ+M/jG/ptnd30MaDVqyitNTHhPmX8feTzTaHZcNmM0lUPEKTE8MICDsWlj7zQ/Trj5j8Ae2mcWSTM588d9cqdU=
+    bucket: webmaker-app-staging
+    local-dir: build
+    on:
+      all_branches: true
+      tags: true
+      repo: mozillafordevelopment/webmaker-app
+  - provider: s3
+    skip_cleanup: true
     access_key_id: AKIAJKJTAESA5KSRVZHQ
     secret_access_key:
       secure: cmZMfUZ4X8utFiFcRSK17aPd3jiQ2Fab/xMKcwXuBgD1jQXda0i+4GkQZ5jSoim1Vd7oNapRp+s2hfK4eOtc9OUWcaA4S6oISg75tm6yMZq1tSABtgk1Z7FSbZNwH8iw6qITlHuXd4mwhayDqLiZlzbcS/h/K45pswE5963MlF8=
@@ -25,4 +40,3 @@ deploy:
     on:
       branch: master
       repo: mozillafordevelopment/webmaker-app
-
