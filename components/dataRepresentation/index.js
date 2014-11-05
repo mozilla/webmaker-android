@@ -22,9 +22,9 @@ module.exports = {
         },
         actionButton: function() {
 			var self = this;
-            if(this.countSelected > 0) {
-				for(i = 0; i < self.$data.dataSet.length; i++) {
-					if(self.$data.dataSet[i].isSelected) {
+            if (this.countSelected > 0) {
+				for (var i = 0; i < self.$data.dataSet.length; i++) {
+					if (self.$data.dataSet[i].isSelected) {
 						self.$dispatch('dataDelete', self.$data.dataSet[i].firebaseId);
 					}
 				}
@@ -36,7 +36,7 @@ module.exports = {
             if (!this.$data) return false;
             var dataSet = this.$data.dataSet;
             var count = 0;
-            for (i = 0; i < dataSet.length; i++) {
+            for (var i = 0; i < dataSet.length; i++) {
                 if (dataSet[i] && dataSet[i].isSelected) count++;
             }
             return count;
@@ -52,7 +52,7 @@ module.exports = {
             },
             $set: function(toValue) {
                 var dataSet = this.$data.dataSet;
-                for (i = 0; i < dataSet.length; i++) {
+                for (var i = 0; i < dataSet.length; i++) {
                     if (dataSet[i]) dataSet[i].isSelected = toValue;
                 }
             }
