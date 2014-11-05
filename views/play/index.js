@@ -1,5 +1,6 @@
 var App = require('../../lib/app');
 var view = require('../../lib/view');
+var Data = require('../../lib/data');
 
 module.exports = view.extend({
     id: 'play',
@@ -19,5 +20,19 @@ module.exports = view.extend({
         self.$data.app = app.data || {};
 
         self.$data.onDone = '/make/' + id + '/share?publish=true';
+
+		// Listen for Data Submitted by the User
+		var data = new Data(id);
+
+		self.$on('dataChange', function(index, value, label) {
+			data.collect(index, value, label);
+		});
+
+		self.$on('dataSave', function() {
+			if(data.getCurrentCollectedCount() > 0) {
+				data.save();
+				self.$broadcast('dataSaveSuccess');
+			}
+		});
     }
 });

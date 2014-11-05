@@ -10,7 +10,8 @@ var expose = [
     'PUBLISH_ENDPOINT',
     'MAKEDRIVE_URL',
     'OFFLINE',
-    'PUBLISH_DEV_MODE'
+    'PUBLISH_DEV_MODE',
+	'FIREBASE_URL'
 ];
 
 module.exports = function () {
