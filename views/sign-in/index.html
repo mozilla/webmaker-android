@@ -5,6 +5,7 @@
 <div class="bottom">
     <div v-if="!offline" >
         <a v-if="username" href="/profile" class="btn-next">{{ 'Get Started' | i18n }}</a>
+        <button v-if="!username" class="btn-next" v-on="click: create">{{ 'Join Webmaker' | i18n }}</button>
         <button v-if="!username" class="btn-next" v-on="click: login">{{ 'Sign In' | i18n }}</button>
         <a href="#" class="btn-next btn-guest" v-on="click: goOffline">{{ 'Try as Guest' | i18n }}</a>
         <p>

@@ -1,5 +1,4 @@
 var view = require('../../lib/view');
-var auth = require('../../lib/auth');
 
 module.exports = view.extend({
     id: 'sign-in',
@@ -16,7 +15,11 @@ module.exports = view.extend({
     methods: {
         login: function (e) {
             e.preventDefault();
-            auth.login();
+            this.model.auth.login();
+        },
+        create: function (e) {
+            e.preventDefault();
+            this.model.auth.create();
         },
         goOffline: function (e) {
             e.preventDefault();

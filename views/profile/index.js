@@ -1,6 +1,5 @@
 var view = require('../../lib/view');
 var page = require('page');
-var auth = require('../../lib/auth');
 
 module.exports = view.extend({
     id: 'profile',
@@ -25,7 +24,7 @@ module.exports = view.extend({
     methods: {
         logout: function (e) {
             e.preventDefault();
-            auth.logout();
+            this.model.auth.logout();
         },
         clean: function (e) {
             var self = this;
