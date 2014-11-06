@@ -3,7 +3,7 @@
 </div>
 
 <div class="bottom">
-    <p>
+    <p v-if="loginError">
         <div v-if="loginError" v-component="alert" type="error" message="{{loginError}}" no-margin></div>
     </p>
     <div v-if="!offline" >
