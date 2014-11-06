@@ -2,7 +2,6 @@ var App = require('../../lib/app');
 var view = require('../../lib/view');
 var i18n = require('../../lib/i18n');
 var publish = require('../../lib/publish');
-var auth = require('../../lib/auth');
 var page = require('page');
 
 var PUBLISH_TIMEOUT = 20000;
@@ -20,7 +19,7 @@ module.exports = view.extend({
     methods: {
         login: function (e) {
             e.preventDefault();
-            auth.login();
+            this.model.auth.login();
         },
         onDone: function () {
             var self = this;

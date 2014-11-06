@@ -22,6 +22,9 @@ module.exports = function () {
     if (env === 'MOFODEV') {
         habitat.load('./config/mofodev.env');
     }
+    else if (env === 'STAGING' || env === 'NPM') {
+        habitat.load('./config/staging.env');
+    }
     habitat.load('./config/defaults.env');
 
     var keys = Object.keys(process.env);
