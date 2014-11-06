@@ -27,6 +27,11 @@ textarea,
     &.error {
         border-color: lighten(@red, 20%);
     }
+
+    &:focus {
+        outline: none;
+        border-color: @turquoise;
+    }
 }
 
 input,
@@ -148,4 +153,13 @@ input[type="checkbox"] {
 */
 .error {
     color: @red;
+}
+
+/*********************************************************
+* Help block
+*/
+.help-block {
+    margin-top: 5px;
+    margin-bottom: 10px;
+    color: lighten(@darkGrey, 15%);
 }
