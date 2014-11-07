@@ -34,7 +34,7 @@ module.exports = function () {
     });
 
     var string = 'module.exports = ' + JSON.stringify(all) + ';';
-    file('index.js', string)
+    return file('index.js', string)
         .pipe(gulp.dest('./config'));
 };
 

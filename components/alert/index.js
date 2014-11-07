@@ -4,7 +4,9 @@ module.exports = {
     paramAttributes: ['type', 'message', 'no-margin'],
     computed: {
         icon: function () {
-            return this.type === 'success' ? 'fa-check-circle' : 'fa-times-circle';
+            var check = 'fa-check-circle';
+            var circle = 'fa-times-circle';
+            return this.type === 'success' ? check : circle;
         },
         classes: function () {
             var classes = 'alert alert-' + (this.$data.type || 'error');
