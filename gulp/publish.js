@@ -3,6 +3,7 @@ var browserify = require('gulp-browserify');
 var fs = require('fs');
 var file = require('./gulp-file');
 var merge = require('merge-stream');
+var handleErrors = require('./error');
 
 var templates = require('../lib/templates.json');
 var json = templates[2];
@@ -10,6 +11,7 @@ var json = templates[2];
 module.exports = function () {
     var dest = './build/publish-assets';
     var js = gulp.src('./publish/index.js')
+        .pipe(handleErrors())
         .pipe(browserify({
             insertGlobals: false,
             transform: ['partialify', 'bulkify']
