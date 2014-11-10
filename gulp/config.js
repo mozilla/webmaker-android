@@ -1,5 +1,5 @@
 var habitat = require('habitat');
-var file = require('gulp-file');
+var file = require('./gulp-file');
 var gulp = require('gulp');
 var path = require('path');
 var env = new habitat('publish');

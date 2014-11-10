@@ -1,7 +1,7 @@
 var gulp = require('gulp');
 var browserify = require('gulp-browserify');
 var fs = require('fs');
-var file = require('gulp-file');
+var file = require('./gulp-file');
 var merge = require('merge-stream');
 
 var templates = require('../lib/templates.json');
