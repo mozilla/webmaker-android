@@ -350,5 +350,9 @@
     "Join Webmaker": {
       "message": "Join Webmaker",
       "description": "Button label for creating an account"
+    },
+    "My {{template}} App": {
+      "message": "My {{template}} App",
+      "description": "Title for a newly created app from a template"
     }
 }
