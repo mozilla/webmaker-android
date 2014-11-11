@@ -46,6 +46,8 @@
     "webmaker-download-locales": "0.2.4",
     "merge-stream": "^0.1.6",
     "gulp": "^3.8.8",
-    "gulp-util": "^3.0.1"
+    "gulp-util": "^3.0.1",
+    "vinyl-source-stream": "^1.0.0",
+    "vinyl-buffer": "^1.0.0"
   }
 }

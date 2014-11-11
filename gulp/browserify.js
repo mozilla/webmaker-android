@@ -1,16 +1,20 @@
 var gulp = require('gulp');
-var browserify = require('gulp-browserify');
+var browserify = require('browserify');
+var buffer = require('vinyl-buffer');
+var source = require('vinyl-source-stream');
 var handleErrors = require('./error');
 
 module.exports = function () {
-    var src = gulp.src('./lib/index.js');
-    var dest = gulp.dest('./build');
+    var dest = gulp.dest('./build/');
+    var browserified = browserify('./lib/index.js', {
+        insertGlobals: false,
+        transform: ['partialify', 'bulkify']
+    });
 
-    return src
+    return browserified
+        .bundle()
         .pipe(handleErrors())
-        .pipe(browserify({
-            insertGlobals: false,
-            transform: ['partialify', 'bulkify']
-        }))
+        .pipe(source('index.js'))
+        .pipe(buffer())
         .pipe(dest);
 };
