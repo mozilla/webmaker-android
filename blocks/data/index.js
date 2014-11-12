@@ -32,16 +32,16 @@ module.exports = {
 
         if (!self.$data || !self.$data.currentDataSets || self.$data.currentDataSets.length === 0) self.$data.initialDataLoaded = false;
 
-		// Fetch collected Data
-		self.currentDataSets = [];
-		if(!self.isEditing) {
-			var data = new Data(self.$parent.$parent.$data.app.id);
+        // Fetch collected Data
+        self.currentDataSets = [];
+        if(!self.isEditing) {
+            var data = new Data(self.$parent.$parent.$data.app.id);
 
-			data.getAllDataSets(function(currentDataSets) {
+            data.getAllDataSets(function(currentDataSets) {
                 self.$data.initialDataLoaded = true;
                 self.currentDataSets = currentDataSets;
-			});
-		}
+            });
+        }
         else {
             self.$data.initialDataLoaded = true;
         }

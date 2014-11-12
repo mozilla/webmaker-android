@@ -5,24 +5,24 @@ module.exports = {
         name: 'Dropdown',
         icon: '/images/blocks_text.png',
         attributes: {
-			label: {
-				label: 'Title',
-				type: 'string',
-				value: '',
+            label: {
+                label: 'Title',
+                type: 'string',
+                value: '',
                 placeholder: 'Your title goes here',
-				skipAutoRender: true
-			},
+                skipAutoRender: true
+            },
             color: {
                 label: 'Title Text Color',
                 type: 'color',
                 value: '#638093'
             },
-			elements: {
-				label: 'Options',
-				type: 'list',
-				skipAutoRender: true,
-				items: ['', '']
-			}
+            elements: {
+                label: 'Options',
+                type: 'list',
+                skipAutoRender: true,
+                items: ['', '']
+            }
         }
     },
     methods: {
@@ -33,13 +33,13 @@ module.exports = {
             );
         }
     },
-	ready: function() {
-		var self = this;
+    ready: function() {
+        var self = this;
 
-		if(self.isEditing) {
-			self.$el.querySelector('select').disabled = 'disabled';
-			self.$el.querySelector('select').style.pointerEvents = 'none';
-		} else {
+        if(self.isEditing) {
+            self.$el.querySelector('select').disabled = 'disabled';
+            self.$el.querySelector('select').style.pointerEvents = 'none';
+        } else {
             // register block on data object
             self.$dispatch('dataChange',
                 self.$index,
@@ -47,5 +47,5 @@ module.exports = {
                 self.$data.attributes.label.value
             );
         }
-	}
+    }
 };
