@@ -25,7 +25,11 @@ module.exports = view.extend({
             blocks.input,
             blocks.spinner,
             blocks.submit
-        ]
+        ],
+        goBack: function (e) {
+            e.preventDefault();
+            global.history.back();
+        }
     },
     ready: function () {
         var self = this;
@@ -61,7 +65,7 @@ module.exports = view.extend({
         }
 
         // Apply click handler to each cell
-        var targets = self.$el.getElementsByTagName('a');
+        var targets = self.$el.querySelectorAll('.brick');
         for (var i = 0; i < targets.length; i++) {
             targets[i].addEventListener('click', clickHandler);
         }
