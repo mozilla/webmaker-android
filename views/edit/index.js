@@ -5,7 +5,7 @@ module.exports = view.extend({
     id: 'edit',
     template: require('./index.html'),
     data: {
-        back: '/profile',
+        back: true,
         doneLabel: 'Publish'
     },
     created: function () {
