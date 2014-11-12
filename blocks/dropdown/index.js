@@ -26,17 +26,17 @@ module.exports = {
         }
     },
     methods: {
-        reportDataChange: function(self) {
+        reportDataChange: function (self) {
             self.$dispatch('dataChange',
                 this.$index,
                 self.$el.querySelector('select').value
             );
         }
     },
-    ready: function() {
+    ready: function () {
         var self = this;
 
-        if(self.isEditing) {
+        if (self.isEditing) {
             self.$el.querySelector('select').disabled = 'disabled';
             self.$el.querySelector('select').style.pointerEvents = 'none';
         } else {
