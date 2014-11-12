@@ -1,8 +1,8 @@
 module.exports = {
     id: 'dropdownChoice-editor',
     template: require('./index.html'),
-	data: {
-		options: [''],
+    data: {
+        options: [''],
         value: 0
-	}
+    }
 };

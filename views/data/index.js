@@ -6,7 +6,7 @@ module.exports = view.extend({
     id: 'data',
     template: require('./index.html'),
     data: {
-      initialDataLoaded: false
+        initialDataLoaded: false
     },
     created: function () {
         var self = this;
@@ -19,18 +19,18 @@ module.exports = view.extend({
         self.$data.app = app.data;
         self.title = app.data.name;
 
-		// Fetch collected Data
-		var data = new Data(id);
+        // Fetch collected Data
+        var data = new Data(id);
 
-		self.currentDataSets = [];
-		data.getAllDataSets(function(currentDataSets) {
+        self.currentDataSets = [];
+        data.getAllDataSets(function (currentDataSets) {
             self.$data.initialDataLoaded = true;
-			self.currentDataSets = currentDataSets;
-		});
+            self.currentDataSets = currentDataSets;
+        });
 
-		// listen for deletion requests
-		self.$on('dataDelete', function(firebaseId) {
-			data.delete(firebaseId);
-		});
+        // listen for deletion requests
+        self.$on('dataDelete', function (firebaseId) {
+            data.delete(firebaseId);
+        });
     }
 });
