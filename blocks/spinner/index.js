@@ -44,17 +44,22 @@ module.exports = {
             }
         }
     },
-    ready: function() {
+    ready: function () {
         var self = this;
-        if (self.attributes.current.value === 'undefined' || self.attributes.current.value === '') self.attributes.current.value = self.attributes.min.value;
+        if (
+            self.attributes.current.value === 'undefined' ||
+            self.attributes.current.value === ''
+        ) {
+            self.attributes.current.value = self.attributes.min.value;
+        }
 
-        if(self.isEditing) {
+        if (self.isEditing) {
             var inputElements = self.$el.querySelectorAll('input');
             for (var i = 0; i < inputElements.length; i++) {
                 inputElements[i].disabled = 'disabled';
             }
 
-            if(self.attributes.current.value === self.attributes.min.value) {
+            if (self.attributes.current.value === self.attributes.min.value) {
                 self.attributes.current.value = '';
             }
         } else {
@@ -66,14 +71,14 @@ module.exports = {
             );
         }
     },
-    methods :{
-        stepUp: function() {
+    methods: {
+        stepUp: function () {
             this.$el.querySelector('input[type="number"]').stepUp();
         },
-        stepDown: function() {
+        stepDown: function () {
             this.$el.querySelector('input[type="number"]').stepDown();
         },
-        reportDataChange: function(self) {
+        reportDataChange: function (self) {
             self.$dispatch('dataChange',
                 this.$index,
                 self.$el.querySelector('input[type="number"]').value
