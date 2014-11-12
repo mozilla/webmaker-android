@@ -20,16 +20,16 @@ module.exports = {
         }
     },
     methods: {
-        save: function(e) {
+        save: function (e) {
             var self = this;
 
             self.$dispatch('dataSave');
         }
     },
-    created: function() {
+    created: function () {
         var self = this;
 
-        self.$on('dataSaveSuccess', function() {
+        self.$on('dataSaveSuccess', function () {
             self.$el.querySelector('button').disabled = 'disabled';
             self.$el.querySelector('button').style.pointerEvents = 'none';
             self.$el.querySelector('button').innerHTML = 'Data submitted!';
