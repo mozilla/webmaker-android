@@ -24,7 +24,8 @@ module.exports = view.extend({
         onDone: function () {
             var self = this;
             if (!self.$data.app.url) return;
-            var sms = 'sms:?body=' + encodeURIComponent(self.$data.shareMessage);
+            var sms = 'sms:?body=' +
+                encodeURIComponent(self.$data.shareMessage);
             window.location = sms;
             page('/make/' + self.$parent.$data.params.id + '/detail');
         }
@@ -43,7 +44,9 @@ module.exports = view.extend({
         self.$data.user = self.model.data.user;
 
         // Share message
-        var message = i18n.get('share_message').replace('{{app.name}}', app.data.name);
+        var message = i18n
+            .get('share_message')
+            .replace('{{app.name}}', app.data.name);
         self.$data.shareMessage = message + ': ' + app.data.url;
 
         if (!global.location.search.match('publish=true') && app.data.url) {
@@ -64,7 +67,8 @@ module.exports = view.extend({
                 self.$data.isPublishing = false;
                 if (err) {
                     console.error(err);
-                    self.$data.error = (err.status || 'Error') + ': ' + err.message;
+                    self.$data.error = (err.status || 'Error') +
+                        ': ' + err.message;
                     return;
                 }
                 console.log('Published!');
@@ -75,7 +79,7 @@ module.exports = view.extend({
             });
         }
 
-        syncTimeout = global.setTimeout(function() {
+        syncTimeout = global.setTimeout(function () {
             console.log('timed out');
             self.$data.isPublishing = false;
             self.$data.error = 'Oops! Your publish is taking too long';
