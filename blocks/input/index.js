@@ -21,26 +21,31 @@ module.exports = {
                 skipAutoRender: true
             },
             color: {
-               label: 'Title Text Color',
-               type: 'color',
-               value: '#638093'
-           }
+                label: 'Title Text Color',
+                type: 'color',
+                value: '#638093'
+            }
         }
     },
     methods: {
-        reportDataChange: function(self) {
+        reportDataChange: function (self) {
             self.$dispatch('dataChange',
                 this.$index,
                 self.$el.value
             );
         }
     },
-    ready: function() {
+    ready: function () {
         var self = this;
 
-        if(self.isEditing) {
-            if (self.$el.querySelector('input')) self.$el.querySelector('input').disabled = 'disabled';
-            if (self.$el.querySelector('textarea')) self.$el.querySelector('textarea').disabled = 'disabled';
+        if (self.isEditing) {
+            if (self.$el.querySelector('input')) {
+                self.$el.querySelector('input').disabled = 'disabled';
+            }
+
+            if (self.$el.querySelector('textarea')) {
+                self.$el.querySelector('textarea').disabled = 'disabled';
+            }
         } else {
             // register block on data object
             self.$dispatch('dataChange',
