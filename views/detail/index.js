@@ -16,6 +16,7 @@ module.exports = view.extend({
             var app = App.createApp({
                 data: self.$data.app
             });
+            app.data.enteredEditorFrom = '/make/' + app.id + '/detail';
             self.page('/make/' + app.id + '/edit');
         }
     },

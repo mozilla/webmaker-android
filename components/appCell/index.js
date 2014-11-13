@@ -4,7 +4,7 @@ module.exports = {
     className: 'app-cell',
     data: {
         onClick: function () {
-            this.$data.enteredEditorFrom = 'profile';
+            this.$data.enteredEditorFrom = '/profile';
         }
     },
     template: require('./index.html'),

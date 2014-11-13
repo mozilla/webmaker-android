@@ -17,7 +17,7 @@ module.exports = view.extend({
             e.preventDefault();
             var id = e.currentTarget.getAttribute('data-id');
             var app = App.createApp({template: id});
-            app.data.enteredEditorFrom = 'templates';
+            app.data.enteredEditorFrom = '/templates';
             self.page('/make/' + app.id + '/edit');
         }
 

@@ -7,12 +7,8 @@ module.exports = {
         goBack: function (e) {
             if (this.$data.app) {
                 var enteredFrom = this.$data.app.enteredEditorFrom || '';
-                if (enteredFrom === 'templates') {
-                    page('/templates');
-                    return;
-                }
-                if (enteredFrom === 'profile') {
-                    page('/profile');
+                if (enteredFrom) {
+                    page(enteredFrom);
                     return;
                 }
             }
