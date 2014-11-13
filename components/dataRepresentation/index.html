@@ -1,0 +1,35 @@
+<div v-if="isInteractive" v-component="switch" v-with="value: sortOldest, options: sortOptions"></div>
+<div v-if="isInteractive" class="dataRepresentationSelectAll">
+    <input style="display: none;" id="dataRepresentationDataSetMarkSelected-All" type="checkbox" name="markAllSelected" v-model="allSelected">
+    <label for="dataRepresentationDataSetMarkSelected-All">Select all</label>
+    <label for="dataRepresentationDataSetMarkSelected-All" class="tip tip-checkmark fa fa-check"></label>
+</div>
+<table v-repeat="data: dataSet | orderBy sortKey !sortOldest" class="dataRepresentationDataSet" v-class="unread: !data.isRead && isInteractive, interactive: isInteractive">
+    <thead v-if="isInteractive">
+        <tr>
+            <th>Submitted {{formatUnixTime(data.submitted)}}</th>
+            <th>
+                <input style="display: none;" id="dataRepresentationDataSetMarkSelected-{{$index}}" type="checkbox" name="markSelected" v-model="data.isSelected">
+                <label for="dataRepresentationDataSetMarkSelected-{{$index}}" class="tip tip-checkmark fa fa-check"></label>
+            </th>
+        </tr>
+    </thead>
+    <tbody>
+        <tr>
+            <td>Time</td>
+            <td>{{formatUnixTime(data.submitted)}}</td>
+        </tr>
+        <tr v-repeat="dataBlock: data.dataBlocks">
+            <td>{{dataBlock.label}}</td>
+            <td>{{dataBlock.value}}</td>
+        </tr>
+    </tbody>
+</table>
+
+<div class="noDataInfo" v-if="countDataSets == 0">
+    <div v-if="initialDataLoaded">{{ 'No Data available' | i18n }}</div>
+    <div v-if="!initialDataLoaded" v-component="loadingIndicator"></div>
+</div>
+
+
+<button v-if="isInteractive && countDataSets > 0" type="button" class="dataRepresentationActionButton btn" v-class="btn-share: countSelected === 0, btn-remove: countSelected >= 1, " v-on="click: actionButton()"></button>
