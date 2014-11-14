@@ -6,7 +6,7 @@ module.exports = view.extend({
     id: 'play',
     template: require('./index.html'),
     data: {
-        back: '/profile',
+        back: true,
         doneLabel: 'Publish'
     },
     created: function () {
