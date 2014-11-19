@@ -20,7 +20,8 @@
     "xhr": "1.16.1",
     "gulp": "3.8.8",
     "firebase": "1.1.2",
-    "webmaker-login-ux": "1.1.10"
+    "webmaker-login-ux": "1.1.14",
+    "font-awesome": "^4.2.0"
   },
   "devDependencies": {
     "bulk-require": "0.2.1",
