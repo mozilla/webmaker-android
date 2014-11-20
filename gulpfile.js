@@ -27,12 +27,22 @@ gulp.task('template', ['config', 'clean'], template);
 gulp.task('less', ['clean'], less);
 gulp.task('browserify', ['clean', 'locale'], browserify);
 gulp.task('publish', ['less', 'locale'], publish);
-gulp.task('build', ['less', 'browserify', 'publish', 'template'], cache);
+gulp.task('build', [
+    'less',
+    'browserify',
+    'publish',
+    'template'
+], cache);
 
 gulp.task('re-locale', ['clean'], locale);
 gulp.task('re-browserify', ['clean', 're-locale'], browserify);
 gulp.task('re-publish', ['less', 're-locale'], publish);
-gulp.task('re-build', ['less', 're-browserify', 're-publish', 'template'], cache);
+gulp.task('re-build', [
+    'less',
+    're-browserify',
+    're-publish',
+    'template'
+], cache);
 
 // Test
 gulp.task('jshint', jshint);
