@@ -34,7 +34,6 @@ module.exports = function () {
         if (expose.indexOf(key) > -1) all[key] = habitat.get(key);
     });
 
-
     var string = 'module.exports = ' + JSON.stringify(all) + ';';
     return file('index.js', string)
         .pipe(gulp.dest('./config'));
