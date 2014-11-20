@@ -9,7 +9,6 @@ module.exports = function (callback) {
         '**/*.{html,js,css,png,jpg,svg,gif,woff}',
         {cwd: './build'},
         function (err, files) {
-            console.log(files);
             if (err) return callback(err);
             var cache = new Appcache.Generator(
                 files,

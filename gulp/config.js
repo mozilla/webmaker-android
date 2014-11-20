@@ -2,7 +2,6 @@ var habitat = require('habitat');
 var file = require('./gulp-file');
 var gulp = require('gulp');
 var path = require('path');
-var env = new habitat('publish');
 
 // Which env variables can we expose to the client?
 var expose = [
@@ -11,7 +10,8 @@ var expose = [
     'MAKEDRIVE_URL',
     'OFFLINE',
     'PUBLISH_DEV_MODE',
-	'FIREBASE_URL'
+	'FIREBASE_URL',
+    'APPCACHE'
 ];
 
 module.exports = function () {
@@ -33,6 +33,7 @@ module.exports = function () {
     keys.forEach(function (key) {
         if (expose.indexOf(key) > -1) all[key] = habitat.get(key);
     });
+
 
     var string = 'module.exports = ' + JSON.stringify(all) + ';';
     return file('index.js', string)
