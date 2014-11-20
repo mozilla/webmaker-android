@@ -10,7 +10,7 @@ var expose = [
     'MAKEDRIVE_URL',
     'OFFLINE',
     'PUBLISH_DEV_MODE',
-	'FIREBASE_URL',
+    'FIREBASE_URL',
     'APPCACHE'
 ];
 
