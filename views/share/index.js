@@ -58,38 +58,27 @@ module.exports = view.extend({
         console.log('Starting publish...');
         self.$data.doneDisabled = true;
 
-        var sync = self.model._sync;
-        var syncTimeout;
-
-        function onSynced() {
-            publish(id, self.$data.user.username, function (err, data) {
-                global.clearTimeout(syncTimeout);
-                self.$data.isPublishing = false;
-                if (err) {
-                    console.error(err);
-                    self.$data.error = (err.status || 'Error') +
-                        ': ' + err.message;
-                    return;
-                }
-                console.log('Published!');
-                self.$data.error = false;
-                self.$data.doneDisabled = false;
-                app.data.url = data.url;
-                self.$data.shareMessage = message + ': ' + data.url;
-            });
-        }
-
-        syncTimeout = global.setTimeout(function () {
+        var syncTimeout = global.setTimeout(function () {
             console.log('timed out');
             self.$data.isPublishing = false;
             self.$data.error = 'Oops! Your publish is taking too long';
         }, PUBLISH_TIMEOUT);
 
-        if (self.model._dirty) {
-            sync.once('completed', onSynced);
-        } else {
-            onSynced();
-        }
+        publish(id, self.$data.user.username, function (err, data) {
+            global.clearTimeout(syncTimeout);
+            self.$data.isPublishing = false;
+            if (err) {
+                console.error(err);
+                self.$data.error = (err.status || 'Error') +
+                    ': ' + err.message;
+                return;
+            }
+            console.log('Published!');
+            self.$data.error = false;
+            self.$data.doneDisabled = false;
+            app.data.url = data.url;
+            self.$data.shareMessage = message + ': ' + data.url;
+        });
 
     }
 });
