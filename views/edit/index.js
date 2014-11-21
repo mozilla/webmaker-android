@@ -1,5 +1,6 @@
 var App = require('../../lib/app');
 var view = require('../../lib/view');
+var throttle = require('lodash.throttle');
 
 module.exports = view.extend({
     id: 'edit',

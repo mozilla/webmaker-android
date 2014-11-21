@@ -16,12 +16,13 @@
     "vue": "0.10.6",
     "watchjs": "0.0.0",
     "clone": "0.1.18",
-    "makedrive": "0.0.65",
     "xhr": "1.16.1",
     "gulp": "3.8.8",
-    "firebase": "1.1.2",
+    "firebase": "2.0.4",
     "webmaker-login-ux": "1.1.14",
-    "font-awesome": "^4.2.0"
+    "font-awesome": "^4.2.0",
+    "localforage": "^1.1.1",
+    "lodash.throttle": "^2.4.1"
   },
   "devDependencies": {
     "browserify": "^6.3.2",
