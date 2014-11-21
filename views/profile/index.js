@@ -10,11 +10,11 @@ module.exports = view.extend({
     },
     computed: {
         user: function () {
-            return this.model.data.user;
+            return this.model.data.session.user;
         },
         myApps: function () {
             // temporary hack to only show current user's data
-            var username = this.model.data.user.username;
+            var username = this.model.data.session.user.username;
             var myApps = this.model.data.apps.filter(function (app) {
                 return app.author.username === username;
             });
@@ -29,7 +29,7 @@ module.exports = view.extend({
         clean: function (e) {
             var self = this;
 
-            var username = this.model.data.user.username;
+            var username = this.model.data.session.user.username;
             this.model.data.apps.forEach(function (app, index) {
                 if (app.author.username === username) {
                     delete self.model.data.apps[index];

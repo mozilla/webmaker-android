@@ -24,7 +24,7 @@ module.exports = view.extend({
             self.page('/profile');
         };
         self.$watch('app.name', throttle(function (newVal) {
-            app.firebase.update({
+            app.update({
                 name: newVal
             });
         }, 3000));

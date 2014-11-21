@@ -41,7 +41,7 @@ module.exports = view.extend({
         self.$data.app = app.data;
 
         // Bind user
-        self.$data.user = self.model.data.user;
+        self.$data.user = self.model.data.session.user;
 
         // Share message
         var message = i18n
