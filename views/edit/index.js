@@ -1,5 +1,6 @@
 var App = require('../../lib/app');
 var view = require('../../lib/view');
+var throttle = require('lodash.throttle');
 
 module.exports = view.extend({
     id: 'edit',
@@ -22,5 +23,10 @@ module.exports = view.extend({
             app.removeApp();
             self.page('/profile');
         };
+        self.$watch('app.name', throttle(function (newVal) {
+            app.firebase.update({
+                name: newVal
+            });
+        }, 3000));
     }
 });
