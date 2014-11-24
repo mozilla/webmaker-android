@@ -23,15 +23,16 @@ module.exports = view.extend({
     created: function () {
         var self = this;
         // Fetch app
-        var id = self.$parent.$data.params.id;
-        var app = new App(id).data;
-        if (!app) {
-            app = templates[utils.findInArray(templates, 'id', id)] || {};
-            self.$data.isTemplate = true;
-        }
+        var id = self.$root.params.id;
+        var app = new App(id);
 
-        // Bind app
-        self.$data.id = id;
-        self.$data.app = app;
+        app.storage.on('value', function (snapshot) {
+            var val = snapshot.val();
+            if (!val) return;
+            // Bind app
+            self.$data.id = id;
+            self.$data.app = val;
+        });
+
     }
 });

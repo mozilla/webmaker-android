@@ -37,6 +37,8 @@ module.exports = view.extend({
         var self = this;
         var user = self.model.data.session.user;
 
+        self.$data.myApps = [];
+
         function onAdded(snapshot) {
             var data = snapshot.val();
             if (!data) return;

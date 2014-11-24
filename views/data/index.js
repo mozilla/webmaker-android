@@ -15,9 +15,14 @@ module.exports = view.extend({
         var id = self.$parent.$data.params.id;
         var app = new App(id);
 
-        // Bind app
-        self.$data.app = app.data;
-        self.title = app.data.name;
+        app.storage.on('value', function (snapshot) {
+            var val = snapshot.val();
+            if (!val) return;
+            // Bind app
+            self.$data.app = val;
+            self.$data.app.id = id;
+            self.title = val.name;
+        });
 
         // Fetch collected Data
         var data = new Data(id);

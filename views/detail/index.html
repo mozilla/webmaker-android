@@ -10,7 +10,7 @@
     </header>
     <ul id="detail-share">
         <li v-if="!isTemplate"><a href="/make/{{id}}/share">
-            <span class="fa fa-2x fa-fw fa-share-alt"></span><br>{{ 'Share' | i18n }}</a>
+            <span class="fa fa-2x fa-fw fa-share"></span><br>{{ 'Share' | i18n }}</a>
         </li>
         <li v-if="!isTemplate"><a href="/make/{{id}}/play">
             <span class="fa fa-2x fa-fw fa-eye"></span><br>{{ 'Open' | i18n }}</a>
@@ -21,7 +21,7 @@
         <li v-if="isTemplate"><a href="#" v-on="click: create">
             <span class="fa fa-2x fa-fw fa-edit"></span><br>{{ 'Create' | i18n }}</a>
         </li>
-        <li><a href="" class="disabled">
+        <li><a href="/make/{{id}}/data">
             <span class="fa fa-2x fa-fw fa-list"></span><br>{{ 'Data' | i18n }}</a>
         </li>
     </ul>
