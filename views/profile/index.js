@@ -6,19 +6,12 @@ module.exports = view.extend({
     template: require('./index.html'),
     data: {
         title: 'My Profile',
-        back: false
+        back: false,
+        myApps: []
     },
     computed: {
         user: function () {
             return this.model.data.session.user;
-        },
-        myApps: function () {
-            // temporary hack to only show current user's data
-            var username = this.model.data.session.user.username;
-            var myApps = this.model.data.apps.filter(function (app) {
-                return app.author.username === username;
-            });
-            return myApps;
         }
     },
     methods: {
@@ -39,5 +32,38 @@ module.exports = view.extend({
                 page('/sign-in');
             });
         }
+    },
+    created: function () {
+        var self = this;
+        var user = self.model.data.session.user;
+
+        function onAdded(snapshot) {
+            var data = snapshot.val();
+            if (!data) return;
+            data.id = snapshot.key();
+            self.$data.myApps.push(data);
+        }
+
+        function listenForApps(user) {
+            if (!user || !user.id) return;
+            return self.model.firebase
+                .orderByChild('userId')
+                .equalTo(user.id);
+        }
+
+        var query = listenForApps(self.model.data.session.user);
+        if (query) query.on('child_added', onAdded);
+
+        self.model.auth.on('login', function (user) {
+            self.$data.myApps = [];
+            if (query) query.off('child_added', onAdded);
+            query = listenForApps(user);
+            query.on('child_added', onAdded);
+        });
+        self.model.auth.on('logout', function () {
+            self.$data.myApps = [];
+            if (query) query.off('child_added', onAdded);
+            query = null;
+        });
     }
 });

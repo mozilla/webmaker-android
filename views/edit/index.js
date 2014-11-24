@@ -13,12 +13,15 @@ module.exports = view.extend({
         var self = this;
 
         // Fetch app
-        var id = self.$parent.$data.params.id;
-        var app = new App(id);
+        var id = self.$root.$data.params.id;
 
-        // Bind app
-        self.$data.app = app.data || {};
+        var app = new App(id);
         self.$data.onDone = '/make/' + id + '/share?publish=true';
+        app.storage.on('value', function (snapshot) {
+            if (!snapshot.val()) return;
+            self.$data.app = snapshot.val();
+            self.$data.app.id = snapshot.key();
+        });
         self.$data.removeApp = function () {
             app.removeApp();
             self.page('/profile');
