@@ -1,5 +1,4 @@
 var view = require('../../lib/view');
-var App = require('../../lib/app');
 var utils = require('../../lib/utils');
 
 var colorGroups = [
@@ -10,7 +9,7 @@ var colorGroups = [
     '#31ABDF'
 ];
 
-var ref
+var ref;
 
 module.exports = view.extend({
     id: 'color-picker',
@@ -22,7 +21,8 @@ module.exports = view.extend({
         var $data = self.$data;
 
         // Create block reference
-        ref = self.model.firebase.child(id + '/blocks/' + index + '/attributes/color/value');
+        var path = id + '/blocks/' + index + '/attributes/color/value';
+        ref = self.model.firebase.child(path);
 
         ref.on('value', function (snapshot) {
             var val = snapshot.val();
@@ -33,7 +33,7 @@ module.exports = view.extend({
                     if (color === val) {
                         $data.selectedGroup = i;
                     }
-                })
+                });
                 $data.selectedGroup = $data.selectedGroup || 0;
             });
         });

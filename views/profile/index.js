@@ -20,16 +20,8 @@ module.exports = view.extend({
             this.model.auth.logout();
         },
         clean: function (e) {
-            var self = this;
-
-            var username = this.model.data.session.user.username;
-            this.model.data.apps.forEach(function (app, index) {
-                if (app.author.username === username) {
-                    delete self.model.data.apps[index];
-                }
-            });
-            self.model.save(function () {
-                page('/sign-in');
+            self.$data.myApps.forEach(function (app) {
+                self.model.firebase.child(app.id).remove();
             });
         }
     },
@@ -77,7 +69,7 @@ module.exports = view.extend({
                 .orderByChild('userId')
                 .equalTo(user.id);
 
-            query.on('child_added', onAdded)
+            query.on('child_added', onAdded);
             query.on('child_changed', onChanged);
             query.on('child_removed', onRemoved);
         }

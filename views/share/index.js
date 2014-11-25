@@ -50,11 +50,13 @@ module.exports = view.extend({
                 .get('share_message')
                 .replace('{{app.name}}', val.name);
 
-            if (val.url) self.$data.shareMessage = message + ': ' + val.url;
+            if (val.url) {
+                self.$data.shareMessage = message + ': ' + val.url;
+            }
         });
 
-
-        if (!global.location.search.match('publish=true') && self.$data.app.url) {
+        var publishUrl = global.location.search.match('publish=true');
+        if (!publishUrl && self.$data.app.url) {
             self.$data.isPublishing = false;
             return;
         }
@@ -69,13 +71,14 @@ module.exports = view.extend({
             self.$data.error = 'Oops! Your publish is taking too long';
         }, PUBLISH_TIMEOUT);
 
+        var offlineError = 'We couldn\'t reach the publishing server. Sorry!';
         publish(id, self.$data.user, function (err, data) {
             global.clearTimeout(syncTimeout);
             self.$data.isPublishing = false;
             if (err) {
                 console.error(err);
                 if (err.status === 0) {
-                    self.$data.error = 'We couldn\'t reach the publishing server. Sorry!';
+                    self.$data.error = offlineError;
                 } else {
                     self.$data.error = (err.status || 'Error') +
                         ': ' + err.message;
@@ -90,7 +93,6 @@ module.exports = view.extend({
             });
             self.$data.shareMessage = message + ': ' + data.url;
         });
-
 
     }
 });

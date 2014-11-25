@@ -8,8 +8,5 @@ module.exports = view.extend({
         title: 'Discover',
         apps: fakeDiscovery,
         mode: 'featured'
-    },
-    created: function () {
-        this.$data.created = this.model.data.apps;
     }
 });

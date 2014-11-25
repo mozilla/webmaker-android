@@ -8,7 +8,6 @@ var throttle = require('lodash.throttle');
 
 var app = null;
 var index = null;
-var block = null;
 var id = null;
 
 // Rename editor components
