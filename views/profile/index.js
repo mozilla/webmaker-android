@@ -39,33 +39,34 @@ module.exports = view.extend({
 
         self.$data.myApps = [];
 
+        function onRemoved(snapshot) {
+            var key = snapshot.key();
+            var index;
+            self.$data.myApps.forEach(function (app, i) {
+                if (app.id === key) index = i;
+            });
+            if (index) self.$data.myApps.splice(index, 1);
+        }
+
         function onAdded(snapshot) {
             var data = snapshot.val();
+            var dupe;
             if (!data) return;
             data.id = snapshot.key();
-            self.$data.myApps.push(data);
+            // Duplicates
+            self.$data.myApps.forEach(function (app) {
+                if (app.id === data.id) dupe = true;
+            });
+            if (!dupe) self.$data.myApps.push(data);
         }
 
-        function listenForApps(user) {
-            if (!user || !user.id) return;
-            return self.model.firebase
+        if (user && user.id) {
+            var query = self.model.firebase
                 .orderByChild('userId')
                 .equalTo(user.id);
+
+            query.on('child_added', onAdded)
+            query.on('child_removed', onRemoved);
         }
-
-        var query = listenForApps(self.model.data.session.user);
-        if (query) query.on('child_added', onAdded);
-
-        self.model.auth.on('login', function (user) {
-            self.$data.myApps = [];
-            if (query) query.off('child_added', onAdded);
-            query = listenForApps(user);
-            query.on('child_added', onAdded);
-        });
-        self.model.auth.on('logout', function () {
-            self.$data.myApps = [];
-            if (query) query.off('child_added', onAdded);
-            query = null;
-        });
     }
 });
