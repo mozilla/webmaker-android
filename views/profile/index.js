@@ -1,5 +1,4 @@
 var view = require('../../lib/view');
-var page = require('page');
 
 module.exports = view.extend({
     id: 'profile',
@@ -20,9 +19,11 @@ module.exports = view.extend({
             this.model.auth.logout();
         },
         clean: function (e) {
+            var self = this;
             self.$data.myApps.forEach(function (app) {
                 self.model.firebase.child(app.id).remove();
             });
+            self.$data.myApps = [];
         }
     },
     created: function () {
