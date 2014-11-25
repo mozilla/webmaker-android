@@ -48,6 +48,18 @@ module.exports = view.extend({
             if (index) self.$data.myApps.splice(index, 1);
         }
 
+        function onChanged(snapshot) {
+            var key = snapshot.key();
+            var val = snapshot.val();
+            if (!val) return;
+            val.id = key;
+            self.$data.myApps.forEach(function (app, i) {
+                if (app.id === key) {
+                    self.$data.myApps[i] = val;
+                }
+            });
+        }
+
         function onAdded(snapshot) {
             var data = snapshot.val();
             var dupe;
@@ -66,6 +78,7 @@ module.exports = view.extend({
                 .equalTo(user.id);
 
             query.on('child_added', onAdded)
+            query.on('child_changed', onChanged);
             query.on('child_removed', onRemoved);
         }
     }
