@@ -11,6 +11,7 @@ var expose = [
     'OFFLINE',
     'PUBLISH_DEV_MODE',
     'FIREBASE_URL',
+    'FIREBASE_URL_DATA',
     'APPCACHE'
 ];
 

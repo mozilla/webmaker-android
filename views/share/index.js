@@ -32,24 +32,31 @@ module.exports = view.extend({
     },
     ready: function () {
         var self = this;
-
-        // Fetch app
         var id = self.$parent.$data.params.id;
         var app = new App(id);
 
-        // Bind app
-        self.$data.app = app.data;
-
         // Bind user
-        self.$data.user = self.model.data.user;
+        self.$data.user = self.model.data.session.user;
 
-        // Share message
-        var message = i18n
-            .get('share_message')
-            .replace('{{app.name}}', app.data.name);
-        self.$data.shareMessage = message + ': ' + app.data.url;
+        var message;
 
-        if (!global.location.search.match('publish=true') && app.data.url) {
+        // Bind app
+        app.storage.once('value', function (snapshot) {
+            var val = snapshot.val();
+            if (!val) return;
+            self.$data.app = val;
+            // Share message
+            message = i18n
+                .get('share_message')
+                .replace('{{app.name}}', val.name);
+
+            if (val.url) {
+                self.$data.shareMessage = message + ': ' + val.url;
+            }
+        });
+
+        var publishUrl = global.location.search.match('publish=true');
+        if (!publishUrl && self.$data.app.url) {
             self.$data.isPublishing = false;
             return;
         }
@@ -58,38 +65,34 @@ module.exports = view.extend({
         console.log('Starting publish...');
         self.$data.doneDisabled = true;
 
-        var sync = self.model._sync;
-        var syncTimeout;
-
-        function onSynced() {
-            publish(id, self.$data.user.username, function (err, data) {
-                global.clearTimeout(syncTimeout);
-                self.$data.isPublishing = false;
-                if (err) {
-                    console.error(err);
-                    self.$data.error = (err.status || 'Error') +
-                        ': ' + err.message;
-                    return;
-                }
-                console.log('Published!');
-                self.$data.error = false;
-                self.$data.doneDisabled = false;
-                app.data.url = data.url;
-                self.$data.shareMessage = message + ': ' + data.url;
-            });
-        }
-
-        syncTimeout = global.setTimeout(function () {
+        var syncTimeout = global.setTimeout(function () {
             console.log('timed out');
             self.$data.isPublishing = false;
             self.$data.error = 'Oops! Your publish is taking too long';
         }, PUBLISH_TIMEOUT);
 
-        if (self.model._dirty) {
-            sync.once('completed', onSynced);
-        } else {
-            onSynced();
-        }
+        var offlineError = 'We couldn\'t reach the publishing server. Sorry!';
+        publish(id, self.$data.user, function (err, data) {
+            global.clearTimeout(syncTimeout);
+            self.$data.isPublishing = false;
+            if (err) {
+                console.error(err);
+                if (err.status === 0) {
+                    self.$data.error = offlineError;
+                } else {
+                    self.$data.error = (err.status || 'Error') +
+                        ': ' + err.message;
+                }
+                return;
+            }
+            console.log('Published!');
+            self.$data.error = false;
+            self.$data.doneDisabled = false;
+            app.update({
+                url: data.url
+            });
+            self.$data.shareMessage = message + ': ' + data.url;
+        });
 
     }
 });

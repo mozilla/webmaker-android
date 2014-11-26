@@ -1,5 +1,4 @@
 var view = require('../../lib/view');
-var App = require('../../lib/app');
 var utils = require('../../lib/utils');
 
 var colorGroups = [
@@ -9,36 +8,43 @@ var colorGroups = [
     '#1CB0B4',
     '#31ABDF'
 ];
-var app = null;
+
+var ref;
 
 module.exports = view.extend({
     id: 'color-picker',
     template: require('./index.html'),
     created: function () {
         var self = this;
+        var id = self.$root.$data.params.id;
+        var index = self.$root.$data.params.index;
         var $data = self.$data;
-        var id = self.$parent.$data.params.id;
-        app = new App(id);
-        $data.blockIndex = self.$parent.$data.params.index;
-        $data.block = app.data.blocks[$data.blockIndex];
-        $data.selectedColor = $data.block.attributes.color.value;
-        $data.colors.forEach(function (arr, i) {
-            arr.forEach(function (color) {
-                if (color === $data.selectedColor) {
-                    $data.selectedGroup =  i;
-                }
+
+        // Create block reference
+        var path = id + '/blocks/' + index + '/attributes/color/value';
+        ref = self.model.firebase.child(path);
+
+        ref.on('value', function (snapshot) {
+            var val = snapshot.val();
+            if (!val) return;
+            $data.selectedColor = val;
+            $data.colors.forEach(function (arr, i) {
+                arr.forEach(function (color) {
+                    if (color === val) {
+                        $data.selectedGroup = i;
+                    }
+                });
+                $data.selectedGroup = $data.selectedGroup || 0;
             });
-            $data.selectedGroup = $data.selectedGroup || 0;
         });
+
     },
     data: {
         back: true,
         title: 'Select Color',
         onSelect: function (color) {
-            var $data = this.$data;
-            var attrs = $data.block.attributes;
-            $data.selectedColor = color;
-            attrs.color.value = $data.selectedColor;
+            this.$data.selectedColor = color;
+            ref.set(color);
         },
         onGroupSelect: function (i) {
             this.$data.selectedGroup = i;
