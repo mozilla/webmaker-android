@@ -18,7 +18,7 @@ module.exports = view.extend({
                 var app = App.createApp({template: id});
                 self.$root.$data.enteredEditorFrom = '/templates';
                 self.$root.isReady = false;
-                setTimeout(function() {
+                setTimeout(function () {
                     self.$root.isReady = true;
                     self.page('/make/' + app.id + '/edit');
                 }, 1000);
