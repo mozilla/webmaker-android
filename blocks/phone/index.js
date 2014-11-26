@@ -20,12 +20,11 @@ module.exports = {
     created: function () {
         var self = this;
 
-        // Set telephone URI
-        self.$data.tel = 'tel:' + self.$data.attributes.number.value;
-
         // Disable if editing mode
         self.$data.onClick = function (e) {
-            if (self.isEditing) e.preventDefault();
+            if (self.isEditing) return;
+            e.preventDefault();
+            window.location = 'tel:' + self.$data.attributes.number.value;
         };
     }
 };
