@@ -1,5 +1,5 @@
 var view = require('../../lib/view');
-var fakeDiscovery  = require('../../lib/fake-discovery');
+var fakeDiscovery = require('../../lib/fake-discovery');
 
 module.exports = view.extend({
     id: 'discover',

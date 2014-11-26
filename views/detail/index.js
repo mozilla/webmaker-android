@@ -20,7 +20,7 @@ module.exports = view.extend({
                 options.data = self.$data.app;
             }
             var app = App.createApp(options);
-            self.$root.$data.enteredEditorFrom = '/make/' + app.id + '/detail';
+            self.$root.$data.enteredEditorFrom = '/template/' + app.id + '/detail';
             self.$root.isReady = false;
             setTimeout(function() {
                 self.$root.isReady = true;
