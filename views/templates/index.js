@@ -21,7 +21,7 @@ module.exports = view.extend({
                 setTimeout(function() {
                     self.$root.isReady = true;
                     self.page('/make/' + app.id + '/edit');
-                }, 1500);
+                }, 1000);
             }
         }
     }
