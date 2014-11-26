@@ -29,16 +29,20 @@ module.exports = view.extend({
             page('/make/' + self.$parent.$data.params.id + '/detail');
         }
     },
+    created: function () {
+        this.$root.isReady = false;
+    },
     ready: function () {
         var self = this;
         var id = self.$parent.$data.params.id;
         var app = new App(id);
-        self.$root.isReady = false;
 
         // Bind user
         self.$data.user = self.model.data.session.user;
 
         var message;
+
+        var offlineError = 'We couldn\'t reach the publishing server. Sorry!';
 
         function startPublish() {
             var publishUrl = global.location.search.match('publish=true');
@@ -57,7 +61,6 @@ module.exports = view.extend({
                 self.$data.error = 'Oops! Your publish is taking too long';
             }, PUBLISH_TIMEOUT);
 
-            var offlineError = 'We couldn\'t reach the publishing server. Sorry!';
             publish(id, self.$data.user, function (err, data) {
                 global.clearTimeout(syncTimeout);
                 self.$root.isReady = true;
