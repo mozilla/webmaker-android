@@ -14,7 +14,7 @@ module.exports = function () {
 
     return browserified
         .bundle()
-        .pipe(handleErrors())
+        .on('error', handleErrors.onError)
         .pipe(source('index.js'))
         .pipe(buffer())
         .pipe(uglify())

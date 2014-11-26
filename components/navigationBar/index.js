@@ -6,7 +6,7 @@ module.exports = {
     data: {
         goBack: function (e) {
             if (this.$data.app) {
-                var enteredFrom = this.$data.app.enteredEditorFrom || '';
+                var enteredFrom = this.$root.$data.enteredEditorFrom || '';
                 if (enteredFrom) {
                     page(enteredFrom);
                     return;

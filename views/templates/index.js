@@ -9,22 +9,20 @@ module.exports = view.extend({
         title: 'Make',
         templates: templates
     },
-    ready: function () {
-        var self = this;
-
-        // Click handler
-        function clickHandler (e) {
-            e.preventDefault();
+    methods: {
+        onClick: function (e) {
+            var self = this;
             var id = e.currentTarget.getAttribute('data-id');
-            var app = App.createApp({template: id});
-            app.data.enteredEditorFrom = '/templates';
-            self.page('/make/' + app.id + '/edit');
-        }
-
-        // Apply click handler to each cell
-        var targets = self.$el.getElementsByClassName('cell');
-        for (var i = 0; i < targets.length; i++) {
-            targets[i].addEventListener('click', clickHandler);
+            if (id === 'blank') {
+                e.preventDefault();
+                var app = App.createApp({template: id});
+                self.$root.$data.enteredEditorFrom = '/templates';
+                self.$root.isReady = false;
+                setTimeout(function () {
+                    self.$root.isReady = true;
+                    self.page('/make/' + app.id + '/edit');
+                }, 1000);
+            }
         }
     }
 });

@@ -12,6 +12,12 @@
     <body>
         <div id="app">
             <div v-view="currentView" class="main"></div>
+            <div class="loader animated v-fade" v-if="!isReady" v-transition>
+                <div class="loading-spinner">
+                  <div class="cube1"></div>
+                  <div class="cube2"></div>
+                </div>
+            </div>
         </div>
         <script src="/index.js"></script>
         <!-- Analytics -->

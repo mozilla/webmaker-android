@@ -53,6 +53,7 @@ module.exports = view.extend({
         app = new App(id);
         app.storage.on('value', function (snapshot) {
             var app = snapshot.val();
+            self.$root.isReady = true;
             if (!app || !app.blocks) return;
             self.$data.block = snapshot.val().blocks[index];
         });
