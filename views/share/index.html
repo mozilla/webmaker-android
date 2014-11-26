@@ -1,7 +1,6 @@
 <div v-component="navigationBar"></div>
 
-<form v-show="!isPublishing">
-
+<form>
     <div v-show="error" v-component="alert" type="error" message="{{error}}"></div>
     <div v-show="!error">
         <h3 class="section">Share via SMS</h3>
@@ -9,13 +8,7 @@
             <textarea name="share-message" v-model="shareMessage" class="textarea-large"></textarea>
         </div>
     </div>
-
 </form>
-
-<div v-show="isPublishing" id="loader">
-    <img src="/images/loader.gif" alt="Loading..." />
-</div>
-
 <!--
 <ul class="list-cell">
     <lh class="with-border-top">Share To</lh>
