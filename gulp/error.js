@@ -7,8 +7,12 @@ function onError(err) {
     this.emit('end');
 }
 
-module.exports = function () {
+function PlumberError() {
     return plumber({
         errorHandler: onError
     });
 };
+
+PlumberError.onError = onError;
+
+module.exports = PlumberError;

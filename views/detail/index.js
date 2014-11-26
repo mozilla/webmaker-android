@@ -26,6 +26,7 @@ module.exports = view.extend({
 
         app.storage.on('value', function (snapshot) {
             var val = snapshot.val();
+            self.$root.isReady = true;
             if (!val) return;
             // Bind app
             self.$data.id = id;

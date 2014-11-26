@@ -54,6 +54,7 @@ module.exports = view.extend({
         }
 
         function onAdded(snapshot) {
+            self.$root.isReady = true;
             var data = snapshot.val();
             var dupe;
             if (!data) return;

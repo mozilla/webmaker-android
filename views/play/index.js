@@ -18,6 +18,7 @@ module.exports = view.extend({
         var app = new App(id);
 
         app.storage.on('value', function (snapshot) {
+            self.$root.isReady = true;
             if (!snapshot.val()) return;
             self.$data.app = snapshot.val() || {};
             self.$data.app.id = snapshot.key();

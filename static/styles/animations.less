@@ -3155,3 +3155,18 @@ Copyright (c) 2014 Daniel Eden
   -webkit-animation-name: slideOutUp;
           animation-name: slideOutUp;
 }
+
+
+/*********************************************************
+* VUE.JS
+*/
+
+.v-fade {
+    &.v-enter {
+        .fadeIn;
+    }
+    &.v-leave {
+        .fadeOut;
+        pointer-events: none;
+    }
+}
