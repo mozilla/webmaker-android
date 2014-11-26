@@ -21,7 +21,11 @@ module.exports = view.extend({
             }
             var app = App.createApp(options);
             self.$root.$data.enteredEditorFrom = '/make/' + app.id + '/detail';
-            self.page('/make/' + app.id + '/edit');
+            self.$root.isReady = false;
+            setTimeout(function() {
+                self.$root.isReady = true;
+                self.page('/make/' + app.id + '/edit');
+            }, 1500);
         }
     },
     created: function () {

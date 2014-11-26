@@ -17,7 +17,11 @@ module.exports = view.extend({
                 e.preventDefault();
                 var app = App.createApp({template: id});
                 self.$root.$data.enteredEditorFrom = '/templates';
-                self.page('/make/' + app.id + '/edit');
+                self.$root.isReady = false;
+                setTimeout(function() {
+                    self.$root.isReady = true;
+                    self.page('/make/' + app.id + '/edit');
+                }, 1500);
             }
         }
     }
