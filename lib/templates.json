@@ -20,152 +20,118 @@
             "avatar": ""
         },
         "blocks": [
-            {
-                "id": "text",
-                "attributes": {
-                    "innerHTML": {
-                        "id": "innerHTML",
-                        "label": "Text Value",
-                        "type": "string",
-                        "value": "News / Greater Toronto Area"
-                    },
-                    "color": {
-                        "id": "color",
-                        "label": "Text Color",
-                        "type": "color",
-                        "value": "#0000FF"
-                    }
-                }
-            },
-            {
-                "id": "text",
-                "attributes": {
-                    "innerHTML": {
-                        "id": "innerHTML",
-                        "label": "Text Value",
-                        "type": "string",
-                        "value": "The Air Show at the CNE"
-                    },
-                    "color": {
-                        "id": "color",
-                        "label": "Text Color",
-                        "type": "color",
-                        "value": "#000000"
-                    },
-                    "font-size": {
-                        "label": "Font Size",
-                        "type": "font-size",
-                        "value": "40"
-                    }
-                }
-            },
-            {
-                "id": "text",
-                "attributes": {
-                    "innerHTML": {
-                        "id": "innerHTML",
-                        "label": "Text Value",
-                        "type": "string",
-                        "value": "A fascinating and thrilling show at the Canadian National Exhibition"
-                    },
-                    "color": {
-                        "id": "color",
-                        "label": "Text Color",
-                        "type": "color",
-                        "value": "#AAAAAA"
-                    }
-                }
-            },
-            {
-                "id": "image",
-                "attributes": {
-                    "src": {
-                        "id": "src",
-                        "label": "Image URL",
-                        "type": "string",
-                        "value": "/content/newspaper_planes.jpg"
-                    }
-                }
-            },
-            {
-                "id": "text",
-                "attributes": {
-                    "innerHTML": {
-                        "id": "innerHTML",
-                        "label": "Text Value",
-                        "type": "string",
-                        "value": "Photo by Rafid Daoud"
-                    },
-                    "color": {
-                        "id": "color",
-                        "label": "Text Color",
-                        "type": "color",
-                        "value": "#AAAAAA"
-                    },
-                    "font-size": {
-                        "label": "Font Size",
-                        "type": "font-size",
-                        "value": "12"
-                    }
-                }
-            },
-            {
-                "id": "text",
-                "attributes": {
-                    "innerHTML": {
-                        "id": "innerHTML",
-                        "label": "Text Value",
-                        "type": "string",
-                        "value": "Canadian forces snowbirds pilots taking formation for their next performance"
-                    },
-                    "color": {
-                        "id": "color",
-                        "label": "Text Color",
-                        "type": "color",
-                        "value": "#AAAAAA"
-                    },
-                    "font-size": {
-                        "label": "Font Size",
-                        "type": "font-size",
-                        "value": "12"
-                    }
-                }
-            },
-            {
-                "id": "text",
-                "attributes": {
-                    "innerHTML": {
-                        "id": "innerHTML",
-                        "label": "Text Value",
-                        "type": "string",
-                        "value": "By: Rafid / Seneca College, Published on Fri Oct 17, 2014"
-                    },
-                    "color": {
-                        "id": "color",
-                        "label": "Text Color",
-                        "type": "color",
-                        "value": "#000000"
-                    }
-                }
-            },
-            {
-                "id": "text",
-                "attributes": {
-                    "innerHTML": {
-                        "id": "innerHTML",
-                        "label": "Text Value",
-                        "type": "string",
-                        "value": "The air show at Canada National Exhibition in Toronto Ontario. It took place on August 30th 2014 through September 1st 2014. The show had two types of air crafts do their tricks. First, were fighter jets that were very fast almost the speed of sound. Then came the planes pictured above and they performed many tricks and had many different formations."
-                    },
-                    "color": {
-                        "id": "color",
-                        "label": "Text Color",
-                        "type": "color",
-                        "value": "#000000"
-                    }
-                }
-            }
-        ]
+               {
+                   "attributes": {
+                       "color": {
+                           "id": "color",
+                           "label": "Text Color",
+                           "type": "color",
+                           "value": "#707181"
+                       },
+                       "innerHTML": {
+                           "id": "innerHTML",
+                           "label": "Text Value",
+                           "type": "string",
+                           "value": "News / Greater Toronto Area"
+                       }
+                   },
+                   "id": "text"
+               },
+               {
+                   "attributes": {
+                       "color": {
+                           "id": "color",
+                           "label": "Text Color",
+                           "type": "color",
+                           "value": "#000000"
+                       },
+                       "font-size": {
+                           "label": "Font Size",
+                           "type": "font-size",
+                           "value": "40"
+                       },
+                       "innerHTML": {
+                           "id": "innerHTML",
+                           "label": "Text Value",
+                           "type": "string",
+                           "value": "CNE Air Show"
+                       }
+                   },
+                   "id": "text"
+               },
+               {
+                   "attributes": {
+                       "color": {
+                           "id": "color",
+                           "label": "Text Color",
+                           "type": "color",
+                           "value": "#333444"
+                       },
+                       "font-size": {
+                           "label": "Font Size",
+                           "type": "font-size",
+                           "value": "18"
+                       },
+                       "innerHTML": {
+                           "id": "innerHTML",
+                           "label": "Text Value",
+                           "type": "string",
+                           "value": "A fascinating and thrilling show at the Canadian National Exhibition"
+                       }
+                   },
+                   "id": "text"
+               },
+               {
+                   "attributes": {
+                       "src": {
+                           "id": "src",
+                           "label": "Image URL",
+                           "type": "string",
+                           "value": "/content/newspaper_planes.jpg"
+                       }
+                   },
+                   "id": "image"
+               },
+               {
+                   "attributes": {
+                       "color": {
+                           "id": "color",
+                           "label": "Text Color",
+                           "type": "color",
+                           "value": "#adaebe"
+                       },
+                       "font-size": {
+                           "label": "Font Size",
+                           "type": "font-size",
+                           "value": "13"
+                       },
+                       "innerHTML": {
+                           "id": "innerHTML",
+                           "label": "Text Value",
+                           "type": "string",
+                           "value": "Canadian forces snowbirds pilots taking formation for their next performance. Photo by Rafid Daoud"
+                       }
+                   },
+                   "id": "text"
+               },
+               {
+                   "attributes": {
+                       "color": {
+                           "id": "color",
+                           "label": "Text Color",
+                           "type": "color",
+                           "value": "#000000"
+                       },
+                       "innerHTML": {
+                           "id": "innerHTML",
+                           "label": "Text Value",
+                           "type": "string",
+                           "value": "The air show at Canada National Exhibition in Toronto Ontario. It took place on August 30th 2014 through September 1st 2014. The show had two types of air crafts do their tricks. First, were fighter jets that were very fast almost the speed of sound. Then came the planes pictured above and they performed many tricks and had many different formations."
+                       }
+                   },
+                   "id": "text"
+               }
+           ]
     },
     {
         "id": "000d1745-5d3c-4997-ac0c-15df68bbbecc",
