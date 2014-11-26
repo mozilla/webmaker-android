@@ -1,5 +1,11 @@
 <div v-component="navigationBar"></div>
 <ul>
-    <li v-component="templateCell" v-repeat="templates"></li>
+    <li class="templateCell" v-repeat="templates">
+        <a class="cell"
+            data-id="{{id}}" href="/template/{{id}}/detail" v-on="click: onClick">
+            <img class="app-icon" src="{{icon}}">
+            <div class="name">{{name | i18n}}</div>
+        </a>
+    </li>
 </ul>
 <div v-component="tabBar"></div>
