@@ -25,6 +25,7 @@ module.exports = view.extend({
             self.$data.app.id = snapshot.key();
         });
         self.$data.onDone = '/make/' + id + '/share?publish=true';
+        self.$data.offlineUser = this.model.data.session.offline;
 
         // Listen for Data Submitted by the User
         var data = new Data(id);

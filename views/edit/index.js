@@ -17,6 +17,7 @@ module.exports = view.extend({
 
         var app = new App(id);
         self.$data.onDone = '/make/' + id + '/share?publish=true';
+        self.$data.offlineUser = this.model.data.session.offline;
         app.storage.on('value', function (snapshot) {
             self.$root.isReady = true;
             if (!snapshot.val()) return;
