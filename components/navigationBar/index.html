@@ -8,4 +8,4 @@
 
 <button v-if="typeof onDone === 'function'" v-on="click: onDone" v-class="disabled: doneDisabled">{{doneLabel || 'Done' | i18n}}
 </button>
-<a v-if="typeof onDone === 'string'" href="{{onDone}}" v-class="disabled: doneDisabled">{{doneLabel || 'Done' | i18n}}</a>
+<a v-show="!offlineUser" v-if="typeof onDone === 'string'" href="{{onDone}}" v-class="disabled: doneDisabled">{{doneLabel || 'Done' | i18n}}</a>
