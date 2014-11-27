@@ -3,6 +3,10 @@
         "message": "scientist",
         "description": "To be replaced in the sentence: Apps made by scientists"
     },
+    "errorNoText": {
+        "message": "You must include a text value",
+        "description": "No text in the textarea"
+    },
     "My Profile": {
         "message": "My Profile",
         "description": "Title for profile page"
