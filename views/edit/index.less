@@ -9,28 +9,30 @@
 
         margin: 15px 2.5% 15px 2.5%;
         border: 1px dashed @highlight;
-        background-color: transparent;
-
         color: @highlight;
+
         font-size: 2em;
         text-align: center;
         text-decoration: none;
     }
 
     #blocks {
+        .list-reset;
         width: 100%;
-        transform: scale(0.95, 0.95);
-        transform-origin: 50% top;
+        //transform: scale(0.95, 0.95);
+        //transform-origin: 50% top;
 
-        > div, > a {
+        > li {
             display: block;
+            position: relative;
             border: 1px dashed @highlight;
-            margin-bottom: 15px;
-            text-decoration: none;
+            margin: 15px 2.5%;
+            padding: 10px 70px 10px 5px;
 
             img {
                 margin-bottom: -4px;
             }
+
         }
     }
 
@@ -50,4 +52,20 @@
             outline: none;
         }
     }
+}
+
+.draggable-handle {
+    width: 50px;
+    display: block;
+    position: absolute;
+    top: 0;
+    bottom: 0;
+    right: 0;
+    color: @mediumGrey;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+.sortable-ghost {
+   opacity: 0;
 }

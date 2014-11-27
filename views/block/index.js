@@ -58,13 +58,13 @@ module.exports = view.extend({
             self.$data.block = snapshot.val().blocks[index];
         });
         self.$data.index = index;
-
-        self.$watch('block.attributes', throttle(function (newVal) {
+        var onChange = throttle(function (newVal) {
             if (!newVal) return;
             var clone = JSON.parse(JSON.stringify(newVal));
             app.updateBlock(index, {
                 attributes: clone
             });
-        }, 3000));
+        }, 3000);
+        self.$watch('block.attributes', onChange);
     }
 });
