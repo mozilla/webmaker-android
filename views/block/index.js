@@ -51,7 +51,7 @@ module.exports = view.extend({
         id = self.$parent.$data.params.id;
         index = self.$parent.$data.params.index;
         app = new App(id);
-        app.storage.on('value', function (snapshot) {
+        app.storage.once('value', function (snapshot) {
             var app = snapshot.val();
             self.$root.isReady = true;
             if (!app || !app.blocks) return;
