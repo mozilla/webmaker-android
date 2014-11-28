@@ -18,6 +18,7 @@ module.exports = view.extend({
         }
     },
     created: function () {
+        this.$root.isReady = true;
         console.error('Error ' +
             this.$root.params.code +
             ': ' +
