@@ -66,7 +66,7 @@ gulp.task('dev', ['watch'], function() {
   gulp.src('build')
     .pipe(webserver({
         port: 8080,
-        livereload: true,
+        livereload: false,
         fallback: 'index.html'
     }));
 });

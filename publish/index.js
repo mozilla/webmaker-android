@@ -24,6 +24,13 @@ i18n.bind(locale, Vue);
 // App json
 var json = window.App;
 
+// Todo: more validation
+json.blocks.forEach(function (block) {
+    // Legacy
+    if (block.id) block.type = block.id;
+    delete block.id;
+});
+
 i18n.setLocale('en-US', true);
 
 var app = new Vue({

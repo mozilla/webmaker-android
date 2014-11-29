@@ -4,7 +4,7 @@
     <input id="name-input" type="text" v-model="app.name">
     <a class="add" href="/make/{{app.id}}/add">+</a>
     <div id="blocks">
-        <a v-component="{{id}}" v-repeat="app.blocks" href="/make/{{app.id}}/block/{{$index}}"></a>
+        <a v-component="{{type}}" v-repeat="app.blocks" href="/make/{{app.id}}/block/{{$index}}"></a>
         <button class="btn btn-remove btn-block" v-on="click: removeApp">
             {{'Delete App' | i18n}}
         </button>
