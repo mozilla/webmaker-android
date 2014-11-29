@@ -30,15 +30,15 @@ module.exports = view.extend({
         var self = this;
         var user = self.model.data.session.user;
         var userId = user && user.id || self.model.data.session.guestId;
-        self.$data.myApps = [];
 
         function onRemoved(snapshot) {
             var key = snapshot.key();
-            var index;
+            var index = false;
             self.$data.myApps.forEach(function (app, i) {
+                console.log(app.id);
                 if (app.id === key) index = i;
             });
-            if (index) self.$data.myApps.splice(index, 1);
+            if (index !== false) self.$data.myApps.splice(index, 1);
         }
 
         function onChanged(snapshot) {
@@ -53,8 +53,9 @@ module.exports = view.extend({
             });
         }
 
+        self.$root.isReady = true;
+
         function onAdded(snapshot) {
-            self.$root.isReady = true;
             var data = snapshot.val();
             var dupe;
             if (!data) return;
@@ -69,7 +70,7 @@ module.exports = view.extend({
         if (userId) {
             var query = self.model.firebase
                 .orderByChild('userId')
-                .equalTo(user.id);
+                .equalTo(userId);
 
             query.on('child_added', onAdded);
             query.on('child_changed', onChanged);
