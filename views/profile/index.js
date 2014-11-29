@@ -29,7 +29,7 @@ module.exports = view.extend({
     created: function () {
         var self = this;
         var user = self.model.data.session.user;
-
+        var userId = user && user.id || self.model.data.session.guestId;
         self.$data.myApps = [];
 
         function onRemoved(snapshot) {
@@ -66,7 +66,7 @@ module.exports = view.extend({
             if (!dupe) self.$data.myApps.push(data);
         }
 
-        if (user && user.id) {
+        if (userId) {
             var query = self.model.firebase
                 .orderByChild('userId')
                 .equalTo(user.id);
@@ -74,6 +74,8 @@ module.exports = view.extend({
             query.on('child_added', onAdded);
             query.on('child_changed', onChanged);
             query.on('child_removed', onRemoved);
+        } else {
+            self.$root.isReady = true;
         }
     }
 });

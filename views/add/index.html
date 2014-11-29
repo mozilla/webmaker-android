@@ -1,6 +1,6 @@
 <ul>
     <li v-repeat="block: blocks">
-        <a data-block="{{block.id}}" href="#">
+        <a data-block="{{block.key}}" href="#">
             <img v-if="block.icon" src="{{block.icon}}" alt="{{block.name}}" />
             <p v-if="block.name">{{ block.name | i18n }}</p>
         </a>

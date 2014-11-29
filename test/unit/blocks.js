@@ -18,12 +18,12 @@ describe('Blocks', function () {
         assert(blocks instanceof Object);
     });
 
-    for (var id in blocks) {
-        it ('block type ' + id + ' should have correct properties', function () {
-            assert(blocks[id].id === id);
-            assert(isValidType(id, 'name', 'string'));
-            assert(isValidType(id, 'icon', 'string'));
-            assert(isValidType(id, 'attributes', 'object'));
+    for (var type in blocks) {
+        it ('block type ' + type + ' should have correct properties', function () {
+            assert(blocks[type].type === type);
+            assert(isValidType(type, 'name', 'string'));
+            assert(isValidType(type, 'icon', 'string'));
+            assert(isValidType(type, 'attributes', 'object'));
         });
     }
 });

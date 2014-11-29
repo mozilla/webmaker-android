@@ -37,7 +37,7 @@ var mockModel = function() {
 // blocks doesn't frickin work because we can't require html files *cries*
 var mockBlocks = function (id) {
     this.text = {
-        id: 'text',
+        type: 'text',
         className: 'text',
         template: '<p></p>',
         data: {
@@ -92,7 +92,7 @@ describe('App instance', function () {
     describe('insert', function () {
         it('should insert a block', function () {
             app.insert('text');
-            assert.equal(app.data.blocks[0].id, 'text');
+            assert.equal(app.data.blocks[0].type, 'text');
         });
         it('should do nothing if the blockId does not exist', function () {
             var oldLength = app.data.blocks.length;
