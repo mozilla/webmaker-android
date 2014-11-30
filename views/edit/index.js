@@ -11,14 +11,25 @@ module.exports = view.extend({
     template: require('./index.html'),
     data: {
         back: true,
-        doneLabel: 'Publish'
+        doneLabel: 'Publish',
+        mode: 'edit'
     },
     methods: {
         updateName: throttle(function (newVal) {
             app.update({
                 name: newVal
             });
-        }, 3000)
+        }, 3000),
+        setMode: function (mode) {
+            var self = this;
+            if (mode === 'data') {
+                this.$data.mode = 'data';
+                setTimeout(function() {
+                    self.page('/make/' + self.$root.$data.params.id + '/data');
+                }, 200);
+            }
+            this.$data.mode = mode;
+        }
     },
     created: function () {
         var self = this;
@@ -41,6 +52,10 @@ module.exports = view.extend({
             }
         }
         var isDragging = false;
+
+        self.createSortable = function () {
+
+        }
         function onValue(snapshot) {
             self.$root.isReady = true;
 

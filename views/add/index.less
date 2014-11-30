@@ -14,8 +14,8 @@
     ul {
         display: block;
         position: relative;
-        margin: 0 5%;
-        padding: 0;
+        margin: 0;
+        padding: 0 5%;
 
         list-style: none;
         text-align: center;
@@ -28,6 +28,11 @@
 
         list-style: none;
         text-align: center;
+
+        &.spacer {
+            pointer-events: none;
+            opacity: 0;
+        }
 
         a {
             color: @white;

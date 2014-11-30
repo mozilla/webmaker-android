@@ -71,7 +71,7 @@ module.exports = view.extend({
 
         // Apply click handler to parent element
         self.$el.addEventListener('click', function (e) {
-            if (e.target.id === 'add') {
+            if (e.target.id === 'add-container') {
                 e.preventDefault();
                 self.page('/make/' + id + '/edit');
             }

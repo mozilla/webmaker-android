@@ -1,17 +1,42 @@
 <div v-show="!app.id" v-component="alert" type="error" message="errorAppNotFound"></div>
 <div v-show="app.id">
     <div v-component="navigationBar" v-with="app:app, title: 'Edit'"></div>
-    <input id="name-input" type="text" v-model="app.name" v-on="keyup: updateName(app.name)">
-    <a class="add" href="/make/{{app.id}}/add">+</a>
-    <ul id="blocks">
-        <li v-repeat="app.blocks"
-            v-component="{{type}}"
-            index="{{$index}}"
-            v-on="click: goTo('/make/' + app.id + '/block/' + $index)">
-        </li>
-    </ul>
-    <button class="btn btn-remove btn-block" v-on="click: removeApp">
-        {{'Delete App' | i18n}}
-    </button>
-    <div v-component="makeBar" v-with="app"></div>
+    <div class="edit-inner">
+        <input id="name-input" type="text" v-model="app.name" v-on="keyup: updateName(app.name)">
+        <a class="add"
+            href="/make/{{app.id}}/add"
+            v-class="off: mode !== 'edit'">
+            <span class="fa fa-plus"></span>
+        </a>
+        <ul id="blocks">
+            <li v-repeat="app.blocks"
+                v-component="{{type}}"
+                index="{{$index}}"
+                v-on="click: goTo('/make/' + app.id + '/block/' + $index)"
+                v-class="editable: mode === 'edit'">
+            </li>
+        </ul>
+        <!--v-class="editable: editMode === 'edit'">-->
+        <button class="btn btn-remove btn-block" v-on="click: removeApp">
+            {{'Delete App' | i18n}}
+        </button>
+    </div>
+    
+    
+    <div id="makeBar">
+        <div class="slide-options">
+          <div class="wrapper">
+            <div class="slide-active" v-class="
+                left: mode === 'play',
+                middle: mode === 'edit',
+                right: mode === 'data'"></div>
+            <div class="slide-text">
+                <a v-class="active: mode === 'play'" v-on="click: setMode('play')">{{ 'Preview' | i18n }}</a>
+                <a v-class="active: mode === 'edit'" v-on="click: setMode('edit')">{{ 'Edit' | i18n }}</a>
+                <a v-class="active: mode === 'data'" v-on="click: setMode('data')">{{ 'Data' | i18n }}</a> 
+            </div>
+          </div>
+        </div>
+    </div>
+
 </div>
