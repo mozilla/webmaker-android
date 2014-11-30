@@ -54,6 +54,7 @@
     "vinyl-buffer": "1.0.0",
     "gulp-template": "1.1.1",
     "vinyl-source-stream": "1.0.0",
-    "webmaker-download-locales": "0.2.4"
+    "webmaker-download-locales": "0.2.4",
+    "gulp-autoprefixer": "^2.0.0"
   }
 }
