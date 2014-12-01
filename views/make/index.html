@@ -3,7 +3,7 @@
 
     <div id="navigationBar">{{ >navigation }}</div>
 
-    <div v-show="mode === 'settings'" class="edit-inner">{{ >settings }}</div>
+    <div v-show="mode === 'settings'">{{ >settings }}</div>
 
     <div class="edit-inner" v-show="['play', 'edit'].indexOf(mode) > -1">
         <a class="add"

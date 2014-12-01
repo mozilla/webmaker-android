@@ -1,2 +1,11 @@
-<label for="">App Name</label>
-<input id="name" type="text" v-model="app.name" v-on="keyup: updateName(app.name)">
+<div class="form-group">
+    <label for="name">App Name</label>
+    <input id="name" type="text" v-model="app.name" v-on="keyup: updateName(app.name)"> 
+</div>
+<div class="form-group" v-if="app.url">
+    <label for="url">URL</label>
+    <p id="url" class="url">{{app.url}}</p>
+</div>
+<div class="form-group">
+    <a class="btn btn-dark btn-block" href="{{onDone}}">{{ 'Publish' | i18n }}</a>
+</div>
