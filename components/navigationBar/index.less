@@ -19,8 +19,7 @@
         font-weight: 400;
     }
 
-    button,
-    a {
+    .nav-btn {
         position: absolute;
         top: 0;
         min-width: 40px;
@@ -33,6 +32,10 @@
         line-height: (@header-height - 10s);
         text-decoration: none;
         font-size: 13px;
+        &.nav-btn-icon {
+            font-size: inherit;
+            padding-top: 0;
+        }
 
         &:first-child {
             left: 0;

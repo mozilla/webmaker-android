@@ -60,7 +60,7 @@ module.exports = view.extend({
             app.insert(blockId);
 
             // Add to model & redirect to editor
-            self.page('/make/' + id + '/edit');
+            self.page('/make/' + id);
         }
 
         // Apply click handler to each cell
@@ -71,9 +71,9 @@ module.exports = view.extend({
 
         // Apply click handler to parent element
         self.$el.addEventListener('click', function (e) {
-            if (e.target.id === 'add') {
+            if (e.target.id === 'add-container') {
                 e.preventDefault();
-                self.page('/make/' + id + '/edit');
+                self.page('/make/' + id);
             }
         });
     }

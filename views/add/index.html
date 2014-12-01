@@ -1,5 +1,5 @@
-<ul>
-    <li v-repeat="block: blocks">
+<ul id="add-container">
+    <li v-repeat="block: blocks" v-class="spacer: !block">
         <a data-block="{{block.type}}" href="#">
             <img v-if="block.icon" src="{{block.icon}}" alt="{{block.name}}" />
             <p v-if="block.name">{{ block.name | i18n }}</p>

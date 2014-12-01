@@ -36,16 +36,11 @@ module.exports = {
     ready: function () {
         var self = this;
 
-        if (self.isEditing) {
-            self.$el.querySelector('select').disabled = 'disabled';
-            self.$el.querySelector('select').style.pointerEvents = 'none';
-        } else {
-            // register block on data object
-            self.$dispatch('dataChange',
-                self.$index,
-                '',
-                self.$data.attributes.label.value
-            );
-        }
+        // register block on data object
+        self.$dispatch('dataChange',
+            self.$index,
+            '',
+            self.$data.attributes.label.value
+        );
     }
 };

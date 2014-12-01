@@ -53,23 +53,11 @@ module.exports = {
             self.attributes.current.value = self.attributes.min.value;
         }
 
-        if (self.isEditing) {
-            var inputElements = self.$el.querySelectorAll('input');
-            for (var i = 0; i < inputElements.length; i++) {
-                inputElements[i].disabled = 'disabled';
-            }
-
-            if (self.attributes.current.value === self.attributes.min.value) {
-                self.attributes.current.value = '';
-            }
-        } else {
-            // register block on data object
-            self.$dispatch('dataChange',
-                self.$index,
-                self.$el.querySelector('input[type="number"]').value,
-                self.$data.attributes.label.value
-            );
-        }
+        self.$dispatch('dataChange',
+            self.$index,
+            self.$el.querySelector('input[type="number"]').value,
+            self.$data.attributes.label.value
+        );
     },
     methods: {
         stepUp: function () {

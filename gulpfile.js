@@ -63,7 +63,7 @@ gulp.task('watch', ['build'], function () {
 
 // Serve + Watch
 gulp.task('dev', ['watch'], function() {
-  gulp.src('build')
+  return gulp.src('build')
     .pipe(webserver({
         port: 8080,
         livereload: false,

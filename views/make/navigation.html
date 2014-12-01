@@ -1,0 +1,11 @@
+<button class="back nav-btn" v-on="click: goBack">&lt;</button>
+<h1>
+    <span v-if="mode === 'settings'" class="animated fadeIn">{{ 'Settings' | i18n}}</span>
+    <span v-if="mode !== 'settings'" class="animated fadeIn">{{app.name}}</span>
+</h1>
+<a class="nav-btn animated fadeIn" v-if="!offlineUser && mode === 'play'" href="{{onDone}}">
+    {{ 'Publish' | i18n}}
+</a>
+<button class="nav-btn nav-btn-icon animated fadeIn" v-if="mode === 'edit'" v-on="click: changeMode('settings')">
+    <span class="fa fa-gear"></span>
+</a>

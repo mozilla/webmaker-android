@@ -5,8 +5,7 @@ var dataRepresentation = module.exports = {
         isInteractive: true,
         sortOldest: false,
         sortKey: 'submitted',
-        sortOptions: ['Newest', 'Oldest'],
-        initialDataLoaded: false
+        sortOptions: ['Newest', 'Oldest']
     },
     methods: Object.create(null)
 };
@@ -23,7 +22,20 @@ dataRepresentation.methods.formatUnixTime = function (unix) {
     return date.toLocaleTimeString('en-US', options);
 };
 
-dataRepresentation.methods.computed = {
+dataRepresentation.methods.actionButton = function (e) {
+    var self = this;
+
+    // Delete
+    if (this.countSelected > 0) {
+        for (var i = 0; i < self.$data.dataSet.length; i++) {
+            if (self.$data.dataSet[i].isSelected) {
+                self.$dispatch('dataDelete', self.$data.dataSet[i].firebaseId);
+            }
+        }
+    }
+};
+
+dataRepresentation.computed = {
     countSelected: function () {
         if (!this.$data) return false;
         var dataSet = this.$data.dataSet;
@@ -32,11 +44,6 @@ dataRepresentation.methods.computed = {
             if (dataSet[i] && dataSet[i].isSelected) count++;
         }
         return count;
-    },
-    countDataSets: function () {
-        if (!this.$data) return 0;
-
-        return this.$data.dataSet.length;
     },
     allSelected: {
         $get: function () {

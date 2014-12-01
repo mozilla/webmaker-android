@@ -1,7 +1,17 @@
-<div class="slideToggle">
-  <div class="wrapper">
-    <a v-class="active:params.mode === 'play'" href="/make/{{id}}/play">{{ 'Preview' | i18n }}</a>
-    <a v-class="active:params.mode === 'edit'" href="/make/{{id}}/edit">{{ 'Edit' | i18n }}</a>
-    <a v-class="active:params.mode === 'data'" href="/make/{{id}}/data">{{ 'Data' | i18n }}</a>
-  </div>
+<div class="slide-options">
+    <div class="wrapper">
+        <div class="slide-active {{uiMode}}"></div>
+        <div class="slide-text">
+            <a v-class="active: uiMode === 'play'" v-on="click: setMode('play')">
+                {{ 'Preview' | i18n }}
+            </a>
+            <a v-class="active: uiMode === 'edit'" v-on="click: setMode('edit')">
+                {{ 'Edit' | i18n }}
+            </a>
+            <a v-class="active: uiMode === 'data'" v-on="click: setMode('data')">
+                {{ 'Data' | i18n }}
+            </a> 
+        </div>
+    </div>
 </div>
+

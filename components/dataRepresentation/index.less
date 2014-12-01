@@ -101,7 +101,7 @@
         height: 60px;
 
         position: fixed;
-        bottom: 70px;
+        bottom: 68px;
 
         transition: all 0.4s ease;
         &.btn-share:after {
@@ -109,6 +109,9 @@
         }
         &.btn-remove:after {
             content: 'Delete Selected';
+        }
+        &:focus {
+            outline: none;
         }
     }
 
