@@ -16,7 +16,7 @@ module.exports = function() {
         .pipe(autoprefixer({
             browsers: ['last 2 versions'],
             cascade: false,
-            remove: true
+            remove: false
         }))
         .pipe(sourcemaps.write())
         .pipe(dest)

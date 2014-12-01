@@ -46,7 +46,6 @@ module.exports = view.extend({
     created: function () {
         var self = this;
 
-  
         id = self.$root.$data.params.id;
         index = self.$root.$data.params.index;
 

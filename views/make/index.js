@@ -8,12 +8,11 @@ var sort;
 var app;
 
 module.exports = view.extend({
-    id: 'edit',
+    id: 'make',
     template: require('./index.html'),
     partials: {
         navigation: require('./navigation.html'),
-        settings: require('./settings.html'),
-        'edit-play': require('./edit-play.html') 
+        settings: require('./settings.html')
     },
     methods: {
         goBack: function (e) {
@@ -21,7 +20,7 @@ module.exports = view.extend({
             if (this.$data.mode === 'settings') {
                 this.$data.changeMode('edit');
             } else {
-               this.page('/profile'); 
+                this.page('/profile');
             }
         },
         updateName: throttle(function (newVal) {
@@ -44,7 +43,7 @@ module.exports = view.extend({
                 mode = 'edit';
             }
             self.$data.mode = mode;
-            self.$root.isEditing = self.$data.mode === 'edit'
+            self.$root.isEditing = self.$data.mode === 'edit';
         };
 
         var regex = new RegExp('[\\?&]mode=([^&#]*)');
@@ -85,7 +84,9 @@ module.exports = view.extend({
 
             try {
                 if (sort) sort.destroy();
-            } catch (e) {}
+            } catch (e) {
+                console.log('sort error', e);
+            }
 
             sort = new Sortable(list, {
                 handle: '.draggable-handle',
@@ -96,9 +97,10 @@ module.exports = view.extend({
                 onEnd: function (e) {
                     isDragging = false;
 
+                    var el = e.target;
                     var lis = list.querySelectorAll('li');
-                    var start = e.srcElement.getAttribute('index');
-                    var end = getIndex(lis, e.srcElement);
+                    var start = el.getAttribute('index');
+                    var end = getIndex(lis, el);
 
                     isDragging = false;
 

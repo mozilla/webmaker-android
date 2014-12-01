@@ -51,6 +51,7 @@ module.exports = view.extend({
                 var val = snapshot.val();
                 self.$root.isReady = true;
                 if (!val) return;
+                val.id = snapshot.key();
                 // Bind app
                 self.$data.app = val;
             });
