@@ -25,7 +25,6 @@ module.exports = {
     ready: function () {
         var self = this;
         self.$el.addEventListener('click', function (e) {
-            if (self.isEditing) return;
             e.preventDefault();
 
             var number = self.$data.attributes.value.value;

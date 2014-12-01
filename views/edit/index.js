@@ -1,5 +1,6 @@
 var App = require('../../lib/app');
 var view = require('../../lib/view');
+var Data = require('../../lib/data');
 var throttle = require('lodash.throttle');
 var Sortable = require('sortable');
 
@@ -9,30 +10,48 @@ var app;
 module.exports = view.extend({
     id: 'edit',
     template: require('./index.html'),
-    data: {
-        back: true,
-        doneLabel: 'Publish',
-        mode: 'edit'
+    partials: {
+        navigation: require('./navigation.html'),
+        settings: require('./settings.html'),
+        'edit-play': require('./edit-play.html') 
     },
     methods: {
+        goBack: function (e) {
+            e.preventDefault();
+            if (this.$data.mode === 'settings') {
+                this.$data.changeMode('edit');
+            } else {
+               this.page('/profile'); 
+            }
+        },
         updateName: throttle(function (newVal) {
             app.update({
                 name: newVal
             });
-        }, 3000),
-        setMode: function (mode) {
-            var self = this;
-            if (mode === 'data') {
-                this.$data.mode = 'data';
-                setTimeout(function() {
-                    self.page('/make/' + self.$root.$data.params.id + '/data');
-                }, 200);
-            }
-            this.$data.mode = mode;
-        }
+        }, 3000)
     },
     created: function () {
         var self = this;
+
+        // Mode
+        self.$data.changeMode = function (mode) {
+            var modes = ['edit', 'play', 'data', 'settings'];
+            if (modes.indexOf(mode) === -1) {
+                console.log('warning: ' + mode + ' is not a valid mode');
+                mode = 'edit';
+            }
+            if (mode === 'settings' && self.$data.mode === 'settings') {
+                mode = 'edit';
+            }
+            self.$data.mode = mode;
+            self.$root.isEditing = self.$data.mode === 'edit'
+        };
+
+        var regex = new RegExp('[\\?&]mode=([^&#]*)');
+        var results = regex.exec(window.location.search);
+
+        var mode = results ? results[1] : 'edit';
+        self.$data.changeMode(mode);
 
         // Fetch app
         var id = self.$root.$data.params.id;
@@ -53,9 +72,6 @@ module.exports = view.extend({
         }
         var isDragging = false;
 
-        self.createSortable = function () {
-
-        }
         function onValue(snapshot) {
             self.$root.isReady = true;
 
@@ -95,7 +111,8 @@ module.exports = view.extend({
         }
         app.storage.on('value', onValue);
 
-        self.$data.goTo = function (href) {
+        self.$data.goTo = function (href, $event) {
+            if (self.$data.mode !== 'edit') return;
             self.page(href);
         };
 
@@ -103,10 +120,30 @@ module.exports = view.extend({
             app.removeApp();
             self.page('/profile');
         };
-    },
-    detached: function () {
-        try {
-            if (sort) sort.destroy();
-        } catch (e) {}
+
+        // Fetch collected Data
+        var data = new Data(id);
+
+        self.currentDataSets = [];
+        data.getAllDataSets(function (currentDataSets) {
+            self.$data.initialDataLoaded = true;
+            self.currentDataSets = currentDataSets;
+        });
+
+        self.$on('dataChange', function (index, value, label) {
+            data.collect(index, value, label);
+        });
+
+        self.$on('dataSave', function () {
+            if (data.getCurrentCollectedCount() > 0) {
+                data.save();
+                self.$broadcast('dataSaveSuccess');
+            }
+        });
+
+        // listen for deletion requests
+        self.$on('dataDelete', function (firebaseId) {
+            data.delete(firebaseId);
+        });
     }
 });

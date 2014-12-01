@@ -22,7 +22,6 @@ module.exports = {
 
         // Disable if editing mode
         self.$data.onClick = function (e) {
-            if (self.isEditing) return;
             e.preventDefault();
             window.location = 'tel:' + self.$data.attributes.number.value;
         };

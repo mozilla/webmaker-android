@@ -1,27 +1,31 @@
 #edit {
     margin-bottom: @editBar-height;
+
     .edit-inner {
-        padding: 10px;
+        padding: 0 10px 10px;
     }
-    a.add {
+    .add {
         display: flex;
         justify-content: center;
         align-items: center;
         width: 100%;
         height: 44px;
 
-        margin: 15px 0;
-        // border: 1px dashed @highlight;
+        margin: 10px 0 30px 0;
+        border-radius: 30px;
+
         background: @highlight;
         color: @white;
-
+  
         text-align: center;
         text-decoration: none;
 
         overflow: hidden;
-        transition: height 0.2s ease-in-out;
+        transition: height 0.2s ease-in-out,
+            margin 0.2s ease-in-out;
         &.off {
             height: 0;
+            margin: 0;
         }
     }
 
@@ -35,19 +39,11 @@
             display: block;
             position: relative;
             
-            padding: 10px 5px;
+            padding: 10px 0;
             border: 1px dashed transparent;
 
             .draggable-handle {
                 display: none;
-                width: 50px;
-                position: absolute;
-                top: 0;
-                bottom: 0;
-                right: 0;
-                color: @mediumGrey;
-                align-items: center;
-                justify-content: center;
             }
             
             // Editable state
@@ -58,34 +54,35 @@
             &.editable {
                 margin: 15px 0;
                 padding-right: 70px;
+                padding-left: 5px;
                 border-color: @highlight;
+                user-select: none;
+                &::after {
+                    content: '';
+                    position: absolute;
+                    top: 0;
+                    left: 0;
+                    right: 50px;
+                    bottom: 0;
+                    z-index: 1;
+                }
                 .draggable-handle {
                     display: flex;
+                    width: 50px;
+                    position: absolute;
+                    top: 0;
+                    bottom: 0;
+                    right: 0;
+                    color: @mediumGrey;
+                    align-items: center;
+                    justify-content: center;
                 }
             }
-
 
             img {
                 margin-bottom: -4px;
             }
 
-        }
-    }
-
-    #name-input {
-        z-index: 1;
-        width: 100%;
-        height: 50px;
-        color: @highlight;
-        cursor: pointer;
-        text-align: center;
-        font-size: 1.1em;
-        font-weight: 400;
-        margin-bottom: 15px;
-        border: 1px dashed @turquoise;
-
-        &:focus {
-            outline: none;
         }
     }
 }

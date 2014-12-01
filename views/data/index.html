@@ -2,5 +2,5 @@
 <div v-if="!app.id" v-component="alert" type="error" message="errorAppNotFound"></div>
 <div v-if="app.id">
 	<div v-component="dataRepresentation" v-with="dataSet : currentDataSets, initialDataLoaded : initialDataLoaded"></div>
-	<div v-component="makeBar" v-with="app"></div>
+	<div v-component="makeBar" v-with="uiMode: 'data', onChange: onChange"></div>
 </div>

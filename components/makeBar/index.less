@@ -1,7 +1,7 @@
 #makeBar {
     position: fixed;
     bottom: 0;
-    z-index: 1;
+    z-index: 100;
     width: 100%;
     background: white;
     padding: 10px 32px;
@@ -44,13 +44,13 @@
         border-radius: 30px;
         opacity: 1;
         transition: left 0.2s ease-in-out;
-        &.left {
+        &.play {
             left: 0;
         }
-        &.middle {
+        &.edit {
             left: 33.33%;
         }
-        &.right {
+        &.data {
             left: 66.66%;
         }
     }

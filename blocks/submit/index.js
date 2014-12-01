@@ -22,7 +22,6 @@ module.exports = {
     methods: {
         save: function (e) {
             var self = this;
-
             self.$dispatch('dataSave');
         }
     },

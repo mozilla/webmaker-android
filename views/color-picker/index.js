@@ -20,6 +20,8 @@ module.exports = view.extend({
         var index = self.$root.$data.params.index;
         var $data = self.$data;
 
+        self.$data.back = '/make/' + id + '/blocks/' + index;
+
         // Create block reference
         var path = id + '/blocks/' + index + '/attributes/color/value';
         ref = self.model.firebase.child(path);
@@ -41,7 +43,6 @@ module.exports = view.extend({
 
     },
     data: {
-        back: true,
         title: 'Select Color',
         onSelect: function (color) {
             this.$data.selectedColor = color;

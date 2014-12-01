@@ -25,8 +25,7 @@ module.exports = view.extend({
     template: require('./index.html'),
     components: editorModels,
     data: {
-        title: 'Edit',
-        back: true
+        title: 'Edit'
     },
     methods: {
         remove: function (e) {
@@ -47,9 +46,14 @@ module.exports = view.extend({
     created: function () {
         var self = this;
 
+  
+        id = self.$root.$data.params.id;
+        index = self.$root.$data.params.index;
+
+        // Navigation
+        self.$data.back = '/make/' + id;
+
         // Fetch app
-        id = self.$parent.$data.params.id;
-        index = self.$parent.$data.params.index;
         app = new App(id);
         app.storage.once('value', function (snapshot) {
             var app = snapshot.val();
@@ -57,6 +61,7 @@ module.exports = view.extend({
             if (!app || !app.blocks) return;
             self.$data.block = snapshot.val().blocks[index];
         });
+
         self.$data.index = index;
         var onChange = throttle(function (newVal) {
             if (!newVal) return;
