@@ -20,7 +20,7 @@ module.exports = view.extend({
         var index = self.$root.$data.params.index;
         var $data = self.$data;
 
-        self.$data.back = '/make/' + id + '/blocks/' + index;
+        self.$data.back = '/make/' + id + '/block/' + index;
 
         // Create block reference
         var path = id + '/blocks/' + index + '/attributes/color/value';
