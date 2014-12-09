@@ -57,7 +57,7 @@ module.exports = view.extend({
             self.$root.isReady = true;
             self.$data.block = app.data.blocks[index];
         } else {
-           self.$once(id, function (val) {
+            self.$once(id, function (val) {
                self.$root.isReady = true;
                if (!val || !val.blocks) return;
                self.$data.block = val.blocks[index];

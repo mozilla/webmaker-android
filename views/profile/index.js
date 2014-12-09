@@ -51,7 +51,7 @@ module.exports = view.extend({
         function onRemoved(id) {
             var index = false;
             self.$data.myApps.forEach(function (app, i) {
-                if (app.id === key) index = i;
+                if (app.id === id) index = i;
             });
             if (index !== false) self.$data.myApps.splice(index, 1);
         }
