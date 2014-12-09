@@ -24,9 +24,9 @@ module.exports = view.extend({
 
         // Create block reference
         var path = id + '/blocks/' + index + '/attributes/color/value';
-        ref = self.model.firebase.child(path);
+        ref = self.$root.storage._firebase.child(path);
 
-        ref.on('value', function (snapshot) {
+        ref.once('value', function (snapshot) {
             var val = snapshot.val();
             self.$root.isReady = true;
             if (!val) return;
