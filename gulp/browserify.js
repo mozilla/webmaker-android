@@ -4,6 +4,7 @@ var buffer = require('vinyl-buffer');
 var source = require('vinyl-source-stream');
 var uglify = require('gulp-uglify');
 var handleErrors = require('./error');
+var sourcemaps = require('gulp-sourcemaps');
 
 module.exports = function () {
     var dest = gulp.dest('./build/');
@@ -18,5 +19,7 @@ module.exports = function () {
         .pipe(source('index.js'))
         .pipe(buffer())
         //.pipe(uglify())
+	.pipe(sourcemaps.init({loadMaps: true}))
+	.pipe(sourcemaps.write())
         .pipe(dest);
 };
