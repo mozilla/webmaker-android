@@ -5,4 +5,8 @@
 
 Webmaker App is a mobile web app that allows users to create their own mobile apps. It is designed to be installed in Firefox OS and (later) Android, but you can run it in desktop Firefox or Chrome to develop/contribute.
 
-# Documentation is at [http://webmaker-mobile-guide.mofodev.net](http://webmaker-mobile-guide.mofodev.net/get_started/README.html)
+# Documentation
+
+Documentation is at [webmaker-mobile-guide.mofodev.net](http://webmaker-mobile-guide.mofodev.net/get_started/README.html).
+
+If you need to view the documentation offline or want to contribute to it, see [mozillafordevelopment/webmaker-app-guide](https://github.com/mozillafordevelopment/webmaker-app-guide).
