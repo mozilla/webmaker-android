@@ -71,10 +71,6 @@ var Storage = mockrequire('../../lib/storage', {
     }
 });
 
-// var app = new App(mockId);
-
-
-
 var mockEvents = [];
 var mockVm = {
     $broadcast: function (eventName, data) {
@@ -206,6 +202,3 @@ describe('Storage', function () {
         });
     });
 });
-
-
-
