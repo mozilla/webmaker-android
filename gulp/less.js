@@ -14,7 +14,7 @@ module.exports = function() {
         .pipe(less())
         .pipe(minifyCSS({keepBreaks:false}))
         .pipe(autoprefixer({
-            browsers: ['last 2 versions'],
+            browsers: ['last 2 versions', 'android >= 4.2'],
             cascade: false,
             remove: false
         }))
