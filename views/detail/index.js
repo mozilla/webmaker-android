@@ -18,13 +18,21 @@ module.exports = view.extend({
             } else {
                 options.data = self.$data.app;
             }
-            var app = self.$root.storage.createApp(options);
+            var app = self.$root.storage.createApp(options, function (err) {
+                // The problem here is that this only runs when
+                // the *remote* server syncs. So if we're in an offline state,
+                // this callback won't be run
+                if (err) console.log(err);
+            });
+
+            self.$data.create = false;
             self.$root.$data.enteredEditorFrom = '/templates';
             self.$root.isReady = false;
             setTimeout(function () {
                 self.$root.isReady = true;
                 self.page('/make/' + app.id);
-            }, 1000);
+            }, 100);
+            
         }
     },
     created: function () {
