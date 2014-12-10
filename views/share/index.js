@@ -34,7 +34,7 @@ module.exports = view.extend({
     ready: function () {
         var self = this;
         var id = self.$root.$data.params.id;
-        var app = self.$root.storage(id);
+        var app = self.$root.storage.getApp(id);
 
         // Bind user
         self.$data.user = self.model.data.session.user;

@@ -8,7 +8,7 @@
         <link rel="stylesheet" href="/styles/common.css">
         <style>
             .main {
-                padding-top: 44px;
+                padding: 44px 5px 5px;
             }
         </style>
     </head>
@@ -17,7 +17,9 @@
         <div id="app">
             <div class="main">
                 <div v-component="navigationBar"></div>
-                <div v-component="{{type}}" v-repeat="app.blocks"></div>
+                <ul id="blocks">
+                    <li v-component="{{type}}" v-repeat="app.blocks"></li>
+                </ul>
                 <div v-component="publishFooter"></div>
             </div>
         </div>
