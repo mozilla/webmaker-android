@@ -1,4 +1,3 @@
-var App = require('../../lib/app');
 var view = require('../../lib/view');
 var Blocks = require('../../lib/blocks');
 var blocks = new Blocks();
@@ -28,26 +27,24 @@ module.exports = view.extend({
             blocks.submit
         ]
     },
-    created: function () {
+    ready: function () {
         var self = this;
 
         // Fetch app
         id = self.$root.$data.params.id;
-        app = new App(id);
+        app = self.$root.storage.getApp(id);
 
         // Bind app
-        app.storage.on('value', function (snapshot) {
+        if (app.data) {
             self.$root.isReady = true;
-            if (!snapshot.val()) return;
-            self.$data.app = snapshot.val() || {};
-            self.$data.app.id = snapshot.key();
-
-            self.title = snapshot.val().name;
+            self.$data.app = app.data;
+        }
+        self.$on(id, function (val) {
+            self.$root.isReady = true;
+            self.$data.app = val;
+            self.title = val.name;
         });
         self.$data.onDone = '/make/' + id + '/share?publish=true';
-    },
-    ready: function () {
-        var self = this;
 
         // Click handler
         function clickHandler (e) {

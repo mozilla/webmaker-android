@@ -1,4 +1,3 @@
-var App = require('../../lib/app');
 var view = require('../../lib/view');
 var i18n = require('../../lib/i18n');
 var publish = require('../../lib/publish');
@@ -34,8 +33,8 @@ module.exports = view.extend({
     },
     ready: function () {
         var self = this;
-        var id = self.$parent.$data.params.id;
-        var app = new App(id);
+        var id = self.$root.$data.params.id;
+        var app = self.$root.storage.getApp(id);
 
         // Bind user
         self.$data.user = self.model.data.session.user;
@@ -84,13 +83,7 @@ module.exports = view.extend({
             });
         }
 
-        // Bind app
-        app.storage.once('value', function (snapshot) {
-            var val = snapshot.val();
-            if (!val) {
-                self.$root.isReady = true;
-                return;
-            }
+        function onValue(val) {
             self.$data.app = val;
             // Share message
             message = i18n
@@ -101,7 +94,13 @@ module.exports = view.extend({
                 self.$data.shareMessage = message + ': ' + val.url;
             }
             startPublish();
-        });
+        }
 
+        // Bind app
+        if (app.data) {
+            onValue(app.data);
+        } else {
+            self.$once(id, onValue);
+        }
     }
 });

@@ -9,6 +9,7 @@ var sourcemaps = require('gulp-sourcemaps');
 module.exports = function () {
     var dest = gulp.dest('./build/');
     var browserified = browserify('./lib/index.js', {
+        debug: true,
         insertGlobals: false,
         transform: ['partialify', 'bulkify']
     });
@@ -18,8 +19,8 @@ module.exports = function () {
         .on('error', handleErrors.onError)
         .pipe(source('index.js'))
         .pipe(buffer())
-        //.pipe(uglify())
-	.pipe(sourcemaps.init({loadMaps: true}))
-	.pipe(sourcemaps.write())
+        .pipe(sourcemaps.init({loadMaps: true}))
+        .pipe(uglify())
+        .pipe(sourcemaps.write('./'))
         .pipe(dest);
 };

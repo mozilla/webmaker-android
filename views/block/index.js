@@ -1,4 +1,3 @@
-var App = require('../../lib/app');
 var view = require('../../lib/view');
 var bulk = require('bulk-require');
 var editorModels = bulk(
@@ -53,13 +52,17 @@ module.exports = view.extend({
         self.$data.back = '/make/' + id;
 
         // Fetch app
-        app = new App(id);
-        app.storage.once('value', function (snapshot) {
-            var app = snapshot.val();
+        app = self.$root.storage.getApp(id);
+        if (app.data && app.data.blocks) {
             self.$root.isReady = true;
-            if (!app || !app.blocks) return;
-            self.$data.block = snapshot.val().blocks[index];
-        });
+            self.$data.block = app.data.blocks[index];
+        } else {
+            self.$once(id, function (val) {
+               self.$root.isReady = true;
+               if (!val || !val.blocks) return;
+               self.$data.block = val.blocks[index];
+           });
+        }
 
         self.$data.index = index;
         var onChange = throttle(function (newVal) {

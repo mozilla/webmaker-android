@@ -28,64 +28,64 @@
             margin: 0;
         }
     }
+}
 
-    #blocks {
-        .list-reset;
-        width: 100%;
-        //transform: scale(0.95, 0.95);
-        //transform-origin: 50% top;
+#blocks {
+    .list-reset;
+    width: 100%;
+    //transform: scale(0.95, 0.95);
+    //transform-origin: 50% top;
 
-        > li {
-            display: block;
-            position: relative;
-            
-            padding: 10px 0;
-            border: 1px dashed transparent;
+    > li {
+        display: block;
+        position: relative;
+        
+        padding: 10px 0;
+        border: 1px dashed transparent;
 
-            .draggable-handle {
-                display: none;
-            }
-            
-            // Editable state
-            transition: margin 0.2s ease-in-out,
-                padding 0.2s ease-in-out,
-                border-color 0.2s ease-in-out;
-            &[draggable=true] {
-                transition: none;
-            }
-            &.editable {
-                margin: 15px 0;
-                padding-right: 70px;
-                padding-left: 5px;
-                border-color: @highlight;
-                user-select: none;
-                &::after {
-                    content: '';
-                    position: absolute;
-                    top: 0;
-                    left: 0;
-                    right: 50px;
-                    bottom: 0;
-                    z-index: 1;
-                }
-                .draggable-handle {
-                    display: flex;
-                    width: 50px;
-                    position: absolute;
-                    top: 0;
-                    bottom: 0;
-                    right: 0;
-                    color: @mediumGrey;
-                    align-items: center;
-                    justify-content: center;
-                }
-            }
-
-            img {
-                margin-bottom: -4px;
-            }
-
+        .draggable-handle {
+            display: none;
         }
+        
+        // Editable state
+        transition: margin 0.2s ease-in-out,
+            padding 0.2s ease-in-out,
+            border-color 0.2s ease-in-out;
+        &[draggable=true] {
+            transition: none;
+        }
+        &.editable {
+            margin: 15px 0;
+            padding-right: 70px;
+            padding-left: 5px;
+            border-color: @highlight;
+            user-select: none;
+            &::after {
+                content: '';
+                position: absolute;
+                top: 0;
+                left: 0;
+                right: 50px;
+                bottom: 0;
+                z-index: 1;
+            }
+            .draggable-handle {
+                display: flex;
+                width: 50px;
+                position: absolute;
+                top: 0;
+                bottom: 0;
+                right: 0;
+                color: @mediumGrey;
+                align-items: center;
+                justify-content: center;
+            }
+        }
+
+        img {
+            margin-bottom: -4px;
+        }
+
     }
 }
 

@@ -1,6 +1,5 @@
 var templates = require('../../lib/templates.json');
 var view = require('../../lib/view');
-var App = require('../../lib/app');
 
 module.exports = view.extend({
     id: 'templates',
@@ -12,10 +11,11 @@ module.exports = view.extend({
     methods: {
         onClick: function (e) {
             var self = this;
+            var storage = self.$root.storage;
             var id = e.currentTarget.getAttribute('data-id');
             if (id === 'blank') {
                 e.preventDefault();
-                var app = App.createApp({template: id});
+                var app = storage.createApp({template: id});
                 self.$root.$data.enteredEditorFrom = '/templates';
                 self.$root.isReady = false;
                 setTimeout(function () {

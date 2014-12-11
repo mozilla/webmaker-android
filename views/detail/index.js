@@ -1,4 +1,3 @@
-var App = require('../../lib/app');
 var view = require('../../lib/view');
 var templates = require('../../lib/templates');
 var clone = require('clone');
@@ -19,13 +18,16 @@ module.exports = view.extend({
             } else {
                 options.data = self.$data.app;
             }
-            var app = App.createApp(options);
+            var app = self.$root.storage.createApp(options);
+
+            self.$data.create = false;
             self.$root.$data.enteredEditorFrom = '/templates';
             self.$root.isReady = false;
             setTimeout(function () {
                 self.$root.isReady = true;
                 self.page('/make/' + app.id);
-            }, 1000);
+            }, 100);
+
         }
     },
     created: function () {
@@ -46,13 +48,13 @@ module.exports = view.extend({
                 self.$root.isReady = true;
             });
         } else {
-            var app = new App(id);
-            app.storage.on('value', function (snapshot) {
-                var val = snapshot.val();
+            var app = self.$root.storage.getApp(id);
+            if (app.data) {
                 self.$root.isReady = true;
-                if (!val) return;
-                val.id = snapshot.key();
-                // Bind app
+                self.$data.app = app.data;
+            }
+            self.$on(id, function (val) {
+                self.$root.isReady = true;
                 self.$data.app = val;
             });
         }

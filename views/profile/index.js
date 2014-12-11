@@ -21,62 +21,48 @@ module.exports = view.extend({
         clean: function (e) {
             var self = this;
             self.$data.myApps.forEach(function (app) {
-                self.model.firebase.child(app.id).remove();
+                self.$root.storage.getApp(app.id).removeApp();
             });
             self.$data.myApps = [];
         }
     },
-    created: function () {
+    ready: function () {
         var self = this;
-        var user = self.model.data.session.user;
-        var userId = user && user.id || self.model.data.session.guestId;
+        var storage = self.$root.storage;
+        // ------------------
 
-        function onRemoved(snapshot) {
-            var key = snapshot.key();
-            var index = false;
-            self.$data.myApps.forEach(function (app, i) {
-                console.log(app.id);
-                if (app.id === key) index = i;
-            });
-            if (index !== false) self.$data.myApps.splice(index, 1);
+        self.$data.myApps = storage.getApps();
+        self.$root.isReady = true;
+
+        function onAdded(val) {
+            self.$data.myApps.push(val);
         }
 
-        function onChanged(snapshot) {
-            var key = snapshot.key();
-            var val = snapshot.val();
-            if (!val) return;
-            val.id = key;
+        function onChanged(val) {
+            console.log(val);
             self.$data.myApps.forEach(function (app, i) {
-                if (app.id === key) {
-                    self.$data.myApps[i] = val;
+                if (app.id === val.id) {
+                    self.$data.myApps.splice(i, 1);
+                    self.$data.myApps.unshift(val);
                 }
             });
         }
 
-        self.$root.isReady = true;
-        self.$root.myApps = [];
-        function onAdded(snapshot) {
-            var data = snapshot.val();
-            var dupe;
-            if (!data) return;
-            data.id = snapshot.key();
-            // Duplicates
-            self.$data.myApps.forEach(function (app) {
-                if (app.id === data.id) dupe = true;
+        function onRemoved(id) {
+            var index = false;
+            self.$data.myApps.forEach(function (app, i) {
+                if (app.id === id) index = i;
             });
-            if (!dupe) self.$data.myApps.push(data);
+            if (index !== false) self.$data.myApps.splice(index, 1);
         }
 
-        if (userId) {
-            var query = self.model.firebase
-                .orderByChild('userId')
-                .equalTo(userId);
 
-            query.on('child_added', onAdded);
-            query.on('child_changed', onChanged);
-            query.on('child_removed', onRemoved);
-        } else {
-            self.$root.isReady = true;
-        }
+        self.$on('query_changed', function () {
+            self.$data.myApps = storage.getApps();
+        });
+
+        self.$on('app_added', onAdded);
+        self.$on('app_removed', onRemoved);
+        self.$on('app_changed', onChanged);
     }
 });

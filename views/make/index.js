@@ -1,4 +1,3 @@
-var App = require('../../lib/app');
 var view = require('../../lib/view');
 var Data = require('../../lib/data');
 var throttle = require('lodash.throttle');
@@ -27,40 +26,24 @@ module.exports = view.extend({
             app.update({
                 name: newVal
             });
-        }, 3000)
+        }, 3000),
+        removeApp: function () {
+            app.removeApp();
+            this.page('/profile');
+        }
     },
     created: function () {
         var self = this;
-
-        // Mode
-        self.$data.changeMode = function (mode) {
-            var modes = ['edit', 'play', 'data', 'settings'];
-            if (modes.indexOf(mode) === -1) {
-                console.log('warning: ' + mode + ' is not a valid mode');
-                mode = 'edit';
-            }
-            if (mode === 'settings' && self.$data.mode === 'settings') {
-                mode = 'edit';
-            }
-            self.$data.mode = mode;
-            self.$root.isEditing = self.$data.mode === 'edit';
-        };
-
-        var regex = new RegExp('[\\?&]mode=([^&#]*)');
-        var results = regex.exec(window.location.search);
-
-        var mode = results ? results[1] : 'edit';
-        self.$data.changeMode(mode);
-
-        // Fetch app
         var id = self.$root.$data.params.id;
+        var storage = self.$root.storage;
+        var isDragging = false;
 
-        app = new App(id);
+        app = storage.getApp(id);
+
+        var list = self.$el.querySelector('#blocks');
 
         self.$data.onDone = '/make/' + id + '/share?publish=true';
         self.$data.offlineUser = this.model.data.session.offline;
-
-        var list = self.$el.querySelector('#blocks');
 
         function getIndex(nodeList, el) {
             for (var i = 0; i < nodeList.length; i++) {
@@ -69,18 +52,17 @@ module.exports = view.extend({
                 }
             }
         }
-        var isDragging = false;
 
-        function onValue(snapshot) {
+        function onValue(val) {
+            console.log('onValue');
             self.$root.isReady = true;
 
             if (isDragging) return;
 
-            if (!snapshot.val()) return;
-            self.$data.app = snapshot.val();
-            self.$data.app.id = snapshot.key();
+            if (!val) return;
+            self.$data.app = val;
 
-            var blocks = snapshot.val().blocks;
+            var blocks = val.blocks;
 
             try {
                 if (sort) sort.destroy();
@@ -105,22 +87,43 @@ module.exports = view.extend({
                     isDragging = false;
 
                     blocks.splice(end, 0, blocks.splice(start, 1)[0]);
+                    // update
                     app.update({
                         blocks: blocks
                     });
                 }
             });
         }
-        app.storage.on('value', onValue);
+
+        if (app.data) {
+            onValue(app.data);
+        }
+
+        self.$on(id, onValue);
+
+        // Mode
+        self.$data.changeMode = function (mode) {
+            var modes = ['edit', 'play', 'data', 'settings'];
+            if (modes.indexOf(mode) === -1) {
+                console.log('warning: ' + mode + ' is not a valid mode');
+                mode = 'edit';
+            }
+            if (mode === 'settings' && self.$data.mode === 'settings') {
+                mode = 'edit';
+            }
+            self.$data.mode = mode;
+            self.$root.isEditing = self.$data.mode === 'edit';
+        };
+
+        var regex = new RegExp('[\\?&]mode=([^&#]*)');
+        var results = regex.exec(window.location.search);
+
+        var mode = results ? results[1] : 'edit';
+        self.$data.changeMode(mode);
 
         self.$data.goTo = function (href, $event) {
             if (self.$data.mode !== 'edit') return;
             self.page(href);
-        };
-
-        self.$data.removeApp = function () {
-            app.removeApp();
-            self.page('/profile');
         };
 
         // Fetch collected Data

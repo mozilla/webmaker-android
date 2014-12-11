@@ -12,6 +12,9 @@
     <body>
         <div id="app">
             <div v-view="currentView" class="main"></div>
+            <div v-if="alertOn" id="alert-overlay" class="animated v-fade" v-transition>
+                <div v-component="alert" type="error" message="{{alertMessage}}"></div>
+            </div>
             <div class="loader animated v-fade" v-if="!isReady" v-transition>
                 <div class="loading-spinner">
                   <div class="cube1"></div>
