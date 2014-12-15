@@ -15,12 +15,9 @@ module.exports = view.extend({
             blocks.text,
             blocks.image,
             blocks.sms,
-            blocks.phone,
-
-            // Include spacers for missing blocks
-            undefined,
-            undefined,
-
+            blocks.phone
+        ],
+        inputBlocks : [
             // Form / data blocks
             blocks.input,
             blocks.spinner,

@@ -11,4 +11,13 @@
             </a>
         </li>
     </ul>
+    <ul>
+        <li v-repeat="block: inputBlocks">
+            <a data-block="{{block.id}}" class="brick" href="/make/{{app.id}}/edit">
+                <img src="{{block.icon}}" alt="{{block.name}}" />
+                <p>{{ block.name | i18n }}</p>
+            </a>
+        </li>
+    </ul>
+
 </div>
