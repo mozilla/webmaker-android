@@ -17,7 +17,7 @@ module.exports = view.extend({
             blocks.sms,
             blocks.phone
         ],
-        inputBlocks : [
+        inputBlocks: [
             // Form / data blocks
             blocks.input,
             blocks.spinner,
