@@ -16,7 +16,7 @@
 
         background: @highlight;
         color: @white;
-  
+
         text-align: center;
         text-decoration: none;
 
@@ -39,14 +39,14 @@
     > li {
         display: block;
         position: relative;
-        
+
         padding: 10px 0;
-        border: 1px dashed transparent;
+        border: none;
 
         .draggable-handle {
             display: none;
         }
-        
+
         // Editable state
         transition: margin 0.2s ease-in-out,
             padding 0.2s ease-in-out,
@@ -55,11 +55,20 @@
             transition: none;
         }
         &.editable {
-            margin: 15px 0;
-            padding-right: 70px;
-            padding-left: 5px;
-            border-color: @highlight;
+            padding: 15px 70px 15px 10px;
             user-select: none;
+
+            &::before {
+                content: '';
+                position: absolute;
+                border: dashed 1px blue;
+                border-color: @highlight;
+                top: 5px;
+                left: 0px;
+                width: 100%;
+                height: ~"calc(100% - 10px)";
+            }
+
             &::after {
                 content: '';
                 position: absolute;
@@ -89,6 +98,22 @@
     }
 }
 
+[draggable=true] {
+    background: #f6f7f7;
+    opacity: 1;
+    &::before {
+        top: 0px !important;
+        width: 100%;
+        height: 100% !important;
+    }
+}
+
 .sortable-ghost {
-   opacity: 0;
+   height: 20px;
+   background: #32b2d2;
+   opacity: .4;
+
+   * {
+       opacity: 0;
+   }
 }
