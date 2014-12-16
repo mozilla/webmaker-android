@@ -91,6 +91,10 @@
         "message": "Remove",
         "description": "Button for removing (deleting) a block"
     },
+    "Delete": {
+        "message": "Delete",
+        "description": "Button for removing (deleting) a block"
+    },
     "vendors": {
         "message": "vendors",
         "description": "To be replaced in the sentence: Apps made by vendors"
