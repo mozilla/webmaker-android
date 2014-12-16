@@ -1,8 +1,23 @@
-<ul id="add-container">
-    <li v-repeat="block: blocks" v-class="spacer: !block">
-        <a data-block="{{block.type}}" href="#">
-            <img v-if="block.icon" src="{{block.icon}}" alt="{{block.name}}" />
-            <p v-if="block.name">{{ block.name | i18n }}</p>
-        </a>
-    </li>
-</ul>
+<div class="header">
+    <button v-on="click: goBack" class="back">&lt;</button>
+    <h1>App</h1>
+</div>
+<div class="list-wrapper">
+    <ul>
+        <li v-repeat="block: blocks">
+            <a data-block="{{block.id}}" class="brick" href="/make/{{app.id}}/edit">
+                <img src="{{block.icon}}" alt="{{block.name}}" />
+                <p>{{ block.name | i18n }}</p>
+            </a>
+        </li>
+    </ul>
+    <ul>
+        <li v-repeat="block: inputBlocks">
+            <a data-block="{{block.id}}" class="brick" href="/make/{{app.id}}/edit">
+                <img src="{{block.icon}}" alt="{{block.name}}" />
+                <p>{{ block.name | i18n }}</p>
+            </a>
+        </li>
+    </ul>
+
+</div>

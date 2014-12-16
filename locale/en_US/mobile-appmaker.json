@@ -1,4 +1,8 @@
 {
+    "Add a Brick": {
+        "message": "Add a Brick",
+        "description": "Title for the add a brick page"
+    },
     "scientist": {
         "message": "scientist",
         "description": "To be replaced in the sentence: Apps made by scientists"
