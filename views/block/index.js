@@ -43,9 +43,8 @@ module.exports = view.extend({
         },
         onSave: function (e) {
             e.preventDefault();
-            var data = clone(this.$data.block.attributes);
             app.updateBlock(index, {
-                attributes: data
+                attributes: this.$data.block.attributes
             });
             this.page(this.$data.back);
         }
@@ -64,13 +63,11 @@ module.exports = view.extend({
         if (app.data && app.data.blocks) {
             self.$root.isReady = true;
             self.$data.block = clone(app.data.blocks[index]);
-            //self.$data.cacheBlock = clone(app.data.blocks[index]);
         } else {
             self.$once(id, function (val) {
                self.$root.isReady = true;
                if (!val || !val.blocks) return;
                self.$data.block = val.blocks[index];
-               //self.$data.cacheBlock = clone(val.blocks[index]);
            });
         }
 
@@ -82,7 +79,6 @@ module.exports = view.extend({
                 return;
             }
             self.$data.saveDisabled = false;
-            
         }
         self.$watch('block.attributes', onChange);
     }
