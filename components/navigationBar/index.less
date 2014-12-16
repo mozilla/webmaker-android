@@ -12,11 +12,34 @@
 
     h1 {
         display: inline-block;
-        margin: 11px auto 0 auto;
+        margin: 13px auto 0 auto;
         color: @highlight;
         text-align: center;
         font-size: 1.1em;
         font-weight: 400;
+    }
+
+    .save-btn {
+        @_btnSize: 30px;
+        @_vSpace: (@header-height - @_btnSize)/2 - 1;
+        position: absolute;
+        right: @_vSpace;
+        top: @_vSpace;
+        height: @_btnSize;
+        line-height: @_btnSize;
+        padding: 0 10px 0 8px;
+        background: @turquoise;
+        color: @white;
+        font-size: 13px;
+        border: none;
+        transition: background-color 0.3s ease-in-out;
+        .fa {
+            margin-right: 3px;
+        }
+        &.disabled {
+            color: #CCC;
+            background: @white;
+        }
     }
 
     .nav-btn {
@@ -48,6 +71,7 @@
             padding-top: 0;
             font-size: 1.4em;
         }
+
 
     }
 }

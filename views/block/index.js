@@ -3,8 +3,7 @@ var bulk = require('bulk-require');
 var editorModels = bulk(
     __dirname + '/../../components/block-editors',
     '**/*.js');
-var throttle = require('lodash.throttle');
-
+var clone = require('clone');
 var app = null;
 var index = null;
 var id = null;
@@ -24,7 +23,8 @@ module.exports = view.extend({
     template: require('./index.html'),
     components: editorModels,
     data: {
-        title: 'Edit'
+        title: 'Edit',
+        saveDisabled: true
     },
     methods: {
         remove: function (e) {
@@ -40,6 +40,13 @@ module.exports = view.extend({
                 return editorKey;
             }
             return defaultEditor;
+        },
+        onSave: function (e) {
+            e.preventDefault();
+            app.updateBlock(index, {
+                attributes: this.$data.block.attributes
+            });
+            this.page(this.$data.back);
         }
     },
     created: function () {
@@ -55,7 +62,7 @@ module.exports = view.extend({
         app = self.$root.storage.getApp(id);
         if (app.data && app.data.blocks) {
             self.$root.isReady = true;
-            self.$data.block = app.data.blocks[index];
+            self.$data.block = clone(app.data.blocks[index]);
         } else {
             self.$once(id, function (val) {
                self.$root.isReady = true;
@@ -65,13 +72,14 @@ module.exports = view.extend({
         }
 
         self.$data.index = index;
-        var onChange = throttle(function (newVal) {
-            if (!newVal) return;
-            var clone = JSON.parse(JSON.stringify(newVal));
-            app.updateBlock(index, {
-                attributes: clone
-            });
-        }, 3000);
+        var first;
+        function onChange(newVal) {
+            if (!first) {
+                first = true;
+                return;
+            }
+            self.$data.saveDisabled = false;
+        }
         self.$watch('block.attributes', onChange);
     }
 });
