@@ -1,0 +1,19 @@
+<nav class="navigationBar">
+    <button v-on="click: onClose" class="back nav-btn">&lt;</button>
+    <h1>{{'Select Color' | i18n}}</h1>
+</nav>
+
+<div class="color-picker-inner">
+    <ul class="swatches primary">
+        <li v-repeat="color: colorGroups"
+            style="background-color:{{color}};"
+            v-class="selected: selectedColor === color"
+            v-on="click: onColorSelect(color)"></li>
+    </ul>
+
+    <ul class="swatches" v-repeat="colorSet: colors" v-show="$index === selectedGroup">
+        <li v-repeat="color: colorSet" style="background-color:{{color}};"
+            v-class="selected: selectedColor === color"
+            v-on="click: onColorSelect(color)"></li>
+    </ul>
+</div>

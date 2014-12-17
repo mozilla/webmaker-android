@@ -24,7 +24,8 @@ module.exports = view.extend({
     components: editorModels,
     data: {
         title: 'Edit',
-        saveDisabled: true
+        // always false now. feel free to try stuff here
+        saveDisabled: false
     },
     methods: {
         remove: function (e) {
@@ -72,14 +73,5 @@ module.exports = view.extend({
         }
 
         self.$data.index = index;
-        var first;
-        function onChange(newVal) {
-            if (!first) {
-                first = true;
-                return;
-            }
-            self.$data.saveDisabled = false;
-        }
-        self.$watch('block.attributes', onChange);
     }
 });

@@ -1,4 +1,31 @@
-#color-picker {
+.color-picker {
+    background: #F6F7F7;
+    position: fixed;
+    top: 0;
+    left: 0;
+    height: 100%;
+    width: 100%;
+    z-index: 1000;
+    overflow: hidden;
+
+    .color-picker-inner {
+        position: fixed;
+        top: @header-height;
+        left: 0;
+        right: 0;
+        bottom: 0;
+        overflow-y: auto;
+        z-index: 1;
+    }
+    .navigationBar {
+        z-index: 2;
+    }
+        
+    display: none;
+    &.active {
+        display: block;
+    }
+
     .swatches {
         &.primary {
             border-bottom: 1px solid @lightGrey;
