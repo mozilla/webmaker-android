@@ -4,6 +4,12 @@
     .edit-inner {
         padding: 10px;
     }
+
+    .edit-app-name {
+        border-bottom: dashed 1px @turquoise;
+        padding-bottom: 2px;
+    }
+
     .add {
         display: flex;
         justify-content: center;
@@ -16,7 +22,7 @@
 
         background: @highlight;
         color: @white;
-  
+
         text-align: center;
         text-decoration: none;
 
@@ -39,14 +45,14 @@
     > li {
         display: block;
         position: relative;
-        
+
         padding: 10px 0;
         border: 1px dashed transparent;
 
         .draggable-handle {
             display: none;
         }
-        
+
         // Editable state
         transition: margin 0.2s ease-in-out,
             padding 0.2s ease-in-out,

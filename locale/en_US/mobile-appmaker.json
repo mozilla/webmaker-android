@@ -55,6 +55,10 @@
         "message": "Name",
         "description": "Label on the profile page, e.g. Name: Kate, Location: Canada"
     },
+    "App Settings": {
+        "message": "App Settings",
+        "description": "Title within app editor for page where user can change the app name and icon"
+    },
     "activists": {
         "message": "activists",
         "description": "To be replaced in the sentence: Apps made by activists"
