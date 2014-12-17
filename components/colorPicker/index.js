@@ -22,7 +22,10 @@ module.exports = {
             var selected = this.$data.selectedColor;
             var index;
             this.$data.colors.forEach(function (group, groupIndex) {
-                if (selected === groups[groupIndex]) return index = groupIndex;
+                if (selected === groups[groupIndex]) {
+                    index = groupIndex;
+                    return;
+                }
                 group.forEach(function (color) {
                     if (selected === color) index = groupIndex;
                 });
