@@ -5,9 +5,27 @@
         padding: 10px;
     }
 
-    .edit-app-name {
-        border-bottom: dashed 1px @turquoise;
+    .name-wrapper {
+        vertical-align: bottom;
+        display: inline-block;
         padding-bottom: 2px;
+        white-space: nowrap;
+        text-overflow: ellipsis;
+        overflow: hidden;
+        max-width: 50%;
+        position: relative;
+
+        &.edit {
+            padding-right: 24px;
+            cursor: pointer;
+            border-bottom: dashed 1px @turquoise;
+        }
+
+        .fa {
+            position: absolute;
+            top: 2px;
+            right: 0px;
+        }
     }
 
     .add {
@@ -55,11 +73,13 @@
 
         // Editable state
         transition: margin 0.2s ease-in-out,
-            padding 0.2s ease-in-out,
-            border-color 0.2s ease-in-out;
+        padding 0.2s ease-in-out,
+        border-color 0.2s ease-in-out;
+
         &[draggable=true] {
             transition: none;
         }
+
         &.editable {
             padding: 15px 70px 15px 10px;
             user-select: none;
