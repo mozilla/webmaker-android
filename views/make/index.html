@@ -28,5 +28,5 @@
         v-component="dataRepresentation"
         v-with="dataSet : currentDataSets, initialDataLoaded : initialDataLoaded"></div>
 
-    <div v-component="makeBar" v-with="uiMode: mode === 'settings' ? 'edit' : mode, onChange: changeMode"></div>
+    <div v-if="mode !== 'settings'" v-component="makeBar" v-with="uiMode: mode === 'settings' ? 'edit' : mode, onChange: changeMode"></div>
 </div>
