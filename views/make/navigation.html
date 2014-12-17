@@ -2,12 +2,14 @@
 
 <h1>
     <span v-if="mode === 'settings'">{{ 'App Settings' | i18n}}</span>
-    <a class="edit-app-name" v-if="mode === 'edit'" v-on="click: changeMode('settings')" v-if="mode !== 'settings'">
-      {{app.name}}
-      <span class="fa fa-pencil"></span>
-    </a>
-    <span v-if="mode === 'play'">
-      {{app.name}}
+    <span v-if="mode !== 'settings'" class="name-wrapper {{mode}}">
+      <a class="edit-app-name" v-if="mode === 'edit'" v-on="click: changeMode('settings')" v-if="mode !== 'settings'">
+        <span class="app-name">{{app.name}}</span>
+        <span class="fa fa-pencil"></span>
+      </a>
+      <span class="app-name" v-if="mode === 'play'">
+        {{app.name}}
+      </span>
     </span>
 </h1>
 
