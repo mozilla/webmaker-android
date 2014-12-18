@@ -1,23 +1,12 @@
 var view = require('../../lib/view');
 var Data = require('../../lib/data');
+var utils = require('../../lib/utils');
 var throttle = require('lodash.throttle');
 var Sortable = require('sortable');
 
 var sort;
 var app;
-
-var iconColors = [
-    '#333444',
-    '#1e79da',
-    '#1F9CDF',
-    '#18dea6',
-    '#39d91f',
-    '#e7ce17',
-    '#ea6517',
-    '#e71a18',
-    '#ec1a6e',
-    '#d91fd6'
-];
+var iconColors = utils.baseColors;
 
 var iconImages = [
     'activist.png',
@@ -31,7 +20,9 @@ var iconImages = [
     'teacher.png',
     'vendor.png',
     'family.png'
-];
+].map(function (icon) {
+    return '/images/' + icon;
+});
 
 module.exports = view.extend({
     id: 'make',

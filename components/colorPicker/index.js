@@ -1,17 +1,6 @@
 var utils = require('../../lib/utils');
 
-var colorGroups = [
-    '#333444',
-    '#1e79da',
-    '#1F9CDF',
-    '#18dea6',
-    '#39d91f',
-    '#e7ce17',
-    '#ea6517',
-    '#e71a18',
-    '#ec1a6e',
-    '#d91fd6'
-];
+var colorGroups = utils.baseColors;
 
 module.exports = {
     className: 'color-picker',

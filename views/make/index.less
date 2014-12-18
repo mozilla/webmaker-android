@@ -81,8 +81,6 @@
         .app-icon {
             position: relative;
             top: 50px;
-            -webkit-transform: tranlateY(-50%);
-            -ms-transform: tranlateY(-50%);
             transform: translateY(-50%);
             height: 100px;
             width: 100px;
@@ -103,24 +101,22 @@
     }
 
     .swatches {
-        margin-top: 25px;
         list-style: none;
         padding: 0 15px;
         overflow: auto;
         width: 100%;
+        margin: 15px auto 0 auto;
+        max-width: 400px;
 
         li {
             float: left;
-            margin: 5% 0 0 5%;
+            margin: 2%;
             cursor: pointer;
-            width: 14%;
+            width: 16%;
             height: 0;
-            padding-bottom: 14%;
+            padding-bottom: 16%;
             transition: box-shadow 0.1s ease-in;
             border-radius: 50%;
-            &.selected {
-                box-shadow: 0 0 0 4px @turquoise;
-            }
         }
     }
 }
@@ -205,10 +201,10 @@
     }
 
     .sortable-ghost {
-       height: 25px;
-       padding: 0px !important;
-       background: #32b2d2;
-       margin: 5px 0;
+        height: 25px;
+        padding: 0px !important;
+        background: #32b2d2;
+        margin: 5px 0;
 
        * {
            opacity: 0;

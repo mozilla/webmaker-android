@@ -10,9 +10,8 @@
     </div>
     <div class="icon-container">
         <div style="background: {{app.iconColor}}"class="app-icon">
-          <div class="icon-image" style="background-image:url(/images/{{app.iconImage}})"></div>
+          <div class="icon-image" style="background-image:url('{{app.iconImage}}')"></div>
         </div>
-
     </div>
     <div class="button" v-on="click: nextIconImage()">
         <span class="fa fa-chevron-right"></span>
