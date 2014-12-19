@@ -13,5 +13,5 @@ module.exports = view.extend({
         back: true,
         config: config,
         package: packageJSON
-    },
+    }
 });
