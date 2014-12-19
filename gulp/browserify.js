@@ -1,11 +1,13 @@
 var run = require('gulp-run');
+var async = require('async');
  
 function browserify(src, dest) {
     return 'browserify ' + src + ' -d -t partialify -t bulkify ' +
         ' | exorcist ' + dest + '.map > ' + dest;
 }
 
-
-module.exports = function (done) {
-    run(browserify('./lib/index.js', './build/index.js')).exec(done);
-};
+module.exports = function (src, dest) {
+    return function (done) {
+        run(browserify(src, dest)).exec(done);
+    }
+}
