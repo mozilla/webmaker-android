@@ -1,0 +1,11 @@
+<div v-component="navigationBar"></div>
+
+<dl>
+    <dt>Version</dt>
+    <dd>{{package.version}}</dd>
+</dl>
+<dl v-repeat="config">
+    <dt>{{$key}}</dt>
+    <dd>{{$value}}</dd>
+</dl>
+

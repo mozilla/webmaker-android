@@ -5,13 +5,13 @@ var path = require('path');
 
 // Which env variables can we expose to the client?
 var expose = [
+    'NODE_ENV',
     'LOGIN_URL',
     'PUBLISH_ENDPOINT',
-    'MAKEDRIVE_URL',
-    'OFFLINE',
     'PUBLISH_DEV_MODE',
     'FIREBASE_URL',
     'FIREBASE_URL_DATA',
+    'OFFLINE',
     'APPCACHE'
 ];
 
@@ -34,6 +34,8 @@ module.exports = function () {
     keys.forEach(function (key) {
         if (expose.indexOf(key) > -1) all[key] = habitat.get(key);
     });
+
+    all.package = require('../package.json');
 
     var string = 'module.exports = ' + JSON.stringify(all) + ';';
     return file('index.js', string)
