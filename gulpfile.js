@@ -29,7 +29,7 @@ var browserifyPublish = browserify('./publish/index.js', './build/publish-assets
 
 gulp.task('less', ['clean'], less);
 gulp.task('browserify', ['clean', 'locale'], browserifyMain);
-gulp.task('browserify-publish', ['clean', 'locale'], browserifyPublish);
+gulp.task('browserify-publish', ['clean', 'locale', 'publish'], browserifyPublish);
 gulp.task('publish', ['less', 'locale'], publish);
 gulp.task('build', [
     'less',
@@ -40,8 +40,8 @@ gulp.task('build', [
 ], cache);
 
 gulp.task('re-locale', ['clean'], locale);
-gulp.task('re-browserify', ['clean', 're-locale'], browserify);
-gulp.task('re-browserify-publish', ['clean', 're-locale'], browserifyPublish);
+gulp.task('re-browserify', ['clean', 're-locale'], browserifyMain);
+gulp.task('re-browserify-publish', ['clean', 're-locale', 're-publish'], browserifyPublish);
 gulp.task('re-publish', ['less', 're-locale'], publish);
 gulp.task('re-build', [
     'less',
