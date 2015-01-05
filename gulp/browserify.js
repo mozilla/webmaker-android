@@ -1,26 +1,12 @@
-var gulp = require('gulp');
-var browserify = require('browserify');
-var buffer = require('vinyl-buffer');
-var source = require('vinyl-source-stream');
-var uglify = require('gulp-uglify');
-var handleErrors = require('./error');
-var sourcemaps = require('gulp-sourcemaps');
+var run = require('gulp-run');
+ 
+function browserify(src, dest) {
+    return 'browserify ' + src + ' -d -t partialify -t bulkify ' +
+        ' | exorcist ' + dest + '.map > ' + dest;
+}
 
-module.exports = function () {
-    var dest = gulp.dest('./build/');
-    var browserified = browserify('./lib/index.js', {
-        debug: true,
-        insertGlobals: false,
-        transform: ['partialify', 'bulkify']
-    });
-
-    return browserified
-        .bundle()
-        .on('error', handleErrors.onError)
-        .pipe(source('index.js'))
-        .pipe(buffer())
-        .pipe(sourcemaps.init({loadMaps: true}))
-        .pipe(uglify())
-        .pipe(sourcemaps.write('./'))
-        .pipe(dest);
-};
+module.exports = function (src, dest) {
+    return function (done) {
+        run(browserify(src, dest)).exec(done);
+    }
+}

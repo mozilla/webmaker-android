@@ -24,22 +24,29 @@ gulp.task('download-locales', ['clean'], downloadLocales);
 gulp.task('locale', ['download-locales'], locale);
 gulp.task('template', ['config', 'clean'], template);
 
+var browserifyMain = browserify('./lib/index.js', './build/index.js');
+var browserifyPublish = browserify('./publish/index.js', './build/publish-assets/index.js')
+
 gulp.task('less', ['clean'], less);
-gulp.task('browserify', ['clean', 'locale'], browserify);
+gulp.task('browserify', ['clean', 'locale'], browserifyMain);
+gulp.task('browserify-publish', ['clean', 'locale', 'publish'], browserifyPublish);
 gulp.task('publish', ['less', 'locale'], publish);
 gulp.task('build', [
     'less',
     'browserify',
+    'browserify-publish',
     'publish',
     'template'
 ], cache);
 
 gulp.task('re-locale', ['clean'], locale);
-gulp.task('re-browserify', ['clean', 're-locale'], browserify);
+gulp.task('re-browserify', ['clean', 're-locale'], browserifyMain);
+gulp.task('re-browserify-publish', ['clean', 're-locale', 're-publish'], browserifyPublish);
 gulp.task('re-publish', ['less', 're-locale'], publish);
 gulp.task('re-build', [
     'less',
     're-browserify',
+    're-browserify-publish',
     're-publish',
     'template'
 ], cache);

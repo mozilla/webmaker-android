@@ -39,7 +39,6 @@
     "gulp-mocha": "1.0.0",
     "gulp-plumber": "0.6.6",
     "gulp-sourcemaps": "1.2.4",
-    "gulp-uglify": "1.0.1",
     "gulp-util": "3.0.1",
     "gulp-webserver": "0.8.0",
     "habitat": "3.0.0",
@@ -48,12 +47,11 @@
     "node-appcache-generator": "k88hudson/node-appcache-generator",
     "node-static": "0.7.4",
     "partialify": "3.1.1",
-    "request": "2.44.0",
     "tv4": "^1.1.4",
-    "vinyl-buffer": "1.0.0",
     "gulp-template": "1.1.1",
-    "vinyl-source-stream": "1.0.0",
     "webmaker-download-locales": "0.2.4",
-    "gulp-autoprefixer": "^2.0.0"
+    "gulp-autoprefixer": "^2.0.0",
+    "gulp-run": "^1.6.4",
+    "exorcist": "^0.1.6"
   }
 }

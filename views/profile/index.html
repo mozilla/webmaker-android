@@ -21,7 +21,6 @@
       <lh>{{ "My Apps" | i18n }}</lh>
       <li v-component="appCell" v-repeat="myApps"></li>
   </ul>
-
   <div class="no-apps" v-show="myApps.length == 0">
     <p>{{ "No Apps Message" | i18n }}</p>
     <a href="/templates" class="btn btn-block btn-dark">{{ "Make an App" | i18n }}</a>
