@@ -10,6 +10,9 @@ module.exports = {
     methods: {
         onColorPickerDone: function () {
             this.$data.showColorPicker = false;
+        },
+        openColorPicker: function (color) {
+            this.$broadcast('openCP', color);
         }
     }
 };

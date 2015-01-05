@@ -5,6 +5,12 @@ var colorGroups = utils.baseColors;
 module.exports = {
     className: 'color-picker',
     template: require('./index.html'),
+    ready: function () {
+        this.$on('openCP', function (event) {
+            this.show = true;
+            this.originalColor = event;
+        });
+    },
     computed: {
         selectedGroup: function () {
             var groups = this.$data.colorGroups;
@@ -23,12 +29,15 @@ module.exports = {
         }
     },
     methods: {
-        onColorSelect: function (color) {
+        selectColor: function (color) {
             this.selectedColor = color;
         },
-        onClose: function (e) {
-            e.preventDefault();
-            this.$data.show = false;
+        onSave: function (e) {
+            this.show = false;
+        },
+        onCancel: function (e) {
+            this.selectedColor = this.originalColor;
+            this.show = false;
         }
     },
     data: {
