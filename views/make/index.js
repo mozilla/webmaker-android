@@ -58,9 +58,12 @@ module.exports = view.extend({
             var maxIndex = data.iconImages.length - 1;
 
             direction === 'next' ? index++ : index--;
-            if (index < 0) { index = maxIndex; }
-            if (index > maxIndex) { index = 0; }
-
+            if (index < 0) {
+                index = maxIndex;
+            }
+            if (index > maxIndex) {
+                index = 0;
+            }
             app.update({
                 iconImage: data.iconImages[index]
             });

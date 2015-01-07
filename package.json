@@ -22,7 +22,8 @@
     "lodash.throttle": "2.4.1",
     "event-emitter": "0.3.1",
     "fastclick": "1.0.3",
-    "sortable": "git://github.com/k88hudson/Sortable#webmaker-app"
+    "sortable": "git://github.com/k88hudson/Sortable#webmaker-app",
+    "esprima": "^1.2.2"
   },
   "devDependencies": {
     "browserify": "6.3.2",
