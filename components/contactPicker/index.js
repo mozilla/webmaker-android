@@ -1,20 +1,31 @@
+var clone = require('clone');
+
 module.exports = {
     className: 'contact-picker',
     template: require('./index.html'),
     ready: function () {
-        this.$on('openContactPicker', function (event) {
-            this.show = true;
-        });
-
         this.modelData();
+
+        this.$on('openContactPicker', function (event) {
+            this.open();
+        });
     },
     methods: {
-        onSave: function (e) {
+        open: function () {
+            // Store a copy of intial contact data in case user doesn't save
+            this.initialState = clone(this.modeledContacts);
+
+            this.show = true;
+        },
+        close: function () {
             this.show = false;
         },
+        onSave: function (e) {
+            this.close();
+        },
         onCancel: function (e) {
-            this.selectedColor = this.originalColor;
-            this.show = false;
+            this.modeledContacts = this.initialState;
+            this.close();
         },
         modelData: function () {
             var modeled = {};
@@ -31,6 +42,8 @@ module.exports = {
                 if (!modeled[firstLetter]) {
                     modeled[firstLetter] = [];
                 }
+
+                contact.$add('selected', false);
 
                 modeled[firstLetter].push(contact);
             });
