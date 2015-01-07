@@ -3,37 +3,26 @@
 <form>
     <div v-show="error" v-component="alert" type="error" message="{{error}}"></div>
     <div v-show="!error">
-        <h3 class="section">Share via SMS</h3>
         <div v-show="user.username" class="form-group">
             <textarea name="share-message" v-model="shareMessage" class="textarea-large"></textarea>
         </div>
     </div>
 </form>
-<!--
+
 <ul class="list-cell">
-    <lh class="with-border-top">Share To</lh>
+    <lh class="with-border-top">Share Via</lh>
     <li>
         <div class="cell">
             <div class="left">
                 <span class="title">SMS</span>
-                <span class="description">Share by SMS</span>
             </div>
             <div class="right">
-                <a href="/add-contacts">Add contacts</a>
+                <a href="#" v-on="click: onSMSClick">Add contacts</a>
             </div>
         </div>
     </li>
-    <li>
-        <div class="cell">
-            <div class="left">
-                <span class="title">Facebook</span>
-                <span class="description">Share on Facebook</span>
-            </div>
-            <div class="right">
-                <input type="checkbox" class="pull-right">
-            </div>
-        </div>
-    </li>
-</ul> -->
+</ul>
 
 <div v-component="tabBar"></div>
+
+<div v-class="active: show" v-component="contactPicker"></div>

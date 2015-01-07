@@ -26,6 +26,9 @@ module.exports = view.extend({
                 encodeURIComponent(self.$data.shareMessage);
             window.location = sms;
             page('/make/' + self.$parent.$data.params.id + '/detail');
+        },
+        onSMSClick: function () {
+            this.$broadcast('openContactPicker');
         }
     },
     created: function () {

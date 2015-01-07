@@ -1,0 +1,12 @@
+<nav class="navigationBar">
+    <button class="nav-btn" v-on="click: onCancel">{{ 'Cancel' | i18n}}</button>
+    <h1>Choose Contacts</h1>
+    <button v-class="disabled: saveDisabled" class="save-btn" v-on="click: onSave">
+        <span class="fa fa-check"></span> {{ 'Done' | i18n}}
+    </button>
+</nav>
+
+<div class="inner">
+    <p>CONTACT PICKER, YO!</p>
+</div>
+
