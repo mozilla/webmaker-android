@@ -7,6 +7,13 @@
 </nav>
 
 <div class="inner">
-    <p>CONTACT PICKER, YO!</p>
-</div>
+    <div class="contact-list">
+        <div v-repeat="modeledContacts">
+            <div class="letter-header">{{ $key }}</div>
 
+            <div v-repeat="person : $value" class="contact">
+                <span>{{ person.name }}</span>
+            </div>
+        </div>
+    </div>
+</div>
