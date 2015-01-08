@@ -22,32 +22,39 @@
         position: fixed;
         top: 0;
         width: 100%;
-        height: 50px;
-        text-align: center;
+        display: flex;
+        align-items: center;
 
         h1 {
-            color: white;
-            display: inline-block;
-            margin: 11px auto 0 auto;
-            text-align: center;
+            color: #fff;
             font-size: 1.1em;
             font-weight: 400;
+            text-align: center;
+            flex-grow: 1;
         }
 
         .back {
-            position: absolute;
-            top: 0;
-            left: 0;
-            font-size: 1.4em;
-            color: white;
             border: none;
             background: none;
-            line-height: 50px;
             outline: none;
-            padding: 0px 20px;
             text-decoration: none;
             cursor: pointer;
-            height: 100%;
+            flex-grow: 1;
+        }
+
+        .glyph {
+            font-size: 1.4em;
+            color: #fff;
+            padding: 0px 20px;
+        }
+
+        .spacer {
+            flex-grow: 1;
+            visibility: hidden;
+
+            &:before {
+                content: '<';
+            }
         }
 
     }
