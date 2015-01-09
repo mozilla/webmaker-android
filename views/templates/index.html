@@ -1,11 +1,19 @@
 <div v-component="navigationBar"></div>
-<ul>
-    <li class="templateCell" v-repeat="templates">
-        <a class="cell"
-            data-id="{{id}}" href="/template/{{id}}/detail" v-on="click: onClick">
-            <img class="app-icon" src="{{icon}}">
-            <div class="name">{{name | i18n}}</div>
-        </a>
-    </li>
-</ul>
+<div class="list-cell template-cell">
+    <a href="/template/{{id}}/detail" class="cell" v-repeat="templates" template="true">
+        <div class="left">
+            <div class="app-icon">
+              <div class="app-icon-image" style="background-image:url({{iconImage}});"></div>
+            </div>
+        </div>
+        <div class="middle">
+            <span class="title">{{templateTitle || name}}</span>
+            <span v-if="description" class="description">{{description}}</span>
+        </div>
+        <div class="right">
+            <span class="fa fa-chevron-right"></span>
+        </div>
+    </a>
+</div>
+
 <div v-component="tabBar"></div>

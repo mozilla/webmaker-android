@@ -67,8 +67,8 @@
         "message": "Apps I've Created",
         "description": "Title for the list of apps I've created"
     },
-    "Create an App": {
-        "message": "Create an App",
+    "Make Your Own App": {
+        "message": "Make Your Own App",
         "description": "Title for app templates, starter projects/styles to create new apps"
     },
     "Make an App": {
