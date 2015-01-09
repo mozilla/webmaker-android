@@ -83,6 +83,8 @@ var singleTemplateSchema = {
 	properties: {
 		id: nonEmptyStringSchema,
 		name: nonEmptyStringSchema,
+		templateTitle: nonEmptyStringSchema,
+		description: nonEmptyStringSchema,
 		icon: {
 			type: 'string',
 			pattern: '^/images/.*'
@@ -112,7 +114,13 @@ var localizationSchema = {
 	items: {
 		type: 'object',
 		properties: {
+			templateTitle: {
+				format: 'localized'
+			},
 			name: {
+				format: 'localized'
+			},
+			description: {
 				format: 'localized'
 			}
 		}

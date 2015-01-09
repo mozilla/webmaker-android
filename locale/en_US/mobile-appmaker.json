@@ -67,8 +67,8 @@
         "message": "Apps I've Created",
         "description": "Title for the list of apps I've created"
     },
-    "Create an App": {
-        "message": "Create an App",
+    "Make Your Own App": {
+        "message": "Make Your Own App",
         "description": "Title for app templates, starter projects/styles to create new apps"
     },
     "Make an App": {
@@ -111,9 +111,9 @@
         "message": "Journalist",
         "description": "Title for an app for journalists"
     },
-    "Vendor": {
-        "message": "Vendor",
-        "description": "Title for an app for vendors"
+    "My Business": {
+        "message": "My Business",
+        "description": "Title for an app for business owners"
     },
     "From Scratch": {
         "message": "From Scratch",
@@ -374,5 +374,61 @@
     "Save": {
       "message": "Save",
       "description": "Button label (save changes)"
+    },
+    "Start from Scratch": {
+      "message": "Start from Scratch",
+      "description": "title for template"
+    },
+    "Choosing this option will allow you to create your own app without a preset template.": {
+      "message": "Choosing this option will allow you to create your own app without a preset template.",
+      "description": "description for template"
+    },
+    "Create a Blog": {
+      "message": "Create a Blog",
+      "description": "title for template"
+    },
+    "Have something to share with the world? Start a blog, customize to make it yours and start writing!": {
+      "message": "Have something to share with the world? Start a blog, customize to make it yours and start writing!",
+      "description": "description for template"
+    },
+    "Build a Lesson Plan": {
+      "message": "Build a Lesson Plan",
+      "description": "title for template"
+    },
+    "If you want to share your skills with others, build a mobile lesson plan and teach what you know": {
+      "message": "If you want to share your skills with others, build a mobile lesson plan and teach what you know",
+      "description": "description for template"
+    },
+    "Promote your Business": {
+      "message": "Promote your Business",
+      "description": "title for template"
+    },
+    "Show off your products and give customers an easy way to reach you.": {
+      "message": "Show off your products and give customers an easy way to reach you.",
+      "description": "description for template"
+    },
+    "Share Community News": {
+      "message": "Share Community News",
+      "description": "title for template"
+    },
+    "Share photos and write articles and about your local community": {
+      "message": "Share photos and write articles and about your local community",
+      "description": "description for template"
+    },
+    "Create a How To Guide": {
+      "message": "Create a How To Guide",
+      "description": "title for template"
+    },
+    "If you've got unique skills you'd like to share with others, try making a How To guide.": {
+      "message": "If you've got unique skills you'd like to share with others, try making a How To guide.",
+      "description": "description for template"
+    },
+    "Safety App": {
+      "message": "Safety App",
+      "description": "title for template"
+    },
+    "Add a map, a emergency call button, and other tips to keep safe in your community": {
+      "message": "Add a map, a emergency call button, and other tips to keep safe in your community",
+      "description": "description for template"
     }
 }
