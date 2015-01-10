@@ -38,24 +38,22 @@ var attributeSchema = {
 	additionalProperties: {
 		type: 'object',
 		properties: {
-			id: nonEmptyStringSchema,
 			label: nonEmptyStringSchema,
-			type: nonEmptyStringSchema,
-			value: nonEmptyStringSchema
+			type: nonEmptyStringSchema
 		},
 		required: ['label', 'type', 'value']
-	}
+	},
 };
 var singleBlockSchema = {
 	type: 'object',
 	properties: {
 		id: {
-			enum: ['text', 'image', 'sms', 'phone']
+			enum: ['text', 'image', 'sms', 'phone', 'input', 'submit', 'spinner']
 		},
 		attributes: attributeSchema
 	},
-	required: ['id', 'attributes'],
-	additionalProperties: false
+	required: ['type', 'attributes'],
+	additionalProperties: true
 };
 var blocksSchema = {
 	type: 'array',
