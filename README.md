@@ -9,4 +9,4 @@ Webmaker App is a mobile web app that allows users to create their own mobile ap
 
 Documentation is at [webmaker-mobile-guide.mofodev.net](http://webmaker-mobile-guide.mofodev.net/get_started/README.html).
 
-If you need to view the documentation offline or want to contribute to it, see [mozillafordevelopment/webmaker-app-guide](https://github.com/mozillafordevelopment/webmaker-app-guide).
+If you need to view the documentation offline or want to contribute to it, see [mozilla/webmaker-app-guide](https://github.com/mozilla/webmaker-app-guide).
