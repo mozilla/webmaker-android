@@ -21,7 +21,7 @@ var iconImages = [
     'vendor.png',
     'family.png'
 ].map(function (icon) {
-    return '/images/' + icon;
+    return 'images/' + icon;
 });
 
 module.exports = view.extend({

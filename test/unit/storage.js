@@ -42,7 +42,7 @@ var mockBlocks = function (id) {
         template: '<p></p>',
         data: {
             name: 'Text',
-            icon: '/images/blocks_text.png',
+            icon: 'images/blocks_text.png',
             attributes: {
                 innerHTML: {
                     label: 'Text',

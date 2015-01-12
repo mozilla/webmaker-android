@@ -5,7 +5,7 @@ module.exports = {
     template: require('./index.html'),
     data: {
         name: 'Data',
-        icon: '/images/blocks_text.png',
+        icon: 'images/blocks_text.png',
         attributes: {
             label: {
                 label: 'Header Text',
