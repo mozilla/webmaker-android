@@ -25,7 +25,7 @@ module.exports = view.extend({
         ],
         goBack: function (e) {
             e.preventDefault();
-            global.history.back();
+            this.page(this.$data.back);
         }
     },
     ready: function () {
@@ -34,6 +34,8 @@ module.exports = view.extend({
         // Fetch app
         id = self.$root.$data.params.id;
         app = self.$root.storage.getApp(id);
+
+        self.$data.back = '/make/' + id;
 
         // Bind app
         if (app.data) {

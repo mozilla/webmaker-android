@@ -5,7 +5,6 @@ module.exports = view.extend({
     template: require('./index.html'),
     data: {
         title: 'My Profile',
-        back: false,
         myApps: []
     },
     computed: {

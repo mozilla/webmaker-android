@@ -10,7 +10,7 @@ module.exports = view.extend({
     template: require('./index.html'),
     data: {
         title: 'Developer Health Check',
-        back: true,
+        back: '/profile',
         config: config,
         package: packageJSON
     }

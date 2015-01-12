@@ -10,7 +10,6 @@ module.exports = view.extend({
     template: require('./index.html'),
     data: {
         title: 'Share',
-        cancel: true,
         error: false,
         doneDisabled: true
     },
@@ -38,6 +37,8 @@ module.exports = view.extend({
         var self = this;
         var id = self.$root.$data.params.id;
         var app = self.$root.storage.getApp(id);
+
+        self.$data.cancel = '/make/' + id;
 
         // Bind user
         self.$data.user = self.model.data.session.user;

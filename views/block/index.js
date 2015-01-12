@@ -31,7 +31,7 @@ module.exports = view.extend({
         remove: function (e) {
             e.preventDefault();
             app.remove(index);
-            global.history.back();
+            this.page(this.$data.back);
         },
         getEditor: function (type) {
             var editorKey = type + '-editor';

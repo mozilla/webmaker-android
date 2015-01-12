@@ -1,7 +1,4 @@
-<button v-if="back === true" class="back nav-btn" v-on="click: goBack">&lt;</button>
 <a v-if="typeof back === 'string'" class="back nav-btn" href="{{back}}">&lt;</a>
-
-<button v-if="cancel === true" v-on="click: goBack" class="nav-btn">{{'Cancel' | i18n}}</button>
 <a v-if="typeof cancel === 'string'" href="{{cancel}}" class="nav-btn">{{'Cancel' | i18n}}</a>
 
 <h1>{{title | i18n}}</h1>
