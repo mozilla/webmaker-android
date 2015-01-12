@@ -69,7 +69,7 @@ var authorSchema = {
 		location: stringSchema,
 		avatar: {
 			type: 'string',
-			pattern: '(^/images/.*)|'
+			pattern: '(^images/.*)|'
 		}
 	},
 	required: ['username', 'location', 'avatar']
@@ -85,7 +85,7 @@ var singleTemplateSchema = {
 		description: nonEmptyStringSchema,
 		icon: {
 			type: 'string',
-			pattern: '^/images/.*'
+			pattern: '^images/.*'
 		},
 		iconColor: {
 			type: 'string',
