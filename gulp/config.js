@@ -12,7 +12,8 @@ var expose = [
     'FIREBASE_URL',
     'FIREBASE_URL_DATA',
     'OFFLINE',
-    'APPCACHE'
+    'APPCACHE',
+    'BASE_URL'
 ];
 
 module.exports = function () {
