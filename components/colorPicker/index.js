@@ -33,9 +33,11 @@ module.exports = {
             this.selectedColor = color;
         },
         onSave: function (e) {
+            e.preventDefault();
             this.show = false;
         },
         onCancel: function (e) {
+            e.preventDefault();
             this.selectedColor = this.originalColor;
             this.show = false;
         }
