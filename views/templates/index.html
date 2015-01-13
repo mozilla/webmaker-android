@@ -1,19 +1,21 @@
 <div v-component="navigationBar"></div>
-<div class="list-cell template-cell">
-    <a href="/template/{{id}}/detail" class="cell" v-repeat="templates" template="true">
-        <div class="left">
-            <div class="app-icon">
-              <div class="app-icon-image" style="background-image:url({{iconImage}});"></div>
+<ul class="list-cell template-cell">
+    <li v-repeat="templates">
+        <a href="/template/{{id}}/detail" class="cell" template="true">
+            <div class="left">
+                <div class="app-icon">
+                  <div class="app-icon-image" style="background-image:url({{iconImage}});"></div>
+                </div>
             </div>
-        </div>
-        <div class="middle">
-            <span class="title">{{(templateTitle || name) | i18n}}</span>
-            <span v-if="description" class="description">{{description | i18n}}</span>
-        </div>
-        <div class="right">
-            <span class="fa fa-chevron-right"></span>
-        </div>
-    </a>
-</div>
+            <div class="middle">
+                <span class="title">{{(templateTitle || name) | i18n}}</span>
+                <span v-if="description" class="description">{{description | i18n}}</span>
+            </div>
+            <div class="right">
+                <span class="fa fa-chevron-right"></span>
+            </div>
+        </a>
+    </li>
+</ul>
 
 <div v-component="tabBar"></div>
