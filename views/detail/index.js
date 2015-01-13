@@ -6,7 +6,7 @@ module.exports = view.extend({
     id: 'detail',
     template: require('./index.html'),
     data: {
-        back: '/templates',
+        back: true,
         title: 'App'
     },
     methods: {
