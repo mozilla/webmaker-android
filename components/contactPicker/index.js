@@ -9,6 +9,12 @@ module.exports = {
         this.$on('openContactPicker', function (event) {
             this.open();
         });
+
+        // TODO - Replace mock data with real contacts:
+
+        // navigator.contacts.find(['*'],
+        //     onSuccess function(contacts),
+        //     onError function(error));
     },
     methods: {
         open: function () {
@@ -32,12 +38,12 @@ module.exports = {
 
             // Sort contacts into alphabetical order
             this.contacts = this.contacts.sort(function (a, b) {
-                return a.name > b.name;
+                return a.displayName > b.displayName;
             });
 
             // Create an object with alpha-keys to group by first name
             this.contacts.forEach(function (contact) {
-                var firstLetter = contact.name[0].toUpperCase();
+                var firstLetter = contact.displayName[0].toUpperCase();
 
                 if (!modeled[firstLetter]) {
                     modeled[firstLetter] = [];
@@ -54,32 +60,28 @@ module.exports = {
     data: {
         contacts: [
             {
-                name: 'Bob Bobbington',
-                number: 1235433333
+                id: '1',
+                displayName: 'Kate Hudson',
+                phoneNumbers: [
+                    {
+                        id: '1',
+                        pref: false,
+                        type: 'mobile',
+                        value: '(416) 852-6445'
+                    }
+                ]
             },
             {
-                name: 'Eoo Eoobington',
-                number: 1235433333
-            },
-            {
-                name: 'M Mbington',
-                number: 1235433333
-            },
-            {
-                name: 'Dude Bobbington',
-                number: 1235433333
-            },
-            {
-                name: 'earl Earlbington',
-                number: 1235433333
-            },
-            {
-                name: 'Joe Joebington',
-                number: 1235433333
-            },
-            {
-                name: 'Frank Frankbington',
-                number: 1235433333
+                id: '2',
+                displayName: 'Adam B',
+                phoneNumbers: [
+                    {
+                        id: '3',
+                        pref: false,
+                        type: 'mobile',
+                        value: '1 232-852-6445'
+                    }
+                ]
             }
         ]
     }
