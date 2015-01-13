@@ -1,14 +1,15 @@
 <div v-component="navigationBar"></div>
 
-<form>
-    <div v-show="error" v-component="alert" type="error" message="{{error}}"></div>
-    <div v-show="!error">
-        <div v-show="user.username" class="form-group">
-            <textarea name="share-message" v-model="shareMessage" class="textarea-large"></textarea>
+<main class="main-container">
+    <form>
+        <div v-show="error" v-component="alert" type="error" message="{{error}}"></div>
+        <div v-show="!error">
+            <div v-show="user.username" class="form-group">
+                <textarea name="share-message" v-model="shareMessage" class="textarea-large"></textarea>
+            </div>
         </div>
-    </div>
-</form>
-
+    </form>
+</main>
 <ul class="list-cell">
     <lh class="with-border-top">Share Via</lh>
     <li>
