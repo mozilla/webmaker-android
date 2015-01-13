@@ -4,12 +4,12 @@
     <div v-component="switch" v-with="options: ['Featured','Newest']"></div>
 </div>
 
-<ul class="list-cell" v-show="mode === 'featured'">
+<ul class="list-cell" v-show="mode === 'Featured'">
     <li v-component="appCell" v-repeat="apps.featured" mode="detail" template="true"></li>
 </ul>
 
-<ul class="list-cell" v-show="mode === 'nearby'">
-    <li v-component="appCell" v-repeat="apps.nearby"></li>
+<ul class="list-cell" v-show="mode === 'Newest'">
+    <li v-component="appCell" v-repeat="apps.newest" mode="detail" template="true"></li>
 </ul>
 
 <div v-component="tabBar"></div>
