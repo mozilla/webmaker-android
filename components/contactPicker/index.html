@@ -1,0 +1,21 @@
+<nav class="navigationBar">
+    <button class="nav-btn" v-on="click: onCancel">{{ 'Cancel' | i18n}}</button>
+    <h1>Choose Contacts</h1>
+    <button v-class="disabled: saveDisabled" class="nav-btn" v-on="click: onSave">{{ 'Done' | i18n}}</button>
+</nav>
+
+<div class="inner">
+    <div class="contact-list">
+        <div v-repeat="modeledContacts">
+            <div class="letter-header">{{ $key }}</div>
+
+            <div v-repeat="person : $value" class="contact">
+                <label class="circle-toggle" v-class="on: person.selected">
+                    <span class="fa fa-check"></span>
+                    <input type="checkbox" v-model="person.selected">
+                </label>
+                <span>{{ person.displayName }}</span>
+            </div>
+        </div>
+    </div>
+</div>
