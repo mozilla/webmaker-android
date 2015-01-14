@@ -2,7 +2,11 @@
 <html<% if (APPCACHE) { %> manifest="manifest.appcache"<% } %>>
 
     <head>
-        <base href="<%= BASE_URL %>">
+        <script>
+            var isCordova = window.location.protocol === 'file:';
+            var basePath = isCordova ? window.pathname : '/';
+            document.write('<base href="' + basePath + '">');
+        </script>
         <meta charset="utf-8">
         <meta name="viewport" content="width=device-width, user-scalable=no, initial-scale=1, maximum-scale=1">
 

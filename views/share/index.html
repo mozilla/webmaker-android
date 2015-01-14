@@ -17,13 +17,13 @@
             <div class="left">
                 <span class="title">SMS</span>
             </div>
-            <div class="right">
-                <a href="#" v-on="click: onSMSClick" class="text-small">Add contacts</a>
-            </div>
+            <button class="right btn text-small" v-on="click: onSMSClick">
+                Add contacts
+            </button>
         </div>
     </li>
 </ul>
 
 <div v-component="tabBar"></div>
 
-<div v-class="active: show" v-component="contactPicker"></div>
+<div v-class="active: showAndroid" v-component="contactPicker" v-with="show: showAndroid, contacts: contacts, modeledContacts: modeledContacts"></div>
