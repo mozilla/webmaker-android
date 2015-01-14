@@ -1,6 +1,6 @@
 <div v-component="navigationBar"></div>
 <ul class="list-cell template-cell">
-    <li v-repeat="templates">
+    <li v-repeat="templates" style="background-color: {{iconColor}}">
         <a href="/template/{{id}}/detail" class="cell" template="true">
             <div class="left">
                 <div class="app-icon">
@@ -9,7 +9,6 @@
             </div>
             <div class="middle">
                 <span class="title">{{(templateTitle || name) | i18n}}</span>
-                <span v-if="description" class="description">{{description | i18n}}</span>
             </div>
             <div class="right">
                 <span class="fa fa-chevron-right"></span>

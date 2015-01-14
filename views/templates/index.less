@@ -12,7 +12,7 @@
     .left, .middle, .right {
         float: none;
         width: auto;
-        padding: 14px 14px 22px;
+        padding: 16px;
     }
     .left {
         flex-shrink: 0;
@@ -29,13 +29,7 @@
 
     // Type
     .title {
-        font-size: 18px;
-        margin-bottom: 5px;
-    }
-    .description {
-        display: block;
-        font-size: 14px;
-        line-height: 1.3;
+        font-size: 16px;
     }
     .fa-chevron-right {
         font-size: 14px;
@@ -45,16 +39,6 @@
     color: white;
     .description {
         color: fade(white, 80%);
-    }
-    li {
-        &:nth-child(6n+1) { background-color: #F2C233; }
-        &:nth-child(6n+2) { background-color: #37BDB4; }
-        &:nth-child(6n+3) { background-color: @red; }
-        &:nth-child(6n+4) { background-color: @turquoise; }
-        &:nth-child(6n+5) { background-color: #94BF4B; }
-        &:nth-child(6n+6) { background-color: @purple; }
-
-        &:first-child { background-color: @slate; }
     }
     .app-icon {
         border: 2px solid #FFF;

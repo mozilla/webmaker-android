@@ -111,8 +111,8 @@
         "message": "Journalist",
         "description": "Title for an app for journalists"
     },
-    "My Business": {
-        "message": "My Business",
+    "Business": {
+        "message": "Business",
         "description": "Title for an app for business owners"
     },
     "From Scratch": {
@@ -423,8 +423,8 @@
       "message": "If you've got unique skills you'd like to share with others, try making a How To guide.",
       "description": "description for template"
     },
-    "Safety App": {
-      "message": "Safety App",
+    "Create a Safety App": {
+      "message": "Create a Safety App",
       "description": "title for template"
     },
     "Add a map, a emergency call button, and other tips to keep safe in your community": {
