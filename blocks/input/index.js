@@ -3,11 +3,11 @@ module.exports = {
     template: require('./index.html'),
     lazy: false,
     data: {
-        name: 'Input',
+        name: 'Text Box',
         icon: 'images/blocks_input.png',
         attributes: {
             inputType: {
-                label: 'Input Type',
+                label: 'Text Box Type',
                 type: 'dropdownChoice',
                 options: ['Single Line Text', 'Long Text'],
                 value: 0,

@@ -430,5 +430,9 @@
     "Add a map, a emergency call button, and other tips to keep safe in your community": {
       "message": "Add a map, a emergency call button, and other tips to keep safe in your community",
       "description": "description for template"
+    },
+    "Text Box": {
+      "message": "Text Box",
+      "description": "Type of block"
     }
 }
