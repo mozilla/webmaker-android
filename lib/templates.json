@@ -6,7 +6,7 @@
         "icon": "/images/icons/scratch.svg",
         "description": "Choosing this option will allow you to create your own app without a preset template.",
         "iconImage": "/images/icons/scratch.svg",
-        "iconColor" : "#1F9CDF",
+        "iconColor" : "#FF5C5A",
         "author": {
             "username": "",
             "location": "",
@@ -21,7 +21,7 @@
         "description": "Have something to share with the world? Start a blog, customize to make it yours and start writing!",
         "icon": "/images/icons/blog.svg",
         "iconImage": "/images/icons/blog.svg",
-        "iconColor" : "#1F9CDF",
+        "iconColor" : "#97CC3B",
         "author": {
             "username": "Emma",
             "location": "",
@@ -116,7 +116,7 @@
         "name": "Teacher",
         "icon": "/images/icons/teach.svg",
         "iconImage": "/images/icons/teach.svg",
-        "iconColor" : "#1e79da",
+        "iconColor" : "#F79131",
         "author": {
             "username": "Deepa",
             "location": "",
@@ -518,10 +518,10 @@
         "id": "000d1745-5d3c-4997-ac0c-15df68bbbecc",
         "templateTitle": "Promote your Business",
         "description": "Show off your products and give customers an easy way to reach you.",
-        "name": "My Business",
+        "name": "Business",
         "icon": "/images/icons/business.svg",
         "iconImage": "/images/icons/business.svg",
-        "iconColor" : "#1F9CDF",
+        "iconColor" : "#F2C233",
         "author": {
             "username": "Yousuf",
             "location": "",
@@ -747,7 +747,7 @@
         "description": "Share photos and write articles and about your local community",
         "icon": "/images/placeholder_journalist.png",
         "iconImage": "/images/journalist.png",
-        "iconColor" : "#d91fd6",
+        "iconColor" : "#DC8AEB",
         "author": {
             "username": "Rafid Daoud",
             "location": "",
@@ -874,7 +874,7 @@
         "name": "How To",
         "icon": "/images/placeholder_howto.png",
         "iconImage": "/images/howto.png",
-        "iconColor" : "#e7ce17",
+        "iconColor" : "#8C8AEB",
         "author": {
             "username": "Deepa",
             "location": "",
@@ -1103,11 +1103,11 @@
     {
         "id": "41e8be7e-4381-4afd-82ac-861171cd1111",
         "name": "Safety",
-        "templateTitle": "Safety App",
+        "templateTitle": "Create a Safety App",
         "description": "Add a map, a emergency call button, and other tips to keep safe in your community",
         "icon": "/images/placeholder_safety.png",
         "iconImage": "/images/safety.png",
-        "iconColor" : "#1e79da",
+        "iconColor" : "#27AAE1",
         "author": {
             "username": "Pedro",
             "location": "",
