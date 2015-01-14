@@ -681,7 +681,7 @@
                   "value" : "#638093"
                 },
                 "inputType" : {
-                  "label" : "Input Type",
+                  "label" : "Text Box Type",
                   "options" : [ "Single Line Text", "Long Text" ],
                   "type" : "dropdownChoice",
                   "value" : 0
@@ -705,7 +705,7 @@
                   "value" : "#638093"
                 },
                 "inputType" : {
-                  "label" : "Input Type",
+                  "label" : "Text Box Type",
                   "options" : [ "Single Line Text", "Long Text" ],
                   "type" : "dropdownChoice",
                   "value" : 0
