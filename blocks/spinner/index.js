@@ -3,7 +3,7 @@ module.exports = {
     template: require('./index.html'),
     data: {
         name: 'Counter',
-        icon: '/images/blocks_counter.png',
+        icon: 'images/blocks_counter.png',
         attributes: {
             label: {
                 label: 'Title',

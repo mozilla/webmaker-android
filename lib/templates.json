@@ -3,9 +3,9 @@
         "id": "blank",
         "templateTitle": "Start from Scratch",
         "name": "From Scratch",
-        "icon": "/images/icons/scratch.svg",
+        "icon": "images/icons/scratch.svg",
         "description": "Choosing this option will allow you to create your own app without a preset template.",
-        "iconImage": "/images/icons/scratch.svg",
+        "iconImage": "images/icons/scratch.svg",
         "iconColor" : "#FF5C5A",
         "author": {
             "username": "",
@@ -19,13 +19,13 @@
         "name": "Blogger",
         "templateTitle": "Create a Blog",
         "description": "Have something to share with the world? Start a blog, customize to make it yours and start writing!",
-        "icon": "/images/icons/blog.svg",
-        "iconImage": "/images/icons/blog.svg",
+        "icon": "images/icons/blog.svg",
+        "iconImage": "images/icons/blog.svg",
         "iconColor" : "#97CC3B",
         "author": {
             "username": "Emma",
             "location": "",
-            "avatar": "/images/avatar_blogger.png"
+            "avatar": "images/avatar_blogger.png"
         },
         "blocks": [
             {
@@ -35,7 +35,7 @@
                         "id": "src",
                         "label": "Image URL",
                         "type": "string",
-                        "value": "/content/blog_leaves.jpg"
+                        "value": "content/blog_leaves.jpg"
                     }
                 }
             },
@@ -114,13 +114,13 @@
         "templateTitle": "Build a Lesson Plan",
         "description": "If you want to share your skills with others, build a mobile lesson plan and teach what you know",
         "name": "Teacher",
-        "icon": "/images/icons/teach.svg",
-        "iconImage": "/images/icons/teach.svg",
+        "icon": "images/icons/teach.svg",
+        "iconImage": "images/icons/teach.svg",
         "iconColor" : "#F79131",
         "author": {
             "username": "Deepa",
             "location": "",
-            "avatar": "/images/avatar_teacher.png"
+            "avatar": "images/avatar_teacher.png"
         },
         "blocks": [
             {
@@ -519,13 +519,13 @@
         "templateTitle": "Promote your Business",
         "description": "Show off your products and give customers an easy way to reach you.",
         "name": "Business",
-        "icon": "/images/icons/business.svg",
-        "iconImage": "/images/icons/business.svg",
+        "icon": "images/icons/business.svg",
+        "iconImage": "images/icons/business.svg",
         "iconColor" : "#F2C233",
         "author": {
             "username": "Yousuf",
             "location": "",
-            "avatar": "/images/avatar_vendor.png"
+            "avatar": "images/avatar_vendor.png"
         },
         "blocks": [
             {
@@ -543,7 +543,7 @@
                   "value" : "Welcome to my tea shop. What would you like to buy?"
                 }
               },
-              "icon" : "/images/blocks_text.png",
+              "icon" : "images/blocks_text.png",
               "name" : "Text",
               "type" : "text"
             },
@@ -553,10 +553,10 @@
                   "id" : "src",
                   "label" : "Image URL",
                   "type" : "string",
-                  "value" : "/content/vendor_mirzapore.jpg"
+                  "value" : "content/vendor_mirzapore.jpg"
                 }
               },
-              "icon" : "/images/blocks_image.png",
+              "icon" : "images/blocks_image.png",
               "name" : "Image",
               "type" : "image"
             },
@@ -595,7 +595,7 @@
                   "value" : "1"
                 }
               },
-              "icon" : "/images/blocks_counter.png",
+              "icon" : "images/blocks_counter.png",
               "name" : "Counter",
               "type" : "spinner"
             },
@@ -605,10 +605,10 @@
                   "id" : "src",
                   "label" : "Image URL",
                   "type" : "string",
-                  "value" : "/content/vendor_assam.jpg"
+                  "value" : "content/vendor_assam.jpg"
                 }
               },
-              "icon" : "/images/blocks_image.png",
+              "icon" : "images/blocks_image.png",
               "name" : "Image",
               "type" : "image"
             },
@@ -647,7 +647,7 @@
                   "value" : "1"
                 }
               },
-              "icon" : "/images/blocks_counter.png",
+              "icon" : "images/blocks_counter.png",
               "name" : "Counter",
               "type" : "spinner"
             },
@@ -669,7 +669,7 @@
                   "value" : "Your Contact Info"
                 }
               },
-              "icon" : "/images/blocks_text.png",
+              "icon" : "images/blocks_text.png",
               "name" : "Text",
               "type" : "text"
             },
@@ -693,7 +693,7 @@
                   "value" : "Name"
                 }
               },
-              "icon" : "/images/blocks_input.png",
+              "icon" : "images/blocks_input.png",
               "name" : "Input",
               "type" : "input"
             },
@@ -717,7 +717,7 @@
                   "value" : "Phone Number"
                 }
               },
-              "icon" : "/images/blocks_input.png",
+              "icon" : "images/blocks_input.png",
               "name" : "Input",
               "type" : "input"
             },
@@ -734,7 +734,7 @@
                   "value" : "Send Order"
                 }
               },
-              "icon" : "/images/blocks_submit.png",
+              "icon" : "images/blocks_submit.png",
               "name" : "Submit",
               "type" : "submit"
             }
@@ -745,8 +745,8 @@
         "name": "Journalist",
         "templateTitle": "Share Community News",
         "description": "Share photos and write articles and about your local community",
-        "icon": "/images/placeholder_journalist.png",
-        "iconImage": "/images/journalist.png",
+        "icon": "images/placeholder_journalist.png",
+        "iconImage": "images/journalist.png",
         "iconColor" : "#DC8AEB",
         "author": {
             "username": "Rafid Daoud",
@@ -821,7 +821,7 @@
                            "id": "src",
                            "label": "Image URL",
                            "type": "string",
-                           "value": "/content/newspaper_planes.jpg"
+                           "value": "content/newspaper_planes.jpg"
                        }
                    },
                    "type": "image"
@@ -872,13 +872,13 @@
         "templateTitle": "Create a How To Guide",
         "description": "If you've got unique skills you'd like to share with others, try making a How To guide.",
         "name": "How To",
-        "icon": "/images/placeholder_howto.png",
-        "iconImage": "/images/howto.png",
+        "icon": "images/placeholder_howto.png",
+        "iconImage": "images/howto.png",
         "iconColor" : "#8C8AEB",
         "author": {
             "username": "Deepa",
             "location": "",
-            "avatar": "/images/avatar_teacher.png"
+            "avatar": "images/avatar_teacher.png"
         },
         "blocks": [
             {
@@ -949,7 +949,7 @@
                         "id": "src",
                         "label": "Image URL",
                         "type": "string",
-                        "value": "/content/howto_guitar_1.jpg"
+                        "value": "content/howto_guitar_1.jpg"
                     }
                 }
             },
@@ -977,7 +977,7 @@
                         "id": "src",
                         "label": "Image URL",
                         "type": "string",
-                        "value": "/content/howto_guitar_2.jpg"
+                        "value": "content/howto_guitar_2.jpg"
                     }
                 }
             },
@@ -1005,7 +1005,7 @@
                         "id": "src",
                         "label": "Image URL",
                         "type": "string",
-                        "value": "/content/howto_guitar_3.jpg"
+                        "value": "content/howto_guitar_3.jpg"
                     }
                 }
             },
@@ -1033,7 +1033,7 @@
                         "id": "src",
                         "label": "Image URL",
                         "type": "string",
-                        "value": "/content/howto_guitar_4.jpg"
+                        "value": "content/howto_guitar_4.jpg"
                     }
                 }
             },
@@ -1105,13 +1105,13 @@
         "name": "Safety",
         "templateTitle": "Create a Safety App",
         "description": "Add a map, a emergency call button, and other tips to keep safe in your community",
-        "icon": "/images/placeholder_safety.png",
-        "iconImage": "/images/safety.png",
+        "icon": "images/placeholder_safety.png",
+        "iconImage": "images/safety.png",
         "iconColor" : "#27AAE1",
         "author": {
             "username": "Pedro",
             "location": "",
-            "avatar": "/images/avatar_student.png"
+            "avatar": "images/avatar_student.png"
         },
         "blocks": [
             {
@@ -1136,7 +1136,7 @@
                         "id": "src",
                         "label": "Image URL",
                         "type": "string",
-                        "value": "/content/campus_safety.gif"
+                        "value": "content/campus_safety.gif"
                     }
                 }
             }

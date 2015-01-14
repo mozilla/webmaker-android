@@ -3,7 +3,7 @@ module.exports = {
     template: require('./index.html'),
     data: {
         name: 'SMS',
-        icon: '/images/blocks_sms.png',
+        icon: 'images/blocks_sms.png',
         attributes: {
             value: {
                 label: 'Phone #',

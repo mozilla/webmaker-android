@@ -3,7 +3,7 @@ module.exports = {
     template: require('./index.html'),
     data: {
         name: 'Dropdown',
-        icon: '/images/blocks_text.png',
+        icon: 'images/blocks_text.png',
         attributes: {
             label: {
                 label: 'Title',
