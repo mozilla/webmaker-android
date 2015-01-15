@@ -15,7 +15,8 @@ module.exports = view.extend({
         showPicker: false,
         cancel: true,
         contacts: [],
-        modeledContacts: {}
+        modeledContacts: {},
+        isDiscoverable: false
     },
     methods: {
         login: function (e) {
