@@ -6,7 +6,8 @@
     "url": "https://github.com/mozilla/webmaker-app"
   },
   "scripts": {
-    "test": "gulp test"
+    "test": "gulp test",
+    "start": "gulp dev"
   },
   "main": "export.js",
   "dependencies": {
