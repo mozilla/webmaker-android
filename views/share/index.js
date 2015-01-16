@@ -13,6 +13,7 @@ module.exports = view.extend({
         error: false,
         doneDisabled: true,
         showAndroid: false,
+        cancel: true,
         contacts: [],
         modeledContacts: {}
     },
