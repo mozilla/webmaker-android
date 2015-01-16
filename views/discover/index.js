@@ -23,6 +23,8 @@ module.exports = view.extend({
             self.mode = 'Newest';
 
             self.$root.storage._firebase
+                .orderByChild('isDiscoverable')
+                .equalTo(true)
                 .limitToLast(maxAppsToShow)
                 .on('value', function (snapshot) {
                     self.apps.newest = snapshot.val();
