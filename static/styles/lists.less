@@ -53,17 +53,21 @@
         opacity: 0.4;
     }
 
+    .btn.btn-cell {
+      border: none;
+      color: @turquoise;
+      padding: @list-cell-padding;
+    }
+
     // For left and right sections
     .left, .right {
       width: 50%;
       padding: @list-cell-padding;
-      &.btn {
-        border: none;
-        color: @turquoise;
+      &.no-padding {
+        padding: 0;
       }
     }
     .right {
-        justify-content: flex-end;
         text-align: right;
     }
 
