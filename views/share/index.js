@@ -12,7 +12,7 @@ module.exports = view.extend({
         title: 'Share',
         error: false,
         doneDisabled: true,
-        showAndroid: false,
+        showPicker: false,
         cancel: true,
         contacts: [],
         modeledContacts: {}
