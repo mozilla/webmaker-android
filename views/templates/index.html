@@ -1,4 +1,4 @@
-<div v-component="navigationBar"></div>
+<div v-component="navigationBar" class="nav-default"></div>
 <ul class="list-cell template-cell">
     <li v-repeat="templates" style="background-color: {{iconColor}}">
         <a href="/template/{{id}}/detail" class="cell" template="true">
@@ -16,5 +16,6 @@
         </a>
     </li>
 </ul>
+
 
 <div v-component="tabBar"></div>
