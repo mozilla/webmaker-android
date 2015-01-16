@@ -4,29 +4,31 @@ module.exports = {
     className: 'contact-picker',
     template: require('./index.html'),
     ready: function () {
-        this.modelData();
+        var self = this;
 
-        this.$on('openContactPicker', function (event) {
-            this.open();
+        navigator.contacts.find(['*'], function (contacts) {
+            self.$data.contacts = contacts;
+            self.modelData();
+        }, function (err) {
+            console.log(err);
         });
 
-        // TODO - Replace mock data with real contacts:
+        self.$on('openContactPicker', function (event) {
+            self.open();
+        });
 
-        // navigator.contacts.find(['*'],
-        //     onSuccess function(contacts),
-        //     onError function(error));
     },
     methods: {
         open: function () {
             // Store a copy of intial contact data in case user doesn't save
             this.initialState = clone(this.modeledContacts);
-
             this.show = true;
         },
         close: function () {
             this.show = false;
         },
         onSave: function (e) {
+            // TODO: Do something with selected contacts
             this.close();
         },
         onCancel: function (e) {
@@ -37,12 +39,17 @@ module.exports = {
             var modeled = {};
 
             // Sort contacts into alphabetical order
-            this.contacts = this.contacts.sort(function (a, b) {
+            this.contacts = this.contacts
+            .filter(function (contact) {
+                return !!contact.displayName;
+            })
+            .sort(function (a, b) {
                 return a.displayName > b.displayName;
             });
 
+
             // Create an object with alpha-keys to group by first name
-            this.contacts.forEach(function (contact) {
+            this.contacts.forEach(function (contact, i) {
                 var firstLetter = contact.displayName[0].toUpperCase();
 
                 if (!modeled[firstLetter]) {
@@ -56,33 +63,5 @@ module.exports = {
 
             this.modeledContacts = modeled;
         }
-    },
-    data: {
-        contacts: [
-            {
-                id: '1',
-                displayName: 'Kate Hudson',
-                phoneNumbers: [
-                    {
-                        id: '1',
-                        pref: false,
-                        type: 'mobile',
-                        value: '(416) 852-6445'
-                    }
-                ]
-            },
-            {
-                id: '2',
-                displayName: 'Adam B',
-                phoneNumbers: [
-                    {
-                        id: '3',
-                        pref: false,
-                        type: 'mobile',
-                        value: '1 232-852-6445'
-                    }
-                ]
-            }
-        ]
     }
 };
