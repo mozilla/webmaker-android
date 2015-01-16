@@ -7,6 +7,10 @@ This documentation is published at [webmaker-mobile-guide.mofodev.net](http://we
 
 If you need to view the documentation offline or want to contribute to it, see [mozilla/webmaker-app](https://github.com/mozilla/webmaker-app).
 
+For easier offline reading you can download the documentation in [PDF](https://www.gitbook.com/download/pdf/book/k88hudson/webmaker-mobile-guide), [EPUB](https://www.gitbook.com/download/epub/book/k88hudson/webmaker-mobile-guide), or [MOBI](https://www.gitbook.com/download/mobi/book/k88hudson/webmaker-mobile-guide) format.
+
+
+
 ## Background
 Mozilla Webmaker is all about building a new generation of digital creators and webmakers, giving people the tools and skills they need to move from using the web to actively making the web. To this end, the Webmaker App is an entry point to the Webmaker community that provides a radically simple interface for creating mobile application directly on device. In conjunction with our ongoing device launches for Firefox OS, our goal is to enable users in developing markets such as Bangladesh, India, and Kenya to engage in the creation and sharing of applications that enrich their lives.
 
