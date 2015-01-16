@@ -2,6 +2,7 @@ var view = require('../../lib/view');
 var i18n = require('../../lib/i18n');
 var publish = require('../../lib/publish');
 var page = require('page');
+var app;
 
 var PUBLISH_TIMEOUT = 20000;
 
@@ -15,7 +16,9 @@ module.exports = view.extend({
         showPicker: false,
         cancel: true,
         contacts: [],
-        modeledContacts: {}
+        modeledContacts: {},
+        isDiscoverable: false,
+        disableDiscovery: true
     },
     methods: {
         login: function (e) {
@@ -27,8 +30,13 @@ module.exports = view.extend({
             if (!self.$data.app.url) return;
             var sms = 'sms:?body=' +
                 encodeURIComponent(self.$data.shareMessage);
-            window.location = sms;
             page('/make/' + self.$parent.$data.params.id + '/detail');
+
+            app.update({
+                isDiscoverable: self.isDiscoverable
+            });
+
+            window.location = sms;
         },
         onSMSClick: function (e) {
             e.preventDefault();
@@ -41,12 +49,19 @@ module.exports = view.extend({
     ready: function () {
         var self = this;
         var id = self.$root.$data.params.id;
-        var app = self.$root.storage.getApp(id);
+
+        app = self.$root.storage.getApp(id);
 
         self.$data.cancel = '/make/' + id;
 
         // Bind user
         self.$data.user = self.model.data.session.user;
+
+        // Enable discovery for non-guests (users w. email)
+        if (self.$data.user.email) {
+            self.disableDiscovery = false;
+            self.isDiscoverable = app.data.isDiscoverable || false;
+        }
 
         var message;
 
