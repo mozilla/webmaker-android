@@ -35,6 +35,10 @@ module.exports = view.extend({
         goBack: function (e) {
             e.preventDefault();
             if (this.$data.mode === 'settings') {
+                app.update({
+                    iconImage: this.$data.originalIconImage,
+                    iconColor: this.$data.originalIconColor
+                });
                 this.$data.changeMode('edit');
             } else {
                 this.page('/profile');
@@ -74,6 +78,11 @@ module.exports = view.extend({
             app.update({
                 iconColor: color
             });
+        },
+        saveAppSettings: function () {
+            if (this.$data.mode === 'settings') {
+                this.$data.changeMode('edit');
+            }
         },
         removeApp: function () {
             app.removeApp();
@@ -149,6 +158,8 @@ module.exports = view.extend({
 
         if (app.data) {
             onValue(app.data);
+            self.$data.originalIconImage = self.$data.app.iconImage;
+            self.$data.originalIconColor = self.$data.app.iconColor;
         }
 
         self.$on(id, onValue);
