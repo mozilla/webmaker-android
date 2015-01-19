@@ -9,7 +9,7 @@
         <span class="fa fa-chevron-left"></span>
     </div>
     <div class="icon-container">
-        <div style="background: {{app.iconColor}}"class="app-icon">
+        <div style="background: {{app.iconColor}}" class="app-icon">
           <div class="icon-image" style="background-image:url('{{app.iconImage}}')"></div>
         </div>
     </div>
@@ -19,9 +19,8 @@
 </div>
 
 <ul class="swatches">
-    <li v-repeat="color: iconColors" style="background-color:{{color}};"
-        v-class="selected: selectedColor === color"
-    v-on="click: onSelectIconColor(color)"></li>
+    <li v-repeat="color: iconColors" style="background-color: {{color}};"
+        v-on="click: onSelectIconColor(color)"></li>
 </ul>
 
 <div class="form-group" v-if="app.url">
