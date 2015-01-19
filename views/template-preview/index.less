@@ -1,0 +1,35 @@
+#template-preview {
+
+    @_button-height: 42px; // Start Building button
+    @_padding: @body-padding; // General padding around everything
+    @_bottom-clear: 35px; // How much should we clear the tabBar by?
+    @_preview_offset: @_button-height + (2 * @_padding) + @_bottom-clear; // Helps calc the preview window
+    
+    background: #EBEFF7;
+    height: calc(~"100% - @{tabBar-height}");
+    padding-left: @_padding;
+    padding-right: @_padding;
+    overflow: hidden;
+    
+    main {
+        height: 100%;
+    }
+
+    .start-building {
+        text-align: center;
+        padding: @_padding 0;
+        .btn-start-building {
+            height: @_button-height;
+            border-radius: 3px;
+            padding: 0 15px;
+        }
+    }
+
+    .app-preview {
+        border-radius: 4px;
+        background: @white;
+        height: calc(~"100% - @{_preview_offset}");
+        overflow: scroll;
+        box-shadow: 0 2px 0 0 #C9D0D4;
+    }
+}
