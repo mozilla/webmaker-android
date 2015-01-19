@@ -3,14 +3,19 @@
     @_button-height: 42px; // Start Building button
     @_padding: 20px; // General padding around everything
     @_bottom-clear: 35px; // How much should we clear the tabBar by?
-
+    
+    position: absolute;
+    left: 0;
+    width: 100%;
+    height: 100%;
     background: #EBEFF7;
-    padding-left: @_padding;
-    padding-right: @_padding;
+    margin: 0;
+    padding: 0 @_padding;
 
     .start-building {
         text-align: center;
-        padding: @_padding 0;
+        padding: @_padding;
+        padding-top: @header-height + @_padding;
         .btn-start-building {
             height: @_button-height;
             border-radius: 3px;
