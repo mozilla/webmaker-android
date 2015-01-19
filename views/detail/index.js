@@ -14,7 +14,7 @@ module.exports = view.extend({
         var id = self.$root.params.id;
 
         self.$data.id = id;
-  
+
         // Fetch app
         var app = self.$root.storage.getApp(id);
         if (app.data) {
