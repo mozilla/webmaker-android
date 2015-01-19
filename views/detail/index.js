@@ -1,6 +1,4 @@
 var view = require('../../lib/view');
-var templates = require('../../lib/templates');
-var clone = require('clone');
 
 module.exports = view.extend({
     id: 'detail',
