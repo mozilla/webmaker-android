@@ -8,14 +8,23 @@
     background-color: @highlight;
 
     .list-wrapper {
-        position: absolute;
-        top: 50px;
-        height: ~"calc(100% - 50px)";
-        width: 100%;
         display: flex;
         flex-direction: column;
-        align-items: center;
-        justify-content: center;
+        position: absolute;
+        height: 100%;
+        width: 100%;
+
+        .spacer {
+            height: 50px;
+        }
+
+        .wrapper {
+            flex-grow: 1;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+        }
     }
 
     ul {
