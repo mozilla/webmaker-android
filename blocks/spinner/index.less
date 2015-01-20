@@ -29,6 +29,11 @@
         }
     }
 
+    .wrapper {
+        display: inline-block;
+        padding-right: 2 * @buttonWidth;
+    }
+
     input[type="number"] {
         padding-left: 0;
         padding-right: 0;
@@ -36,7 +41,6 @@
         border-right: none;
         text-align: center;
         color: @turquoise;
-        width: calc(~"100% - " (2 * @buttonWidth));
     }
 
     label:empty {
