@@ -7,3 +7,4 @@ npm-*
 !/locale/en_US/mobile-appmaker.json
 config/index.js
 .env
+wma.sublime-workspace
