@@ -19,7 +19,7 @@
 
   <ul class="list-cell">
       <lh>{{ "My Apps" | i18n }}</lh>
-      <li v-component="appCell" v-repeat="myApps"></li>
+      <li v-component="appCell" v-repeat="app: myApps" prefix="/make/" app-id="{{ app.id }}"></li>
   </ul>
   <div class="no-apps" v-show="myApps.length == 0">
     <p>{{ "No Apps Message" | i18n }}</p>

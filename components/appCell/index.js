@@ -2,13 +2,19 @@ var i18n = require('../../lib/i18n');
 
 module.exports = {
     className: 'app-cell',
-    data: {
+    ready: function () {
+        this.constructedURL = (this.prefix ? this.prefix : '') + this['app-id'];
+    },
+    methods: {
         onClick: function () {
             this.$root.$data.enteredEditorFrom = '/profile';
         }
     },
+    data: {
+        constructedURL: ''
+    },
+    paramAttributes: ['prefix', 'app-id'],
     template: require('./index.html'),
-    paramAttributes: ['mode', 'template'],
     computed: {
         guestKey: function () {
             return i18n.get('Guest');
