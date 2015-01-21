@@ -17,7 +17,8 @@ module.exports = view.extend({
             blocks.text,
             blocks.image,
             blocks.sms,
-            blocks.phone
+            blocks.phone,
+            blocks.separator
         ],
         inputBlocks: [
             // Form / data blocks
