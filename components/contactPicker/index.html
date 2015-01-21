@@ -1,7 +1,7 @@
-<nav class="navigationBar">
-    <button class="nav-btn" v-on="click: onCancel">{{ 'Cancel' | i18n}}</button>
+<nav class="navigationBar nav-default">
+    <div><button class="nav-btn" v-on="click: onCancel">{{ 'Cancel' | i18n}}</button></div>
     <h1>Choose Contacts</h1>
-    <button v-class="disabled: saveDisabled" class="nav-btn" v-on="click: onSave">{{ 'Done' | i18n}}</button>
+    <div><button v-class="disabled: saveDisabled" class="nav-btn" v-on="click: onSave">{{ 'Done' | i18n}}</button></div>
 </nav>
 
 <div class="inner">
@@ -10,9 +10,8 @@
             <div class="letter-header">{{ $key }}</div>
 
             <div v-repeat="person : $value" class="contact">
-                <label class="circle-toggle" v-class="on: person.selected">
+                <label class="circle-toggle" v-on="click: person.selected = !person.selected" v-class="on: person.selected">
                     <span class="fa fa-check"></span>
-                    <input type="checkbox" v-model="person.selected">
                 </label>
                 <span>{{ person.displayName }}</span>
             </div>
