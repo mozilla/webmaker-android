@@ -100,7 +100,7 @@ module.exports = view.extend({
         self.$data.iconColors = iconColors;
         self.$data.iconImages = iconImages;
 
-        var list = self.$el.querySelector('#blocks');
+        var list = self.$el.querySelector('.blocks');
 
         self.$data.onDone = '/make/' + id + '/share?publish=true';
         self.$data.offlineUser = this.model.data.session.offline;

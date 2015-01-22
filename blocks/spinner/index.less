@@ -1,37 +1,27 @@
-.spinner {
-    @buttonWidth: 40px;
-    @buttonFontSize: 36px;
-    @inputPadding: 14px;
-
-    padding: @inputPadding;
-
-    button, input[type="number"] {
-        display: inline-block;
-    }
+.spinner .wrapper {
+    display: flex;
+    align-items: stretch;
+    justify-content: space-between;
 
     button {
-        font-size: @buttonFontSize;
+        font-size: 36px;
         color: @turquoise;
         background-color: white;
-        width: @buttonWidth;
-        height: @buttonWidth + 1;
-        line-height: @buttonFontSize;
         border: 1px solid @lightGrey;
-        padding: 0;
+        padding: 0 15px;
         margin: 0;
+
         &:first-of-type {
             border-radius: 5px 0 0 5px;
-            float: left;
         }
         &:last-of-type {
             border-radius: 0 5px 5px 0;
-            float: right;
         }
     }
 
+    // Using wrapper div because flex + firefox + input = *bad times*
     .wrapper {
-        display: inline-block;
-        padding-right: 2 * @buttonWidth;
+        flex-grow: 1;
     }
 
     input[type="number"] {
