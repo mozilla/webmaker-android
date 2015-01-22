@@ -7,7 +7,6 @@ module.exports = {
             e.preventDefault();
             if (this.disabled) return;
             this.checked = !this.checked;
-            console.log(this.checked);
         }
     },
     ready: function () {
