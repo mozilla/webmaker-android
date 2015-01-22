@@ -7,9 +7,6 @@
             var basePath = isCordova ? window.pathname : '/';
             document.write('<base href="' + basePath + '">');
         </script>
-        <% if (REMOTE_DEBUGGING) { %>
-        <script src="<%= REMOTE_DEBUGGING %>/target/target-script-min.js#anonymous"></script>
-        <% } %>
         <meta charset="utf-8">
         <meta name="viewport" content="width=device-width, user-scalable=no, initial-scale=1, maximum-scale=1">
 
@@ -42,5 +39,8 @@
             ga('create', 'UA-49796218-8', 'auto');
             ga('send', 'pageview');
         </script>
+        <% if (REMOTE_DEBUGGING) { %>
+        <script src="<%= REMOTE_DEBUGGING %>/target/target-script-min.js#anonymous"></script>
+        <% } %>
     </body>
 </html>
