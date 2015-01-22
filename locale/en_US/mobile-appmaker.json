@@ -1,438 +1,302 @@
 {
-    "Add a Brick": {
-        "message": "Add a Brick",
-        "description": "Title for the add a brick page"
-    },
-    "scientist": {
-        "message": "scientist",
-        "description": "To be replaced in the sentence: Apps made by scientists"
-    },
-    "errorNoText": {
-        "message": "You must include a text value",
-        "description": "No text in the textarea"
-    },
-    "My Profile": {
-        "message": "My Profile",
-        "description": "Title for profile page"
-    },
-    "Edit my Profile": {
-        "message": "Edit my Profile",
-        "description": "Button label for action to edit users profile"
-    },
-    "you": {
-        "message": "you",
-        "description": "To be replaced in the sentence: Apps made by you"
-    },
-    "You can create your own app. Just open a template and edit!": {
-        "message": "You can create your own app. Just open a template and edit!",
-        "description": "Description for creating an app by opening a template and editing"
-    },
-    "Details": {
-        "message": "Details",
-        "description": "Title for Details page, where the details of the app are listed"
-    },
-    "Get Started": {
-        "message": "Get Started",
-        "description": "Button meaning: Get started making apps"
-    },
-    "Apps": {
-        "message": "Apps",
-        "description": "These are mobile apps, to run on a phone"
-    },
-    "My Apps": {
-        "message": "My Apps",
-        "description": "Mobile apps I have created"
-    },
-    "by _": {
-        "message": "by {{name}}",
-        "description": "For apps, e.g. My Cool App, by {{name}}"
-    },
-    "Image": {
-        "message": "Image",
-        "description": "Type of block that can be added to the app"
-    },
-    "Name": {
-        "message": "Name",
-        "description": "Label on the profile page, e.g. Name: Kate, Location: Canada"
-    },
-    "App Name & Icon": {
-        "message": "App Name & Icon",
-        "description": "Title within app editor for page where user can change the app name and icon"
-    },
-    "activists": {
-        "message": "activists",
-        "description": "To be replaced in the sentence: Apps made by activists"
-    },
-    "Apps I've Created": {
-        "message": "Apps I've Created",
-        "description": "Title for the list of apps I've created"
-    },
-    "Make Your Own App": {
-        "message": "Make Your Own App",
-        "description": "Title for app templates, starter projects/styles to create new apps"
-    },
-    "Make an App": {
-        "message": "Make an App",
-        "description": "Button label for action to make a new app"
-    },
-    "SMS": {
-        "message": "SMS",
-        "description": "a text, as in 'Send a text message' (on a mobile phone)"
-    },
-    "name from location": {
-        "message": " <strong>{{name}}</strong><span v-if=\"location\"><br/> from <br/></span><strong>{{location}}</strong>",
-        "description": "E.g. Kate from Canada, sorry for all the html"
-    },
-    "students": {
-        "message": "students",
-        "description": "To be replaced in the sentence: Apps made by students"
-    },
-    "Create and share app templates with people all around the world": {
-        "message": "Create and share app templates with people all around the world",
-        "description": "Description for first time experience"
-    },
-    "Remove": {
-        "message": "Remove",
-        "description": "Button for removing (deleting) a block"
-    },
-    "Delete": {
-        "message": "Delete",
-        "description": "Button for removing (deleting) a block"
-    },
-    "vendors": {
-        "message": "vendors",
-        "description": "To be replaced in the sentence: Apps made by vendors"
-    },
-    "journalists": {
-        "message": "journalists",
-        "description": "To be replaced in the sentence: Apps made by journalists"
-    },
-    "Journalist": {
-        "message": "Journalist",
-        "description": "Title for an app for journalists"
-    },
-    "Business": {
-        "message": "Business",
-        "description": "Title for an app for business owners"
-    },
-    "From Scratch": {
-        "message": "From Scratch",
-        "description": "Title for a blank app template. 'From Scratch' is an idiom that describes making something from the beginning with basic ingredients."
-    },
-    "Teacher": {
-        "message": "Teacher",
-        "description": "Title for an app for teachers"
-    },
-    "Medic": {
-        "message": "Medic",
-        "description": "Title for an app for medics"
-    },
-    "How To": {
-        "message": "How To",
-        "description": "Title for a how-to app"
-    },
-    "Family": {
-        "message": "Family",
-        "description": "Title for an app for families"
-    },
-    "Blogger": {
-        "message": "Blogger",
-        "description": "Title for an app for bloggers"
-    },
-    "Club": {
-        "message": "Club",
-        "description": "Title for an app for clubs"
-    },
-    "Safety": {
-        "message": "Safety",
-        "description": "Title for a safety app"
-    },
-    "Activist": {
-        "message": "Activist",
-        "description": "Title for an app for activists"
-    },
-    "parents": {
-        "message": "parents",
-        "description": "To be replaced in the sentence: Apps made by parents"
-    },
-    "Select Color": {
-        "message": "Select Color",
-        "description": "Title for the color picker"
-    },
-    "Location": {
-        "message": "Location",
-        "description": "Label on the profile, e.g. Name: Kate, Location: Canada"
-    },
-    "Edit": {
-        "message": "Edit",
-        "description": "Button for allowing user to edit the app"
-    },
-    "Apps made by _": {
-        "message": "Apps made by: <span v-cycle=\"personas\"></span>",
-        "description": "Only translate 'Apps made by:', do NOT replace the word 'personas'. Move the <span>...</span> to wherever the words students, activists, journalists etc. would be in the sentence."
-    },
-    "Next": {
-        "message": "Next",
-        "description": "Button, meaning 'Next page'"
-    },
-    "Preview": {
-        "message": "Preview",
-        "description": "Button that, if clicked, shows the end product of the app"
-    },
-    "Text": {
-        "message": "Text",
-        "description": "Type of block that can be added to the app"
-    },
-    "teachers": {
-        "message": "teachers",
-        "description": "To be replaced in the sentence: Apps made by teachers"
-    },
-    "doctors": {
-        "message": "doctors",
-        "description": "To be replaced in the sentence: Apps made by doctors"
-    },
-    "Message": {
-      "message": "Message",
-      "description": "Message you want to send"
-    },
-    "Place call": {
-      "message": "Place call",
-      "description": "Button for placing a call"
-    },
-    "Sign In": {
-      "message": "Sign In",
-      "description": "Sign In button label (logs user into Webmaker Mobile)"
-    },
-    "Try as Guest": {
-      "message": "Try as Guest",
-      "description": "Label for action that allows a user to use the app without signing in."
-    },
-    "Guest": {
-      "message": "Guest",
-      "description": "Label for author when the user is in trial mode"
-    },
-    "Guest Explanation": {
-      "message": "Guests can build, but not publish apps.",
-      "description": "Explains the effect of using the app as a not signed in guest."
-    },
-    "Try in Offline Mode": {
-      "message": "Try in Offline Mode",
-      "description": "Label for action that allows a user to use the app without signing in when the device is not connected to the internet."
-    },
-    "Offline Mode Explanation": {
-      "message": "This device isn't connected to the internet, so you won't be able to publish any apps.",
-      "description": "Explains effect of using the app without an internet connection"
-    },
-    "Sign Out": {
-      "message": "Sign Out",
-      "description": "Button label for button that logs user out of Webmaker Mobile"
-    },
-    "Delete App": {
-      "message": "Delete App",
-      "description": "Button to delete entire app"
-    },
-    "Delete my Apps": {
-      "message": "Delete my Apps",
-      "description": "Button to delete all of a user's apps"
-    },
-    "Untitled App": {
-      "message": "Untitled App",
-      "description": "Default name for a new app"
-    },
-    "Text Value": {
-      "message": "Text Value",
-      "description": "Label for attribute of text block: the text value"
-    },
-    "Text Colour": {
-      "message": "Text Colour",
-      "description": "Label for attribute of text block: the colour of the text"
-    },
-    "Phone": {
-      "message": "Phone",
-      "description": "Type of block - creates a button that calls a number"
-    },
-    "Phone #": {
-      "message": "Phone #",
-      "description": "Label for Phone # attribute on call/sms block"
-    },
-    "Label": {
-      "message": "Label",
-      "description": "The label on a button (for sms/calling)"
-    },
-    "Email": {
-      "message": "Email",
-      "description": "Label on sign-up page"
-    },
-    "Choose a username": {
-      "message": "Choose a username",
-      "description": "Label on sign-up page"
-    },
-    "Send me email updates about Mozilla Webmaker and other projects": {
-      "message": "Send me email updates about Mozilla Webmaker and other projects",
-      "description": "Label for checkbox on sign-up page"
-    },
-    "I agree to your terms and conditions": {
-      "message": "I agree to your terms and conditions",
-      "description": "Label for terms and conditions checkbox"
-    },
-    "Change": {
-      "message": "Change",
-      "description": "Link for changing things, like choosing a different email address for your account"
-    },
-    "share_message": {
-      "message": "Check out the app {{app.name}} I made with Mozilla Webmaker",
-      "description": "Message that gets sent when a published app is shared to friends"
-    },
-    "App": {
-      "message": "App",
-      "description": "Title for app detail page"
-    },
-    "Cancel": {
-      "message": "Cancel",
-      "description": "Cancel button"
-    },
-    "Done": {
-      "message": "Done",
-      "description": "Done button"
-    },
-    "No Apps Message": {
-      "message": "You don't have any apps yet.",
-      "description": "Message that is displayed in the profile when current user has no apps"
-    },
-    "Featured Apps": {
-      "message": "Featured Apps",
-      "description": "Featured apps (title for Discover page)"
-    },
-    "Near Me": {
-      "message": "Near Me",
-      "description": "Apps made near the user (title for Discover page)"
-    },
-    "Sorry, that name has already been snagged! Please try another.": {
-        "message": "Sorry, that name has already been snagged! Please try another.",
-        "description": "Error message informing user the name they are typing in on sign-up page has already been taken. The term 'snagged' is an idiom for taken."
-    },
-    "Send me email updates about Mozilla Webmaker and other projects": {
-        "message": "Send me email updates about Mozilla Webmaker and other projects",
-        "description": "Agreeing to recieve email updates about Mozilla Webmaker and other projects"
-    },
-    "I agree to your terms and conditions": {
-        "message": "I agree to your terms and conditions",
-        "description": "User agreeing to terms and conditions for Mozilla Webmaker"
-    },
-    "error404": {
-      "message": "Sorry, we couldn't find this page. Would you like to <a href='/sign-in'>go back to the start</a>?",
-      "description": "Error message for 404"
-    },
-    "errorAppNotFound": {
-      "message": "Sorry, this app was not found. Go back to your <a href='/profile'>profile</a>?",
-      "description": "Error message for app details/editing/play view when the app is not found"
-    },
-    "errorDefault": {
-      "message": "Oops! There was an error. Go back to your <a href='/profile'>profile</a>?",
-      "description": "Default error message for alert component"
-    },
-    "Discover": {
-      "message": "Discover",
-      "description": "Title for the Discover page (a listing of apps users can choose from)"
-    },
-  "Make &amp; share the web" : {
-        "message": "Make &amp; share the web",
-        "description": "sign-in view headline"
-    },
-    "the web": {
-      "message": "the web",
-      "description": "Part 2 of 2 for sign-in view headline"
-    },
-    "Share": {
-      "message": "Share",
-      "description": "Share an app"
-    },
-    "Open": {
-      "message": "Open",
-      "description": "Open an app"
-    },
-    "Create": {
-      "message": "Create",
-      "description": "Create an app"
-    },
-    "Data": {
-      "message": "Data",
-      "description": "Look at the data collected by an app"
-    },
-    "Publish": {
-      "message": "Publish",
-      "description": "Button label for publishing the current app"
-    },
-    "Join Webmaker": {
-      "message": "Join Webmaker",
-      "description": "Button label for creating an account"
-    },
-    "My {{template}} App": {
-      "message": "My {{template}} App",
-      "description": "Title for a newly created app from a template"
-    },
-    "Save": {
-      "message": "Save",
-      "description": "Button label (save changes)"
-    },
-    "Start from Scratch": {
-      "message": "Start from Scratch",
-      "description": "title for template"
-    },
-    "Choosing this option will allow you to create your own app without a preset template.": {
-      "message": "Choosing this option will allow you to create your own app without a preset template.",
-      "description": "description for template"
-    },
-    "Create a Blog": {
-      "message": "Create a Blog",
-      "description": "title for template"
-    },
-    "Have something to share with the world? Start a blog, customize to make it yours and start writing!": {
-      "message": "Have something to share with the world? Start a blog, customize to make it yours and start writing!",
-      "description": "description for template"
-    },
-    "Build a Lesson Plan": {
-      "message": "Build a Lesson Plan",
-      "description": "title for template"
-    },
-    "If you want to share your skills with others, build a mobile lesson plan and teach what you know": {
-      "message": "If you want to share your skills with others, build a mobile lesson plan and teach what you know",
-      "description": "description for template"
-    },
-    "Promote your Business": {
-      "message": "Promote your Business",
-      "description": "title for template"
-    },
-    "Show off your products and give customers an easy way to reach you.": {
-      "message": "Show off your products and give customers an easy way to reach you.",
-      "description": "description for template"
-    },
-    "Share Community News": {
-      "message": "Share Community News",
-      "description": "title for template"
-    },
-    "Share photos and write articles and about your local community": {
-      "message": "Share photos and write articles and about your local community",
-      "description": "description for template"
-    },
-    "Create a How To Guide": {
-      "message": "Create a How To Guide",
-      "description": "title for template"
-    },
-    "If you've got unique skills you'd like to share with others, try making a How To guide.": {
-      "message": "If you've got unique skills you'd like to share with others, try making a How To guide.",
-      "description": "description for template"
-    },
-    "Create a Safety App": {
-      "message": "Create a Safety App",
-      "description": "title for template"
-    },
-    "Add a map, a emergency call button, and other tips to keep safe in your community": {
-      "message": "Add a map, a emergency call button, and other tips to keep safe in your community",
-      "description": "description for template"
-    },
-    "Text Box": {
-      "message": "Text Box",
-      "description": "Type of block"
-    }
+  "Add a Brick": {
+    "message": "Add a Brick",
+    "description": "Title for the add a brick page"
+  },
+  "errorNoText": {
+    "message": "You must include a text value",
+    "description": "No text in the textarea"
+  },
+  "My Profile": {
+    "message": "My Profile",
+    "description": "Title for profile page"
+  },
+  "Edit my Profile": {
+    "message": "Edit my Profile",
+    "description": "Button label for action to edit users profile"
+  },
+  "Get Started": {
+    "message": "Get Started",
+    "description": "Button meaning: Get started making apps"
+  },
+  "My Apps": {
+    "message": "My Apps",
+    "description": "Mobile apps I have created"
+  },
+  "by _": {
+    "message": "by {{name}}",
+    "description": "For apps, e.g. My Cool App, by {{name}}"
+  },
+  "Image": {
+    "message": "Image",
+    "description": "Type of block that can be added to the app"
+  },
+  "Name": {
+    "message": "Name",
+    "description": "Label on the profile page, e.g. Name: Kate, Location: Canada"
+  },
+  "App Name & Icon": {
+    "message": "App Name & Icon",
+    "description": "Title within app editor for page where user can change the app name and icon"
+  },
+  "Make Your Own App": {
+    "message": "Make Your Own App",
+    "description": "Title for app templates, starter projects/styles to create new apps"
+  },
+  "Make an App": {
+    "message": "Make an App",
+    "description": "Button label for action to make a new app"
+  },
+  "SMS": {
+    "message": "SMS",
+    "description": "a text, as in 'Send a text message' (on a mobile phone)"
+  },
+  "name from location": {
+    "message": " <strong>{{name}}</strong><span v-if=\"location\"><br/> from <br/></span><strong>{{location}}</strong>",
+    "description": "E.g. Kate from Canada, sorry for all the html"
+  },
+  "Delete": {
+    "message": "Delete",
+    "description": "Button for removing (deleting) a block"
+  },
+  "Journalist": {
+    "message": "Journalist",
+    "description": "Title for an app for journalists"
+  },
+  "Business": {
+    "message": "Business",
+    "description": "Title for an app for business owners"
+  },
+  "From Scratch": {
+    "message": "From Scratch",
+    "description": "Title for a blank app template. 'From Scratch' is an idiom that describes making something from the beginning with basic ingredients."
+  },
+  "Teacher": {
+    "message": "Teacher",
+    "description": "Title for an app for teachers"
+  },
+  "How To": {
+    "message": "How To",
+    "description": "Title for a how-to app"
+  },
+  "Blogger": {
+    "message": "Blogger",
+    "description": "Title for an app for bloggers"
+  },
+  "Safety": {
+    "message": "Safety",
+    "description": "Title for a safety app"
+  },
+  "Select Color": {
+    "message": "Select Color",
+    "description": "Title for the color picker"
+  },
+  "Edit": {
+    "message": "Edit",
+    "description": "Button for allowing user to edit the app"
+  },
+  "Preview": {
+    "message": "Preview",
+    "description": "Button that, if clicked, shows the end product of the app"
+  },
+  "Text": {
+    "message": "Text",
+    "description": "Type of block that can be added to the app"
+  },
+  "Message": {
+    "message": "Message",
+    "description": "Message you want to send"
+  },
+  "Place call": {
+    "message": "Place call",
+    "description": "Button for placing a call"
+  },
+  "Sign In": {
+    "message": "Sign In",
+    "description": "Sign In button label (logs user into Webmaker Mobile)"
+  },
+  "Try as Guest": {
+    "message": "Try as Guest",
+    "description": "Label for action that allows a user to use the app without signing in."
+  },
+  "Guest": {
+    "message": "Guest",
+    "description": "Label for author when the user is in trial mode"
+  },
+  "Guest Explanation": {
+    "message": "Guests can build, but not publish apps.",
+    "description": "Explains the effect of using the app as a not signed in guest."
+  },
+  "Try in Offline Mode": {
+    "message": "Try in Offline Mode",
+    "description": "Label for action that allows a user to use the app without signing in when the device is not connected to the internet."
+  },
+  "Offline Mode Explanation": {
+    "message": "This device isn't connected to the internet, so you won't be able to publish any apps.",
+    "description": "Explains effect of using the app without an internet connection"
+  },
+  "Sign Out": {
+    "message": "Sign Out",
+    "description": "Button label for button that logs user out of Webmaker Mobile"
+  },
+  "Delete App": {
+    "message": "Delete App",
+    "description": "Button to delete entire app"
+  },
+  "Delete my Apps": {
+    "message": "Delete my Apps",
+    "description": "Button to delete all of a user's apps"
+  },
+  "Text Value": {
+    "message": "Text Value",
+    "description": "Label for attribute of text block: the text value"
+  },
+  "Text Color": {
+    "message": "Text Color",
+    "description": "Label for attribute of text block: the colour of the text"
+  },
+  "Phone": {
+    "message": "Phone",
+    "description": "Type of block - creates a button that calls a number"
+  },
+  "Phone #": {
+    "message": "Phone #",
+    "description": "Label for Phone # attribute on call/sms block"
+  },
+  "Label": {
+    "message": "Label",
+    "description": "The label on a button (for sms/calling)"
+  },
+  "share_message": {
+    "message": "Check out the app {{app.name}} I made with Mozilla Webmaker",
+    "description": "Message that gets sent when a published app is shared to friends"
+  },
+  "App": {
+    "message": "App",
+    "description": "Title for app detail page"
+  },
+  "Cancel": {
+    "message": "Cancel",
+    "description": "Cancel button"
+  },
+  "Done": {
+    "message": "Done",
+    "description": "Done button"
+  },
+  "No Apps Message": {
+    "message": "You don't have any apps yet.",
+    "description": "Message that is displayed in the profile when current user has no apps"
+  },
+  "error404": {
+    "message": "Sorry, we couldn't find this page. Would you like to <a href='/sign-in'>go back to the start</a>?",
+    "description": "Error message for 404"
+  },
+  "errorAppNotFound": {
+    "message": "Sorry, this app was not found. Go back to your <a href='/profile'>profile</a>?",
+    "description": "Error message for app details/editing/play view when the app is not found"
+  },
+  "errorDefault": {
+    "message": "Oops! There was an error. Go back to your <a href='/profile'>profile</a>?",
+    "description": "Default error message for alert component"
+  },
+  "Discover": {
+    "message": "Discover",
+    "description": "Title for the Discover page (a listing of apps users can choose from)"
+  },
+  "Make & share the web": {
+    "message": "Make &amp; share the web",
+    "description": "sign-in view headline"
+  },
+  "Share": {
+    "message": "Share",
+    "description": "Share an app"
+  },
+  "Open": {
+    "message": "Open",
+    "description": "Open an app"
+  },
+  "Create": {
+    "message": "Create",
+    "description": "Create an app"
+  },
+  "Data": {
+    "message": "Data",
+    "description": "Look at the data collected by an app"
+  },
+  "Publish": {
+    "message": "Publish",
+    "description": "Button label for publishing the current app"
+  },
+  "Join Webmaker": {
+    "message": "Join Webmaker",
+    "description": "Button label for creating an account"
+  },
+  "My {{template}} App": {
+    "message": "My {{template}} App",
+    "description": "Title for a newly created app from a template"
+  },
+  "Save": {
+    "message": "Save",
+    "description": "Button label (save changes)"
+  },
+  "Start from Scratch": {
+    "message": "Start from Scratch",
+    "description": "title for template"
+  },
+  "Choosing this option will allow you to create your own app without a preset template.": {
+    "message": "Choosing this option will allow you to create your own app without a preset template.",
+    "description": "description for template"
+  },
+  "Create a Blog": {
+    "message": "Create a Blog",
+    "description": "title for template"
+  },
+  "Have something to share with the world? Start a blog, customize to make it yours and start writing!": {
+    "message": "Have something to share with the world? Start a blog, customize to make it yours and start writing!",
+    "description": "description for template"
+  },
+  "Build a Lesson Plan": {
+    "message": "Build a Lesson Plan",
+    "description": "title for template"
+  },
+  "If you want to share your skills with others, build a mobile lesson plan and teach what you know": {
+    "message": "If you want to share your skills with others, build a mobile lesson plan and teach what you know",
+    "description": "description for template"
+  },
+  "Promote your Business": {
+    "message": "Promote your Business",
+    "description": "title for template"
+  },
+  "Show off your products and give customers an easy way to reach you.": {
+    "message": "Show off your products and give customers an easy way to reach you.",
+    "description": "description for template"
+  },
+  "Share Community News": {
+    "message": "Share Community News",
+    "description": "title for template"
+  },
+  "Share photos and write articles and about your local community": {
+    "message": "Share photos and write articles and about your local community",
+    "description": "description for template"
+  },
+  "Create a How To Guide": {
+    "message": "Create a How To Guide",
+    "description": "title for template"
+  },
+  "If you've got unique skills you'd like to share with others, try making a How To guide.": {
+    "message": "If you've got unique skills you'd like to share with others, try making a How To guide.",
+    "description": "description for template"
+  },
+  "Create a Safety App": {
+    "message": "Create a Safety App",
+    "description": "title for template"
+  },
+  "Add a map, a emergency call button, and other tips to keep safe in your community": {
+    "message": "Add a map, a emergency call button, and other tips to keep safe in your community",
+    "description": "description for template"
+  },
+  "Text Box": {
+    "message": "Text Box",
+    "description": "Type of block"
+  }
 }
