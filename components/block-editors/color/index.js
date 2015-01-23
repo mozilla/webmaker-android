@@ -11,7 +11,8 @@ module.exports = {
         onColorPickerDone: function () {
             this.$data.showColorPicker = false;
         },
-        openColorPicker: function (color) {
+        openColorPicker: function (e, color) {
+            e.preventDefault();
             this.$broadcast('openCP', color);
         }
     }
