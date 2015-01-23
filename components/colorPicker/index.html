@@ -1,9 +1,9 @@
-<nav class="navigationBar">
-    <button class="nav-btn" v-on="click: onCancel">{{ 'Cancel' | i18n}}</button>
+<nav class="navigationBar nav-default">
+    <div><button class="nav-btn" v-on="click: onCancel">{{ 'Cancel' | i18n}}</button></div>
     <h1>{{'Select Color' | i18n}}</h1>
-    <button v-class="disabled: saveDisabled" class="save-btn" v-on="click: onSave">
+    <div><button v-class="disabled: saveDisabled" class="save-btn" v-on="click: onSave">
         <span class="fa fa-check"></span> {{ 'Save' | i18n}}
-    </button>
+    </button></div>
 </nav>
 
 <div class="color-picker-inner">
