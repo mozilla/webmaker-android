@@ -28,15 +28,38 @@ module.exports = view.extend({
         onDone: function () {
             var self = this;
             if (!self.$data.app.url) return;
-            var sms = 'sms:?body=' +
-                encodeURIComponent(self.$data.shareMessage);
-            page('/make/' + self.$parent.$data.params.id + '/detail');
 
             app.update({
                 isDiscoverable: self.isDiscoverable
             });
 
-            window.location = sms;
+            var contacts = [];
+            Object.keys(self.modeledContacts).forEach(function (letter) {
+                self.modeledContacts[letter].forEach(function (contact) {
+                    if (contact.selected) contacts.push(contact);
+                });
+            });
+            contacts = contacts.map(function (contact) {
+                return contact.phoneNumbers[0].value;
+            });
+
+            if (!contacts.length) {
+                self.$data.error = 'To send an SMS, please choose' +
+                    '1 or more contact.';
+                return;
+            } else {
+                self.$data.error = false;
+            }
+
+            window.SMS.sendSMS(contacts, self.shareMessage, function () {
+                console.log('Sent!');
+                page('/make/' + self.$parent.$data.params.id + '/detail');
+            }, function (err) {
+                console.log('There was a problem');
+                console.log(err);
+                page('/make/' + self.$parent.$data.params.id + '/detail');
+            });
+
         },
         onSMSClick: function (e) {
             e.preventDefault();
