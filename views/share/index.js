@@ -26,6 +26,9 @@ module.exports = view.extend({
             this.model.auth.login();
         },
         onDone: function () {
+            this.sendSMS();
+        },
+        sendSMS: function () {
             var self = this;
             if (!self.$data.app.url) return;
 
@@ -55,9 +58,9 @@ module.exports = view.extend({
                 console.log('Sent!');
                 page('/make/' + self.$parent.$data.params.id + '/detail');
             }, function (err) {
-                console.log('There was a problem');
                 console.log(err);
-                page('/make/' + self.$parent.$data.params.id + '/detail');
+                self.$data.error = 'Sorry, there was a problem sending an SMS.';
+                self.onDone = '/make/' + self.$parent.$data.params.id + '/detail';
             });
 
         },
