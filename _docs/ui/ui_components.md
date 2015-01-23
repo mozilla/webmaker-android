@@ -45,8 +45,11 @@
 #### Usage
 
 ```html
-<div v-component="navigationBar"></div>
+<div v-component="navigationBar" class="nav-default"></div>
 ```
+
+### Class
+* You should add a `nav-default` or `nav-alt` class.
 
 #### Data
 * `back`: `true` or string: if true, creates a back button. if string, creates a back button link where `href` is that string
