@@ -43,6 +43,22 @@
     "message": "Make Your Own App",
     "description": "Title for app templates, starter projects/styles to create new apps"
   },
+  "Featured": {
+    "message": "Featured",
+    "description": "Featured apps tab"
+  },
+  "Newest": {
+    "message": "Newest",
+    "description": "Newest app tab"
+  },
+  "No Data available": {
+    "message": "No Data available",
+    "description": "No Data available"
+  },
+  "Select all": {
+    "message": "Select all",
+    "description": "Select all"
+  },
   "Make an App": {
     "message": "Make an App",
     "description": "Button label for action to make a new app"

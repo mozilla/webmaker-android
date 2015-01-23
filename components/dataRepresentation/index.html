@@ -1,7 +1,7 @@
 <div v-if="isInteractive" v-component="switch" v-with="value: sortOldest, options: sortOptions"></div>
 <div v-if="isInteractive" class="dataRepresentationSelectAll">
     <input style="display: none;" id="dataRepresentationDataSetMarkSelected-All" type="checkbox" name="markAllSelected" v-model="allSelected">
-    <label for="dataRepresentationDataSetMarkSelected-All">Select all</label>
+    <label for="dataRepresentationDataSetMarkSelected-All">{{ 'Select all' | i18n }}</label>
     <label for="dataRepresentationDataSetMarkSelected-All" class="tip tip-checkmark fa fa-check"></label>
 </div>
 <table v-repeat="data: dataSet | orderBy sortKey !sortOldest" class="dataRepresentationDataSet" v-class="unread: !data.isRead && isInteractive, interactive: isInteractive">
@@ -16,7 +16,7 @@
     </thead>
     <tbody>
         <tr>
-            <td>Time</td>
+            <td>{{ 'Time' | i18n }}</td>
             <td>{{formatUnixTime(data.submitted)}}</td>
         </tr>
         <tr v-repeat="dataBlock: data.dataBlocks">
