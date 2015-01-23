@@ -60,7 +60,8 @@ module.exports = view.extend({
             }, function (err) {
                 console.log(err);
                 self.$data.error = 'Sorry, there was a problem sending an SMS.';
-                self.onDone = '/make/' + self.$parent.$data.params.id + '/detail';
+                var id = self.$parent.$data.params.id;
+                self.onDone = '/make/' + id + '/detail';
             });
 
         },
