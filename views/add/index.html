@@ -1,20 +1,23 @@
 <div v-component="navigationBar" class="nav-alt"></div>
 <div class="list-wrapper">
-    <ul>
-        <li v-repeat="block: blocks">
-            <a data-block="{{block.type}}" class="brick" href="/make/{{app.type}}/edit">
-                <img src="{{block.icon}}" alt="{{block.name}}" />
-                <p>{{ block.name | i18n }}</p>
-            </a>
-        </li>
-    </ul>
-    <ul>
-        <li v-repeat="block: inputBlocks">
-            <a data-block="{{block.type}}" class="brick" href="/make/{{app.type}}/edit">
-                <img src="{{block.icon}}" alt="{{block.name}}" />
-                <p>{{ block.name | i18n }}</p>
-            </a>
-        </li>
-    </ul>
+    <div class="spacer"></div>
+    <div class="wrapper">
+        <ul>
+            <li v-repeat="block: blocks">
+                <a data-block="{{block.type}}" class="brick" href="/make/{{app.type}}/edit">
+                    <img src="{{block.icon}}" alt="{{block.name}}" />
+                    <p>{{ block.name | i18n }}</p>
+                </a>
+            </li>
+        </ul>
+        <ul>
+            <li v-repeat="block: inputBlocks">
+                <a data-block="{{block.type}}" class="brick" href="/make/{{app.type}}/edit">
+                    <img src="{{block.icon}}" alt="{{block.name}}" />
+                    <p>{{ block.name | i18n }}</p>
+                </a>
+            </li>
+        </ul>
+    </div>
 
 </div>

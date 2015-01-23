@@ -74,7 +74,7 @@
             color: @mediumGrey;
             font-size: 18px;
             position: relative;
-            top: ~"calc(50% - 8px)";
+            top: 50%;
         }
 
         .icon-container {
@@ -132,7 +132,6 @@
 
 .blocks {
     .list-reset;
-    width: 100%;
 
     > li {
         display: block;
@@ -161,27 +160,9 @@
         &.editable {
             padding: 15px 70px 15px 10px;
             user-select: none;
+            border: dashed 1px @highlight;
+            margin-bottom: 10px;
 
-            &::before {
-                content: '';
-                position: absolute;
-                border: dashed 1px blue;
-                border-color: @highlight;
-                top: 5px;
-                left: 0;
-                width: 100%;
-                height: ~"calc(100% - 10px)";
-            }
-
-            &::after {
-                content: '';
-                position: absolute;
-                top: 0;
-                left: 0;
-                right: 50px;
-                bottom: 0;
-                z-index: 1;
-            }
             .draggable-handle {
                 display: flex;
                 width: 50px;
