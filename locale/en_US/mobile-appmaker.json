@@ -103,6 +103,34 @@
     "message": "Safety",
     "description": "Title for a safety app"
   },
+  "Button Color": {
+    "message": "Button Color",
+    "description": "Button Color label"
+  },
+  "Button Text": {
+    "message": "Button Text",
+    "description": "Button Text label"
+  },
+  "Initial Number": {
+    "message": "Initial Number",
+    "description": "Initial Number label"
+  },
+  "same as minimum number": {
+    "message": "same as minimum number",
+    "description": "place holder for Initial number field"
+  },
+  "Maximum Number": {
+    "message": "Maximum Number",
+    "description": "Maximum Number label"
+  },
+  "Minimum Number": {
+    "message": "Minimum Number",
+    "description": "Minimum Number label"
+  },
+  "Increment by": {
+    "message": "Increment by",
+    "description": "Increment by label"
+  },
   "Select Color": {
     "message": "Select Color",
     "description": "Title for the color picker"
@@ -126,6 +154,34 @@
   "Place call": {
     "message": "Place call",
     "description": "Button for placing a call"
+  },
+  "Title Text Color": {
+    "message": "Title Text Color",
+    "description": "Title Text Color label"
+  },
+  "Title": {
+    "message": "Title",
+    "description": "Title label"
+  },
+  "Text Box Type": {
+    "message": "Text Box Type",
+    "description": "Text Box Type label"
+  },
+  "Single Line Text": {
+    "message": "Single Line Text",
+    "description": "Item in the select box"
+  },
+  "Send SMS": {
+    "message": "Send SMS",
+    "description": "Send SMS text"
+  },
+  "Long Text": {
+    "message": "Long Text",
+    "description": "Item in the select box"
+  },
+  "Source": {
+    "message": "Source",
+    "description": "Source of the image"
   },
   "Sign In": {
     "message": "Sign In",
@@ -219,9 +275,13 @@
     "message": "Discover",
     "description": "Title for the Discover page (a listing of apps users can choose from)"
   },
-  "Make & share the web": {
+  "Make and share the web": {
     "message": "Make &amp; share the web",
     "description": "sign-in view headline"
+  },
+  "Start Building": {
+    "message": "Start Building",
+    "description": "Start Building button for creating an app"
   },
   "Share": {
     "message": "Share",
@@ -246,6 +306,26 @@
   "Join Webmaker": {
     "message": "Join Webmaker",
     "description": "Button label for creating an account"
+  },
+  "I am some text": {
+    "message": "I am some text",
+    "description": "Value in the text area"
+  },
+  "Counter": {
+    "message": "Counter",
+    "description": "Button for create new block"
+  },
+  "Color": {
+    "message": "Color",
+    "description": "Color label"
+  },
+  "Font Size": {
+    "message": "Font Size",
+    "description": "Font Size label"
+  },
+  "Submit": {
+    "message": "Submit",
+    "description": "Button for create new block"
   },
   "My {{template}} App": {
     "message": "My {{template}} App",
