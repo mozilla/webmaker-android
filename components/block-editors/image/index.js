@@ -25,8 +25,8 @@ module.exports = {
                 quality: 20,
                 targetWidth: 320,
                 targetHeight: 240,
-                destinationType: Camera.DestinationType.DATA_URL,
-                sourceType: Camera.PictureSourceType[sourceType]
+                destinationType: window.Camera.DestinationType.DATA_URL,
+                sourceType: window.Camera.PictureSourceType[sourceType]
             });
         },
         openEditor: function (e) {
@@ -43,7 +43,8 @@ module.exports = {
     },
     data: {},
     ready: function () {
-        if (this.$data.value && !this.$data.value.match('data:image/jpeg;base64')) {
+        var uriPattern = 'data:image/jpeg;base64';
+        if (this.$data.value && !this.$data.value.match(uriPattern)) {
             this.$data.imageUrl = this.$data.value;
         }
     }
