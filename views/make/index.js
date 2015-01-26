@@ -32,6 +32,9 @@ module.exports = view.extend({
         settings: require('./settings.html')
     },
     methods: {
+        showMenu: function () {
+            this.$parent.$broadcast('openSideMenu');
+        },
         goBack: function (e) {
             e.preventDefault();
             if (this.$data.mode === 'settings') {

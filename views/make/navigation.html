@@ -1,5 +1,5 @@
 <div>
-  <a class="nav-btn" v-on="click: goBack" v-if="mode !== 'settings'">{{ 'Done' | i18n}}</a>
+  <a class="nav-btn" v-on="click: showMenu" v-if="mode !== 'settings'"><span class="fa fa-bars"></span></a>
   <a class="nav-btn" v-on="click: goBack" v-if="mode == 'settings'">{{ 'Cancel' | i18n}}</a>
 </div>
 
