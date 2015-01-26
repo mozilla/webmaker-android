@@ -7,7 +7,7 @@ module.exports = {
         attributes: {
             src: {
                 label: 'Source',
-                type: 'string',
+                type: 'image',
                 value: 'images/placeholder.png'
             }
         }
