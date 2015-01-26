@@ -47,8 +47,7 @@ module.exports = view.extend({
             });
 
             if (!contacts.length) {
-                self.$data.error = 'To send an SMS, please choose' +
-                    '1 or more contact.';
+                self.$data.error = 'noContactsError';
                 return;
             } else {
                 self.$data.error = false;
