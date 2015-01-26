@@ -18,29 +18,29 @@
     <i v-if="!editing" class="fa fa-pencil fa-2x edit-icon" v-on="click: editing = true"></i> -->
 
   <ul class="list-cell">
-      <lh>{{ "My Apps" | i18n }}</lh>
+      <lh>{{ 'My Apps' | i18n }}</lh>
       <li v-component="appCell" v-repeat="app: myApps" prefix="/make/" app-id="{{ app.id }}"></li>
   </ul>
   <div class="no-apps" v-show="myApps.length == 0">
-    <p>{{ "No Apps Message" | i18n }}</p>
-    <a href="/templates" class="btn btn-block btn-dark">{{ "Make an App" | i18n }}</a>
+    <p>{{ 'No Apps Message' | i18n }}</p>
+    <a href="/templates" class="btn btn-block btn-dark">{{ 'Make an App' | i18n }}</a>
   </div>
 
   <ul class="menu">
  <!--    <li v-show="user.username" class="form-group">
-      <a href="http://login-dev.mofodev.net/account">{{ "Edit my Profile" | i18n }} ({{user.username}})</a>
+      <a href="http://login-dev.mofodev.net/account">{{ 'Edit my Profile' | i18n }} ({{user.username}})</a>
     </li> -->
     <li v-show="!user.username" class="form-group">
-      <a href="/sign-in">{{ "Sign In" | i18n }}</a>
+      <a href="/sign-in">{{ 'Sign In' | i18n }}</a>
     </li>
     <li class="form-group">
-      <a href="#" v-on="click: clean">{{ "Delete my Apps" | i18n }}</a>
+      <a href="#" v-on="click: clean">{{ 'Delete my Apps' | i18n }}</a>
     </li>
     <li class="form-group">
       <a href="/healthcheck">Developer</a>
     </li>
     <li v-show="user.username" class="form-group">
-      <a href="#" v-on="click: logout">{{ "Sign Out" | i18n }}</a>
+      <a href="#" v-on="click: logout">{{ 'Sign Out' | i18n }}</a>
     </li>
   </ul>
 

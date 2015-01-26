@@ -1,8 +1,8 @@
 <input type="checkbox" v-model="value">
 <label v-on="click: onClick">
   <span class="options">
-    <span class="before">{{options[0]}}</span>
-    <span class="after">{{options[1]}}</span>
+    <span class="before">{{ options[0] | i18n }}</span>
+    <span class="after">{{ options[1] | i18n }}</span>
   </span>
   <span class="indicator"></span>
 </label>

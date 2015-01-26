@@ -40,22 +40,20 @@ var mockBlocks = function (id) {
         type: 'text',
         className: 'text',
         template: '<p></p>',
-        data: {
-            name: 'Text',
-            icon: 'images/blocks_text.png',
-            attributes: {
-                innerHTML: {
-                    label: 'Text',
-                    type: 'string',
-                    value: 'I am a Headline'
-                },
-                color: {
-                    label: 'Color',
-                    type: 'color',
-                    value: '#333444'
-                }
-            }
-        }
+          name: 'Text',
+          icon: 'images/blocks_text.png',
+          attributes: {
+              innerHTML: {
+                  label: 'Text',
+                  type: 'string',
+                  value: 'I am a Headline'
+              },
+              color: {
+                  label: 'Color',
+                  type: 'color',
+                  value: '#333444'
+              }
+          }
     };
 };
 
@@ -146,7 +144,7 @@ describe('Storage', function () {
             });
         });
     });
-    
+
     describe('#_removeAppRef', function () {
         it('should be a function', function () {
             assert.equal(typeof storage._removeAppRef, 'function');
