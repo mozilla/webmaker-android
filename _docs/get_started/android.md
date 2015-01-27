@@ -48,7 +48,7 @@ In order to complete the link to your local copy of `mozilla/webmaker-app`, run 
 
 ```
 npm link webmaker
-````
+```
 
 After you do that, all you need to do to re-build the app is run the following every time you make a change:
 
