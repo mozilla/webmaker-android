@@ -76,7 +76,7 @@ to start your weinre debugging server. You can use any port you want Then, creat
 
 ```
 ngrok -subdomain=w1nr3 1234
-``
+```
 
 Set the `subdomain` option to something short and unique.
 
