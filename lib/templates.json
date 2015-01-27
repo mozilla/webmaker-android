@@ -23,89 +23,114 @@
         "iconImage": "images/icons/blog.svg",
         "iconColor" : "#97CC3B",
         "author": {
-            "username": "Emma",
+            "username": "",
             "location": "",
-            "avatar": "images/avatar_blogger.png"
+            "avatar": ""
         },
         "blocks": [
             {
-                "type": "image",
                 "attributes": {
                     "src": {
-                        "id": "src",
-                        "label": "Image URL",
+                        "label": "Source",
                         "type": "string",
-                        "value": "content/blog_leaves.jpg"
+                        "value": "content/blog_illustration.svg"
                     }
-                }
+                },
+                "icon": "images/blocks_image.png",
+                "name": "Image",
+                "type": "image"
             },
             {
-                "type": "text",
                 "attributes": {
-                    "innerHTML": {
-                        "id": "innerHTML",
-                        "label": "Text Value",
-                        "type": "string",
-                        "value": "Today I went for a walk in the forest!"
-                    },
                     "color": {
-                        "id": "color",
-                        "label": "Text Color",
+                        "label": "Color",
+                        "showColorPicker": false,
                         "type": "color",
-                        "value": "#000000"
+                        "value": "#545E66"
+                    },
+                    "font-size": {
+                        "label": "Font Size",
+                        "type": "font-size",
+                        "value": "16"
+                    },
+                    "innerHTML": {
+                        "label": "Text",
+                        "type": "string",
+                        "value": "How To Create a Successful Blog"
                     }
-                }
+                },
+                "icon": "images/blocks_text.png",
+                "name": "Text",
+                "type": "text"
             },
             {
-                "type": "text",
                 "attributes": {
-                    "innerHTML": {
-                        "id": "innerHTML",
-                        "label": "Text Value",
-                        "type": "string",
-                        "value": "It was a beautiful day to go for a walk, because the weather was perfect for a photo. It was the middle of fall and the trees were beginning to turn a fiery red, contrasting with the luscious green in the background."
-                    },
                     "color": {
-                        "id": "color",
-                        "label": "Text Color",
+                        "label": "Color",
+                        "showColorPicker": false,
                         "type": "color",
-                        "value": "#000000"
+                        "value": "#638093"
+                    },
+                    "font-size": {
+                        "label": "Font Size",
+                        "type": "font-size",
+                        "value": "14"
+                    },
+                    "innerHTML": {
+                        "label": "Text",
+                        "type": "string",
+                        "value": "Ask yourself what you love, care about or wish to share with others. "
                     }
-                }
+                },
+                "icon": "images/blocks_text.png",
+                "name": "Text",
+                "type": "text"
             },
             {
-                "type": "text",
                 "attributes": {
-                    "innerHTML": {
-                        "id": "innerHTML",
-                        "label": "Text Value",
-                        "type": "string",
-                        "value": "Heavy Rainfall Might Be Expected"
-                    },
                     "color": {
-                        "id": "color",
-                        "label": "Text Color",
+                        "label": "Color",
+                        "showColorPicker": false,
                         "type": "color",
-                        "value": "#000000"
+                        "value": "#638093"
+                    },
+                    "font-size": {
+                        "label": "Font Size",
+                        "type": "font-size",
+                        "value": "14"
+                    },
+                    "innerHTML": {
+                        "label": "Text",
+                        "type": "string",
+                        "value": "Make blogging part of your day. You can add reminders to your calendar so that you are prompted to write on a regular basis."
                     }
-                }
+                },
+                "icon": "images/blocks_text.png",
+                "name": "Text",
+                "type": "text"
             },
             {
-                "type": "text",
                 "attributes": {
-                    "innerHTML": {
-                        "id": "innerHTML",
-                        "label": "Text Value",
-                        "type": "string",
-                        "value": "I couldn't decide whether to keep walking, because the weather might turn foul. I guess I'll turn it in for the day. \nYours truly, James Laverty"
-                    },
                     "color": {
-                        "id": "color",
-                        "label": "Text Color",
+                        "label": "Color",
+                        "showColorPicker": false,
                         "type": "color",
-                        "value": "#000000"
+                        "value": "#638093"
+                    },
+                    "font-size": {
+                        "label": "Font Size",
+                        "type": "font-size",
+                        "value": "14"
+                    },
+                    "innerHTML": {
+                        "label": "Text",
+                        "type": "string",
+                        "value": "Get blogging!"
                     }
-                }
+                },
+                "icon": "images/blocks_text.png",
+                "name": "Text",
+                "type": "text"
             }
         ]
     },
