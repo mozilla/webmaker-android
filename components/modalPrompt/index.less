@@ -1,5 +1,7 @@
 #modal-prompt {
     position: fixed;
+    left: -999999px;
+    opacity: 0;
     z-index: 999999;
     display: flex;
     width: 100%;
@@ -7,6 +9,12 @@
     align-items: center;
     justify-content: center;
     padding: 20px;
+    transition: opacity 400ms linear;
+
+    &.active {
+        left: 0;
+        opacity: 1;
+    }
 
     .prompt {
         background: #F6F7F7;
@@ -21,7 +29,7 @@
             font-size: 12px;
             color: #638093;
             line-height: 17px;
-            border-bottom: 1px solid #ccc;
+            border-bottom: 1px solid @lightGrey;
             display: flex;
 
             .icon {

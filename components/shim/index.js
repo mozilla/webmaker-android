@@ -1,13 +1,13 @@
 module.exports = {
-    id: 'modal-prompt',
+    id: 'shim',
     ready: function () {
         var self = this;
 
-        self.$on('openModalPrompt', function (event) {
+        self.$on('openShim', function (event) {
             self.open();
         });
 
-        self.$on('closeModalPrompt', function (event) {
+        self.$on('closeShim', function (event) {
             self.close();
         });
     },
@@ -15,20 +15,13 @@ module.exports = {
         open: function () {
             this.isOpen = true;
             this.$el.classList.add('active');
-
         },
         close: function (event) {
             this.isOpen = false;
             this.$el.classList.remove('active');
-            this.$dispatch('modalPromptClosed');
-        },
-        onConfirmClick: function (event) {
-            this.$dispatch('onConfirmClick');
-            this.close();
         }
     },
     data: {
         isOpen: false
-    },
-    template: require('./index.html')
+    }
 };

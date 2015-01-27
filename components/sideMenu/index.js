@@ -24,6 +24,13 @@ module.exports = {
         });
     },
     methods: {
+        onShareClick: function (event) {
+            this.close();
+        },
+        onDeleteClick: function (event) {
+            this.$dispatch('sideMenuDeleteClick');
+            this.close(true);
+        },
         onRootClick: function (event) {
             if (event && this.$el === event.target) {
                 this.close();
@@ -31,15 +38,16 @@ module.exports = {
         },
         open: function () {
             this.isOpen = true;
-            this.transitionsInProgress = 2;
+            this.transitionsInProgress = 1;
             this.$el.style.left = '0';
             this.$el.classList.add('active');
 
         },
-        close: function (event) {
+        close: function (keepShimOpen) {
             this.isOpen = false;
-            this.transitionsInProgress = 2;
+            this.transitionsInProgress = 1;
             this.$el.classList.remove('active');
+            this.$dispatch('sideMenuClosed', {keepShimOpen: keepShimOpen});
         }
     },
     data: {
