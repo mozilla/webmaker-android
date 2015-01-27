@@ -41,7 +41,15 @@ module.exports = {
             // Sort contacts into alphabetical order
             this.contacts = this.contacts
             .filter(function (contact) {
-                return !!contact.displayName;
+                if (!contact ||
+                    !contact.displayName ||
+                    !contact.phoneNumbers ||
+                    !contact.phoneNumbers.length ||
+                    !contact.phoneNumbers[0].value) {
+                    return false;
+                } else {
+                    return true;
+                }
             })
             .sort(function (a, b) {
                 return a.displayName > b.displayName;

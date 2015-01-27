@@ -3,6 +3,7 @@
 (function () {
     var fakeContacts = [
         ['Kate Hudson', '(416) 852-6445'],
+        ['Error McError', '123 123 123'],
         ['Adam B', '1 232-852-6445'],
         ['Barney Roberts', '1 123-2134'],
         ['Aisha H', '1 412 923-1938'],
@@ -33,5 +34,16 @@
         },
         pickContact: function () {}
     };
+
+    // https://github.com/floatinghotpot/cordova-plugin-sms/tree/master/docs
+    window.SMS = window.SMS || {
+        sendSMS: function(addresses, message, onSuccess, onErr) {
+            // Shortcut for testing errors
+            if (addresses[0] === '123 123 123') {
+                return onErr(new Error('We can\'t seem to contact 123 123 123'));
+            }
+            onSuccess('your sms was sent');
+        }
+    }
 
 })();

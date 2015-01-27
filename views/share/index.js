@@ -26,17 +26,43 @@ module.exports = view.extend({
             this.model.auth.login();
         },
         onDone: function () {
+            this.sendSMS();
+        },
+        sendSMS: function () {
             var self = this;
             if (!self.$data.app.url) return;
-            var sms = 'sms:?body=' +
-                encodeURIComponent(self.$data.shareMessage);
-            page('/make/' + self.$parent.$data.params.id + '/detail');
 
             app.update({
                 isDiscoverable: self.isDiscoverable
             });
 
-            window.location = sms;
+            var contacts = [];
+            Object.keys(self.modeledContacts).forEach(function (letter) {
+                self.modeledContacts[letter].forEach(function (contact) {
+                    if (contact.selected) contacts.push(contact);
+                });
+            });
+            contacts = contacts.map(function (contact) {
+                return contact.phoneNumbers[0].value;
+            });
+
+            if (!contacts.length) {
+                self.$data.error = 'noContactsError';
+                return;
+            } else {
+                self.$data.error = false;
+            }
+
+            window.SMS.sendSMS(contacts, self.shareMessage, function () {
+                console.log('Sent!');
+                page('/make/' + self.$parent.$data.params.id + '/detail');
+            }, function (err) {
+                console.log(err);
+                self.$data.error = 'Sorry, there was a problem sending an SMS.';
+                var id = self.$parent.$data.params.id;
+                self.onDone = '/make/' + id + '/detail';
+            });
+
         },
         onSMSClick: function (e) {
             e.preventDefault();

@@ -394,5 +394,9 @@
   "Text Box": {
     "message": "Text Box",
     "description": "Type of block"
+  },
+  "noContactsError": {
+    "message": "To send an SMS, please choose one or more contact.",
+    "description": "Error if user tries to send an SMS without choosing any contacts"
   }
 }
