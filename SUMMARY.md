@@ -7,6 +7,7 @@
    * [Important links](_docs/get_started/important_links.md)
    * [Mailing list](_docs/get_started/mailing_list.md)
    * [Contributing to these docs](_docs/get_started/these_docs.md)
+   * [Developing on Android](_docs/get_started/android.md)
    * [Firefox Web IDE](_docs/get_started/web_ide.md)
 * [Components](_docs/components/README.md)
 * [Templates](_docs/templates/README.md)
