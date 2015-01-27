@@ -554,214 +554,196 @@
         },
         "blocks": [
             {
-              "attributes" : {
-                "color" : {
-                  "id" : "color",
-                  "label" : "Text Color",
-                  "type" : "color",
-                  "value" : "#000000"
+                "attributes": {
+                    "src": {
+                        "label": "Source",
+                        "type": "string",
+                        "value": "content/vendor_illustration.svg"
+                    }
                 },
-                "innerHTML" : {
-                  "id" : "innerHTML",
-                  "label" : "Text Value",
-                  "type" : "string",
-                  "value" : "Welcome to my tea shop. What would you like to buy?"
-                }
-              },
-              "icon" : "images/blocks_text.png",
-              "name" : "Text",
-              "type" : "text"
+                "icon": "images/blocks_image.png",
+                "name": "Image",
+                "type": "image"
             },
             {
-              "attributes" : {
-                "src" : {
-                  "id" : "src",
-                  "label" : "Image URL",
-                  "type" : "string",
-                  "value" : "content/vendor_mirzapore.jpg"
-                }
-              },
-              "icon" : "images/blocks_image.png",
-              "name" : "Image",
-              "type" : "image"
+                "attributes": {
+                    "color": {
+                        "label": "Color",
+                        "showColorPicker": false,
+                        "type": "color",
+                        "value": "#545E66"
+                    },
+                    "font-size": {
+                        "label": "Font Size",
+                        "type": "font-size",
+                        "value": "16"
+                    },
+                    "innerHTML": {
+                        "label": "Text",
+                        "type": "string",
+                        "value": "Sunshine Bakery and Tea Shop"
+                    }
+                },
+                "icon": "images/blocks_text.png",
+                "name": "Text",
+                "type": "text"
             },
             {
-              "attributes" : {
-                "color" : {
-                  "label" : "Title Text Color",
-                  "type" : "color",
-                  "value" : "#638093"
+                "attributes": {
+                    "color": {
+                        "label": "Color",
+                        "showColorPicker": false,
+                        "type": "color",
+                        "value": "#638093"
+                    },
+                    "font-size": {
+                        "label": "Font Size",
+                        "type": "font-size",
+                        "value": "14"
+                    },
+                    "innerHTML": {
+                        "label": "Text",
+                        "type": "string",
+                        "value": "Handmade pies and delicious tea waiting to arrive at your door."
+                    }
                 },
-                "current" : {
-                  "label" : "Initial Number",
-                  "placeholder" : "same as minimum number",
-                  "type" : "number",
-                  "value" : "0"
-                },
-                "label" : {
-                  "label" : "Title",
-                  "placeholder" : "Your title goes here",
-                  "type" : "string",
-                  "value" : "Earl Grey"
-                },
-                "max" : {
-                  "label" : "Maximum Number",
-                  "type" : "number",
-                  "value" : "100"
-                },
-                "min" : {
-                  "label" : "Minimum Number",
-                  "type" : "number",
-                  "value" : "0"
-                },
-                "step" : {
-                  "label" : "Increment by",
-                  "type" : "number",
-                  "value" : "1"
-                }
-              },
-              "icon" : "images/blocks_counter.png",
-              "name" : "Counter",
-              "type" : "spinner"
+                "icon": "images/blocks_text.png",
+                "name": "Text",
+                "type": "text"
             },
             {
-              "attributes" : {
-                "src" : {
-                  "id" : "src",
-                  "label" : "Image URL",
-                  "type" : "string",
-                  "value" : "content/vendor_assam.jpg"
-                }
-              },
-              "icon" : "images/blocks_image.png",
-              "name" : "Image",
-              "type" : "image"
+                "attributes": {
+                    "src": {
+                        "label": "Source",
+                        "type": "string",
+                        "value": "content/vendor_tea.svg"
+                    }
+                },
+                "icon": "images/blocks_image.png",
+                "name": "Image",
+                "type": "image"
             },
             {
-              "attributes" : {
-                "color" : {
-                  "label" : "Title Text Color",
-                  "type" : "color",
-                  "value" : "#638093"
+                "attributes": {
+                    "color": {
+                        "label": "Title Text Color",
+                        "showColorPicker": false,
+                        "type": "color",
+                        "value": "#638093"
+                    },
+                    "current": {
+                        "label": "Initial Number",
+                        "placeholder": "same as minimum number",
+                        "skipAutoRender": true,
+                        "type": "number",
+                        "value": "0"
+                    },
+                    "label": {
+                        "label": "Title",
+                        "placeholder": "Your title goes here",
+                        "skipAutoRender": true,
+                        "type": "string",
+                        "value": "How many cups of green tea would you \nlike to order?"
+                    },
+                    "max": {
+                        "label": "Maximum Number",
+                        "skipAutoRender": true,
+                        "type": "number",
+                        "value": "100"
+                    },
+                    "min": {
+                        "label": "Minimum Number",
+                        "skipAutoRender": true,
+                        "type": "number",
+                        "value": "0"
+                    },
+                    "step": {
+                        "label": "Increment by",
+                        "skipAutoRender": true,
+                        "type": "number",
+                        "value": "1"
+                    }
                 },
-                "current" : {
-                  "label" : "Initial Number",
-                  "placeholder" : "same as minimum number",
-                  "type" : "number",
-                  "value" : "0"
-                },
-                "label" : {
-                  "label" : "Title",
-                  "placeholder" : "Your title goes here",
-                  "type" : "string",
-                  "value" : "Darjeeling"
-                },
-                "max" : {
-                  "label" : "Maximum Number",
-                  "type" : "number",
-                  "value" : "100"
-                },
-                "min" : {
-                  "label" : "Minimum Number",
-                  "type" : "number",
-                  "value" : "0"
-                },
-                "step" : {
-                  "label" : "Increment by",
-                  "type" : "number",
-                  "value" : "1"
-                }
-              },
-              "icon" : "images/blocks_counter.png",
-              "name" : "Counter",
-              "type" : "spinner"
+                "icon": "images/blocks_counter.png",
+                "name": "Counter",
+                "type": "spinner"
             },
             {
-              "attributes" : {
-                "color" : {
-                  "label" : "Color",
-                  "type" : "color",
-                  "value" : "#333444"
+                "attributes": {
+                    "src": {
+                        "label": "Source",
+                        "type": "string",
+                        "value": "content/vendor_pie.svg"
+                    }
                 },
-                "font-size" : {
-                  "label" : "Font Size",
-                  "type" : "font-size",
-                  "value" : "14"
-                },
-                "innerHTML" : {
-                  "label" : "Text",
-                  "type" : "string",
-                  "value" : "Your Contact Info"
-                }
-              },
-              "icon" : "images/blocks_text.png",
-              "name" : "Text",
-              "type" : "text"
+                "icon": "images/blocks_image.png",
+                "name": "Image",
+                "type": "image"
             },
             {
-              "attributes" : {
-                "color" : {
-                  "label" : "Title Text Color",
-                  "type" : "color",
-                  "value" : "#638093"
+                "attributes": {
+                    "color": {
+                        "label": "Title Text Color",
+                        "showColorPicker": false,
+                        "type": "color",
+                        "value": "#638093"
+                    },
+                    "current": {
+                        "label": "Initial Number",
+                        "placeholder": "same as minimum number",
+                        "skipAutoRender": true,
+                        "type": "number",
+                        "value": "0"
+                    },
+                    "label": {
+                        "label": "Title",
+                        "placeholder": "Your title goes here",
+                        "skipAutoRender": true,
+                        "type": "string",
+                        "value": "How many strawberry pies would you\nlike to order?"
+                    },
+                    "max": {
+                        "label": "Maximum Number",
+                        "skipAutoRender": true,
+                        "type": "number",
+                        "value": "100"
+                    },
+                    "min": {
+                        "label": "Minimum Number",
+                        "skipAutoRender": true,
+                        "type": "number",
+                        "value": "0"
+                    },
+                    "step": {
+                        "label": "Increment by",
+                        "skipAutoRender": true,
+                        "type": "number",
+                        "value": "1"
+                    }
                 },
-                "inputType" : {
-                  "label" : "Text Box Type",
-                  "options" : [ "Single Line Text", "Long Text" ],
-                  "type" : "dropdownChoice",
-                  "value" : 0
-                },
-                "label" : {
-                  "label" : "Title",
-                  "placeholder" : "Your title goes here",
-                  "type" : "string",
-                  "value" : "Name"
-                }
-              },
-              "icon" : "images/blocks_input.png",
-              "name" : "Input",
-              "type" : "input"
+                "icon": "images/blocks_counter.png",
+                "name": "Counter",
+                "type": "spinner"
             },
             {
-              "attributes" : {
-                "color" : {
-                  "label" : "Title Text Color",
-                  "type" : "color",
-                  "value" : "#638093"
+                "attributes": {
+                    "color": {
+                        "label": "Button Color",
+                        "showColorPicker": false,
+                        "skipAutoRender": true,
+                        "type": "color",
+                        "value": "#32B2D2"
+                    },
+                    "innerHTML": {
+                        "label": "Button Text",
+                        "skipAutoRender": true,
+                        "type": "string",
+                        "value": "Submit Order"
+                    }
                 },
-                "inputType" : {
-                  "label" : "Text Box Type",
-                  "options" : [ "Single Line Text", "Long Text" ],
-                  "type" : "dropdownChoice",
-                  "value" : 0
-                },
-                "label" : {
-                  "label" : "Title",
-                  "placeholder" : "Your title goes here",
-                  "type" : "string",
-                  "value" : "Phone Number"
-                }
-              },
-              "icon" : "images/blocks_input.png",
-              "name" : "Input",
-              "type" : "input"
-            },
-            {
-              "attributes" : {
-                "color" : {
-                  "label" : "Button Color",
-                  "type" : "color",
-                  "value" : "#32B2D2"
-                },
-                "innerHTML" : {
-                  "label" : "Button Text",
-                  "type" : "string",
-                  "value" : "Send Order"
-                }
-              },
-              "icon" : "images/blocks_submit.png",
-              "name" : "Submit",
-              "type" : "submit"
+                "icon": "images/blocks_submit.png",
+                "name": "Submit",
+                "type": "submit"
             }
         ]
     },

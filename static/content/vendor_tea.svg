@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<svg width="240px" height="120px" viewBox="0 0 240 120" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:sketch="http://www.bohemiancoding.com/sketch/ns">
+    <!-- Generator: Sketch 3.2.2 (9983) - http://www.bohemiancoding.com/sketch -->
+    <title>tea</title>
+    <desc>Created with Sketch.</desc>
+    <defs></defs>
+    <g id="Main" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd" sketch:type="MSPage">
+        <g id="Profile-6" sketch:type="MSArtboardGroup" transform="translate(-21.000000, -478.000000)">
+            <g id="Tile-8" sketch:type="MSLayerGroup" transform="translate(10.000000, 467.000000)">
+                <g id="tea" transform="translate(11.000000, 11.000000)" sketch:type="MSShapeGroup">
+                    <g id="Group-4" fill="#97CC3B">
+                        <rect id="Rectangle-264" x="0" y="0" width="240" height="120"></rect>
+                    </g>
+                    <rect id="Rectangle-346" fill="#89C226" x="0" y="86" width="240" height="34"></rect>
+                    <g id="Group" transform="translate(88.000000, 25.000000)">
+                        <path d="M51.178,47.4609 C51.71,45.3269 52,42.8599 52,39.9999 L52,37.2399 C53.01,36.6199 54.42,35.9999 56,35.9999 C58.88,35.9999 60,37.1199 60,39.9999 C60,41.6179 59.974,45.9479 51.178,47.4609 M56,31.9999 C54.52,31.9999 53.17,32.3299 52,32.7899 L52,31.9999 C52,29.7899 52.21,27.9999 50,27.9999 L32,27.9999 L14,27.9999 C11.79,27.9999 12,29.7899 12,31.9999 L12,39.9999 C12,55.9999 20.936,59.9079 32,59.9999 C39.607,59.9369 46.208,58.0689 49.591,51.7079 C59.153,50.6719 64,46.7479 64,39.9999 C64,34.9199 61.08,31.9999 56,31.9999" id="Fill-7213" fill="#F0F1F1"></path>
+                        <path d="M14,28 C11.79,28 12,29.79 12,32 L12,40 C12,56 20.936,59.907 32,60 L32,28 L14,28 Z" id="Fill-7214" fill="#FFFFFF"></path>
+                        <path d="M40,16 C40,12 33,5 36,0 C34,1 32,4 32,8 C32,12 39,19 36,24 C39,22 40,20 40,16" id="Fill-7215" fill="#FFFFFF"></path>
+                        <path d="M30,18.6667 C30,15.9997 25.333,11.3337 27.333,7.9997 C26,8.6667 24.667,10.6667 24.667,13.3337 C24.667,15.9997 29.333,20.6667 27.333,23.9997 C29.333,22.6667 30,21.3337 30,18.6667" id="Fill-7216" fill="#FFFFFF"></path>
+                        <path d="M30,36 L28,36 L28,27 L30,27 L30,36 Z" id="Fill-7217" fill="#5B5C5F"></path>
+                        <path d="M25,36 L33,36 L36,39 L36,52 L22,52 L22,39 L25,36 Z" id="Fill-7218" fill="#FACB1B"></path>
+                        <path d="M0,56 C0,60.418 14.327,64 32,64 C49.673,64 64,60.418 64,56 L0,56 Z" id="Fill-7219" fill="#E2E4E5"></path>
+                        <path d="M0,56 C0,60.418 14.327,64 32,64 L32,56 L0,56 Z" id="Fill-7220" fill="#F0F1F1"></path>
+                    </g>
+                </g>
+            </g>
+        </g>
+    </g>
+</svg>
