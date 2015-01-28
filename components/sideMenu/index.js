@@ -29,7 +29,7 @@ module.exports = {
         },
         onDeleteClick: function (event) {
             this.$dispatch('sideMenuDeleteClick');
-            this.close(true);
+            this.close(null, true);
         },
         onRootClick: function (event) {
             if (event && this.$el === event.target) {
@@ -43,7 +43,7 @@ module.exports = {
             this.$el.classList.add('active');
 
         },
-        close: function (keepShimOpen) {
+        close: function (event, keepShimOpen) {
             this.isOpen = false;
             this.transitionsInProgress = 1;
             this.$el.classList.remove('active');

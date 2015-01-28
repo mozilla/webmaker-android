@@ -1,6 +1,7 @@
 <div class="primary-menu">
     <header>Menu</header>
 
-    <button v-on="click: onShareClick" class="btn-share"><i class="fa fa-share-alt"></i> Share</button>
-    <button v-on="click: onDeleteClick" class="btn-delete"><i class="fa fa-trash-o"></i> Delete</button>
+    <a v-on="click: close" href="/profile" class="btn"><i class="fa fa-chevron-left"></i> Back to My Apps</a>
+    <button v-on="click: onShareClick" class="btn"><i class="fa fa-share-alt"></i> Share</button>
+    <button v-on="click: onDeleteClick" class="btn"><i class="fa fa-trash-o"></i> Delete</button>
 </div>
