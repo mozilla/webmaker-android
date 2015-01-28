@@ -34,6 +34,7 @@ module.exports = view.extend({
     methods: {
         showMenu: function () {
             this.$parent.$broadcast('openSideMenu');
+            this.$parent.$broadcast('openShim');
         },
         goBack: function (e) {
             e.preventDefault();
@@ -91,6 +92,18 @@ module.exports = view.extend({
             app.removeApp();
             this.page('/profile');
         }
+    },
+    ready: function () {
+        var self = this;
+
+        self.$on('sideMenuDeleteClick', function (event) {
+            self.$dispatch('openModalPrompt');
+        });
+
+        self.$on('onConfirmClick', function (event) {
+            console.warn('Deleting app!');
+            self.removeApp();
+        });
     },
     created: function () {
         var self = this;

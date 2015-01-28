@@ -1,0 +1,14 @@
+#shim {
+    left: -99999px;
+    position: fixed;
+    width: 100%;
+    height: 100%;
+    z-index: 999997;
+    background-color: rgba(255,255,255,0);
+    transition: background-color 300ms linear;
+
+    &.active {
+        left: 0;
+        background-color: rgba(42, 55, 66, 0.8);
+    }
+}
