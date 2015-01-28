@@ -7,19 +7,19 @@
         <div v-show="mode === 'settings'">{{ >settings }}</div>
 
         <div v-show="['play', 'edit'].indexOf(mode) > -1">
-            <a class="add"
-                href="/make/{{app.id}}/add"
-                v-class="off: mode === 'play'">
-                <span class="fa fa-plus"></span>
-            </a>
-            <ul id="blocks" class="blocks">
-                <li v-repeat="app.blocks"
-                    v-component="{{type}}"
-                    index="{{$index}}"
-                    v-on="click: goTo('/make/' + app.id + '/block/' + $index, $event)"
-                    v-class="editable: mode === 'edit'">
-                </li>
-            </ul>
+            <div id="blocks" class="blocks">
+                <div
+                    mode="{{ mode }}"
+                    app="{{ app }}"
+                    index="{{ $index }}"
+                    v-component="inlineEditor"
+                    v-repeat="block : app.blocks">
+
+                    <div
+                        v-with="block"
+                        v-component="{{ block.type }}"></div>
+                </div>
+            </div>
         </div>
 
         <div v-show="mode === 'data'"

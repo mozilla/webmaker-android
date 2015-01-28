@@ -1,0 +1,80 @@
+.inline-editor {
+    position: relative;
+
+    &.active {
+        z-index: 999999;
+    }
+
+    &[mode="edit"] {
+        .button-wrapper {
+            display: flex;
+        }
+    }
+
+    .button-wrapper {
+        display: none;
+        position: absolute;
+        z-index: 2;
+        right: -5px;
+        height: 100%;
+        align-items: center;
+
+        button {
+            border-radius: 50%;
+            border: 1px solid rgba(50, 178, 210, 0.5);
+            background-color: rgba(225, 245, 250, 0.5);
+            color: rgb(50, 178, 210);
+            font-size: 20px;
+            width: 35px;
+            height: 35px;
+        }
+    }
+
+    .editing {
+        .control-panel {
+            display: flex;
+        }
+
+        .block-wrapper {
+            border: 1px dashed #ddd;
+            background-color: @white;
+        }
+
+        .button-wrapper {
+            display: none;
+        }
+    }
+
+    .control-panel {
+        display: none;
+
+        .btn {
+            display: block;
+            text-align: center;
+            background: #32B2D2;
+            border: 0;
+            border-right: 1px solid #1A98B8;
+            border-bottom: 1px solid #1A98B8;
+            flex-grow: 1;
+            color: @white;
+            padding: 1em 0;
+
+            &:first-child {
+                border-bottom-left-radius: 4px;
+            }
+
+            &:last-child {
+                border-bottom-right-radius: 4px;
+            }
+
+            .fa-pencil {
+                font-size: 1.4em;
+            }
+
+            &:last-child {
+                border-right: 0;
+            }
+        }
+    }
+
+}

@@ -104,6 +104,12 @@ module.exports = view.extend({
             console.warn('Deleting app!');
             self.removeApp();
         });
+
+        // Broadcast individual editor starts to all inline editors
+        // This is so that they know to hide if another one opens
+        self.$on('inlineEditorStarted', function (event) {
+            self.$broadcast('inlineEditorStarted', event);
+        });
     },
     created: function () {
         var self = this;

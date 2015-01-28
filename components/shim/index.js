@@ -19,6 +19,9 @@ module.exports = {
         close: function (event) {
             this.isOpen = false;
             this.$el.classList.remove('active');
+        },
+        onShimClick: function (event) {
+            this.$dispatch('onShimClick', event);
         }
     },
     data: {

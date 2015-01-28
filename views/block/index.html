@@ -3,20 +3,12 @@
       <a href="{{back}}" class="nav-btn">{{ 'Cancel' | i18n}}</a>
     </div>
     <h1>{{title | i18n}}</h1>
-    <div>
-      <button v-class="disabled: saveDisabled" class="save-btn" v-on="click: onSave">
-          <span class="fa fa-check"></span> {{ 'Save' | i18n}}
-      </button>
-    </div>
+    <div class="spacer"></div>
 </nav>
 <main class="main-container">
     <form>
         <div class="form-group" v-repeat="block.attributes" v-component="{{ getEditor(type) }}"></div>
-        <div class="btn-delete">
-          <button v-on="click: remove">
-            <span class="fa fa-trash"></span>
-            {{ 'Delete' | i18n }}
-          </button>
-        </div>
     </form>
+
+    <button class="btn btn-block btn-dark" v-on="click: onSave">{{ 'Save' | i18n}}</button>
 </main>
