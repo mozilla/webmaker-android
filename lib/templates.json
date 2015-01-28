@@ -23,89 +23,114 @@
         "iconImage": "images/icons/blog.svg",
         "iconColor" : "#97CC3B",
         "author": {
-            "username": "Emma",
+            "username": "",
             "location": "",
-            "avatar": "images/avatar_blogger.png"
+            "avatar": ""
         },
         "blocks": [
             {
-                "type": "image",
                 "attributes": {
                     "src": {
-                        "id": "src",
-                        "label": "Image URL",
+                        "label": "Source",
                         "type": "string",
-                        "value": "content/blog_leaves.jpg"
+                        "value": "content/blog_illustration.svg"
                     }
-                }
+                },
+                "icon": "images/blocks_image.png",
+                "name": "Image",
+                "type": "image"
             },
             {
-                "type": "text",
                 "attributes": {
-                    "innerHTML": {
-                        "id": "innerHTML",
-                        "label": "Text Value",
-                        "type": "string",
-                        "value": "Today I went for a walk in the forest!"
-                    },
                     "color": {
-                        "id": "color",
-                        "label": "Text Color",
+                        "label": "Color",
+                        "showColorPicker": false,
                         "type": "color",
-                        "value": "#000000"
+                        "value": "#545E66"
+                    },
+                    "font-size": {
+                        "label": "Font Size",
+                        "type": "font-size",
+                        "value": "18"
+                    },
+                    "innerHTML": {
+                        "label": "Text",
+                        "type": "string",
+                        "value": "How To Create a Successful Blog"
                     }
-                }
+                },
+                "icon": "images/blocks_text.png",
+                "name": "Text",
+                "type": "text"
             },
             {
-                "type": "text",
                 "attributes": {
-                    "innerHTML": {
-                        "id": "innerHTML",
-                        "label": "Text Value",
-                        "type": "string",
-                        "value": "It was a beautiful day to go for a walk, because the weather was perfect for a photo. It was the middle of fall and the trees were beginning to turn a fiery red, contrasting with the luscious green in the background."
-                    },
                     "color": {
-                        "id": "color",
-                        "label": "Text Color",
+                        "label": "Color",
+                        "showColorPicker": false,
                         "type": "color",
-                        "value": "#000000"
+                        "value": "#638093"
+                    },
+                    "font-size": {
+                        "label": "Font Size",
+                        "type": "font-size",
+                        "value": "14"
+                    },
+                    "innerHTML": {
+                        "label": "Text",
+                        "type": "string",
+                        "value": "Ask yourself what you love, care about or wish to share with others. "
                     }
-                }
+                },
+                "icon": "images/blocks_text.png",
+                "name": "Text",
+                "type": "text"
             },
             {
-                "type": "text",
                 "attributes": {
-                    "innerHTML": {
-                        "id": "innerHTML",
-                        "label": "Text Value",
-                        "type": "string",
-                        "value": "Heavy Rainfall Might Be Expected"
-                    },
                     "color": {
-                        "id": "color",
-                        "label": "Text Color",
+                        "label": "Color",
+                        "showColorPicker": false,
                         "type": "color",
-                        "value": "#000000"
+                        "value": "#638093"
+                    },
+                    "font-size": {
+                        "label": "Font Size",
+                        "type": "font-size",
+                        "value": "14"
+                    },
+                    "innerHTML": {
+                        "label": "Text",
+                        "type": "string",
+                        "value": "Make blogging part of your day. You can add reminders to your calendar so that you are prompted to write on a regular basis."
                     }
-                }
+                },
+                "icon": "images/blocks_text.png",
+                "name": "Text",
+                "type": "text"
             },
             {
-                "type": "text",
                 "attributes": {
-                    "innerHTML": {
-                        "id": "innerHTML",
-                        "label": "Text Value",
-                        "type": "string",
-                        "value": "I couldn't decide whether to keep walking, because the weather might turn foul. I guess I'll turn it in for the day. \nYours truly, James Laverty"
-                    },
                     "color": {
-                        "id": "color",
-                        "label": "Text Color",
+                        "label": "Color",
+                        "showColorPicker": false,
                         "type": "color",
-                        "value": "#000000"
+                        "value": "#638093"
+                    },
+                    "font-size": {
+                        "label": "Font Size",
+                        "type": "font-size",
+                        "value": "14"
+                    },
+                    "innerHTML": {
+                        "label": "Text",
+                        "type": "string",
+                        "value": "Get blogging!"
                     }
-                }
+                },
+                "icon": "images/blocks_text.png",
+                "name": "Text",
+                "type": "text"
             }
         ]
     },
@@ -529,214 +554,196 @@
         },
         "blocks": [
             {
-              "attributes" : {
-                "color" : {
-                  "id" : "color",
-                  "label" : "Text Color",
-                  "type" : "color",
-                  "value" : "#000000"
+                "attributes": {
+                    "src": {
+                        "label": "Source",
+                        "type": "string",
+                        "value": "content/vendor_illustration.svg"
+                    }
                 },
-                "innerHTML" : {
-                  "id" : "innerHTML",
-                  "label" : "Text Value",
-                  "type" : "string",
-                  "value" : "Welcome to my tea shop. What would you like to buy?"
-                }
-              },
-              "icon" : "images/blocks_text.png",
-              "name" : "Text",
-              "type" : "text"
+                "icon": "images/blocks_image.png",
+                "name": "Image",
+                "type": "image"
             },
             {
-              "attributes" : {
-                "src" : {
-                  "id" : "src",
-                  "label" : "Image URL",
-                  "type" : "string",
-                  "value" : "content/vendor_mirzapore.jpg"
-                }
-              },
-              "icon" : "images/blocks_image.png",
-              "name" : "Image",
-              "type" : "image"
+                "attributes": {
+                    "color": {
+                        "label": "Color",
+                        "showColorPicker": false,
+                        "type": "color",
+                        "value": "#545E66"
+                    },
+                    "font-size": {
+                        "label": "Font Size",
+                        "type": "font-size",
+                        "value": "18"
+                    },
+                    "innerHTML": {
+                        "label": "Text",
+                        "type": "string",
+                        "value": "Sunshine Bakery and Tea Shop"
+                    }
+                },
+                "icon": "images/blocks_text.png",
+                "name": "Text",
+                "type": "text"
             },
             {
-              "attributes" : {
-                "color" : {
-                  "label" : "Title Text Color",
-                  "type" : "color",
-                  "value" : "#638093"
+                "attributes": {
+                    "color": {
+                        "label": "Color",
+                        "showColorPicker": false,
+                        "type": "color",
+                        "value": "#638093"
+                    },
+                    "font-size": {
+                        "label": "Font Size",
+                        "type": "font-size",
+                        "value": "14"
+                    },
+                    "innerHTML": {
+                        "label": "Text",
+                        "type": "string",
+                        "value": "Handmade pies and delicious tea waiting to arrive at your door."
+                    }
                 },
-                "current" : {
-                  "label" : "Initial Number",
-                  "placeholder" : "same as minimum number",
-                  "type" : "number",
-                  "value" : "0"
-                },
-                "label" : {
-                  "label" : "Title",
-                  "placeholder" : "Your title goes here",
-                  "type" : "string",
-                  "value" : "Earl Grey"
-                },
-                "max" : {
-                  "label" : "Maximum Number",
-                  "type" : "number",
-                  "value" : "100"
-                },
-                "min" : {
-                  "label" : "Minimum Number",
-                  "type" : "number",
-                  "value" : "0"
-                },
-                "step" : {
-                  "label" : "Increment by",
-                  "type" : "number",
-                  "value" : "1"
-                }
-              },
-              "icon" : "images/blocks_counter.png",
-              "name" : "Counter",
-              "type" : "spinner"
+                "icon": "images/blocks_text.png",
+                "name": "Text",
+                "type": "text"
             },
             {
-              "attributes" : {
-                "src" : {
-                  "id" : "src",
-                  "label" : "Image URL",
-                  "type" : "string",
-                  "value" : "content/vendor_assam.jpg"
-                }
-              },
-              "icon" : "images/blocks_image.png",
-              "name" : "Image",
-              "type" : "image"
+                "attributes": {
+                    "src": {
+                        "label": "Source",
+                        "type": "string",
+                        "value": "content/vendor_tea.svg"
+                    }
+                },
+                "icon": "images/blocks_image.png",
+                "name": "Image",
+                "type": "image"
             },
             {
-              "attributes" : {
-                "color" : {
-                  "label" : "Title Text Color",
-                  "type" : "color",
-                  "value" : "#638093"
+                "attributes": {
+                    "color": {
+                        "label": "Title Text Color",
+                        "showColorPicker": false,
+                        "type": "color",
+                        "value": "#638093"
+                    },
+                    "current": {
+                        "label": "Initial Number",
+                        "placeholder": "same as minimum number",
+                        "skipAutoRender": true,
+                        "type": "number",
+                        "value": "0"
+                    },
+                    "label": {
+                        "label": "Title",
+                        "placeholder": "Your title goes here",
+                        "skipAutoRender": true,
+                        "type": "string",
+                        "value": "How many cups of green tea would you \nlike to order?"
+                    },
+                    "max": {
+                        "label": "Maximum Number",
+                        "skipAutoRender": true,
+                        "type": "number",
+                        "value": "100"
+                    },
+                    "min": {
+                        "label": "Minimum Number",
+                        "skipAutoRender": true,
+                        "type": "number",
+                        "value": "0"
+                    },
+                    "step": {
+                        "label": "Increment by",
+                        "skipAutoRender": true,
+                        "type": "number",
+                        "value": "1"
+                    }
                 },
-                "current" : {
-                  "label" : "Initial Number",
-                  "placeholder" : "same as minimum number",
-                  "type" : "number",
-                  "value" : "0"
-                },
-                "label" : {
-                  "label" : "Title",
-                  "placeholder" : "Your title goes here",
-                  "type" : "string",
-                  "value" : "Darjeeling"
-                },
-                "max" : {
-                  "label" : "Maximum Number",
-                  "type" : "number",
-                  "value" : "100"
-                },
-                "min" : {
-                  "label" : "Minimum Number",
-                  "type" : "number",
-                  "value" : "0"
-                },
-                "step" : {
-                  "label" : "Increment by",
-                  "type" : "number",
-                  "value" : "1"
-                }
-              },
-              "icon" : "images/blocks_counter.png",
-              "name" : "Counter",
-              "type" : "spinner"
+                "icon": "images/blocks_counter.png",
+                "name": "Counter",
+                "type": "spinner"
             },
             {
-              "attributes" : {
-                "color" : {
-                  "label" : "Color",
-                  "type" : "color",
-                  "value" : "#333444"
+                "attributes": {
+                    "src": {
+                        "label": "Source",
+                        "type": "string",
+                        "value": "content/vendor_pie.svg"
+                    }
                 },
-                "font-size" : {
-                  "label" : "Font Size",
-                  "type" : "font-size",
-                  "value" : "14"
-                },
-                "innerHTML" : {
-                  "label" : "Text",
-                  "type" : "string",
-                  "value" : "Your Contact Info"
-                }
-              },
-              "icon" : "images/blocks_text.png",
-              "name" : "Text",
-              "type" : "text"
+                "icon": "images/blocks_image.png",
+                "name": "Image",
+                "type": "image"
             },
             {
-              "attributes" : {
-                "color" : {
-                  "label" : "Title Text Color",
-                  "type" : "color",
-                  "value" : "#638093"
+                "attributes": {
+                    "color": {
+                        "label": "Title Text Color",
+                        "showColorPicker": false,
+                        "type": "color",
+                        "value": "#638093"
+                    },
+                    "current": {
+                        "label": "Initial Number",
+                        "placeholder": "same as minimum number",
+                        "skipAutoRender": true,
+                        "type": "number",
+                        "value": "0"
+                    },
+                    "label": {
+                        "label": "Title",
+                        "placeholder": "Your title goes here",
+                        "skipAutoRender": true,
+                        "type": "string",
+                        "value": "How many strawberry pies would you\nlike to order?"
+                    },
+                    "max": {
+                        "label": "Maximum Number",
+                        "skipAutoRender": true,
+                        "type": "number",
+                        "value": "100"
+                    },
+                    "min": {
+                        "label": "Minimum Number",
+                        "skipAutoRender": true,
+                        "type": "number",
+                        "value": "0"
+                    },
+                    "step": {
+                        "label": "Increment by",
+                        "skipAutoRender": true,
+                        "type": "number",
+                        "value": "1"
+                    }
                 },
-                "inputType" : {
-                  "label" : "Text Box Type",
-                  "options" : [ "Single Line Text", "Long Text" ],
-                  "type" : "dropdownChoice",
-                  "value" : 0
-                },
-                "label" : {
-                  "label" : "Title",
-                  "placeholder" : "Your title goes here",
-                  "type" : "string",
-                  "value" : "Name"
-                }
-              },
-              "icon" : "images/blocks_input.png",
-              "name" : "Input",
-              "type" : "input"
+                "icon": "images/blocks_counter.png",
+                "name": "Counter",
+                "type": "spinner"
             },
             {
-              "attributes" : {
-                "color" : {
-                  "label" : "Title Text Color",
-                  "type" : "color",
-                  "value" : "#638093"
+                "attributes": {
+                    "color": {
+                        "label": "Button Color",
+                        "showColorPicker": false,
+                        "skipAutoRender": true,
+                        "type": "color",
+                        "value": "#32B2D2"
+                    },
+                    "innerHTML": {
+                        "label": "Button Text",
+                        "skipAutoRender": true,
+                        "type": "string",
+                        "value": "Submit Order"
+                    }
                 },
-                "inputType" : {
-                  "label" : "Text Box Type",
-                  "options" : [ "Single Line Text", "Long Text" ],
-                  "type" : "dropdownChoice",
-                  "value" : 0
-                },
-                "label" : {
-                  "label" : "Title",
-                  "placeholder" : "Your title goes here",
-                  "type" : "string",
-                  "value" : "Phone Number"
-                }
-              },
-              "icon" : "images/blocks_input.png",
-              "name" : "Input",
-              "type" : "input"
-            },
-            {
-              "attributes" : {
-                "color" : {
-                  "label" : "Button Color",
-                  "type" : "color",
-                  "value" : "#32B2D2"
-                },
-                "innerHTML" : {
-                  "label" : "Button Text",
-                  "type" : "string",
-                  "value" : "Send Order"
-                }
-              },
-              "icon" : "images/blocks_submit.png",
-              "name" : "Submit",
-              "type" : "submit"
+                "icon": "images/blocks_submit.png",
+                "name": "Submit",
+                "type": "submit"
             }
         ]
     },
@@ -882,221 +889,200 @@
         },
         "blocks": [
             {
-                "type": "text",
                 "attributes": {
-                    "innerHTML": {
-                        "id": "innerHTML",
-                        "label": "Text Value",
+                    "src": {
+                        "label": "Source",
                         "type": "string",
-                        "value": "HOW TO GUIDE"
-                    },
+                        "value": "content/howto_illustration.svg"
+                    }
+                },
+                "icon": "images/blocks_image.png",
+                "name": "Image",
+                "type": "image"
+            },
+            {
+                "attributes": {
                     "color": {
-                        "id": "color",
-                        "label": "Text Color",
+                        "label": "Color",
+                        "showColorPicker": false,
                         "type": "color",
-                        "value": "#4d4e53"
+                        "value": "#545E66"
                     },
                     "font-size": {
                         "label": "Font Size",
                         "type": "font-size",
-                        "value": "12"
+                        "value": "18"
+                    },
+                    "innerHTML": {
+                        "label": "Text",
+                        "type": "string",
+                        "value": "Drawing & Painting: Introduction"
                     }
-                }
+                },
+                "icon": "images/blocks_text.png",
+                "name": "Text",
+                "type": "text"
             },
             {
-                "type": "text",
                 "attributes": {
-                    "innerHTML": {
-                        "id": "innerHTML",
-                        "label": "Text Value",
-                        "type": "string",
-                        "value": "How to Make a Box Guitar"
-                    },
                     "color": {
-                        "id": "color",
-                        "label": "Text Color",
+                        "label": "Color",
+                        "showColorPicker": false,
                         "type": "color",
-                        "value": "#328F70"
+                        "value": "#AAAEB1"
                     },
                     "font-size": {
                         "label": "Font Size",
                         "type": "font-size",
-                        "value": "22"
-                    }
-                }
-            },
-            {
-                "type": "text",
-                "attributes": {
-                    "innerHTML": {
-                        "id": "innerHTML",
-                        "label": "Text Value",
-                        "type": "string",
-                        "value": "Whether making this fun toy for yourself or for your child, a homemade guitar is an easy and creative way to make music from household items."
+                        "value": "14"
                     },
-                    "color": {
-                        "id": "color",
-                        "label": "Text Color",
-                        "type": "color",
-                        "value": "#333444"
-                    }
-                }
-            },
-            {
-                "type": "image",
-                "attributes": {
-                    "src": {
-                        "id": "src",
-                        "label": "Image URL",
-                        "type": "string",
-                        "value": "content/howto_guitar_1.jpg"
-                    }
-                }
-            },
-            {
-                "type": "text",
-                "attributes": {
                     "innerHTML": {
-                        "id": "innerHTML",
-                        "label": "Text Value",
+                        "label": "Text",
                         "type": "string",
-                        "value": "Part 1 - Find a carboard box, cut a large hole in the middle of one side, and then 5 smaller holes to the left and the right of the large one."
-                    },
+                        "value": "Students will be taught the fundamental steps of learning to draw while exploring different mediums and techniques."
+                    }
+                },
+                "icon": "images/blocks_text.png",
+                "name": "Text",
+                "type": "text"
+            },
+            {
+                "attributes": {
                     "color": {
-                        "id": "color",
-                        "label": "Text Color",
+                        "label": "Color",
+                        "showColorPicker": false,
                         "type": "color",
-                        "value": "#333444"
-                    }
-                }
-            },
-            {
-                "type": "image",
-                "attributes": {
-                    "src": {
-                        "id": "src",
-                        "label": "Image URL",
-                        "type": "string",
-                        "value": "content/howto_guitar_2.jpg"
-                    }
-                }
-            },
-            {
-                "type": "text",
-                "attributes": {
-                    "innerHTML": {
-                        "id": "innerHTML",
-                        "label": "Text Value",
-                        "type": "string",
-                        "value": "Part 2 - Take 5 rubber bands and cut them open.\n\nTie a knot on one end of a rubber band. Push the other end through the first small hole and then stretch it across the big hole to the other side. Push it down through this hole and tie another knot.\n\nRepeat this for the other 4 rubber bands."
-                    },
-                    "color": {
-                        "id": "color",
-                        "label": "Text Color",
-                        "type": "color",
-                        "value": "#333444"
-                    }
-                }
-            },
-            {
-                "type": "image",
-                "attributes": {
-                    "src": {
-                        "id": "src",
-                        "label": "Image URL",
-                        "type": "string",
-                        "value": "content/howto_guitar_3.jpg"
-                    }
-                }
-            },
-            {
-                "type": "text",
-                "attributes": {
-                    "innerHTML": {
-                        "id": "innerHTML",
-                        "label": "Text Value",
-                        "type": "string",
-                        "value": "Part 3 - Create your guitar neck with a stick or cardboard tube."
-                    },
-                    "color": {
-                        "id": "color",
-                        "label": "Text Color",
-                        "type": "color",
-                        "value": "#333444"
-                    }
-                }
-            },
-            {
-                "type": "image",
-                "attributes": {
-                    "src": {
-                        "id": "src",
-                        "label": "Image URL",
-                        "type": "string",
-                        "value": "content/howto_guitar_4.jpg"
-                    }
-                }
-            },
-            {
-                "type": "text",
-                "attributes": {
-                    "innerHTML": {
-                        "id": "innerHTML",
-                        "label": "Text Value",
-                        "type": "string",
-                        "value": "Ta-da! Now play a song!"
-                    },
-                    "color": {
-                        "id": "color",
-                        "label": "Text Color",
-                        "type": "color",
-                        "value": "#328F70"
+                        "value": "#638093"
                     },
                     "font-size": {
                         "label": "Font Size",
                         "type": "font-size",
-                        "value": "22"
+                        "value": "16"
+                    },
+                    "innerHTML": {
+                        "label": "Text",
+                        "type": "string",
+                        "value": "Step 1: Gather materials"
                     }
-                }
+                },
+                "icon": "images/blocks_text.png",
+                "name": "Text",
+                "type": "text"
             },
             {
-                "type": "text",
                 "attributes": {
-                    "innerHTML": {
-                        "id": "innerHTML",
-                        "label": "Text Value",
-                        "type": "string",
-                        "value": "CREATIVE COMMONS"
-                    },
                     "color": {
-                        "id": "color",
-                        "label": "Text Color",
+                        "label": "Color",
+                        "showColorPicker": false,
                         "type": "color",
-                        "value": "#4d4e53"
+                        "value": "#638093"
                     },
                     "font-size": {
                         "label": "Font Size",
                         "type": "font-size",
-                        "value": "12"
+                        "value": "14"
+                    },
+                    "innerHTML": {
+                        "label": "Text",
+                        "type": "string",
+                        "value": "- Watercolour and oil-based paints\n- Flats, angular, rake, and round brushes"
                     }
-                }
+                },
+                "icon": "images/blocks_text.png",
+                "name": "Text",
+                "type": "text"
             },
             {
-                "type": "text",
                 "attributes": {
-                    "innerHTML": {
-                        "id": "innerHTML",
-                        "label": "Text Value",
-                        "type": "string",
-                        "value": "Article based on http://www.wikihow.com/Make-a-Rubber-Band-Guitar.\n\nShared under a Creative Commons License http://creativecommons.org/licenses/by-nc-sa/3.0/."
-                    },
                     "color": {
-                        "id": "color",
-                        "label": "Text Color",
+                        "label": "Color",
+                        "showColorPicker": false,
                         "type": "color",
-                        "value": "#333444"
+                        "value": "#638093"
+                    },
+                    "font-size": {
+                        "label": "Font Size",
+                        "type": "font-size",
+                        "value": "16"
+                    },
+                    "innerHTML": {
+                        "label": "Text",
+                        "type": "string",
+                        "value": "Step 2: Demonstrate tools and techniques"
                     }
-                }
+                },
+                "icon": "images/blocks_text.png",
+                "name": "Text",
+                "type": "text"
+            },
+            {
+                "attributes": {
+                    "color": {
+                        "label": "Color",
+                        "showColorPicker": false,
+                        "type": "color",
+                        "value": "#638093"
+                    },
+                    "font-size": {
+                        "label": "Font Size",
+                        "type": "font-size",
+                        "value": "14"
+                    },
+                    "innerHTML": {
+                        "label": "Text",
+                        "type": "string",
+                        "value": "- Describe the advantages of using different brush weights\n- Describe the different types of paint available for use"
+                    }
+                },
+                "icon": "images/blocks_text.png",
+                "name": "Text",
+                "type": "text"
+            },
+            {
+                "attributes": {
+                    "color": {
+                        "label": "Color",
+                        "showColorPicker": false,
+                        "type": "color",
+                        "value": "#638093"
+                    },
+                    "font-size": {
+                        "label": "Font Size",
+                        "type": "font-size",
+                        "value": "16"
+                    },
+                    "innerHTML": {
+                        "label": "Text",
+                        "type": "string",
+                        "value": "Step 3: Facilitate exercise"
+                    }
+                },
+                "icon": "images/blocks_text.png",
+                "name": "Text",
+                "type": "text"
+            },
+            {
+                "attributes": {
+                    "color": {
+                        "label": "Color",
+                        "showColorPicker": false,
+                        "type": "color",
+                        "value": "#638093"
+                    },
+                    "font-size": {
+                        "label": "Font Size",
+                        "type": "font-size",
+                        "value": "14"
+                    },
+                    "innerHTML": {
+                        "label": "Text",
+                        "type": "string",
+                        "value": "- Hand each student a piece of canvas\n- Invite students to freely explore the different types of paints and how they are affected by the weight of brushes"
+                    }
+                },
+                "icon": "images/blocks_text.png",
+                "name": "Text",
+                "type": "text"
             }
         ]
     },
