@@ -65,6 +65,6 @@ We can see an example of `v-bind-i18n-html` in `views/sign-in/index.html`:
 <h1><span v-bind-i18n-html="'Make and share the web'"></span></h1>
 ```
 
-Here the `v-i18n-bind-html` directive will automatically pass the HTML string of "Make and share the web" as the key through the `i18n` filter, which will provide the correct localized content.
+Here the `v-bind-i18n-html` directive will automatically pass the HTML string of "Make and share the web" as the key through the `i18n` filter, which will provide the correct localized content.
 
 Whereas using the `{{ }}` syntax allows you to escape HTML, using `v-bind-i18n-html` doesn't escape HTML.
