@@ -57,14 +57,14 @@ Then, we add the strings to [locale/en_US/mobile-appmaker.json](https://github.c
 
 ## Custom localization directive
 
-Along with the [built-in](http://vuejs.org/api/directives.html) Vue directives is a custom `v-bind-html` directive that is defined in `lib/i18n.js`.
+Along with the [built-in](http://vuejs.org/api/directives.html) Vue directives is a custom `v-bind-i18n-html` directive that is defined in `lib/i18n.js`.
 
-We can see an example of `v-bind-html` in `views/sign-in/index.html`:
+We can see an example of `v-bind-i18n-html` in `views/sign-in/index.html`:
 
 ```html
-<h1><span v-bind-html="'Make and share the web'"></span></h1>
+<h1><span v-bind-i18n-html="'Make and share the web'"></span></h1>
 ```
 
-Here the `v-bind-html` directive will automatically pass the HTML string of "Make and share the web" as the key through the `i18n` filter, which will provide the correct localized content.
+Here the `v-i18n-bind-html` directive will automatically pass the HTML string of "Make and share the web" as the key through the `i18n` filter, which will provide the correct localized content.
 
-Whereas using the `{{ }}` syntax allows you to escape HTML, using `v-bind-html` doesn't escape HTML.
+Whereas using the `{{ }}` syntax allows you to escape HTML, using `v-bind-i18n-html` doesn't escape HTML.
