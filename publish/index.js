@@ -1,3 +1,5 @@
+require('../lib/shims');
+
 var Vue = require('vue');
 var clone = require('clone');
 var bulk = require('bulk-require');
