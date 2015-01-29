@@ -7,7 +7,7 @@
         </div>
         <hgroup>
             <h3>{{app.name}}</h3>
-            <p class="text-light" v-bind-html="'by _'" v-with="name: app.author.username"></p>
+            <p class="text-light" v-bind-i18n-html="'by _'" v-with="name: app.author.username"></p>
         </hgroup>
     </header>
     <ul id="detail-share" v-if="!isTemplate">

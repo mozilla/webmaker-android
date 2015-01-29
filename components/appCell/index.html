@@ -4,7 +4,7 @@
     href="{{constructedURL}}">
     <div class="left">
         <span class="title">{{app.name}}</span>
-        <span v-if="app.author" class="description" v-bind-html="'by _'" v-with="{name: app.author.username || app.guestKey}"></span>
+        <span v-if="app.author" class="description" v-bind-i18n-html="'by _'" v-with="{name: app.author.username || app.guestKey}"></span>
     </div>
     <div class="right">
         <div class="app-icon" style="background:{{app.iconColor}};">
