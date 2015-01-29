@@ -1,0 +1,54 @@
+.image-picker-frame {
+    color: @darkGrey;
+    width: 100%;
+    height: 0;
+    padding-bottom: 75%; // 4:3
+    border: 1px dashed @turquoise;
+    background-color: transparent;
+    background-size: contain;
+    background-repeat: no-repeat;
+    background-position: center;
+
+    display: block;
+    position: relative;
+    .image-picker-btns {
+        position: absolute;
+        top: 0;
+        left: 0;
+        height: 100%;
+        width: 100%;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        padding: 5px;
+        background: fade(@black, 90%);
+        button {
+            color: @white;
+            font-size: 30px;
+            height: 60px;
+            width: 60px;
+            padding: 0;
+            border: 2px solid @white;
+            background: transparent;
+            border-radius: 50%;
+            margin-right: 5px;
+            &:last-child {
+                margin-right: 0;
+            }
+        }
+    }
+    .open-editor {
+        font-size: 20px;
+        height: 40px;
+        width: 40px;
+        padding: 0;
+        background: @turquoise;
+        color: @white;
+        border: none;
+        border-radius: 50%;
+        position: absolute;
+        bottom: 5px;
+        left: 5px;
+    }
+
+}
