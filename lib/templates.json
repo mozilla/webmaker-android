@@ -666,7 +666,7 @@
                 },
                 "icon": "images/blocks_counter.png",
                 "name": "Counter",
-                "type": "spinner"
+                "type": "counter"
             },
             {
                 "attributes": {
@@ -723,7 +723,7 @@
                 },
                 "icon": "images/blocks_counter.png",
                 "name": "Counter",
-                "type": "spinner"
+                "type": "counter"
             },
             {
                 "attributes": {
