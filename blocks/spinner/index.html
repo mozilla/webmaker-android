@@ -1,9 +1,7 @@
+<label for="block_{{$index}}">{{attributes.label.value}}</label>
+<!-- Using wrapper div because flexbox + firefox + input = bad times -->
 <div class="wrapper">
-    <label for="block_{{$index}}">{{attributes.label.value}}</label>
-    <button type="button" v-on="click: stepDown, click: reportDataChange(this)">-</button>
-    <!-- Using wrapper div because flexbox + firefox + input = bad times -->
-    <div class="wrapper">
-        <input id="block_{{$index}}" v-on="change: reportDataChange(this)" type="number" value="{{attributes.current.value || attributes.min.value}}" min="{{attributes.min.value}}" max="{{attributes.max.value}}" step="{{attributes.step.value}}">
-    </div>
-    <button type="button" v-on="click: stepUp, click: reportDataChange(this)">+</button>
+  <button type="button" v-on="click: stepDown, click: reportDataChange(this)">-</button>
+    <input id="block_{{$index}}" v-on="change: reportDataChange(this)" type="number" value="{{attributes.current.value || attributes.min.value}}" min="{{attributes.min.value}}" max="{{attributes.max.value}}" step="{{attributes.step.value}}">
+  <button type="button" v-on="click: stepUp, click: reportDataChange(this)">+</button>
 </div>
