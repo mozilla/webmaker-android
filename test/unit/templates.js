@@ -48,7 +48,7 @@ var singleBlockSchema = {
 	type: 'object',
 	properties: {
 		id: {
-			enum: ['text', 'image', 'sms', 'phone', 'input', 'submit', 'spinner']
+			enum: ['text', 'image', 'sms', 'phone', 'input', 'submit', 'counter']
 		},
 		attributes: attributeSchema
 	},

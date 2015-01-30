@@ -1,5 +1,5 @@
 module.exports = {
-    className: 'spinner',
+    className: 'counter',
     template: require('./index.html'),
     data: {
         name: 'Counter',
