@@ -137,7 +137,7 @@
     {
         "id": "a7ac2775-bd9d-40b5-a26c-43e8452da768",
         "templateTitle": "Create a Survey",
-        "description": "",
+        "description": "Gather information from your users by creating a survey.",
         "name": "Teacher",
         "icon": "images/icons/survey.svg",
         "iconImage": "images/icons/survey.svg",

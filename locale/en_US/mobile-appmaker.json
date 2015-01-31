@@ -351,12 +351,12 @@
     "message": "Have something to share with the world? Start a blog, customize to make it yours and start writing!",
     "description": "description for template"
   },
-  "Build a Lesson Plan": {
-    "message": "Build a Lesson Plan",
+  "Create a Survey": {
+    "message": "Create a Survey",
     "description": "title for template"
   },
-  "If you want to share your skills with others, build a mobile lesson plan and teach what you know": {
-    "message": "If you want to share your skills with others, build a mobile lesson plan and teach what you know",
+  "Gather information from your users by creating a survey.": {
+    "message": "Gather information from your users by creating a survey.",
     "description": "description for template"
   },
   "Promote your Business": {
