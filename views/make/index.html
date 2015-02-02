@@ -7,7 +7,7 @@
         <div v-show="mode === 'settings'">{{ >settings }}</div>
 
         <div v-show="['play', 'edit'].indexOf(mode) > -1">
-            <div id="blocks" class="blocks">
+            <div v-component="blockList" id="blocks" class="blocks">
                 <div
                     mode="{{ mode }}"
                     app="{{ app }}"
