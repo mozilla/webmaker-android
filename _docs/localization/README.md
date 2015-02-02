@@ -4,7 +4,7 @@
 
 Assuming you've build everything and run the server with `gulp dev`, you should be able to see the app in any localization by visiting: [http://localhost:8080?locale=fr](http://localhost:8080?locale=fr), replacing `fr` which whatever locale code you want to look at (e.g. `en-US`, `bn-BD`, `nl`...)
 
-You can also try this on our live staging site at [https://mobile-appmaker.mofostaging.net?locale=fr](https://mobile-appmaker.mofostaging.net?locale=fr).
+You can also try this on our live staging site at [https://webmaker-app.mofostaging.net/?locale=fr](https://webmaker-app.mofostaging.net/?locale=fr).
 
 ## How localization works
 
