@@ -12,13 +12,13 @@
     <span v-if="mode === 'play'">
       {{app.name}}
     </span>
-  <button class="save-btn" v-on="click: saveAppSettings()" v-if="mode == 'settings'">
-    <span class="fa fa-check"></span> {{ 'Save' | i18n}}
-  </button>
 </h1>
 
 <div>
     <a v-if="mode !== 'settings' && !offlineUser" class="nav-btn" href="{{onDone}}">
         {{ 'Publish' | i18n}}
+    </a>
+    <a href="/make/{{app.id}}/add" class="nav-btn" v-if="mode === 'edit'">
+      <span class="fa fa-plus"></span>
     </a>
 </div>

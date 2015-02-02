@@ -18,7 +18,7 @@
         <div id="app">
             <div v-component="modalPrompt"></div>
             <div v-component="sideMenu" v-on="click: onRootClick"></div>
-            <div v-component="shim"></div>
+            <div v-component="shim" v-on="click: onShimClick"></div>
 
             <div v-view="currentView" class="main"></div>
             <div v-if="alertOn" id="alert-overlay" class="animated v-fade" v-transition>
