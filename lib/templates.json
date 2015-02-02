@@ -136,406 +136,193 @@
     },
     {
         "id": "a7ac2775-bd9d-40b5-a26c-43e8452da768",
-        "templateTitle": "Build a Lesson Plan",
-        "description": "If you want to share your skills with others, build a mobile lesson plan and teach what you know",
+        "templateTitle": "Create a Survey",
+        "description": "Gather information from your users by creating a survey.",
         "name": "Teacher",
-        "icon": "images/icons/teach.svg",
-        "iconImage": "images/icons/teach.svg",
+        "icon": "images/icons/survey.svg",
+        "iconImage": "images/icons/survey.svg",
         "iconColor" : "#F79131",
         "author": {
-            "username": "Deepa",
+            "username": "",
             "location": "",
-            "avatar": "images/avatar_teacher.png"
+            "avatar": ""
         },
         "blocks": [
             {
-                "type": "text",
                 "attributes": {
-                    "innerHTML": {
-                        "id": "innerHTML",
-                        "label": "Text Value",
-                        "type": "string",
-                        "value": "Lesson Plan: Build an App"
-                    },
+                    "src": {
+                        "editorOpen": false,
+                        "imageUrl": "content/survey_illustration.svg",
+                        "label": "Source",
+                        "showUrlInput": true,
+                        "type": "image",
+                        "value": "content/survey_illustration.svg"
+                    }
+                },
+                "icon": "images/blocks_image.png",
+                "name": "Image",
+                "type": "image"
+            },
+            {
+                "attributes": {
                     "color": {
-                        "id": "color",
-                        "label": "Text Color",
+                        "label": "Color",
+                        "showColorPicker": false,
                         "type": "color",
-                        "value": "#000000"
+                        "value": "#638093"
                     },
                     "font-size": {
                         "label": "Font Size",
                         "type": "font-size",
-                        "value": "22"
+                        "value": "14"
+                    },
+                    "innerHTML": {
+                        "label": "Text",
+                        "type": "string",
+                        "value": "I want to get to know more about you! Please answer the following questions:"
                     }
-                }
+                },
+                "icon": "images/blocks_text.png",
+                "name": "Text",
+                "type": "text"
             },
             {
-                "type": "text",
                 "attributes": {
-                    "innerHTML": {
-                        "id": "innerHTML",
-                        "label": "Text Value",
-                        "type": "string",
-                        "value": "This Webmaker template can help you make a lesson plan. The lesson in this template describes how to make an app. Edit the details below to make a lesson on your own topic. Share your new app to spread the learning."
-                    },
                     "color": {
-                        "id": "color",
-                        "label": "Text Color",
+                        "label": "Color",
+                        "showColorPicker": false,
                         "type": "color",
-                        "value": "#999999"
+                        "value": "#F3FFFF"
                     }
-                }
+                },
+                "icon": "images/blocks_separator.png",
+                "name": "Separator",
+                "type": "separator"
             },
             {
-                "type": "text",
                 "attributes": {
-                    "innerHTML": {
-                        "id": "innerHTML",
-                        "label": "Text Value",
-                        "type": "string",
-                        "value": "*Time*: 30 minutes\n*Materials*: FirefoxOS phone\n *Objective*: This lesson will teach students to make an app for their mobile phone. Students will gain a stronger understanding of what mobile apps are and what they can do. Students will also build confidence in their ability to make apps for themselves, their family and community.\n*Intro*: Mobile apps can be fun and useful. An app made by you can be even more fun and useful!"
-                    },
                     "color": {
-                        "id": "color",
-                        "label": "Text Color",
+                        "label": "Title Text Color",
+                        "showColorPicker": false,
                         "type": "color",
-                        "value": "#333444"
+                        "value": "#638093"
+                    },
+                    "inputType": {
+                        "label": "Text Box Type",
+                        "options": [
+                            "Single Line Text",
+                            "Long Text"
+                        ],
+                        "skipAutoRender": true,
+                        "type": "dropdownChoice",
+                        "value": "1"
+                    },
+                    "label": {
+                        "label": "Title",
+                        "placeholder": "Your title goes here",
+                        "skipAutoRender": true,
+                        "type": "string",
+                        "value": "What do you hope to achieve from this class?"
                     }
-                }
+                },
+                "icon": "images/blocks_input.png",
+                "name": "Text Box",
+                "type": "input"
             },
             {
-                "type": "text",
                 "attributes": {
-                    "innerHTML": {
-                        "id": "innerHTML",
-                        "label": "Text Value",
-                        "type": "string",
-                        "value": "Activity"
-                    },
                     "color": {
-                        "id": "color",
-                        "label": "Text Color",
+                        "label": "Title Text Color",
+                        "showColorPicker": false,
                         "type": "color",
-                        "value": "#333444"
+                        "value": "#638093"
                     },
-                    "font-size": {
-                        "label": "Font Size",
-                        "type": "font-size",
-                        "value": "22"
+                    "current": {
+                        "label": "Initial Number",
+                        "placeholder": "same as minimum number",
+                        "skipAutoRender": true,
+                        "type": "number",
+                        "value": ""
+                    },
+                    "label": {
+                        "label": "Title",
+                        "placeholder": "Your title goes here",
+                        "skipAutoRender": true,
+                        "type": "string",
+                        "value": "How many hobbies do you have?"
+                    },
+                    "max": {
+                        "label": "Maximum Number",
+                        "skipAutoRender": true,
+                        "type": "number",
+                        "value": "100"
+                    },
+                    "min": {
+                        "label": "Minimum Number",
+                        "skipAutoRender": true,
+                        "type": "number",
+                        "value": "0"
+                    },
+                    "step": {
+                        "label": "Increment by",
+                        "skipAutoRender": true,
+                        "type": "number",
+                        "value": "1"
                     }
-                }
+                },
+                "icon": "images/blocks_counter.png",
+                "name": "Counter",
+                "type": "counter"
             },
             {
-                "type": "text",
                 "attributes": {
-                    "innerHTML": {
-                        "id": "innerHTML",
-                        "label": "Text Value",
-                        "type": "string",
-                        "value": "Step 1 - Install Mobile Webmaker"
-                    },
                     "color": {
-                        "id": "color",
-                        "label": "Text Color",
+                        "label": "Title Text Color",
+                        "showColorPicker": false,
                         "type": "color",
-                        "value": "#333444"
+                        "value": "#638093"
+                    },
+                    "inputType": {
+                        "label": "Text Box Type",
+                        "options": [
+                            "Single Line Text",
+                            "Long Text"
+                        ],
+                        "skipAutoRender": true,
+                        "type": "dropdownChoice",
+                        "value": 0
+                    },
+                    "label": {
+                        "label": "Title",
+                        "placeholder": "Your title goes here",
+                        "skipAutoRender": true,
+                        "type": "string",
+                        "value": "Where is your favorite place to study?"
                     }
-                }
+                },
+                "icon": "images/blocks_input.png",
+                "name": "Text Box",
+                "type": "input"
             },
             {
-                "type": "text",
                 "attributes": {
-                    "innerHTML": {
-                        "id": "innerHTML",
-                        "label": "Text Value",
-                        "type": "string",
-                        "value": " - Go to mobile.webmaker.org [coming soon] on your mobile device.\n  - Tap the install button and follow the instructions on your screen."
-                    },
                     "color": {
-                        "id": "color",
-                        "label": "Text Color",
+                        "label": "Button Color",
+                        "showColorPicker": false,
+                        "skipAutoRender": true,
                         "type": "color",
-                        "value": "#999999"
-                    }
-                }
-            },
-            {
-                "type": "text",
-                "attributes": {
-                    "innerHTML": {
-                        "id": "innerHTML",
-                        "label": "Text Value",
-                        "type": "string",
-                        "value": "Step 2 - Browse Mobile Webmaker"
-                    },
-                    "color": {
-                        "id": "color",
-                        "label": "Text Color",
-                        "type": "color",
-                        "value": "#333444"
-                    }
-                }
-            },
-            {
-                "type": "text",
-                "attributes": {
-                    "innerHTML": {
-                        "id": "innerHTML",
-                        "label": "Text Value",
-                        "type": "string",
-                        "value": " - Read the welcome screens to learn about webmaker.\n  - Use the first and the third button on the main menu to:  - Browse Discover to see the Apps made with Webmaker.\n   - Enter your profile."
-                    },
-                    "color": {
-                        "id": "color",
-                        "label": "Text Color",
-                        "type": "color",
-                        "value": "#999999"
-                    }
-                }
-            },
-            {
-                "type": "text",
-                "attributes": {
-                    "innerHTML": {
-                        "id": "innerHTML",
-                        "label": "Text Value",
-                        "type": "string",
-                        "value": "Step 3 - Open a Template"
-                    },
-                    "color": {
-                        "id": "color",
-                        "label": "Text Color",
-                        "type": "color",
-                        "value": "#333444"
-                    }
-                }
-            },
-            {
-                "type": "text",
-                "attributes": {
-                    "innerHTML": {
-                        "id": "innerHTML",
-                        "label": "Text Value",
-                        "type": "string",
-                        "value": " - Browse and choose a template.\n  - Tap to open and preview the template.\n  - Tap 'Edit' to make a new app from this template."
-                    },
-                    "color": {
-                        "id": "color",
-                        "label": "Text Color",
-                        "type": "color",
-                        "value": "#999999"
-                    }
-                }
-            },
-            {
-                "type": "text",
-                "attributes": {
-                    "innerHTML": {
-                        "id": "innerHTML",
-                        "label": "Text Value",
-                        "type": "string",
-                        "value": "Step 4 - Examine the Bricks"
-                    },
-                    "color": {
-                        "id": "color",
-                        "label": "Text Color",
-                        "type": "color",
-                        "value": "#333444"
-                    }
-                }
-            },
-            {
-                "type": "text",
-                "attributes": {
-                    "innerHTML": {
-                        "id": "innerHTML",
-                        "label": "Text Value",
-                        "type": "string",
-                        "value": "An app is made of bricks. Each brick does one thing, like display text or show an image for example. Your template includes several bricks already. You can tap a brick to edit it, or tap the plus sign to add another one."
-                    },
-                    "color": {
-                        "id": "color",
-                        "label": "Text Color",
-                        "type": "color",
-                        "value": "#999999"
-                    }
-                }
-            },
-            {
-                "type": "text",
-                "attributes": {
-                    "innerHTML": {
-                        "id": "innerHTML",
-                        "label": "Text Value",
-                        "type": "string",
-                        "value": "Step 5 - Add a Brick"
-                    },
-                    "color": {
-                        "id": "color",
-                        "label": "Text Color",
-                        "type": "color",
-                        "value": "#333444"
-                    }
-                }
-            },
-            {
-                "type": "text",
-                "attributes": {
-                    "innerHTML": {
-                        "id": "innerHTML",
-                        "label": "Text Value",
-                        "type": "string",
-                        "value": " - Tap the plus sign to add a brick to your app.\n  - Browse the options and then tap Text to add a text brick."
-                    },
-                    "color": {
-                        "id": "color",
-                        "label": "Text Color",
-                        "type": "color",
-                        "value": "#999999"
-                    }
-                }
-            },
-            {
-                "type": "text",
-                "attributes": {
-                    "innerHTML": {
-                        "id": "innerHTML",
-                        "label": "Text Value",
-                        "type": "string",
-                        "value": "Step 6 - Edit a Brick"
-                    },
-                    "color": {
-                        "id": "color",
-                        "label": "Text Color",
-                        "type": "color",
-                        "value": "#333444"
-                    }
-                }
-            },
-            {
-                "type": "text",
-                "attributes": {
-                    "innerHTML": {
-                        "id": "innerHTML",
-                        "label": "Text Value",
-                        "type": "string",
-                        "value": " - Tap your new text brick.\n  - Change the text, its size and color.\n  - Tap the back arrow at the top of the screen when you are done, or tap remove to delete the brick."
-                    },
-                    "color": {
-                        "id": "color",
-                        "label": "Text Color",
-                        "type": "color",
-                        "value": "#999999"
-                    }
-                }
-            },
-            {
-                "type": "text",
-                "attributes": {
-                    "innerHTML": {
-                        "id": "innerHTML",
-                        "label": "Text Value",
-                        "type": "string",
-                        "value": "Step 7 - Name &amp; View Your App"
-                    },
-                    "color": {
-                        "id": "color",
-                        "label": "Text Color",
-                        "type": "color",
-                        "value": "#333444"
-                    }
-                }
-            },
-            {
-                "type": "text",
-                "attributes": {
-                    "innerHTML": {
-                        "id": "innerHTML",
-                        "label": "Text Value",
-                        "type": "string",
-                        "value": " - Tap 'Untitled App' at the top of your screen. Give your app a unique name.\n  - Tap 'Play' at the top of the screen to preview your app."
-                    },
-                    "color": {
-                        "id": "color",
-                        "label": "Text Color",
-                        "type": "color",
-                        "value": "#999999"
-                    }
-                }
-            },
-            {
-                "type": "text",
-                "attributes": {
-                    "innerHTML": {
-                        "id": "innerHTML",
-                        "label": "Text Value",
-                        "type": "string",
-                        "value": "Congratulations!\nYou made an app."
-                    },
-                    "color": {
-                        "id": "color",
-                        "label": "Text Color",
-                        "type": "color",
-                        "value": "#ff00ff"
-                    },
-                    "font-size": {
-                        "label": "Font Size",
-                        "type": "font-size",
-                        "value": "22"
-                    }
-                }
-            },
-            {
-                "type": "text",
-                "attributes": {
-                    "innerHTML": {
-                        "id": "innerHTML",
-                        "label": "Text Value",
-                        "type": "string",
-                        "value": "Going Further"
-                    },
-                    "color": {
-                        "id": "color",
-                        "label": "Text Color",
-                        "type": "color",
-                        "value": "#333444"
-                    }
-                }
-            },
-            {
-                "type": "text",
-                "attributes": {
-                    "innerHTML": {
-                        "id": "innerHTML",
-                        "label": "Text Value",
-                        "type": "string",
-                        "value": "Now that you know how to make a basic app, what kind of apps would you like to make? Are there popular apps that you would like to make more personal? Are there fun things you could share with your friends? Are there small problems you could help solve for your family or community?"
-                    },
-                    "color": {
-                        "id": "color",
-                        "label": "Text Color",
-                        "type": "color",
-                        "value": "#999999"
-                    }
-                }
-            },
-            {
-                "type": "sms",
-                "attributes": {
-                    "value": {
-                        "id": "value",
-                        "label": "Phone #",
-                        "type": "string",
-                        "value": "+18005555555"
+                        "value": "#32B2D2"
                     },
                     "innerHTML": {
-                        "id": "innerHTML",
-                        "label": "Label",
+                        "label": "Button Text",
+                        "skipAutoRender": true,
                         "type": "string",
-                        "value": "Share Lesson"
+                        "value": "Submit"
                     }
-                }
+                },
+                "icon": "images/blocks_submit.png",
+                "name": "Submit",
+                "type": "submit"
             }
         ]
     },
@@ -756,123 +543,124 @@
         "iconImage": "images/journalist.png",
         "iconColor" : "#DC8AEB",
         "author": {
-            "username": "Rafid Daoud",
+            "username": "",
             "location": "",
             "avatar": ""
         },
         "blocks": [
-               {
-                   "attributes": {
-                       "color": {
-                           "id": "color",
-                           "label": "Text Color",
-                           "type": "color",
-                           "value": "#707181"
-                       },
-                       "innerHTML": {
-                           "id": "innerHTML",
-                           "label": "Text Value",
-                           "type": "string",
-                           "value": "News / Greater Toronto Area"
-                       }
-                   },
-                   "type": "text"
-               },
-               {
-                   "attributes": {
-                       "color": {
-                           "id": "color",
-                           "label": "Text Color",
-                           "type": "color",
-                           "value": "#000000"
-                       },
-                       "font-size": {
-                           "label": "Font Size",
-                           "type": "font-size",
-                           "value": "40"
-                       },
-                       "innerHTML": {
-                           "id": "innerHTML",
-                           "label": "Text Value",
-                           "type": "string",
-                           "value": "CNE Air Show"
-                       }
-                   },
-                   "type": "text"
-               },
-               {
-                   "attributes": {
-                       "color": {
-                           "id": "color",
-                           "label": "Text Color",
-                           "type": "color",
-                           "value": "#333444"
-                       },
-                       "font-size": {
-                           "label": "Font Size",
-                           "type": "font-size",
-                           "value": "18"
-                       },
-                       "innerHTML": {
-                           "id": "innerHTML",
-                           "label": "Text Value",
-                           "type": "string",
-                           "value": "A fascinating and thrilling show at the Canadian National Exhibition"
-                       }
-                   },
-                   "type": "text"
-               },
-               {
-                   "attributes": {
-                       "src": {
-                           "id": "src",
-                           "label": "Image URL",
-                           "type": "string",
-                           "value": "content/newspaper_planes.jpg"
-                       }
-                   },
-                   "type": "image"
-               },
-               {
-                   "attributes": {
-                       "color": {
-                           "id": "color",
-                           "label": "Text Color",
-                           "type": "color",
-                           "value": "#adaebe"
-                       },
-                       "font-size": {
-                           "label": "Font Size",
-                           "type": "font-size",
-                           "value": "13"
-                       },
-                       "innerHTML": {
-                           "id": "innerHTML",
-                           "label": "Text Value",
-                           "type": "string",
-                           "value": "Canadian forces snowbirds pilots taking formation for their next performance. Photo by Rafid Daoud"
-                       }
-                   },
-                   "type": "text"
-               },
-               {
-                   "attributes": {
-                       "color": {
-                           "id": "color",
-                           "label": "Text Color",
-                           "type": "color",
-                           "value": "#000000"
-                       },
-                       "innerHTML": {
-                           "id": "innerHTML",
-                           "label": "Text Value",
-                           "type": "string",
-                           "value": "The air show at Canada National Exhibition in Toronto Ontario. It took place on August 30th 2014 through September 1st 2014. The show had two types of air crafts do their tricks. First, were fighter jets that were very fast almost the speed of sound. Then came the planes pictured above and they performed many tricks and had many different formations."
-                       }
-                   },
-                   "type": "text"
-               }
-           ]
+    {
+        "attributes": {
+            "src": {
+                "editorOpen": false,
+                "imageUrl": "content/news_illustration.svg",
+                "label": "Source",
+                "showUrlInput": true,
+                "type": "image",
+                "value": "content/news_illustration.svg"
+            }
+        },
+        "type": "image"
+    },
+    {
+        "attributes": {
+            "color": {
+                "label": "Color",
+                "showColorPicker": false,
+                "type": "color",
+                "value": "#638093"
+            },
+            "font-size": {
+                "label": "Font Size",
+                "type": "font-size",
+                "value": "18"
+            },
+            "innerHTML": {
+                "label": "Text",
+                "type": "string",
+                "value": "Open Call To All Musicians"
+            }
+        },
+        "type": "text"
+    },
+    {
+        "attributes": {
+            "color": {
+                "label": "Color",
+                "showColorPicker": false,
+                "type": "color",
+                "value": "#638093"
+            },
+            "font-size": {
+                "label": "Font Size",
+                "type": "font-size",
+                "value": "14"
+            },
+            "innerHTML": {
+                "label": "Text",
+                "type": "string",
+                "value": "Do you want to work with artists that share your passion for creating and sharing music with others? Join us as we embark on creating our community’s first music band! We are looking for the following musicians:"
+            }
+        },
+        "type": "text"
+    },
+    {
+        "attributes": {
+            "color": {
+                "label": "Color",
+                "showColorPicker": false,
+                "type": "color",
+                "value": "#638093"
+            },
+            "font-size": {
+                "label": "Font Size",
+                "type": "font-size",
+                "value": "14"
+            },
+            "innerHTML": {
+                "label": "Text",
+                "type": "string",
+                "value": "• Piano/keyboard players\n• Guitar players\n• Bass players\n• Drummers"
+            }
+        },
+        "type": "text"
+    },
+    {
+        "attributes": {
+            "color": {
+                "label": "Color",
+                "showColorPicker": false,
+                "type": "color",
+                "value": "#638093"
+            },
+            "font-size": {
+                "label": "Font Size",
+                "type": "font-size",
+                "value": "14"
+            },
+            "innerHTML": {
+                "label": "Text",
+                "type": "string",
+                "value": "If you have any questions, don’t hesitate to reach out to Amelina, our band manager."
+            }
+        },
+        "type": "text"
+    },
+    {
+        "attributes": {
+            "innerHTML": {
+                "label": "Label",
+                "type": "string",
+                "value": "Call Band Manager"
+            },
+            "number": {
+                "label": "Phone #",
+                "type": "string",
+                "value": "+18005555555"
+            }
+        },
+        "type": "phone"
+    }
+]
     },
     {
         "id": "a7ac2775-bd9d-40b5-a26c-43e847777777",
