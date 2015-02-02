@@ -12,7 +12,7 @@
         <div v-if="editing" style="height: 100%;">
             <input name="name" placeholder="{{ 'Your name' | i18n }}" type="text" v-model="name">
             <input name="location" placeholder="{{ 'Your location' | i18n }}" type="text" v-model="location">
-            <button type="button" v-on="click: save()">Save</button><button v-on="click: cancel()" type="button">Cancel</button>
+            <button type="button" v-on="click: save()">Save</button><button v-on="click: cancel()" type="button">{{ 'Cancel' |i18n }}</button>
         </div>
     </form>
     <i v-if="!editing" class="fa fa-pencil fa-2x edit-icon" v-on="click: editing = true"></i> -->
