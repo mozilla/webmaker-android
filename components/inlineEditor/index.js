@@ -3,8 +3,6 @@ module.exports = {
     ready: function () {
         var self = this;
 
-        self.appReference = self.$root.storage.getApp(self.app.id);
-
         self.$on('inlineEditorStarted', function (event) {
             if (event.index !== self.$index) {
                 self.stopEditing();
@@ -27,16 +25,40 @@ module.exports = {
             this.$el.classList.remove('active');
         },
         trash: function () {
-            this.appReference.remove(this.index);
-            this.stopEditing();
+            var self = this;
+
+            self.stopEditing();
+
+            setTimeout(function () {
+                self.$dispatch('deleteBlock', {
+                    index: self.index
+                });
+            }, 50);
         },
         duplicate: function () {
-            this.appReference.duplicate(this.index);
+            var self = this;
+
             this.stopEditing();
+
+            setTimeout(function () {
+                self.$dispatch('cloneBlock', {
+                    index: self.index
+                });
+            }, 50);
         },
         move: function (steps) {
-            this.appReference.move(this.index, steps);
-            this.stopEditing();
+            var self = this;
+
+            self.stopEditing();
+
+            // Delay about half the time the shim takes to fade out
+            // Delay is also necessary for blockList to measure heights properly
+            setTimeout(function () {
+                self.$dispatch('shiftBlock', {
+                    index: self.index,
+                    steps: steps
+                });
+            }, 50);
         }
     },
     data: {
