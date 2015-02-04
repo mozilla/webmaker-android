@@ -1,4 +1,5 @@
 var view = require('../../lib/view');
+var analytics = require('../../lib/analytics');
 
 module.exports = view.extend({
     id: 'error',
@@ -14,6 +15,7 @@ module.exports = view.extend({
                 default:
                     message = 'defaultError';
             }
+            analytics.error({description: message});
             return message;
         }
     },

@@ -6,6 +6,7 @@ var Sortable = require('sortable');
 var publish = require('../../lib/publish');
 var i18n = require('../../lib/i18n');
 var ua = require('../../lib/ua');
+var analytics = require('../../lib/analytics');
 
 var sort;
 var app;
@@ -85,6 +86,7 @@ module.exports = view.extend({
             app.update({
                 name: newVal
             });
+            analytics.event({ category: 'App Name & Icon', action: 'Name (autosaves)', label: newVal});
         }, 3000),
         previousIconImage: function () {
             this.selectIconImage('previous');
@@ -116,6 +118,7 @@ module.exports = view.extend({
             app.update({
                 iconColor: color
             });
+            analytics.event({category: 'App Name & Icon', action: 'Color', label: color});
         },
         saveAppSettings: function () {
             if (this.$data.mode === 'settings') {
@@ -308,7 +311,10 @@ module.exports = view.extend({
         var data = new Data(id);
         self.$on('dataSave', function () {
             data.collect(this.$el, function onDataSave(err) {
-                if (err) return console.log('[Firebase] ' + err);
+                if (err) {
+                    analytics.error({description: 'Firebase Save Error'});
+                    return console.log('[Firebase] ' + err);
+                }
                 self.$broadcast('dataSaveSuccess');
             });
         });

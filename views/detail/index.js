@@ -1,5 +1,6 @@
 var view = require('../../lib/view');
 var Data = require('../../lib/data');
+var analytics = require('../../lib/analytics');
 
 var app;
 
@@ -55,8 +56,10 @@ module.exports = view.extend({
         self.$on('switchValueChanged', function (event) {
             if (event === 'My App') {
                 self.subView = 'myApp';
+                analytics.event({category: 'My App', action: 'Switch', label: 'My App'});
             } else if (event === 'App Data') {
                 self.subView = 'appData';
+                analytics.event({category: 'My App', action: 'Switch', label: 'App Data'});
             }
         });
 
@@ -65,6 +68,7 @@ module.exports = view.extend({
                 app.update({
                     isDiscoverable: event.value
                 });
+                analytics.event({category: 'Discover Gallery', action: 'Set Discover Gallery Status', label: event.value});
             }
         });
     }
