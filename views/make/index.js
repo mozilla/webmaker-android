@@ -125,7 +125,6 @@ module.exports = view.extend({
         var list = self.$el.querySelector('.blocks');
 
         self.$data.onDone = '/make/' + id + '/share?publish=true';
-        self.$data.offlineUser = this.model.data.session.offline;
 
         function getIndex(nodeList, el) {
             for (var i = 0; i < nodeList.length; i++) {

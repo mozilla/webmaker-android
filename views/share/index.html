@@ -4,7 +4,7 @@
     <form>
         <div v-show="error" v-component="alert" type="error" message="{{error}}"></div>
         <div v-show="!error">
-            <div v-show="user.username" class="form-group">
+            <div class="form-group">
                 <textarea name="share-message" v-model="shareMessage" class="textarea-large"></textarea>
             </div>
         </div>
