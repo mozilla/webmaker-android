@@ -88,7 +88,7 @@ module.exports = view.extend({
         var offlineError = 'We couldn\'t reach the publishing server. Sorry!';
 
         function startPublish() {
-            var publishUrl = global.location.hash.match('publish=true');
+            var publishUrl = global.location.href.match('publish=true');
 
             if (!publishUrl && self.$data.app.url) {
                 self.$root.isReady = true;
