@@ -72,6 +72,7 @@ gulp.task('watch', ['build'], function () {
 gulp.task('dev', ['watch'], function() {
   return gulp.src('build')
     .pipe(webserver({
+        host: '0.0.0.0',
         port: 8080,
         livereload: false,
         fallback: 'index.html'
