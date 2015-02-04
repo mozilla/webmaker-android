@@ -1,5 +1,12 @@
 .inline-editor {
     position: relative;
+    transform: translateY(0);
+    transition: transform 200ms ease-out, opacity 300ms ease-out;
+    opacity: 1;
+
+    &.hidden {
+        opacity: 0;
+    }
 
     &.active {
         z-index: 999999;
