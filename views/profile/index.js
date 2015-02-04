@@ -13,10 +13,6 @@ module.exports = view.extend({
         }
     },
     methods: {
-        logout: function (e) {
-            e.preventDefault();
-            this.model.auth.logout();
-        },
         clean: function (e) {
             var self = this;
             self.$data.myApps.forEach(function (app) {

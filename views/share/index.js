@@ -18,7 +18,7 @@ module.exports = view.extend({
         contacts: [],
         modeledContacts: {},
         isDiscoverable: false,
-        disableDiscovery: true
+        disableDiscovery: false
     },
     methods: {
         login: function (e) {
@@ -83,18 +83,13 @@ module.exports = view.extend({
         // Bind user
         self.$data.user = self.model.data.session.user;
 
-        // Enable discovery for non-guests (users w. email)
-        if (self.$data.user.email) {
-            self.disableDiscovery = false;
-            self.isDiscoverable = app.data.isDiscoverable || false;
-        }
-
         var message;
 
         var offlineError = 'We couldn\'t reach the publishing server. Sorry!';
 
         function startPublish() {
-            var publishUrl = global.location.search.match('publish=true');
+            var publishUrl = global.location.href.match('publish=true');
+
             if (!publishUrl && self.$data.app.url) {
                 self.$root.isReady = true;
                 return;
@@ -111,6 +106,7 @@ module.exports = view.extend({
             }, PUBLISH_TIMEOUT);
 
             publish(id, self.$data.user, function (err, data) {
+                console.log(data);
                 global.clearTimeout(syncTimeout);
                 self.$root.isReady = true;
                 if (err) {
