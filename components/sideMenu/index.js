@@ -20,11 +20,16 @@ module.exports = {
 
             if (!self.transitionsInProgress && !self.isOpen) {
                 self.$el.style.left = '-999999px';
+                self.$emit('menuFinishedClosing');
             }
         });
     },
     methods: {
         onShareClick: function (event) {
+            this.$on('menuFinishedClosing', function () {
+                this.$dispatch('sideMenuShareClick');
+            });
+
             this.close();
         },
         onDeleteClick: function (event) {
