@@ -18,6 +18,55 @@ module.exports = {
             this.isEditMode = true;
             this.$dispatch('inlineEditorStarted', {index: this.$index});
             this.$el.classList.add('active');
+            this.centerEditor();
+        },
+        centerEditor: function () {
+            // Elements
+            var elEditor = this.$el;
+            var elContainer = elEditor.offsetParent;
+            var elControlPanel = elEditor.querySelector('.control-panel');
+            var elNavBar = document.querySelector('#navigationBar');
+            var elMakeBar = document.querySelector('#makeBar');
+
+            // Dimensions:
+            var containerHeight = elContainer.offsetHeight;
+
+            function doScroll(direction) {
+                if (direction === 'down') {
+                    elContainer.scrollTop =
+                        elEditor.offsetTop - elNavBar.offsetHeight - 10;
+                } else if (direction === 'up') {
+                    var overflow =
+                        elEditor.offsetTop +
+                        elEditor.offsetHeight;
+
+                    overflow -=
+                        elContainer.scrollTop +
+                        containerHeight -
+                        elMakeBar.offsetHeight;
+
+                    elContainer.scrollTop += (overflow + 10);
+                }
+            }
+
+            // Ensure control panel is rendered before measuring
+            var heightCheck = setInterval(function () {
+                if (elControlPanel.offsetHeight) {
+                    clearInterval(heightCheck);
+
+                    if (elContainer.scrollTop + elNavBar.offsetHeight >
+                        elEditor.offsetTop) {
+
+                        doScroll('down');
+                    } else if (elEditor.offsetHeight + elEditor.offsetTop >
+                        elContainer.scrollTop +
+                        containerHeight -
+                        elMakeBar.offsetHeight) {
+
+                        doScroll('up');
+                    }
+                }
+            }, 1);
         },
         stopEditing: function () {
             this.isEditMode = false;
