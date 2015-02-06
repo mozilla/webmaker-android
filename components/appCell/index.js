@@ -13,7 +13,7 @@ module.exports = {
     data: {
         constructedURL: ''
     },
-    paramAttributes: ['prefix', 'app-id'],
+    paramAttributes: ['prefix', 'app-id', 'suffix'],
     template: require('./index.html'),
     computed: {
         guestKey: function () {

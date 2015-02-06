@@ -5,11 +5,11 @@
 </div>
 
 <ul class="list-cell" v-show="mode === 'Featured'">
-    <li v-component="appCell" v-repeat="app: apps.featured" app-id="{{ app.url }}"></li>
+    <li v-component="appCell" v-repeat="app: apps.featured" app-id="{{ app.url }}" suffix="detail/"></li>
 </ul>
 
 <ul class="list-cell" v-show="mode === 'Newest'">
-    <li v-component="appCell" v-repeat="app: apps.newest" app-id="{{ app.url }}"></li>
+    <li v-component="appCell" v-repeat="app: apps.newest" app-id="{{ app.url }}" suffix="detail/"></li>
 </ul>
 
 <div v-component="tabBar"></div>
