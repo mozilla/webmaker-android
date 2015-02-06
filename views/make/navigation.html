@@ -15,9 +15,6 @@
 </h1>
 
 <div>
-    <a v-if="mode !== 'settings'" class="nav-btn" href="{{onDone}}">
-        {{ 'Publish' | i18n}}
-    </a>
     <a href="/make/{{app.id}}/add" class="nav-btn" v-if="mode === 'edit'">
       <span class="fa fa-plus"></span>
     </a>

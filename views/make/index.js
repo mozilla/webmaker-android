@@ -100,6 +100,13 @@ module.exports = view.extend({
             self.$dispatch('openModalPrompt');
         });
 
+        self.$on('sideMenuShareClick', function (event) {
+            this.page(
+                '/make/' +
+                self.$root.$data.params.id +
+                '/share?publish=true');
+        });
+
         self.$on('onConfirmClick', function (event) {
             console.warn('Deleting app!');
             self.removeApp();
@@ -123,8 +130,6 @@ module.exports = view.extend({
         self.$data.iconImages = iconImages;
 
         var list = self.$el.querySelector('.blocks');
-
-        self.$data.onDone = '/make/' + id + '/share?publish=true';
 
         function getIndex(nodeList, el) {
             for (var i = 0; i < nodeList.length; i++) {
