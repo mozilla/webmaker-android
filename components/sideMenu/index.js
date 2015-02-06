@@ -19,7 +19,7 @@ module.exports = {
             self.transitionsInProgress--;
 
             if (!self.transitionsInProgress && !self.isOpen) {
-                self.$el.style.left = '-999999px';
+                self.$el.classList.remove('open');
                 self.$emit('menuFinishedClosing');
             }
         });
@@ -44,7 +44,7 @@ module.exports = {
         open: function () {
             this.isOpen = true;
             this.transitionsInProgress = 1;
-            this.$el.style.left = '0';
+            this.$el.classList.add('open');
             this.$el.classList.add('active');
 
         },

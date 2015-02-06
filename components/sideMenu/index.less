@@ -1,24 +1,29 @@
 #side-menu {
     position: fixed;
-    left: -99999px;
+    left: 0;
+    transform: translateX(-100%);
     width: 100%;
     height: 100%;
     z-index: 999998;
 
+    &.open {
+        transform: translateX(0%);
+    }
+
     &.active {
         .primary-menu {
-            left: 0;
+            transform: translateX(0%);
         }
     }
 
     .primary-menu {
         position: relative;
-        left: -100%;
+        transform: translateX(-100%);
         background-color: @turquoise;
         color: @white;
         width: 66.666%;
         height: 100%;
-        transition: left 250ms ease-out;
+        transition: transform 250ms ease;
 
         header {
             font-size: 11px;
