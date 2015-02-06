@@ -127,3 +127,25 @@
         }
     }
 }
+
+.btn-press {
+    color: @white;
+    background: @turquoise;
+    border-radius: 4px;
+    box-shadow: 0 2px 0 @blue, inset 0 1px 0 rgba(255, 255, 255, 0.5);
+    display: block;
+    font-size: 15px;
+    margin-bottom: 10px;
+    padding: 15px 0 10px;
+    position: relative;
+    text-align: center;
+    &:hover, &:focus {
+        box-shadow: 0 2px 0 @blue, inset 0 1px 0 rgba(255, 255, 255, 0.5);
+        top: 2px;
+    }
+    &:active {
+        box-shadow: inset 0 1px 1px rgba(0, 0, 0, 0.2);
+        top: 4px;
+    }
+}
+
