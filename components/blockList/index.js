@@ -133,16 +133,17 @@ module.exports = {
 
             // Move elements
 
+            function transform(element, value) {
+                element.style.transform = value;
+                element.style['-webkit-transform'] = value;
+            }
+
             if (steps === 1) {
-                elTarget.style.transform =
-                    'translateY(' + elSwapTargetHeight + ')';
-                elSwapTarget.style.transform =
-                    'translateY(-' + elTargetHeight + ')';
+                transform(elTarget, 'translateY(' + elSwapTargetHeight + ')');
+                transform(elSwapTarget, 'translateY(-' + elTargetHeight + ')');
             } else if (steps === -1) {
-                elTarget.style.transform =
-                    'translateY(-' + elSwapTargetHeight + ')';
-                elSwapTarget.style.transform =
-                    'translateY(' + elTargetHeight + ')';
+                transform(elTarget, 'translateY(-' + elSwapTargetHeight + ')');
+                transform(elSwapTarget, 'translateY(' + elTargetHeight + ')');
             }
 
         }
