@@ -1,18 +1,47 @@
-# Developing Mobile Webmaker with Firefox WebIDE
+# Developing on Firefox OS
 
-###Overview
+### Install Cordova
+
+`npm install -g cordova`
+
+### Set up Webmaker App
+
+- clone [mozilla/webmaker-app](https://github.com/mozilla/webmaker-app)
+- run `npm install` and then `gulp dev` to build/watch changes
+- to be able to make changes in this app and be able to build a new version in Cordova, **you will also need to run `npm link`** in the root of this directory
+
+### Set up the Cordova Wrapper
+- clone `mozilla/webmaker-app-cordova`
+- `npm install`
+- `npm run build`
+
+This should build your project for the first time.
+
+In order to complete the link to your local copy of `mozilla/webmaker-app`, run the following command once in the root of the webmaker-app-cordova directory:
+
+```
+npm link webmaker
+```
+
+After you do that, all you need to do to re-build the app for FirefoxOS is run the following every time you make a change:
+
+```
+npm run firefoxos
+```
+
+## Web IDE Overview
 
 Firefox WebIDE allows you to emulate Firefox OS using your browser and run Firefox OS applications for testing. It also includes a debugging tool.
 
-###Install Firefox Developer Edition
+### Install Firefox Developer Edition
 
 In order to use Firefox WebIDE, you need to have [Firefox Developer Edition](https://www.mozilla.org/en-US/firefox/developer/) installed.
 
-###Opening WebIDE
+### Opening WebIDE
 
 In the Web Developer menu, click on the WebIDE entry and the WebIDE opens. 
 
-You can also use the keybinding: 
+You can also use the keybinding:
 
 *Mac*: Shift-fn-F8.
 
@@ -25,13 +54,14 @@ You can also use the keybinding:
 1. On the top right, select `Select Runtime -> Install Simulator` and from the list install "Firefox OS 2.0 Simulator"
 2. Press "Close" in the top right to get back to the first screen
 
-###Select Mobile Webmaker Project
+
+### Select Mobile Webmaker Project
 
 1. On the top left select `Open App -> Open Packaged App`
-2. Select `webmaker-app -> build` 
+2. Assuming you have `run npm run firefoxos` in the webmaker-app-cordova directory, select `webmaker-app-cordova -> platforms -> firefoxos -> www`
 3. The application information should appear on the screen with a green "Valid" in the top right.
 
-*Note:* You **must** select the build folder for the simulator to work.
+*Note:* You **must** select the this folder for the simulator to work.
 
 ###Run Mobile Webmaker
 
