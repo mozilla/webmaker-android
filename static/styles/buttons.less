@@ -1,16 +1,29 @@
 .btn {
-    margin: 0;
-    padding: 10px;
-    box-shadow: none;
-    background: white;
-    border: 1px solid @mediumGrey;
-    color: @mediumGrey;
+
+    border: medium none;
+    outline: medium none;
+    font-family: "Fira Sans";
+    font-size: 18px;
+    line-height: 1;
+    cursor: pointer;
+    box-sizing: border-box;
+    padding: 20px 79px;
+    max-width: 280px;
     display: inline-block;
-    font-size: 14px;
-    text-decoration: none;
-    display: inline-flex;
-    align-items: center;
-    justify-content: center;
+    margin: 15px 30px;
+    letter-spacing: 1px;
+    font-weight: 400;
+    position: relative;
+    color: white;
+    background-color: #64A8EE;
+    border-radius: 4px;
+    box-shadow: 0px 3px #518AC2;
+
+    &:active {
+      background-color: #5C9CDB;
+      box-shadow: inset 0px 2px 3px rgba(0,0,0,0.2);
+      top: 3px;
+    }
 
     &.btn-block {
         display: flex;
@@ -49,23 +62,20 @@
 }
 
 .btn-delete {
-    border-top: solid 1px #c1cdd5;
-    margin-top: 10px;
-    padding-top: 18px;
-    text-align: center;
-    cursor: pointer;
-    button {
-        font-size: 16px;
-        background: transparent;
-        padding: 0px;
-        margin: 0px;
-        color: @turquoise;
-        border: none;
-        display: inline-block;
-        span {
-            position: relative;
-            top: -1px;
-        }
+    background: @red;
+    box-shadow: 0px 3px #923534;
+
+    &:active {
+      background-color: #d74e4d;
+    }
+}
+
+.btn-cancel {
+    background: @lightGrey;
+    box-shadow: 0px 3px #aeb6ba;
+
+    &:active {
+      background-color: #ced7dc;
     }
 }
 
