@@ -27,7 +27,4 @@
             v-with="dataSet : currentDataSets, initialDataLoaded : initialDataLoaded">
         </div>
     </main>
-
-    <div v-if="mode !== 'settings'" v-component="makeBar" v-with="uiMode: mode === 'settings' ? 'edit' : mode, onChange: changeMode"></div>
-
 </div>
