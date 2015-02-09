@@ -22,7 +22,8 @@ module.exports = view.extend({
         self.$on(id, function (val) {
             self.$root.isReady = true;
             self.$data.app = val;
-            self.$data.isAdmin = self.$data.app.author.id === self.model.data.session.guestId ? true : false;
+            self.$data.isAdmin = self.$data.app.author.id ===
+                self.model.data.session.guestId ? true : false;
         });
     }
 });
