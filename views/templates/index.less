@@ -1,46 +1,55 @@
-#templates ul {
-    margin: 0 0 0 0; //Bottom margin as much as bottom tabbar.
-    padding: 0;
-    .clearfix;
-}
+#templates {
+    padding-top: 0;
 
-.template-cell {
-    // Spacing
-    .cell {
-        height: auto;
-    }
-    .left, .middle, .right {
-        float: none;
-        width: auto;
-        padding: 16px;
-    }
-    .left {
-        flex-shrink: 0;
-        padding-right: 0;
-    }
-    .middle {
-        flex-grow: 1;
-        padding-right: 0;
-    }
-    .right {
-        flex-shrink: 0;
-        text-align: left;
+    ul {
+        margin: 0 0 0 0; //Bottom margin as much as bottom tabbar.
+        padding: 0;
+        .clearfix;
     }
 
-    // Type
-    .title {
-        font-size: 16px;
-    }
-    .fa-chevron-right {
-        font-size: 14px;
+    .list-cell li:first-child {
+        border-top: none;
     }
 
-    // Colors
-    color: white;
-    .description {
-        color: fade(white, 80%);
-    }
-    .app-icon {
-        border: 2px solid #FFF;
+    .template-cell {
+        // Spacing
+        .cell {
+            height: auto;
+        }
+
+        .left, .middle, .right {
+            float: none;
+            width: auto;
+            padding: 16px;
+        }
+        .left {
+            flex-shrink: 0;
+            padding-right: 0;
+        }
+        .middle {
+            flex-grow: 1;
+            padding-right: 0;
+        }
+        .right {
+            flex-shrink: 0;
+            text-align: left;
+        }
+
+        // Type
+        .title {
+            font-size: 16px;
+        }
+        .fa-chevron-right {
+            font-size: 14px;
+        }
+
+        // Colors
+        color: white;
+        .description {
+            color: fade(white, 80%);
+        }
+        .app-icon {
+            border: 2px solid #FFF;
+        }
     }
 }
