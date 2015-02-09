@@ -19,9 +19,24 @@
     box-shadow: 0px 3px @btnBlueBorder;
 
     &.btn-flat {
+        display: block;
+        text-align: center;
+        /* does*/
+        background: #32B2D2;
+        border: 0;
+        border-right: 1px solid #1A98B8;
+        border-bottom: 1px solid #1A98B8;
         border-radius: 0;
-        background-color: @turquoise;
+        flex-grow: 1;
+        color: @white;
+        padding: 1em 0;
         box-shadow: none;
+
+        &:active {
+            background: #32B2D2;
+            top: 0px;
+            box-shadow: none;
+        }
     }
 
     &:active {
