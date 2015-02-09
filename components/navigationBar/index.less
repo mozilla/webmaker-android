@@ -1,5 +1,4 @@
-#navigationBar,
-.navigationBar {
+#navigationBar, .navigationBar {
     position: fixed;
     left: 0;
     top: 0;
@@ -20,7 +19,7 @@
 
     // Flex property not needed in h1
     h1 {
-        color: @highlight;
+        color: @white;
         text-align: center;
         font-size: 1.1em;
         font-weight: 400;
@@ -59,7 +58,7 @@
         // min-width: 40px;
 
         background: none;
-        color: @highlight;
+        color: @white;
         border: none;
         outline: none;
         padding: 20px;
@@ -83,24 +82,23 @@
     }
 
     &.nav-default {
-        border-bottom: 1px solid @lightGrey;
-        background-color: @white;
+        background-color: @highlight;
 
         h1:extend(.navigationBar h1) {
-            color: @highlight;
+            color: @white;
         }
 
         .nav-btn:extend(.navigationBar .nav-btn) {
-            color: @highlight;
+            color: @white;
         }
     }
 
     &.nav-alt {
         h1:extend(.navigationBar h1) {
-            color: @white;
+            color: @highlight;
         }
         .nav-btn:extend(.navigationBar .nav-btn) {
-            color: @white;
+            color: @highlight;
         }
     }
 }
