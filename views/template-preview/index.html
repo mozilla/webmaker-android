@@ -2,7 +2,7 @@
 <main v-if="app.id">
     <nav v-component="navigationBar" class="nav-default"></nav>
     <div class="start-building">
-        <button class="btn btn-start-building" v-on="click: create">{{ 'Start Building' | i18n }}</button>
+        <button class="btn" v-on="click: create">{{ 'Start Building' | i18n }}</button>
     </div>
     <div class="app-preview">
         <ul class="blocks">
