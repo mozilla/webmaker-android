@@ -1,6 +1,6 @@
 <div class="wrapper" v-class="editing: isEditMode">
     <div class="button-wrapper">
-        <button v-on="click: startEditing" class="btn-edit"><i class="fa fa-pencil"></i></button>
+        <button v-on="click: startEditing" class="btn-edit"><i class="ion-edit"></i></button>
     </div>
 
     <div class="editor-wrapper">
@@ -9,11 +9,11 @@
         </div>
 
         <div class="control-panel">
-            <button class="btn btn-flat" v-on="click: trash"><i class="fa fa-trash-o"></i></button>
-            <button class="btn btn-flat" v-on="click: duplicate"><i class="fa fa-files-o"></i></button>
-            <a v-on="click: stopEditing" class="btn btn-flat" href="/make/{{ app.id }}/block/{{ index }}"><i class="fa fa-pencil"></i></a>
-            <button class="btn btn-flat" v-on="click: move(-1)"><i class="fa fa-arrow-up"></i></button>
-            <button class="btn btn-flat" v-on="click: move(1)"><i class="fa fa-arrow-down"></i></button>
+            <button class="btn btn-flat" v-on="click: trash"><i class="ion-android-delete"></i></button>
+            <button class="btn btn-flat" v-on="click: duplicate"><i class="ion-ios-copy"></i></button>
+            <a v-on="click: stopEditing" class="btn btn-flat" href="/make/{{ app.id }}/block/{{ index }}"><i class="ion-edit"></i></a>
+            <button class="btn btn-flat" v-on="click: move(-1)"><i class="ion-android-arrow-up"></i></button>
+            <button class="btn btn-flat" v-on="click: move(1)"><i class="ion-android-arrow-down"></i></button>
         </div>
     </div>
 </div>

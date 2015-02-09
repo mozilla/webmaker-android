@@ -2,7 +2,7 @@
 <div v-if="isInteractive" class="dataRepresentationSelectAll">
     <input style="display: none;" id="dataRepresentationDataSetMarkSelected-All" type="checkbox" name="markAllSelected" v-model="allSelected">
     <label for="dataRepresentationDataSetMarkSelected-All">{{ 'Select all' | i18n }}</label>
-    <label for="dataRepresentationDataSetMarkSelected-All" class="tip tip-checkmark fa fa-check"></label>
+    <label for="dataRepresentationDataSetMarkSelected-All" class="tip tip-checkmark ion-android-done"></label>
 </div>
 <table v-repeat="data: dataSet | orderBy sortKey !sortOldest" class="dataRepresentationDataSet" v-class="unread: !data.isRead && isInteractive, interactive: isInteractive">
     <thead v-if="isInteractive">
@@ -10,7 +10,7 @@
             <th>Submitted {{formatUnixTime(data.submitted)}}</th>
             <th>
                 <input style="display: none;" id="dataRepresentationDataSetMarkSelected-{{$index}}" type="checkbox" name="markSelected" v-model="data.isSelected">
-                <label for="dataRepresentationDataSetMarkSelected-{{$index}}" class="tip tip-checkmark fa fa-check"></label>
+                <label for="dataRepresentationDataSetMarkSelected-{{$index}}" class="tip tip-checkmark ion-android-done"></label>
             </th>
         </tr>
     </thead>
