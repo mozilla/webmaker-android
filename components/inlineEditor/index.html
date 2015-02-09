@@ -9,11 +9,11 @@
         </div>
 
         <div class="control-panel">
-            <button class="btn" v-on="click: trash"><i class="fa fa-trash-o"></i></button>
-            <button class="btn" v-on="click: duplicate"><i class="fa fa-files-o"></i></button>
-            <a v-on="click: stopEditing" class="btn" href="/make/{{ app.id }}/block/{{ index }}"><i class="fa fa-pencil"></i></a>
-            <button class="btn" v-on="click: move(-1)"><i class="fa fa-arrow-up"></i></button>
-            <button class="btn" v-on="click: move(1)"><i class="fa fa-arrow-down"></i></button>
+            <button class="btn btn-flat" v-on="click: trash"><i class="fa fa-trash-o"></i></button>
+            <button class="btn btn-flat" v-on="click: duplicate"><i class="fa fa-files-o"></i></button>
+            <a v-on="click: stopEditing" class="btn btn-flat" href="/make/{{ app.id }}/block/{{ index }}"><i class="fa fa-pencil"></i></a>
+            <button class="btn btn-flat" v-on="click: move(-1)"><i class="fa fa-arrow-up"></i></button>
+            <button class="btn btn-flat" v-on="click: move(1)"><i class="fa fa-arrow-down"></i></button>
         </div>
     </div>
 </div>

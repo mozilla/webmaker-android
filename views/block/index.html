@@ -10,5 +10,5 @@
         <div class="form-group" v-repeat="block.attributes" v-component="{{ getEditor(type) }}"></div>
     </form>
 
-    <button class="btn btn-block btn-dark" v-on="click: onSave">{{ 'Save' | i18n}}</button>
+    <button class="btn btn-block" v-on="click: onSave">{{ 'Save' | i18n}}</button>
 </main>
