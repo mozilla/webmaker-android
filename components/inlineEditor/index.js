@@ -26,7 +26,6 @@ module.exports = {
             var elContainer = elEditor.offsetParent;
             var elControlPanel = elEditor.querySelector('.control-panel');
             var elNavBar = document.querySelector('#navigationBar');
-            var elMakeBar = document.querySelector('#makeBar');
 
             // Dimensions:
             var containerHeight = elContainer.offsetHeight;
@@ -42,8 +41,7 @@ module.exports = {
 
                     overflow -=
                         elContainer.scrollTop +
-                        containerHeight -
-                        elMakeBar.offsetHeight;
+                        containerHeight;
 
                     elContainer.scrollTop += (overflow + 10);
                 }
@@ -59,10 +57,7 @@ module.exports = {
 
                         doScroll('down');
                     } else if (elEditor.offsetHeight + elEditor.offsetTop >
-                        elContainer.scrollTop +
-                        containerHeight -
-                        elMakeBar.offsetHeight) {
-
+                        elContainer.scrollTop + containerHeight) {
                         doScroll('up');
                     }
                 }
