@@ -1,29 +1,45 @@
-<nav v-component="navigationBar" class="nav-default"></nav>
+<nav v-component="navigationBar" class="nav-default" v-with="title: app.name"></nav>
 <div v-if="!app.id" v-component="alert" type="error" message="errorAppNotFound"></div>
 <div v-if="app.id">
-    <header>
-        <div class="app-icon" style="background-color: {{app.iconColor}}">
+    <header style="background-color: {{app.iconColor}}">
+        <div class="app-icon">
             <div class="app-icon-image" style="background-image: url('{{app.iconImage}}')"></div>
         </div>
-        <hgroup>
-            <h3>{{app.name}}</h3>
-            <p class="text-light" v-bind-i18n-html="'by _'" v-with="name: app.author.username"></p>
-        </hgroup>
+        <nav class="app-links" v-show="isAdmin">
+            <ul>
+                <li class="active">My App</li>
+                <li><a href="/make/{{id}}?mode=data">App Data</a></li>
+            </ul>
+        </nav>
     </header>
-    <ul id="detail-share" v-if="!isTemplate">
-        <li><a href="/make/{{id}}/share">
-            <span class="fa fa-2x fa-fw fa-share"></span><br>{{ 'Share' | i18n }}</a>
-        </li>
-        <li><a href="/make/{{id}}?mode=play">
-            <span class="fa fa-2x fa-fw fa-eye"></span><br>{{ 'Open' | i18n }}</a>
-        </li>
-        <li><a href="/make/{{id}}?mode=data">
-            <span class="fa fa-2x fa-fw fa-list"></span><br>{{ 'Data' | i18n }}</a>
+
+    <ul class="list-cell show-in-discover">
+        <li>
+            <div class="pull-left">
+                <!--TODO improve this in #865 -->
+                <div v-component="toggle" v-with="checked: isDiscoverable, disabled: disableDiscovery"></div>
+            </div>
+            <p>
+                Show this app in the Discover Gallery
+            </p>
         </li>
     </ul>
-    <p v-if="app.url" class="text-center">
-        <a target="_blank" href="{{app.url}}">View published app</a>
-    </p>
-</div>
 
-<div v-component="tabBar"></div>
+    <article class="app-details">
+        <div v-show="isAdmin">
+            <!-- TODO do these links need "prefix"/"suffix"? Should the /make/:id/detail be rerouted? -->
+            <a class="btn action" href="/make/{{id}}?mode=edit">Open my app</a>
+        </div>
+        <div v-show="!isAdmin">
+            <!-- TODO change mode for "remix" usecase -->
+            <a class="btn action" href="/make/{{id}}?mode=play">Remix App</a>
+            <a class="btn action" href="/make/{{id}}?mode=play">Open App</a>
+        </div>
+
+        <div class="app-preview">
+            <ul class="blocks">
+                <li v-component="{{type}}" v-repeat="app.blocks"></li>
+            </ul>
+        </div>
+    </article>
+</div>
