@@ -1,28 +1,27 @@
-.btn {
+@btnInsetShadow: inset 0px 2px 5px rgba(0,0,0,0.2);
 
+.btn {
+    display: block;
+    position: relative;
+    width: 100%;
+    padding: 15px;
+    font-family: 'Fira Sans', sans-serif;
+    font-size: 16px;
+    font-weight: 400;  
+    color: white;
+    line-height: 1;
+    border-radius: 4px;
     border: medium none;
     outline: medium none;
-    font-family: "Fira Sans";
-    font-size: 18px;
-    line-height: 1;
     cursor: pointer;
-    box-sizing: border-box;
-    padding: 20px 79px;
-    max-width: 280px;
-    display: inline-block;
-    margin: 15px 30px;
-    letter-spacing: 1px;
-    font-weight: 400;
-    position: relative;
-    color: white;
-    background-color: #64A8EE;
-    border-radius: 4px;
-    box-shadow: 0px 3px #518AC2;
+
+    background-color: @btnBlue;
+    box-shadow: 0px 3px @btnBlueBorder;
 
     &:active {
-      background-color: #5C9CDB;
-      box-shadow: inset 0px 2px 3px rgba(0,0,0,0.2);
-      top: 3px;
+        background-color: @btnBluePressed;
+        box-shadow: @btnInsetShadow;
+        top: 3px;
     }
 
     &.btn-block {
@@ -30,58 +29,34 @@
         text-align: center;
         width: 100%;
     }
-    &.btn-dark {
-        background: @turquoise;
-        border-color: @turquoise;
-        color: white;
+
+    &.btn-delete {
+        background-color: @btnRed;
+        box-shadow: 0px 3px @btnRedBorder;
+
+        &:active {
+            background-color: @btnRedPressed;
+            box-shadow: @btnInsetShadow;
+            top: 3px;
+        }
     }
-    &.btn-add {
-        .btn-dark;
-    }
-    &.btn-share {
-        .btn-dark;
-    }
-}
 
-.btn-next {
-    display: block;
-    position: absolute;
-    width: 100%;
-    height: 50px;
-    bottom: 0;
-    left: 0;
+    &.btn-cancel {
+        background-color: @btnGrey;
+        box-shadow: 0px 3px @btnGreyBorder;
+        color: #A2A2A2;
 
-    padding: 14px 0;
-    color: @turquoise;
-    border: none;
-    border-radius: 0;
-    background-image: none;
-    background-color: #FFF;
-    text-align: center;
-    text-decoration: none;
-}
-
-.btn-delete {
-    background: @red;
-    box-shadow: 0px 3px #923534;
-
-    &:active {
-      background-color: #d74e4d;
-    }
-}
-
-.btn-cancel {
-    background: @lightGrey;
-    box-shadow: 0px 3px #aeb6ba;
-
-    &:active {
-      background-color: #ced7dc;
+        &:active {
+            background-color: @btnGreyPressed;
+            box-shadow: @btnInsetShadow;
+            top: 3px;
+        }
     }
 }
 
 /*********************************************************
-* Toggle
-*/
+ * Toggle
+ */
 .btn-toggle {
     margin: 10px 32px;
     height: @toggle-height;
@@ -128,11 +103,11 @@
         }
         &.btn-toggle-on {
             z-index: 1;
-            background-color: white;
+            background-color: @white;
             color: @turquoise;
             &::before,
             &::after {
-                background-color: white;
+                background-color: @white;
             }
         }
     }
