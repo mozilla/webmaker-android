@@ -5,7 +5,7 @@
         <div class="app-icon">
             <div class="app-icon-image" style="background-image: url('{{app.iconImage}}')"></div>
         </div>
-        <nav class="app-links">
+        <nav class="app-links" v-show="isAdmin">
             <ul>
                 <li class="active">My App</li>
                 <li><a href="/make/{{id}}?mode=data">App Data</a></li>
