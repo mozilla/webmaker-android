@@ -6,7 +6,7 @@
         "icon": "images/icons/scratch.svg",
         "description": "Choosing this option will allow you to create your own app without a preset template.",
         "iconImage": "images/icons/scratch.svg",
-        "iconColor" : "#FF5C5A",
+        "iconColor" : "#8D8FED",
         "author": {
             "username": "",
             "location": "",
@@ -21,7 +21,7 @@
         "description": "Have something to share with the world? Start a blog, customize to make it yours and start writing!",
         "icon": "images/icons/blog.svg",
         "iconImage": "images/icons/blog.svg",
-        "iconColor" : "#97CC3B",
+        "iconColor" : "#8594ED",
         "author": {
             "username": "",
             "location": "",
@@ -141,7 +141,7 @@
         "name": "Teacher",
         "icon": "images/icons/survey.svg",
         "iconImage": "images/icons/survey.svg",
-        "iconColor" : "#F79131",
+        "iconColor" : "#7D99ED",
         "author": {
             "username": "",
             "location": "",
@@ -333,7 +333,7 @@
         "name": "Business",
         "icon": "images/icons/business.svg",
         "iconImage": "images/icons/business.svg",
-        "iconColor" : "#F2C233",
+        "iconColor" : "#749EED",
         "author": {
             "username": "Yousuf",
             "location": "",
@@ -541,7 +541,7 @@
         "description": "Share photos and write articles and about your local community",
         "icon": "images/placeholder_journalist.png",
         "iconImage": "images/journalist.png",
-        "iconColor" : "#DC8AEB",
+        "iconColor" : "#6CA3ED",
         "author": {
             "username": "",
             "location": "",
@@ -669,11 +669,11 @@
         "name": "How To",
         "icon": "images/placeholder_howto.png",
         "iconImage": "images/howto.png",
-        "iconColor" : "#8C8AEB",
+        "iconColor" : "#64A8EE",
         "author": {
-            "username": "Deepa",
+            "username": "",
             "location": "",
-            "avatar": "images/avatar_teacher.png"
+            "avatar": ""
         },
         "blocks": [
             {
@@ -881,11 +881,11 @@
         "description": "Add a map, a emergency call button, and other tips to keep safe in your community",
         "icon": "images/placeholder_safety.png",
         "iconImage": "images/safety.png",
-        "iconColor" : "#27AAE1",
+        "iconColor" : "#64B2ED",
         "author": {
-            "username": "Pedro",
+            "username": "",
             "location": "",
-            "avatar": "images/avatar_student.png"
+            "avatar": ""
         },
         "blocks": [
             {
