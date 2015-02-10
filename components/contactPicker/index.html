@@ -11,7 +11,7 @@
 
             <div v-repeat="person : $value" class="contact">
                 <label class="circle-toggle" v-on="click: person.selected = !person.selected" v-class="on: person.selected">
-                    <span class="ion-android-done"></span>
+                    <span class="ion ion-android-done"></span>
                 </label>
                 <span>{{ person.displayName }}</span>
                 <span class="phone-number">{{ person.phoneNumbers[0].value }}</span>
