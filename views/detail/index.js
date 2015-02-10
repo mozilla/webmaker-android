@@ -23,8 +23,8 @@ module.exports = view.extend({
         self.$data.id = id;
 
         function setAdmin(app) {
-            return self.$data.isAdmin = app.author.id ===
-                self.model.data.session.user.id ? true : false;
+            var userId = self.model.data.session.user.id;
+            self.$data.isAdmin = app.author.id === userId;
         }
 
         // Fetch app
