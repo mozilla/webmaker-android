@@ -30,7 +30,7 @@
             <!-- TODO do these links need "prefix"/"suffix"? Should the /make/:id/detail be rerouted? -->
             <a class="btn action" href="/make/{{id}}?mode=edit">Open my app</a>
         </div>
-        <div v-show="!isAdmin">
+        <div v-show="!isAdmin" class="preview-buttons">
             <!-- TODO change mode for "remix" usecase -->
             <a class="btn action" href="/make/{{id}}?mode=play">Remix App</a>
             <a class="btn action" href="/make/{{id}}?mode=play">Open App</a>
