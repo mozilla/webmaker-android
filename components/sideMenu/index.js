@@ -25,6 +25,13 @@ module.exports = {
         });
     },
     methods: {
+        onDataClick: function (event) {
+            this.$on('menuFinishedClosing', function () {
+                this.$dispatch('sideMenuDataClick');
+            });
+
+            this.close();
+        },
         onShareClick: function (event) {
             this.$on('menuFinishedClosing', function () {
                 this.$dispatch('sideMenuShareClick');

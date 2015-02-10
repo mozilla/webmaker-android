@@ -107,6 +107,10 @@ module.exports = view.extend({
                 '/share?publish=true');
         });
 
+        self.$on('sideMenuDataClick', function (event) {
+            this.mode = 'data';
+        });
+
         self.$on('onConfirmClick', function (event) {
             console.warn('Deleting app!');
             self.removeApp();
