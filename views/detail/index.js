@@ -7,23 +7,38 @@ module.exports = view.extend({
         back: true,
         title: 'App'
     },
+    methods: {
+        onRemix: function (e) {
+            var self = this;
+            e.preventDefault();
+            self.$root.storage.remix(this.$data.id, function (data) {
+                self.page('/make/' + data.id);
+            });
+        }
+    },
     created: function () {
         var self = this;
         var id = self.$root.params.id;
 
         self.$data.id = id;
 
+        function setAdmin(app) {
+            return self.$data.isAdmin = app.author.id ===
+                self.model.data.session.user.id ? true : false;
+        }
+
         // Fetch app
         var app = self.$root.storage.getApp(id);
         if (app.data) {
             self.$root.isReady = true;
             self.$data.app = app.data;
+            setAdmin(app.data);
         }
+
         self.$on(id, function (val) {
             self.$root.isReady = true;
             self.$data.app = val;
-            self.$data.isAdmin = self.$data.app.author.id ===
-                self.model.data.session.guestId ? true : false;
+            setAdmin(val);
         });
     }
 });
