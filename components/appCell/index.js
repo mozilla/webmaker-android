@@ -3,7 +3,7 @@ var i18n = require('../../lib/i18n');
 module.exports = {
     className: 'app-cell',
     ready: function () {
-        this.constructedURL = (this.prefix ? this.prefix : '') + this['app-id'];
+        this.constructedURL = '/make/' + this['app-id'] + '/detail/';
     },
     methods: {
         onClick: function () {
@@ -13,7 +13,7 @@ module.exports = {
     data: {
         constructedURL: ''
     },
-    paramAttributes: ['prefix', 'app-id'],
+    paramAttributes: ['app-id'],
     template: require('./index.html'),
     computed: {
         guestKey: function () {
