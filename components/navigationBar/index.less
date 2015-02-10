@@ -26,6 +26,7 @@
     }
 
     a {
+        color: inherit;
         cursor: pointer;
     }
 
@@ -53,18 +54,16 @@
     }
 
     .nav-btn {
-        // position: absolute;
-        // top: 0;
-        // min-width: 40px;
-
         background: none;
         color: @white;
         border: none;
         outline: none;
         padding: 20px;
-        line-height: (@header-height - 10s);
         text-decoration: none;
         font-size: 13px;
+        .ion {
+            font-size: 20px;
+        }
         &.nav-btn-icon {
             font-size: inherit;
             padding-top: 0;
@@ -95,10 +94,10 @@
 
     &.nav-alt {
         h1:extend(.navigationBar h1) {
-            color: @highlight;
+            color: @white;
         }
         .nav-btn:extend(.navigationBar .nav-btn) {
-            color: @highlight;
+            color: @white;
         }
     }
 }

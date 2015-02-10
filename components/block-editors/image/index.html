@@ -4,17 +4,14 @@
     style="background-image: url( {{value}} );">
     <div class="image-picker-btns" v-show="editorOpen" v-on="click: cancelEditor">
         <button v-on="click: getImage($event, 'CAMERA')">
-            <span class="fa fa-camera fa-fw"></span>
+            <span class="ion ion-android-camera"></span>
         </button>
         <button v-on="click: getImage($event, 'PHOTOLIBRARY')">
-            <span class="fa fa-picture-o fa-fw"></span>
-        </button>
-        <button v-on="click: getUrl">
-            <span class="fa fa-code fa-fw"></span>
+            <span class="ion ion-images"></span>
         </button>
     </div>
     <button v-show="!editorOpen" class="open-editor" v-on="click: openEditor">
-        <span class="fa fa-camera fa-fw"></span>
+        <span class="ion ion-android-camera fa-fw"></span>
     </button>
 </div>
 

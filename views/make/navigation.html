@@ -1,5 +1,5 @@
 <div>
-  <a class="nav-btn" v-on="click: showMenu" v-if="mode !== 'settings'"><span class="fa fa-bars"></span></a>
+  <a class="nav-btn" v-on="click: showMenu" v-if="mode !== 'settings'"><span class="ion ion-android-menu"></span></a>
   <a class="nav-btn" v-on="click: goBack" v-if="mode == 'settings'">{{ 'Cancel' | i18n}}</a>
 </div>
 
@@ -7,7 +7,7 @@
     <span v-if="mode === 'settings'">{{ 'App Name & Icon' | i18n}}</span>
     <a class="edit-app-name" v-if="mode === 'edit'" v-on="click: changeMode('settings')" v-if="mode !== 'settings'">
       {{app.name}}
-      <span class="fa fa-pencil"></span>
+      <span class="ion ion-edit"></span>
     </a>
     <span v-if="mode === 'play'">
       {{app.name}}
@@ -16,6 +16,6 @@
 
 <div>
     <a href="/make/{{app.id}}/add" class="nav-btn" v-if="mode === 'edit'">
-      <span class="fa fa-plus"></span>
+      <span class="ion ion-android-add"></span>
     </a>
 </div>

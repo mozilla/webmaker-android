@@ -15,7 +15,7 @@
     "event-emitter": "0.3.1",
     "fastclick": "1.0.3",
     "firebase": "2.0.4",
-    "font-awesome": "4.2.0",
+    "webmaker-app-icons": "git://github.com/k88hudson/ionicons#webmaker-app",
     "localforage": "1.1.1",
     "lodash.throttle": "2.4.1",
     "page": "1.5.0",
