@@ -1,77 +1,78 @@
+@btnInsetShadow: inset 0px 2px 5px rgba(0,0,0,0.2);
+
 .btn {
-    margin: 0;
-    padding: 10px;
-    box-shadow: none;
-    background: white;
-    border: 1px solid @mediumGrey;
-    color: @mediumGrey;
-    display: inline-block;
+    display: block;
+    position: relative;
+    width: 100%;
+    padding: 15px;
+    padding-bottom: 12px;
+    font-family: 'Fira Sans', sans-serif;
     font-size: 14px;
-    text-decoration: none;
-    display: inline-flex;
-    align-items: center;
-    justify-content: center;
+    font-weight: 400;  
+    color: white;
+    line-height: 1;
+    border-radius: 4px;
+    border: medium none;
+    outline: medium none;
+    cursor: pointer;
+
+    background-color: @btnBlue;
+    box-shadow: 0px 3px @btnBlueBorder;
+
+    &.btn-flat {
+        display: block;
+        border: 0;
+        border-radius: 0;
+        flex-grow: 1;
+        padding-top: 1em;
+        padding-bottom: 1em;
+        box-shadow: none;
+
+        &:active {
+            top: 0px;
+            box-shadow: none;
+        }
+    }
+
+    &:active {
+        background-color: @btnBluePressed;
+        box-shadow: @btnInsetShadow;
+        top: 3px;
+    }
 
     &.btn-block {
         display: flex;
         text-align: center;
         width: 100%;
     }
-    &.btn-dark {
-        background: @turquoise;
-        border-color: @turquoise;
-        color: white;
-    }
-    &.btn-add {
-        .btn-dark;
-    }
-    &.btn-share {
-        .btn-dark;
-    }
-}
 
-.btn-next {
-    display: block;
-    position: absolute;
-    width: 100%;
-    height: 50px;
-    bottom: 0;
-    left: 0;
+    &.btn-delete {
+        background-color: @btnRed;
+        box-shadow: 0px 3px @btnRedBorder;
 
-    padding: 14px 0;
-    color: @turquoise;
-    border: none;
-    border-radius: 0;
-    background-image: none;
-    background-color: #FFF;
-    text-align: center;
-    text-decoration: none;
-}
+        &:active {
+            background-color: @btnRedPressed;
+            box-shadow: @btnInsetShadow;
+            top: 3px;
+        }
+    }
 
-.btn-delete {
-    border-top: solid 1px #c1cdd5;
-    margin-top: 10px;
-    padding-top: 18px;
-    text-align: center;
-    cursor: pointer;
-    button {
-        font-size: 16px;
-        background: transparent;
-        padding: 0px;
-        margin: 0px;
-        color: @turquoise;
-        border: none;
-        display: inline-block;
-        span {
-            position: relative;
-            top: -1px;
+    &.btn-cancel {
+        background-color: @btnGrey;
+        box-shadow: 0px 3px @btnGreyBorder;
+        color: #A2A2A2;
+
+        &:active {
+            background-color: @btnGreyPressed;
+            box-shadow: @btnInsetShadow;
+            top: 3px;
         }
     }
 }
 
 /*********************************************************
-* Toggle
-*/
+ * Toggle
+ */
 .btn-toggle {
     margin: 10px 32px;
     height: @toggle-height;
@@ -118,11 +119,11 @@
         }
         &.btn-toggle-on {
             z-index: 1;
-            background-color: white;
+            background-color: @white;
             color: @turquoise;
             &::before,
             &::after {
-                background-color: white;
+                background-color: @white;
             }
         }
     }
