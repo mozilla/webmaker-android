@@ -1,30 +1,15 @@
-<div v-if="isInteractive" v-component="switch" v-with="value: sortOldest, options: sortOptions"></div>
-<div v-if="isInteractive" class="dataRepresentationSelectAll">
-    <input style="display: none;" id="dataRepresentationDataSetMarkSelected-All" type="checkbox" name="markAllSelected" v-model="allSelected">
-    <label for="dataRepresentationDataSetMarkSelected-All">{{ 'Select all' | i18n }}</label>
-    <label for="dataRepresentationDataSetMarkSelected-All" class="tip tip-checkmark ion-android-done"></label>
+<div v-repeat="data: dataSet | orderBy sortKey !sortOldest" class="dataRepresentationDataSet" v-class="unread: !data.isRead && isInteractive, interactive: isInteractive">
+    <div class="header" v-if="isInteractive">
+        <div class="date">{{formatTime(data.submitted)}}</div>
+        <button><span class="ion ion-android-delete"></span></button>
+    </div>
+    <div class="content">
+        <div v-repeat="dataBlock: data.dataBlocks">
+            <div class="label">{{dataBlock.label}}</div>
+            <div class="value">{{dataBlock.value}}</div>
+        </div>
+    </div>
 </div>
-<table v-repeat="data: dataSet | orderBy sortKey !sortOldest" class="dataRepresentationDataSet" v-class="unread: !data.isRead && isInteractive, interactive: isInteractive">
-    <thead v-if="isInteractive">
-        <tr>
-            <th>Submitted {{formatUnixTime(data.submitted)}}</th>
-            <th>
-                <input style="display: none;" id="dataRepresentationDataSetMarkSelected-{{$index}}" type="checkbox" name="markSelected" v-model="data.isSelected">
-                <label for="dataRepresentationDataSetMarkSelected-{{$index}}" class="tip tip-checkmark ion-android-done"></label>
-            </th>
-        </tr>
-    </thead>
-    <tbody>
-        <tr>
-            <td>{{ 'Time' | i18n }}</td>
-            <td>{{formatUnixTime(data.submitted)}}</td>
-        </tr>
-        <tr v-repeat="dataBlock: data.dataBlocks">
-            <td>{{dataBlock.label}}</td>
-            <td>{{dataBlock.value}}</td>
-        </tr>
-    </tbody>
-</table>
 
 <div class="noDataInfo" v-if="!dataSet.length">{{ 'No Data available' | i18n }}</div>
 

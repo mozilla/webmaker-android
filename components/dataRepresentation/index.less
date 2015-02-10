@@ -2,65 +2,49 @@
     @borderColor: @mediumGrey;
     @dataUnread: @lightGrey;
     @dataRead: @extraGrey;
+    background: #ebeff7;
+    padding: 10px;
 
-    table.dataRepresentationDataSet {
-        width: 100%;
-        border-top: 1px solid @borderColor;
-        background-color: @dataRead;
+    .dataRepresentationDataSet {
+        margin-bottom: 10px;
 
-        &.unread {
-            background-color: @dataUnread;
-        }
+        .header {
+            background-color: @turquoise;
+            padding: 10px;
+            color: @white;
+            border-top-right-radius: 4px;
+            border-top-left-radius: 4px;
+            font-size: 13px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
 
-        &:last-of-type
-        {
-            border-bottom: 1px solid @borderColor;
-            &.interactive {
-                margin-bottom: -46px;
-            }
-        }
+            button {
+                background: none;
+                border: 0;
+                border-radius: 50%;
+                font-size: 18px;
+                color: @turquoise;
+                background-color: @white;
 
-        th, td
-        {
-            font-size: 14px;
-            color: @darkGrey;
-        }
-
-        th {
-            padding: 10px 14px;
-            font-weight: medium;
-        }
-
-        td {
-            padding: 0 14px;
-            line-height: 16.5px;
-        }
-
-        thead {
-            border-bottom: 1px solid @borderColor;
-
-            th {
-                &:first-of-type {
-                    text-align: left;
-                }
-                &:last-of-type {
-                    text-align: right;
-                    float: right;
+                span {
+                    padding: 0 3px;
                 }
             }
         }
 
-        tbody {
-            display: block;
-            padding: 8px 0;
+        .content {
+            background-color: @white;
+            padding: 10px;
+            border-bottom-right-radius: 4px;
+            border-bottom-left-radius: 4px;
+            border-bottom: 2px solid @mediumGrey;
 
-            td {
-                display: block;
-                margin: 8px 0;
-
-                &:last-of-type {
-                    color: @mediumGrey;
-                }
+            .label {
+                font-size: 13px;
+            }
+            .value {
+                font-size: 22px;
             }
         }
     }
@@ -68,32 +52,6 @@
     > #switch {
         margin: 14px 0;
         padding: 0 14px;
-    }
-
-    .dataRepresentationSelectAll {
-        width: 100%;
-        padding: 10px 14px;
-        margin-bottom: -1px;
-
-        border-top: 1px solid @borderColor;
-        border-bottom: 1px solid @borderColor;
-        background-color: @dataRead;
-
-        text-align: right;
-        font-weight: medium;
-
-        display: table;
-
-        label {
-            user-select: none;
-            -moz-user-select: none;
-            vertical-align: middle;
-
-            &:not(.tip) {
-                display: table-cell;
-                width: 100%;
-            }
-        }
     }
 
     .dataRepresentationActionButton {

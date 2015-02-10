@@ -1,3 +1,5 @@
+var moment = require('moment');
+
 var dataRepresentation = module.exports = {
     id: 'dataRepresentation',
     template: require('./index.html'),
@@ -10,16 +12,8 @@ var dataRepresentation = module.exports = {
     methods: Object.create(null)
 };
 
-dataRepresentation.methods.formatUnixTime = function (unix) {
-    var date = new Date(unix);
-    var options = {
-        year: 'numeric',
-        month: 'numeric',
-        day: 'numeric',
-        hour: '2-digit',
-        minute: '2-digit'
-    };
-    return date.toLocaleTimeString('en-US', options);
+dataRepresentation.methods.formatTime = function (unix) {
+    return moment(unix).format('MMMM D, YYYY [at] H:mma');
 };
 
 dataRepresentation.methods.actionButton = function (e) {
