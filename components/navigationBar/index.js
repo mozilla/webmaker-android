@@ -1,4 +1,5 @@
 var page = require('page');
+var Hammer = require('hammerjs');
 
 module.exports = {
     id: 'navigationBar',
@@ -15,5 +16,18 @@ module.exports = {
             e.preventDefault();
             global.history.back();
         }
+    },
+    ready: function () {
+        var recognizer = new Hammer.Manager(this.$el);
+        recognizer.add(new Hammer.Press({
+            event: 'press',
+            pointer: 1,
+            threshold: 5,
+            time: 2000
+        }));
+
+        recognizer.on('press', function(event) {
+            page('/healthcheck');
+        });
     }
 };
