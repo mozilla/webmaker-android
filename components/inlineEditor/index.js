@@ -63,14 +63,22 @@ module.exports = {
                 }
             }, 1);
         },
-        stopEditing: function () {
+        onEditClick: function (e) {
+            var type = this.$data.app.blocks[this.$index].type;
+            if (type === 'image') {
+                e.preventDefault();
+                this.$dispatch('openModalPrompt', {type: 'imagePicker'});
+                this.$dispatch($broadcast('openShim');
+            }
+            this.stopEditing();
+        },
+        stopEditing: function (e) {
             this.isEditMode = false;
             this.$dispatch('inlineEditorStopping', {index: this.$index});
             this.$el.classList.remove('active');
         },
         trash: function () {
             var self = this;
-
             self.stopEditing();
 
             setTimeout(function () {

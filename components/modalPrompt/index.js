@@ -20,7 +20,6 @@ module.exports = {
             this.$data.type = type;
             this.isOpen = true;
             this.$el.classList.add('active');
-
         },
         close: function (event) {
             this.isOpen = false;
