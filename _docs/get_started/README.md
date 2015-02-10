@@ -29,6 +29,8 @@ To start developing, all you need to do is run the following in the `webmaker-ap
 
 ```bash
 npm install
+npm install -g browserify
+npm install -g watchify
 gulp build
 gulp dev
 ```
