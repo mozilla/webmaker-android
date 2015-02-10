@@ -3,24 +3,43 @@ var less = require('gulp-less');
 var sourcemaps = require('gulp-sourcemaps');
 var minifyCSS = require('gulp-minify-css');
 var autoprefixer = require('gulp-autoprefixer');
+var glob = require('glob');
 var handleErrors = require('./error');
+var path = require('path');
+var fs = require('fs-extra');
+
+var SRC_FILE = './styles/common.less';
+var DEST_DIR = './build/styles';
+var PUBLISH_DIR = './build/publish-assets';
+
+function bundleLess() {
+    var files = glob.sync('./{views,components,blocks}/**/*.less');
+
+    var file = '';
+    for (var i in files) {
+        file += "@import '" + files[i] + "'; \n";
+    }
+    fs.writeFileSync(path.join(DEST_DIR, 'bundle.less'), file);
+}
 
 module.exports = function() {
-    var src = gulp.src('./build/styles/common.less');
-    var dest = gulp.dest('./build/styles');
-    var stream = src
+
+    fs.removeSync(DEST_DIR);
+    fs.ensureDirSync(DEST_DIR);
+
+    bundleLess();
+
+    return gulp.src(SRC_FILE)
         .pipe(handleErrors())
         .pipe(sourcemaps.init())
         .pipe(less())
-        .pipe(minifyCSS({keepBreaks:false}))
+        // .pipe(minifyCSS({keepBreaks:false}))
         .pipe(autoprefixer({
             browsers: ['last 2 versions', 'android >= 4.2'],
             cascade: false,
             remove: false
         }))
         .pipe(sourcemaps.write())
-        .pipe(dest)
-        .pipe(gulp.dest('./build/publish-assets'));
-
-    return stream;
+        .pipe(gulp.dest(DEST_DIR))
+        .pipe(gulp.dest(PUBLISH_DIR));
 };

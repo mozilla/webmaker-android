@@ -1,5 +1,6 @@
 var gulp = require('gulp');
 var webserver = require('gulp-webserver');
+var sequence = require('run-sequence');
 
 var config = require('./gulp/config');
 var clean = require('./gulp/clean');
@@ -18,55 +19,54 @@ var unit = require('./gulp/unit');
 // Config
 gulp.task('config', config);
 
-// Build
-gulp.task('clean', ['config'], clean);
-gulp.task('download-locales', ['clean'], downloadLocales);
-gulp.task('locale', ['download-locales'], locale);
-gulp.task('template', ['config', 'clean'], template);
+// Prep and static assets
+gulp.task('clean', clean);
+gulp.task('locale', locale);
+gulp.task('download-locales', downloadLocales)
+gulp.task('build-locales', function (done) {
+   sequence('download-locales', 'locale', done);
+});
+gulp.task('template', ['config'], template);
+gulp.task('publish-assets', publish);
+gulp.task('build-static', function (done) {
+    sequence('clean', 'config', ['download-locales', 'publish-assets', 'template'], done);
+});
 
+// Browserify
+
+// JS
 var browserifyMain = browserify('./lib/index.js', './build/index.js');
-var browserifyPublish = browserify('./publish/index.js', './build/publish-assets/index.js')
+var browserifyPublish = browserify('./publish/index.js', './build/publish-assets/index.js');
 
-gulp.task('less', ['clean'], less);
-gulp.task('browserify', ['clean', 'locale'], browserifyMain);
-gulp.task('browserify-publish', ['clean', 'locale', 'publish'], browserifyPublish);
-gulp.task('publish', ['less', 'locale'], publish);
-gulp.task('build', [
-    'less',
-    'browserify',
-    'browserify-publish',
-    'publish',
-    'template'
-], cache);
+gulp.task('browserify', ['build-static'], browserifyMain);
+gulp.task('browserify-publish', ['build-static'], browserifyPublish);
 
-gulp.task('re-locale', ['clean'], locale);
-gulp.task('re-browserify', ['clean', 're-locale'], browserifyMain);
-gulp.task('re-browserify-publish', ['clean', 're-locale', 're-publish'], browserifyPublish);
-gulp.task('re-publish', ['less', 're-locale'], publish);
-gulp.task('re-build', [
-    'less',
-    're-browserify',
-    're-browserify-publish',
-    're-publish',
-    'template'
-], cache);
+gulp.task('watchify', ['build-static'], browserify('./lib/index.js', './build/index.js', {sourceMaps: true, watch: true}));
+gulp.task('watchify-publish', ['build-static'], browserify('./publish/index.js', './build/publish-assets/index.js', {sourceMaps: true, watch: true}));
+
+
+// Less
+gulp.task('less', less);
+gulp.task('watch-less', ['less'], function () {
+    gulp.watch('./{styles,components,blocks,views}/**/*.less', ['less']);
+});
+
+// Build
+gulp.task('cache', cache);
+gulp.task('build', function (done) {
+    sequence('build-static', ['browserify', 'browserify-publish', 'less'], 'cache', done);
+});
+
+gulp.task('watch', function (done) {
+    sequence('build-static', ['watchify', 'watchify-publish', 'watch-less'], 'cache', done);
+});
 
 // Test
 gulp.task('jshint', jshint);
 gulp.task('jscs', jscs);
 gulp.task('lint', ['jshint', 'jscs']);
-gulp.task('unit', ['re-build'], unit);
+gulp.task('unit', ['build'], unit);
 gulp.task('test', ['lint', 'unit']);
-
-// Watch
-gulp.task('watch', ['build'], function () {
-    gulp.watch([
-        './{blocks,components,lib,static,views,publish}/**/*.{js,json,less,html}',
-        './locale/en_US/*.json',
-        './config/*.env',
-        '.env'
-    ],['re-build']);
-});
 
 // Serve + Watch
 gulp.task('dev', ['watch'], function() {

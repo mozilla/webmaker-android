@@ -1,20 +1,10 @@
 var fs = require('fs-extra');
-var glob = require('glob');
 var gulp = require('gulp');
 
-module.exports = function (callback) {
+module.exports = function (done) {
     fs.removeSync('./build');
     fs.mkdirsSync('build');
     fs.copySync('./static/.', './build/');
     fs.copySync('./node_modules/webmaker-app-icons/fonts/.', './build/fonts');
-
-    glob('./{views,components,blocks}/**/*.less', function (err, files) {
-        if (err) return callback(err);
-
-        var file = '';
-        for (var i in files) {
-            file += "@import '" + files[i] + "'; \n";
-        }
-        fs.writeFile('./build/styles/bundle.less', file, callback);
-    });
+    done();
 };
