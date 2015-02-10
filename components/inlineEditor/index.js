@@ -67,10 +67,10 @@ module.exports = {
             var type = this.$data.app.blocks[this.$index].type;
             if (type === 'image') {
                 e.preventDefault();
-                this.$dispatch('openModalPrompt', {type: 'imagePicker'});
-                this.$dispatch($broadcast('openShim');
+                this.$data.showImageEditor = true;
+            } else {
+                this.stopEditing();
             }
-            this.stopEditing();
         },
         stopEditing: function (e) {
             this.isEditMode = false;
