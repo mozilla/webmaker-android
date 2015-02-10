@@ -1,40 +1,14 @@
 <nav v-component="navigationBar" class="nav-default"></nav>
 
-<!-- <div id="profile-header">
-  <div class="profile-avatar" style="background-image: url({{user.avatar}});"></div>
-  <div class="profile-info" v-class="profile-info-padded: user.username" >{{ user.username }}</div>
-</div> -->
-
 <div class="profile-details">
+    <ul class="list-cell">
+        <li v-component="appCell" v-repeat="app: myApps" prefix="/make/" app-id="{{ app.id }}"></li>
+    </ul>
 
-   <!--  <form class="profile-inputs">
-        <div v-if="!editing" v-bind-i18n-html="'name from location'"></div>
-        <div v-if="editing" style="height: 100%;">
-            <input name="name" placeholder="{{ 'Your name' | i18n }}" type="text" v-model="name">
-            <input name="location" placeholder="{{ 'Your location' | i18n }}" type="text" v-model="location">
-            <button type="button" v-on="click: save()">Save</button><button v-on="click: cancel()" type="button">{{ 'Cancel' |i18n }}</button>
-        </div>
-    </form>
-    <i v-if="!editing" class="fa fa-pencil fa-2x edit-icon" v-on="click: editing = true"></i> -->
-
-  <ul class="list-cell">
-      <lh>{{ 'My Apps' | i18n }}</lh>
-      <li v-component="appCell" v-repeat="app: myApps" prefix="/make/" app-id="{{ app.id }}"></li>
-  </ul>
-  <div class="no-apps" v-show="myApps.length == 0">
-    <p>{{ 'No Apps Message' | i18n }}</p>
-    <a href="/templates" class="btn btn-block btn-dark">{{ 'Make an App' | i18n }}</a>
-  </div>
-
-  <ul class="menu">
-    <li class="form-group">
-      <a href="#" v-on="click: clean">{{ 'Delete my Apps' | i18n }}</a>
-    </li>
-    <li class="form-group">
-      <a href="/healthcheck">Developer</a>
-    </li>
-  </ul>
-
+    <div class="no-apps" v-show="myApps.length == 0">
+        <p>{{ 'No Apps Message' | i18n }}</p>
+        <a href="/templates" class="btn btn-block btn-dark">{{ 'Make an App' | i18n }}</a>
+    </div>
 </div>
 
 <div v-component="tabBar"></div>
