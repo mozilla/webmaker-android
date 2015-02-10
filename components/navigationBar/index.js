@@ -26,7 +26,7 @@ module.exports = {
             time: 2000
         }));
 
-        recognizer.on('press', function(event) {
+        recognizer.on('press', function (event) {
             page('/healthcheck');
         });
     }
