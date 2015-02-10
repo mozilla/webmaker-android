@@ -4,21 +4,12 @@ module.exports = view.extend({
     id: 'profile',
     template: require('./index.html'),
     data: {
-        title: 'My Profile',
+        title: 'My Apps',
         myApps: []
     },
     computed: {
         user: function () {
             return this.model.data.session.user;
-        }
-    },
-    methods: {
-        clean: function (e) {
-            var self = this;
-            self.$data.myApps.forEach(function (app) {
-                self.$root.storage.getApp(app.id).removeApp();
-            });
-            self.$data.myApps = [];
         }
     },
     ready: function () {

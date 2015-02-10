@@ -15,13 +15,14 @@
     "event-emitter": "0.3.1",
     "fastclick": "1.0.3",
     "firebase": "2.0.4",
-    "webmaker-app-icons": "git://github.com/k88hudson/ionicons#webmaker-app",
+    "hammerjs": "2.0.4",
     "localforage": "1.1.1",
     "lodash.throttle": "2.4.1",
     "page": "1.5.0",
     "sortable": "git://github.com/k88hudson/Sortable#webmaker-app",
     "vue": "git://github.com/k88hudson/vue#csp-10.6",
     "watchjs": "0.0.0",
+    "webmaker-app-icons": "git://github.com/k88hudson/ionicons#webmaker-app",
     "xhr": "1.16.1"
   },
   "devDependencies": {
