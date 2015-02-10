@@ -6,6 +6,7 @@ module.exports = function (callback) {
     fs.removeSync('./build');
     fs.mkdirsSync('build');
     fs.copySync('./static/.', './build/');
+    fs.copySync('./node_modules/webmaker-app-icons/fonts/.', './build/fonts');
 
     glob('./{views,components,blocks}/**/*.less', function (err, files) {
         if (err) return callback(err);

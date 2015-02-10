@@ -2,9 +2,9 @@
     @border-radius: 30px;
     @height: 50px;
     width: 100%;
-    height: @height;
     user-select:none;
     -moz-user-select:none;
+    text-transform: uppercase;
 
     input[type=checkbox] {
         display: none;
@@ -14,12 +14,11 @@
         display: block;
         overflow: hidden;
         cursor: pointer;
-        border: 1px solid @turquoise !important;
-        background-color: @turquoise !important;
-        border-radius: @border-radius;
+        background-color: @highlight;
         height: 100%;
         position: relative;
         padding: 0;
+        margin-bottom: 0;
 
         .options {
             display: block;
@@ -27,48 +26,35 @@
             height: 100%;
             margin-left: 0;
 
-            & > .before, & > .after {
+            span {
                 display: block;
                 float: left;
                 width: 50%;
                 height: 100%;
-                padding: 0 !important;
+                padding: 0;
                 line-height: @height;
                 color: @white;
                 text-align: center;
                 position: relative;
                 z-index: 2;
-                transition: all 0.2s ease-in 0.0s;
+                color: @darkHighlight;
             }
         }
 
         .indicator {
             display: block;
             width: 50%;
-            border-radius: @border-radius;
             position: absolute;
             top: 0;
             bottom: 0;
             left: 0%;
-            background-color: @white;
             z-index: 1;
-            transition: left 0.3s ease-out 0s;
+            transition: transform 0.3s ease-out;
+            border-bottom: 6px solid @darkHighlight;
         }
     }
 
     input[type=checkbox]:checked + label > .indicator {
-        left: 50%;
-    }
-
-    input[type=checkbox]:checked + label > .options > .before,
-    input[type=checkbox]:not(:checked) + label > .options > .after {
-        color: @white;
-        opacity: 0.5;
-    }
-
-    input[type=checkbox]:checked + label > .options > .after,
-    input[type=checkbox]:not(:checked) + label > .options > .before {
-        color: @turquoise;
-        opacity: 1;
+        transform: translate3d(100%, 0, 0);
     }
 }
