@@ -1,21 +1,23 @@
 var gulp = require('gulp');
 
-var file = require('./gulp-file');
-var merge = require('merge-stream');
-
 var templates = require('../lib/templates.json');
 var json = templates[2];
 
-module.exports = function () {
+var fs = require('fs-extra');
+var path = require('path');
+
+module.exports = function (done) {
     var src = './publish/index.js';
     var dest = './build/publish-assets';
 
-    var html = gulp.src('./publish/index.html')
-        .pipe(gulp.dest(dest));
+    fs.ensureDirSync(dest);
+
+    // Copy HTML
+    fs.copySync('./publish/index.html', path.join(dest, 'index.html'));
 
     // Just for example
     var string = 'window.App=' + JSON.stringify(json) + ';';
-    var app = file('app.js', string).pipe(gulp.dest(dest));
+    fs.writeFileSync(path.join(dest, 'app.js'));
 
-    return merge(html, app);
+    done();
 };
