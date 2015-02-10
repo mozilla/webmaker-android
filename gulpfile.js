@@ -51,14 +51,6 @@ gulp.task('watch-less', ['less'], function () {
     gulp.watch('./{styles,components,blocks,views}/**/*.less', ['less']);
 });
 
-
-// Test
-gulp.task('jshint', jshint);
-gulp.task('jscs', jscs);
-gulp.task('lint', ['jshint', 'jscs']);
-gulp.task('unit', ['re-build'], unit);
-gulp.task('test', ['lint', 'unit']);
-
 // Build
 gulp.task('cache', cache);
 gulp.task('build', function (done) {
@@ -69,6 +61,12 @@ gulp.task('watch', function (done) {
     sequence('build-static', ['watchify', 'watchify-publish', 'watch-less'], 'cache', done);
 });
 
+// Test
+gulp.task('jshint', jshint);
+gulp.task('jscs', jscs);
+gulp.task('lint', ['jshint', 'jscs']);
+gulp.task('unit', ['build'], unit);
+gulp.task('test', ['lint', 'unit']);
 
 // Serve + Watch
 gulp.task('dev', ['watch'], function() {
