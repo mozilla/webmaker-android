@@ -12,6 +12,7 @@ module.exports = {
             this.cancelIntercept = this.onCancel.bind(this);
             document.addEventListener('backbutton',
                 this.cancelIntercept, true);
+            this.disabled = true;
         });
     },
     computed: {
@@ -34,6 +35,10 @@ module.exports = {
     methods: {
         selectColor: function (color) {
             this.selectedColor = color;
+            this.enableSave();
+        },
+        enableSave: function () {
+            this.disabled = false;
         },
         onSave: function (e) {
             e.preventDefault();
