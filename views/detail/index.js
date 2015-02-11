@@ -22,23 +22,18 @@ module.exports = view.extend({
 
         self.$data.id = id;
 
-        function setAdmin(app) {
-            var userId = self.model.data.session.user.id;
-            self.$data.isAdmin = app.author.id === userId;
-        }
+        self.$data.isAdmin = self.$root.params.role === 'admin';
 
         // Fetch app
         var app = self.$root.storage.getApp(id);
         if (app.data) {
             self.$root.isReady = true;
             self.$data.app = app.data;
-            setAdmin(app.data);
         }
 
         self.$on(id, function (val) {
             self.$root.isReady = true;
             self.$data.app = val;
-            setAdmin(val);
         });
     }
 });
