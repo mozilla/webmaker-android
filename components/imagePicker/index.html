@@ -1,0 +1,10 @@
+<div class="image-picker-frame">
+    <div class="image-picker-btns" v-on="click: cancelEditor">
+        <button v-on="click: getImage($event, 'CAMERA')">
+            <span class="ion ion-android-camera"></span>
+        </button>
+        <button v-on="click: getImage($event, 'PHOTOLIBRARY')">
+            <span class="ion ion-images"></span>
+        </button>
+    </div>
+</div>
