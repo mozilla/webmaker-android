@@ -1,7 +1,7 @@
 <div>
   <a class="nav-btn" v-on="click: showMenu" v-if="mode !== 'settings'"><span class="ion ion-android-menu"></span></a>
   <a class="nav-btn" v-on="click: goBack" v-if="mode == 'settings'">{{ 'Cancel' | i18n}}</a>
-  <a class="save-btn" v-on="click: onSave" v-if="mode == 'settings'"><span class="ion ion-checkmark-round"></span></a>
+  <a class="save-btn" v-class="disabled: saveDisabled" v-on="click: onSave" v-if="mode == 'settings'"><span class="ion ion-checkmark-round"></span></a>
 </div>
 
 <h1>

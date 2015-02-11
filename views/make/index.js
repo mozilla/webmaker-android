@@ -48,7 +48,14 @@ module.exports = view.extend({
                 this.page('/profile');
             }
         },
+        enableSave: function () {
+            this.saveDisabled = false;
+        },
+        onSave: function (e) {
+            this.goBack(e);
+        },
         updateName: throttle(function (newVal) {
+            this.enableSave();
             app.update({
                 name: newVal
             });
@@ -72,6 +79,7 @@ module.exports = view.extend({
             if (index > maxIndex) {
                 index = 0;
             }
+            this.enableSave();
             app.update({
                 iconImage: data.iconImages[index]
             });
@@ -79,6 +87,7 @@ module.exports = view.extend({
             this.$data.currentIconIndex = index;
         },
         onSelectIconColor: function (color) {
+            this.enableSave();
             app.update({
                 iconColor: color
             });
@@ -127,6 +136,8 @@ module.exports = view.extend({
         var id = self.$root.$data.params.id;
         var storage = self.$root.storage;
         var isDragging = false;
+
+        self.saveDisabled = true;
 
         app = storage.getApp(id);
 
@@ -203,6 +214,7 @@ module.exports = view.extend({
             if (mode === 'settings' && self.$data.mode === 'settings') {
                 mode = 'edit';
             }
+            self.saveDisabled = true;
             self.$data.mode = mode;
             self.$root.isEditing = self.$data.mode === 'edit';
         };
