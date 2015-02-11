@@ -9,13 +9,13 @@ module.exports = {
             }
         });
 
-        var ref = self.$root.storage._firebase.child(self.app.id + '/blocks/' + this.$index + '/attributes/src');
-        self.$on('imagePicked', function (uri) {
-            ref.update({
-                value: uri
+        if (this.$data.app.blocks[this.$index].type === 'image') {
+            var ref = self.$root.storage._firebase.child(self.app.id + '/blocks/' + this.$index + '/attributes/src');
+            self.$on('imagePicked', function (uri) {
+                ref.update({ value: uri });
+                self.stopEditing();
             });
-            self.stopEditing();
-        });
+        }
 
         self.$on('onShimClick', function (event) {
             self.stopEditing();
