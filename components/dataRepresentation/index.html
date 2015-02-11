@@ -14,6 +14,13 @@
     </div>
 </div>
 
-<div class="noDataInfo" v-if="!dataSet.length">{{ 'No Data available' | i18n }}</div>
+<div class="noDataInfo" v-if="!dataSet.length">
+    <p class="head">No data has been stored yet!</p>
+    <div class="glyphs">
+        <img src="images/counter-grey.svg">
+        <img src="images/submit-grey.svg">
+    </div>
+    <p class="sub">If you'd like to let users share data with you, try adding a Counter and a Submit button to your app.</p>
+</div>
 
 <button v-if="isInteractive && countSelected >= 1" type="button" class="dataRepresentationActionButton btn" v-class="btn-share: countSelected === 0, btn-remove: countSelected >= 1, " v-on="click: actionButton()"></button>

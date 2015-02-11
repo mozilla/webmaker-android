@@ -2,7 +2,6 @@
     @borderColor: @mediumGrey;
     @dataUnread: @lightGrey;
     @dataRead: @extraGrey;
-    background: #ebeff7;
     padding: 10px;
 
     .dataRepresentationDataSet {
@@ -74,26 +73,34 @@
     }
 
     .noDataInfo {
-        @loadingIndicatorSize: 20px;
-        border-bottom: 1px solid @borderColor;
-        border-top: 1px solid @borderColor;
-        margin-top: -1px;
-        padding: 10px 14px;
-        min-height: 2 * 10px + @loadingIndicatorSize;
-        font-size: 14px;
-        color: @darkGrey;
+        text-align: center;
+        padding: 0 35px;
 
-        display: table;
-        width: 100%;
-
-        > * {
-            display: table-cell;
-            vertical-align: middle;
+        .head {
+            color: @darkGrey;
+            margin: 18px 0;
         }
 
-        > #loadingIndicator {
-            width: @loadingIndicatorSize; height: @loadingIndicatorSize;
-            float: right;
+        .glyphs {
+            width: 60%;
+            max-width: 160px;
+            margin: auto;
+            display: flex;
+            justify-content: space-around;
+
+            img {
+                width: 62px;
+                height: 62px;
+                display: block;
+                padding: 0 5px;
+            }
+        }
+
+        .sub {
+            color: @mediumGrey;
+            font-size: 14px;
+            margin: 20px 0;
+            line-height: 1.666;
         }
     }
 }
