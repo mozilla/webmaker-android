@@ -12,8 +12,7 @@ module.exports = {
         });
     },
     partials: {
-        delete: require('./delete.html'),
-        imagePicker: require('./image-picker.html')
+        delete: require('./delete.html')
     },
     methods: {
         open: function (type) {
