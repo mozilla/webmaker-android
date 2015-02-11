@@ -1,9 +1,7 @@
 {
-    "version": "1.0.0",
+    "version": "0.0.1",
     "name": "Webmaker",
-    "origin": "app://webmaker.org",
-    "launch_path": "/index.html",
-    "description": "",
+    "description": "An app for creating and sharing apps",
     "icons": {
         "32": "/images/icon32.png",
         "64": "/images/icon64.png",
@@ -18,6 +16,12 @@
     "installs_allowed_from": [
         "*"
     ],
-    "permissions": {},
-    "appcache_path": "/manifest.appcache"
+    "type": "privileged",
+    "launch_path": "/index.html",
+    "permissions": {
+        "contacts": {
+           "access": "readwrite",
+           "description": "Sharing apps you create"
+       }
+    }
 }
