@@ -10,7 +10,8 @@ module.exports = {
         });
 
         if (this.$data.app.blocks[this.$index].type === 'image') {
-            var ref = self.$root.storage._firebase.child(self.app.id + '/blocks/' + this.$index + '/attributes/src');
+            var url = self.app.id + '/blocks/' + this.$index + '/attributes/src';
+            var ref = self.$root.storage._firebase.child(url);
             self.$on('imagePicked', function (uri) {
                 ref.update({ value: uri });
                 self.stopEditing();
