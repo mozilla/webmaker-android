@@ -11,6 +11,14 @@
     "message": "My Profile",
     "description": "Title for profile page"
   },
+  "URL": {
+    "message": "URL",
+    "description": "Label for URL input"
+  },
+  "Link Text": {
+    "message": "Link Text",
+    "description": "Label for Link Text input"
+  },
   "Edit my Profile": {
     "message": "Edit my Profile",
     "description": "Button label for action to edit users profile"
