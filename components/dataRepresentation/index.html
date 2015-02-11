@@ -1,7 +1,10 @@
 <div v-repeat="data: dataSet | orderBy sortKey !sortOldest" class="dataRepresentationDataSet" v-class="unread: !data.isRead && isInteractive, interactive: isInteractive">
     <div class="header" v-if="isInteractive">
         <div class="date">{{formatTime(data.submitted)}}</div>
-        <button><span class="ion ion-android-delete"></span></button>
+        <!--
+            TODO : Wire this bad boy up:
+            <button><span class="ion ion-android-delete"></span></button>
+        -->
     </div>
     <div class="content">
         <div v-repeat="dataBlock: data.dataBlocks">

@@ -2,7 +2,6 @@
     color: @black;
     header {
         text-align: center;
-        margin-bottom: 15px;
         hgroup {
             margin: 0;
         }
@@ -27,35 +26,16 @@
         }
     }
 
-    .app-links {
-        font-size: 14px;
-        text-align: center;
-        text-transform: uppercase;
-        a {
-            &:link, &:visited, &:hover, &:active, &:focus {
-                color: inherit;
-                display: block;
-            }
-        }
+    #switch {
+        label {
+            background: none;
 
-        ul, li {
-            list-style: none;
-            margin: 0;
-        }
-
-        ul {
-            display: flex;
-            padding: 0;
-        }
-
-        li {
-            color: fade(@white, 75%);
-            padding: 4px 0;
-            width: 50%;
-
-            &.active {
-                border-bottom: 6px solid @yellow;
+            .options span {
                 color: @white;
+            }
+
+            .indicator {
+                border-color: @yellow;
             }
         }
     }
@@ -63,7 +43,7 @@
     .show-in-discover {
         color: @darkGrey;
         font-size: 14px;
-        margin-bottom: 15px;
+        margin: 15px 0;
         position: relative;
 
         li {

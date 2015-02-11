@@ -1,11 +1,13 @@
 var view = require('../../lib/view');
+var Data = require('../../lib/data');
 
 module.exports = view.extend({
     id: 'detail',
     template: require('./index.html'),
     data: {
         back: true,
-        title: 'App'
+        title: 'App',
+        subView: 'myApp'
     },
     methods: {
         onRemix: function (e) {
@@ -39,6 +41,26 @@ module.exports = view.extend({
             self.$root.isReady = true;
             self.$data.app = val;
             setAdmin(val);
+        });
+
+        var data = new Data(id);
+
+        self.currentDataSets = [];
+        data.fetch(function (err, currentDataSets) {
+            console.dir(currentDataSets);
+            self.$data.initialDataLoaded = true;
+            self.currentDataSets = currentDataSets;
+        });
+    },
+    ready: function () {
+        var self = this;
+
+        self.$on('switchValueChanged', function (event) {
+            if (event === 'My App') {
+                self.subView = 'myApp';
+            } else if (event === 'App Data') {
+                self.subView = 'appData';
+            }
         });
     }
 });

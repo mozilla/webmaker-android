@@ -5,36 +5,38 @@
         <div class="app-icon">
             <div class="app-icon-image" style="background-image: url('{{app.iconImage}}')"></div>
         </div>
-        <nav class="app-links" v-show="isAdmin">
-            <ul>
-                <li class="active">My App</li>
-                <li><a href="/make/{{id}}?mode=data">App Data</a></li>
-            </ul>
-        </nav>
+
+        <div v-show="isAdmin" v-component="switch" v-with="options: ['My App', 'App Data']"></div>
     </header>
 
-    <ul v-show="isAdmin" class="list-cell show-in-discover">
-        <li>
-            <div v-component="toggle" v-with="checked: isDiscoverable, disabled: disableDiscovery"></div>
-            <span>Show this app in the Discover Gallery</span>
-        </li>
-    </ul>
+    <div v-show="subView === 'myApp'">
+        <ul v-show="isAdmin" class="list-cell show-in-discover">
+           <li>
+                <div v-component="toggle" v-with="checked: isDiscoverable, disabled: disableDiscovery"></div>
+                <span>Show this app in the Discover Gallery</span>
+            </li>
+        </ul>
 
-    <article class="app-details">
-        <div v-show="isAdmin">
-            <!-- TODO do these links need "prefix"/"suffix"? Should the /make/:id/detail be rerouted? -->
-            <a class="btn action" href="/make/{{id}}?mode=edit">Open my app</a>
-        </div>
-        <div v-show="!isAdmin" class="preview-buttons">
-            <!-- TODO change mode for "remix" usecase -->
-            <a class="btn action" v-on="click: onRemix">Remix App</a>
-            <a class="btn action" href="/make/{{id}}?mode=play">Open App</a>
-        </div>
+        <article class="app-details">
+            <div v-show="isAdmin">
+                <!-- TODO do these links need "prefix"/"suffix"? Should the /make/:id/detail be rerouted? -->
+                <a class="btn action" href="/make/{{id}}?mode=edit">Open my app</a>
+            </div>
+            <div v-show="!isAdmin" class="preview-buttons">
+                <!-- TODO change mode for "remix" usecase -->
+                <a class="btn action" v-on="click: onRemix">Remix App</a>
+                <a class="btn action" href="/make/{{id}}?mode=play">Open App</a>
+            </div>
 
-        <div class="app-preview">
-            <ul class="blocks">
-                <li v-component="{{type}}" v-repeat="app.blocks"></li>
-            </ul>
-        </div>
-    </article>
+            <div class="app-preview">
+                <ul class="blocks">
+                    <li v-component="{{type}}" v-repeat="app.blocks"></li>
+                </ul>
+            </div>
+        </article>
+    </div>
+    <div v-show="subView === 'appData'">
+        <div v-component="dataRepresentation" v-with="dataSet : currentDataSets, initialDataLoaded : initialDataLoaded"></div>
+    </div>
+
 </div>
