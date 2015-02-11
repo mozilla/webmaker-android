@@ -9,6 +9,9 @@ module.exports = {
         this.$on('openCP', function (event) {
             this.show = true;
             this.originalColor = event;
+            this.cancelIntercept = this.onCancel.bind(this);
+            document.addEventListener('backbutton',
+                this.cancelIntercept, true);
         });
     },
     computed: {
@@ -38,6 +41,9 @@ module.exports = {
         },
         onCancel: function (e) {
             e.preventDefault();
+            e.stopPropagation();
+            document.removeEventListener('backbutton',
+                this.cancelIntercept, true);
             this.selectedColor = this.originalColor;
             this.show = false;
         }
