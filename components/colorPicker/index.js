@@ -7,7 +7,6 @@ module.exports = {
     template: require('./index.html'),
     ready: function () {
         this.$on('openCP', function (color) {
-            console.log(color);
             this.show = true;
             this.originalColor = color;
             this.cancelIntercept = this.onCancel.bind(this);

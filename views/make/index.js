@@ -49,7 +49,7 @@ module.exports = view.extend({
             }
         },
         enableSave: function () {
-            this.saveDisabled = false;
+            this.$data.saveDisabled = false;
         },
         onSave: function (e) {
             this.goBack(e);
@@ -137,10 +137,10 @@ module.exports = view.extend({
         var storage = self.$root.storage;
         var isDragging = false;
 
-        self.saveDisabled = true;
 
         app = storage.getApp(id);
 
+        self.$data.saveDisabled = true;
         self.$data.iconColors = iconColors;
         self.$data.iconImages = iconImages;
 
@@ -214,7 +214,7 @@ module.exports = view.extend({
             if (mode === 'settings' && self.$data.mode === 'settings') {
                 mode = 'edit';
             }
-            self.saveDisabled = true;
+            self.$data.saveDisabled = true;
             self.$data.mode = mode;
             self.$root.isEditing = self.$data.mode === 'edit';
         };
