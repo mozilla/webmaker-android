@@ -2,7 +2,9 @@
     <header>Menu</header>
 
     <a v-on="click: close" href="/profile" class="btn btn-flat"><img src="content/icons/back.svg"> Back to My Apps</a>
-    <button class="btn btn-flat"><img src="content/icons/data.svg"> App Data</button>
+    <!-- TODO : Add this back in and deep link to sub-view of Detail
+      <button v-on="click: onDataClick" class="btn btn-flat"><img src="content/icons/data.svg"> App Data</button>
+    -->
     <button v-on="click: onShareClick" class="btn btn-flat"><img src="content/icons/share.svg"> Share</button>
     <button v-on="click: onDeleteClick" class="btn btn-flat"><img src="content/icons/delete.svg"> Delete</button>
 </div>
