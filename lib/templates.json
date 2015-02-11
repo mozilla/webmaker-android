@@ -647,7 +647,7 @@
     },
     {
         "attributes": {
-            "innerHTML": {
+            "label": {
                 "label": "Label",
                 "type": "string",
                 "value": "Call Band Manager"
