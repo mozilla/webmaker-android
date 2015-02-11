@@ -6,6 +6,7 @@
     </div>
     <div class="app-preview">
         <ul class="blocks">
+            <li class="preview-overlay" v-on="click: disableBlocks"></li>
             <li v-component="{{type}}" v-repeat="app.blocks"></li>
         </ul>
     </div>

@@ -132,6 +132,17 @@
 
 .blocks {
     .list-reset;
+    position: relative;
+
+    li.preview-overlay {
+        background: transparent;
+        position: absolute;
+        top: 0;
+        right: 0;
+        bottom: 0;
+        left: 0;
+        z-index: 9;
+    }
 
     // TODO - take this out? (li turned into div)
     > li {
