@@ -13,7 +13,7 @@
         </nav>
     </header>
 
-    <ul class="list-cell show-in-discover">
+    <ul v-show="isAdmin" class="list-cell show-in-discover">
         <li>
             <div class="pull-left">
                 <!--TODO improve this in #865 -->
@@ -32,7 +32,7 @@
         </div>
         <div v-show="!isAdmin" class="preview-buttons">
             <!-- TODO change mode for "remix" usecase -->
-            <a class="btn action" href="/make/{{id}}?mode=play">Remix App</a>
+            <a class="btn action" v-on="click: onRemix">Remix App</a>
             <a class="btn action" href="/make/{{id}}?mode=play">Open App</a>
         </div>
 
