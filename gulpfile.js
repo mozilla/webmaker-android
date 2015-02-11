@@ -74,7 +74,10 @@ gulp.task('dev', ['watch'], function() {
     .pipe(webserver({
         host: '0.0.0.0',
         port: 8080,
-        livereload: false,
+        livereload: {
+            port: 1520,
+            enable: true
+        },
         fallback: 'index.html'
     }));
 });
