@@ -6,9 +6,9 @@ module.exports = {
     className: 'color-picker',
     template: require('./index.html'),
     ready: function () {
-        this.$on('openCP', function (event) {
+        this.$on('openCP', function (color) {
             this.show = true;
-            this.originalColor = event;
+            this.originalColor = color;
             this.cancelIntercept = this.onCancel.bind(this);
             document.addEventListener('backbutton',
                 this.cancelIntercept, true);
@@ -34,10 +34,15 @@ module.exports = {
     methods: {
         selectColor: function (color) {
             this.selectedColor = color;
+            this.enableSave();
+        },
+        enableSave: function () {
+            this.$data.saveDisabled = false;
         },
         onSave: function (e) {
             e.preventDefault();
             this.show = false;
+            this.$data.saveDisabled = true;
         },
         onCancel: function (e) {
             e.preventDefault();
@@ -58,6 +63,7 @@ module.exports = {
                 if (base !== colorString) tints.push(colorString);
             }
             return tints;
-        })
+        }),
+        saveDisabled: true
     }
 };

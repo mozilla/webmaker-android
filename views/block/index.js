@@ -9,12 +9,10 @@ var index = null;
 var id = null;
 
 // Rename editor components
-for (id in editorModels) {
-    if (editorModels.hasOwnProperty(id)) {
-        editorModels[id + '-editor'] = editorModels[id];
-        delete editorModels[id];
-    }
-}
+Object.keys(editorModels).forEach(function (id) {
+    editorModels[id + '-editor'] = editorModels[id];
+    delete editorModels[id];
+});
 
 id = null;
 
@@ -24,8 +22,7 @@ module.exports = view.extend({
     components: editorModels,
     data: {
         title: 'Edit',
-        // always false now. feel free to try stuff here
-        saveDisabled: false
+        saveDisabled: true
     },
     methods: {
         remove: function (e) {
@@ -35,12 +32,15 @@ module.exports = view.extend({
         },
         getEditor: function (type) {
             var editorKey = type + '-editor';
-            var defaultEditor = 'string-editor';
             var legalComponents = this.$compiler.options.components;
             if (legalComponents[editorKey]) {
                 return editorKey;
             }
+            var defaultEditor = 'string-editor';
             return defaultEditor;
+        },
+        enableSave: function (e) {
+            this.$data.saveDisabled = false;
         },
         onSave: function (e) {
             e.preventDefault();
@@ -48,6 +48,7 @@ module.exports = view.extend({
                 attributes: this.$data.block.attributes
             });
             this.page(this.$data.back);
+            this.$data.saveDisabled = true;
         }
     },
     created: function () {
