@@ -64,7 +64,11 @@ module.exports = view.extend({
 
             // Add to model & redirect to block edit page.
             // Newly added block always in index 0.
-            self.page('/make/' + id + '/block/0');
+            if (blockId === 'image') {
+                self.page('/make/' + id);
+            } else {
+                self.page('/make/' + id + '/block/0');
+            }
         }
 
         // Apply click handler to each cell
