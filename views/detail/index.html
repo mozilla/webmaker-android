@@ -19,17 +19,16 @@
 
         <article class="app-details">
             <div v-show="isAdmin">
-                <!-- TODO do these links need "prefix"/"suffix"? Should the /make/:id/detail be rerouted? -->
-                <a class="btn action" href="/make/{{id}}?mode=edit">Open my app</a>
+                <a class="btn action" href="/make/{{id}}/">Open my app</a>
             </div>
             <div v-show="!isAdmin" class="preview-buttons">
-                <!-- TODO change mode for "remix" usecase -->
                 <a class="btn action" v-on="click: onRemix">Remix App</a>
                 <a class="btn action" href="/make/{{id}}?mode=play">Open App</a>
             </div>
 
             <div class="app-preview">
                 <ul class="blocks">
+                    <li class="preview-overlay" v-on="click: disableBlocks"></li>
                     <li v-component="{{type}}" v-repeat="app.blocks"></li>
                 </ul>
             </div>
