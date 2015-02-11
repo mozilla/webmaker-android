@@ -56,5 +56,15 @@
         bottom: 5px;
         left: 5px;
     }
-
+    .in-progress {
+        .animated;
+        .fadeIn;
+        background: fade(@black, 90%);
+        height: 100%;
+        display: flex;
+        align-items: center;
+        .loading-spinner {
+            margin: 0 auto;
+        }
+    }
 }

@@ -44,7 +44,6 @@ gulp.task('browserify-publish', ['build-static'], browserifyPublish);
 gulp.task('watchify', ['build-static'], browserify('./lib/index.js', './build/index.js', {sourceMaps: true, watch: true}));
 gulp.task('watchify-publish', ['build-static'], browserify('./publish/index.js', './build/publish-assets/index.js', {sourceMaps: true, watch: true}));
 
-
 // Less
 gulp.task('less', less);
 gulp.task('watch-less', ['less'], function () {
