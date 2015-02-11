@@ -9,6 +9,14 @@ module.exports = {
             }
         });
 
+        var ref = self.$root.storage._firebase.child(self.app.id + '/blocks/' + this.$index + '/attributes/src');
+        self.$on('imagePicked', function (uri) {
+            ref.update({
+                value: uri
+            });
+            self.stopEditing();
+        });
+
         self.$on('onShimClick', function (event) {
             self.stopEditing();
         });
@@ -67,7 +75,7 @@ module.exports = {
             var type = this.$data.app.blocks[this.$index].type;
             if (type === 'image') {
                 e.preventDefault();
-                this.$data.showImageEditor = true;
+                this.$data.showImageEditor = !this.$data.showImageEditor;
             } else {
                 this.stopEditing();
             }
@@ -76,6 +84,7 @@ module.exports = {
             this.isEditMode = false;
             this.$dispatch('inlineEditorStopping', {index: this.$index});
             this.$el.classList.remove('active');
+            this.$data.showImageEditor = false;
         },
         trash: function () {
             var self = this;

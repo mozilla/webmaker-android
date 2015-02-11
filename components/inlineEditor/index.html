@@ -6,8 +6,8 @@
     <div class="editor-wrapper">
         <div class="block-wrapper">
             <content select=":first-child"></content>
-            <div v-show="showImageEditor">
-                image editor component here
+            <div className="image-wrapper" v-show="showImageEditor">
+                <div v-component="imagePicker"></div>
             </div>
         </div>
 
