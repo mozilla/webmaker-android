@@ -140,8 +140,6 @@ module.exports = view.extend({
         }
 
         function onValue(val) {
-            console.log('onValue');
-
             self.$root.isReady = true;
 
             if (isDragging) return;
@@ -190,9 +188,10 @@ module.exports = view.extend({
 
         self.$on(id, onValue);
 
-        // Mode
+        // Modes
+        // ---------------------------------------------------------------------
         self.$data.changeMode = function (mode) {
-            var modes = ['edit', 'play', 'data', 'settings'];
+            var modes = ['edit', 'play', 'settings'];
             if (modes.indexOf(mode) === -1) {
                 console.log('warning: ' + mode + ' is not a valid mode');
                 mode = 'edit';
@@ -215,29 +214,34 @@ module.exports = view.extend({
             self.page(href);
         };
 
-        // Fetch collected Data
-        var data = new Data(id);
-
-        self.currentDataSets = [];
-        data.getAllDataSets(function (currentDataSets) {
-            self.$data.initialDataLoaded = true;
-            self.currentDataSets = currentDataSets;
-        });
-
-        self.$on('dataChange', function (index, value, label) {
-            data.collect(index, value, label);
-        });
-
+        // Handle save events
+        // ---------------------------------------------------------------------
         self.$on('dataSave', function () {
-            if (data.getCurrentCollectedCount() > 0) {
-                data.save();
-                self.$broadcast('dataSaveSuccess');
-            }
-        });
+            var dataset = [];
+            var blocks = self.$el.querySelector('.blocks').children;
 
-        // listen for deletion requests
-        self.$on('dataDelete', function (firebaseId) {
-            data.delete(firebaseId);
+            // Iterate over blocks & build up data set
+            for (var i = 0; i < blocks.length; i++) {
+                var label = blocks[i].querySelector('label');
+                var input = blocks[i].querySelector('input');
+
+                if (label !== null && input !== null) {
+                    dataset.push({
+                        label: label.innerText,
+                        value: input.value
+                    });
+                }
+            }
+
+            // Save dataset
+            var data = new Data(id);
+            data.save(dataset, function (err) {
+                if (err) {
+                    console.log('[Firebase] ' + err);
+                } else {
+                    self.$broadcast('dataSaveSuccess');
+                }
+            });
         });
     }
 });

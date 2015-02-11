@@ -6,13 +6,6 @@ module.exports = {
         name: 'Text Box',
         icon: 'images/blocks_input.png',
         attributes: {
-            inputType: {
-                label: 'Text Box Type',
-                type: 'dropdownChoice',
-                options: ['Single Line Text', 'Long Text'],
-                value: 0,
-                skipAutoRender: true
-            },
             label: {
                 label: 'Title',
                 type: 'string',
@@ -26,21 +19,5 @@ module.exports = {
                 value: '#638093'
             }
         }
-    },
-    methods: {
-        reportDataChange: function (self) {
-            self.$dispatch('dataChange',
-                this.$index,
-                self.$el.value
-            );
-        }
-    },
-    ready: function () {
-        var self = this;
-        self.$dispatch('dataChange',
-            self.$index,
-            '',
-            self.$data.attributes.label.value
-        );
     }
 };

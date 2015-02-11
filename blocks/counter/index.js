@@ -52,12 +52,6 @@ module.exports = {
         ) {
             self.attributes.current.value = self.attributes.min.value;
         }
-
-        self.$dispatch('dataChange',
-            self.$index,
-            self.$el.querySelector('input[type="number"]').value,
-            self.$data.attributes.label.value
-        );
     },
     methods: {
         stepUp: function () {
@@ -65,12 +59,6 @@ module.exports = {
         },
         stepDown: function () {
             this.$el.querySelector('input[type="number"]').stepDown();
-        },
-        reportDataChange: function (self) {
-            self.$dispatch('dataChange',
-                this.$index,
-                self.$el.querySelector('input[type="number"]').value
-            );
         }
     }
 };
