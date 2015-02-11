@@ -14,7 +14,6 @@ module.exports = {
                 this.$index + '/attributes/src';
             var ref = self.$root.storage._firebase.child(url);
             self.$on('imagePicked', function (uri) {
-                console.log(uri);
                 ref.update({ value: uri });
                 self.stopEditing();
             });
@@ -78,7 +77,7 @@ module.exports = {
             var type = this.$data.app.blocks[this.$index].type;
             if (type === 'image') {
                 e.preventDefault();
-                this.$data.showImageEditor = !this.$data.showImageEditor;
+                this.$broadcast('openImagePicker');
             } else {
                 this.stopEditing();
             }
@@ -87,7 +86,7 @@ module.exports = {
             this.isEditMode = false;
             this.$dispatch('inlineEditorStopping', {index: this.$index});
             this.$el.classList.remove('active');
-            this.$data.showImageEditor = false;
+            this.$broadcast('closeImagePicker');
         },
         trash: function () {
             var self = this;
