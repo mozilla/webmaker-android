@@ -31,11 +31,11 @@ module.exports = {
         },
         openEditor: function (e) {
             e.preventDefault();
-            self.$data.inProgress = false;
+            this.$data.inProgress = false;
         },
         cancelEditor: function (e) {
             e.preventDefault();
-            self.$data.inProgress = false;
+            this.$data.inProgress = false;
         }
     },
     data: {}
