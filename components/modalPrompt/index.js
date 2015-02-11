@@ -4,18 +4,21 @@ module.exports = {
         var self = this;
 
         self.$on('openModalPrompt', function (event) {
-            self.open();
+            self.open(event.type);
         });
 
         self.$on('closeModalPrompt', function (event) {
             self.close();
         });
     },
+    partials: {
+        delete: require('./delete.html')
+    },
     methods: {
-        open: function () {
+        open: function (type) {
+            this.$data.type = type;
             this.isOpen = true;
             this.$el.classList.add('active');
-
         },
         close: function (event) {
             this.isOpen = false;

@@ -51,7 +51,9 @@
     // http://docs.phonegap.com/en/edge/cordova_camera_camera.md.html
     navigator.camera = navigator.camera || {
         getPicture: function (cameraSuccess, cameraError, cameraOptions ) {
-           cameraSuccess(fakeImageUri);
+            setTimeout(function () {
+                cameraSuccess(fakeImageUri);
+            }, 3000);
         }
     };
     window.Camera = window.Camera || {

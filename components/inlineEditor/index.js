@@ -9,6 +9,16 @@ module.exports = {
             }
         });
 
+        if (this.$data.app.blocks[this.$index].type === 'image') {
+            var url = self.app.id + '/blocks/' +
+                this.$index + '/attributes/src';
+            var ref = self.$root.storage._firebase.child(url);
+            self.$on('imagePicked', function (uri) {
+                ref.update({ value: uri });
+                self.stopEditing();
+            });
+        }
+
         self.$on('onShimClick', function (event) {
             self.stopEditing();
         });
@@ -63,14 +73,23 @@ module.exports = {
                 }
             }, 1);
         },
-        stopEditing: function () {
+        onEditClick: function (e) {
+            var type = this.$data.app.blocks[this.$index].type;
+            if (type === 'image') {
+                e.preventDefault();
+                this.$broadcast('openImagePicker');
+            } else {
+                this.stopEditing();
+            }
+        },
+        stopEditing: function (e) {
             this.isEditMode = false;
             this.$dispatch('inlineEditorStopping', {index: this.$index});
             this.$el.classList.remove('active');
+            this.$broadcast('closeImagePicker');
         },
         trash: function () {
             var self = this;
-
             self.stopEditing();
 
             setTimeout(function () {
