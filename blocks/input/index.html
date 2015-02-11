@@ -1,3 +1,2 @@
 <label for="block_{{$index}}">{{attributes.label.value}}</label>
-<input v-if="attributes.inputType.value == 0" id="block_{{$index}}" v-on="change: reportDataChange(this)" type="text">
-<textarea v-if="attributes.inputType.value == 1" id="block_{{$index}}" v-on="change: reportDataChange(this)"></textarea>
+<input id="block_{{$index}}" type="text">
