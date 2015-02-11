@@ -32,17 +32,19 @@
 
     .save-btn {
         @_btnSize: 30px;
-        @_vSpace: (@header-height - @_btnSize)/2 - 1;
+        @_vSpace: @header-height;
         position: absolute;
-        right: @_vSpace;
-        top: @_vSpace;
-        height: @_btnSize;
+        right: 0;
+        top: 0;
+        height: @header-height;
+        width: @header-height;
         line-height: @_btnSize;
-        padding: 0 10px 0 8px;
-        background: @turquoise;
+        padding: 0;
+        background: rgba(0,0,0,0.4);
         color: @white;
         font-size: 13px;
         border: none;
+        text-align: center;
         transition: background-color 0.3s ease-in-out;
         .fa {
             margin-right: 3px;
@@ -50,6 +52,18 @@
         &.disabled {
             color: #CCC;
             background: @white;
+        }
+        .ion {
+            display: inline-block;
+            height: @header-height;
+            width: @header-height;
+            line-height: @header-height;
+            font-size: 18px;
+        }
+
+        opacity: 0.2;
+        &:active {
+            opacity: 1;
         }
     }
 
