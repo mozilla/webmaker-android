@@ -76,10 +76,7 @@ gulp.task('dev', ['watch'], function() {
         port: 8080,
         livereload: {
             port: 1520,
-            enable: true,
-            filter: function (filename) {
-                console.log(filename);
-            }
+            enable: true
         },
         fallback: 'index.html'
     }));
