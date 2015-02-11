@@ -9,7 +9,7 @@ var index = null;
 var id = null;
 
 // Rename editor components
-Object.keys(editorModels).forEach(function(id) {
+Object.keys(editorModels).forEach(function (id) {
     editorModels[id + '-editor'] = editorModels[id];
     delete editorModels[id];
 });
