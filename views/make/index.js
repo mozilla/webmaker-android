@@ -231,7 +231,7 @@ module.exports = view.extend({
 
                 if (label !== null && input !== null) {
                     dataset.push({
-                        label: label.innerText,
+                        label: label.innerText || label.textContent,
                         value: input.value
                     });
                 }
