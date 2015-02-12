@@ -14,7 +14,7 @@ module.exports = {
             color: {
                 label: 'Button Color',
                 type: 'color',
-                value: '#32B2D2',
+                value: '#64A8EE',
                 skipAutoRender: true
             }
         }
