@@ -12,7 +12,11 @@
     <div v-show="subView === 'myApp'">
         <ul v-show="isAdmin" class="list-cell show-in-discover">
            <li>
-                <div v-component="toggle" v-with="checked: isDiscoverable, disabled: disableDiscovery"></div>
+                <div
+                    v-component="toggle"
+                    v-with="checked: app.isDiscoverable, disabled: disableDiscovery"
+                    toggle-id="showInGallery">
+                </div>
                 <span>{{'Show this app in the Discover Gallery' | i18n}}</span>
             </li>
         </ul>
