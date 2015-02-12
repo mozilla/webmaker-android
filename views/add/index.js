@@ -10,7 +10,7 @@ module.exports = view.extend({
     template: require('./index.html'),
     data: {
         // Provide a specific sort order
-	title: 'Add A Brick',
+	title: 'Add Content',
         back: true,
         app: {},
         blocks: [
