@@ -15,6 +15,14 @@
     "message": "URL",
     "description": "Label for URL input"
   },
+  "Link": {
+    "message": "Link",
+    "description": "Link label"
+  },
+  "Separator": {
+    "message": "Separator",
+    "description": "Separator label"
+  },
   "Link Text": {
     "message": "Link Text",
     "description": "Label for Link Text input"

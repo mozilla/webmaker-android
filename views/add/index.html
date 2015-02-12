@@ -1,7 +1,7 @@
 <div v-component="navigationBar" class="nav-alt"></div>
 <div class="list-wrapper">
     <div class="spacer"></div>
-    <div class="wrapper">
+    <div class="wrapper" v-class="addFlex: noBlock">
         <ul>
             <li v-repeat="block: blocks">
                 <a data-block="{{block.type}}" class="brick" href="/make/{{app.type}}/edit">
@@ -18,6 +18,15 @@
                 </a>
             </li>
         </ul>
+        <div v-show="!noBlock" class="toucanWrapper">
+            <div class="toucan">
+                <img src="images/toucan2.svg"/>
+            </div>
+            <div class="toucanspeak">
+                Let's start by <br> adding some text.
+            </div>
+        </div>
+
     </div>
 
 </div>
