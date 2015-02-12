@@ -22,3 +22,6 @@ trim_trailing_whitespace = true
 [*.js]
 quote_type = single
 curly_bracket_next_line = false
+
+[*.json]
+indent_size = 2
