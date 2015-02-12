@@ -5,7 +5,7 @@ module.exports = {
     template: require('./index.html'),
     ready: function() {
         var self = this;
-        self.$data.isPublishing = isPublishing
+        self.$data.isPublishing = isPublishing;
         this.$on('publishingStarted', function() {
             self.$data.isPublishing = true;
             isPublishing = true;

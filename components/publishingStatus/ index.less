@@ -1,0 +1,21 @@
+.publishing-status {
+    position: absolute;
+    top: 100%;
+    left: 0;
+    width: 100%;
+    p {
+        background: @secondaryBlue;
+        height: 0;
+        line-height: 27px;
+        color: white;
+        margin: 0;
+        font-size: 12px;
+        opacity: 0.9;
+        text-align: center;
+        transition: height 0.2s ease-out;
+        overflow: hidden;
+        &.on {
+            height: 27px;
+        }
+    }
+}
