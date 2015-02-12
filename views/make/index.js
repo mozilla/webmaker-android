@@ -143,7 +143,6 @@ module.exports = view.extend({
         var storage = self.$root.storage;
         var isDragging = false;
 
-
         app = storage.getApp(id);
 
         self.$data.saveDisabled = true;
