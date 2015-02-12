@@ -16,12 +16,7 @@
     "installs_allowed_from": [
         "*"
     ],
-    "type": "privileged",
     "launch_path": "/index.html",
-    "permissions": {
-        "contacts": {
-           "access": "readwrite",
-           "description": "Sharing apps you create"
-       }
-    }
+    "permissions": {},
+    "csp": "script-src 'self' https://cdn.firebase.com https://*.firebaseio.com;"
 }
