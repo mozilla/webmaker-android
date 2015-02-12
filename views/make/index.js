@@ -3,6 +3,7 @@ var Data = require('../../lib/data');
 var utils = require('../../lib/utils');
 var throttle = require('lodash.throttle');
 var Sortable = require('sortable');
+var publish = require('../../lib/publish');
 
 var sort;
 var app;
@@ -100,13 +101,25 @@ module.exports = view.extend({
         removeApp: function () {
             app.removeApp();
             this.page('/profile');
-        }
+        },
+        publish: function () {
+            var id = this.$root.$data.params.id;
+            var user = this.model.data.session.user;
+            publish(id, user, function (err, data) {
+                if (err) return console.log('oops wut', err);
+                console.log('ok done publish', data);
+            });
+        },
     },
     ready: function () {
         var self = this;
 
         self.$on('sideMenuDeleteClick', function (event) {
             self.$dispatch('openModalPrompt', {type: 'delete'});
+        });
+
+        self.$on('sideMenuShareClick', function (event) {
+            self.publish();
         });
 
         self.$on('sideMenuDataClick', function (event) {

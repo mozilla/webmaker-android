@@ -16,27 +16,34 @@ module.exports = {
 
         // Closing transition will be unseen if left position is immediately set
         // Wait for CSS transitions to end before putting the menu offscreen
-        self.$el.addEventListener(transitionEndEventName, function (event) {
+        function onTransitionEnd(event) {
             self.transitionsInProgress--;
             if (!self.transitionsInProgress && !self.isOpen) {
                 self.$el.classList.remove('open');
                 self.$emit('menuFinishedClosing');
             }
-        });
+        }
+        self.$el.addEventListener(transitionEndEventName, onTransitionEnd);
+    },
+    detached: function () {
     },
     methods: {
         onDataClick: function (event) {
-            event.preventDefault();
-            this.$on('menuFinishedClosing', function () {
+            this.$once('menuFinishedClosing', function () {
                 this.$dispatch('sideMenuDataClick');
             });
 
             this.close();
         },
         onShareClick: function (event) {
+
             event.preventDefault();
+
+            this.$once('menuFinishedClosing', function () {
+                this.$dispatch('sideMenuShareClick');
+            });
+
             this.close();
-            page('/make/' + this.$root.$data.params.id + '/share?publish=true');
         },
         onDeleteClick: function (event) {
             event.preventDefault();
