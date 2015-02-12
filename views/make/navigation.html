@@ -7,8 +7,10 @@
 <h1>
     <span v-if="mode === 'settings'">{{ 'App Name & Icon' | i18n}}</span>
     <a class="edit-app-name" v-if="mode === 'edit'" v-on="click: changeMode('settings')" v-if="mode !== 'settings'">
-      {{app.name}}
-      <span class="ion ion-edit"></span>
+        <p class="hide-text-overflow">
+            {{app.name}}
+        </p>
+        <p class="ion ion-edit"></p>
     </a>
     <span v-if="mode === 'play'">
       {{app.name}}
