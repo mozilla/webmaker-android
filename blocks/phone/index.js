@@ -14,6 +14,12 @@ module.exports = {
                 label: 'Label',
                 type: 'string',
                 value: 'Place call'
+            },
+            color: {
+                label: 'Button Color',
+                type: 'color',
+                value: '#64A8EE',
+                skipAutoRender: true
             }
         }
     },
