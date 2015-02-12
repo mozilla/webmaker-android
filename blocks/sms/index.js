@@ -19,6 +19,12 @@ module.exports = {
                 label: 'Label',
                 type: 'string',
                 value: 'Send SMS'
+            },
+            color: {
+                label: 'Button Color',
+                type: 'color',
+                value: '#32B2D2',
+                skipAutoRender: true
             }
         }
     },
