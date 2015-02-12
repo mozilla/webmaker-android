@@ -1,4 +1,5 @@
 var transitionEndEventName = require('../../lib/transition-end-name')();
+var page = require('page');
 
 module.exports = {
     id: 'side-menu',
@@ -17,7 +18,6 @@ module.exports = {
         // Wait for CSS transitions to end before putting the menu offscreen
         self.$el.addEventListener(transitionEndEventName, function (event) {
             self.transitionsInProgress--;
-
             if (!self.transitionsInProgress && !self.isOpen) {
                 self.$el.classList.remove('open');
                 self.$emit('menuFinishedClosing');
@@ -26,6 +26,7 @@ module.exports = {
     },
     methods: {
         onDataClick: function (event) {
+            event.preventDefault();
             this.$on('menuFinishedClosing', function () {
                 this.$dispatch('sideMenuDataClick');
             });
@@ -33,13 +34,12 @@ module.exports = {
             this.close();
         },
         onShareClick: function (event) {
-            this.$on('menuFinishedClosing', function () {
-                this.$dispatch('sideMenuShareClick');
-            });
-
+            event.preventDefault();
             this.close();
+            page('/make/' + this.$root.$data.params.id + '/share?publish=true');
         },
         onDeleteClick: function (event) {
+            event.preventDefault();
             this.$dispatch('sideMenuDeleteClick');
             this.close(null, true);
         },
@@ -53,7 +53,6 @@ module.exports = {
             this.transitionsInProgress = 1;
             this.$el.classList.add('open');
             this.$el.classList.add('active');
-
         },
         close: function (event, keepShimOpen) {
             this.isOpen = false;

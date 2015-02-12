@@ -109,13 +109,6 @@ module.exports = view.extend({
             self.$dispatch('openModalPrompt', {type: 'delete'});
         });
 
-        self.$on('sideMenuShareClick', function (event) {
-            this.page(
-                '/make/' +
-                self.$root.$data.params.id +
-                '/share?publish=true');
-        });
-
         self.$on('sideMenuDataClick', function (event) {
             this.mode = 'data';
         });
