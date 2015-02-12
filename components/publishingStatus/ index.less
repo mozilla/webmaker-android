@@ -12,10 +12,13 @@
         font-size: 13px;
         opacity: 0.9;
         text-align: center;
-        transition: height 0.2s ease-out;
+        transition: height 0.2s ease;
         overflow: hidden;
         &.on {
             height: 27px;
+        }
+        &.error {
+            background: @red;
         }
     }
 }
