@@ -6,7 +6,10 @@ module.exports = {
     ready: function () {
         var self = this;
 
-        var hammer = new Hammer(self.$el);
+        var hammer = new Hammer(self.$el, {
+            drag_min_distance:1,
+            swipe_velocity:0.1
+        });
 
         self.$on('openSideMenu', function (event) {
             self.open();
