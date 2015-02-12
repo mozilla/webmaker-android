@@ -17,7 +17,7 @@ module.exports = function (done) {
 
     // Just for example
     var string = 'window.App=' + JSON.stringify(json) + ';';
-    fs.writeFileSync(path.join(dest, 'app.js'));
+    fs.writeFileSync(path.join(dest, 'app.js'), string);
 
     done();
 };
