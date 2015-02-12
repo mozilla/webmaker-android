@@ -1,5 +1,6 @@
 #profile {
     padding: 50px 0 @tabBar-height 0;
+    height: 100%;
 
     input {
         color: @black;
@@ -12,12 +13,27 @@
     }
 
     .no-apps {
-        padding: 0 10px;
+        height: 100%;
+        text-align: center;
+        display: flex;
+        flex-direction: column;
+        justify-content: space-between;
 
-        p {
-            font-size: 14px;
-            margin: 10px 0 15px 0;
-            color: @darkGrey;
+        .top {
+            flex-grow: 1;
+            display: flex;
+            justify-content: center;
+            flex-direction: column;
+        }
+
+        .bottom {
+            padding: 0 50px;
+
+            p {
+                color: #b8becc;
+                font-size: 14px;
+                margin-bottom: 7px;
+            }
         }
     }
 
@@ -41,6 +57,10 @@
         }
 
 
+    }
+
+    .profile-details {
+        height: 100%;
     }
 
     #profile-header {
