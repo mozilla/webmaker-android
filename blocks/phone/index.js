@@ -10,7 +10,7 @@ module.exports = {
                 type: 'string',
                 value: '+18005555555'
             },
-            label: {
+            innerHTML: {
                 label: 'Label',
                 type: 'string',
                 value: 'Place call'

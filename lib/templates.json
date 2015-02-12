@@ -647,7 +647,7 @@
     },
     {
         "attributes": {
-            "label": {
+            "innerHTML": {
                 "label": "Label",
                 "type": "string",
                 "value": "Call Band Manager"
@@ -896,7 +896,7 @@
                         "type": "string",
                         "value": "+18005555555"
                     },
-                    "label": {
+                    "innerHTML": {
                         "label": "Label",
                         "type": "string",
                         "value": "Call Campus Safety"
