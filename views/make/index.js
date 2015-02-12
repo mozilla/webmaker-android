@@ -103,9 +103,12 @@ module.exports = view.extend({
             this.page('/profile');
         },
         publish: function () {
-            var id = this.$root.$data.params.id;
+            var self = this;
+            var id = self.$root.$data.params.id;
             var user = this.model.data.session.user;
+            self.$root.$data.isPublishing = true;
             publish(id, user, function (err, data) {
+                self.$root.$data.isPublishing = false;
                 if (err) return console.log('oops wut', err);
                 console.log('ok done publish', data);
             });
