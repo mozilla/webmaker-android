@@ -1,5 +1,4 @@
 var transitionEndEventName = require('../../lib/transition-end-name')();
-var page = require('page');
 
 module.exports = {
     id: 'side-menu',

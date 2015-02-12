@@ -126,7 +126,7 @@ module.exports = view.extend({
                     window.location.href = 'sms:?body=' + msg + ' ' + url;
                 }
             });
-        },
+        }
     },
     ready: function () {
         var self = this;
