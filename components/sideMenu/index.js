@@ -7,8 +7,10 @@ module.exports = {
         var self = this;
 
         var hammer = new Hammer(self.$el, {
+            /* jscs: disable */
             drag_min_distance:1,
             swipe_velocity:0.1
+            /* jscs: enable */
         });
 
         self.$on('openSideMenu', function (event) {
