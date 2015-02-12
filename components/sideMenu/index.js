@@ -1,16 +1,26 @@
 var transitionEndEventName = require('../../lib/transition-end-name')();
+var Hammer = require('hammerjs');
 
 module.exports = {
     id: 'side-menu',
     ready: function () {
         var self = this;
 
+        var hammer = new Hammer(self.$el, {
+            drag_min_distance:1,
+            swipe_velocity:0.1
+        });
+
         self.$on('openSideMenu', function (event) {
             self.open();
+            hammer.on('swipeleft', function () {
+                self.close();
+            });
         });
 
         self.$on('closeSideMenu', function (event) {
             self.close();
+            hammer.off('swipeleft');
         });
 
         // Closing transition will be unseen if left position is immediately set
