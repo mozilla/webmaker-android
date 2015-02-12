@@ -3,6 +3,8 @@ var Data = require('../../lib/data');
 var utils = require('../../lib/utils');
 var throttle = require('lodash.throttle');
 var Sortable = require('sortable');
+var publish = require('../../lib/publish');
+var i18n = require('../../lib/i18n');
 
 var sort;
 var app;
@@ -100,6 +102,30 @@ module.exports = view.extend({
         removeApp: function () {
             app.removeApp();
             this.page('/profile');
+        },
+        publish: function () {
+            var self = this;
+            var id = self.$root.$data.params.id;
+            var user = this.model.data.session.user;
+            var root = self.$root;
+
+            // Publish
+            root.$broadcast('publishingStarted');
+            publish(id, user, function (err, data) {
+                root.$broadcast('publishingDone');
+                if (err) return console.log('[Publish] Failed', err);
+                console.log('[Publish]', data.url);
+
+                // Native Sharing (Android / iOS) or dispatch SMS (FirefoxOS)
+                var msg = i18n.get('share_message');
+                var url = data.url;
+                if (typeof window.plugins === 'undefined') return;
+                if (typeof window.plugins.socialsharing !== 'undefined') {
+                    window.plugins.socialsharing.share(msg, null, null, url);
+                } else {
+                    window.location.href = 'sms:?body=' + msg + ' ' + url;
+                }
+            });
         }
     },
     ready: function () {
@@ -107,6 +133,10 @@ module.exports = view.extend({
 
         self.$on('sideMenuDeleteClick', function (event) {
             self.$dispatch('openModalPrompt', {type: 'delete'});
+        });
+
+        self.$on('sideMenuShareClick', function (event) {
+            self.publish();
         });
 
         self.$on('sideMenuDataClick', function (event) {
@@ -129,7 +159,6 @@ module.exports = view.extend({
         var id = self.$root.$data.params.id;
         var storage = self.$root.storage;
         var isDragging = false;
-
 
         app = storage.getApp(id);
 

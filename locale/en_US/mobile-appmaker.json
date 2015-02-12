@@ -248,7 +248,7 @@
     "description": "The label on a button (for sms/calling)"
   },
   "share_message": {
-    "message": "Check out the app {{app.name}} I made with Mozilla Webmaker",
+    "message": "Check out the app I made with Mozilla Webmaker",
     "description": "Message that gets sent when a published app is shared to friends"
   },
   "App": {

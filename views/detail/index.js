@@ -42,7 +42,6 @@ module.exports = view.extend({
 
         self.currentDataSets = [];
         data.fetch(function (err, currentDataSets) {
-            console.dir(currentDataSets);
             self.$data.initialDataLoaded = true;
             self.currentDataSets = currentDataSets;
         });
