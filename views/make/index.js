@@ -33,6 +33,11 @@ module.exports = view.extend({
         navigation: require('./navigation.html'),
         settings: require('./settings.html')
     },
+    computed: {
+        noBlock: function () {
+            return this.$data.app.blocks ? this.$data.app.blocks.length : 0;
+        }
+    },
     methods: {
         showMenu: function () {
             this.$parent.$broadcast('openSideMenu');
