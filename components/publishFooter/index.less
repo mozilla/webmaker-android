@@ -8,12 +8,17 @@
 
     background: @lightGreyUnsaturated;
 
+    .form-group {
+        padding: 15px 0;
+    }
+
     .footer-btn {
+        display: block;
+        width: 100%;
+        background: @highlight;
+        color: @white;
         font-size: @text-size-small;
-        color: @darkGrey;
         border: none;
-        border-top: 1px solid @lightGrey;
-        border-bottom: 1px solid darken(@lightGreyUnsaturated, 5%);
         padding: 5px;
         &:focus,
         &:active {
@@ -22,14 +27,14 @@
     }
 
     .details {
-        padding: 0 10px;
+        padding: 0 15px;
         text-align: center;
         .text-small {
-            margin-bottom: 10px;
+            margin-bottom: 8px;
         }
         p {
             margin-top: 0;
-            margin-bottom: 20px;
+            margin-bottom: 15px;
         }
     }
 

@@ -8,16 +8,11 @@
 */
 .list-btns {
     .list-reset;
-
-    // You must add .btn to all a/button elements
-    .btn {
-        display: block;
-        border-color: @lightGrey;
-        border-top-width: 0;
-        color: @turquoise;
-    }
-    li:first-child .btn {
-        border-top-width: 1px;
+    li {
+        margin-bottom: 15px;
+        &:last-child {
+            margin-bottom: 0;
+        }
     }
 }
 
