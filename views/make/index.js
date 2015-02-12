@@ -4,6 +4,7 @@ var utils = require('../../lib/utils');
 var throttle = require('lodash.throttle');
 var Sortable = require('sortable');
 var publish = require('../../lib/publish');
+var i18n = require('../../lib/i18n');
 
 var sort;
 var app;
@@ -106,11 +107,23 @@ module.exports = view.extend({
             var self = this;
             var id = self.$root.$data.params.id;
             var user = this.model.data.session.user;
+            
+            // Publish
             self.$root.$data.isPublishing = true;
             publish(id, user, function (err, data) {
                 self.$root.$data.isPublishing = false;
-                if (err) return console.log('oops wut', err);
-                console.log('ok done publish', data);
+                if (err) return console.log('[Publish] Failed', err);
+                console.log('[Publish]', data.url);
+
+                // Native Sharing (Android / iOS) or dispatch SMS (FirefoxOS)
+                var msg = i18n.get('share_message');
+                var url = data.url;
+                if (typeof window.plugins === 'undefined') return;
+                if (typeof window.plugins.socialsharing !== 'undefined') {
+                    window.plugins.socialsharing.share(msg, null, null, url);
+                } else {
+                    window.location.href = 'sms:?body=' + msg + ' ' + url;
+                }
             });
         },
     },
