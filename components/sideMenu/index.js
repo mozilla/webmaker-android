@@ -28,6 +28,7 @@ module.exports = {
     },
     methods: {
         onDataClick: function (event) {
+            event.preventDefault();
             this.$once('menuFinishedClosing', function () {
                 this.$dispatch('sideMenuDataClick');
             });
