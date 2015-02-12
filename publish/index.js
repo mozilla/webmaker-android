@@ -31,6 +31,10 @@ json.blocks.forEach(function (block) {
     // Legacy
     if (block.id) block.type = block.id;
     delete block.id;
+    if (block.type === 'image' &&
+            block.attributes.src.value.match(/(^images\/)|(^content\/)/)) {
+        block.attributes.src.value = '/' + block.attributes.src.value;
+    }
 });
 
 i18n.setLocale('en-US', true);
