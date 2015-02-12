@@ -29,10 +29,7 @@ module.exports = {
             self.toggleShowFooter();
         }, false);
 
-        // Currently disabled due to single-app-per-origin restriction
-        var allowInstall = false;
-
-        if (allowInstall && navigator.mozApps) {
+        if (navigator.mozApps) {
             var manifestUrl = location.href + 'manifest.webapp';
             self.$data.install = function install(e) {
                 e.preventDefault();
