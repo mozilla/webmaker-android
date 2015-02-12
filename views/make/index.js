@@ -112,8 +112,13 @@ module.exports = view.extend({
             // Publish
             root.$broadcast('publishingStarted');
             publish(id, user, function (err, data) {
+
+                if (err) {
+                    root.$broadcast('publishingError', err);
+                    return;
+                }
+
                 root.$broadcast('publishingDone');
-                if (err) return console.log('[Publish] Failed', err);
                 console.log('[Publish]', data.url);
 
                 // Native Sharing (Android / iOS) or dispatch SMS (FirefoxOS)
