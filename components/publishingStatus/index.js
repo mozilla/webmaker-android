@@ -20,7 +20,7 @@ module.exports = {
             console.log('PublishingError', err);
             var message = err && err.message || 'There was a publishing error';
             self.$data.isError = isError = message;
-            setTimeout(function() {
+            setTimeout(function () {
                 self.$data.isPublishing = isPublishing = false;
             }, 5000);
         });
