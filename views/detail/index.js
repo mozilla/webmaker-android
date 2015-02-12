@@ -1,6 +1,8 @@
 var view = require('../../lib/view');
 var Data = require('../../lib/data');
 
+var app;
+
 module.exports = view.extend({
     id: 'detail',
     template: require('./index.html'),
@@ -27,7 +29,8 @@ module.exports = view.extend({
         self.$data.isAdmin = self.$root.params.role === 'admin';
 
         // Fetch app
-        var app = self.$root.storage.getApp(id);
+        app = self.$root.storage.getApp(id);
+
         if (app.data) {
             self.$root.isReady = true;
             self.$data.app = app.data;
@@ -54,6 +57,14 @@ module.exports = view.extend({
                 self.subView = 'myApp';
             } else if (event === 'App Data') {
                 self.subView = 'appData';
+            }
+        });
+
+        self.$on('toggleChange', function (event) {
+            if (event.source === 'showInGallery') {
+                app.update({
+                    isDiscoverable: event.value
+                });
             }
         });
     }
