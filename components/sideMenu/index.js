@@ -18,7 +18,6 @@ module.exports = {
         // Wait for CSS transitions to end before putting the menu offscreen
         self.$el.addEventListener(transitionEndEventName, function (event) {
             self.transitionsInProgress--;
-            console.log('done transition');
             if (!self.transitionsInProgress && !self.isOpen) {
                 self.$el.classList.remove('open');
                 self.$emit('menuFinishedClosing');
@@ -54,8 +53,6 @@ module.exports = {
             this.transitionsInProgress = 1;
             this.$el.classList.add('open');
             this.$el.classList.add('active');
-            console.log('start transition');
-
         },
         close: function (event, keepShimOpen) {
             this.isOpen = false;
