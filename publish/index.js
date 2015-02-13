@@ -11,7 +11,7 @@ var locale = require('../locale');
 var block = require('../lib/block');
 var blocks = clone(bulk(__dirname + '/../blocks', '**/*.js'));
 var componentList = {};
-componentList.navigationBar = require('../components/navigationBar');
+componentList.publishHeader = require('../components/publishHeader');
 componentList.publishFooter = require('../components/publishFooter');
 componentList.alert = require('../components/alert');
 
