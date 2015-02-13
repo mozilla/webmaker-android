@@ -18,7 +18,7 @@ module.exports = {
                 case 'profile':
                     return '/make/' + this.appId + '/detail/admin';
                 case 'discover':
-                    return '/play/' + this.appId;
+                    return '/make/' + this.appId + '/detail';
             }
         }
     }

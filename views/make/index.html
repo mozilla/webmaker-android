@@ -6,7 +6,7 @@
     <main v-class="edit-container: mode === 'edit', settings-container: mode === 'settings'">
         <div v-show="mode === 'settings'">{{ >settings }}</div>
 
-        <div v-show="['play', 'edit'].indexOf(mode) > -1">
+        <div v-show="['edit'].indexOf(mode) > -1">
             <div v-component="blockList" id="blocks" class="blocks" v-with="appid: app.id">
                 <div
                     mode="{{ mode }}"

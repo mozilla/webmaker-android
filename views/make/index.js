@@ -236,7 +236,7 @@ module.exports = view.extend({
         // Modes
         // ---------------------------------------------------------------------
         self.$data.changeMode = function (mode) {
-            var modes = ['edit', 'play', 'settings'];
+            var modes = ['edit', 'settings'];
             if (modes.indexOf(mode) === -1) {
                 console.log('warning: ' + mode + ' is not a valid mode');
                 mode = 'edit';
