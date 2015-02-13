@@ -1,4 +1,5 @@
 var view = require('../../lib/view');
+var network = require('../../lib/network.js');
 
 var maxAppsToShow = 10;
 
@@ -15,6 +16,8 @@ module.exports = view.extend({
         });
 
         this.showFeatured();
+
+        this.isOnline = network.isOnline;
     },
     methods: {
         showNewest: function () {
