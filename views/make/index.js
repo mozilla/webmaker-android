@@ -153,14 +153,14 @@ module.exports = view.extend({
                     element.style.display = 'none';
                 }
                 element.style.opacity = op;
-                element.style.filter = 'alpha(opacity=' + op * 100 + ")";
+                element.style.filter = 'alpha(opacity=' + op * 100 + ')';
                 op -= op * 0.1;
             }, 50);
         }
     },
     ready: function () {
         var self = this;
-        var element = self.$el.querySelector(".fadeAway");
+        var element = self.$el.querySelector('.fadeAway');
 
         if (element) {
             setTimeout(function () {
