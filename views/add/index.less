@@ -1,8 +1,8 @@
 #add {
     .full-page;
-            .addFlex {
-                flex-grow: 1;
-            }
+    .addFlex {
+        flex-grow: 1;
+    }
     position: absolute;
     left: 0;
     width: 100%;
@@ -28,7 +28,9 @@
             flex-direction: column;
             align-items: center;
             justify-content: center;
-
+            @media (min-width: 321px) {
+                flex-grow: 1;
+            }
             .toucanWrapper {
                 position: absolute;
                 left: -2%;

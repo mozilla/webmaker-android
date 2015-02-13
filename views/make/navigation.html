@@ -22,6 +22,11 @@
     <a href="/make/{{app.id}}/add" class="nav-btn" v-if="mode === 'edit'">
       <span class="ion ion-android-add"></span>
     </a>
-</div>
 
+</div>
+          <div v-show="!noBlock" class="toucanWrapper">
+            <div class="toucanspeak">
+                Tap the plus sign to begin adding content.
+            </div>
+        </div>
 <div v-component="publishingStatus"></div>
