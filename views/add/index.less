@@ -28,20 +28,21 @@
             flex-direction: column;
             align-items: center;
             justify-content: center;
-            @media (min-width: 321px) {
-                flex-grow: 1;
+            @media (max-width: 320px) {
+                margin-top: 20px;
             }
             .toucanWrapper {
                 position: absolute;
-                left: -2%;
+                left: -8%;
                 bottom: -6%;
                 @media (min-width: 321px) {
-                    bottom: -1%;
+                    bottom: -4%;
+                    left: -6%;
                 }
                 .toucan {
                     float: left;
                     img {
-                        height: 77px;
+                        height: 100px;
                     }
                 }
                 .toucanspeak {
@@ -49,10 +50,10 @@
                     background: @white;
                     color: @turquoise;
                     float: left;
-                    font-size: 12px;
+                    font-size: 14px;
                     padding: 10px 12px;
                     border-radius: 5px;
-                    max-width: 127px;
+                    max-width: 140px;
                     margin-top: -12px;
                     margin-left: 16px;
                     &:after {
