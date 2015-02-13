@@ -50,6 +50,9 @@ module.exports = view.extend({
                 this.page('/profile');
             }
         },
+        goPreviousView: function (e) {
+            global.history.back();
+        },
         enableSave: function () {
             this.$data.saveDisabled = false;
         },
