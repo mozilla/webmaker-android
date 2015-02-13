@@ -1,15 +1,33 @@
 <nav v-component="navigationBar" class="nav-default"></nav>
 
-<div>
-    <div v-component="switch" v-with="options: ['Featured','Newest']"></div>
+<div v-show="isOnline">
+    <div>
+        <div v-component="switch" v-with="options: ['Featured','Newest']"></div>
+    </div>
+
+    <ul class="list-cell" v-show="mode === 'Featured'">
+        <li v-component="appCell" v-repeat="app: apps.featured" app-id="{{ app.$key }}"></li>
+    </ul>
+
+    <ul class="list-cell" v-show="mode === 'Newest'">
+        <li v-component="appCell" v-repeat="app: apps.newest" app-id="{{ app.$key }}"></li>
+    </ul>
 </div>
 
-<ul class="list-cell" v-show="mode === 'Featured'">
-    <li v-component="appCell" v-repeat="app: apps.featured" app-id="{{ app.$key }}"></li>
-</ul>
+<div v-show="!isOnline" style="height: 100%">
+    <div class="missing">
+        <div class="top">
+            <img src="images/no-internet.svg">
+            <p>The Internet fell asleep!</p>
+            <p class="sub">An active connection is needed to display the Discover Gallery</p>
+        </div>
 
-<ul class="list-cell" v-show="mode === 'Newest'">
-    <li v-component="appCell" v-repeat="app: apps.newest" app-id="{{ app.$key }}"></li>
-</ul>
+        <div class="bottom">
+            <p class="sub">Head over to <strong>Make</strong> to start creating your very own app.</p>
+            <img src="images/arrow-fade-down.svg">
+        </div>
+
+    </div>
+</div>
 
 <div v-component="tabBar"></div>
