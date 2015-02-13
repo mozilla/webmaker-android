@@ -3,11 +3,11 @@
 
 
     <div id="navigationBar" class="nav-default">{{ >navigation }}</div>
-    <div class="toucan" v-show="!noBlock">
+    <div class="toucan" v-show="!noBlock && mode === 'edit'">
         <img src="images/toucan1.svg"/>
     </div>
 
-    <main v-show="noBlock" v-class="edit-container: mode === 'edit', settings-container: mode === 'settings'">
+    <main v-class="edit-container: mode === 'edit', settings-container: mode === 'settings'">
         <div v-show="mode === 'settings'">{{ >settings }}</div>
 
         <div v-show="['play', 'edit'].indexOf(mode) > -1">
