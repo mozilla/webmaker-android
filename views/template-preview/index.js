@@ -10,7 +10,9 @@ module.exports = view.extend({
     },
     methods: {
         create: function (e) {
-            e.preventDefault();
+            if (e) {
+                e.preventDefault();
+            }
             var self = this;
             var options = {
                 template: self.$root.params.id
@@ -30,6 +32,10 @@ module.exports = view.extend({
     created: function () {
         var self = this;
         var id = self.$root.params.id;
+
+        if(id === 'blank') {
+            self.create();
+        }
 
         self.$data.id = id;
         templates.forEach(function (template) {

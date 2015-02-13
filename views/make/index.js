@@ -61,6 +61,9 @@ module.exports = view.extend({
         enableSave: function () {
             this.$data.saveDisabled = false;
         },
+        hideSpeach: function () {
+            this.$data.app.faded = true;
+        },
         onSave: function (e) {
             this.goBack(e);
         },
@@ -139,10 +142,31 @@ module.exports = view.extend({
                     window.location.href = 'sms:?body=' + msg + ' ' + url;
                 }
             });
+        },
+        fadeOut: function (element) {
+            this.hideSpeach();
+
+            var op = 1;  // initial opacity
+            var timer = setInterval(function () {
+                if (op <= 0.1){
+                    clearInterval(timer);
+                    element.style.display = 'none';
+                }
+                element.style.opacity = op;
+                element.style.filter = 'alpha(opacity=' + op * 100 + ")";
+                op -= op * 0.1;
+            }, 50);
         }
     },
     ready: function () {
         var self = this;
+        var element = self.$el.querySelector(".fadeAway");
+
+        if(element) {
+            setTimeout(function() {
+                self.fadeOut(element);
+            }, 3000);
+        }
 
         self.$on('sideMenuDeleteClick', function (event) {
             self.$dispatch('openModalPrompt', {type: 'delete'});

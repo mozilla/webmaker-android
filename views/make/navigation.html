@@ -26,12 +26,12 @@
 </div>
           <div v-if="noBlock == 0" class="toucanWrapper">
             <div class="toucanspeak">
-                Tap the plus sign to begin adding content.
+                {{ 'Tap the plus sign to begin adding content.' | i18n }}
             </div>
         </div>
-        <div v-if="noBlock == 1" class="toucanWrapper fadeAway">
+        <div v-show="!faded && noBlock == 1" class="toucanWrapper">
             <div class="toucanspeak">
-                Tap the plus sign to add more content.
+                {{ 'Tap the plus sign to add more content.' | i18n }}
             </div>
         </div>
 <div v-component="publishingStatus"></div>

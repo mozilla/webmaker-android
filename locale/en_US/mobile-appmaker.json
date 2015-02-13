@@ -7,6 +7,14 @@
     "message": "You must include a text value",
     "description": "No text in the textarea"
   },
+  "Tap the plus sign to begin adding content.": {
+    "message": "Tap the plus sign to begin adding content.",
+    "description": "Tap the plus sign to begin adding content."
+  },
+  "Tap the plus sign to add more content.": {
+    "message": "Tap the plus sign to add more content.",
+    "description": "Tap the plus sign to add more content."
+  },
   "My Profile": {
     "message": "My Profile",
     "description": "Title for profile page"
@@ -298,6 +306,10 @@
   "Start Building": {
     "message": "Start Building",
     "description": "Start Building button for creating an app"
+  },
+  "toucanspeak": {
+    "message": "Let's start by adding some text.",
+    "description": "Let's start by adding some text."
   },
   "Share": {
     "message": "Share",
