@@ -1,13 +1,12 @@
 {
     "preset": "crockford",
-    
     "disallowDanglingUnderscores": null,
     "disallowMultipleVarDecl": true,
     "disallowSpacesInNamedFunctionExpression": null,
     "disallowSpacesInFunctionDeclaration": null,
     "requireLineFeedAtFileEnd": true,
     "maximumLineLength": {
-        "value": 80,
+        "value": 128,
         "allowComments": true,
         "allowRegex": true
     },
