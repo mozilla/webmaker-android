@@ -2,7 +2,7 @@
 
 <div class="profile-details">
     <ul class="list-cell">
-        <li v-component="appCell" v-repeat="app: myApps" app-id="{{ app.id }}" role="admin"></li>
+        <li v-component="appCell" v-repeat="app: myApps" appId="{{app.id}}" type="profile"></li>
     </ul>
 
     <div class="missing" v-show="myApps.length == 0">

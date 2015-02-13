@@ -27,7 +27,7 @@
             </div>
             <div v-show="!isAdmin" class="preview-buttons">
                 <a class="btn action" v-on="click: onRemix">{{'Remix App' | i18n}}</a>
-                <a class="btn action" href="/make/{{id}}?mode=play">{{'Open App' | i18n}}</a>
+                <a class="btn action" href="/play/{{id}}">{{'Open App' | i18n}}</a>
             </div>
 
             <div class="app-preview">

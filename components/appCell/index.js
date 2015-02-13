@@ -2,23 +2,24 @@ var i18n = require('../../lib/i18n');
 
 module.exports = {
     className: 'app-cell',
-    ready: function () {
-        this.constructedURL = '/make/' + this['app-id'] + '/detail';
-        if (this.role) this.constructedURL += '/' + this.role;
-    },
     methods: {
         onClick: function () {
             this.$root.$data.enteredEditorFrom = '/profile';
         }
     },
-    data: {
-        constructedURL: ''
-    },
-    paramAttributes: ['app-id', 'role'],
+    paramAttributes: ['appId', 'type'],
     template: require('./index.html'),
     computed: {
         guestKey: function () {
             return i18n.get('Guest');
+        },
+        url: function () {
+            switch (this.type) {
+                case 'profile':
+                    return '/make/' + this.appId + '/detail/admin';
+                case 'discover':
+                    return '/make/' + this.appId + '/detail';
+            }
         }
     }
 };

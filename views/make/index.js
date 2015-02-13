@@ -265,7 +265,7 @@ module.exports = view.extend({
         // Modes
         // ---------------------------------------------------------------------
         self.$data.changeMode = function (mode) {
-            var modes = ['edit', 'play', 'settings'];
+            var modes = ['edit', 'settings'];
             if (modes.indexOf(mode) === -1) {
                 console.log('warning: ' + mode + ' is not a valid mode');
                 mode = 'edit';
@@ -291,31 +291,11 @@ module.exports = view.extend({
 
         // Handle save events
         // ---------------------------------------------------------------------
+        var data = new Data(id);
         self.$on('dataSave', function () {
-            var dataset = [];
-            var blocks = self.$el.querySelector('.blocks').children;
-
-            // Iterate over blocks & build up data set
-            for (var i = 0; i < blocks.length; i++) {
-                var label = blocks[i].querySelector('label');
-                var input = blocks[i].querySelector('input');
-
-                if (label !== null && input !== null) {
-                    dataset.push({
-                        label: label.innerText || label.textContent,
-                        value: input.value
-                    });
-                }
-            }
-
-            // Save dataset
-            var data = new Data(id);
-            data.save(dataset, function (err) {
-                if (err) {
-                    console.log('[Firebase] ' + err);
-                } else {
-                    self.$broadcast('dataSaveSuccess');
-                }
+            data.collect(this.$el, function onDataSave(err) {
+                if (err) return console.log('[Firebase] ' + err);
+                self.$broadcast('dataSaveSuccess');
             });
         });
     }
