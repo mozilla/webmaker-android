@@ -14,7 +14,7 @@ module.exports = view.extend({
         self.$data.id = id;
 
         // Fetch app
-        app = self.$root.storage.getApp(id);
+        var app = self.$root.storage.getApp(id);
 
         if (app.data) {
             self.$root.isReady = true;
