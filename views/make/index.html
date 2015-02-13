@@ -1,7 +1,11 @@
 <div v-show="!app.id" v-component="alert" type="error" message="errorAppNotFound"></div>
-<div v-show="app.id">
+<div v-show="app.id" class="makeContainer">
+
 
     <div id="navigationBar" class="nav-default">{{ >navigation }}</div>
+    <div class="toucan" v-show="!noBlock && mode === 'edit'">
+        <img src="images/toucan1.svg"/>
+    </div>
 
     <main v-class="edit-container: mode === 'edit', settings-container: mode === 'settings'">
         <div v-show="mode === 'settings'">{{ >settings }}</div>

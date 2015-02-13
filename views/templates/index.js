@@ -15,7 +15,19 @@ module.exports = view.extend({
             var id = e.currentTarget.getAttribute('data-id');
             if (id === 'blank') {
                 e.preventDefault();
-                var app = storage.createApp({template: id});
+                var app = storage.createApp({
+                    template: id
+                });
+                self.$data.create = false;
+                self.$root.$data.enteredEditorFrom = '/templates';
+                self.$root.isReady = false;
+                setTimeout(function () {
+                    self.$root.isReady = true;
+                    self.page('/make/' + app.id);
+                }, 100);
+
+                e.preventDefault();
+
                 self.$root.$data.enteredEditorFrom = '/templates';
                 self.$root.isReady = false;
                 setTimeout(function () {

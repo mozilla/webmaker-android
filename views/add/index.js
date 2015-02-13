@@ -8,6 +8,11 @@ var app = null;
 module.exports = view.extend({
     id: 'add',
     template: require('./index.html'),
+    computed: {
+        noBlock: function () {
+            return this.$data.app.blocks ? this.$data.app.blocks.length : 0;
+        }
+    },
     data: {
         // Provide a specific sort order
 	title: 'Add Content',
