@@ -148,7 +148,7 @@ module.exports = view.extend({
 
             var op = 1;  // initial opacity
             var timer = setInterval(function () {
-                if (op <= 0.1){
+                if (op <= 0.1) {
                     clearInterval(timer);
                     element.style.display = 'none';
                 }
@@ -162,8 +162,8 @@ module.exports = view.extend({
         var self = this;
         var element = self.$el.querySelector(".fadeAway");
 
-        if(element) {
-            setTimeout(function() {
+        if (element) {
+            setTimeout(function () {
                 self.fadeOut(element);
             }, 3000);
         }

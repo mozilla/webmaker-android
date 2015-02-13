@@ -33,7 +33,7 @@ module.exports = view.extend({
         var self = this;
         var id = self.$root.params.id;
 
-        if(id === 'blank') {
+        if (id === 'blank') {
             self.create();
         }
 
