@@ -22,7 +22,10 @@ module.exports = view.extend({
     components: editorModels,
     data: {
         title: 'Edit',
-        saveDisabled: true
+        // The following code has been commented off due to
+        // https://github.com/mozilla/webmaker-app/issues/1046
+        //saveDisabled: true
+        saveDisabled: false
     },
     methods: {
         remove: function (e) {
@@ -38,6 +41,12 @@ module.exports = view.extend({
             }
             var defaultEditor = 'string-editor';
             return defaultEditor;
+        },
+        disableSave: function (e) {
+            // The following code has been commented off due to
+            // https://github.com/mozilla/webmaker-app/issues/1046
+            //this.$data.saveDisabled = true;
+            this.$data.saveDisabled = false;
         },
         enableSave: function (e) {
             this.$data.saveDisabled = false;
