@@ -18,6 +18,7 @@ module.exports = view.extend({
         this.showFeatured();
 
         this.isOnline = network.isOnline;
+        console.log('[Network] ' + this.isOnline);
     },
     methods: {
         showNewest: function () {
