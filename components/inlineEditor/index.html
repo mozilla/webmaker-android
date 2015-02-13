@@ -6,7 +6,7 @@
     <div class="editor-wrapper">
         <div class="block-wrapper">
             <content select=":first-child"></content>
-            <div v-component="imagePicker"></div>
+            <div v-show="isEditMode" v-component="imagePicker"></div>
         </div>
 
         <div class="control-panel">
