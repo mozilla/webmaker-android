@@ -21,9 +21,6 @@ module.exports = view.extend({
         console.log('[Network] ' + this.isOnline);
     },
     methods: {
-        makeUrl: function (app) {
-            console.log(app);
-        },
         showNewest: function () {
             var self = this;
 
