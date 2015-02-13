@@ -3,7 +3,7 @@
 [![Build Status](https://travis-ci.org/mozilla/webmaker-app.svg)](https://travis-ci.org/mozilla/webmaker-app)
 [![devDependency Status](https://david-dm.org/mozilla/webmaker-app/dev-status.svg)](https://david-dm.org/mozilla/webmaker-app#info=devDependencies)
 
-Last upload on Transifex: **Wed 28 Jan 2015 11:53:29 EST**
+Last upload on Transifex: **Fri 13 Feb 2015 13:18:45 EST**
 
 This documentation is published at [webmaker-mobile-guide.mofodev.net](http://webmaker-mobile-guide.mofodev.net/_docs/get_started/README.html).
 
