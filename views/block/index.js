@@ -22,7 +22,7 @@ module.exports = view.extend({
     components: editorModels,
     data: {
         title: 'Edit',
-        // The following code has been commented off due to 
+        // The following code has been commented off due to
         // https://github.com/mozilla/webmaker-app/issues/1046
         //saveDisabled: true
         saveDisabled: false
@@ -43,7 +43,7 @@ module.exports = view.extend({
             return defaultEditor;
         },
         disableSave: function (e) {
-            // The following code has been commented off due to 
+            // The following code has been commented off due to
             // https://github.com/mozilla/webmaker-app/issues/1046
             //this.$data.saveDisabled = true;
             this.$data.saveDisabled = false;
