@@ -5,6 +5,7 @@ var throttle = require('lodash.throttle');
 var Sortable = require('sortable');
 var publish = require('../../lib/publish');
 var i18n = require('../../lib/i18n');
+var ua = require('../../lib/ua');
 
 var sort;
 var app;
@@ -136,10 +137,11 @@ module.exports = view.extend({
                 var msg = i18n.get('share_message');
                 var url = data.url;
                 if (typeof window.plugins === 'undefined') return;
-                if (typeof window.plugins.socialsharing !== 'undefined') {
-                    window.plugins.socialsharing.share(msg, null, null, url);
-                } else {
+                if (typeof window.plugins.socialsharing === 'undefined') return;
+                if (ua.isFirefoxOS) {
                     window.location.href = 'sms:?body=' + msg + ' ' + url;
+                } else {
+                    window.plugins.socialsharing.share(msg, null, null, url);
                 }
             });
         },
