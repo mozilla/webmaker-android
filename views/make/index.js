@@ -61,7 +61,7 @@ module.exports = view.extend({
         enableSave: function () {
             this.$data.saveDisabled = false;
         },
-        hideSpeach: function () {
+        hideSpeech: function () {
             this.$data.app.faded = true;
         },
         onSave: function (e) {
@@ -144,7 +144,7 @@ module.exports = view.extend({
             });
         },
         fadeOut: function (element) {
-            this.hideSpeach();
+            this.hideSpeech();
 
             var op = 1;  // initial opacity
             var timer = setInterval(function () {
