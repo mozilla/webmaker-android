@@ -1,7 +1,7 @@
 <a class="cell"
     v-on="click: onClick"
     data-id="{{id}}"
-    href="{{constructedURL}}">
+    href="{{url}}">
     <div class="left">
         <span class="title">{{app.name}}</span>
         <span v-if="app.author" class="description" v-bind-i18n-html="'by _'" v-with="{name: app.author.username || app.guestKey}"></span>
