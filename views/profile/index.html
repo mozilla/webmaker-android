@@ -5,13 +5,13 @@
         <li v-component="appCell" v-repeat="app: myApps" app-id="{{ app.id }}" role="admin"></li>
     </ul>
 
-    <div class="no-apps" v-show="myApps.length == 0">
+    <div class="missing" v-show="myApps.length == 0">
         <div class="top">
             <p>You haven't created any apps...yet.</p>
         </div>
 
         <div class="bottom">
-            <p>Head over to <strong>Make</strong> to start creating your very own app.</p>
+            <p class="sub">Head over to <strong>Make</strong> to start creating your very own app.</p>
             <img src="images/arrow-fade-down.svg">
         </div>
 
