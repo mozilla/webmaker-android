@@ -88,11 +88,14 @@
         color: @white;
         border: none;
         outline: none;
-        padding: 20px;
+        padding: 0 20px 0 15px;
+        height: @header-height;
         text-decoration: none;
         font-size: 13px;
+        display: flex;
+        align-items: center;
         .ion {
-            font-size: 25px;
+            font-size: 24px;
             line-height: 1.4;
         }
         &.nav-btn-icon {
@@ -112,12 +115,14 @@
     }
 
     .add-btn {
-        display: inline-block;
+        display: flex;
+        align-items: center;
+        justify-content: flex-end;
+        height: @header-height;
         margin: 0;
-        padding: 0;
+        padding-right: 15px;
         img {
             display: block;
-            padding: 7px 15px 0 0;
         }
     }
 
