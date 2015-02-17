@@ -1,8 +1,32 @@
 <div>
-  <a class="nav-btn" v-on="click: showMenu" v-if="mode !== 'settings' && mode !== 'play'"><span class="ion ion-android-menu"></span></a>
-  <button class="back nav-btn" v-on="click: goPreviousView" v-if="mode == 'play'"><span class="icon ion-android-arrow-back"></span></button>
-  <a class="nav-btn" v-on="click: goBack" v-if="mode == 'settings'">{{ 'Cancel' | i18n}}</a>
-  <a class="save-btn" v-class="disabled: saveDisabled" v-on="click: onSave" v-if="mode == 'settings'"><span class="ion ion-checkmark-round"></span></a>
+  <a
+    class="nav-btn"
+    v-on="click: showMenu"
+    v-if="mode !== 'settings' && mode !== 'play'">
+      <span class="ion ion-android-menu"></span>
+  </a>
+
+  <button
+    class="back nav-btn"
+    v-on="click: goPreviousView"
+    v-if="mode == 'play'">
+      <span class="icon ion-android-arrow-back"></span>
+  </button>
+
+  <a
+    class="nav-btn"
+    v-on="click: onCancel"
+    v-if="mode == 'settings'">
+      {{ 'Cancel' | i18n}}
+  </a>
+
+  <a
+    class="save-btn"
+    v-class="disabled: saveDisabled"
+    v-on="click: onSave"
+    v-if="mode == 'settings'">
+      <span class="ion ion-checkmark-round"></span>
+  </a>
 </div>
 
 <h1>
