@@ -63,6 +63,14 @@
     "message": "App Name & Icon",
     "description": "Title within app editor for page where user can change the app name and icon"
   },
+  "App Name": {
+    "message": "App Name",
+    "description": "Label for app name field"
+  },
+  "Make": {
+    "message": "Make",
+    "description": "Label for all available make templates"
+  },
   "Make Your Own App": {
     "message": "Make Your Own App",
     "description": "Title for app templates, starter projects/styles to create new apps"
@@ -110,6 +118,18 @@
   "From Scratch": {
     "message": "From Scratch",
     "description": "Title for a blank app template. 'From Scratch' is an idiom that describes making something from the beginning with basic ingredients."
+  },
+  "No data has been stored yet!": {
+    "message": "No data has been stored yet!",
+    "description": "No data has been stored yet!"
+  },
+  "noDataInfoSub": {
+    "message": "If you'd like to let users share data with you, try adding a Counter and a Submit button to your app.",
+    "description": "If you'd like to let users share data with you, try adding a Counter and a Submit button to your app."
+  },
+  "Publishing...": {
+    "message": "Publishing...",
+    "description": "Shows up below header when the app is being published or a publish is in progress"
   },
   "Teacher": {
     "message": "Teacher",

@@ -1,4 +1,4 @@
 <p v-class="on: isPublishing, error: isError">
-    <span v-if="!isError">Publishing...</span>
+    <span v-if="!isError">{{ 'Publishing...' | i18n }}</span>
     <span v-if="isError">{{isError}}</span>
 </p>
