@@ -129,7 +129,7 @@
   },
   "Publishing...": {
     "message": "Publishing...",
-    "description": "Publishing... status"
+    "description": "Shows up below header when the app is being published or a publish is in progress"
   },
   "Teacher": {
     "message": "Teacher",
