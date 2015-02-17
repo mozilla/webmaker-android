@@ -11,13 +11,13 @@
         <p class="hide-text-overflow">
             {{app.name}}
         </p>
-        <p class="ion ion-edit"></p>
+        <span class="ion ion-edit"></span>
     </a>
 </h1>
 
 <div>
-    <a v-on="click: hideSpeech()" href="/make/{{app.id}}/add" class="nav-btn" v-if="mode === 'edit'">
-      <span class="ion ion-android-add"></span>
+    <a v-on="click: hideSpeech()" href="/make/{{app.id}}/add" class="add-btn" v-if="mode === 'edit'">
+      <img src="content/icons/nav-add.svg">
     </a>
 
 </div>

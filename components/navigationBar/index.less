@@ -31,13 +31,13 @@
         justify-content: space-between;
     }
 
-    p {
-        margin: 0;
+    .ion-edit {
+        line-height: 1.5;
     }
 
     .hide-text-overflow {
         flex-grow: 1;
-        margin: 0;
+        margin: 2px 0 0 0;
         overflow: hidden;
         text-overflow: ellipsis;
         white-space: nowrap;
@@ -88,11 +88,15 @@
         color: @white;
         border: none;
         outline: none;
-        padding: 20px;
+        padding: 0 20px 0 15px;
+        height: @header-height;
         text-decoration: none;
         font-size: 13px;
+        display: flex;
+        align-items: center;
         .ion {
-            font-size: 20px;
+            font-size: 24px;
+            line-height: 1.4;
         }
         &.nav-btn-icon {
             font-size: inherit;
@@ -107,6 +111,18 @@
         &.back {
             line-height: @header-height;
             font-size: 1.4em;
+        }
+    }
+
+    .add-btn {
+        display: flex;
+        align-items: center;
+        justify-content: flex-end;
+        height: @header-height;
+        margin: 0;
+        padding-right: 15px;
+        img {
+            display: block;
         }
     }
 
