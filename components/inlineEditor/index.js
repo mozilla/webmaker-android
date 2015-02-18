@@ -1,3 +1,5 @@
+var analytics = require('../../lib/analytics');
+
 module.exports = {
     className: 'inline-editor',
     ready: function () {
@@ -29,6 +31,7 @@ module.exports = {
             this.$dispatch('inlineEditorStarted', {index: this.$index});
             this.$el.classList.add('active');
             this.centerEditor();
+            analytics.event({category: 'Inline Editor', action: 'Start Editing'});
         },
         centerEditor: function () {
             // Elements
@@ -91,6 +94,7 @@ module.exports = {
         trash: function () {
             var self = this;
             self.stopEditing();
+            analytics.event({category: 'Inline Editor', action: 'Trash'});
 
             setTimeout(function () {
                 self.$dispatch('deleteBlock', {
@@ -102,6 +106,7 @@ module.exports = {
             var self = this;
 
             this.stopEditing();
+            analytics.event({category: 'Inline Editor', action: 'Duplicate'});
 
             setTimeout(function () {
                 self.$dispatch('cloneBlock', {
@@ -113,6 +118,7 @@ module.exports = {
             var self = this;
 
             self.stopEditing();
+            analytics.event({category: 'Inline Editor', action: 'Move'});
 
             // Delay about half the time the shim takes to fade out
             // Delay is also necessary for blockList to measure heights properly

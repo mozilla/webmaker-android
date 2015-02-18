@@ -1,6 +1,7 @@
 var view = require('../../lib/view');
 var Blocks = require('../../lib/blocks');
 var blocks = new Blocks();
+var analytics = require('../../lib/analytics');
 
 var id = null;
 var app = null;
@@ -67,6 +68,7 @@ module.exports = view.extend({
 
             // Add block to make
             app.insert(blockId);
+            analytics.event({category: 'Blocks', action: 'Add', label: blockId});
 
             // Add to model & redirect to block edit page.
             // Newly added block always in index 0.

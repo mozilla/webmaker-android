@@ -1,5 +1,6 @@
 var transitionEndEventName = require('../../lib/transition-end-name')();
 var Hammer = require('hammerjs');
+var analytics = require('../../lib/analytics');
 
 module.exports = {
     id: 'side-menu',
@@ -43,6 +44,7 @@ module.exports = {
             event.preventDefault();
             this.$once('menuFinishedClosing', function () {
                 this.$dispatch('sideMenuDataClick');
+                analytics.event({category: 'Side Menu', action: 'Data Click'});
             });
 
             this.close();
@@ -53,6 +55,7 @@ module.exports = {
 
             this.$once('menuFinishedClosing', function () {
                 this.$dispatch('sideMenuShareClick');
+                analytics.event({category: 'Side Menu', action: 'Share Click'});
             });
 
             this.close();
@@ -60,6 +63,7 @@ module.exports = {
         onDeleteClick: function (event) {
             event.preventDefault();
             this.$dispatch('sideMenuDeleteClick');
+            analytics.event({category: 'Side Menu', action: 'Delete Click'});
             this.close(null, true);
         },
         onRootClick: function (event) {
@@ -72,12 +76,14 @@ module.exports = {
             this.transitionsInProgress = 1;
             this.$el.classList.add('open');
             this.$el.classList.add('active');
+            analytics.event({category: 'Side Menu', action: 'Open'});
         },
         close: function (event, keepShimOpen) {
             this.isOpen = false;
             this.transitionsInProgress = 1;
             this.$el.classList.remove('active');
             this.$dispatch('sideMenuClosed', {keepShimOpen: keepShimOpen});
+            analytics.event({category: 'Side Menu', action: 'Close'});
         }
     },
     data: {

@@ -13,7 +13,9 @@ var expose = [
     'FIREBASE_URL_DATA',
     'OFFLINE',
     'APPCACHE',
-    'REMOTE_DEBUGGING'
+    'REMOTE_DEBUGGING',
+    'GA_TRACKING_ID',
+    'ANALYTICS_CONSOLE_LOGGING'
 ];
 
 module.exports = function () {
