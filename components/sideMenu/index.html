@@ -5,6 +5,7 @@
     <!-- TODO : Add this back in and deep link to sub-view of Detail
       <button v-on="click: onDataClick" class="btn btn-flat"><img src="content/icons/data.svg"> App Data</button>
     -->
-    <button v-on="click: onShareClick" class="btn btn-flat"><img src="content/icons/share.svg"> {{'Share' | i18n}}</button>
+    <button v-if="isOnline == true" v-on="click: onShareClick" class="btn btn-flat"><img src="content/icons/share.svg"> {{'Share' | i18n}}</button>
+    <button v-if="isOnline == false" class="btn btn-flat disabled"><img src="content/icons/share.svg"> {{'Share' | i18n}}</button>
     <button v-on="click: onDeleteClick" class="btn btn-flat"><img src="content/icons/delete.svg"> {{'Delete' | i18n}}</button>
 </div>
