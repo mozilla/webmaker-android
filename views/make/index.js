@@ -44,13 +44,22 @@ module.exports = view.extend({
             this.$parent.$broadcast('openSideMenu');
             this.$parent.$broadcast('openShim');
         },
-        goBack: function (e) {
+        goBack: function (e, isCancel) {
             e.preventDefault();
             if (this.$data.mode === 'settings') {
-                app.update({
-                    iconImage: this.$data.originalIconImage,
-                    iconColor: this.$data.originalIconColor
-                });
+                // Restore original data for a cancellation
+                if (isCancel) {
+                    app.update({
+                        iconImage: this.$data.originalIconImage,
+                        iconColor: this.$data.originalIconColor,
+                        name: this.$data.originalName
+                    });
+                } else {
+                    this.$data.originalIconImage = app.data.iconImage;
+                    this.$data.originalIconColor = app.data.iconColor;
+                    this.$data.originalName = app.data.name;
+                }
+
                 this.$data.changeMode('edit');
             } else {
                 this.page('/profile');
@@ -66,7 +75,10 @@ module.exports = view.extend({
             this.$data.app.faded = true;
         },
         onSave: function (e) {
-            this.goBack(e);
+            this.goBack(e, false);
+        },
+        onCancel: function (e) {
+            this.goBack(e, true);
         },
         updateName: throttle(function (newVal) {
             this.enableSave();
@@ -98,7 +110,6 @@ module.exports = view.extend({
                 iconImage: data.iconImages[index]
             });
 
-            this.$data.currentIconIndex = index;
         },
         onSelectIconColor: function (color) {
             this.enableSave();
@@ -260,6 +271,7 @@ module.exports = view.extend({
             onValue(app.data);
             self.$data.originalIconImage = self.$data.app.iconImage;
             self.$data.originalIconColor = self.$data.app.iconColor;
+            self.$data.originalName = self.$data.app.name;
         }
 
         self.$on(id, onValue);
