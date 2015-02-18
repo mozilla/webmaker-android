@@ -494,5 +494,41 @@
   "Open App": {
     "message": "Open App",
     "description": "Option to open/play an app you don't own"
+  },
+  "Choose Contacts": {
+    "message": "Choose Contacts",
+    "description": "Prompt to select contacts from mobile phone contact list"
+  },
+  "The Internet fell asleep!": {
+    "message": "The Internet fell asleep!",
+    "description": "Message on Discover view when device is online"
+  },
+  "An active connection is needed to display the Discover Gallery": {
+    "message": "An active connection is needed to display the Discover Gallery",
+    "description": "Explains the message communicating a lack of connection"
+  },
+  "Head over to Make to start creating your very own app.": {
+    "message": "Head over to <strong>Make</strong> to start creating your very own app.",
+    "description": "Message encouraging 'make'ing an app when device is offline"
+  },
+  "You haven't created any apps yet.": {
+    "message": "You haven't created any apps...yet.",
+    "description": "Message on profile view if no apps have been created yet"
+  },
+  "Share Via": {
+    "message": "Share Via",
+    "description": "Title for share view"
+  },
+  "SMS": {
+    "message": "SMS",
+    "description": "Acronym for text messaging"
+  },
+  "Add contacts": {
+    "message": "Add contacts",
+    "description": "Title on share view to add contacts from device"
+  },
+  "Show in Discover Gallery" : {
+    "message":"Show in Discover Gallery",
+    "description":"Option to show app within the discover gallery"
   }
 }
