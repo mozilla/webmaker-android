@@ -1,7 +1,8 @@
 <?xml version="1.0" encoding="utf-8"?>
 <!DOCTYPE svg PUBLIC "-//W3C//DTD SVG 1.1//EN" "http://www.w3.org/Graphics/SVG/1.1/DTD/svg11.dtd">
-<svg version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px"
+<svg version="1.1" xmlns="http://www.w3.org/2000/svg" x="0px" y="0px"
 	 viewBox="0 0 300.2 299.8" enable-background="new 0 0 300.2 299.8" xml:space="preserve">
+<text transform="matrix(1 0 0 1 7.1079 13.5215)" opacity="0" font-family="'MyriadPro-Regular'" font-size="12">a</text>
 <g>
 	<path fill="#F1F1F5" d="M168.2,140.8c2.2,11.4,4.4,22.8,6.7,34.2c0.6,2.9-0.2,3.8-3.2,3.9c-9.9,0.3-9.9,0.4-9.9,10.5
 		c0,4.5,0,9,0,13.5c0,2.1,0.1,4-3,4c-3.3,0-2.7-2.3-2.7-4.2c0-6.7,0-13.3,0-20c0-1.7,0.6-3.8-2.4-3.9c-3.1-0.1-2.9,2-2.9,4

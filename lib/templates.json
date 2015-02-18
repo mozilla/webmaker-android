@@ -337,7 +337,7 @@
         "author": {
             "username": "Yousuf",
             "location": "",
-            "avatar": "images/avatar_vendor.png"
+            "avatar": "images/icons/vendor.png"
         },
         "blocks": [
             {
@@ -539,8 +539,8 @@
         "name": "Journalist",
         "templateTitle": "Share Community News",
         "description": "Share photos and write articles and about your local community",
-        "icon": "images/placeholder_journalist.png",
-        "iconImage": "images/journalist.png",
+        "icon": "images/icons/journalist.svg",
+        "iconImage": "images/icons/journalist.svg",
         "iconColor" : "#6CA3ED",
         "author": {
             "username": "",
@@ -667,8 +667,8 @@
         "templateTitle": "Create a How To Guide",
         "description": "If you've got unique skills you'd like to share with others, try making a How To guide.",
         "name": "How To",
-        "icon": "images/placeholder_howto.png",
-        "iconImage": "images/howto.png",
+        "icon": "images/icons/howto.svg",
+        "iconImage": "images/icons/howto.svg",
         "iconColor" : "#64A8EE",
         "author": {
             "username": "",
@@ -879,8 +879,8 @@
         "name": "Safety",
         "templateTitle": "Create a Safety App",
         "description": "Add a map, a emergency call button, and other tips to keep safe in your community",
-        "icon": "images/placeholder_safety.png",
-        "iconImage": "images/safety.png",
+        "icon": "images/icons/safety.svg",
+        "iconImage": "images/icons/safety.svg",
         "iconColor" : "#64B2ED",
         "author": {
             "username": "",
