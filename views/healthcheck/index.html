@@ -8,4 +8,14 @@
     <dt>{{$key}}</dt>
     <dd>{{$value}}</dd>
 </dl>
+<dl>
+  <dt>
+    CURRENT_LANG
+  </dt>
+  <dd>
+    <select class="dropdownChoiceSelect" v-model="currentLang" v-on="change: selectedLang">
+      <option v-repeat="options" value="{{$value}}" class="option-{{$index}}">{{ langmap($value) }}</option>
+    </select>
+  </dd>
+</dl>
 
