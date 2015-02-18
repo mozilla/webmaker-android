@@ -21,5 +21,12 @@ module.exports = {
                     return '/make/' + this.appId + '/detail';
             }
         }
+    },
+    ready: function () {
+        this.$data.view = this.$root.currentView;
+
+    },
+    data: {
+        view: undefined
     }
 };
