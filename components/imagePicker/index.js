@@ -26,9 +26,8 @@ module.exports = {
                 self.$data.inProgress = false;
             }
             navigator.camera.getPicture(onSuccess, onFail, {
-                quality: 70,
-                targetWidth: 320,
-                targetHeight: 240,
+                quality: 50,
+                targetWidth: 640,
                 destinationType: window.Camera.DestinationType.DATA_URL,
                 sourceType: window.Camera.PictureSourceType[sourceType]
             });
