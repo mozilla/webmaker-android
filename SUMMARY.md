@@ -20,4 +20,5 @@
    * [Displaying apps](_docs/ui/displaying_apps.md)
    * [UI Components](_docs/ui/ui_components.md)
    * [Animations](_docs/ui/animations.md)
+* [Analytics](_docs/analytics/README.md)
 * [Field Testing](_docs/field_testing/README.md)
