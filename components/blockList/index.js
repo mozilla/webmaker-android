@@ -118,6 +118,7 @@ module.exports = {
                 if (transitionsCompleted === 2) {
                     // Update model
                     self.appReference.move(index, steps);
+                    elTarget.style.zIndex = 'inherit';
                 }
             }
 
@@ -137,6 +138,8 @@ module.exports = {
                 element.style.transform = value;
                 element.style['-webkit-transform'] = value;
             }
+
+            elTarget.style.zIndex = '9';
 
             if (steps === 1) {
                 transform(elTarget, 'translateY(' + elSwapTargetHeight + ')');
