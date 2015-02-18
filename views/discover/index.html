@@ -18,12 +18,16 @@
     <div class="missing">
         <div class="top">
             <img src="images/no-internet.svg">
-            <p>The Internet fell asleep!</p>
-            <p class="sub">An active connection is needed to display the Discover Gallery</p>
+
+            <p>{{'The Internet fell asleep!' | i18n}}</p>
+
+            <p class="sub">
+                {{'An active connection is needed to display the Discover Gallery' | i18n}}
+            </p>
         </div>
 
         <div class="bottom">
-            <p class="sub">Head over to <strong>Make</strong> to start creating your very own app.</p>
+            <p class="sub" v-bind-i18n-html="'Head over to Make to start creating your very own app.'"></p>
             <img src="images/arrow-fade-down.svg">
         </div>
 
