@@ -19,9 +19,9 @@ Adjusting the `../../` relative path depending on where you using this.
 
 ### screenView(obj)
 
-obj fields | required/optional
---- | ---
-screenName | Required
+obj fields | required/optional | Type
+--- | --- | ---
+screenName | Required | String
 
 Example:
 ```js
@@ -30,27 +30,48 @@ analytics.screenView({screenName: ctx.canonicalPath});
 
 ### event(obj)
 
-obj fields | required/optional
---- | ---
-category | Required
-action | Required
-label | Optional
+obj fields | required/optional | Type
+--- | --- | ---
+category | Required | String
+action | Required | String
+label | Optional | String
 
 Example:
 ```js
 analytics.event({category: 'Blocks', action: 'Add', label: blockId});
 ```
 
+### userTiming(obj)
+
+Use this method to record any in app timings you want to measure. This can be anything from homescreen load time to time from start to publishing an app.
+
+obj fields | required/optional | Type
+--- | --- | ---
+category | Required | String
+name | Required | String
+time | Optional | Int (milliseconds)
+
+Example:
+```js
+analytics.userTiming({category: 'Build Time', name: 'From start to publish', time: 121578});
+```
 
 ### error(obj)
 
-obj fields | required/optional
---- | ---
-description | Required
+obj fields | required/optional | Type
+--- | --- | ---
+description | Required | String
 
 Example:
 ```js
 analytics.error({description: 'Firebase Save Error'});
+```
+
+### newSession()
+
+Example:
+```js
+analytics.newSession();
 ```
 
 ## Console output
