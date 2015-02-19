@@ -12,11 +12,27 @@
         </div>
 
         <div class="control-panel">
-            <button class="btn btn-flat" v-on="click: trash"><i class="ion ion-android-delete"></i></button>
-            <button class="btn btn-flat" v-on="click: duplicate"><i class="ion ion-ios-copy"></i></button>
-            <a v-on="click: onEditClick" class="btn btn-flat" href="/make/{{ app.id }}/block/{{ index }}"><i class="ion ion-edit"></i></a>
-            <button class="btn btn-flat" v-on="click: move(-1)"><i class="ion ion-android-arrow-up"></i></button>
-            <button class="btn btn-flat" v-on="click: move(1)"><i class="ion ion-android-arrow-down"></i></button>
+
+            <button class="btn btn-flat" v-on="click: trash">
+               <img src="content/icons/delete.svg">
+            </button>
+
+            <button class="btn btn-flat" v-on="click: duplicate">
+               <img src="content/icons/duplicate.svg">
+            </button>
+
+            <a v-on="click: onEditClick" class="btn btn-flat" href="/make/{{ app.id }}/block/{{ index }}">
+                <img src="content/icons/edit.svg">
+            </a>
+
+            <button class="btn btn-flat" v-on="click: move(-1)">
+                <img src="content/icons/up.svg">
+            </button>
+
+            <button class="btn btn-flat" v-on="click: move(1)">
+                <img src="content/icons/down.svg">
+            </button>
+
         </div>
     </div>
 </div>
