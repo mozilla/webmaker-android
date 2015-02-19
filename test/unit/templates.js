@@ -83,10 +83,6 @@ var singleTemplateSchema = {
 		name: nonEmptyStringSchema,
 		templateTitle: nonEmptyStringSchema,
 		description: nonEmptyStringSchema,
-		icon: {
-			type: 'string',
-			pattern: '^images/.*'
-		},
 		iconColor: {
 			type: 'string',
 			pattern: '#([A-Fa-f0-9]{6}|[A-Fa-f0-9]{3})'
@@ -97,7 +93,7 @@ var singleTemplateSchema = {
 		author: authorSchema,
 		blocks: blocksSchema
 	},
-	required: ['id', 'name', 'icon', 'blocks'],
+	required: ['id', 'name', 'iconImage', 'blocks'],
 	additionalProperties: false
 };
 var templatesSchema = {

@@ -3,7 +3,6 @@
         "id": "blank",
         "templateTitle": "Start from Scratch",
         "name": "From Scratch",
-        "icon": "images/icons/scratch.svg",
         "description": "Choosing this option will allow you to create your own app without a preset template.",
         "iconImage": "images/icons/scratch.svg",
         "iconColor" : "#8D8FED",
@@ -19,7 +18,6 @@
         "name": "Blogger",
         "templateTitle": "Create a Blog",
         "description": "Have something to share with the world? Start a blog, customize to make it yours and start writing!",
-        "icon": "images/icons/blog.svg",
         "iconImage": "images/icons/blog.svg",
         "iconColor" : "#8594ED",
         "author": {
@@ -139,7 +137,6 @@
         "templateTitle": "Create a Survey",
         "description": "Gather information from your users by creating a survey.",
         "name": "Teacher",
-        "icon": "images/icons/survey.svg",
         "iconImage": "images/icons/survey.svg",
         "iconColor" : "#7D99ED",
         "author": {
@@ -331,7 +328,6 @@
         "templateTitle": "Promote your Business",
         "description": "Show off your products and give customers an easy way to reach you.",
         "name": "Business",
-        "icon": "images/icons/business.svg",
         "iconImage": "images/icons/business.svg",
         "iconColor" : "#749EED",
         "author": {
@@ -539,7 +535,6 @@
         "name": "Journalist",
         "templateTitle": "Share Community News",
         "description": "Share photos and write articles and about your local community",
-        "icon": "images/icons/journalist.svg",
         "iconImage": "images/icons/journalist.svg",
         "iconColor" : "#6CA3ED",
         "author": {
@@ -667,7 +662,6 @@
         "templateTitle": "Create a How To Guide",
         "description": "If you've got unique skills you'd like to share with others, try making a How To guide.",
         "name": "How To",
-        "icon": "images/icons/howto.svg",
         "iconImage": "images/icons/howto.svg",
         "iconColor" : "#64A8EE",
         "author": {
@@ -879,7 +873,6 @@
         "name": "Safety",
         "templateTitle": "Create a Safety App",
         "description": "Add a map, a emergency call button, and other tips to keep safe in your community",
-        "icon": "images/icons/safety.svg",
         "iconImage": "images/icons/safety.svg",
         "iconColor" : "#64B2ED",
         "author": {
