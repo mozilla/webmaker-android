@@ -147,15 +147,22 @@ module.exports = view.extend({
                 root.$broadcast('publishingDone');
                 console.log('[Publish]', data.url);
 
+                // callback funciton for social share success
+                function shareSuccess () {
+                    analytics.event({ category: 'Social', action: 'Share Success', label: 'Android'});
+                }
+
                 // Native Sharing (Android / iOS) or dispatch SMS (FirefoxOS)
                 var msg = i18n.get('share_message');
                 var url = data.url;
                 if (typeof window.plugins === 'undefined') return;
                 if (typeof window.plugins.socialsharing === 'undefined') return;
                 if (ua.isFirefoxOS) {
+                    analytics.screenView({screenName: 'Social Share View FirefoxOS (sms)'});
                     window.location.href = 'sms:?body=' + msg + ' ' + url;
                 } else {
-                    window.plugins.socialsharing.share(msg, null, null, url);
+                    analytics.screenView({screenName: 'Social Share View Android'});
+                    window.plugins.socialsharing.share(msg, null, null, url, shareSuccess);
                 }
             });
         },
