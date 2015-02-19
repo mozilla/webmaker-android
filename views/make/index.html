@@ -11,7 +11,7 @@
         <div v-show="mode === 'settings'">{{ >settings }}</div>
 
         <div v-show="['edit'].indexOf(mode) > -1">
-            <div v-component="blockList" id="blocks" class="blocks" v-with="appid: app.id">
+            <div v-component="blockList" id="blocks" class="blocks" v-class="offline: !isOnline" v-with="appid: app.id">
                 <div
                     mode="{{ mode }}"
                     app="{{ app }}"

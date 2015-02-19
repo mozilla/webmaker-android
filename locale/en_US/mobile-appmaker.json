@@ -135,6 +135,10 @@
     "message": "Publishing...",
     "description": "Shows up below header when the app is being published or a publish is in progress"
   },
+  "You need to connect to the Internet.": {
+    "message": "You need to connect to the Internet.",
+    "description": "Shows up below header when the app can't be published due to connection issues"
+  },
   "Teacher": {
     "message": "Teacher",
     "description": "Title for an app for teachers"
