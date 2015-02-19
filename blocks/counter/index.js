@@ -46,19 +46,29 @@ module.exports = {
     },
     ready: function () {
         var self = this;
+
+        self.elInput = self.$el.querySelector('input[type="number"]');
+
         if (
             self.attributes.current.value === 'undefined' ||
             self.attributes.current.value === ''
         ) {
             self.attributes.current.value = self.attributes.min.value;
         }
+
+        this.setProxy();
     },
     methods: {
+        setProxy: function (value) {
+            this.$data.proxyValue = this.elInput.value;
+        },
         stepUp: function () {
-            this.$el.querySelector('input[type="number"]').stepUp();
+            this.elInput.stepUp();
+            this.setProxy();
         },
         stepDown: function () {
-            this.$el.querySelector('input[type="number"]').stepDown();
+            this.elInput.stepDown();
+            this.setProxy();
         }
     }
 };

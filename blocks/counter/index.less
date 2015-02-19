@@ -9,36 +9,40 @@
         button {
             font-size: 36px;
             color: @turquoise;
-            background-color: white;
+            background-color: @white;
             border: 1px solid @lightGrey;
-            padding: 0 15px;
+            padding: 0 5%;
             margin: 0;
 
             &:first-of-type {
                 border-radius: 5px 0 0 5px;
             }
+
             &:last-of-type {
                 border-radius: 0 5px 5px 0;
             }
-        }
 
-        input[type="number"] {
-            padding-left: 0;
-            padding-right: 0;
-            border-left: none;
-            border-right: none;
-            text-align: center;
-            color: @turquoise;
-
-            -moz-appearance: textfield;
-            &::-webkit-inner-spin-button,
-            &::-webkit-outer-spin-button {
-                -webkit-appearance: none;
-                margin: 0;
+            &:active,
+            &:focus {
+                outline: none;
+                -webkit-tap-highlight-color: rgba(255, 255, 255, 0);
+                -webkit-tap-highlight-color: transparent;
             }
         }
 
-        label:empty {
+        .proxy {
+            flex-grow: 1;
+            display: flex;
+            justify-content: center;
+            align-content: center;
+            align-items: center;
+            background-color: @white;
+            border-top: 1px solid @lightGrey;
+            border-bottom: 1px solid @lightGrey;
+            color: @turquoise;
+        }
+
+        input[type="number"] {
             display: none;
         }
     }
