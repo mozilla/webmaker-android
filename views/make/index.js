@@ -7,6 +7,7 @@ var publish = require('../../lib/publish');
 var i18n = require('../../lib/i18n');
 var ua = require('../../lib/ua');
 var analytics = require('../../lib/analytics');
+var network = require('../../lib/network');
 
 var sort;
 var app;
@@ -30,6 +31,9 @@ var iconImages = [
 
 module.exports = view.extend({
     id: 'make',
+    data:{
+        isOnline : network.isOnline
+    },
     template: require('./index.html'),
     partials: {
         navigation: require('./navigation.html'),
@@ -136,6 +140,10 @@ module.exports = view.extend({
             var root = self.$root;
 
             // Publish
+            if (!self.$data.isOnline) {
+                root.$broadcast('publishOffline');
+                return;
+            }
             root.$broadcast('publishingStarted');
             publish(id, user, function (err, data) {
 
@@ -310,6 +318,10 @@ module.exports = view.extend({
         // ---------------------------------------------------------------------
         var data = new Data(id);
         self.$on('dataSave', function () {
+            if (!self.$data.isOnline) {
+                self.$broadcast('publishOffline');
+                return;
+            }
             data.collect(this.$el, function onDataSave(err) {
                 if (err) {
                     analytics.error({description: 'Firebase Save Error'});
