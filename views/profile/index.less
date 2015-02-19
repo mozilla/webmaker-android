@@ -1,7 +1,4 @@
 #profile {
-    .list-cell {
-        padding: 0 0 41px 0;
-    }
     input {
         color: @black;
         height: 15%;
@@ -36,6 +33,7 @@
 
     .profile-details {
         height: 100%;
+        margin-bottom: 41px;
     }
 
     #profile-header {
@@ -88,6 +86,21 @@
             bottom: 5%;
             cursor: pointer;
             right: 5%;
+        }
+    }
+    .privacy-legal {
+        display: flex;
+        font-size: 75%;
+        list-style: none;
+        margin: 0;
+        padding: 0;
+        text-align: center;
+        li {
+            width: 50%;
+            a {
+                display: block;
+                padding: 10px 0;
+            }
         }
     }
 }
