@@ -1,4 +1,5 @@
 var transitionEndEventName = require('../../lib/transition-end-name')();
+var network = require('../../lib/network.js');
 var Hammer = require('hammerjs');
 var analytics = require('../../lib/analytics');
 
@@ -6,6 +7,7 @@ module.exports = {
     id: 'side-menu',
     ready: function () {
         var self = this;
+        self.$data.isOnline = network.isOnline;
 
         var hammer = new Hammer(self.$el, {
             /* jscs: disable */
@@ -15,6 +17,7 @@ module.exports = {
         });
 
         self.$on('openSideMenu', function (event) {
+            self.$data.isOnline = network.isOnline;
             self.open();
             hammer.on('swipeleft', function () {
                 self.close();
@@ -88,7 +91,8 @@ module.exports = {
     },
     data: {
         transitionsInProgress: 0,
-        isOpen: false
+        isOpen: false,
+        isOnline: true
     },
     template: require('./index.html')
 };
