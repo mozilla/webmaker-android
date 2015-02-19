@@ -8,7 +8,7 @@
     <div class="editor-wrapper">
         <div class="block-wrapper">
             <content select=":first-child"></content>
-            <div v-show="isEditMode" v-component="imagePicker"></div>
+            <div v-show="isEditMode && app.blocks[$index].type === 'image'" v-component="imagePicker"></div>
         </div>
 
         <div class="control-panel">
