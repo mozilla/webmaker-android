@@ -47,6 +47,10 @@
     "message": "My Apps",
     "description": "Mobile apps I have created"
   },
+  "My App": {
+    "message": "My App",
+    "description": "The Mobile app I am viewing"
+  },
   "by _": {
     "message": "by {{name}}",
     "description": "For apps, e.g. My Cool App, by {{name}}"
@@ -278,6 +282,10 @@
   "Phone #": {
     "message": "Phone #",
     "description": "Label for Phone # attribute on call/sms block"
+  },
+  "App Data": {
+    "message": "App Data",
+    "description": "Form data submitted for my app"
   },
   "Label": {
     "message": "Label",
