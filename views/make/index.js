@@ -13,19 +13,19 @@ var app;
 var iconColors = utils.baseColors;
 
 var iconImages = [
-    'activist.png',
-    'blogger.png',
-    'howto.png',
-    'journalist.png',
-    'puppy.png',
-    'safety.png',
-    'scientist.png',
-    'music.png',
-    'teacher.png',
-    'vendor.png',
-    'family.png'
+    'activist.svg',
+    'blogger.svg',
+    'howto.svg',
+    'journalist.svg',
+    'puppy.svg',
+    'safety.svg',
+    'scientist.svg',
+    'music.svg',
+    'teacher.svg',
+    'vendor.svg',
+    'family.svg'
 ].map(function (icon) {
-    return 'images/' + icon;
+    return 'images/icons/' + icon;
 });
 
 module.exports = view.extend({

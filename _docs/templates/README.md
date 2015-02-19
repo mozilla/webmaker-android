@@ -8,7 +8,7 @@ In Webmaker Mobile, individual app templates are represented by a JSON blob in `
 {
     id: '000d1745-5d3c-4997-ac0c-15df68bbbecz',
     name: 'Portal App',
-    icon: '/images/placeholder_puppy.png',
+    iconImage: '/images/icons/puppy.png',
     author: {
         username: 'Chell',
         location: 'Aperture Labs',
