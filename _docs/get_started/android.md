@@ -2,7 +2,7 @@
 
 ## Install Android SDK
 
-For this project you will need the SDK command line tools. You can download and install from (https://developer.android.com/sdk/index.html)[developer.android.com] or via brew:
+For this project you will need the SDK command line tools. You can download and install from [developer.android.com](https://developer.android.com/sdk/index.html) or via brew:
 
 ```bash
 brew install android-platform-tools
@@ -19,7 +19,7 @@ Open a new window and type:
 ```
 adb version
 ```
-If you see something like `Android Debug Bridge version 1.0.32`. If you don't, see [this page on MDN](https://developer.mozilla.org/en-US/Firefox_OS/Debugging/Installing_ADB) for more help.
+If you see something like `Android Debug Bridge version 1.0.32` you have adb installed properly. If you don't, see [this page on MDN](https://developer.mozilla.org/en-US/Firefox_OS/Debugging/Installing_ADB) for more help.
 
 
 ## Install Cordova
@@ -64,7 +64,7 @@ Unfortunately, Webview in Android 4.2 does not ship with a debugger – we will 
 npm install -g weinre
 ```
 
-In order to make debugging easier, you will also want to tunnel to the local port that `weinre` runs on (the alternative is making sure your local computer and phone are on the same network and looking up your IP address, which is time-consuming and requires constant re-configuration). I use `ngrok` to do this. You can download it from [the ngrok website](`ngrok`).
+In order to make debugging easier, you will also want to tunnel to the local port that `weinre` runs on (the alternative is making sure your local computer and phone are on the same network and looking up your IP address, which is time-consuming and requires constant re-configuration). You can use `ngrok` to do this. You can download it from [the ngrok website](https://ngrok.com/).
 
 Now that you have `weinre` and `ngrok` installed, first run
 
@@ -78,7 +78,7 @@ to start your weinre debugging server. You can use any port you want Then, creat
 ngrok -subdomain=w1nr3 1234
 ```
 
-Set the `subdomain` option to something short and unique.
+Set the `subdomain` option to something short and unique. You will need to sign up for an account in order to choose a unique subdomain. If you prefer not to create an account on the ngrok site, you can just leave out the `-subdomain=w1nr3` command and ngrok will create a random subdomain that you can use. 
 
 After you've done that, `cd` into the `webmaker-app/` directory that you cloned from `mozilla/webmaker-app` and create a file called `.env` in the root directory, if it does not already exist. Add the following environment variable to it:
 
