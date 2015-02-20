@@ -1,3 +1,4 @@
+var utils = require('../../lib/utils');
 var view = require('../../lib/view');
 
 module.exports = view.extend({
@@ -5,7 +6,8 @@ module.exports = view.extend({
     template: require('./index.html'),
     data: {
         title: 'My Apps',
-        myApps: []
+        myApps: [],
+        openInBrowser: utils.openInBrowser
     },
     computed: {
         user: function () {
