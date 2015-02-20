@@ -25,6 +25,19 @@ module.exports = view.extend({
       langmap: function (locale) {
           return langmap[locale].nativeName;
       },
+      clean: function (e) {
+          var self = this;
+          var storage = self.$root.storage;
+          self.$data.myApps = storage.getApps();
+          var sure = window.confirm('Are you sure you want to delete all of your apps? There is no going back :)');
+          if (sure) {
+              self.$data.myApps.forEach(function (app) {
+                  self.$root.storage.getApp(app.id).removeApp();
+              });
+              self.$data.myApps = [];
+              self.page(this.$data.back);
+          }
+      },
       selectedLang: function (e) {
           i18n.setLocale(e.target.value, true);
           this.page(this.$data.back);
