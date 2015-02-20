@@ -56,8 +56,11 @@ module.exports = view.extend({
             app.updateBlock(index, {
                 attributes: this.$data.block.attributes
             });
-            this.page(this.$data.back);
             this.$data.saveDisabled = true;
+            this.page(this.$data.back);
+        },
+        onCancel: function (e) {
+            global.history.back();
         }
     },
     created: function () {
