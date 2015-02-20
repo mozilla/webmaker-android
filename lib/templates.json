@@ -651,6 +651,12 @@
                 "label": "Phone #",
                 "type": "string",
                 "value": "+18005555555"
+            },
+            "color": {
+                "label": "Button Color",
+                "type": "color",
+                "value": "#64A8EE",
+                "skipAutoRender": true
             }
         },
         "type": "phone"
@@ -893,6 +899,12 @@
                         "label": "Label",
                         "type": "string",
                         "value": "Call Campus Safety"
+                    },
+                    "color": {
+                        "label": "Button Color",
+                        "type": "color",
+                        "value": "#64A8EE",
+                        "skipAutoRender": true
                     }
                 }
             },
