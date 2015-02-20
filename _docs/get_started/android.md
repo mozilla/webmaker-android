@@ -64,7 +64,7 @@ Unfortunately, Webview in Android 4.2 does not ship with a debugger – we will 
 npm install -g weinre
 ```
 
-In order to make debugging easier, you will also want to tunnel to the local port that `weinre` runs on (the alternative is making sure your local computer and phone are on the same network and looking up your IP address, which is time-consuming and requires constant re-configuration). I use `ngrok` to do this. You can download it from [the ngrok website](https://ngrok.com/).
+In order to make debugging easier, you will also want to tunnel to the local port that `weinre` runs on (the alternative is making sure your local computer and phone are on the same network and looking up your IP address, which is time-consuming and requires constant re-configuration). You can use `ngrok` to do this. You can download it from [the ngrok website](https://ngrok.com/).
 
 Now that you have `weinre` and `ngrok` installed, first run
 
