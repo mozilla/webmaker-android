@@ -6,7 +6,7 @@ var supportedLanguages = ['id', 'en_CA', 'es_CL', 'fr', 'nl', 'es_MX', 'cs', 'sv
 
 module.exports = function (callback) {
     downloadLocales({
-        app: 'mobile-appmaker',
+        app: 'webmaker-app',
         dir: 'locale',
         languages: supportedLanguages
     }, callback);

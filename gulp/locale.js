@@ -5,7 +5,7 @@ var path = require('path');
 module.exports = function (callback) {
     var langMap = Object.create(null);
 
-    glob('./locale/**/mobile-appmaker.json', function (err, files) {
+    glob('./locale/**/webmaker-app.json', function (err, files) {
         if (err) return callback(err);
 
         files.forEach(function (filename) {

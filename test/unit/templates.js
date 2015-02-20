@@ -4,7 +4,7 @@ var validate = jsonValidator.validateMultiple;
 var templates = require('../../lib/templates.json');
 
 // Localization strings
-var localeFile = require('../../locale/en_US/mobile-appmaker.json');
+var localeFile = require('../../locale/en_US/webmaker-app.json');
 var localizedStrings = [];
 Object.keys(localeFile).forEach(function (localizedStr) {
 	localizedStrings.push(localizedStr.toLowerCase());

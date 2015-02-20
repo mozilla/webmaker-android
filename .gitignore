@@ -4,7 +4,7 @@
 npm-*
 /build/*
 /locale/*
-!/locale/en_US/mobile-appmaker.json
+!/locale/en_US/webmaker-app.json
 config/index.js
 .env
 wma.sublime-workspace
