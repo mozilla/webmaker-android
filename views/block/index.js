@@ -60,7 +60,10 @@ module.exports = view.extend({
             this.page(this.$data.back);
         },
         onCancel: function (e) {
-            global.history.back();
+            e.preventDefault();
+            app.remove(index);
+            var id = this.$root.$data.params.id;
+            this.page('/make/' + id + '/add');
         }
     },
     created: function () {
