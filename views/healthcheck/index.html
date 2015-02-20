@@ -9,9 +9,7 @@
     <dd>{{$value}}</dd>
 </dl>
 <dl>
-  <dt>
-    CURRENT_LANG
-  </dt>
+  <dt>CURRENT_LANG</dt>
   <dd>
     <select class="dropdownChoiceSelect" v-model="currentLang" v-on="change: selectedLang">
       <option v-repeat="options" value="{{$value}}" class="option-{{$index}}">{{ langmap($value) }}</option>
@@ -19,3 +17,9 @@
   </dd>
 </dl>
 
+<dl>
+    <dt>DELETE ALL YOUR APPS</dt>
+    <dd>
+      <button href="#" class="btn" v-on="click: clean">DELETE NOW</button>
+    </dd>
+</dl>
