@@ -16,8 +16,6 @@ module.exports = function (callback) {
             app: 'webmaker-app',
             dir: 'locale',
             languages: supportedLanguages
-        }, function (err) {
-            console.log('foo');
-        });
+        }, callback);
     });
 };
