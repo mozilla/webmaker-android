@@ -14,7 +14,13 @@ module.exports = {
     },
     methods: {
         onClick: function (event) {
-            this.value = !this.value;
+            if (this.options[(0 + this.value)] === event.target.textContent) {
+                // is the current option the same as the option that was just
+                // tapped on? if so, do nothing.
+                return false;
+            } else {
+                this.value = !this.value;
+            }
         }
     }
 };
