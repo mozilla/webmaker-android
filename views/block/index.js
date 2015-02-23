@@ -61,6 +61,10 @@ module.exports = view.extend({
         },
         onCancel: function (e) {
             e.preventDefault();
+            if(this.$data.mode === "edit"){
+                  this.page(this.$data.back);
+                  return;
+            }
             app.remove(index);
             var id = this.$root.$data.params.id;
             this.page('/make/' + id + '/add');
@@ -68,7 +72,7 @@ module.exports = view.extend({
     },
     created: function () {
         var self = this;
-
+        mode = self.$root.$data.params.mode;
         id = self.$root.$data.params.id;
         index = self.$root.$data.params.index;
 
@@ -87,7 +91,7 @@ module.exports = view.extend({
                self.$data.block = val.blocks[index];
            });
         }
-
+        self.$data.mode = mode;
         self.$data.index = index;
     }
 });
