@@ -10,9 +10,6 @@
     display: flex;
     align-items: center;
 
-    & > div {
-        flex: 1;
-    }
     & > div:nth-child(3) {
         text-align: right;
     }
@@ -115,12 +112,14 @@
     }
 
     .add-btn {
+        float: right;
+        background-color: #21e0fc;
         display: flex;
         align-items: center;
         justify-content: flex-end;
         height: @header-height;
         margin: 0;
-        padding-right: 15px;
+        padding: 0 15px;
         img {
             display: block;
         }
@@ -144,6 +143,25 @@
         }
         .nav-btn:extend(.navigationBar .nav-btn) {
             color: @white;
+        }
+    }
+
+    .button-group {
+        padding: 0 15px;
+
+        button {
+            padding: 0 10px;
+            font-size: 1.4em;
+            border: 0;
+            color: @white;
+
+            &:first-child {
+                padding-left: 0;
+            }
+
+            &:last-child {
+                padding-right: 0;
+            }
         }
     }
 }

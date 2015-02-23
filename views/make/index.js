@@ -134,6 +134,10 @@ module.exports = view.extend({
             app.removeApp();
             this.page('/profile');
         },
+        trashClick: function () {
+            this.$dispatch('showShim');
+            this.$dispatch('openModalPrompt', {type: 'delete'});
+        },
         publish: function () {
             var self = this;
             var id = self.$root.$data.params.id;
@@ -199,18 +203,6 @@ module.exports = view.extend({
                 self.fadeOut(element);
             }, 3000);
         }
-
-        self.$on('sideMenuDeleteClick', function (event) {
-            self.$dispatch('openModalPrompt', {type: 'delete'});
-        });
-
-        self.$on('sideMenuShareClick', function (event) {
-            self.publish();
-        });
-
-        self.$on('sideMenuDataClick', function (event) {
-            this.mode = 'data';
-        });
 
         self.$on('onConfirmClick', function (event) {
             console.warn('Deleting app!');
