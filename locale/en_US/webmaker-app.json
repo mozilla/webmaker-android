@@ -27,6 +27,10 @@
     "message": "Link",
     "description": "Link label"
   },
+  "Add Content": {
+    "message": "Add Content",
+    "description": "Add Content title on add block page"
+  },
   "Separator": {
     "message": "Separator",
     "description": "Separator label"

@@ -55,7 +55,6 @@ module.exports = view.extend({
         self.$on(id, function (val) {
             self.$root.isReady = true;
             self.$data.app = val;
-            self.title = val.name;
         });
         self.$data.onDone = '/make/' + id + '/share?publish=true';
 
