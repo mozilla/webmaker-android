@@ -39,7 +39,12 @@ module.exports = view.extend({
           }
       },
       selectedLang: function (e) {
-          i18n.setLocale(e.target.value, true);
+          if (e.target.value === 'use-default') {
+              this.model.data.session.locale = navigator.language;
+              i18n.setLocale(this.model.data.session.locale, true);
+          } else {
+              i18n.setLocale(e.target.value, true);
+          }
           this.page(this.$data.back);
       }
     },

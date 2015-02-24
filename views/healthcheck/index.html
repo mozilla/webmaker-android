@@ -12,11 +12,11 @@
   <dt>CURRENT_LANG</dt>
   <dd>
     <select class="dropdownChoiceSelect" v-model="currentLang" v-on="change: selectedLang">
+      <option value="use-default">Use device default</option>
       <option v-repeat="options" value="{{$value}}" class="option-{{$index}}">{{ langmap($value) }}</option>
     </select>
   </dd>
 </dl>
-
 <dl>
     <dt>DELETE ALL YOUR APPS</dt>
     <dd>
