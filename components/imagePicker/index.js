@@ -13,8 +13,9 @@ module.exports = {
             this.$data.inProgress = true;
             function onSuccess(imageData) {
                 var prefix = 'data:image/jpeg;base64,';
+                var test = 'data:image';
                 // Android implementation doesn't add prefix
-                if (imageData.indexOf(prefix) === -1) {
+                if (imageData.indexOf(test) === -1) {
                     imageData = prefix + imageData;
                 }
                 self.$data.inProgress = false;
