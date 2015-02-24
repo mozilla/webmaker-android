@@ -8,14 +8,12 @@ module.exports = {
             link: {
                 label: 'URL',
                 type: 'input',
-                value: '',
-                placeholder: 'https://mozilla.org'
+                value: 'https://mozilla.org'
             },
             text: {
               label: 'Link Text',
               type: 'input',
-              value: '',
-              placeholder: 'Mozilla'
+              value: 'Mozilla'
             }
         }
     }
