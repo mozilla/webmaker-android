@@ -1,6 +1,6 @@
 <ul class="list-cell template-cell">
     <li v-repeat="templates" style="background-color: {{iconColor}}">
-        <a href="/template/{{id}}/detail" class="cell" template="true">
+        <a href="/template/{{id}}/detail" v-on="click: createBlank($event, id)" class="cell" template="true">
             <div class="left">
                 <div class="app-icon">
                   <div class="app-icon-image" style="background-image:url({{iconImage}});"></div>

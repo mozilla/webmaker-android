@@ -9,31 +9,10 @@ module.exports = view.extend({
         templates: templates
     },
     methods: {
-        onClick: function (e) {
-            var self = this;
-            var storage = self.$root.storage;
-            var id = e.currentTarget.getAttribute('data-id');
+        createBlank: function (e, id) {
             if (id === 'blank') {
                 e.preventDefault();
-                var app = storage.createApp({
-                    template: id
-                });
-                self.$data.create = false;
-                self.$root.$data.enteredEditorFrom = '/templates';
-                self.$root.isReady = false;
-                setTimeout(function () {
-                    self.$root.isReady = true;
-                    self.page('/make/' + app.id);
-                }, 100);
-
-                e.preventDefault();
-
-                self.$root.$data.enteredEditorFrom = '/templates';
-                self.$root.isReady = false;
-                setTimeout(function () {
-                    self.$root.isReady = true;
-                    self.page('/make/' + app.id);
-                }, 1000);
+                this.createAppFromTemplate(id);
             }
         }
     }

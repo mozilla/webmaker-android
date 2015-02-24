@@ -10,32 +10,13 @@ module.exports = view.extend({
     },
     methods: {
         create: function (e) {
-            if (e) {
-                e.preventDefault();
-            }
-            var self = this;
-            var options = {
-                template: self.$root.params.id
-            };
-            var app = self.$root.storage.createApp(options);
-
-            self.$data.create = false;
-            self.$root.$data.enteredEditorFrom = '/templates';
-            self.$root.isReady = false;
-            setTimeout(function () {
-                self.$root.isReady = true;
-                self.page('/make/' + app.id);
-            }, 100);
-
+            e.preventDefault();
+            this.createAppFromTemplate(this.$root.params.id);
         }
     },
     created: function () {
         var self = this;
         var id = self.$root.params.id;
-
-        if (id === 'blank') {
-            self.create();
-        }
 
         self.$data.id = id;
         templates.forEach(function (template) {
