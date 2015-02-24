@@ -8,6 +8,7 @@ var bulk = require('bulk-require');
 var i18n = require('../lib/i18n');
 var locale = require('../locale');
 
+var Data = require('../lib/data');
 var block = require('../lib/block');
 var blocks = clone(bulk(__dirname + '/../blocks', '**/*.js'));
 var componentList = {};
@@ -45,6 +46,16 @@ var app = new Vue({
     data: {
         title: json.name,
         app: json
+    },
+    created: function () {
+        var self = this;
+        var data = new Data(json.id);
+        self.$on('dataSave', function () {
+            data.collect(this.$el, function onDataSave(err) {
+                if (err) return console.log('[Firebase] ' + err);
+                self.$broadcast('dataSaveSuccess');
+            });
+        });
     }
 });
 
