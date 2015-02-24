@@ -61,9 +61,9 @@ module.exports = view.extend({
         },
         onCancel: function (e) {
             e.preventDefault();
-            if(this.$data.mode === "edit"){
-                  this.page(this.$data.back);
-                  return;
+            if (this.$data.mode === "edit") {
+                this.page(this.$data.back);
+                return;
             }
             app.remove(index);
             var id = this.$root.$data.params.id;
@@ -72,7 +72,7 @@ module.exports = view.extend({
     },
     created: function () {
         var self = this;
-        mode = self.$root.$data.params.mode;
+        var mode = self.$root.$data.params.mode;
         id = self.$root.$data.params.id;
         index = self.$root.$data.params.index;
 
