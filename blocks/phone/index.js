@@ -23,13 +23,10 @@ module.exports = {
             }
         }
     },
-    created: function () {
-        var self = this;
-
-        // Disable if editing mode
-        self.$data.onClick = function (e) {
+    methods: {
+        onClick: function (e) {
             e.preventDefault();
-            window.location = 'tel:' + self.$data.attributes.number.value;
-        };
+            window.location = 'tel:' + this.$data.attributes.number.value;
+        }
     }
 };
