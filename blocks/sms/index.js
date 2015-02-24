@@ -28,14 +28,13 @@ module.exports = {
             }
         }
     },
-    ready: function () {
-        var self = this;
-        self.$el.addEventListener('click', function (e) {
+    methods: {
+        onClick: function (e) {
             e.preventDefault();
-
-            var number = self.$data.attributes.value.value;
-            var body = self.$data.attributes.messageBody.value;
+            var attr = this.$data.attributes;
+            var number = attr.value.value;
+            var body = attr.messageBody.value;
             window.location = 'sms:' + number + '?body=' + body;
-        });
+        }
     }
 };
