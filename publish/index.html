@@ -8,23 +8,29 @@
 
         <title>Webmaker</title>
         <link rel="stylesheet" href="/styles/common.css">
-        <style>
-            .main {
-                padding: 60px 10px 10px;
-            }
-        </style>
     </head>
 
-    <body>
-        <div id="app">
-            <div class="main">
-                <div v-component="publishHeader"></div>
-                <ul class="blocks">
-                    <li v-component="{{type}}" v-repeat="app.blocks"></li>
-                </ul>
-                <div v-component="publishFooter"></div>
+    <body id="published-app">
+        <div class="desktop-wrapper">
+            <div class="phone-shell">
+                <img class="phone-top" src="/images/desktop-wrapper/mobile-top.svg"/>
+                <div id="app">
+                    <div v-component="publishHeader"></div>
+                    <div class="main">
+                        <ul class="blocks">
+                            <li v-component="{{type}}" v-repeat="app.blocks"></li>
+                        </ul>
+                    </div>
+                    <div v-component="publishFooter"></div>
+                </div>
+                <img class="phone-bottom" src="/images/desktop-wrapper/mobile-bottom.svg"/>
+            </div>
+
+            <div>
+                <a class="btn btn-inline download-button" href="http://mzl.la/webmaker">Download Mozilla Webmaker App</a>
             </div>
         </div>
+
         <script src="./app.js"></script>
         <script src="./index.js"></script>
     </body>
