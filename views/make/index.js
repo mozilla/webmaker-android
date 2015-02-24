@@ -82,6 +82,7 @@ module.exports = view.extend({
         onSave: function (e) {
             this.goBack(e, false);
             this.updateName(this.$data.app.name);
+            this.hideSpeech();
         },
         onCancel: function (e) {
             this.goBack(e, true);
