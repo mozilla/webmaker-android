@@ -1,19 +1,10 @@
+
 <div v-show="!app.id" v-component="alert" type="error" message="errorAppNotFound"></div>
 <div v-show="app.id">
     <div v-component="navigationBar" v-with="title: app.name" class="nav-default"></div>
     <main>
-        <div v-component="blockList" id="blocks" class="blocks" v-with="appid: app.id">
-            <div
-                mode="{{ mode }}"
-                app="{{ app }}"
-                index="{{ $index }}"
-                v-component="inlineEditor"
-                v-repeat="block : app.blocks">
-
-                <div
-                    v-with="block"
-                    v-component="{{ block.type }}"></div>
-            </div>
-        </div>
+        <ul class="blocks">
+            <li v-component="{{type}}" v-repeat="app.blocks"></li>
+        </ul>
     </main>
 </div>

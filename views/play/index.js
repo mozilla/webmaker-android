@@ -5,25 +5,20 @@ module.exports = view.extend({
     id: 'play',
     template: require('./index.html'),
     data: {
-        back: true
+        back: true,
+        app: {}
     },
-    created: function () {
+    ready: function () {
         var self = this;
         var id = self.$root.params.id;
 
-        self.$data.id = id;
-
         // Fetch app
-        var app = self.$root.storage.getApp(id);
+        var ref = self.$root.storage._firebase.child(id);
 
-        if (app.data) {
+        ref.once('value', function (snapshot) {
             self.$root.isReady = true;
-            self.$data.app = app.data;
-        }
-
-        self.$on(id, function (val) {
-            self.$root.isReady = true;
-            self.$data.app = val;
+            self.$data.app = snapshot.val();
+            self.$data.app.id = snapshot.key();
         });
 
         // Handle save events
