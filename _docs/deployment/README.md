@@ -2,7 +2,7 @@
 
 ## Deploying to mofodev/nightly builds
 
-Nothing needs to be done here except merging commits to master **with one exception**; `mozilla/webmaker-app-publisher` still needs to be deployed to heroku manually (see [issue #301](https://github.com/mozilla/webmaker-app/issues/301). You can do this with `git push heroku master` (ping `@k88hudson` for credentials).
+Nothing needs to be done here except merging commits to master **with one exception**; `mozilla/webmaker-app-publisher` still needs to be deployed to heroku manually (see [issue #301](https://github.com/mozilla/webmaker-app/issues/301)). You can do this with `git push heroku master` (ping `@k88hudson` for credentials).
 
 
 ## Tagging releases
