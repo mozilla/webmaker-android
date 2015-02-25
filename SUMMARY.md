@@ -21,4 +21,5 @@
    * [UI Components](_docs/ui/ui_components.md)
    * [Animations](_docs/ui/animations.md)
 * [Analytics](_docs/analytics/README.md)
+* [Deployment](_docs/deployment/README.md)
 * [Field Testing](_docs/field_testing/README.md)
