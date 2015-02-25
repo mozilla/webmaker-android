@@ -60,12 +60,19 @@ module.exports = view.extend({
             this.page(this.$data.back);
         },
         onCancel: function (e) {
-            global.history.back();
+            e.preventDefault();
+            if (this.$data.mode === "edit") {
+                this.page(this.$data.back);
+                return;
+            }
+            app.remove(index);
+            var id = this.$root.$data.params.id;
+            this.page('/make/' + id + '/add');
         }
     },
     created: function () {
         var self = this;
-
+        var mode = self.$root.$data.params.mode;
         id = self.$root.$data.params.id;
         index = self.$root.$data.params.index;
 
@@ -84,7 +91,7 @@ module.exports = view.extend({
                self.$data.block = val.blocks[index];
            });
         }
-
+        self.$data.mode = mode;
         self.$data.index = index;
     }
 });
