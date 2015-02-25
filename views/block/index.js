@@ -57,7 +57,8 @@ module.exports = view.extend({
                 attributes: this.$data.block.attributes
             });
             this.$data.saveDisabled = true;
-            this.page(this.$data.back);
+            global.history.back();
+            global.history.replaceState({}, '', this.$data.back);
         },
         onCancel: function (e) {
             e.preventDefault();
