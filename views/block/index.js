@@ -57,6 +57,12 @@ module.exports = view.extend({
                 attributes: this.$data.block.attributes
             });
             this.$data.saveDisabled = true;
+
+            // Go back an extra step after adding a new block
+            if (window.urlHistory[window.urlHistory.length - 2].match(/\/add$/)) {
+                global.history.back();
+            }
+
             global.history.back();
             global.history.replaceState({}, '', this.$data.back);
         },
