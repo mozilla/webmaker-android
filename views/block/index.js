@@ -69,12 +69,13 @@ module.exports = view.extend({
         onCancel: function (e) {
             e.preventDefault();
             if (this.$data.mode === "edit") {
-                this.page(this.$data.back);
+                global.history.back();
+                global.history.replaceState({}, '', this.$data.back);
                 return;
             }
             app.remove(index);
             var id = this.$root.$data.params.id;
-            this.page('/make/' + id + '/add');
+            global.history.back();
         }
     },
     created: function () {

@@ -72,7 +72,7 @@ module.exports = view.extend({
             // Add to model & redirect to block edit page.
             // Newly added block always in index 0.
             if (blockId === 'image') {
-                self.page('/make/' + id);
+                global.history.back();
             } else {
                 self.page('/make/' + id + '/block/0');
             }
