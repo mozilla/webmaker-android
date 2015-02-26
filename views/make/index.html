@@ -7,7 +7,7 @@
         <img src="images/toucan1.svg"/>
     </div>
 
-    <main v-show="noBlock" v-class="edit-container: mode === 'edit', settings-container: mode === 'settings'">
+    <main v-class="edit-container: mode === 'edit', settings-container: mode === 'settings', no-block: noBlock === 0 && mode !== 'settings'">
         <div v-show="mode === 'settings'">{{ >settings }}</div>
 
         <div v-show="['edit'].indexOf(mode) > -1">
