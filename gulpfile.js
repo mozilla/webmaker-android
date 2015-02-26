@@ -11,7 +11,7 @@ var browserify = require('./gulp/browserify');
 var less = require('./gulp/less');
 var cache = require('./gulp/cache');
 var publish = require('./gulp/publish');
-
+var svgmin = require('./gulp/svgmin');
 var jshint = require('./gulp/jshint');
 var jscs = require('./gulp/jscs');
 var unit = require('./gulp/unit');
@@ -66,6 +66,7 @@ gulp.task('jscs', jscs);
 gulp.task('lint', ['jshint', 'jscs']);
 gulp.task('unit', ['build'], unit);
 gulp.task('test', ['lint', 'unit']);
+gulp.task('svgmin', svgmin);
 
 // Serve + Watch
 gulp.task('dev', ['watch'], function() {
