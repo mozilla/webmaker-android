@@ -1,3 +1,5 @@
+var utils = require('../../lib/utils');
+
 module.exports = {
     className: 'link',
     template: require('./index.html'),
@@ -16,5 +18,8 @@ module.exports = {
               value: 'Mozilla'
             }
         }
+    },
+    methods: {
+        openInBrowser: utils.openInBrowser
     }
 };
