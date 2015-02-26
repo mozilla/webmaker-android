@@ -7,10 +7,22 @@
     width: 100%;
     height: @header-height;
 
-    display: flex;
-    align-items: center;
+    &.nav-flex {
+        display: flex;
+        align-items: center;
+    }
 
-    & > div:nth-child(3) {
+    .left,
+    .right {
+        position: absolute;
+        top: 0;
+        height: 100%;
+    }
+    .left {
+        left: 0;
+    }
+    .right {
+        right: 0;
         text-align: right;
     }
 
@@ -20,7 +32,12 @@
         text-align: center;
         font-size: 1.1em;
         font-weight: 400;
-        width: 67%;
+        margin: 0 auto;
+        width: 60%;
+        height: 100%;
+        display: flex;
+        justify-content: center;
+        align-items: center;
     }
 
     .edit-app-name {

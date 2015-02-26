@@ -1,9 +1,9 @@
 <nav id="navigationBar" class="nav-default">
-    <div>
+    <div class="left">
       <a v-on="click: onCancel" class="nav-btn">{{ 'Cancel' | i18n}}</a>
     </div>
     <h1>{{title | i18n}}</h1>
-    <div>
+    <div class="right">
         <a class="save-btn" v-class="disabled: saveDisabled" v-on="click: onSave"><span class="ion ion-checkmark-round"></span></a>
     </div>
     <div v-component="publishingStatus"></div>
