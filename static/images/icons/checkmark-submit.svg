@@ -1,14 +1,1 @@
-<?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<svg width="13px" height="12px" viewBox="0 0 13 12" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:sketch="http://www.bohemiancoding.com/sketch/ns">
-    <!-- Generator: Sketch 3.2.2 (9983) - http://www.bohemiancoding.com/sketch -->
-    <title>checkmark</title>
-    <desc>Created with Sketch.</desc>
-    <defs></defs>
-    <g id="Components" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd" sketch:type="MSPage">
-        <g id="Buttons" sketch:type="MSArtboardGroup" transform="translate(-367.000000, -40.000000)" fill="#FFFFFF">
-            <g id="Rectangle-276-+-See-Full-Preview-14" sketch:type="MSLayerGroup" transform="translate(346.000000, 23.000000)">
-                <path d="M33.5,17.25 C33.7708347,17.4583344 33.9374997,17.7343733 34,18.078125 C34.0625003,18.4218767 33.9895844,18.7395819 33.78125,19.03125 L27.3125,28.46875 C27.1041656,28.7395847 26.8385433,28.9062497 26.515625,28.96875 C26.1927067,29.0312503 25.8958347,28.9583344 25.625,28.75 C25.4583325,28.6249994 25.0208369,28.1822955 24.3125,27.421875 C23.6041631,26.6614545 22.9375031,25.9270869 22.3125,25.21875 L21.34375,24.15625 C21.1145822,23.9062488 21,23.6041684 21,23.25 C21,22.8958316 21.1249987,22.5937513 21.375,22.34375 C21.6250013,22.0937488 21.916665,21.9739583 22.25,21.984375 C22.583335,21.9947917 22.8645822,22.1354153 23.09375,22.40625 L26.1875,25.75 L31.8125,17.53125 C32.0208344,17.2604153 32.2864567,17.0937503 32.609375,17.03125 C32.9322933,16.9687497 33.2291653,17.0416656 33.5,17.25 L33.5,17.25 Z" id="checkmark" sketch:type="MSShapeGroup"></path>
-            </g>
-        </g>
-    </g>
-</svg>
+<svg width="13" height="12" viewBox="0 0 13 12" xmlns="http://www.w3.org/2000/svg"><title>checkmark</title><desc>Created with Sketch.</desc><g fill="none" fill-rule="evenodd"><g fill="#fff"><g><path d="M12.5.25c.27.208.437.484.5.828s-.01.662-.22.953l-6.467 9.44c-.21.27-.474.436-.797.5-.323.06-.62-.012-.89-.22-.168-.125-.605-.568-1.314-1.328-.708-.76-1.374-1.495-2-2.203L.345 7.155C.114 6.906 0 6.604 0 6.25s.125-.656.375-.906.542-.37.875-.36c.333.01.615.15.844.422L5.188 8.75 10.813.53c.208-.27.473-.436.796-.5.322-.06.62.012.89.22z"/></g></g></g></svg>
