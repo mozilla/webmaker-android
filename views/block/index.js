@@ -60,10 +60,11 @@ module.exports = view.extend({
 
             // Go back an extra step after adding a new block
             if (window.urlHistory[window.urlHistory.length - 2].match(/\/add$/)) {
-                global.history.back();
+                global.history.go(-2);
+            } else {
+                global.history.go(-1);
             }
 
-            global.history.back();
             global.history.replaceState({}, '', this.$data.back);
         },
         onCancel: function (e) {
