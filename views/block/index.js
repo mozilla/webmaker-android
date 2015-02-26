@@ -57,18 +57,25 @@ module.exports = view.extend({
                 attributes: this.$data.block.attributes
             });
             this.$data.saveDisabled = true;
+
+            // Go back an extra step after adding a new block
+            if (window.urlHistory[window.urlHistory.length - 2].match(/\/add$/)) {
+                global.history.back();
+            }
+
             global.history.back();
             global.history.replaceState({}, '', this.$data.back);
         },
         onCancel: function (e) {
             e.preventDefault();
             if (this.$data.mode === "edit") {
-                this.page(this.$data.back);
+                global.history.back();
+                global.history.replaceState({}, '', this.$data.back);
                 return;
             }
             app.remove(index);
             var id = this.$root.$data.params.id;
-            this.page('/make/' + id + '/add');
+            global.history.back();
         }
     },
     created: function () {
