@@ -1,7 +1,7 @@
 <nav class="navigationBar nav-default">
-    <div><button class="nav-btn" v-on="click: onCancel">{{ 'Cancel' | i18n}}</button></div>
+    <div class="left"><button class="nav-btn" v-on="click: onCancel">{{ 'Cancel' | i18n}}</button></div>
     <h1>{{'Select Color' | i18n}}</h1>
-    <div><a class="save-btn" v-class="disabled: saveDisabled" v-on="click: onSave"><span class="ion ion-checkmark-round"></span></a></div>
+    <div class="right"><a class="save-btn" v-class="disabled: saveDisabled" v-on="click: onSave"><span class="ion ion-checkmark-round"></span></a></div>
 </nav>
 
 <div class="color-picker-inner">
