@@ -81,3 +81,7 @@ Components look just like views in terms of structure (because they are the same
 
 #### Static Assets
 Static assets (such as images, icons, and the webapp manifest) are contained within a directory called `static` at the top level of the project. During the build process all static assets are copied to the `build` directory and added to the `appcache` manifest. Because of this, assets placed in the `static` directory should not be `require`-d in views or components as they will already be inlined via the bundler (browserify).
+
+### Developer knowledge
+Looking for a healthcheck, or other valuable developer information? In a browser, head to <http://localhost:8080/healthcheck>. In the compiled app, there's a hidden link on the bottom of the profile page. It looks like:
+![](http://snaps.akibraun.com/Screenshot_2015-02-26-14-00-28.png.png)
