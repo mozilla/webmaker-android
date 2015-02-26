@@ -14,8 +14,6 @@ Object.keys(editorModels).forEach(function (id) {
     delete editorModels[id];
 });
 
-id = null;
-
 module.exports = view.extend({
     id: 'block',
     template: require('./index.html'),
@@ -75,7 +73,7 @@ module.exports = view.extend({
                 return;
             }
             app.remove(index);
-            var id = this.$root.$data.params.id;
+            id = this.$root.$data.params.id;
             global.history.back();
         }
     },
