@@ -32,7 +32,8 @@ var iconImages = [
 module.exports = view.extend({
     id: 'make',
     data:{
-        isOnline : network.isOnline
+        isOnline : network.isOnline,
+        faded: false
     },
     template: require('./index.html'),
     partials: {
@@ -77,7 +78,7 @@ module.exports = view.extend({
             this.$data.saveDisabled = false;
         },
         hideSpeech: function () {
-            this.$data.app.faded = true;
+            this.$data.faded = true;
         },
         onSave: function (e) {
             this.goBack(e, false);
