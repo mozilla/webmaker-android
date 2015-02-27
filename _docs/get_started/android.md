@@ -97,7 +97,6 @@ Finally, `cd` back to `webmaker-app-cordova/` and run `npm run android` to rebui
 
 To run the Android SDK Manager with the `android` command you'll need to have the Java Development Kit (JDK) installed. You can download the JDK [here](http://www.oracle.com/technetwork/java/javase/downloads/index.html).
 
-
 ### Android WebView Browser
 
 You may also want to download [WebView Developer Browser](https://play.google.com/store/apps/details?id=com.webviewbrowser&hl=en) from the Google Play store so that you can quickly run the web version of webmaker-app. This is the browser Cordova uses on Android 4.2.
