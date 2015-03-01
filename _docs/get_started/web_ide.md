@@ -58,7 +58,7 @@ You can also use the keybinding:
 ### Select Mobile Webmaker Project
 
 1. On the top left select `Open App -> Open Packaged App`
-2. Assuming you have `run npm run firefoxos` in the webmaker-app-cordova directory, select `webmaker-app-cordova -> platforms -> firefoxos -> www`
+2. Assuming you have run `npm run firefoxos` in the webmaker-app-cordova directory, select `webmaker-app-cordova -> platforms -> firefoxos -> www`
 3. The application information should appear on the screen with a green "Valid" in the top right.
 
 *Note:* You **must** select the this folder for the simulator to work.
@@ -70,7 +70,7 @@ You can also use the keybinding:
 
 ###Debugging Tool
 
-The debugging tool can be accessed by pressing the pause button ![Wrench button](../img/wrench.png) while the application is running.
+The debugging tool can be accessed by pressing the wrench button ![Wrench button](../img/wrench.png) while the application is running.
 
 ![WebIDE and running app](../img/IDEdebugger.png)
 
