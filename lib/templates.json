@@ -136,7 +136,7 @@
         "id": "a7ac2775-bd9d-40b5-a26c-43e8452da768",
         "templateTitle": "Create a Survey",
         "description": "Gather information from your users by creating a survey.",
-        "name": "Teacher",
+        "name": "Survey",
         "iconImage": "images/icons/survey.svg",
         "iconColor" : "#7D99ED",
         "author": {
