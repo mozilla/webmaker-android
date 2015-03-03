@@ -27,6 +27,15 @@ module.exports = {
     },
     methods: {
         startEditing: function () {
+
+            if (this.index === 0) {
+                this.$el.getElementsByClassName('inline-up')[0].classList.add('disabled');
+            }
+
+            if (this.index === this.app.blocks.length - 1) {
+                this.$el.getElementsByClassName('inline-down')[0].classList.add('disabled');
+            }
+
             this.isEditMode = true;
             this.$dispatch('inlineEditorStarted', {index: this.$index});
             this.$el.classList.add('active');
