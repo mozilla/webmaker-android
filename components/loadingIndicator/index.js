@@ -1,4 +1,4 @@
 module.exports = {
-    id: 'loadingIndicator',
-    template: require('./index.html')
+  id: 'loadingIndicator',
+  template: require('./index.html')
 };
