@@ -137,4 +137,3 @@ cordova prepare
 cordova run android --target myemulator
 ```
 
-
