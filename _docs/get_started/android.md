@@ -1,6 +1,9 @@
 # Developing on Android
 
-## Install Android SDK
+## Install Android Debug Bridge (ADB)
+
+<iframe height=500 width=600 src="https://www.youtube.com/watch?v=-d28E21PuRc" frameborder=0 allowfullscreen></iframe>
+
 
 For this project you will need the SDK command line tools. You can download and install from [developer.android.com](https://developer.android.com/sdk/index.html) or via brew:
 
@@ -21,21 +24,37 @@ adb version
 ```
 If you see something like `Android Debug Bridge version 1.0.32` you have adb installed properly. If you don't, see [this page on MDN](https://developer.mozilla.org/en-US/Firefox_OS/Debugging/Installing_ADB) for more help.
 
+## Install Andriod SDK
+
+<iframe height=500 width=600 src="https://www.youtube.com/watch?v=10XXnYteAqA" frameborder=0 allowfullscreen></iframe>
+
+
+## Turn on remote debugging on your device
+
+<iframe height=500 width=600 src="https://www.youtube.com/watch?v=idRdI2iN2Ek" frameborder=0 allowfullscreen></iframe>
+
+- Enable USB debugging on your phone. ([Check out this guide](http://www.phonearena.com/news/How-to-enable-USB-debugging-on-Android_id53909) if you need help)
+- Plug it into your computer via USB and run `adb devices` to make sure your device is recognized
 
 ## Install Cordova
 
 `npm install -g cordova`
-
-## Turn on remote debugging on your device
-
-- Enable USB debugging on your phone. ([Check out this guide](http://www.phonearena.com/news/How-to-enable-USB-debugging-on-Android_id53909) if you need help)
-- Plug it into your computer via USB and run `adb devices` to make sure your device is recognized
 
 ## Set up Webmaker App
 
 - clone [mozilla/webmaker-app](https://github.com/mozilla/webmaker-app)
 - run `npm install` and then `gulp dev` to build/watch changes
 - to be able to make changes in this app and be able to build a new version in Cordova, **you will also need to run `npm link`** in the root of this directory
+
+## Remote debugging via Chrome dev tools (4.4 only)
+
+<iframe height=500 width=600 src="https://www.youtube.com/watch?v=JM1y3hyUU1Q" frameborder=0 allowfullscreen></iframe>
+
+## Remote debugging via logcat (works on 4.2+)
+
+<iframe height=500 width=600 src="https://www.youtube.com/watch?v=FfgT4XtLuq4" frameborder=0 allowfullscreen></iframe>
+
+
 
 ## Set up the Cordova Wrapper
 - clone `mozilla/webmaker-app-cordova`
