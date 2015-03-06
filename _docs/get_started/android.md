@@ -2,8 +2,8 @@
 
 ## Install Android Debug Bridge (ADB)
 
-<iframe height=500 width=600 src="https://www.youtube.com/watch?v=-d28E21PuRc" frameborder=0 allowfullscreen></iframe>
 
+<iframe width="560" height="315" src="https://www.youtube.com/embed/-d28E21PuRc" frameborder="0" allowfullscreen></iframe>
 
 For this project you will need the SDK command line tools. You can download and install from [developer.android.com](https://developer.android.com/sdk/index.html) or via brew:
 
@@ -26,12 +26,13 @@ If you see something like `Android Debug Bridge version 1.0.32` you have adb ins
 
 ## Install Andriod SDK
 
-<iframe height=500 width=600 src="https://www.youtube.com/watch?v=10XXnYteAqA" frameborder=0 allowfullscreen></iframe>
+
+<iframe width="560" height="315" src="https://www.youtube.com/embed/10XXnYteAqA" frameborder="0" allowfullscreen></iframe>
 
 
 ## Turn on remote debugging on your device
 
-<iframe height=500 width=600 src="https://www.youtube.com/watch?v=idRdI2iN2Ek" frameborder=0 allowfullscreen></iframe>
+<iframe width="560" height="315" src="https://www.youtube.com/embed/idRdI2iN2Ek" frameborder="0" allowfullscreen></iframe>
 
 - Enable USB debugging on your phone. ([Check out this guide](http://www.phonearena.com/news/How-to-enable-USB-debugging-on-Android_id53909) if you need help)
 - Plug it into your computer via USB and run `adb devices` to make sure your device is recognized
@@ -48,11 +49,15 @@ If you see something like `Android Debug Bridge version 1.0.32` you have adb ins
 
 ## Remote debugging via Chrome dev tools (4.4 only)
 
-<iframe height=500 width=600 src="https://www.youtube.com/watch?v=JM1y3hyUU1Q" frameborder=0 allowfullscreen></iframe>
+<iframe width="560" height="315" src="https://www.youtube.com/embed/JM1y3hyUU1Q" frameborder="0" allowfullscreen></iframe>
+
+
 
 ## Remote debugging via logcat (works on 4.2+)
 
-<iframe height=500 width=600 src="https://www.youtube.com/watch?v=FfgT4XtLuq4" frameborder=0 allowfullscreen></iframe>
+
+<iframe width="560" height="315" src="https://www.youtube.com/embed/FfgT4XtLuq4" frameborder="0" allowfullscreen></iframe>
+
 
 
 
