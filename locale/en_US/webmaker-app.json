@@ -546,5 +546,13 @@
   "Show in Discover Gallery" : {
     "message":"Show in Discover Gallery",
     "description":"Option to show app within the discover gallery"
+  },
+  "Legal": {
+      "message":"Legal",
+      "description": "Link to legal information"
+  },
+  "Privacy Policy": {
+      "message": "Privacy Policy",
+      "description": "Link to privacy policy"
   }
 }
