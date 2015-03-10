@@ -13,7 +13,7 @@ var dataRepresentation = module.exports = {
 };
 
 dataRepresentation.methods.formatTime = function (unix) {
-    return moment(unix).format('MMMM D, YYYY [at] H:mma');
+    return moment(unix).format('MMMM D, YYYY [at] h:mma');
 };
 
 dataRepresentation.methods.actionButton = function (e) {
