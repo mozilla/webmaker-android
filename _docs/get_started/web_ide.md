@@ -31,11 +31,11 @@ npm run firefoxos
 
 ## Web IDE Overview
 
-Firefox WebIDE allows you to emulate Firefox OS using your browser and run Firefox OS applications for testing. It also includes a debugging tool.
+Firefox WebIDE allows you to emulate Firefox OS using your browser and run Firefox OS applications for testing. It also includes a debugging tool. The Firefox WebIDE can be run from any Firefox 36.0+ browser or Firefox Developer Edition.
 
 ### Install Firefox Developer Edition
 
-In order to use Firefox WebIDE, you need to have [Firefox Developer Edition](https://www.mozilla.org/en-US/firefox/developer/) installed.
+The Firefox Developer Edition can be found here: [https://www.mozilla.org/en-US/firefox/developer/](https://www.mozilla.org/en-US/firefox/developer/).
 
 ### Opening WebIDE
 
@@ -58,7 +58,7 @@ You can also use the keybinding:
 ### Select Mobile Webmaker Project
 
 1. On the top left select `Open App -> Open Packaged App`
-2. Assuming you have `run npm run firefoxos` in the webmaker-app-cordova directory, select `webmaker-app-cordova -> platforms -> firefoxos -> www`
+2. Assuming you have run `npm run firefoxos` in the webmaker-app-cordova directory, select `webmaker-app-cordova -> platforms -> firefoxos -> www`
 3. The application information should appear on the screen with a green "Valid" in the top right.
 
 *Note:* You **must** select the this folder for the simulator to work.
@@ -70,7 +70,7 @@ You can also use the keybinding:
 
 ###Debugging Tool
 
-The debugging tool can be accessed by pressing the pause button ![Pause button](../img/pause.png) while the application is running.
+The debugging tool can be accessed by pressing the wrench button ![Wrench button](../img/wrench.png) while the application is running.
 
 ![WebIDE and running app](../img/IDEdebugger.png)
 
