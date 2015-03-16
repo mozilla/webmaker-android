@@ -7,15 +7,14 @@ var fs = require('fs-extra');
 var supportedLanguages = ['id', 'en_CA', 'es_CL', 'fr', 'nl', 'es_MX', 'cs', 'sv', 'bn_BD', 'sw', 'hi_IN'];
 
 module.exports = function (callback) {
-
-    glob('!./locale/!(en_US)/**.json', function (err, files) {
-        files.forEach(function (file) {
-            fs.removeSync(file);
-        });
-        downloadLocales({
-            app: 'webmaker-app',
-            dir: 'locale',
-            languages: supportedLanguages
-        }, callback);
+  glob('!./locale/!(en_US)/**.json', function (err, files) {
+    files.forEach(function (file) {
+      fs.removeSync(file);
     });
+    downloadLocales({
+      app: 'webmaker-app',
+      dir: 'locale',
+      languages: supportedLanguages
+    }, callback);
+  });
 };

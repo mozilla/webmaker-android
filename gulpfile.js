@@ -12,6 +12,8 @@ var less = require('./gulp/less');
 var cache = require('./gulp/cache');
 var publish = require('./gulp/publish');
 var svgmin = require('./gulp/svgmin');
+
+var jsbeautify = require('./gulp/jsbeautify');
 var jshint = require('./gulp/jshint');
 var jscs = require('./gulp/jscs');
 var unit = require('./gulp/unit');
@@ -20,6 +22,7 @@ var unit = require('./gulp/unit');
 gulp.task('config', config);
 
 // Prep and static assets
+gulp.task('jsbeautify', jsbeautify);
 gulp.task('clean', clean);
 gulp.task('locale', locale);
 gulp.task('download-locales', downloadLocales)

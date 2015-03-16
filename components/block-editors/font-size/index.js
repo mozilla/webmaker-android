@@ -1,4 +1,4 @@
 module.exports = {
-    id: 'font-size-editor',
-    template: require('./index.html')
+  id: 'font-size-editor',
+  template: require('./index.html')
 };

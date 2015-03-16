@@ -1,5 +1,5 @@
 module.exports = {
-    id: 'input-editor',
-    template: require('./index.html'),
-    data:{}
+  id: 'input-editor',
+  template: require('./index.html'),
+  data: {}
 };
