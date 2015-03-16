@@ -143,9 +143,9 @@
     "message": "You need to connect to the Internet.",
     "description": "Shows up below header when the app can't be published due to connection issues"
   },
-  "Teacher": {
-    "message": "Teacher",
-    "description": "Title for an app for teachers"
+  "Survey": {
+    "message": "Survey",
+    "description": "Title for an app for creating surveys"
   },
   "How To": {
     "message": "How To",
