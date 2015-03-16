@@ -39,7 +39,7 @@ The Firefox Developer Edition can be found here: [https://www.mozilla.org/en-US/
 
 ### Opening WebIDE
 
-In the Web Developer menu, click on the WebIDE entry and the WebIDE opens. 
+In the Web Developer menu, click on the WebIDE entry and the WebIDE opens.
 
 You can also use the keybinding:
 
@@ -49,12 +49,6 @@ You can also use the keybinding:
 
 ![Firefox WebIDE Window](https://mdn.mozillademos.org/files/8033/webide-initial.png)
 
-###Installing Firefox OS Simulator
-
-1. On the top right, select `Select Runtime -> Install Simulator` and from the list install "Firefox OS 2.0 Simulator"
-2. Press "Close" in the top right to get back to the first screen
-
-
 ### Select Mobile Webmaker Project
 
 1. On the top left select `Open App -> Open Packaged App`
@@ -63,17 +57,31 @@ You can also use the keybinding:
 
 *Note:* You **must** select the this folder for the simulator to work.
 
-###Run Mobile Webmaker
+### Running Mobile Webmaker
 
-1. Select run the Simulator by selecting it from "Select Runtime" on the top right of the window.
-2. Press "Install and Run" ![Install and run button](../img/installandrun.png)
+Open the menu labeled "Select Runtime" to see what your options are.
 
-###Debugging Tool
+- If you don't have a Firefox OS device, choose "Install Simulator", and select
+"Firefox OS 2.0 Simulator" from the menu. Once it's installed, select it from
+the "Select Runtime" menu.
+
+- If you have a Firefox OS device plugged in to USB, and it appears in the list,
+choose your device.
+
+- If you have a Firefox OS device plugged into USB, and it does *not* appear in
+the list, run `adb forward tcp:6000 localfilesystem:/data/local/debugger-socket`
+in the terminal and select "Remote Runtime" in the WebIDE Runtime menu. Confirm
+that `localhost:6000` is in the remote runtime modal, and click "OK".
+
+Once you've selected your runtime, press the `▶︎` button to install the app. Make
+sure to accept the incoming connection on your device!
+
+### Debugging Tool
 
 The debugging tool can be accessed by pressing the wrench button ![Wrench button](../img/wrench.png) while the application is running.
 
 ![WebIDE and running app](../img/IDEdebugger.png)
 
-###Learn More
+### Learn More
 
 For more information on the WebIDE, [check out this page](https://developer.mozilla.org/en-US/docs/Tools/WebIDE).
