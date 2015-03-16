@@ -62,7 +62,7 @@ If you see something like `Android Debug Bridge version 1.0.32` you have adb ins
 
 
 ## Set up the Cordova Wrapper
-- clone `mozilla/webmaker-app-cordova`
+- clone [mozilla/webmaker-app-cordova](https://github.com/mozilla/webmaker-app-cordova)
 - `npm install`
 - `npm start`
 
@@ -116,6 +116,10 @@ Finally, `cd` back to `webmaker-app-cordova/` and run `npm run android` to rebui
 
 
 ## Other tips
+
+### Running Android SDK Manager
+
+To run the Android SDK Manager with the `android` command you'll need to have the Java Development Kit (JDK) installed. You can download the JDK [here](http://www.oracle.com/technetwork/java/javase/downloads/index.html).
 
 ### Android WebView Browser
 
