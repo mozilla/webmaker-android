@@ -68,6 +68,7 @@ gulp.task('jshint', jshint);
 gulp.task('jscs', jscs);
 gulp.task('lint', ['jshint', 'jscs']);
 gulp.task('unit', ['build'], unit);
+gulp.task('unit-no-build', unit);
 gulp.task('test', ['lint', 'unit']);
 gulp.task('svgmin', svgmin);
 

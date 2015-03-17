@@ -1,28 +1,9 @@
 var mockrequire = require('mockrequire');
 var assert = require('assert');
 
+var Fb = require('./firebase-mock');
 var templates = require('../../lib/templates.json');
 var mockId = '000d1745-5d3c-4997-ac0c-15df68bbbecz';
-var mockId2 = '123123123';
-
-function Fb(id) {
-    this._id = id;
-};
-Fb.prototype.key = function () {
-    return this._id;
-};
-Fb.prototype.on = function () {};
-Fb.prototype.once = function () {};
-Fb.prototype.update = function () {};
-Fb.prototype.remove = function () {};
-Fb.prototype.push = function (data) {
-   var fb = new Fb(mockId2);
-   fb._val = data;
-   return fb;
-};
-Fb.prototype.child = function () {
-    return new Fb();
-};
 
 var mockModelInstance = {
     data: { session: { user: {
@@ -54,6 +35,20 @@ var mockBlocks = function (id) {
                   value: '#333444'
               }
           }
+    };
+    this.image = {
+        type: 'image',
+        className: 'image',
+        template: '<img></img>',
+        name: 'Image',
+        icon: 'images/blocks_image.png',
+        attributes: {
+          src: {
+            label: 'Source',
+            type: 'image',
+            value: 'images/placeholder.png'
+          }
+        }
     };
 };
 
@@ -124,23 +119,54 @@ describe('Storage', function () {
 
         describe('insert', function () {
             it('should insert a block', function () {
-                app.insert('text');
-                //assert.equal(blocks[0].type, 'text');
+                app.insert('text', function(blocks) {
+                    assert.equal(blocks.length, 1);
+                });
             });
-            it('should do nothing if the blockId does not exist', function () {
-                app.insert('banana');
-                //assert.equal(blocks.length, oldLength)
+            it('should do nothing if the block type does not exist', function () {
+                app.insert('banana', function(blocks) {
+                    assert.equal(blocks.length, 1);
+                });
             });
         });
 
         describe('remove', function () {
             it('should remove a block', function () {
-                app.remove(0);
-                //assert.equal(blocks.length, 1);
+                app.remove(0, function(blocks) {
+                    assert.equal(blocks.length, 0);
+                });
             });
             it('should do nothing if the block index does not exist', function () {
-                app.remove(100);
-                //assert.equal(blocks.length, oldLength);
+                app.remove(100, function(blocks) {
+                    assert.equal(blocks.length, 0);
+                });
+            });
+        });
+
+        describe('move', function () {
+            it('should insert two blocks', function () {
+                app.insert('text');
+                app.insert('image', function(blocks) {
+                    assert.equal(blocks.length, 2);
+                    assert.equal(blocks[0].type, "image");
+                    assert.equal(blocks[1].type, "text");
+                });
+            });
+            it('should swap block positions', function () {
+                app.move(1, -1, function(blocks) {
+                    assert.equal(blocks.length, 2);
+                    assert.equal(blocks[0].type, "text");
+                    assert.equal(blocks[1].type, "image");
+                });
+            });
+        });
+
+        describe('update', function() {
+            it('should update app properties', function() {
+                app.update({ a: "a" }, function(properties) {
+                    assert.equal(!!properties.a, true);
+                    assert.equal(properties.a, "a");
+                });
             });
         });
     });
@@ -194,7 +220,10 @@ describe('Storage', function () {
         });
         it('should return an app instance for valid template id', function () {
             var template = templates[2];
-            var app = storage.createApp({template: template.id, name: 'Bob is my cat'});
+            var app = storage.createApp({
+                template: template.id,
+                name: 'Bob is my cat'
+            });
             assert.ok(app.id && app.id !== template.id);
             assert.equal(app.data, null);
         });
