@@ -26,6 +26,7 @@ module.exports = {
     }
   },
   ready: function () {
+    var self = this;
     // parse non booleans
     // eg: values passed in as a "disabled" param instead of v-with
     if (typeof this.disabled === 'string') {
@@ -33,6 +34,14 @@ module.exports = {
     }
 
     this.setState(this.checked);
+
+    self.$on('updateToggle', function (value) {
+      this.checked = value;
+
+      this.$data.iconClass = this.checked ?
+        'ion-android-checkbox-outline' :
+        'ion-android-checkbox-outline-blank';
+    });
   },
   data: {
     iconClass: 'ion-android-checkbox-outline-blank'
