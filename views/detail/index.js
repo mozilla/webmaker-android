@@ -19,6 +19,16 @@ module.exports = view.extend({
       self.$root.storage.remix(this.$data.id, function (data) {
         self.page('/make/' + data.id);
       });
+    },
+    deleteClick: function () {
+      this.$dispatch('showShim');
+      this.$dispatch('openModalPrompt', {
+        type: 'delete'
+      });
+    },
+    removeApp: function () {
+      app.removeApp();
+      this.page('/profile');
     }
   },
   created: function () {
@@ -82,6 +92,11 @@ module.exports = view.extend({
           label: event.value
         });
       }
+    });
+
+    self.$on('onConfirmClick', function (event) {
+      console.warn('Deleting app!');
+      self.removeApp();
     });
   }
 });
