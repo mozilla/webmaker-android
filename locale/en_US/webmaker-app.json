@@ -554,5 +554,13 @@
   "Privacy Policy": {
       "message": "Privacy Policy",
       "description": "Link to privacy policy"
-  }
+  },
+  "errorMaxMin": {
+      "message": "Max must be larger than or equal to min.",
+      "description": "Error for counter block: maximum number must be larger than minimum number"
+    },
+  "errorMinMax": {
+      "message": "Min must be smaller than or equal to than max.",
+      "description": "Error for counter block: minimum number must be smaller than or equal to maximum number"
+    }
 }
