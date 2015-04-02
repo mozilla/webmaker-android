@@ -1,4 +1,7 @@
-<div class="flex-grow-1">
+<div v-class="
+  flex-grow-0 : mode == 'settings',
+  flex-grow-1 : mode != 'settings'
+">
     <div class="button-group" v-if="mode !== 'settings'">
         <button
             v-on="click: goPreviousView">
