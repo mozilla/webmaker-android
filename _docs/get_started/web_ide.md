@@ -13,7 +13,7 @@
 ### Set up the Cordova Wrapper
 - clone `mozilla/webmaker-app-cordova`
 - `npm install`
-- `npm run build`
+- `npm start`
 
 This should build your project for the first time.
 
