@@ -22,8 +22,9 @@
         </ul>
 
         <article class="app-details">
-            <div v-show="isAdmin">
+            <div v-show="isAdmin" class="two-buttons">
                 <a class="btn action" href="/make/{{id}}/">{{'Open my app' | i18n}}</a>
+                <a class="btn btn-delete" v-on="click: deleteClick"></span>{{'Delete' | i18n}}</a>
             </div>
             <div v-show="!isAdmin" class="preview-buttons">
                 <a class="btn action" v-on="click: onRemix">{{'Remix App' | i18n}}</a>
