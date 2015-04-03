@@ -1,7 +1,0 @@
-<label for="{{id}}">{{ label | i18n }}</label>
-<a class="input color-input" href="#" v-on="click: openColorPicker($event, value)">
-    <span class="input-swatch" style="background-color:{{value}};"></span> {{ value }}
-</a>
-
-<div v-component="colorPicker" v-class="active: showColorPicker" v-with="show: showColorPicker, selectedColor: value"></div>
-

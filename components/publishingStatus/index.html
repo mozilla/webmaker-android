@@ -1,5 +1,0 @@
-<p v-class="on: isPublishing, error: isError">
-    <span v-if="!isError && isOnline">{{ 'Publishing...' | i18n }}</span>
-    <span v-if="isError && isOnline">{{isError}}</span>
-    <span v-if="!isOnline">{{'You need to connect to the Internet.' | i18n}}</span>
-</p>

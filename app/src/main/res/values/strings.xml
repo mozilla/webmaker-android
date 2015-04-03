@@ -1,0 +1,12 @@
+<resources>
+    <string name="app_name">Webmaker</string>
+
+
+    <string name="title_section1">View</string>
+    <string name="title_section2">Edit</string>
+    <string name="title_section3">Explore</string>
+
+    <string name="hello_world">Hello world!</string>
+
+    <string name="action_settings">Settings</string>
+</resources>
