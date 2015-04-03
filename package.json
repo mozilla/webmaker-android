@@ -19,14 +19,14 @@
   },
   "repository": {
     "type": "git",
-    "url": "https://github.com/k88hudson/webmaker-android.git"
+    "url": "https://github.com/mozilla/webmaker-app.git"
   },
   "author": "",
   "license": "MPL-2.0",
   "bugs": {
-    "url": "https://github.com/k88hudson/webmaker-android/issues"
+    "url": "https://github.com/mozilla/webmaker-app/issues"
   },
-  "homepage": "https://github.com/k88hudson/webmaker-android",
+  "homepage": "https://github.com/mozilla/webmaker-app",
   "devDependencies": {
     "autoless": "^0.1.6",
     "autoprefixer": "^5.1.0",
