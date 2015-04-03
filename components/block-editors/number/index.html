@@ -1,2 +1,8 @@
 <label for="{{id}}">{{ label | i18n }}</label>
 <input name="{{id}}" v-model="value" type="number" placeholder="{{ placeholder | i18n }}">
+
+<!-- Errors for max/min counter -->
+<div v-if="block.attributes.min.value > block.attributes.max.value && label == 'Maximum Number'" class="form-error">
+{{ 'errorMaxMin' | i18n }}</div>
+<div v-if="block.attributes.min.value > block.attributes.max.value && label == 'Minimum Number'" class="form-error">
+{{ 'errorMinMax' | i18n }}</div>
