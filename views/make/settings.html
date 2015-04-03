@@ -1,6 +1,6 @@
 <div class="form-group">
     <label for="name">{{ 'App Name'| i18n }}</label>
-    <input id="name" type="text" v-model="app.name" v-on="blur: updateName(app.name)">
+    <input id="name" type="text" v-model="app.name" v-on="keydown: updateName(app.name)">
 </div>
 
 <div>
