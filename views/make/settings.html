@@ -3,6 +3,18 @@
     <input id="name" type="text" v-model="app.name" v-on="blur: updateName(app.name)">
 </div>
 
+<div>
+    <ul class="list-cell show-in-discover">
+       <li>
+            <div
+                v-component="toggle"
+                v-with="checked: app.isDiscoverable, disabled: disableDiscovery"
+                toggle-id="showInGallerySetting">
+            </div>
+            <span>{{'Show this app in the Discover Gallery' | i18n}}</span>
+        </li>
+    </ul>
+</div>
 
 <div class="icon-chooser">
     <div class="button" v-on="click: previousIconImage()">

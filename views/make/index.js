@@ -58,12 +58,14 @@ module.exports = view.extend({
           app.update({
             iconImage: this.$data.originalIconImage,
             iconColor: this.$data.originalIconColor,
-            name: this.$data.originalName
+            name: this.$data.originalName,
+            isDiscoverable: this.$data.originalIsDiscoverable
           });
         } else {
           this.$data.originalIconImage = app.data.iconImage;
           this.$data.originalIconColor = app.data.iconColor;
           this.$data.originalName = app.data.name;
+          this.$data.originalIsDiscoverable = app.data.isDiscoverable;
         }
 
         this.$data.changeMode('edit');
@@ -238,6 +240,22 @@ module.exports = view.extend({
     self.$on('inlineEditorStarted', function (event) {
       self.$broadcast('inlineEditorStarted', event);
     });
+
+    self.$on('toggleChange', function (event) {
+      if (event.source === 'showInGallerySetting') {
+        app.update({
+          isDiscoverable: event.value
+        });
+
+        analytics.event({
+          category: 'Discover Gallery',
+          action: 'Set Discover Gallery Status',
+          label: event.value
+        });
+
+        this.enableSave();
+      }
+    });
   },
   created: function () {
     var self = this;
@@ -313,6 +331,7 @@ module.exports = view.extend({
       self.$data.originalIconImage = self.$data.app.iconImage;
       self.$data.originalIconColor = self.$data.app.iconColor;
       self.$data.originalName = self.$data.app.name;
+      self.$data.originalIsDiscoverable = self.$data.app.isDiscoverable;
     }
 
     self.$on(id, onValue);
@@ -331,6 +350,10 @@ module.exports = view.extend({
       self.$data.saveDisabled = true;
       self.$data.mode = mode;
       self.$root.isEditing = self.$data.mode === 'edit';
+      // update toggle
+      if (self.$data.app) {
+        self.$broadcast('updateToggle', self.$data.app.isDiscoverable);
+      }
     };
 
     var regex = new RegExp('[\\?&]mode=([^&#]*)');
