@@ -1,0 +1,78 @@
+.wrapper {
+  width: 320px;
+  height: 480px;
+  overflow: hidden;
+  position: relative;
+  border: 1px solid #ccc;
+}
+
+.react-draggable,
+.cursor {
+  cursor: move;
+}
+
+.grid {
+  position: absolute;
+  width: 320px;
+  height: 320px;
+  transition: transform 200ms ease-in-out;
+  top: 0;
+  left: 0;
+  display: flex;
+  flex-wrap: wrap;
+  align-content: flex-start;
+}
+
+.slot {
+  flex-grow: 0;
+  flex-shrink: 0;
+  width: 25%;
+  height: 25%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.page {
+  width: 90%;
+  height: 90%;
+  border-radius: 5%;
+  background: rgba(120,120,220,1);
+  background-size: contain;
+}
+
+.add-page {
+  width: 90%;
+  height: 90%;
+  border: 0;
+  border-radius: 5%;
+  background: #99cccc url('img/add.png') no-repeat;
+  background-size: contain;
+}
+
+.segmented-control {
+  display: flex;
+  width: 320px;
+  background-color: #eee;
+  border: 1px solid #ccc;
+  border-bottom: 0;
+
+  button {
+    margin: 5px;
+    font-size: 20px;
+    background: #99cccc;
+    color: white;
+    border: none;
+    padding: 0.25em 0.5em;
+    border-radius: 0.2em;
+    display: flex;
+    flex-grow: 1;
+    flex-shrink: 0;
+    line-height: 0;
+    padding: 1em 0;
+
+    span {
+      flex-grow: 1;
+    }
+  }
+}
