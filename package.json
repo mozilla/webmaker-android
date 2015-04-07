@@ -5,6 +5,7 @@
   "main": "index.js",
   "scripts": {
     "start": "npm run build && npm-run-all --parallel webserver watch:static watch:js watch:css watch:html",
+    "test": "mocha -R spec npm_tasks/tests",
     "build:clean": "rimraf app/src/main/assets/www/ mkdirp app/src/main/assets/www/",
     "build:static": "mkdirp www_src/static/ && mkdirp app/src/main/assets/ && ncp www_src/static/ app/src/main/assets/www/",
     "build:js": "webpack",
@@ -37,6 +38,7 @@
     "jsx-loader": "^0.12.2",
     "live-server": "^0.7.1",
     "mkdirp": "^0.5.0",
+    "mocha": "^2.2.1",
     "mofo-style": "latest",
     "ncp": "^2.0.0",
     "npm": "^2.7.4",
