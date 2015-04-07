@@ -43,6 +43,8 @@
     "npm-run-all": "^1.1.1",
     "parallelshell": "^1.1.1",
     "rimraf": "^2.3.2",
+    "should": "^5.2.0",
+    "tmp": "0.0.25",
     "watch": "^0.14.0",
     "webpack": "^1.7.3"
   },
