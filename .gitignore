@@ -7,5 +7,5 @@
 node_modules/
 app/src/main/assets/www/
 .idea
-webmaker-android.iml
+webmaker-app.iml
 npm-debug.log*
