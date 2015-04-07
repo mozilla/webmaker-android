@@ -8,10 +8,14 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.webkit.WebView;
 import android.webkit.WebViewClient;
+import android.webkit.JavascriptInterface;
 import android.view.animation.Animation;
 import android.view.animation.AlphaAnimation;
 import android.view.animation.DecelerateInterpolator;
 import mozilla.org.webmaker.R;
+import android.util.Log;
+import android.content.Context;
+import java.lang.annotation.Annotation;
 
 @SuppressLint("SetJavaScriptEnabled")
 public class PlaceholderFragment extends Fragment {
@@ -33,6 +37,19 @@ public class PlaceholderFragment extends Fragment {
         return fragment;
     }
 
+    public class WebAppInterface {
+        Context mContext;
+
+        WebAppInterface(Context c) {
+            mContext = c;
+        }
+
+        @JavascriptInterface
+        public void logText(String txt){
+            Log.v("wm", txt);
+        }
+    }
+
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
         View rootView = inflater.inflate(R.layout.fragment_main, container, false);
@@ -47,6 +64,8 @@ public class PlaceholderFragment extends Fragment {
         webview.setWebViewClient(new WebClient());
         webview.loadUrl("file:///android_asset/www/pages/section-" + sectionId + "/index.html");
         webview.setBackgroundColor(0x00000000);
+        webview.addJavascriptInterface(new WebAppInterface(rootView.getContext()), "Android");
+        webview.setWebContentsDebuggingEnabled(true);
 
         return rootView;
     }
