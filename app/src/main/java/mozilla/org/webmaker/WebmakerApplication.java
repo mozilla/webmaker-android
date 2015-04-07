@@ -15,6 +15,7 @@ public class WebmakerApplication extends Application {
     @Override
     public void onCreate() {
         super.onCreate();
+        singleton = this;
 
         Log.v("[Webmaker]", "Application created.");
 
