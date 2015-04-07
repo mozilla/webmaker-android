@@ -12,8 +12,23 @@ buildscript {
     }
 }
 
+plugins {
+  id 'com.moowork.node' version '0.9'
+}
+
+node {
+    version = '0.12.2'
+    npmVersion = '2.7.4'
+    distBaseUrl = 'http://nodejs.org/dist'
+    download = true
+}
+
 allprojects {
     repositories {
         jcenter()
     }
+}
+
+task preBuild (type: NpmTask) {
+    args = ['run', 'build']
 }

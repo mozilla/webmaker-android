@@ -1,6 +1,6 @@
 {
-  "name": "webmaker-app",
-  "version": "0.0.0",
+  "name": "webmaker-android",
+  "version": "1.0.0",
   "description": "",
   "main": "index.js",
   "scripts": {
@@ -10,7 +10,7 @@
     "build:js": "webpack",
     "build:css": "npm run watch:css -- --no-watch",
     "build:html": "node ./npm_tasks/build-html",
-    "build": " npm-run-all build:clean build:static build:js build:css",
+    "build": " npm-run-all build:clean build:static build:js build:css build:html",
     "watch:static": "watch \"npm run build:static\" www_src/static",
     "watch:js": "npm run build:js -- -d --watch",
     "watch:css": "autoless --source-map --autoprefix \"last 2 versions\" www_src app/src/main/assets/www",
