@@ -1,8 +1,8 @@
-var fs = require('fs');
+var getPages = require('./npm_tasks/get-pages');
 
 // Prep all entry points
 var entry = {};
-fs.readdirSync('./www_src/pages').forEach(function (page) {
+getPages().forEach(function (page) {
   entry[page] = './www_src/pages/' + page + '/' + page + '.jsx';
 });
 
