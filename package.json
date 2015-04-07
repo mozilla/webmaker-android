@@ -5,8 +5,8 @@
   "main": "index.js",
   "scripts": {
     "start": "npm run build && npm-run-all --parallel webserver watch:static watch:js watch:css watch:html",
-    "build:clean": "rimraf app/src/main/assets/www/ mkdirp app/src/main/assets/www/",
-    "build:static": "mkdirp www_src/static/ ncp www_src/static/ app/src/main/assets/www/",
+    "build:clean": "rimraf app/src/main/assets/www/ && mkdirp app/src/main/assets/www/",
+    "build:static": "ncp www_src/static/ app/src/main/assets/www/",
     "build:js": "webpack",
     "build:css": "npm run watch:css -- --no-watch",
     "build:html": "node ./npm_tasks/build-html",
