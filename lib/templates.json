@@ -138,7 +138,7 @@
         "templateTitle": "Share Community News",
         "description": "Share photos and write articles and about your local community",
         "iconImage": "images/icons/journalist.svg",
-        "iconColor" : "#6CA3ED",
+        "iconColor" : "#7D99ED",
         "author": {
             "username": "",
             "location": "",
@@ -271,7 +271,7 @@
         "description": "If you've got unique skills you'd like to share with others, try making a How To guide.",
         "name": "How To",
         "iconImage": "images/icons/howto.svg",
-        "iconColor" : "#64A8EE",
+        "iconColor" : "#749EED",
         "author": {
             "username": "",
             "location": "",
@@ -482,7 +482,7 @@
         "templateTitle": "Create a Safety App",
         "description": "Add a map, a emergency call button, and other tips to keep safe in your community",
         "iconImage": "images/icons/safety.svg",
-        "iconColor" : "#64B2ED",
+        "iconColor" : "#6CA3ED",
         "author": {
             "username": "",
             "location": "",
