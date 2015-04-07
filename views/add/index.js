@@ -29,9 +29,11 @@ module.exports = view.extend({
     ],
     inputBlocks: [
       // Form / data blocks
+      /*
       blocks.input,
       blocks.counter,
       blocks.submit
+      */
     ],
     goBack: function (e) {
       e.preventDefault();
