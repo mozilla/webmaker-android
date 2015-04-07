@@ -8,13 +8,16 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.webkit.WebView;
 import android.webkit.WebViewClient;
+import android.webkit.JavascriptInterface;
 import android.view.animation.Animation;
 import android.view.animation.AlphaAnimation;
 import android.view.animation.DecelerateInterpolator;
 import mozilla.org.webmaker.R;
+import android.util.Log;
+import android.content.Context;
 
 @SuppressLint("SetJavaScriptEnabled")
-public class PlaceholderFragment extends Fragment {
+public class WebviewFragment extends Fragment {
 
     /**
      * The fragment argument representing the section number for this fragment.
@@ -25,30 +28,45 @@ public class PlaceholderFragment extends Fragment {
     /**
      * Returns a new instance of this fragment for the given section number.
      */
-    public static PlaceholderFragment newInstance(int sectionNumber) {
-        PlaceholderFragment fragment = new PlaceholderFragment();
+    public static WebviewFragment newInstance(int sectionNumber) {
+        WebviewFragment fragment = new WebviewFragment();
         Bundle args = new Bundle();
         args.putInt(ARG_SECTION_NUMBER, sectionNumber);
         fragment.setArguments(args);
         return fragment;
     }
 
+    public class WebAppInterface {
+        Context mContext;
+
+        WebAppInterface(Context c) {
+            mContext = c;
+        }
+
+        @JavascriptInterface
+        public void logText(String txt){
+            Log.v("wm", txt);
+        }
+    }
+
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
-        View rootView = inflater.inflate(R.layout.fragment_main, container, false);
+        View mView = inflater.inflate(R.layout.fragment_main, container, false);
         WebView webview;
         String sectionId;
 
-        rootView.setId(View.generateViewId());
+        mView.setId(View.generateViewId());
         sectionId = Integer.toString(super.getArguments().getInt(ARG_SECTION_NUMBER));
 
-        webview = (WebView) rootView.findViewById(R.id.activity_main_webview);
+        webview = (WebView) mView.findViewById(R.id.activity_main_webview);
         webview.getSettings().setJavaScriptEnabled(true);
         webview.setWebViewClient(new WebClient());
         webview.loadUrl("file:///android_asset/www/pages/section-" + sectionId + "/index.html");
         webview.setBackgroundColor(0x00000000);
+        webview.addJavascriptInterface(new WebAppInterface(mView.getContext()), "Android");
+        webview.setWebContentsDebuggingEnabled(true);
 
-        return rootView;
+        return mView;
     }
 
     private void animate(final WebView view) {

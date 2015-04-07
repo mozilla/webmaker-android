@@ -8,7 +8,7 @@ import android.support.v13.app.FragmentPagerAdapter;
 import java.util.Locale;
 
 import mozilla.org.webmaker.R;
-import mozilla.org.webmaker.fragment.PlaceholderFragment;
+import mozilla.org.webmaker.fragment.WebviewFragment;
 
 /**
  * A {@link android.support.v13.app.FragmentPagerAdapter} that returns a fragment corresponding to one of the sections/tabs/pages.
@@ -31,11 +31,11 @@ public class SectionsPagerAdapter extends FragmentPagerAdapter {
     /**
      * This method is called to instantiate the fragment for the given page.
      * @param position The given page to instantiate
-     * @return a {@link mozilla.org.webmaker.fragment.PlaceholderFragment} for the position given
+     * @return a {@link mozilla.org.webmaker.fragment.WebviewFragment} for the position given
      */
     @Override
     public Fragment getItem(int position) {
-        return PlaceholderFragment.newInstance(position + 1);
+        return WebviewFragment.newInstance(position + 1);
     }
 
     /**
