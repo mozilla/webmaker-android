@@ -2,7 +2,8 @@ package mozilla.org.webmaker;
 
 import android.app.Application;
 import android.util.Log;
-import mozilla.org.webmaker.Router;
+
+import mozilla.org.webmaker.router.Router;
 
 public class WebmakerApplication extends Application {
 
