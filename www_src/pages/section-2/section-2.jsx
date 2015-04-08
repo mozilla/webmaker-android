@@ -2,21 +2,6 @@ var React = require('react');
 var render = require('../../lib/render.jsx');
 var Draggable = require('react-draggable');
 
-// TEMP: Just used for generating random starter layouts
-function generateLayout (width, height) {
-  var layout = [];
-
-  for (var y = 0; y < height; y++) {
-    layout.push([]);
-
-    for (var x = 0; x < width; x++) {
-      layout[y].push(Math.random() > 0.25 ? null : '../../img/page-screenshot.png');
-    }
-  }
-
-  return layout;
-}
-
 var Page = React.createClass({
   render: function () {
     var style = {};
@@ -70,12 +55,15 @@ var Grid = React.createClass({
     });
   },
   getInitialState: function () {
-    var width = Math.ceil(Math.random() * 16);
-    var height = Math.ceil(Math.random() * 16);
+    var layout = [
+      [null, null, null],
+      [null, 'EMPTY', null],
+      [null, null, null]
+    ];
 
     return {
       zoom: this.props.initialZoom,
-      layout: generateLayout(width, height)
+      layout: layout
     }
   },
   addPageClick: function (event) {
