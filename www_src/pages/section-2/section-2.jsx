@@ -167,6 +167,9 @@ var SegmentedControl = React.createClass({
 });
 
 var App = React.createClass({
+  contextTypes: {
+    router: React.PropTypes.func
+  },
   changeZoom: function (event) {
     this.refs.masterGrid.zoom(event.amount);
   },
@@ -186,13 +189,4 @@ var App = React.createClass({
   }
 });
 
-var Two = React.createClass({
-  contextTypes: {
-    router: React.PropTypes.func
-  },
-  render: function () {
-    return <App/>
-  }
-});
-
-render(Two);
+render(App);
