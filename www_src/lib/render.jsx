@@ -14,5 +14,5 @@ var Base = React.createClass({
 });
 
 module.exports = function (Handler) {
-  React.render(<Base><Handler /></Base>, document.body);
+  React.render(<Base><Handler /></Base>, document.getElementById('app'));
 };

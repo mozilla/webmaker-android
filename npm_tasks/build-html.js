@@ -1,11 +1,17 @@
 var fs = require('fs-extra');
-var BASE_ASSETS_DIR = './app/src/main/assets/www/pages/';
-var HTML_FILE = './www_src/html/index.html';
+var path = require('path');
 var getPages = require('./get-pages');
+require('colors');
 
-var html = fs.readFileSync(HTML_FILE, {encoding: 'utf-8'});
-
-getPages().forEach(function (page) {
-  html = html.replace('{{ js_src }}', '../../js/' + page + '.bundle.js');
-  fs.outputFile(BASE_ASSETS_DIR + page + '/index.html', html);
-});
+// For the command line utility, look in npm_tasks/bin
+module.exports = function (options) {
+  options = options || {};
+  var baseDir = options.baseDir || './app/src/main/assets/www/pages/';
+  var template = options.template || fs.readFileSync('./www_src/html/index.html', {encoding: 'utf-8'});
+  var pages = getPages();
+  pages.forEach(function (page) {
+    var html = template.replace('{{ js_src }}', '../../js/' + page + '.bundle.js');
+    fs.outputFileSync(path.join(baseDir, page, '/index.html'), html);
+  });
+  console.log(('Built html for pages: ' + pages.join(', ') + '\n').green);
+};
