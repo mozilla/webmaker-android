@@ -14,7 +14,7 @@
     "build": " npm-run-all build:clean build:static build:js build:css build:html",
     "watch:static": "watch \"npm run build:static\" www_src/static",
     "watch:js": "npm run build:js -- -d --watch",
-    "watch:css": "autoless --source-map --autoprefix \"last 2 versions\" www_src app/src/main/assets/www",
+    "watch:css": "autoless --source-map --autoprefix \"last 2 versions, android >= 4.2\" www_src app/src/main/assets/www",
     "watch:html": "watch \"npm run build:html\" www_src/html",
     "webserver": "live-server ./app/src/main/assets/www --port=4242"
   },
@@ -29,8 +29,7 @@
   },
   "homepage": "https://github.com/mozilla/webmaker-app",
   "devDependencies": {
-    "autoless": "^0.1.6",
-    "autoprefixer": "^5.1.0",
+    "autoless": "^0.1.7",
     "babel-core": "^4.7.16",
     "babel-loader": "^4.3.0",
     "fs-extra": "^0.18.0",
