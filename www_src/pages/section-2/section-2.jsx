@@ -38,10 +38,7 @@ var Slot = React.createClass({
     return (
       <div
         className="slot"
-        style={{
-          width: 100 / parseInt(this.props.perRow, 10) + '%',
-          height: 100 / parseInt(this.props.perRow, 10) + '%'
-        }}>
+        style={this.props.style}>
           {this.props.children}
       </div>
     );
@@ -71,54 +68,136 @@ var Grid = React.createClass({
 
     newLayout[event.y][event.x] = 'EMPTY';
 
+    var width = newLayout[0].length;
+    var height = newLayout.length;
+
+    // Detect what grid boundaries the given tile touches
+    function edgeDetect(x, y) {
+      var boundaries = [];
+
+      if (x === 0) {
+        boundaries.push('left');
+      }
+
+      if (x === newLayout[0].length - 1) {
+        boundaries.push('right');
+      }
+
+      if (y === 0) {
+        boundaries.push('top');
+      }
+
+      if (y === newLayout.length - 1) {
+        boundaries.push('bottom');
+      }
+
+      return boundaries;
+    }
+
+    // Expand the grid in the specified direction
+    function expandGrid(direction) {
+      function buildEmptyRow(length) {
+        var row = [];
+
+        for (var i = 0; i < length; i++) {
+          row.push(null);
+        }
+
+        return row;
+      }
+
+      var expand = {
+        left: function () {
+          newLayout.forEach(function (row, index) {
+            row.unshift(null);
+          });
+        },
+        right: function () {
+          newLayout.forEach(function (row, index) {
+            row.push(null);
+          });
+        },
+        top: function () {
+          newLayout.unshift(buildEmptyRow(newLayout[0].length));
+        },
+        bottom: function () {
+          newLayout.push(buildEmptyRow(newLayout[0].length));
+        }
+      }
+
+      expand[direction]();
+    }
+
+    // Expand grid if necessary
+    if (edgeDetect(event.x, event.y).length) {
+      edgeDetect(event.x, event.y).forEach(function (direction, index, array) {
+        expandGrid(direction);
+      });
+    }
+
     this.setState({
       layout: newLayout
     });
   },
   render: function () {
     var nodes = [];
-
-    var self = this;
+    var layout = this.state.layout;
 
     // Determine if a slot has a neighboring page in any cardinal direction
     function hasNeighbors(x, y) {
-      if (x > 0 && self.state.layout[y][x - 1]) {
+      if (x > 0 && layout[y][x - 1]) {
         return true;
       }
 
-      if (x < self.state.layout[0].length - 1 && self.state.layout[y][x + 1]) {
+      if (x < layout[0].length - 1 && layout[y][x + 1]) {
         return true;
       }
 
-      if (y > 0 && self.state.layout[y - 1][x]) {
+      if (y > 0 && layout[y - 1][x]) {
         return true;
       }
 
-      if (y < self.state.layout.length - 1 && self.state.layout[y + 1][x]) {
+      if (y < layout.length - 1 && layout[y + 1][x]) {
         return true;
       }
 
       return false;
     }
 
-    for (var y = 0; y < this.state.layout.length; y++) {
-      for (var x = 0; x < this.state.layout[0].length; x++) {
-        if (this.state.layout[y][x]) {
+    // If height > width then
+    //  augment grid with empty slots to prevent wrapping issues in display
+    if (layout.length > layout[0].length) {
+      for (var q = 0, qq = layout.length - layout[0].length; q < qq; q++) {
+        console.log('h');
+        layout.forEach(function (row, index, array) {
+          row.push(null);
+        });
+      }
+    }
+
+    var slotStyle = {
+      width: (100 / layout[0].length) + '%',
+      height: (100 / layout[0].length) + '%'
+    }
+
+    for (var y = 0; y < layout.length; y++) {
+      for (var x = 0; x < layout[0].length; x++) {
+        if (layout[y][x]) {
           nodes.push(
-            <Slot x={x} y={y} perRow={this.state.layout[0].length} key={ y + '-' + x }>
-              <Page screenshot={this.state.layout[y][x]} />
+            <Slot x={x} y={y} style={slotStyle} key={ y + '-' + x }>
+              <Page screenshot={layout[y][x]} />
             </Slot>
           );
         } else if (hasNeighbors(x, y)) {
           nodes.push(
-            <Slot x={x} y={y} perRow={this.state.layout[0].length} key={ y + '-' + x }>
+            <Slot x={x} y={y} style={slotStyle} key={ y + '-' + x }>
               {/* Overriding default click param to provide x/y coords without AddPage knowing them. */}
               <AddPage onClick={ this.addPageClick.bind(this, {x:x, y:y}) }/>
             </Slot>
           );
         } else {
           nodes.push(
-            <Slot x={x} y={y} perRow={this.state.layout[0].length} key={ y + '-' + x } />
+            <Slot x={x} y={y} style={slotStyle} key={ y + '-' + x } />
           );
         }
       }

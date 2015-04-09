@@ -1,33 +1,38 @@
-.wrapper {
-  width: 320px;
-  height: 480px;
-  overflow: hidden;
-  position: relative;
-  border: 1px solid #ccc;
+.container {
+  height: 100%;
+
+  > div {
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+  }
 }
 
-.react-draggable,
-.cursor {
-  cursor: move;
+.wrapper {
+  display: flex;
+  flex-grow: 1;
+  flex-direction: column;
+  overflow: hidden;
+  position: relative;
+}
+
+.react-draggable {
+  flex-grow: 1;
+  display: flex;
+  flex-direction: column;
 }
 
 .grid {
   position: absolute;
-  width: 320px;
-  height: 320px;
+  width: 100%;
+  height: 100%;
   transition: transform 200ms ease-in-out;
-  top: 0;
-  left: 0;
   display: flex;
   flex-wrap: wrap;
   align-content: flex-start;
 }
 
 .slot {
-  flex-grow: 0;
-  flex-shrink: 0;
-  width: 25%;
-  height: 25%;
   display: flex;
   align-items: center;
   justify-content: center;
@@ -46,16 +51,14 @@
   height: 90%;
   border: 0;
   border-radius: 5%;
-  background: #99cccc url('img/add.png') no-repeat;
+  background: #99cccc url('img/add.png') center center no-repeat;
   background-size: contain;
 }
 
 .segmented-control {
   display: flex;
-  width: 320px;
   background-color: #eee;
-  border: 1px solid #ccc;
-  border-bottom: 0;
+  border-bottom: 1px solid #ddd;
 
   button {
     margin: 5px;
