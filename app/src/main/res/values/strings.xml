@@ -9,4 +9,6 @@
     <string name="hello_world">Hello world!</string>
 
     <string name="action_settings">Settings</string>
+    <string name="title_activity_map">Map</string>
+    <string name="title_activity_project">Project</string>
 </resources>
