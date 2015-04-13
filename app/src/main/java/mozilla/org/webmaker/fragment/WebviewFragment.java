@@ -13,8 +13,11 @@ import android.view.animation.Animation;
 import android.view.animation.AlphaAnimation;
 import android.view.animation.DecelerateInterpolator;
 import mozilla.org.webmaker.R;
+import mozilla.org.webmaker.WmWebView;
+
 import android.util.Log;
 import android.content.Context;
+import android.widget.RelativeLayout;
 
 @SuppressLint("SetJavaScriptEnabled")
 public class WebviewFragment extends Fragment {
@@ -23,7 +26,7 @@ public class WebviewFragment extends Fragment {
      * The fragment argument representing the section number for this fragment.
      */
     private static final String ARG_SECTION_NUMBER = "section_number";
-    private WebView mWebView;
+    private WmWebView mWebView = null;
 
     /**
      * Returns a new instance of this fragment for the given section number.
@@ -52,26 +55,20 @@ public class WebviewFragment extends Fragment {
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
         View mView = inflater.inflate(R.layout.fragment_main, container, false);
-        String sectionId;
+        String sectionId = Integer.toString(super.getArguments().getInt(ARG_SECTION_NUMBER));
 
-        mView.setId(View.generateViewId());
-        sectionId = Integer.toString(super.getArguments().getInt(ARG_SECTION_NUMBER));
-
-        mWebView = (WebView) mView.findViewById(R.id.activity_main_webview);
-        mWebView.getSettings().setJavaScriptEnabled(true);
-        mWebView.setWebViewClient(new WebClient());
-        mWebView.loadUrl("file:///android_asset/www/pages/section-" + sectionId + "/index.html");
-        mWebView.setBackgroundColor(0x00000000);
-        mWebView.addJavascriptInterface(new WebAppInterface(mView.getContext()), "Android");
-        mWebView.setWebContentsDebuggingEnabled(true);
-
+        mWebView = new WmWebView(mView.getContext(), "section-" + sectionId);
+        RelativeLayout layout = (RelativeLayout)mView.findViewById(R.id.webview_fragment);
+        layout.addView(mWebView);
         return mView;
     }
 
     @Override
     public void onDestroyView() {
-        mWebView.destroy();
-        mWebView = null;
+        if (mWebView != null) {
+            mWebView.destroy();
+            mWebView = null;
+        }
         super.onDestroyView();
     }
 

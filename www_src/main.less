@@ -16,7 +16,7 @@ body {
   margin: 0;
   padding: 0;
   font-family: sans-serif;
-  background: white;
+  background: #E9EBF0;
 }
 
 #app {
@@ -33,5 +33,62 @@ body {
   img {
     display: block;
     max-width: 300px;
+  }
+}
+
+.demo {
+  padding: 20px;
+  text-align: center;
+}
+
+.tile.tile-demo {
+  position: relative;
+  .inner {
+    width: 280px;
+    height: 400px;
+    background: #F0CF62;
+  }
+  .img {
+    position: absolute;
+    top: 100px;
+    left: 40px;
+    width: 150px;
+    &.editable {
+      border: 1px dashed #669EFF;
+    }
+    img {
+      width: 100%;
+      display: block;
+    }
+  }
+}
+
+.editor-preview {
+  text-align: center;
+  padding: 20px;
+  background: #F0CF62;
+  img {
+    width: 150px;
+  }
+}
+.editor-options {
+  padding: 10px;
+  label, input, button {
+    width: 100%;
+    display: block;
+    margin-bottom: 10px;
+    padding: 10px;
+  }
+}
+
+.tile.map-tile {
+  background: #F0CF62;
+  float: left;
+  margin-left: 10px;
+  margin-top: 10px;
+  width: 150px;
+  height: 200px;
+  img {
+    width: 50px;
   }
 }

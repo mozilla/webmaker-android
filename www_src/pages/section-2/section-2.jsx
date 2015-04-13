@@ -306,7 +306,7 @@ var App = React.createClass({
     // TEMP: Change div w. zIndex to Draggable to enable drag
 
     return (
-      <div>
+      <div className="section-2">
         <SegmentedControl onAmountChange={ this.changeZoom }/>
         <div ref="wrapper" className="wrapper">
           <div zIndex={100}>
