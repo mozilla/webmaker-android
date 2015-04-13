@@ -14,18 +14,17 @@
   flex-direction: column;
   overflow: hidden;
   position: relative;
-}
 
-.react-draggable {
-  flex-grow: 1;
-  display: flex;
-  flex-direction: column;
+  > div {
+    justify-content: center;
+    align-items: center;
+    flex-grow: 1;
+    display: flex;
+    flex-direction: column;
+  }
 }
 
 .grid {
-  position: absolute;
-  width: 100%;
-  height: 100%;
   transition: transform 200ms ease-in-out;
   display: flex;
   flex-wrap: wrap;

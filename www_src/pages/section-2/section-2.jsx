@@ -2,6 +2,22 @@ var React = require('react');
 var render = require('../../lib/render.jsx');
 var Draggable = require('react-draggable');
 
+function generateGrid(width, height) {
+  var grid = [];
+
+  for (var h = 0; h < height; h++) {
+    grid.push([]);
+
+    for (var w = 0; w < width; w++) {
+      grid[h].push(null);
+    }
+  }
+
+  grid[Math.floor(height / 2)][Math.floor(width / 2)] = 'EMPTY';
+
+  return grid;
+}
+
 var Page = React.createClass({
   render: function () {
     var style = {};
@@ -52,11 +68,7 @@ var Grid = React.createClass({
     });
   },
   getInitialState: function () {
-    var layout = [
-      [null, null, null],
-      [null, 'EMPTY', null],
-      [null, null, null]
-    ];
+    var layout = generateGrid(3, 3);
 
     return {
       zoom: this.props.initialZoom,
@@ -139,9 +151,37 @@ var Grid = React.createClass({
       layout: newLayout
     });
   },
+  componentDidUpdate: function () {
+    var elGrid = this.getDOMNode();
+
+    // Force fixed width & height on grid
+    elGrid.style.width = this.gridWidth + 'px';
+    elGrid.style.height = this.gridHeight + 'px';
+  },
+  setContainerDimensions: function (width, height) {
+    this.setState({
+      containerWidth: width,
+      containerHeight: height
+    });
+  },
   render: function () {
+    var self = this;
+
+    this.gridWidth = undefined;
+    this.gridHeight = undefined;
+
     var nodes = [];
     var layout = this.state.layout;
+
+    var tilesPerRow = layout[0].length;
+    var tilesPerCol = layout.length;
+
+    // Parse aspect ratio
+    var widthAR = parseInt(this.props.aspectRatio.split(':')[0], 10);
+    var heightAR = parseInt(this.props.aspectRatio.split(':')[1], 10);
+
+    var slotWidth;
+    var slotHeight;
 
     // Determine if a slot has a neighboring page in any cardinal direction
     function hasNeighbors(x, y) {
@@ -164,22 +204,25 @@ var Grid = React.createClass({
       return false;
     }
 
-    // If height > width then
-    //  augment grid with empty slots to prevent wrapping issues in display
-    if (layout.length > layout[0].length) {
-      for (var q = 0, qq = layout.length - layout[0].length; q < qq; q++) {
-        console.log('h');
-        layout.forEach(function (row, index, array) {
-          row.push(null);
-        });
-      }
+    // Try to fit grid in viewport by constraining to the width
+    slotWidth = (self.state.containerWidth / tilesPerRow);
+    slotHeight = slotWidth * (heightAR / widthAR);
+
+    // If the height overflows, then constrain by height instead
+    if (slotHeight * tilesPerCol > self.state.containerHeight) {
+      slotHeight = self.state.containerHeight / tilesPerCol;
+      slotWidth = slotHeight * (widthAR / heightAR);
     }
 
     var slotStyle = {
-      width: (100 / layout[0].length) + '%',
-      height: (100 / layout[0].length) + '%'
+      width: slotWidth + 'px',
+      height: slotHeight + 'px'
     }
 
+    this.gridWidth = slotWidth * tilesPerRow;
+    this.gridHeight = slotHeight * tilesPerCol;
+
+    // Render slots
     for (var y = 0; y < layout.length; y++) {
       for (var x = 0; x < layout[0].length; x++) {
         if (layout[y][x]) {
@@ -252,16 +295,25 @@ var App = React.createClass({
   changeZoom: function (event) {
     this.refs.masterGrid.zoom(event.amount);
   },
+  componentDidMount: function () {
+    // Pass container dimensions in once initial render is complete
+    //   since container must be measured before tiles can be properly laid out...
+    var elWrapper = this.refs.wrapper.getDOMNode();
+    this.refs.masterGrid.setContainerDimensions(elWrapper.clientWidth, elWrapper.clientHeight);
+  },
   render: function () {
+
+    // TEMP: Change div w. zIndex to Draggable to enable drag
+
     return (
       <div>
         <SegmentedControl onAmountChange={ this.changeZoom }/>
-        <div className="wrapper">
-          <Draggable zIndex={100}>
+        <div ref="wrapper" className="wrapper">
+          <div zIndex={100}>
             <div>
-              <Grid initialZoom={1} ref="masterGrid"/>
+              <Grid initialZoom={1} ref="masterGrid" aspectRatio={"35:40"}/>
             </div>
-          </Draggable>
+          </div>
         </div>
       </div>
     );
