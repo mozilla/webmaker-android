@@ -26,7 +26,7 @@ public class WebviewFragment extends Fragment {
      * The fragment argument representing the section number for this fragment.
      */
     private static final String ARG_SECTION_NUMBER = "section_number";
-    private WmWebView mWebView;
+    private WmWebView mWebView = null;
 
     /**
      * Returns a new instance of this fragment for the given section number.
@@ -59,14 +59,16 @@ public class WebviewFragment extends Fragment {
 
         mWebView = new WmWebView(mView.getContext(), "section-" + sectionId);
         RelativeLayout layout = (RelativeLayout)mView.findViewById(R.id.webview_fragment);
-        layout.addView(mWebView.mWebView);
+        layout.addView(mWebView);
         return mView;
     }
 
     @Override
     public void onDestroyView() {
-        mWebView.destroy();
-        mWebView = null;
+        if (mWebView != null) {
+            mWebView.destroy();
+            mWebView = null;
+        }
         super.onDestroyView();
     }
 

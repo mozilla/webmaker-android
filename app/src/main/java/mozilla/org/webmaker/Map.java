@@ -2,6 +2,7 @@ package mozilla.org.webmaker;
 
 import android.app.Activity;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.widget.RelativeLayout;
@@ -9,7 +10,7 @@ import android.widget.RelativeLayout;
 
 public class Map extends Activity {
 
-    private WmWebView mWebView;
+    private WmWebView mWebView = null;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -18,13 +19,16 @@ public class Map extends Activity {
 
         mWebView = new WmWebView(this, "map");
         RelativeLayout layout = (RelativeLayout)findViewById(R.id.map_layout);
-        layout.addView(mWebView.mWebView);
+        layout.addView(mWebView);
     }
 
     @Override
     public void onDestroy() {
-        mWebView.destroy();
-        mWebView = null;
+        Log.v("wm", "onDestroy");
+        if (mWebView != null) {
+            mWebView.destroy();
+            mWebView = null;
+        }
         super.onDestroy();
     }
 

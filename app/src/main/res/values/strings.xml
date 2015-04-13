@@ -2,13 +2,13 @@
     <string name="app_name">Webmaker</string>
 
 
-    <string name="title_section1">View</string>
-    <string name="title_section2">Edit</string>
-    <string name="title_section3">Explore</string>
+    <string name="title_section1">Discover</string>
+    <string name="title_section2">Make</string>
 
     <string name="hello_world">Hello world!</string>
 
     <string name="action_settings">Settings</string>
     <string name="title_activity_map">Map</string>
     <string name="title_activity_project">Project</string>
+    <string name="title_activity_editor">Editor</string>
 </resources>

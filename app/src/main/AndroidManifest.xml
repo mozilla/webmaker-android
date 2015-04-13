@@ -30,6 +30,14 @@
                 android:name="android.support.PARENT_ACTIVITY"
                 android:value="mozilla.org.webmaker.Map" />
         </activity>
+        <activity
+            android:name=".Editor"
+            android:label="@string/title_activity_editor"
+            android:parentActivityName=".Project" >
+            <meta-data
+                android:name="android.support.PARENT_ACTIVITY"
+                android:value="mozilla.org.webmaker.Project" />
+        </activity>
     </application>
 
 </manifest>

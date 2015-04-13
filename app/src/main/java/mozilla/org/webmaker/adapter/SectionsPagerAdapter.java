@@ -44,7 +44,7 @@ public class SectionsPagerAdapter extends FragmentPagerAdapter {
      */
     @Override
     public int getCount() {
-        return 3;
+        return 2;
     }
 
     @Override
@@ -55,8 +55,6 @@ public class SectionsPagerAdapter extends FragmentPagerAdapter {
                 return context.getString(R.string.title_section1).toUpperCase(l);
             case 1:
                 return context.getString(R.string.title_section2).toUpperCase(l);
-            case 2:
-                return context.getString(R.string.title_section3).toUpperCase(l);
         }
         return null;
     }
