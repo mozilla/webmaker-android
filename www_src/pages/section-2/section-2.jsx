@@ -254,7 +254,7 @@ var App = React.createClass({
   },
   render: function () {
     return (
-      <div>
+      <div className="section-2">
         <SegmentedControl onAmountChange={ this.changeZoom }/>
         <div className="wrapper">
           <Draggable zIndex={100}>

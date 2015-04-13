@@ -5,8 +5,14 @@ var Link = require('../../components/link/link.jsx');
 var Main = React.createClass({
   render: function () {
     return (
-      <div>
-        <Link url="/map/123" href="/pages/map" className="tile"><img src="../../img/demo.png" /></Link>
+      <div className="demo">
+        <Link url="/map/123" href="/pages/map" className="tile tile-demo">
+          <div className="inner">
+            <div className="img">
+              <img src="../../img/toucan.svg" />
+            </div>
+          </div>
+        </Link>
       </div>
     );
   }

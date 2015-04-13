@@ -8,7 +8,15 @@ var Map = React.createClass({
   },
   render: function () {
     return <div>
-      This is a map. <Link url="/project/123" href="/pages/project">Go to project</Link>
+      <Link className="tile map-tile" url="/project/123" href="/pages/project">
+        <img src="../../img/toucan.svg" />
+      </Link>
+      <Link className="tile map-tile" url="/project/123" href="/pages/project">
+        <img src="../../img/toucan.svg" />
+      </Link>
+      <Link className="tile map-tile" url="/project/123" href="/pages/project">
+        <img src="../../img/toucan.svg" />
+      </Link>
     </div>
   }
 });
