@@ -19,6 +19,9 @@ function generateGrid(width, height) {
 }
 
 var Page = React.createClass({
+  handleClick: function (event) {
+    this.props.onClick(event);
+  },
   render: function () {
     var style = {};
 
@@ -28,6 +31,7 @@ var Page = React.createClass({
 
     return (
       <div
+        onClick={this.handleClick}
         className="page"
         style={style}>
       </div>
@@ -62,16 +66,54 @@ var Slot = React.createClass({
 });
 
 var Grid = React.createClass({
-  zoom: function (amount) {
+  zoomToPage: function (event) {
+    var midpointX = Math.floor(this.tilesPerRow / 2);
+    var midpointY = Math.floor(this.tilesPerCol / 2);
+
+    var cameraX = 0;
+    var cameraY = 0;
+
+    var isEvenWidth = this.tilesPerRow % 2 === 0;
+    var isEvenHeight = this.tilesPerCol % 2 === 0;
+
+    if (event.x > midpointX) {
+      cameraX = (event.x - midpointX) * -1 * this.slotWidth;
+
+      if (isEvenWidth) {
+        cameraX += (this.slotWidth / 2);
+      }
+    } else if (event.x <= midpointX) {
+      cameraX = (midpointX - event.x) * this.slotWidth;
+
+      if (isEvenWidth) {
+        cameraX -= (this.slotWidth / 2);
+      }
+    }
+
+    if (event.y > midpointY) {
+      cameraY = (event.y - midpointY) * -1 * this.slotHeight;
+
+      if (isEvenHeight) {
+        cameraY += (this.slotHeight / 2);
+      }
+    } else if (event.y <= midpointY) {
+      cameraY = (midpointY - event.y) * this.slotHeight;
+
+      if (isEvenHeight) {
+        cameraY -= (this.slotHeight / 2);
+      }
+    }
+
     this.setState({
-      zoom: amount
+      zoom: this.state.containerWidth / this.slotWidth,
+      cameraX: cameraX,
+      cameraY: cameraY
     });
   },
   getInitialState: function () {
     var layout = generateGrid(3, 3);
 
     return {
-      zoom: this.props.initialZoom,
       layout: layout
     }
   },
@@ -170,18 +212,18 @@ var Grid = React.createClass({
     this.gridWidth = undefined;
     this.gridHeight = undefined;
 
+    this.slotWidth = undefined;
+    this.slotHeight = undefined;
+
     var nodes = [];
     var layout = this.state.layout;
 
-    var tilesPerRow = layout[0].length;
-    var tilesPerCol = layout.length;
+    this.tilesPerRow = layout[0].length;
+    this.tilesPerCol = layout.length;
 
     // Parse aspect ratio
     var widthAR = parseInt(this.props.aspectRatio.split(':')[0], 10);
     var heightAR = parseInt(this.props.aspectRatio.split(':')[1], 10);
-
-    var slotWidth;
-    var slotHeight;
 
     // Determine if a slot has a neighboring page in any cardinal direction
     function hasNeighbors(x, y) {
@@ -205,22 +247,22 @@ var Grid = React.createClass({
     }
 
     // Try to fit grid in viewport by constraining to the width
-    slotWidth = (self.state.containerWidth / tilesPerRow);
-    slotHeight = slotWidth * (heightAR / widthAR);
+    this.slotWidth = (self.state.containerWidth / this.tilesPerRow);
+    this.slotHeight = this.slotWidth * (heightAR / widthAR);
 
     // If the height overflows, then constrain by height instead
-    if (slotHeight * tilesPerCol > self.state.containerHeight) {
-      slotHeight = self.state.containerHeight / tilesPerCol;
-      slotWidth = slotHeight * (widthAR / heightAR);
+    if (this.slotHeight * this.tilesPerCol > self.state.containerHeight) {
+      this.slotHeight = self.state.containerHeight / this.tilesPerCol;
+      this.slotWidth = this.slotHeight * (widthAR / heightAR);
     }
 
     var slotStyle = {
-      width: slotWidth + 'px',
-      height: slotHeight + 'px'
+      width: this.slotWidth + 'px',
+      height: this.slotHeight + 'px'
     }
 
-    this.gridWidth = slotWidth * tilesPerRow;
-    this.gridHeight = slotHeight * tilesPerCol;
+    this.gridWidth = this.slotWidth * this.tilesPerRow;
+    this.gridHeight = this.slotHeight * this.tilesPerCol;
 
     // Render slots
     for (var y = 0; y < layout.length; y++) {
@@ -228,7 +270,7 @@ var Grid = React.createClass({
         if (layout[y][x]) {
           nodes.push(
             <Slot x={x} y={y} style={slotStyle} key={ y + '-' + x }>
-              <Page screenshot={layout[y][x]} />
+              <Page onClick={ this.zoomToPage.bind(this, {x:x, y:y}) } screenshot={layout[y][x]} />
             </Slot>
           );
         } else if (hasNeighbors(x, y)) {
@@ -246,43 +288,17 @@ var Grid = React.createClass({
       }
     }
 
+    var transform =
+      'scale(' + this.state.zoom + ') translate3d(' + this.state.cameraX + 'px, ' + this.state.cameraY + 'px, 0)';
+
     var gridTransform = {
-      transform: 'scale(' + this.state.zoom + ')',
-      WebkitTransform: 'scale(' + this.state.zoom + ')'
+      transform: transform,
+      WebkitTransform: transform
     }
 
     return (
       <div className="grid" style={gridTransform}>
         {nodes}
-      </div>
-    );
-  }
-});
-
-var SegmentedControl = React.createClass({
-  getInitialState: function () {
-    return {
-      amount: 1
-    };
-  },
-  modifyAmount: function (delta) {
-    this.state.amount *= delta;
-
-    this.props.onAmountChange({
-      amount: this.state.amount
-    });
-  },
-  increase: function () {
-    this.modifyAmount(2);
-  },
-  decrease: function () {
-    this.modifyAmount(0.5);
-  },
-  render: function () {
-    return (
-      <div className="segmented-control">
-        <button onClick={ this.increase }><span>+</span></button>
-        <button onClick={ this.decrease }><span>-</span></button>
       </div>
     );
   }
@@ -294,6 +310,14 @@ var App = React.createClass({
   },
   changeZoom: function (event) {
     this.refs.masterGrid.zoom(event.amount);
+  },
+  showOverview: function () {
+    console.log('showo');
+    this.refs.masterGrid.setState({
+      zoom: 1,
+      cameraX: 0,
+      cameraY: 0
+    });
   },
   componentDidMount: function () {
     // Pass container dimensions in once initial render is complete
@@ -307,11 +331,13 @@ var App = React.createClass({
 
     return (
       <div className="section-2">
-        <SegmentedControl onAmountChange={ this.changeZoom }/>
+        <div className="segmented-control">
+          <button onClick={ this.showOverview }>Show Overview</button>
+        </div>
         <div ref="wrapper" className="wrapper">
           <div zIndex={100}>
             <div>
-              <Grid initialZoom={1} ref="masterGrid" aspectRatio={"35:40"}/>
+              <Grid ref="masterGrid" aspectRatio={"35:40"}/>
             </div>
           </div>
         </div>
