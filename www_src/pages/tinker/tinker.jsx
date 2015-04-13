@@ -2,7 +2,7 @@ var React = require('react');
 var render = require('../../lib/render.jsx');
 var Link = require('../../components/link/link.jsx');
 
-var Editor = React.createClass({
+var Tinker = React.createClass({
   contextTypes: {
     router: React.PropTypes.func
   },
@@ -12,16 +12,14 @@ var Editor = React.createClass({
         <img src="../../img/toucan.svg" />
       </div>
       <div className="editor-options">
-        <button>Change Image</button>
-        <label>Transparency</label>
+        <h3>THIS IS TINKER MODE YO</h3>
         <input type="range" />
-        <label>Corners</label>
         <input type="range" />
-        <Link url="/project/123/1/color" href="/pages/tinker">Tinker Mode</Link>
+        <input type="range" />
       </div>
     </div>
   }
 });
 
 // Render!
-render(Editor);
+render(Tinker);
