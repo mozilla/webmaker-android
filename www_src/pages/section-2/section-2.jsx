@@ -256,6 +256,9 @@ var Grid = React.createClass({
       this.slotWidth = this.slotHeight * (widthAR / heightAR);
     }
 
+    this.slotWidth = Math.floor(this.slotWidth);
+    this.slotHeight = Math.floor(this.slotHeight);
+
     var slotStyle = {
       width: this.slotWidth + 'px',
       height: this.slotHeight + 'px'
@@ -312,7 +315,6 @@ var App = React.createClass({
     this.refs.masterGrid.zoom(event.amount);
   },
   showOverview: function () {
-    console.log('showo');
     this.refs.masterGrid.setState({
       zoom: 1,
       cameraX: 0,
