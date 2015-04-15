@@ -1,14 +1,14 @@
 # Developing on Android
 
 * [Install Android Studio](#install-android-studio)
-    * The first step of getting set up for Android development is installing adb (Android Debug Bridge)
+    * The first step of getting set up for Android development is installing Android Studio
 * [USB Debugging](#turn-on-remote-usb-debugging-on-your-device)
     * USB debugging allows us to setup your phone to be used as a test device for your app
-* [Chrome Remote Debugging](#chrome-remote-debugging)
-    * This will help you start debugging our app using the Chrome developer tools
 * [Setup Webmaker App](#set-up-webmaker-app)
     * All the steps needed to get a local version of the Webmaker App repository running locally on your Android phone
-* [Manually install adb and Android SDK]
+* [Chrome Remote Debugging](#chrome-remote-debugging)
+    * This will help you start debugging our app using the Chrome developer tools
+* [Manually install adb and Android SDK](#install-android-19-4.4-sdk-platform)
     * Only do this if you're unable to use adb after install Android Studio, or you want to manually install other SDKs
 
 ## Install Android Studio
@@ -36,26 +36,18 @@ After it has installed successfully, you should see the following screen:
 ## Set up Webmaker App
 
 * Clone the Webmaker App repo [mozilla/webmaker-app](https://github.com/mozilla/webmaker-app)
+
 * Once we have a local copy of the `webmaker-app` run `npm install` and then `npm start` to build/watch changes
+
 * In Android studio, choose "Open an existing Android project"
+
 * Select the webmaker-app folder, and press open
+
 * You may need to set your Gradle path to `/Application/Android Studio.app/Contents/gradle/gradle-2.2.1`
+
 * Connect your device via USB, and press the "run" button:
 
 ![run button](../img/android-run-btn.png)
-
-## Chrome Remote Debugging
-
-### Remote debugging via Chrome dev tools (4.4 KitKat only)
-
-<iframe width="775" height="436" src="https://www.youtube.com/embed/JM1y3hyUU1Q" frameborder="0" allowfullscreen></iframe>
-
-One of the best ways to debug the Webmaker app is through Chrome's developer tools.
-
-* This will give us the same tools we use for web development for debugging our app
-
-* If Google Chrome is a bit sluggish for debugging, try out Chrome Canary, as it usually performs faster
-
 
 
 ## Manually install adb and Android SDK
@@ -85,6 +77,8 @@ adb version
 ```
 If you see something like `Android Debug Bridge version 1.0.32` you have adb installed properly. If you don't, see [this page on MDN](https://developer.mozilla.org/en-US/Firefox_OS/Debugging/Installing_ADB) for more help.
 
+
+
 ### Install Android 19 (4.4) SDK platform
 
 If you installed Android Studio, you can probably **skip this step**.
@@ -94,4 +88,3 @@ If you installed Android Studio, you can probably **skip this step**.
 To run our app we'll need to download Android 19. To do this we'll download the SDK manager from [developer.android.com](https://developer.android.com/sdk/index.html).
 
 We'll also need to make sure Java and Java Development Kit are installed in order to run the `Android` command.
-
