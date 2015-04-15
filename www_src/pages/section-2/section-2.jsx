@@ -2,22 +2,6 @@ var React = require('react');
 var render = require('../../lib/render.jsx');
 var Draggable = require('react-draggable');
 
-function generateGrid(width, height) {
-  var grid = [];
-
-  for (var h = 0; h < height; h++) {
-    grid.push([]);
-
-    for (var w = 0; w < width; w++) {
-      grid[h].push(null);
-    }
-  }
-
-  grid[Math.floor(height / 2)][Math.floor(width / 2)] = 'EMPTY';
-
-  return grid;
-}
-
 var Page = React.createClass({
   render: function () {
     var style = {};
@@ -114,8 +98,23 @@ var Grid = React.createClass({
       cameraY: 0
     });
   },
+  generateGrid: function (width, height) {
+    var grid = [];
+
+    for (var h = 0; h < height; h++) {
+      grid.push([]);
+
+      for (var w = 0; w < width; w++) {
+        grid[h].push(null);
+      }
+    }
+
+    grid[Math.floor(height / 2)][Math.floor(width / 2)] = 'EMPTY';
+
+    return grid;
+  },
   getInitialState: function () {
-    var layout = generateGrid(3, 3);
+    var layout = this.generateGrid(3, 3);
 
     return {
       layout: layout
