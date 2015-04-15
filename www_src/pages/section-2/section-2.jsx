@@ -47,7 +47,15 @@ var Slot = React.createClass({
 });
 
 var Grid = React.createClass({
-  zoomToPage: function (event) {
+  /**
+   * Zoom in to a page tile
+   * @param  {Number} pageX Page's x coordinate in grid
+   * @param  {Number} pageY Page's y coordinate in grid
+   * @param  {Number} pagesWide Number of pages to fit in width-wise
+   */
+  zoomToPage: function (pageX, pageY, pagesWide) {
+    pagesWide = pagesWide || this.state.zoomPagesWide;
+
     var midpointX = Math.floor(this.tilesPerRow / 2);
     var midpointY = Math.floor(this.tilesPerCol / 2);
 
@@ -57,28 +65,28 @@ var Grid = React.createClass({
     var isEvenWidth = this.tilesPerRow % 2 === 0;
     var isEvenHeight = this.tilesPerCol % 2 === 0;
 
-    if (event.x > midpointX) {
-      cameraX = (event.x - midpointX) * -1 * this.slotWidth;
+    if (pageX > midpointX) {
+      cameraX = (pageX - midpointX) * -1 * this.slotWidth;
 
       if (isEvenWidth) {
         cameraX += (this.slotWidth / 2);
       }
-    } else if (event.x <= midpointX) {
-      cameraX = (midpointX - event.x) * this.slotWidth;
+    } else if (pageX <= midpointX) {
+      cameraX = (midpointX - pageX) * this.slotWidth;
 
       if (isEvenWidth) {
         cameraX -= (this.slotWidth / 2);
       }
     }
 
-    if (event.y > midpointY) {
-      cameraY = (event.y - midpointY) * -1 * this.slotHeight;
+    if (pageY > midpointY) {
+      cameraY = (pageY - midpointY) * -1 * this.slotHeight;
 
       if (isEvenHeight) {
         cameraY += (this.slotHeight / 2);
       }
-    } else if (event.y <= midpointY) {
-      cameraY = (midpointY - event.y) * this.slotHeight;
+    } else if (pageY <= midpointY) {
+      cameraY = (midpointY - pageY) * this.slotHeight;
 
       if (isEvenHeight) {
         cameraY -= (this.slotHeight / 2);
@@ -86,10 +94,25 @@ var Grid = React.createClass({
     }
 
     this.setState({
-      zoom: this.state.containerWidth / this.slotWidth,
+      zoom: this.state.containerWidth / (this.slotWidth * pagesWide),
+      zoomPagesWide: pagesWide,
+      focusedPageCoords: {x: pageX, y: pageY},
       cameraX: cameraX,
       cameraY: cameraY
     });
+  },
+  onPageClick: function (event) {
+    console.log('onPageClick');
+
+    // TODO : TEMP - Rotating through zoom factors
+
+    var zoomFactor = 3.25;
+
+    if (this.state.zoomPagesWide) {
+      zoomFactor = this.state.zoomPagesWide === 1 ? 3.25 : 1;
+    }
+
+    this.zoomToPage(event.x, event.y, zoomFactor);
   },
   showOverview: function () {
     this.setState({
@@ -195,6 +218,9 @@ var Grid = React.createClass({
     this.setState({
       layout: newLayout
     });
+
+    // this.zoomToPage(event.x, event.y);
+
   },
   componentDidUpdate: function () {
     var elGrid = this.getDOMNode();
@@ -281,7 +307,7 @@ var Grid = React.createClass({
         if (layout[y][x]) {
           nodes.push(
             <Slot x={x} y={y} style={slotStyle} key={ y + '-' + x }>
-              <Page onClick={ this.zoomToPage.bind(this, {x:x, y:y}) } screenshot={layout[y][x]} />
+              <Page onClick={ this.onPageClick.bind(this, {x:x, y:y}) } screenshot={layout[y][x]} />
             </Slot>
           );
         } else if (this.hasNeighbors(x, y)) {
@@ -334,15 +360,16 @@ var App = React.createClass({
 
     return (
       <div className="section-2">
-        <div className="segmented-control">
-          <button onClick={ this.showOverview }>Show Overview</button>
-        </div>
         <div ref="wrapper" className="wrapper">
           <div zIndex={100}>
             <div>
               <Grid ref="masterGrid" aspectRatio={"35:40"}/>
             </div>
           </div>
+        </div>
+        <div className="segmented-control">
+          <button onClick={ this.showOverview }>-</button>
+          <button>+</button>
         </div>
       </div>
     );
