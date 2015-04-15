@@ -38,6 +38,14 @@
                 android:name="android.support.PARENT_ACTIVITY"
                 android:value="mozilla.org.webmaker.Project" />
         </activity>
+        <activity
+            android:name=".Tinker"
+            android:label="@string/title_activity_tinker"
+            android:parentActivityName=".Editor" >
+            <meta-data
+                android:name="android.support.PARENT_ACTIVITY"
+                android:value="mozilla.org.webmaker.Editor" />
+        </activity>
     </application>
 
 </manifest>

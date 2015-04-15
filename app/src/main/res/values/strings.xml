@@ -11,4 +11,5 @@
     <string name="title_activity_map">Map</string>
     <string name="title_activity_project">Project</string>
     <string name="title_activity_editor">Editor</string>
+    <string name="title_activity_tinker">Tinker</string>
 </resources>
