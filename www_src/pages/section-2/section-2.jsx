@@ -115,6 +115,7 @@ var Grid = React.createClass({
     this.zoomToPage(event.x, event.y, zoomFactor);
   },
   showOverview: function () {
+    // TODO : Refactor to use zoomToPage ?
     this.setState({
       zoom: 1,
       cameraX: 0,
@@ -144,12 +145,18 @@ var Grid = React.createClass({
     }
   },
   addPageClick: function (event) {
+    var self = this;
+
     var newLayout = this.state.layout;
 
     newLayout[event.y][event.x] = 'EMPTY';
 
     var width = newLayout[0].length;
     var height = newLayout.length;
+
+    // The new page tile's x and y coords may shift if the grid is expanded
+    var newPageX = event.x;
+    var newPageY = event.y;
 
     // Detect what grid boundaries the given tile touches
     function edgeDetect(x, y) {
@@ -191,6 +198,8 @@ var Grid = React.createClass({
           newLayout.forEach(function (row, index) {
             row.unshift(null);
           });
+
+          newPageX++;
         },
         right: function () {
           newLayout.forEach(function (row, index) {
@@ -199,6 +208,7 @@ var Grid = React.createClass({
         },
         top: function () {
           newLayout.unshift(buildEmptyRow(newLayout[0].length));
+          newPageY++;
         },
         bottom: function () {
           newLayout.push(buildEmptyRow(newLayout[0].length));
@@ -217,10 +227,10 @@ var Grid = React.createClass({
 
     this.setState({
       layout: newLayout
+    }, function () {
+      // TODO : Only zoomToPage in certain cases
+      self.zoomToPage(newPageX, newPageY, self.state.zoomPagesWide);
     });
-
-    // this.zoomToPage(event.x, event.y);
-
   },
   componentDidUpdate: function () {
     var elGrid = this.getDOMNode();
