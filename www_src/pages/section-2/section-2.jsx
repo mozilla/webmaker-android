@@ -56,14 +56,30 @@ var Grid = React.createClass({
   zoomToPage: function (pageX, pageY, pagesWide) {
     pagesWide = pagesWide || this.state.zoomPagesWide;
 
-    var midpointX = Math.floor(this.tilesPerRow / 2);
-    var midpointY = Math.floor(this.tilesPerCol / 2);
-
     var cameraX = 0;
     var cameraY = 0;
 
     var isEvenWidth = this.tilesPerRow % 2 === 0;
     var isEvenHeight = this.tilesPerCol % 2 === 0;
+
+    var midpointX = Math.floor(this.tilesPerRow / 2);
+    var midpointY = Math.floor(this.tilesPerCol / 2);
+
+    // Tweak midpoints if needed...
+
+    if (isEvenHeight) {
+      if (pageY >= midpointY) {
+        midpointY--;
+      }
+    }
+
+    if (isEvenWidth) {
+      if (pageX >= midpointX) {
+        midpointX--;
+      }
+    }
+
+    // Calculate new camera position
 
     if (pageX > midpointX) {
       cameraX = (pageX - midpointX) * -1 * this.slotWidth;
@@ -102,9 +118,7 @@ var Grid = React.createClass({
     });
   },
   onPageClick: function (event) {
-    console.log('onPageClick');
-
-    // TODO : TEMP - Rotating through zoom factors
+    // TODO : TEMP - Just rotating through zoom factors
 
     var zoomFactor = 3.25;
 
@@ -379,7 +393,7 @@ var App = React.createClass({
         </div>
         <div className="segmented-control">
           <button onClick={ this.showOverview }>-</button>
-          <button>+</button>
+          <button className="disabled">+</button>
         </div>
       </div>
     );
