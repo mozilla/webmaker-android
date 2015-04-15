@@ -1,24 +1,27 @@
 # Developing on Android
 
-* [Install Android Debug Bridge](#install-android-debug-bridge-adb)
-    * The first step of getting setup for Android development is installing the Android Debug Bridge tools
-* [Install Android SDK](#install-android-19-44-sdk-platform)
-    * The second piece of software we'll need for Android development is the Android SDK, which will allow you to run your app
+* [Install Android Studio](#install-android-studio)
+    * The first step of getting set up for Android development is installing adb (Android Debug Bridge)
+* [Manually install adb and Android SDK]
+    * Only do this if you're unable to use adb after install Android Studio, or you want to manually install other SDKs
 * [USB Debugging](#turn-on-remote-usb-debugging-on-your-device)
     * USB debugging allows us to setup your phone to be used as a test device for your app
 * [Chrome Remote Debugging](#chrome-remote-debugging)
     * This will help you start debugging our app using the Chrome developer tools
-* [Logcat Remote Debugging](#remote-debugging-via-logcat-works-on-42)
-    * How to debug our app using the logcat command line tool
-* [Setup Android Cordova](#set-up-android-cordova)
-    * To start working on the Webmaker App we need to setup a local version of the Android Cordova Wrapper repository
 * [Setup Webmaker App](#set-up-webmaker-app)
     * All the steps needed to get a local version of the Webmaker App repository running locally on our computer
 * [Additional Android Development Tips](#other-tips)
     * A few extra tips that should help you up and developing your Android app
 
+## Install Android Studio
 
-## Install Android Debug Bridge (ADB)
+Todo.
+
+## Manually install adb and Android SDK
+
+If you installed Android Studio, you can probably **skip these steps**.
+
+### Install adb (Android Debug Bridge)
 
 <iframe width="775" height="436" src="https://www.youtube.com/embed/-d28E21PuRc" frameborder="0" allowfullscreen></iframe>
 
@@ -41,7 +44,9 @@ adb version
 ```
 If you see something like `Android Debug Bridge version 1.0.32` you have adb installed properly. If you don't, see [this page on MDN](https://developer.mozilla.org/en-US/Firefox_OS/Debugging/Installing_ADB) for more help.
 
-## Install Android 19 (4.4) SDK platform
+### Install Android 19 (4.4) SDK platform
+
+If you installed Android Studio, you can probably **skip this step**.
 
 <iframe width="775" height="436" src="https://www.youtube.com/embed/10XXnYteAqA" frameborder="0" allowfullscreen></iframe>
 
@@ -62,6 +67,17 @@ We'll also need to make sure Java and Java Development Kit are installed in orde
 
 * [This guide](http://www.phonearena.com/news/How-to-enable-USB-debugging-on-Android_id53909) has additional information on setting up your phone for USB Debugging
 
+## Chrome Remote Debugging
+
+### Remote debugging via Chrome dev tools (4.4 KitKat only)
+
+<iframe width="775" height="436" src="https://www.youtube.com/embed/JM1y3hyUU1Q" frameborder="0" allowfullscreen></iframe>
+
+One of the best ways to debug the Webmaker app is through Chrome's developer tools.
+
+* This will give us the same tools we use for web development for debugging our app
+
+* If Google Chrome is a bit sluggish for debugging, try out Chrome Canary, as it usually performs faster
 
 ## Set up Webmaker App
 
@@ -74,51 +90,6 @@ We'll first need to install Cordova globally, which will allow us build our mobi
 * Once we have a local copy of the `webmaker-app` run `npm install` and then `gulp dev` to build/watch changes
 
 * To be able to make changes in this app and be able to build a new version in Cordova, **we will also need to run `npm link`** in the root of this directory
-
-
-## Chrome Remote Debugging 
-
-### Remote debugging via Chrome dev tools (4.4 KitKat only)
-
-<iframe width="775" height="436" src="https://www.youtube.com/embed/JM1y3hyUU1Q" frameborder="0" allowfullscreen></iframe>
-
-One of the best ways to debug the Webmaker app is through Chrome's developer tools.
-
-* This will give us the same tools we use for web development for debugging our app
-
-* If Google Chrome is a bit sluggish for debugging, try out Chrome Canary, as it usually performs faster
-
-
-
-## Remote debugging via logcat (works on 4.2+)
-
-<iframe width="775" height="436" src="https://www.youtube.com/embed/FfgT4XtLuq4" frameborder="0" allowfullscreen></iframe>
-
-The alternative to using Chrome's developer tools for debugging an app, is to use the `adb logcat` command.
-
-The logcat command is the only method for remote debugging on Android 4.2 (17 Jellybean) phones.
-
-
-
-## Set up Android Cordova
-
-* clone `mozilla/webmaker-app-cordova`
-* `npm install`
-* `npm start`
-
-This should build our project for the first time and attempt to launch the app on the phone (assuming it is plugged in and available through `adb`)
-
-In order to complete the link to our local copy of `mozilla/webmaker-app`, run the following command once in the root of this directory:
-
-```
-npm link webmaker
-```
-
-After we do that, all we need to do to re-build the app is run the following every time you make a change:
-
-```
-npm run android
-```
 
 ## Other tips
 
