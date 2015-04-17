@@ -53,7 +53,10 @@ var Grid = React.createClass({
    * @param  {Number} pageY Page's y coordinate in grid
    * @param  {Number} pagesWide Number of pages to fit in width-wise
    */
-  zoomToPage: function (pageX, pageY, pagesWide) {
+
+  // TODO - this is only setting displayState property and nothing else...kind of misleading name
+
+  zoomToPage: function (pageX, pageY, pagesWide, doCentering) {
     pagesWide = pagesWide || this.state.zoomPagesWide;
 
     var cameraX = 0;
@@ -109,32 +112,38 @@ var Grid = React.createClass({
       }
     }
 
-    this.setState({
+    var newDisplayState = {
       zoom: this.state.containerWidth / (this.slotWidth * pagesWide),
+      previousZoom: this.displayState.zoom || this.state.containerWidth / (this.slotWidth * pagesWide),
       zoomPagesWide: pagesWide,
-      focusedPageCoords: {x: pageX, y: pageY},
-      cameraX: cameraX,
-      cameraY: cameraY
-    });
+      focusedPageCoords: {x: pageX, y: pageY}
+    }
+
+    if (doCentering) {
+      newDisplayState.previousCameraX = this.displayState.cameraX;
+      newDisplayState.previousCameraY = this.displayState.cameraY;
+      newDisplayState.cameraX = cameraX;
+      newDisplayState.cameraY = cameraY;
+    }
+
+    this.displayState = newDisplayState;
   },
   onPageClick: function (event) {
     // TODO : TEMP - Just rotating through zoom factors
 
     var zoomFactor = 3.25;
 
-    if (this.state.zoomPagesWide) {
-      zoomFactor = this.state.zoomPagesWide === 1 ? 3.25 : 1;
+    if (this.displayState.zoomPagesWide) {
+      zoomFactor = this.displayState.zoomPagesWide === 1 ? 3.25 : 1;
     }
 
-    this.zoomToPage(event.x, event.y, zoomFactor);
+    this.zoomToPage(event.x, event.y, zoomFactor, true);
+    this.animateCamera(true);
   },
   showOverview: function () {
-    // TODO : Refactor to use zoomToPage ?
-    this.setState({
-      zoom: 1,
-      cameraX: 0,
-      cameraY: 0
-    });
+    // 6 UP
+    this.zoomToPage(Math.floor(this.tilesPerRow / 2 ), Math.floor(this.tilesPerCol / 2), 6.25, true);
+    this.animateCamera(true);
   },
   generateGrid: function (width, height) {
     var grid = [];
@@ -152,6 +161,7 @@ var Grid = React.createClass({
     return grid;
   },
   getInitialState: function () {
+    // 20 x 20 seems to be max before display glitches
     var layout = this.generateGrid(3, 3);
 
     return {
@@ -242,8 +252,8 @@ var Grid = React.createClass({
     this.setState({
       layout: newLayout
     }, function () {
-      // TODO : Only zoomToPage in certain cases
-      self.zoomToPage(newPageX, newPageY, self.state.zoomPagesWide);
+      self.zoomToPage(newPageX, newPageY, self.displayState.zoomPagesWide, true);
+      self.animateCamera();
     });
   },
   componentDidUpdate: function () {
@@ -262,6 +272,8 @@ var Grid = React.createClass({
 
     this.tilesPerRow = undefined;
     this.tilesPerCol = undefined;
+
+    this.displayState = {};
   },
   // Determine if a slot has a neighboring page in any cardinal direction
   hasNeighbors: function (x, y) {
@@ -290,6 +302,51 @@ var Grid = React.createClass({
       containerWidth: width,
       containerHeight: height
     });
+  },
+  animateCamera: function (animateZoom) {
+    if (typeof animateZoom !== 'boolean') {
+      animateZoom = false;
+    }
+
+    var elGrid = this.getDOMNode();
+
+    var scaleTransform = 'scale(' + (this.displayState.zoom || 1) + ')';
+    var previousScaleTransform = 'scale(' + (this.displayState.previousZoom || 1) + ')';
+
+    var translateTransform = ' translate3d(' + this.displayState.cameraX + 'px, ' + this.displayState.cameraY + 'px, 0)';
+    var previousTranslateTransform = ' translate3d(' + this.displayState.previousCameraX + 'px, ' + this.displayState.previousCameraY + 'px, 0)';
+
+    var finalTransform = scaleTransform;
+
+    if (typeof this.displayState.cameraX === 'number' && typeof this.displayState.cameraY === 'number') {
+      finalTransform += (' '  + translateTransform)
+    }
+
+    if (animateZoom) {
+      elGrid.classList.add('animated');
+
+      elGrid.style.transform = previousScaleTransform + ' ' + translateTransform;
+
+      // TODO - use transition end event instead of timeout
+      setTimeout(function() {
+        elGrid.style.transform = finalTransform;
+
+        setTimeout(function() {
+          elGrid.classList.remove('animated');
+        }, 300);
+      }, 300);
+    } else {
+      elGrid.classList.remove('animated');
+
+      elGrid.style.transform = scaleTransform + ' ' + previousTranslateTransform;
+
+      elGrid.classList.add('animated');
+      elGrid.style.transform = scaleTransform + ' ' + translateTransform;
+
+      setTimeout(function() {
+        elGrid.classList.remove('animated');
+      }, 300);
+    }
   },
   render: function () {
     var self = this;
@@ -349,16 +406,8 @@ var Grid = React.createClass({
       }
     }
 
-    var transform =
-      'scale(' + this.state.zoom + ') translate3d(' + this.state.cameraX + 'px, ' + this.state.cameraY + 'px, 0)';
-
-    var gridTransform = {
-      transform: transform,
-      WebkitTransform: transform
-    }
-
     return (
-      <div className="grid" style={gridTransform}>
+      <div className="grid">
         {nodes}
       </div>
     );
@@ -377,6 +426,10 @@ var App = React.createClass({
     //   since container must be measured before tiles can be properly laid out...
     var elWrapper = this.refs.wrapper.getDOMNode();
     this.refs.masterGrid.setContainerDimensions(elWrapper.clientWidth, elWrapper.clientHeight);
+
+    setTimeout(function() {
+      this.refs.masterGrid.showOverview();
+    }.bind(this), 100);
   },
   render: function () {
 

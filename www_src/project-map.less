@@ -25,7 +25,10 @@
 }
 
 .grid {
-  transition: transform 300ms ease-in-out;
+  &.animated {
+    transition: transform 300ms ease-in-out;
+  }
+
   display: flex;
   flex-wrap: wrap;
   align-content: flex-start;
