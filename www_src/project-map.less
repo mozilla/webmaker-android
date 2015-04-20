@@ -25,7 +25,10 @@
 }
 
 .grid {
-  transition: transform 300ms ease-in-out;
+  &.animated {
+    transition: transform 300ms ease-in-out;
+  }
+
   display: flex;
   flex-wrap: wrap;
   align-content: flex-start;
@@ -40,7 +43,6 @@
 .page {
   width: 90%;
   height: 90%;
-  border-radius: 5%;
   background: rgba(120,120,220,1);
   background-size: contain;
 }
@@ -71,6 +73,11 @@
     flex-shrink: 0;
     line-height: 0;
     padding: 1em 0.5em;
+
+    &.disabled {
+      background: grey;
+      opacity: 0.2;
+    }
 
     span {
       flex-grow: 1;
