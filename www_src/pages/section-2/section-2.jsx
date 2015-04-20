@@ -52,13 +52,9 @@ var Grid = React.createClass({
    * @param  {Number} pageX Page's x coordinate in grid
    * @param  {Number} pageY Page's y coordinate in grid
    * @param  {Number} pagesWide Number of pages to fit in width-wise
+   * @param  {boolean} doCentering Determine whether or not to move "camera" to center the target
    */
-
-  // TODO - this is only setting displayState property and nothing else...kind of misleading name
-
-  zoomToPage: function (pageX, pageY, pagesWide, doCentering) {
-    pagesWide = pagesWide || this.state.zoomPagesWide;
-
+  calculateCameraState: function (pageX, pageY, pagesWide, doCentering) {
     var cameraX = 0;
     var cameraY = 0;
 
@@ -115,7 +111,7 @@ var Grid = React.createClass({
     var newDisplayState = {
       zoom: this.state.containerWidth / (this.slotWidth * pagesWide),
       previousZoom: this.displayState.zoom || this.state.containerWidth / (this.slotWidth * pagesWide),
-      zoomPagesWide: pagesWide,
+      pagesWide: pagesWide,
       focusedPageCoords: {x: pageX, y: pageY}
     }
 
@@ -133,16 +129,16 @@ var Grid = React.createClass({
 
     var zoomFactor = 3.25;
 
-    if (this.displayState.zoomPagesWide) {
-      zoomFactor = this.displayState.zoomPagesWide === 1 ? 3.25 : 1;
+    if (this.displayState.pagesWide) {
+      zoomFactor = this.displayState.pagesWide === 1 ? 3.25 : 1;
     }
 
-    this.zoomToPage(event.x, event.y, zoomFactor, true);
+    this.calculateCameraState(event.x, event.y, zoomFactor, true);
     this.animateCamera(true);
   },
   showOverview: function () {
     // 6 UP
-    this.zoomToPage(Math.floor(this.tilesPerRow / 2 ), Math.floor(this.tilesPerCol / 2), 6.25, true);
+    this.calculateCameraState(Math.floor(this.tilesPerRow / 2 ), Math.floor(this.tilesPerCol / 2), 6.25, true);
     this.animateCamera(true);
   },
   generateGrid: function (width, height) {
@@ -252,8 +248,8 @@ var Grid = React.createClass({
     this.setState({
       layout: newLayout
     }, function () {
-      self.zoomToPage(newPageX, newPageY, self.displayState.zoomPagesWide, true);
-      self.animateCamera();
+      self.calculateCameraState(newPageX, newPageY, self.displayState.pagesWide, true);
+      self.animateCamera(false);
     });
   },
   componentDidUpdate: function () {
@@ -304,6 +300,7 @@ var Grid = React.createClass({
     });
   },
   animateCamera: function (animateZoom) {
+    console.log('animateZoom: ', animateZoom);
     if (typeof animateZoom !== 'boolean') {
       animateZoom = false;
     }
