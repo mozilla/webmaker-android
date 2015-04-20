@@ -133,12 +133,23 @@ var Grid = React.createClass({
       zoomFactor = this.displayState.pagesWide === 1 ? 3.25 : 1;
     }
 
+    this.activeTile = {
+      x: event.x,
+      y: event.y
+    };
+
     this.calculateCameraState(event.x, event.y, zoomFactor, true);
     this.animateCamera(true);
   },
   showOverview: function () {
     // 6 UP
-    this.calculateCameraState(Math.floor(this.tilesPerRow / 2 ), Math.floor(this.tilesPerCol / 2), 6.25, true);
+
+    if (this.activeTile) {
+      this.calculateCameraState(this.activeTile.x, this.activeTile.y, 6.25, true);
+    } else {
+      this.calculateCameraState(Math.floor(this.tilesPerRow / 2 ), Math.floor(this.tilesPerCol / 2), 6.25, true);
+    }
+
     this.animateCamera(true);
   },
   generateGrid: function (width, height) {
@@ -334,15 +345,17 @@ var Grid = React.createClass({
       }, 300);
     } else {
       elGrid.classList.remove('animated');
-
       elGrid.style.transform = scaleTransform + ' ' + previousTranslateTransform;
 
-      elGrid.classList.add('animated');
-      elGrid.style.transform = scaleTransform + ' ' + translateTransform;
-
+      // Allow previous transform to complete (prevent zoom throb motion at edges)
       setTimeout(function() {
-        elGrid.classList.remove('animated');
-      }, 300);
+        elGrid.classList.add('animated');
+        elGrid.style.transform = scaleTransform + ' ' + translateTransform;
+
+        setTimeout(function() {
+          elGrid.classList.remove('animated');
+        }, 300);
+      }, 1);
     }
   },
   render: function () {
