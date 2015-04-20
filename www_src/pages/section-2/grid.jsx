@@ -2,7 +2,6 @@ var React = require('react');
 
 var Slot = require('./slot.jsx');
 var Page = require('./page.jsx');
-var AddPage = require('./add-page.jsx');
 
 module.exports = React.createClass({
   /**
@@ -121,7 +120,7 @@ module.exports = React.createClass({
       }
     }
 
-    grid[Math.floor(height / 2)][Math.floor(width / 2)] = 'EMPTY';
+    grid[Math.floor(height / 2)][Math.floor(width / 2)] = {};
 
     return grid;
   },
@@ -134,11 +133,9 @@ module.exports = React.createClass({
     }
   },
   addPageClick: function (event) {
-    var self = this;
-
     var newLayout = this.state.layout;
 
-    newLayout[event.y][event.x] = 'EMPTY';
+    newLayout[event.y][event.x] = {};
 
     var width = newLayout[0].length;
     var height = newLayout.length;
@@ -217,8 +214,8 @@ module.exports = React.createClass({
     this.setState({
       layout: newLayout
     }, function () {
-      self.calculateCameraState(newPageX, newPageY, self.displayState.pagesWide, true);
-      self.animateCamera(false);
+      this.calculateCameraState(newPageX, newPageY, this.displayState.pagesWide, true);
+      this.animateCamera(false);
     });
   },
   componentDidUpdate: function () {
@@ -316,8 +313,6 @@ module.exports = React.createClass({
     }
   },
   render: function () {
-    var self = this;
-
     var nodes = [];
     var layout = this.state.layout;
 
@@ -329,12 +324,12 @@ module.exports = React.createClass({
     var heightAR = parseInt(this.props.aspectRatio.split(':')[1], 10);
 
     // Try to fit grid in viewport by constraining to the width
-    this.slotWidth = (self.state.containerWidth / this.tilesPerRow);
+    this.slotWidth = this.state.containerWidth / this.tilesPerRow;
     this.slotHeight = this.slotWidth * (heightAR / widthAR);
 
     // If the height overflows, then constrain by height instead
-    if (this.slotHeight * this.tilesPerCol > self.state.containerHeight) {
-      this.slotHeight = self.state.containerHeight / this.tilesPerCol;
+    if (this.slotHeight * this.tilesPerCol > this.state.containerHeight) {
+      this.slotHeight = this.state.containerHeight / this.tilesPerCol;
       this.slotWidth = this.slotHeight * (widthAR / heightAR);
     }
 
@@ -350,19 +345,19 @@ module.exports = React.createClass({
     this.gridHeight = this.slotHeight * this.tilesPerCol;
 
     // Render slots
-    for (var y = 0; y < layout.length; y++) {
-      for (var x = 0; x < layout[0].length; x++) {
+    for (var y = 0; y < this.tilesPerCol; y++) {
+      for (var x = 0; x < this.tilesPerRow; x++) {
         if (layout[y][x]) {
           nodes.push(
             <Slot x={x} y={y} style={slotStyle} key={ y + '-' + x }>
-              <Page onClick={ this.onPageClick.bind(this, {x:x, y:y}) } screenshot={layout[y][x]} />
+              <Page onClick={ this.onPageClick.bind(this, {x:x, y:y}) } />
             </Slot>
           );
         } else if (this.hasNeighbors(x, y)) {
           nodes.push(
             <Slot x={x} y={y} style={slotStyle} key={ y + '-' + x }>
               {/* Overriding default click param to provide x/y coords without AddPage knowing them. */}
-              <AddPage onClick={ this.addPageClick.bind(this, {x:x, y:y}) }/>
+              <button className="add-page" onClick={ this.addPageClick.bind(this, {x:x, y:y}) }/>
             </Slot>
           );
         } else {
