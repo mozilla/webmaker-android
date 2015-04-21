@@ -1,6 +1,10 @@
 var React = require('react');
 var render = require('../../lib/render.jsx');
-var Draggable = require('react-draggable');
+
+// TEMP: Change div w. zIndex to Draggable to enable drag
+// var Draggable = require('react-draggable');
+
+var Hammer = require('react-hammerjs');
 var Grid = require('./grid.jsx');
 
 var App = React.createClass({
@@ -19,9 +23,6 @@ var App = React.createClass({
     this.refs.masterGrid.showOverview();
   },
   render: function () {
-
-    // TEMP: Change div w. zIndex to Draggable to enable drag
-
     return (
       <div className="section-2">
         <div ref="wrapper" className="wrapper">
@@ -32,8 +33,8 @@ var App = React.createClass({
           </div>
         </div>
         <div className="segmented-control">
-          <button onClick={ this.showOverview }>-</button>
-          <button className="disabled">+</button>
+          <Hammer component="button" onTap={ this.showOverview }>-</Hammer>
+          <Hammer component="button" className="disabled">+</Hammer>
         </div>
       </div>
     );

@@ -1,4 +1,5 @@
 var React = require('react');
+var Hammer = require('react-hammerjs');
 
 var Slot = require('./slot.jsx');
 var Page = require('./page.jsx');
@@ -81,7 +82,7 @@ module.exports = React.createClass({
 
     this.displayState = newDisplayState;
   },
-  onPageClick: function (event) {
+  onPageTap: function (event) {
     // TODO : TEMP - Just rotating through zoom factors
 
     var zoomFactor = 3.25;
@@ -132,7 +133,7 @@ module.exports = React.createClass({
       layout: layout
     }
   },
-  addPageClick: function (event) {
+  addPageTap: function (event) {
     var newLayout = this.state.layout;
 
     newLayout[event.y][event.x] = {};
@@ -350,14 +351,14 @@ module.exports = React.createClass({
         if (layout[y][x]) {
           nodes.push(
             <Slot x={x} y={y} style={slotStyle} key={ y + '-' + x }>
-              <Page onClick={ this.onPageClick.bind(this, {x:x, y:y}) } />
+              <Page onDoubleTap={ this.onPageTap.bind(this, {x:x, y:y}) } />
             </Slot>
           );
         } else if (this.hasNeighbors(x, y)) {
           nodes.push(
             <Slot x={x} y={y} style={slotStyle} key={ y + '-' + x }>
-              {/* Overriding default click param to provide x/y coords without AddPage knowing them. */}
-              <button className="add-page" onClick={ this.addPageClick.bind(this, {x:x, y:y}) }/>
+              {/* Overriding default onTap param to provide x/y coords without AddPage knowing them. */}
+              <Hammer className="add-page" onTap={ this.addPageTap.bind(this, {x:x, y:y}) }/>
             </Slot>
           );
         } else {
