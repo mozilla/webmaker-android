@@ -99,13 +99,11 @@ module.exports = React.createClass({
     this.calculateCameraState(event.x, event.y, zoomFactor, true);
     this.animateCamera(true);
   },
-  showOverview: function () {
-    // 6 UP
-
+  setZoomLevel: function (level) {
     if (this.activeTile) {
-      this.calculateCameraState(this.activeTile.x, this.activeTile.y, 6.25, true);
+      this.calculateCameraState(this.activeTile.x, this.activeTile.y, level, true);
     } else {
-      this.calculateCameraState(Math.floor(this.tilesPerRow / 2 ), Math.floor(this.tilesPerCol / 2), 6.25, true);
+      this.calculateCameraState(Math.floor(this.tilesPerRow / 2 ), Math.floor(this.tilesPerCol / 2), level, true);
     }
 
     this.animateCamera(true);
@@ -296,8 +294,9 @@ module.exports = React.createClass({
 
         setTimeout(function() {
           elGrid.classList.remove('animated');
-        }, 300);
-      }, 300);
+          this.onZoomChange();
+        }.bind(this), 300);
+      }.bind(this), 300);
     } else {
       elGrid.classList.remove('animated');
       elGrid.style.transform = scaleTransform + ' ' + previousTranslateTransform;
@@ -311,6 +310,11 @@ module.exports = React.createClass({
           elGrid.classList.remove('animated');
         }, 300);
       }, 1);
+    }
+  },
+  onZoomChange: function () {
+    if (this.props.onZoomChange) {
+      this.props.onZoomChange.call(this, this.displayState);
     }
   },
   render: function () {
