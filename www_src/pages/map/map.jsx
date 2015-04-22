@@ -53,7 +53,7 @@ var App = React.createClass({
             -
           </Hammer>
           <Hammer component="button" className="disabled">+</Hammer>
-          <Link href="/project/1234">Go to project view!</Link>
+          <Link url="/project/1234" href="/page/project">Go to project view!</Link>
         </div>
       </div>
     );
