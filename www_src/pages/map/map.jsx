@@ -1,6 +1,5 @@
 var React = require('react');
 var render = require('../../lib/render.jsx');
-var Link = require('../../components/link/link.jsx');
 
 // TEMP: Change div w. zIndex to Draggable to enable drag
 // var Draggable = require('react-draggable');
@@ -11,14 +10,18 @@ var Grid = require('./grid.jsx');
 var App = React.createClass({
   getInitialState: function () {
     return {
-      zoomLevel: 6.25
+      zoomLevel: 0,
+      fullyZoomedIn: false
     }
   },
   contextTypes: {
     router: React.PropTypes.func
   },
-  setGridZoomLevel: function (amount) {
-    this.refs.masterGrid.setZoomLevel(amount);
+  zoomGridOut: function () {
+    this.refs.masterGrid.zoomOut();
+  },
+  zoomGridIn: function () {
+    this.refs.masterGrid.zoomIn();
   },
   componentDidMount: function () {
     // Pass container dimensions in once initial render is complete
@@ -32,12 +35,14 @@ var App = React.createClass({
   },
   onZoomChange: function (event) {
     this.setState({
-      zoomLevel: event.pagesWide
+      zoomLevel: event.currentZoomIndex,
+      fullyZoomedIn: event.fullyZoomedIn
     });
   },
   render: function () {
     return (
-      <div className="section-2">
+      <div id="map-view" className={ 'zoom-' + this.state.zoomLevel }>
+        <div className="headerBar">Project Name</div>
         <div ref="wrapper" className="wrapper">
           <div zIndex={100}>
             <div>
@@ -47,13 +52,17 @@ var App = React.createClass({
         </div>
         <div className="segmented-control">
           <Hammer
-            className={ this.state.zoomLevel < 6.25 ? 'enabled' : 'disabled' }
+            className={ this.state.zoomLevel > 0 ? 'enabled' : 'disabled' }
             component="button"
-            onTap={ this.setGridZoomLevel.bind(this, 6.25) }>
+            onTap={ this.zoomGridOut }>
             -
           </Hammer>
-          <Hammer component="button" className="disabled">+</Hammer>
-          <Link url="/project/1234" href="/page/project">Go to project view!</Link>
+          <Hammer
+            className={ !this.state.fullyZoomedIn ? 'enabled' : 'disabled' }
+            component="button"
+            onTap={ this.zoomGridIn }>
+            +
+          </Hammer>
         </div>
       </div>
     );
