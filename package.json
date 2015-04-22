@@ -53,9 +53,8 @@
     "webpack": "^1.7.3"
   },
   "dependencies": {
-    "classnames": "^1.2.0",
-    "hammerjs": "^2.0.4",
-    "react": "^0.13.1",
+    "classnames": "2.2.0",
+    "react": "0.13.1",
     "react-draggable": "git://github.com/gvn/react-draggable#master",
     "react-hammerjs": "0.2.2",
     "react-router": "0.13.2"
