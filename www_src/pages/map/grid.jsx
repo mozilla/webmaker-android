@@ -5,6 +5,9 @@ var Slot = require('./slot.jsx');
 var Page = require('./page.jsx');
 
 module.exports = React.createClass({
+  // Preset zoom levels (expressed in simulteously visible page widths)
+  zoomPresets: [6.25, 3.25, 1],
+  currentZoomIndex: 0,
   /**
    * Zoom in to a page tile
    * @param  {Number} pageX Page's x coordinate in grid
@@ -82,30 +85,51 @@ module.exports = React.createClass({
 
     this.displayState = newDisplayState;
   },
-  onPageTap: function (event) {
-    // TODO : TEMP - Just rotating through zoom factors
-
-    var zoomFactor = 3.25;
-
-    if (this.displayState.pagesWide) {
-      zoomFactor = this.displayState.pagesWide === 1 ? 3.25 : 1;
-    }
-
+  onPageDoubleTap: function (event) {
     this.activeTile = {
       x: event.x,
       y: event.y
     };
 
-    this.calculateCameraState(event.x, event.y, zoomFactor, true);
-    this.animateCamera(true);
+    this.zoomIn();
   },
-  setZoomLevel: function (level) {
-    if (this.activeTile) {
-      this.calculateCameraState(this.activeTile.x, this.activeTile.y, level, true);
-    } else {
-      this.calculateCameraState(Math.floor(this.tilesPerRow / 2 ), Math.floor(this.tilesPerCol / 2), level, true);
+  zoomIn: function () {
+    if (this.currentZoomIndex < this.zoomPresets.length - 1) {
+      this.currentZoomIndex++;
     }
 
+    this.setZoomLevel(this.currentZoomIndex);
+  },
+  zoomOut: function () {
+    if (this.currentZoomIndex > 0) {
+      this.currentZoomIndex--;
+    }
+
+    this.setZoomLevel(this.currentZoomIndex);
+  },
+  /**
+   * Jump to a preset zoom level
+   * @param {Number} levelIndex Index of zoom level defined in this.zoomPresets
+   */
+  setZoomLevel: function (levelIndex) {
+    if (this.activeTile) {
+      this.calculateCameraState(
+        this.activeTile.x,
+        this.activeTile.y,
+        this.zoomPresets[levelIndex],
+        true
+      );
+    } else {
+      // Show "midpoint"
+      this.calculateCameraState(
+        Math.floor(this.tilesPerRow / 2 ),
+        Math.floor(this.tilesPerCol / 2),
+        this.zoomPresets[levelIndex],
+        true
+      );
+    }
+
+    this.currentZoomIndex = levelIndex;
     this.animateCamera(true);
   },
   generateGrid: function (width, height) {
@@ -314,7 +338,11 @@ module.exports = React.createClass({
   },
   onZoomChange: function () {
     if (this.props.onZoomChange) {
-      this.props.onZoomChange.call(this, this.displayState);
+      this.props.onZoomChange.call(this, {
+        displayState: this.displayState,
+        currentZoomIndex: this.currentZoomIndex,
+        fullyZoomedIn: this.currentZoomIndex === this.zoomPresets.length - 1 ? true : false
+      });
     }
   },
   render: function () {
@@ -355,7 +383,7 @@ module.exports = React.createClass({
         if (layout[y][x]) {
           nodes.push(
             <Slot x={x} y={y} style={slotStyle} key={ y + '-' + x }>
-              <Page onDoubleTap={ this.onPageTap.bind(this, {x:x, y:y}) } />
+              <Page onDoubleTap={ this.onPageDoubleTap.bind(this, {x:x, y:y}) } />
             </Slot>
           );
         } else if (this.hasNeighbors(x, y)) {
