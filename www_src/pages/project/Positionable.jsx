@@ -17,15 +17,6 @@ var Positionable = React.createClass({
     };
   },
 
-  componenWillMount: function() {
-    if(!this.state.interactive) return;
-
-    this.markx = this.state.x;
-    this.marky = this.state.y;
-    this.markangle = this.state.angle;
-    this.markscale = this.state.scale;
-  },
-
   componentDidMount: function() {
     if(!this.state.interactive) return;
     var touchHandler = this.touchhandler = require("./touchhandler")(this);
@@ -123,11 +114,11 @@ var Positionable = React.createClass({
 
   setTransform: function(obj) {
     this.setState({
-      x: obj.x || 0,
-      y: obj.y || 0,
-      angle: obj.angle || 0,
-      scale: obj.scale || 1,
-      zIndex: obj.zIndex || 0
+      x: obj.x,
+      y: obj.y,
+      angle: obj.angle,
+      scale: obj.scale,
+      zIndex: obj.zIndex
     });
   }
 });

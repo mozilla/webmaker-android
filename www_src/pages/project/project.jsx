@@ -18,7 +18,6 @@ var Project = React.createClass({
   },
 
   render: function () {
-    console.log("rerendering");
     var shadows = this.shadows ? this.shadows : this.formShadows(this.state.content);
     var positionables = this.formPositionables(this.state.content);
     return <div className="demo project">
@@ -44,7 +43,6 @@ var Project = React.createClass({
   },
 
   formShadows: function(content) {
-    console.log("regenerating shadows");
     this.shadows = content.map((m, i) => {
       var element = Generator.generateBlock(m);
       return <div>
@@ -82,7 +80,6 @@ var Project = React.createClass({
     if (this.currentElement === -1) return;
     var entry = this.state.content[this.state.currentElement];
     var link = this.refs.editlink;
-    console.log(link);
     link.getDOMNode().click();
   },
 
@@ -136,7 +133,7 @@ var Project = React.createClass({
       var content = JSON.parse(data);
       this.load(content);
     } catch (e) {
-      alert("could not parse data as JSON");
+      console.error("could not parse data as JSON");
     }
   }
 });
