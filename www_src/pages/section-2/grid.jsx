@@ -1,4 +1,5 @@
 var React = require('react');
+var Hammer = require('react-hammerjs');
 
 var Slot = require('./slot.jsx');
 var Page = require('./page.jsx');
@@ -81,7 +82,7 @@ module.exports = React.createClass({
 
     this.displayState = newDisplayState;
   },
-  onPageClick: function (event) {
+  onPageTap: function (event) {
     // TODO : TEMP - Just rotating through zoom factors
 
     var zoomFactor = 3.25;
@@ -98,13 +99,11 @@ module.exports = React.createClass({
     this.calculateCameraState(event.x, event.y, zoomFactor, true);
     this.animateCamera(true);
   },
-  showOverview: function () {
-    // 6 UP
-
+  setZoomLevel: function (level) {
     if (this.activeTile) {
-      this.calculateCameraState(this.activeTile.x, this.activeTile.y, 6.25, true);
+      this.calculateCameraState(this.activeTile.x, this.activeTile.y, level, true);
     } else {
-      this.calculateCameraState(Math.floor(this.tilesPerRow / 2 ), Math.floor(this.tilesPerCol / 2), 6.25, true);
+      this.calculateCameraState(Math.floor(this.tilesPerRow / 2 ), Math.floor(this.tilesPerCol / 2), level, true);
     }
 
     this.animateCamera(true);
@@ -132,7 +131,7 @@ module.exports = React.createClass({
       layout: layout
     }
   },
-  addPageClick: function (event) {
+  addPageTap: function (event) {
     var newLayout = this.state.layout;
 
     newLayout[event.y][event.x] = {};
@@ -295,8 +294,9 @@ module.exports = React.createClass({
 
         setTimeout(function() {
           elGrid.classList.remove('animated');
-        }, 300);
-      }, 300);
+          this.onZoomChange();
+        }.bind(this), 300);
+      }.bind(this), 300);
     } else {
       elGrid.classList.remove('animated');
       elGrid.style.transform = scaleTransform + ' ' + previousTranslateTransform;
@@ -310,6 +310,11 @@ module.exports = React.createClass({
           elGrid.classList.remove('animated');
         }, 300);
       }, 1);
+    }
+  },
+  onZoomChange: function () {
+    if (this.props.onZoomChange) {
+      this.props.onZoomChange.call(this, this.displayState);
     }
   },
   render: function () {
@@ -350,14 +355,14 @@ module.exports = React.createClass({
         if (layout[y][x]) {
           nodes.push(
             <Slot x={x} y={y} style={slotStyle} key={ y + '-' + x }>
-              <Page onClick={ this.onPageClick.bind(this, {x:x, y:y}) } />
+              <Page onDoubleTap={ this.onPageTap.bind(this, {x:x, y:y}) } />
             </Slot>
           );
         } else if (this.hasNeighbors(x, y)) {
           nodes.push(
             <Slot x={x} y={y} style={slotStyle} key={ y + '-' + x }>
-              {/* Overriding default click param to provide x/y coords without AddPage knowing them. */}
-              <button className="add-page" onClick={ this.addPageClick.bind(this, {x:x, y:y}) }/>
+              {/* Overriding default onTap param to provide x/y coords without AddPage knowing them. */}
+              <Hammer className="add-page" onTap={ this.addPageTap.bind(this, {x:x, y:y}) }/>
             </Slot>
           );
         } else {

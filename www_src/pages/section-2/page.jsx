@@ -1,14 +1,15 @@
 var React = require('react');
+var Hammer = require('react-hammerjs');
 
 module.exports = React.createClass({
   render: function () {
     var style = {};
 
     return (
-      <div
-        onClick={this.props.onClick}
+      <Hammer
+        onDoubleTap={this.props.onDoubleTap}
         className="page">
-      </div>
+      </Hammer>
     );
   }
 });
