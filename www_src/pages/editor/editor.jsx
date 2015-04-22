@@ -6,9 +6,6 @@ var Editor = React.createClass({
   contextTypes: {
     router: React.PropTypes.func
   },
-  componentWillMount: function() {
-    console.log(window.location.toString());
-  },
   render: function () {
     return <div>
       <div className="editor-preview">
