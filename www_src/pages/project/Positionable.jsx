@@ -102,6 +102,7 @@ var Positionable = React.createClass({
     });
   },
 
+  // TODO: stub function while we settle on a schema here
   getTransform: function() {
     return {
       x: this.state.x,
@@ -112,6 +113,7 @@ var Positionable = React.createClass({
     };
   },
 
+  // TODO: stub function while we settle on a schema here
   setTransform: function(obj) {
     this.setState({
       x: obj.x,
