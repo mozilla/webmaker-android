@@ -63,8 +63,7 @@ public class Router {
     /**
      * Empty constructor stud, for globally accessible router instances.
      */
-    public Router() {
-    }
+    public Router() {}
 
     /**
      * A globally accessible Router instance that will work for most use cases.

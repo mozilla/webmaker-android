@@ -44,7 +44,7 @@ public class WebviewFragment extends Fragment {
 
     @Override
     public void onDestroyView() {
-        assert mWebView != null;
+        if (mWebView == null) return;
         mWebView.destroy();
         mWebView = null;
         super.onDestroyView();
