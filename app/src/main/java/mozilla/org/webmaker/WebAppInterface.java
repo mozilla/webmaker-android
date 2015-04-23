@@ -1,5 +1,6 @@
 package mozilla.org.webmaker;
 
+import mozilla.org.webmaker.router.Router;
 import android.content.Context;
 import android.util.Log;
 import android.webkit.JavascriptInterface;
