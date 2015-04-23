@@ -1,16 +1,12 @@
 var React = require('react');
 var render = require('../../lib/render.jsx');
-
-// TEMP: Change div w. zIndex to Draggable to enable drag
-// var Draggable = require('react-draggable');
-
 var Hammer = require('react-hammerjs');
 var Grid = require('./grid.jsx');
 
 var App = React.createClass({
   getInitialState: function () {
     return {
-      zoomLevel: 0,
+      zoomLevel: 1,
       fullyZoomedIn: false
     };
   },
@@ -44,10 +40,8 @@ var App = React.createClass({
       <div id="map-view" className={ 'zoom-' + this.state.zoomLevel }>
         <div className="headerBar">Project Name</div>
         <div ref="wrapper" className="wrapper">
-          <div zIndex={100}>
-            <div>
-              <Grid ref="masterGrid" aspectRatio={"35:40"} onZoomChange={ this.onZoomChange } />
-            </div>
+          <div>
+            <Grid ref="masterGrid" aspectRatio={"35:40"} onZoomChange={ this.onZoomChange } />
           </div>
         </div>
         <div className="segmented-control">

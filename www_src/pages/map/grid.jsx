@@ -256,6 +256,39 @@ module.exports = React.createClass({
     this.tilesPerCol = undefined;
 
     this.displayState = {};
+
+    // Enable panning ---------------------------------------------------------
+
+    var elGrid = React.findDOMNode(this);
+    var startX, startY, deltaX, deltaY;
+    var didMove = false;
+
+    elGrid.addEventListener('touchstart', function (event) {
+      didMove = false;
+
+      startX = event.touches[0].clientX;
+      startY = event.touches[0].clientY;
+    });
+
+    elGrid.addEventListener('touchmove', function (event) {
+      if (this.currentZoomIndex !== 2) {
+        didMove = true;
+
+        deltaX = (event.touches[0].clientX - startX) / this.displayState.zoom;
+        deltaY = (event.touches[0].clientY - startY) / this.displayState.zoom;
+
+        elGrid.style.transform =
+          'scale(' + (this.displayState.zoom || 1) + ') ' +
+          'translate3d(' + (this.displayState.cameraX + deltaX) + 'px, ' + (this.displayState.cameraY + deltaY) + 'px, 0)';
+      }
+    }.bind(this));
+
+    elGrid.addEventListener('touchend', function (event) {
+      if (didMove) {
+        this.displayState.cameraX += deltaX;
+        this.displayState.cameraY += deltaY;
+      }
+    }.bind(this));
   },
   // Determine if a slot has a neighboring page in any cardinal direction
   hasNeighbors: function (x, y) {
