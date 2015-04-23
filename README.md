@@ -23,6 +23,7 @@ While the majority of `webmaker-app` is built using Web technologies, it runs wi
 
 - Install and configure [Android Studio](http://developer.android.com/sdk)
 - Open Android Studio and select "Import Project"
+- If Android Studio asks, choose "Create project from existing sources"
 - Select the "webmaker-app" directory
 
 Once you have the project open, you can run it within an emulator or on any Android device with USB debugging enabled by selecting "Run 'app'" from the "Run" dropdown menu. For more information, please check out the [Android SDK documentation](http://developer.android.com/training/index.html).
