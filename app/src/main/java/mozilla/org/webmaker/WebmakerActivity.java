@@ -7,11 +7,11 @@ import android.view.Menu;
 import android.view.MenuItem;
 import android.widget.RelativeLayout;
 
+import mozilla.org.webmaker.view.WebmakerWebView;
+
 public class WebmakerActivity extends Activity {
 
-    protected boolean instantiated = false;
-
-    protected WmWebView view;
+    protected WebmakerWebView view;
     protected String pageName;
     protected int id, layoutResID, menuResId;
 
@@ -26,7 +26,7 @@ public class WebmakerActivity extends Activity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(layoutResID);
-        view = new WmWebView(this, pageName);
+        view = new WebmakerWebView(this, pageName);
         RelativeLayout layout = (RelativeLayout) findViewById(id);
         layout.addView(view);
     }
@@ -34,10 +34,9 @@ public class WebmakerActivity extends Activity {
     @Override
     public void onDestroy() {
         Log.v("wm", "onDestroy");
-        if (view != null) {
-            view.destroy();
-            view = null;
-        }
+        assert view != null;
+        view.destroy();
+        view = null;
         super.onDestroy();
     }
 
@@ -51,19 +50,11 @@ public class WebmakerActivity extends Activity {
     }
 
     /**
-     * Handle action bar item clicks here. The action bar will
-     * automatically handle clicks on the Home/Up button, so long
-     * as you specify a parent activity in AndroidManifest.xml.
-     *
-     * @param item
-     * @return
+     * Handle action bar item clicks here. The action bar will automatically handle
+     * clicks on the Home/Up button, so long as you specify a parent activity in AndroidManifest.xml
      */
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {
-        int id = item.getItemId();
-        if (id == R.id.action_settings) {
-            return true;
-        }
-        return super.onOptionsItemSelected(item);
+        return item.getItemId() == R.id.action_settings;
     }
 }

@@ -1,11 +1,11 @@
-package mozilla.org.webmaker;
+package mozilla.org.webmaker.client;
 
 import android.view.View;
-import android.webkit.WebView;
-import android.webkit.WebViewClient;
 import android.view.animation.AlphaAnimation;
 import android.view.animation.Animation;
 import android.view.animation.DecelerateInterpolator;
+import android.webkit.WebView;
+import android.webkit.WebViewClient;
 
 public class WebClient extends WebViewClient {
 
@@ -28,5 +28,4 @@ public class WebClient extends WebViewClient {
         view.setVisibility(View.VISIBLE);
         super.onPageFinished(view, url);
     }
-
 }
