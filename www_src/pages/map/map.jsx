@@ -12,7 +12,7 @@ var App = React.createClass({
     return {
       zoomLevel: 0,
       fullyZoomedIn: false
-    }
+    };
   },
   contextTypes: {
     router: React.PropTypes.func

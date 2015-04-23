@@ -16,7 +16,8 @@
     "watch:js": "npm run build:js -- -d --watch",
     "watch:css": "autoless --source-map --autoprefix \"last 2 versions, android >= 4.2\" www_src app/src/main/assets/www",
     "watch:html": "watch \"npm run build:html\" www_src/html",
-    "webserver": "live-server ./app/src/main/assets/www --port=4242"
+    "webserver": "live-server ./app/src/main/assets/www --port=4242",
+    "lint": "jsxhint --harmony --config node_modules/mofo-style/linters/.jshintrc www_src/pages/**/*"
   },
   "repository": {
     "type": "git",
@@ -36,6 +37,7 @@
     "fs-extra": "^0.18.0",
     "json-loader": "^0.5.1",
     "jsx-loader": "^0.12.2",
+    "jsxhint": "^0.14.0",
     "live-server": "^0.7.1",
     "minimist": "^1.1.1",
     "mkdirp": "^0.5.0",

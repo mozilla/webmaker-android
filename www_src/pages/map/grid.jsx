@@ -74,7 +74,7 @@ module.exports = React.createClass({
       previousZoom: this.displayState.zoom || this.state.containerWidth / (this.slotWidth * pagesWide),
       pagesWide: pagesWide,
       focusedPageCoords: {x: pageX, y: pageY}
-    }
+    };
 
     if (doCentering) {
       newDisplayState.previousCameraX = this.displayState.cameraX;
@@ -153,15 +153,12 @@ module.exports = React.createClass({
 
     return {
       layout: layout
-    }
+    };
   },
   addPageTap: function (event) {
     var newLayout = this.state.layout;
 
     newLayout[event.y][event.x] = {};
-
-    var width = newLayout[0].length;
-    var height = newLayout.length;
 
     // The new page tile's x and y coords may shift if the grid is expanded
     var newPageX = event.x;
@@ -222,7 +219,7 @@ module.exports = React.createClass({
         bottom: function () {
           newLayout.push(buildEmptyRow(newLayout[0].length));
         }
-      }
+      };
 
       expand[direction]();
     }
@@ -304,7 +301,7 @@ module.exports = React.createClass({
     var finalTransform = scaleTransform;
 
     if (typeof this.displayState.cameraX === 'number' && typeof this.displayState.cameraY === 'number') {
-      finalTransform += (' '  + translateTransform)
+      finalTransform += (' '  + translateTransform);
     }
 
     if (animateZoom) {
@@ -372,7 +369,7 @@ module.exports = React.createClass({
     var slotStyle = {
       width: this.slotWidth + 'px',
       height: this.slotHeight + 'px'
-    }
+    };
 
     this.gridWidth = this.slotWidth * this.tilesPerRow;
     this.gridHeight = this.slotHeight * this.tilesPerCol;
