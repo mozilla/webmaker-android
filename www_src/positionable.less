@@ -1,0 +1,78 @@
+.project {
+  position: relative;
+
+  .fakelink {
+    color: blue;
+    text-decoration: underline;
+  }
+
+  .controls {
+    position: absolute;
+    bottom: 2em;
+    left: 0;
+    right: 0;
+    z-index: 999;
+    margin: auto;
+    width: 6em;
+    button {
+      color: rgb(10,110,255);
+      border-radius: 1em;
+      border: 1px solid black;
+      padding: 0 2px;
+      background: white;
+      box-shadow: 0 0 3px 4px rgba(0,0,0,0.1);
+      width: 2em;
+      height: 2em;
+      overflow: hidden;
+      &.image.component {
+        position: relative;
+        top: -1em;
+      }
+    }
+  }
+
+  .shadows {
+    position: absolute;
+    height: 0;
+    opacity: 0.2;
+    margin-left: -5px;
+    filter: grayscale(100%);
+  }
+
+  .positionables, .shadows {
+    overflow: auto;
+    height: 100%;
+    width: 100%;
+
+    .touchOverlay {
+      position: fixed;
+      top: 0;
+      right: 0;
+      bottom: 0;
+      left: 0;
+      z-index: 2147483647; /* signed 32bit maxint */
+    }
+
+    .positionable {
+      user-select: none;
+
+      position: relative;
+      display: inline-block;
+      z-index: 0;
+      background: inherit;
+
+      div * {
+        box-sizing: content-box;
+      }
+
+      &.current {
+        margin: -1px;
+        border: 1px dashed black;
+      }
+    }
+  }
+
+  .shadows {
+    overflow: visible!important;
+  }
+}
