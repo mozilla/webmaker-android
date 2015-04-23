@@ -10,7 +10,7 @@ var Grid = require('./grid.jsx');
 var App = React.createClass({
   getInitialState: function () {
     return {
-      zoomLevel: 0,
+      zoomLevel: 1,
       fullyZoomedIn: false
     };
   },
