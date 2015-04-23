@@ -7,19 +7,21 @@ var Editor = React.createClass({
     router: React.PropTypes.func
   },
   render: function () {
-    return <div>
-      <div className="editor-preview">
-        <img src="../../img/toucan.svg" />
+    return (
+      <div>
+        <div className="editor-preview">
+          <img src="../../img/toucan.svg" />
+        </div>
+        <div className="editor-options">
+          <button>Change Image</button>
+          <label>Transparency</label>
+          <input type="range" />
+          <label>Corners</label>
+          <input type="range" />
+          <Link url="/project/123/1/color" href="/pages/tinker">Tinker Mode</Link>
+        </div>
       </div>
-      <div className="editor-options">
-        <button>Change Image</button>
-        <label>Transparency</label>
-        <input type="range" />
-        <label>Corners</label>
-        <input type="range" />
-        <Link url="/project/123/1/color" href="/pages/tinker">Tinker Mode</Link>
-      </div>
-    </div>
+    );
   }
 });
 

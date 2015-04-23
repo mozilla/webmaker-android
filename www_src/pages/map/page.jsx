@@ -4,8 +4,6 @@ var Link = require('../../components/link/link.jsx');
 
 module.exports = React.createClass({
   render: function () {
-    var style = {};
-
     return (
       <Hammer
         onDoubleTap={this.props.onDoubleTap}
