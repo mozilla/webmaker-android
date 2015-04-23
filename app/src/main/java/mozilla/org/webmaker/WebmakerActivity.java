@@ -34,7 +34,7 @@ public class WebmakerActivity extends Activity {
     @Override
     public void onDestroy() {
         Log.v("wm", "onDestroy");
-        assert view != null;
+        if (view == null) return;
         view.destroy();
         view = null;
         super.onDestroy();

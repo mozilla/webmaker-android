@@ -29,7 +29,7 @@ public class MainActivity extends Activity implements ActionBar.TabListener {
 
         // Set up the action bar.
         final ActionBar actionBar = getActionBar();
-        assert actionBar != null;
+        if (actionBar == null) throw new NullPointerException("ActionBar has returned null!");
         actionBar.setNavigationMode(ActionBar.NAVIGATION_MODE_TABS);
 
         // Create the adapter that will return a fragment for each of the three primary sections of the activity.
