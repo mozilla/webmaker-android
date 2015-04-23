@@ -1,11 +1,14 @@
-package mozilla.org.webmaker;
+package mozilla.org.webmaker.javascript;
 
 import android.content.Context;
 import android.util.Log;
 import android.webkit.JavascriptInterface;
 
+import mozilla.org.webmaker.router.Router;
+
 public class WebAppInterface {
-    Context mContext;
+
+    private Context mContext;
 
     public WebAppInterface(Context c) {
         mContext = c;

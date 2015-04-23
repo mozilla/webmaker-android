@@ -18,33 +18,33 @@
             </intent-filter>
         </activity>
         <activity
-            android:name=".Map"
+            android:name=".activity.Map"
             android:label="@string/title_activity_map"
             android:parentActivityName=".MainActivity" >
         </activity>
         <activity
-            android:name=".Project"
+            android:name=".activity.Project"
             android:label="@string/title_activity_project"
-            android:parentActivityName=".Map" >
+            android:parentActivityName=".activity.Map" >
             <meta-data
                 android:name="android.support.PARENT_ACTIVITY"
-                android:value="mozilla.org.webmaker.Map" />
+                android:value=".activity.Map" />
         </activity>
         <activity
-            android:name=".Editor"
+            android:name=".activity.Editor"
             android:label="@string/title_activity_editor"
-            android:parentActivityName=".Project" >
+            android:parentActivityName=".activity.Project" >
             <meta-data
                 android:name="android.support.PARENT_ACTIVITY"
-                android:value="mozilla.org.webmaker.Project" />
+                android:value=".activity.Project" />
         </activity>
         <activity
-            android:name=".Tinker"
+            android:name=".activity.Tinker"
             android:label="@string/title_activity_tinker"
-            android:parentActivityName=".Editor" >
+            android:parentActivityName=".activity.Editor" >
             <meta-data
                 android:name="android.support.PARENT_ACTIVITY"
-                android:value="mozilla.org.webmaker.Editor" />
+                android:value=".activity.Editor" />
         </activity>
     </application>
 

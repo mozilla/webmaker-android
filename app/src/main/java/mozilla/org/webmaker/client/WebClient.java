@@ -1,4 +1,4 @@
-package mozilla.org.webmaker;
+package mozilla.org.webmaker.client;
 
 import android.view.View;
 import android.view.animation.AlphaAnimation;
@@ -28,5 +28,4 @@ public class WebClient extends WebViewClient {
         view.setVisibility(View.VISIBLE);
         super.onPageFinished(view, url);
     }
-
 }

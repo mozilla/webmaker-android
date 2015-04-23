@@ -1,4 +1,7 @@
-package mozilla.org.webmaker;
+package mozilla.org.webmaker.activity;
+
+import mozilla.org.webmaker.R;
+import mozilla.org.webmaker.WebmakerActivity;
 
 public class Map extends WebmakerActivity {
     public Map() {

@@ -1,11 +1,17 @@
-package mozilla.org.webmaker;
+package mozilla.org.webmaker.view;
 
+import android.annotation.SuppressLint;
 import android.content.Context;
 import android.view.ViewGroup;
 import android.webkit.WebView;
 
-public class WmWebView extends WebView {
-    public WmWebView(Context context, String pageName) {
+import mozilla.org.webmaker.client.WebClient;
+import mozilla.org.webmaker.javascript.WebAppInterface;
+
+public class WebmakerWebView extends WebView {
+
+    @SuppressLint("SetJavaScriptEnabled")
+    public WebmakerWebView(Context context, String pageName) {
         super(context);
         this.setLayoutParams(new ViewGroup.LayoutParams(ViewGroup.LayoutParams.MATCH_PARENT, ViewGroup.LayoutParams.MATCH_PARENT));
         this.getSettings().setJavaScriptEnabled(true);
@@ -13,6 +19,6 @@ public class WmWebView extends WebView {
         this.loadUrl("file:///android_asset/www/pages/" + pageName + "/index.html");
         this.setBackgroundColor(0x00000000);
         this.addJavascriptInterface(new WebAppInterface(context), "Android");
-        this.setWebContentsDebuggingEnabled(true);
+        setWebContentsDebuggingEnabled(true);
     }
 }
