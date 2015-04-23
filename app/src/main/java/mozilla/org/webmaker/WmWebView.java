@@ -1,8 +1,8 @@
 package mozilla.org.webmaker;
 
-import android.webkit.WebView;
 import android.content.Context;
 import android.view.ViewGroup;
+import android.webkit.WebView;
 
 public class WmWebView extends WebView {
     public WmWebView(Context context, String pageName) {

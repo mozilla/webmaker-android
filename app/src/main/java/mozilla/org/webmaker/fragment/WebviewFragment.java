@@ -14,13 +14,10 @@ import android.view.animation.DecelerateInterpolator;
 import android.webkit.JavascriptInterface;
 import android.webkit.WebView;
 import android.webkit.WebViewClient;
+import android.widget.RelativeLayout;
 
 import mozilla.org.webmaker.R;
 import mozilla.org.webmaker.WmWebView;
-
-import android.util.Log;
-import android.content.Context;
-import android.widget.RelativeLayout;
 
 @SuppressLint("SetJavaScriptEnabled")
 public class WebviewFragment extends Fragment {
