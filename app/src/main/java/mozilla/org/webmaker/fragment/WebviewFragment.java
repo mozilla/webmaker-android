@@ -2,16 +2,19 @@ package mozilla.org.webmaker.fragment;
 
 import android.annotation.SuppressLint;
 import android.app.Fragment;
+import android.content.Context;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.view.animation.AlphaAnimation;
+import android.view.animation.Animation;
+import android.view.animation.DecelerateInterpolator;
+import android.webkit.JavascriptInterface;
 import android.webkit.WebView;
 import android.webkit.WebViewClient;
-import android.webkit.JavascriptInterface;
-import android.view.animation.Animation;
-import android.view.animation.AlphaAnimation;
-import android.view.animation.DecelerateInterpolator;
+
 import mozilla.org.webmaker.R;
 import mozilla.org.webmaker.WmWebView;
 
