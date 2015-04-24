@@ -3,6 +3,7 @@ package mozilla.org.webmaker.fragment;
 import android.annotation.SuppressLint;
 import android.app.Fragment;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -35,8 +36,20 @@ public class WebviewFragment extends Fragment {
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
         View mView = inflater.inflate(R.layout.fragment_main, container, false);
         String sectionId = Integer.toString(super.getArguments().getInt(ARG_SECTION_NUMBER));
+        String pageId = null;
 
-        mWebView = new WebmakerWebView(mView.getContext(), "section-" + sectionId);
+        // Assign page by sectionId
+        switch (sectionId) {
+            case "1":
+                pageId = "discover";
+                break;
+            case "2":
+                pageId = "make";
+                break;
+        }
+
+        // Create webview
+        mWebView = new WebmakerWebView(mView.getContext(), pageId);
         RelativeLayout layout = (RelativeLayout)mView.findViewById(R.id.webview_fragment);
         layout.addView(mWebView);
         return mView;

@@ -34,7 +34,7 @@ var Project = React.createClass({
         </div>
       </div>
       <Link ref="editlink" url={
-        "/project/123/1?data=" + JSON.stringify({
+        "/projects/123/elements/1?data=" + JSON.stringify({
           index: this.state.currentElement,
           entry: this.state.content[this.state.currentElement]
         })
