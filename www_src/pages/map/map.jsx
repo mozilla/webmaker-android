@@ -37,7 +37,7 @@ var App = React.createClass({
   },
   render: function () {
     return (
-      <div id="map-view" className={ 'zoom-' + this.state.zoomLevel }>
+      <div id="map" className={ 'zoom-' + this.state.zoomLevel }>
         <div className="headerBar">Project Name</div>
         <div ref="wrapper" className="wrapper">
           <div>

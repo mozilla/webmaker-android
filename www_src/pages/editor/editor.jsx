@@ -8,7 +8,7 @@ var Editor = React.createClass({
   },
   render: function () {
     return (
-      <div>
+      <div id="editor">
         <div className="editor-preview">
           <img src="../../img/toucan.svg" />
         </div>
