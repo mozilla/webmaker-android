@@ -1,0 +1,32 @@
+/*********************************************************
+* Button
+*/
+.btn {
+  position: relative;
+  padding: 12px 24px;
+  color: #6D7886;
+  background: #FFF;
+  border: none;
+  border-radius: 3px;
+  box-shadow: 0 2px 0 0 #CDCFD3;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  &.btn-block {
+    display: flex;
+    width: 100%;
+  }
+  &:active {
+    box-shadow: none;
+    top: 2px;
+  }
+  .icon {
+    height: 1.2em;
+    &:first-child {
+      margin-right: 0.3em;
+    }
+    &:last-child {
+      margin-left: 0.3em;
+    }
+  }
+}
