@@ -33,12 +33,7 @@ var Project = React.createClass({
           </div>
         </div>
       </div>
-      <Link ref="editlink" url={
-        "/projects/123/elements/1?data=" + JSON.stringify({
-          index: this.state.currentElement,
-          entry: this.state.content[this.state.currentElement]
-        })
-      } href="/pages/editor" hidden={true}>edit</Link>
+      <Link ref="editlink" url={ "/projects/123/elements/" + this.state.currentElement } href="/pages/editor" hidden={true}>edit</Link>
     </div>
   },
 
