@@ -38,7 +38,11 @@ var App = React.createClass({
   render: function () {
     return (
       <div id="map" className={ 'zoom-' + this.state.zoomLevel }>
-        <div className="headerBar">Project Name</div>
+        <div className="headerBar">
+          <button></button>
+          <p>Project Name</p>
+          <button className="invisible"></button>
+        </div>
         <div ref="wrapper" className="wrapper">
           <div>
             <Grid ref="masterGrid" aspectRatio={"35:40"} onZoomChange={ this.onZoomChange } />
@@ -46,17 +50,13 @@ var App = React.createClass({
         </div>
         <div className="segmented-control">
           <Hammer
-            className={ this.state.zoomLevel > 0 ? 'enabled' : 'disabled' }
+            className={ 'zoom-out ' + (this.state.zoomLevel > 0 ? 'enabled' : 'disabled') }
             component="button"
-            onTap={ this.zoomGridOut }>
-            -
-          </Hammer>
+            onTap={ this.zoomGridOut }></Hammer>
           <Hammer
-            className={ !this.state.fullyZoomedIn ? 'enabled' : 'disabled' }
+            className={ 'zoom-in ' + (!this.state.fullyZoomedIn ? 'enabled' : 'disabled') }
             component="button"
-            onTap={ this.zoomGridIn }>
-            +
-          </Hammer>
+            onTap={ this.zoomGridIn }></Hammer>
         </div>
       </div>
     );
