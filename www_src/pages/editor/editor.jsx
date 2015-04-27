@@ -18,7 +18,7 @@ var Editor = React.createClass({
           <input type="range" />
           <label>Corners</label>
           <input type="range" />
-          <Link url="/project/123/1/color" href="/pages/tinker">Tinker Mode</Link>
+          <Link url="/projects/123/elements/1/color" href="/pages/tinker">Tinker Mode</Link>
         </div>
       </div>
     );

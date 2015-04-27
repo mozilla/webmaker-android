@@ -8,7 +8,7 @@ module.exports = React.createClass({
       <Hammer
         onDoubleTap={this.props.onDoubleTap}
         className="page">
-        <Link url="/project/1234" href="/pages/project">EDIT</Link>
+        <Link url="/projects/1234" href="/pages/project">EDIT</Link>
       </Hammer>
     );
   }
