@@ -37,6 +37,26 @@ To run and develop in a web browser without testing on device, simply run
 npm start
 ```
 
+## Adding New Pages or Components
+
+There are a few standards to bear in mind when adding new pages or components to the project.
+
+Components are added to the `www_src/components` directory. Pages are added to `www_src/pages`. Each component or page needs its own subdirectory, JSX file, and LESS file. All three should share a common name.
+
+For example:
+
+```
+www_src/components/link/
+├── link.jsx
+└── link.less
+```
+
+*Be sure to add the LESS file as an import in `www_src/main.less` so that it gets compiled!*
+
+Component markup should contain a top-level class name that corresponds to its filename (eg: `.link` for `link`). Pages should similarly have a top-level ID (eg: `#editor` for `editor`).
+
+File names are hyphenated lowercase. For example: `section-2.jsx`.
+
 ## Contact Us
 IRC: `#webmaker` on `irc.mozilla.org`
 
