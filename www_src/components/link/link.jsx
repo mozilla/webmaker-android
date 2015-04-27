@@ -11,7 +11,7 @@ var Link = React.createClass({
         }
       }
     });
-    return (<a class="link" {...props} />);
+    return (<a className="link" {...props} />);
   }
 });
 
