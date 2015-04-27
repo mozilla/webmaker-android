@@ -7,7 +7,7 @@ var Tinker = React.createClass({
   },
   render: function () {
     return (
-      <div>
+      <div id="tinker">
         <div className="editor-preview">
           <img src="../../img/toucan.svg" />
         </div>

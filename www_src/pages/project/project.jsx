@@ -2,7 +2,7 @@ var React = require('react');
 var render = require('../../lib/render.jsx');
 var Link = require('../../components/link/link.jsx');
 
-var Positionable = require('./Positionable.jsx');
+var Positionable = require('./positionable.jsx');
 var Generator = require('./blocks/generator');
 
 var Project = React.createClass({
@@ -20,7 +20,7 @@ var Project = React.createClass({
   render: function () {
     var shadows = this.shadows ? this.shadows : this.formShadows(this.state.content);
     var positionables = this.formPositionables(this.state.content);
-    return <div className="demo project">
+    return <div id="project" className="demo">
       <div className="tile tile-demo">
         <div className="shadows">{ shadows }</div>
         <div className="inner">
