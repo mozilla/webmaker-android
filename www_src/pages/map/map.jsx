@@ -1,9 +1,11 @@
 var React = require('react');
 var render = require('../../lib/render.jsx');
+var Binding = require('../../lib/binding.jsx');
 var Hammer = require('react-hammerjs');
 var Grid = require('./grid.jsx');
 
 var App = React.createClass({
+  mixins: [Binding],
   getInitialState: function () {
     return {
       zoomLevel: 1,

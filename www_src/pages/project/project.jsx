@@ -1,14 +1,15 @@
 var React = require('react');
 var render = require('../../lib/render.jsx');
+var Binding = require('../../lib/binding.jsx');
+
 var Link = require('../../components/link/link.jsx');
 
 var Positionable = require('./Positionable.jsx');
 var Generator = require('./blocks/generator');
 
 var Project = React.createClass({
-  contextTypes: {
-    router: React.PropTypes.func
-  },
+
+  mixins: [Binding],
 
   getInitialState: function() {
     return {
