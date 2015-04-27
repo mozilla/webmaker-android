@@ -1,8 +1,18 @@
 var React = require('react');
 var render = require('../../lib/render.jsx');
+var Binding = require('../../lib/binding.jsx');
 var Link = require('../../components/link/link.jsx');
 
 var Main = React.createClass({
+  mixins: [Binding],
+  getInitialState: function () {
+    return {
+      test: false
+    };
+  },
+  onClick: function () {
+    this.setState({test: !this.state.test});
+  },
   render: function () {
     return (
       <div id="section-1" className="demo">
@@ -13,6 +23,7 @@ var Main = React.createClass({
             </div>
           </div>
         </Link>
+        <p><button onClick={this.onClick}>{this.state.test ? 'on' : 'off'}</button></p>
       </div>
     );
   }

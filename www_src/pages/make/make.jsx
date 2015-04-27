@@ -1,8 +1,10 @@
 var React = require('react');
+var Binding = require('../../lib/binding.jsx');
 var render = require('../../lib/render.jsx');
 var Link = require('../../components/link/link.jsx');
 
 var Main = React.createClass({
+  mixins: [Binding],
   render: function () {
     return (
       <div id="section-2" className="demo">
