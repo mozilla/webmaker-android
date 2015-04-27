@@ -1,7 +1,7 @@
 var React = require('react');
-var Text = require('./Text.jsx');
-var Link = require('./Link.jsx');
-var Image = require('./Image.jsx');
+var Text = require('./text.jsx');
+var Link = require('./link.jsx');
+var Image = require('./image.jsx');
 
 var Generator = function(){};
 
