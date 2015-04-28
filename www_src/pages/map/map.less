@@ -1,6 +1,6 @@
 #map {
   height: 100%;
-  background-color: rgb(3, 38, 56);
+  background-color: #E9EBF0;
   color: rgba(255, 255, 255, 0.8);
   display: flex;
   flex-direction: column;
@@ -18,43 +18,6 @@
       flex-grow: 1;
       display: flex;
       flex-direction: column;
-    }
-  }
-
-  .headerBar {
-    padding: 10px;
-    font-size: 18px;
-    display: flex;
-    position: absolute;
-    top: 0;
-    width: 100%;
-    background: rgb(3, 38, 56);
-    z-index: 1;
-
-    > * {
-      display: flex;
-      justify-content: center;
-      align-items: center;
-      margin: 0;
-      padding: 0;
-    }
-
-    p {
-      flex-grow: 1;
-    }
-
-    button {
-      background: none;
-      border: none;
-      flex-grow: 0;
-      background: url(img/back-arrow.png) center center / 100% no-repeat;
-      width: 30px;
-      transform: rotate(90deg);
-      opacity: 0.6;
-
-      &.invisible {
-        visibility: hidden;
-      }
     }
   }
 
@@ -81,10 +44,9 @@
   }
 
   .page {
-    width: calc(100% - 2px);
-    height: calc(100% - 2px);
-    background: rgba(120,120,220,1);
-    background-size: contain;
+    width: 90%;
+    height: 90%;
+    background: #F0F3F7;
 
     a {
       display: none;
@@ -100,11 +62,11 @@
   }
 
   .add-page {
-    width: calc(100% - 2px);
-    height: calc(100% - 2px);
-    border: 0;
-    background: #99cccc url('img/add.png') center center no-repeat;
-    background-size: contain;
+    width: 90%;
+    height: 90%;
+    background: #DCE0E6 url('img/plus.svg') center center / 40% no-repeat;
+    border: 1px solid rgba(35,31,32,0.02);
+    border-radius: 1px;
   }
 
   &.zoom-2 {
@@ -121,28 +83,33 @@
     bottom: 0;
     width: 100%;
     padding-bottom: 10px;
+    align-items: center;
 
     button {
-      margin: 5px;
-      font-size: 20px;
-      color: white;
-      border: none;
+      margin: 5px 10px;
       border-radius: 50%;
-      background: #ccc;
+      background: #FAFAFA;
+      border: 0px solid rgba(35,31,32,0.02);
+      box-shadow: 0px 3px 3px 0px rgba(0,0,0,0.1);
       display: flex;
       flex-grow: 0;
       flex-shrink: 0;
       line-height: 0;
-      width: 55px;
-      height: 55px;
-      box-shadow: 0px 0px 2px rgba(0, 0, 0, 0.3);
+      width: 50px;
+      height: 50px;
 
       &.zoom-in {
-        background: rgb(3, 38, 56) url('img/zoom-in.png') center center / 50% no-repeat;
+        background: #669EFF url('img/zoom-in.svg') center center / 50% no-repeat;
+        width: 75px;
+        height: 75px;
       }
 
       &.zoom-out {
-        background: rgb(255, 255, 255, 0.9) url('img/zoom-out.png') center center / 50% no-repeat;
+        background: rgb(255, 255, 255, 0.9) url('img/zoom-out.svg') center center / 50% no-repeat;
+      }
+
+      &.delete {
+        background: rgb(255, 255, 255, 0.9) url('img/trash.svg') center center / 36% no-repeat;
       }
 
       &.disabled {
