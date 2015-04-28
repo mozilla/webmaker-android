@@ -24,7 +24,7 @@ module.exports = function (options, callback) {
   if (window.Android && options.useCache === true) {
     window.Android.logText('Fetching from cache "' + key + '"');
     var hit = window.Android.getSharedPreferences(key);
-    if (typeof hit !== 'undefined') return callback(null, JSON.parse(hit));
+    if (typeof hit === 'string') return callback(null, JSON.parse(hit));
   }
 
   // XHR request
