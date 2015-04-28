@@ -18,10 +18,12 @@ var Range = React.createClass({
   render: function () {
     var linkState = this.props.linkState || this.linkState;
     var valueLink = linkState(this.props.id);
-    return (<div className="range">
-      <input min={this.props.min} max={this.props.max} type="range" valueLink={valueLink}/>
-      <div className={'range-summary' + (parseInt(valueLink.value, 0) === this.props.min ? ' min' : '')}>{valueLink.value}{this.props.unit}</div>
-    </div>);
+    return (
+      <div className="range">
+        <input min={this.props.min} max={this.props.max} type="range" valueLink={valueLink}/>
+        <div className={'range-summary' + (parseInt(valueLink.value, 0) === this.props.min ? ' min' : '')}>{valueLink.value}{this.props.unit}</div>
+      </div>
+    );
   }
 });
 

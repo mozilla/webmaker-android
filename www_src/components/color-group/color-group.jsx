@@ -16,17 +16,17 @@ var ColorGroup = React.createClass({
       value: 'transparent'
     };
   },
+  onChange: function (e) {
+    if (this.valueLink) this.valueLink.requestChange(e.target.value);
+  },
   render: function () {
     var linkState = this.props.linkState || this.linkState;
-    var valueLink = linkState(this.props.id);
-    function onChange(e) {
-      valueLink.requestChange(e.target.value);
-    }
+    this.valueLink = linkState(this.props.id);
     return (<div className="color-group">
       {this.colors.map(color => {
         var className = {
           'color-swatch': true,
-          checked: valueLink.value === color
+          checked: this.valueLink.value === color
         };
         var innerClassName = {
           'color-swatch-inner': true,
@@ -35,7 +35,7 @@ var ColorGroup = React.createClass({
         };
         return <label className={classNames(className)}>
           <span className={classNames(innerClassName)} style={{backgroundColor: color}} />
-          <input name="color" type="radio" value={color} checked={valueLink.value === color ? true : null} onChange={onChange} />
+          <input name="color" type="radio" value={color} checked={this.valueLink.value === color ? true : null} onChange={this.onChange} />
         </label>
       })}
       <div className="tinker-container">
