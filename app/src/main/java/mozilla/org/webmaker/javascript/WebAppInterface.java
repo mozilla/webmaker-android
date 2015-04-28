@@ -15,12 +15,27 @@ public class WebAppInterface {
     private String mPrefKey;
     private String mPageState;
 
+    public static final String WEBMAKER_PREFS = "WEBMAKER";
+
     public WebAppInterface(Context c) {
         mContext = c;
         mPrefKey = mContext.getClass().getSimpleName() + "_prefs";
         mPrefs = mContext.getSharedPreferences(mPrefKey, 0);
         mPageState = mPrefs.getString("page_state", "{}");
         Log.v("wm", "getting state " + mPrefKey + ": " + mPageState);
+    }
+
+    @JavascriptInterface
+    public String getSharedPreferences(String key) {
+        SharedPreferences getter = mContext.getSharedPreferences(WEBMAKER_PREFS, 0);
+        return getter.getString(key, null);
+    }
+
+    @JavascriptInterface
+    public void setSharedPreferences(String key, String value) {
+        SharedPreferences.Editor editor = mContext.getSharedPreferences(WEBMAKER_PREFS, 0).edit();
+        editor.putString(key, value);
+        editor.apply();
     }
 
     @JavascriptInterface
