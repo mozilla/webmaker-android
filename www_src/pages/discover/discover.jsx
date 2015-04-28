@@ -4,7 +4,7 @@ var Binding = require('../../lib/binding.jsx');
 var Link = require('../../components/link/link.jsx');
 var api = require('../../lib/api.js');
 
-var Main = React.createClass({
+var Discover = React.createClass({
   mixins: [Binding],
   getInitialState: function () {
     return {
@@ -24,7 +24,7 @@ var Main = React.createClass({
   },
   render: function () {
     return (
-      <div id="section-1" className="demo">
+      <div id="discover" className="demo">
         <Link url="/map/123" href="/pages/map" className="tile tile-demo">
           <div className="inner">
             <div className="img">
@@ -39,4 +39,4 @@ var Main = React.createClass({
 });
 
 // Render!
-render(Main);
+render(Discover);
