@@ -13,7 +13,7 @@ var Main = React.createClass({
   },
   componentWillMount: function () {
     api({
-      uri: '/discover.json'
+      uri: '/c0645e6953e9949f8e5c/raw/'
     }, function (err, body) {
       console.dir(err);
       console.dir(body);

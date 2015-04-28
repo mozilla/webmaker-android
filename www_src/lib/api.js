@@ -15,7 +15,7 @@ module.exports = function (options, callback) {
     options.uri = options.url;
     delete options.url;
   }
-  options.uri = 'https://s3.amazonaws.com/webmaker-api-sample' + options.uri;
+  options.uri = 'https://gist.githubusercontent.com/thisandagain' + options.uri;
 
   // Set cache key
   var key = 'cache::' + options.method.toLowerCase() + '::' + options.uri;
