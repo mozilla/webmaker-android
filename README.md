@@ -21,6 +21,7 @@ npm install
 #### Android
 While the majority of `webmaker-app` is built using Web technologies, it runs within a native Android wrapper that is included as part of this codebase. If you would like to make changes to the wrapper or if you'd like to test the app, we recommend you use [Android Studio](http://developer.android.com/sdk/index.html).
 
+- Create the built assets with `npm run build`
 - Install and configure [Android Studio](http://developer.android.com/sdk)
 - Open Android Studio and select "Import Project"
 - If Android Studio asks, choose "Create project from existing sources"
