@@ -2,6 +2,7 @@ var React = require('react');
 var render = require('../../lib/render.jsx');
 var Binding = require('../../lib/binding.jsx');
 var Link = require('../../components/link/link.jsx');
+var api = require('../../lib/api.js');
 
 var Main = React.createClass({
   mixins: [Binding],
@@ -9,6 +10,14 @@ var Main = React.createClass({
     return {
       test: false
     };
+  },
+  componentWillMount: function () {
+    api({
+      uri: '/c0645e6953e9949f8e5c/raw/'
+    }, function (err, body) {
+      console.dir(err);
+      console.dir(body);
+    });
   },
   onClick: function () {
     this.setState({test: !this.state.test});
