@@ -7,7 +7,7 @@ var Main = React.createClass({
   mixins: [Binding],
   render: function () {
     return (
-      <div id="section-2" className="demo">
+      <div id="make" className="demo">
         <Link url="/map/123" href="/pages/map" className="tile tile-demo">
           <div className="inner">
             <div className="img">
