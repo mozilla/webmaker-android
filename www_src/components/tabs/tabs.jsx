@@ -1,5 +1,5 @@
 var React = require('react');
-var classNames = require('classNames');
+var classNames = require('classnames');
 
 var Tabs = React.createClass({
   getInitialState: function () {
