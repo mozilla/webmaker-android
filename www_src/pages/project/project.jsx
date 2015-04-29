@@ -1,4 +1,5 @@
 var React = require('react');
+var classNames = require('classnames');
 var render = require('../../lib/render.jsx');
 var Binding = require('../../lib/binding.jsx');
 
@@ -14,7 +15,8 @@ var Project = React.createClass({
   getInitialState: function() {
     return {
       content: [],
-      currentElement: -1
+      currentElement: -1,
+      showAddMenu: false
     };
   },
 
@@ -22,20 +24,34 @@ var Project = React.createClass({
     var shadows = this.shadows ? this.shadows : this.formShadows(this.state.content);
     var positionables = this.formPositionables(this.state.content);
     return <div id="project" className="demo">
-      <div className="tile tile-demo">
-        <div className="shadows">{ shadows }</div>
-        <div className="inner">
-          <div className="positionables">{ positionables }</div>
-          <div className="controls">
-            <button className="text component" onClick={this.addText}>Aa</button>
-            <button className="image component" onClick={this.addImage}>Image</button>
-            <button className="link component" onClick={this.addLink}>&lt;a&gt;</button>
-            <button className="edit component" onClick={this.editCurrent}>✎</button>
+      <div className="pages-container">
+        <div className="page next top" />
+        <div className="page next right" />
+        <div className="page next bottom" />
+        <div className="page next left" />
+        <div className="page">
+          <div className="shadows">{ shadows }</div>
+          <div className="inner">
+            <div className="positionables">{ positionables }</div>
           </div>
         </div>
       </div>
+
+      <div className="controls">
+        <div className={classNames({'add-menu': true, 'active': this.state.showAddMenu})}>
+          <button className="text" onClick={this.addText}>Aa</button>
+          <button className="image" onClick={this.addImage}>Image</button>
+          <button className="link" onClick={this.addLink}>&lt;a&gt;</button>
+        </div>
+        <button className="add" onClick={this.toggleAddMenu}>+</button>
+        <button className="edit" onClick={this.editCurrent}>+</button>
+      </div>
       <Link ref="editlink" url={ "/projects/123/elements/" + this.state.currentElement } href="/pages/editor" hidden={true}>edit</Link>
     </div>
+  },
+
+  toggleAddMenu: function () {
+    this.setState({showAddMenu: !this.state.showAddMenu});
   },
 
   formShadows: function(content) {
