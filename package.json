@@ -59,7 +59,6 @@
     "lodash.defaults": "3.1.1",
     "react": "0.13.1",
     "react-hammerjs": "0.2.2",
-    "react-router": "0.13.2",
     "xhr": "2.0.1"
   }
 }

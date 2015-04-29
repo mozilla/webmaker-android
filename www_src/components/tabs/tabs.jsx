@@ -1,0 +1,41 @@
+var React = require('react');
+var classNames = require('classNames');
+
+var Tabs = React.createClass({
+  getInitialState: function () {
+    return {
+      selectedIndex: 0
+    };
+  },
+  setTab: function (i) {
+    return () => {
+      this.setState({selectedIndex: i});
+    };
+  },
+  render: function () {
+    var className = classNames('tabs', this.props.className);
+    var tabs = this.props.tabs;
+    return (<div className={className}>
+      <ul className="tab-menu">
+        {tabs.map((tab, i) => {
+          var className = classNames({
+            'tab-btn': true,
+            'selected': this.state.selectedIndex === i
+          });
+          return <li key={i}><button className={className} onClick={this.setTab(i)}>{tab.menu}</button></li>
+        })}
+      </ul>
+      <div className="tab-content">
+        {tabs.map((tab, i) => {
+          var className = classNames({
+            'tab-body': true,
+            'selected': this.state.selectedIndex === i
+          });
+          return <div className={className}>{tab.body}</div>
+        })}
+      </div>
+    </div>);
+  }
+});
+
+module.exports = Tabs;

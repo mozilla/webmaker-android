@@ -1,0 +1,61 @@
+/*********************************************************
+* Spectrum color picker
+*/
+.spectrum-container {
+  @_pickerHeight: 200px;
+  @_rangeWidth: 40px;
+  @_margin: 20px;
+  display: flex;
+  .spectrum-left {
+    position: relative;
+    flex-grow: 1;
+  }
+  .saturation {
+    position: relative;
+    width: 100%;
+    height: @_pickerHeight;
+  }
+  .saturation-white,
+  .saturation-black {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+  }
+  .saturation-white {
+    background: linear-gradient(to right, #fff, rgba(204,154,129,0));
+  }
+  .saturation-black {
+    background: linear-gradient(to top, #000, rgba(204,154,129,0));
+  }
+  .spectrum-right {
+    position: relative;
+    margin-left: @_margin;
+    width: @_rangeWidth;
+    background: linear-gradient(to bottom, #f00 0%, #ff0 17%, #0f0 33%, #0ff 50%, #00f 67%, #f0f 83%, #f00 100%);
+    cursor: pointer;
+  }
+  .hue {
+    -webkit-appearance: none;
+    transform: rotate(90deg);
+    position: absolute;
+    right: 0;
+    top: 50%;
+    width: @_pickerHeight;
+    height: @_rangeWidth;
+    margin-top: -(@_rangeWidth/2);
+    margin-right: -(@_pickerHeight/2 + @_margin + (@_rangeWidth/2));
+    z-index: 1;
+    background: transparent;
+  }
+  .hue::-webkit-slider-thumb {
+    -webkit-appearance: none;
+    border: none;
+    width: 20px;
+    height: 46px;
+    cursor: pointer;
+    background: url(../img/slider.png) no-repeat;
+    background-size: 20px 46px;
+  }
+}

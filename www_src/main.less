@@ -6,6 +6,8 @@
 @import "components/button/button";
 @import "components/range/range";
 @import "components/color-group/color-group";
+@import "components/color-spectrum/color-spectrum";
+@import "components/tabs/tabs";
 
 // Pages ----------------------------------------------------------------------
 
@@ -31,7 +33,11 @@ body {
   margin: 0;
   padding: 0;
   font-family: 'Roboto', sans-serif;
-  background: #E9EBF0;
+}
+
+code, pre {
+  font-family: menlo, monospace;
+  font-size: inherit;
 }
 
 #app {
@@ -40,6 +46,10 @@ body {
 
 .container {
   height: 100%;
+  > div {
+    background: #E9EBF0;
+    min-height: 100%;
+  }
 }
 
 .tile {
