@@ -21,8 +21,18 @@ var Project = React.createClass({
   },
 
   render: function () {
-    var shadows = this.shadows ? this.shadows : this.formShadows(this.state.content);
     var positionables = this.formPositionables(this.state.content);
+    var editBtnClass = classNames({
+      edit: true,
+      active: this.state.currentElement >= 0 && !this.state.showAddMenu
+    });
+
+    // Temporary
+    var linkData = '';
+    if (this.state.currentElement >= 0) {
+      linkData = '#' + this.state.content[this.state.currentElement].type;
+    }
+
     return <div id="project" className="demo">
       <div className="pages-container">
         <div className="page next top" />
@@ -30,40 +40,33 @@ var Project = React.createClass({
         <div className="page next bottom" />
         <div className="page next left" />
         <div className="page">
-          <div className="shadows">{ shadows }</div>
           <div className="inner">
             <div className="positionables">{ positionables }</div>
           </div>
         </div>
       </div>
 
-      <div className="controls">
-        <div className={classNames({'add-menu': true, 'active': this.state.showAddMenu})}>
-          <button className="text" onClick={this.addText}>Aa</button>
-          <button className="image" onClick={this.addImage}>Image</button>
-          <button className="link" onClick={this.addLink}>&lt;a&gt;</button>
+      <div className={classNames({overlay: true, active: this.state.showAddMenu})}/>
+
+      <div className={classNames({'controls': true, 'add-active': this.state.showAddMenu})}>
+        <div className="add-menu">
+          <button className="text" onClick={this.addText}><img className="icon" src="../../img/text.svg" /></button>
+          <button className="image" onClick={this.addImage}><img className="icon" src="../../img/camera.svg" /></button>
+          <button className="link" onClick={this.addLink}><img className="icon" src="../../img/link.svg" /></button>
         </div>
-        <button className="add" onClick={this.toggleAddMenu}>+</button>
-        <button className="edit" onClick={this.editCurrent}>+</button>
+        <button className="add" onClick={this.toggleAddMenu}></button>
+        <Link
+          className={editBtnClass}
+          url={'/projects/123/elements/' + this.state.currentElement + linkData}
+          href={'/pages/editor' + linkData}>
+          <img className="icon" src="../../img/brush.svg" />
+        </Link>
       </div>
-      <Link ref="editlink" url={ "/projects/123/elements/" + this.state.currentElement } href="/pages/editor" hidden={true}>edit</Link>
     </div>
   },
 
   toggleAddMenu: function () {
     this.setState({showAddMenu: !this.state.showAddMenu});
-  },
-
-  formShadows: function(content) {
-    this.shadows = content.map((m, i) => {
-      var element = Generator.generateBlock(m);
-      return <div>
-        <Positionable ref={"shadow"+i} key={"shadow"+i} {...m} interactive={false}>
-          {element}
-        </Positionable>
-      </div>;
-    });
-    return this.shadows;
   },
 
   formPositionables: function(content) {
@@ -82,23 +85,14 @@ var Project = React.createClass({
       var content = this.state.content;
       var entry = content[index];
       Object.keys(data).forEach(k => entry[k] = data[k]);
-      var ref = this.refs["shadow"+index];
-      if (ref) ref.setTransform(data);
       this.setState({ currentElement: index });
     }.bind(this);
   },
 
-  editCurrent: function() {
-    if (this.currentElement === -1) return;
-    var entry = this.state.content[this.state.currentElement];
-    var link = this.refs.editlink;
-    link.getDOMNode().click();
-  },
-
   append: function(obj) {
-    this.shadows = false;
     this.setState({
-      content: this.state.content.concat([obj])
+      content: this.state.content.concat([obj]),
+      showAddMenu: false
     });
   },
 

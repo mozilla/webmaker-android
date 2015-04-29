@@ -2,7 +2,8 @@
   @_gutter: 10px;
   @_baseWidth: 320px;
   @_baseHeight: 440px;
-  position: relative;
+  @_bgYellow: #F0CF62;
+
   position: fixed;
   top: 0;
   left: 0;
@@ -11,6 +12,7 @@
   display: flex;
   align-items: center;
   justify-content: center;
+
   .pages-container {
     position: relative;
     width: @_baseWidth;
@@ -21,7 +23,14 @@
       left: 0;
       width: 100%;
       height: 100%;
-      background: #F0CF62;
+      background: @_bgYellow;
+
+      .inner {
+        width: 100%;
+        height: 100%;
+      }
+
+      // This is the "next" page preview stuff
       &.next {
         opacity: 0.3;
       }
@@ -41,10 +50,6 @@
         transform: translateY(100%);
         top: @_gutter;
       }
-      .inner {
-        width: 100%;
-        height: 100%;
-      }
     }
   }
 
@@ -53,25 +58,48 @@
     text-decoration: underline;
   }
 
+  .overlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    height: 100%;
+    width: 100%;
+    z-index: 998;
+    background: #1A2237;
+    opacity: 0;
+    visibility: hidden;
+    transition: all 0.1s ease-in-out;
+    &.active {
+      visibility: visible;
+      opacity: 0.7;
+    }
+  }
+
   .controls {
+    @_transformDistance: 55px;
     position: fixed;
     bottom: 20px;
     left: 0;
     right: 0;
     z-index: 999;
     margin: 0 auto;
-    .add-menu.active {
-      button {
+    &.add-active {
+      .add-menu button {
         transform: translateY(-80px);
         &:first-child {
-          transform: translate(-55px, -55px);
+          transform: translate(-(@_transformDistance), -(@_transformDistance));
         }
         &:last-child {
-          transform: translate(55px, -55px);
+          transform: translate(@_transformDistance, -(@_transformDistance));
         }
       }
+      .add {
+        background: #718095;
+        transform: rotate(45deg);
+      }
     }
-    button {
+    button,
+    a {
       position: absolute;
       left: 50%;
       border-radius: 50%;
@@ -79,36 +107,57 @@
       color: #69A0FC;
       background: white;
       overflow: hidden;
-      height: 40px;
-      width: 40px;
-      margin-left: -20px;
-      bottom: 10px;
-      transition: transform 0.2s ease-in;
+      height: 46px;
+      width: 46px;
+      margin-left: -23px;
+      bottom: 0;
+      transition: transform 0.2s ease-in-out;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      .icon {
+        height: 16px;
+        display: block;
+      }
       &.add {
+        transition: 0.2s ease-in-out;
         bottom: 0;
         background: #69A0FC;
         color: #FFF;
         width: 56px;
         height: 56px;
         margin-left: -28px;
-        box-shadow: 0 0 3px 4px rgba(0,0,0,0.1);
+        box-shadow: 0 4px 3px -2px rgba(0,0,0,0.2);
+        &::before,
+        &::after {
+          content: '';
+          display: block;
+          background: white;
+          height: 22px;
+          width: 4px;
+          position: absolute;
+          top: 50%;
+          left: 50%;
+          margin-left: -2px;
+          margin-top: -11px;
+          border-radius: 3px;
+        }
+        &::after {
+          transform: rotate(90deg);
+        }
       }
       &.edit {
-        display: none;
+        margin-left: 36px;
+        bottom: 5px;
+        box-shadow: 0 4px 3px -2px rgba(0,0,0,0.2);
+        transform: translateY(80px);
+        &.active {
+          transform: translateY(0);
+        }
       }
     }
   }
-
-  .shadows {
-    position: absolute;
-    height: 0;
-    opacity: 0.2;
-    margin-left: 5px;
-    margin-top: 5px;
-    filter: grayscale(100%);
-  }
-
-  .positionables, .shadows {
+  .positionables {
     overflow: auto;
     height: 100%;
     width: 100%;
@@ -123,6 +172,7 @@
     }
 
     .positionable {
+      padding: 10px;
       user-select: none;
 
       position: relative;
@@ -130,18 +180,29 @@
       z-index: 0;
       background: inherit;
 
-      div * {
+      div {
         box-sizing: content-box;
+      }
+
+      p {
+        margin: 0;
       }
 
       &.current {
         margin: -1px;
-        border: 1px dashed black;
+        border: 1px dashed #FFF;
+        &::after {
+          z-index: -1;
+          content: '';
+          display: block;
+          position: absolute;
+          top: 0;
+          left: 0;
+          width: 100%;
+          height: 100%;
+          border: 1px dashed #69A0FC;
+        }
       }
     }
-  }
-
-  .shadows {
-    overflow: visible!important;
   }
 }
