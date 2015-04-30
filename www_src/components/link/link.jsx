@@ -2,8 +2,15 @@ var React = require('react');
 var assign = require('react/lib/Object.assign');
 
 var Link = React.createClass({
+  getDefaultProps: function () {
+    return {
+      tagName: 'a'
+    };
+  },
   render: function () {
-    var props = assign(this.props, {
+    var className = this.props.className ? (this.props.className + ' link') : 'link';
+    var props = assign({}, this.props, {
+      className,
       onClick: (e) => {
         if (window.Android) {
           e.preventDefault();
@@ -11,7 +18,7 @@ var Link = React.createClass({
         }
       }
     });
-    return (<a className="link" {...props} />);
+    return React.createElement(this.props.tagName, props);
   }
 });
 
