@@ -154,7 +154,7 @@ var Map = React.createClass({
           <SecondaryButton side="left" off={this.state.zoom <= 0.25} onClick={this.zoomOut} icon="../../img/zoom-out.svg" />
           <SecondaryButton side="right" off={!this.state.selectedEl} onClick={this.removePage} icon="../../img/trash.svg" />
           <PrimaryButton onClick={this.zoomIn} off={this.state.zoom >= 1} icon="../../img/zoom-in.svg" />
-          <PrimaryButton url="/projects/123/elements/1" href="/pages/project" off={this.state.zoom < 1} icon="../../img/pencil.svg" />
+          <PrimaryButton url="/projects/123" href="/pages/project" off={this.state.zoom < 1} icon="../../img/pencil.svg" />
         </Menu>
       </div>
     );
