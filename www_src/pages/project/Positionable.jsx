@@ -36,7 +36,7 @@ var Positionable = React.createClass({
     var onode = this.refs.overlay.getDOMNode();
     onode.addEventListener("touchstart", touchHandler.secondFinger);
     onode.addEventListener("touchmove", touchHandler.panmove);
-    onode.addEventListener("touchend", touchHandler.endSecondFinger);
+    onode.addEventListener("touchend", touchHandler.endmark);
   },
 
   componentDidUpdate: function(prevProps, prevState) {
