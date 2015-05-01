@@ -4,4 +4,16 @@
     <color name="primary">#6FA4FF</color>
     <color name="primary_dark">#4580E6</color>
     <color name="accent">#FFFFFF</color>
+
+    <color name="white">#FFFFFF</color>
+    <color name="black">#000000</color>
+    <color name="blue">#669EFF</color>
+    <color name="shadow_blue">#5793F2</color>
+    <color name="sapphire">#315D8A</color>
+    <color name="teal">#61D3C9</color>
+    <color name="slate">#6D7886</color>
+    <color name="heather_gray">#CDD2DD</color>
+    <color name="light_gray">#E9EBF0</color>
+    <color name="plum">#404467</color>
+    <color name="shadow_plum">#31344F</color>
 </resources>
