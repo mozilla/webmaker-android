@@ -37,6 +37,18 @@ var StyleGuide = React.createClass({
 
         <h2>Colors</h2>
 
+        <div className="swatches">
+          <div className="color blue"><span>@blue</span></div>
+          <div className="color shadowBlue"><span>@shadowBlue</span></div>
+          <div className="color sapphire"><span>@sapphire</span></div>
+          <div className="color teal"><span>@teal</span></div>
+          <div className="color slate"><span>@slate</span></div>
+          <div className="color heatherGrey"><span>@heatherGrey</span></div>
+          <div className="color lightGrey"><span>@lightGrey</span></div>
+          <div className="color plum"><span>@plum</span></div>
+          <div className="color shadowPlum"><span>@shadowPlum</span></div>
+        </div>
+
         <h2>Components</h2>
 
         <h3>Button (.btn)</h3>
