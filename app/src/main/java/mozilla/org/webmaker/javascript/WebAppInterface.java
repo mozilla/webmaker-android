@@ -48,7 +48,6 @@ public class WebAppInterface {
         SharedPreferences.Editor edit = mPrefs.edit();
         edit.putString("page_state", serializedState);
         edit.commit();
-        Log.v("wm", "set state to " + serializedState);
     }
 
     @JavascriptInterface
