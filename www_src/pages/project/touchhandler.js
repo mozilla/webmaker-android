@@ -22,10 +22,8 @@ module.exports = function(positionable) {
     startmark: function(evt) {
       evt.preventDefault();
       evt.stopPropagation();
-      console.log("mark!")
       if(evt.touches.length === 1) {
         mark = JSON.parse(JSON.stringify(positionable.state));
-        console.log(JSON.stringify(mark));
         transform.x1 = evt.clientX || evt.touches[0].pageX;
         transform.y1 = evt.clientY || evt.touches[0].pageY;
         positionable.setState({ touchactive: true });
@@ -41,7 +39,6 @@ module.exports = function(positionable) {
       if (evt.touches && evt.touches.length > 1) {
         return handlers.handleTouchRepositioning(evt);
       }
-      console.log("panmove");
       var x = evt.clientX || evt.touches[0].pageX,
           y = evt.clientY || evt.touches[0].pageY;
       positionable.handleTranslation(x - transform.x1 + mark.x, y - transform.y1 + mark.y);
@@ -51,7 +48,6 @@ module.exports = function(positionable) {
      * When all fingers are off the device, stop being in "touch mode"
      */
     endmark: function(evt) {
-      console.log("end mark!")
       mark = JSON.parse(JSON.stringify(positionable.state));
       transform = resetTransform();
       positionable.setState({ touchactive: false });
@@ -79,7 +75,6 @@ module.exports = function(positionable) {
           a = Math.atan2(dy,dx);
       transform.distance = d;
       transform.angle = a;
-      console.log("base d/a: "+d+", "+a);
     },
 
     /**
@@ -101,9 +96,6 @@ module.exports = function(positionable) {
           a = Math.atan2(dy,dx),
           da = a - transform.angle + mark.angle,
           s = d/transform.distance * mark.scale;
-
-      console.log("repositioned d/a/ra: "+d+", "+a+","+transform.angle);
-      console.log("update a: "+da+" (mark: "+mark.angle+")");
 
       positionable.handleRotationAndScale(da, s);
     },
