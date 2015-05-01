@@ -6,7 +6,7 @@ var Link = require('../../components/link/link.jsx');
 var Discover = React.createClass({
   mixins: [],
   getInitialState: function () {
-    this.list = [];
+    this.list = require('./mock.json');
 
     return {
       list: this.list,
@@ -18,36 +18,22 @@ var Discover = React.createClass({
       }
     };
   },
-  componentWillMount: function () {
-    api({
-      uri: '/c0645e6953e9949f8e5c/raw/'
-    }, function (err, body) {
-      // @todo Handle error state
-      if (!this.isMounted()) return;
-
-      // Update list
-      this.list = this.list.concat(body);
-      this.setState({
-        list: this.list
-      });
-    }.bind(this));
-  },
-  onClick: function () {
-    // this.setState({test: !this.state.test});
-  },
   render: function () {
     var cards = [];
-
-    console.dir(this.state.list);
+    var project = null;
+    
     for (var i = 0; i < this.state.list.length; i++) {
+      project = this.state.list[i];
+      console.dir(project.thumbnail[480]);
       cards.push(
-        <Link url="/map/123" href="/pages/map" class="card">
-          <div class="thumbnail">
-            <img src="" />
+        <Link url="/map/123" href="/pages/map" key={project.id} className="card">
+          <div className="thumbnail">
+            <img src={project.thumbnail[480]} />
           </div>
 
-          <div class="meta">
-            {this.state.list[i].foo}
+          <div className="meta">
+            <div className="title">{project.title}</div>
+            <div className="author">{project.author.username}</div>
           </div>
         </Link>
       );
@@ -61,5 +47,4 @@ var Discover = React.createClass({
   }
 });
 
-// Render!
 render(Discover);
