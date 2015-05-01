@@ -80,8 +80,8 @@ var Positionable = React.createClass({
 
   handleTranslation: function(x, y) {
     this.setState({
-      x: /* this.transform.x + */ x,
-      y: /* this.transform.y + */ y
+      x: x,
+      y: y
     }, function() {
       if(this.props.onUpdate) {
         this.props.onUpdate(this.state);
@@ -91,8 +91,8 @@ var Positionable = React.createClass({
 
   handleRotationAndScale: function(angle, scale) {
     this.setState({
-      angle: /* this.transform.angle + */ angle,
-      scale: /* this.transform.scale * */ scale
+      angle: angle,
+      scale: scale
     }, function() {
       if(this.props.onUpdate) {
         this.props.onUpdate(this.state);
