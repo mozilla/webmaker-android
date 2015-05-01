@@ -1,3 +1,79 @@
 #make {
-
+  position: relative;
+  width: 100%;
+  height: 100%;
+  overflow: hidden;
+  .scaler {
+    width: 100%;
+    height: 100%;
+    overflow: visible;
+    transition: transform 0.3s ease-in-out;
+  }
+  .bounding {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    box-sizing: content-box;
+    transition: transform 0.3s ease-in-out;
+  }
+  .test-container {
+    position: relative;
+  }
+  .test-el {
+    transition: opacity 0.3s ease-in-out;
+    width: 100%;
+    height: 100%;
+    background: #F1D474;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    position: absolute;
+    left: 0;
+    top: 0;
+    p {
+      padding: 20px 40px;
+      background: #EFC143;
+      color: #5E5539;
+      display: inline-block;
+      border-radius: 3px;
+    }
+    &.selected {
+      box-shadow: 0 12px 10px -4px fade(darken(#E9EBF0, 30%), 50%);
+    }
+    &.unselected {
+      opacity: 0.5;
+    }
+    &.add {
+      background: #DCE0E6;
+      color: #C4C8CC;
+    }
+  }
+  .menu {
+    opacity: 0;
+    visibility: hidden;
+    transition: all 0.3s ease-in-out;
+    &.active {
+      opacity: 1;
+      visibility: visible;
+    }
+    position: fixed;
+    bottom: 20px;
+    width: 56px;
+    margin-left: -28px;
+    left: 50%;
+    text-align: center;
+    button {
+      margin: 5px 10px;
+      border-radius: 50%;
+      border: 0px solid rgba(35,31,32,0.02);
+      box-shadow: 0px 3px 3px 0px rgba(0,0,0,0.1);
+      display: flex;
+      flex-grow: 0;
+      flex-shrink: 0;
+      line-height: 0;
+      width: 50px;
+      height: 50px;
+      background: rgb(255, 255, 255, 0.9) url('img/zoom-out.svg') center center / 50% no-repeat;
+    }
+  }
 }
