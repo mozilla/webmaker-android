@@ -1,66 +1,164 @@
 var React = require('react');
+var assign = require('react/lib/Object.assign');
+var classNames = require('classnames');
+
+var uuid = require('../../lib/uuid');
 var render = require('../../lib/render.jsx');
 var Binding = require('../../lib/binding.jsx');
-var Hammer = require('react-hammerjs');
-var Grid = require('./grid.jsx');
+var Cartesian = require('../../lib/cartesian');
 
-var App = React.createClass({
-  mixins: [Binding],
+var Link = require('../../components/link/link.jsx');
+var {Menu, PrimaryButton, SecondaryButton} = require('../../components/action-menu/action-menu.jsx');
+
+
+var elements = require('./fakeElements');
+
+var Map = React.createClass({
   getInitialState: function () {
+
+    var width = 300;
+    var height = 380;
+    var gutter = 20;
+
+    this.cartesian = new Cartesian({
+      allCoords: elements.map(el => el.coords),
+      width,
+      height,
+      gutter
+    });
+
     return {
-      zoomLevel: 1,
-      fullyZoomedIn: false
+      selectedEl: '',
+      camera: this.cartesian.getFocusTransform({x: 0, y: 0}),
+      zoom: 0.5
     };
   },
-  contextTypes: {
-    router: React.PropTypes.func
-  },
-  zoomGridOut: function () {
-    this.refs.masterGrid.zoomOut();
-  },
-  zoomGridIn: function () {
-    this.refs.masterGrid.zoomIn();
-  },
+  mixins: [Binding],
   componentDidMount: function () {
-    // Pass container dimensions in once initial render is complete
-    //   since container must be measured before tiles can be properly laid out...
-    var elWrapper = this.refs.wrapper.getDOMNode();
-    this.refs.masterGrid.setContainerDimensions(elWrapper.clientWidth, elWrapper.clientHeight);
+    var el = this.getDOMNode();
+    var bounding = this.refs.bounding;
+    var boundingEl = bounding.getDOMNode();
+    var startX, startY, deltaX, deltaY;
+    var didMove = false;
 
-    setTimeout(function() {
-      this.refs.masterGrid.setZoomLevel(this.state.zoomLevel);
-    }.bind(this), 100);
+    el.addEventListener('touchstart', (event) => {
+      didMove = false;
+      startX = event.touches[0].clientX;
+      startY = event.touches[0].clientY;
+      boundingEl.style.transition = 'none';
+    });
+
+    el.addEventListener('touchmove', (event) => {
+      didMove = true;
+
+      var x = parseInt(this.state.camera.x);
+      var y = parseInt(this.state.camera.y);
+
+      deltaX = (event.touches[0].clientX - startX) / this.state.zoom;
+      deltaY = (event.touches[0].clientY - startY) / this.state.zoom;
+
+      var translation = 'translate(' + (x + deltaX) + 'px, ' + (y + deltaY) + 'px)';
+      boundingEl.style.transform = translation;
+
+    });
+
+    el.addEventListener('touchend', (event) => {
+      boundingEl.style.transition = '';
+      if (didMove) {
+        this.state.camera.x += deltaX;
+        this.state.camera.y += deltaY;
+      }
+    });
   },
-  onZoomChange: function (event) {
+  selectPage: function (el) {
+    return () => {
+      var state = {
+        camera: this.cartesian.getFocusTransform(el.coords),
+        selectedEl: el.id,
+      };
+      if (this.state.selectedEl === el.id) {
+        state.zoom = 1;
+      }
+      this.setState(state);
+    };
+  },
+  zoomOut: function () {
+    this.setState({zoom: this.state.zoom / 2});
+  },
+  zoomIn: function () {
+    this.setState({zoom: this.state.zoom * 2});
+  },
+  edit: function () {
+    // todo - go to editor
+  },
+  addPage: function (coords) {
+    return () => {
+      var id = uuid();
+      elements.push({id, coords: coords, text: 'wahoo...'});
+      this.cartesian.allCoords.push(coords);
+      this.setState({
+        camera: this.cartesian.getFocusTransform(coords),
+        selectedEl: id
+      });
+    };
+  },
+  removePage: function () {
+    var index;
+    elements.forEach((el, i) => {
+      if (el.id === this.state.selectedEl) index = i;
+    });
+    if (typeof index === 'undefined') return;
+    elements.splice(index, 1);
+    this.cartesian.allCoords.splice(index, 1);
+    var el = elements[index] || elements[index-1] || elements[0];
     this.setState({
-      zoomLevel: event.currentZoomIndex,
-      fullyZoomedIn: event.fullyZoomedIn
+      zoom: 0.5,
+      selectedEl: ''
     });
   },
   render: function () {
+
+    var containerStyle = {
+      width: this.cartesian.width + 'px',
+      height: this.cartesian.height + 'px'
+    };
+
+    var boundingStyle = assign(
+      {transform: `translate(${this.state.camera.x}px, ${this.state.camera.y}px)`},
+      this.cartesian.getBoundingSize()
+    );
+
+    var addContainerStyle = classNames('page-container add', {off: this.state.zoom == 1});
+
     return (
-      <div id="map" className={ 'zoom-' + this.state.zoomLevel }>
-        <div ref="wrapper" className="wrapper">
-          <div>
-            <Grid ref="masterGrid" aspectRatio={"35:40"} onZoomChange={ this.onZoomChange } />
+      <div id="map">
+        <div className="scaler" style={{transform: `scale(${this.state.zoom})`}}>
+          <div ref="bounding" className="bounding" style={boundingStyle}>
+            <div className="test-container" style={containerStyle}>
+            {elements.map((el) => {
+              return (<div className={classNames({'page-container': true, selected: el.id === this.state.selectedEl, unselected: el.id !== this.state.selectedEl && this.state.zoom === 1})}
+                  style={{transform: this.cartesian.getTransform(el.coords)}}
+                  onClick={this.selectPage(el)}>
+                <p>{el.text}</p>
+              </div>);
+            })}
+            {this.cartesian.edges.map(coords => {
+              return (<div className={addContainerStyle} style={{transform: this.cartesian.getTransform(coords)}} onClick={this.addPage(coords)}>
+                <img className="icon" src="../../img/plus.svg" />
+              </div>);
+            })}
+            </div>
           </div>
         </div>
-        <div className="segmented-control">
-          <Hammer
-            className={ 'zoom-out ' + (this.state.zoomLevel > 0 ? 'enabled' : 'disabled') }
-            component="button"
-            onTap={ this.zoomGridOut }></Hammer>
-          <Hammer
-            className={ 'zoom-in ' + (!this.state.fullyZoomedIn ? 'enabled' : 'disabled') }
-            component="button"
-            onTap={ this.zoomGridIn }></Hammer>
-          <Hammer
-            className="delete"
-            component="button"></Hammer>
-        </div>
+        <Menu>
+          <SecondaryButton side="left" off={this.state.zoom <= 0.25} onClick={this.zoomOut} icon="../../img/zoom-out.svg" />
+          <SecondaryButton side="right" off={!this.state.selectedEl} onClick={this.removePage} icon="../../img/trash.svg" />
+          <PrimaryButton onClick={this.zoomIn} off={this.state.zoom >= 1} icon="../../img/zoom-in.svg" />
+          <PrimaryButton url="/projects/123" href="/pages/project" off={this.state.zoom < 1} icon="../../img/pencil.svg" />
+        </Menu>
       </div>
     );
   }
 });
 
-render(App);
+render(Map);

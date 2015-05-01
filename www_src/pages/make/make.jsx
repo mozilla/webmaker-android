@@ -1,25 +1,42 @@
 var React = require('react');
-var Binding = require('../../lib/binding.jsx');
 var render = require('../../lib/render.jsx');
+var Binding = require('../../lib/binding.jsx');
 var Link = require('../../components/link/link.jsx');
+var api = require('../../lib/api.js');
 
-var Main = React.createClass({
+var Make = React.createClass({
   mixins: [Binding],
+  getInitialState: function () {
+    return {
+      test: false
+    };
+  },
+  componentWillMount: function () {
+    api({
+      uri: '/c0645e6953e9949f8e5c/raw/'
+    }, function (err, body) {
+      console.dir(err);
+      console.dir(body);
+    });
+  },
+  onClick: function () {
+    this.setState({test: !this.state.test});
+  },
   render: function () {
     return (
       <div id="make" className="demo">
         <Link url="/map/123" href="/pages/map" className="tile tile-demo">
           <div className="inner">
             <div className="img">
-              <h1>section 2, yo!</h1>
               <img src="../../img/toucan.svg" />
             </div>
           </div>
         </Link>
+        <p><button onClick={this.onClick}>{this.state.test ? 'on' : 'off'}</button></p>
       </div>
     );
   }
 });
 
 // Render!
-render(Main);
+render(Make);
