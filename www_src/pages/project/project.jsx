@@ -34,7 +34,7 @@ var Project = React.createClass({
     }
 
     return <div id="project" className="demo">
-      <div className="pages-container">
+      <div ref="container" className="pages-container">
         <div className="page next top" />
         <div className="page next right" />
         <div className="page next bottom" />
@@ -43,7 +43,7 @@ var Project = React.createClass({
           <div className="inner">
             <div className="positionables">{ positionables }</div>
           </div>
-        </div>
+        </div>3
       </div>
 
       <div className={classNames({overlay: true, active: this.state.showAddMenu})}/>
@@ -55,6 +55,9 @@ var Project = React.createClass({
           <button className="link" onClick={this.addLink}><img className="icon" src="../../img/link.svg" /></button>
         </div>
         <button className="add" onClick={this.toggleAddMenu}></button>
+        <button className="delete" onClick={this.deleteElement} hidden={this.state.currentElement===-1}>
+          <img className="icon" src="../../img/trash.svg" />
+        </button>
         <Link
           className={editBtnClass}
           url={'/projects/123/elements/' + this.state.currentElement + linkData}
@@ -65,6 +68,20 @@ var Project = React.createClass({
     </div>
   },
 
+  componentDidMount: function() {
+    this.containerDims = this.refs.container.getDOMNode().getBoundingClientRect();
+  },
+
+  deleteElement: function() {
+    if(this.state.currentElement === -1) return;
+    var content = this.state.content;
+    content.splice(this.state.currentElement,1);
+    this.setState({
+      content: content,
+      currentElement: -1
+    });
+  },
+
   toggleAddMenu: function () {
     this.setState({showAddMenu: !this.state.showAddMenu});
   },
@@ -72,6 +89,8 @@ var Project = React.createClass({
   formPositionables: function(content) {
     return content.map((m, i) => {
       var element = Generator.generateBlock(m);
+      m.parentWidth = this.containerDims.width;
+      m.parentHeight = this.containerDims.height;
       return <div>
         <Positionable ref={"positionable"+i} key={"positionable"+i} {...m} current={this.state.currentElement===i} onUpdate={this.updateElement(i)}>
           {element}

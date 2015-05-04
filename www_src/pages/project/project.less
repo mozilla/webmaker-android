@@ -154,6 +154,16 @@
           transform: translateY(0);
         }
       }
+
+      &.delete {
+        position: fixed;
+        top: 3em;
+        left: 3em;
+        z-index:12345678;
+      }
+      &.delete[hidden] {
+        display: none;
+      }
     }
   }
   .positionables {
