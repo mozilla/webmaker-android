@@ -183,6 +183,7 @@
       }
 
       .positionable {
+
         padding: 10px;
         user-select: none;
 
@@ -195,10 +196,15 @@
           box-sizing: content-box;
         }
 
+        p {
+          margin: 0;
+        }
+
         &.current {
           margin: -1px;
           border: 1px dashed @white;
-          &::after {
+
+          &:after {
             z-index: -1;
             content: '';
             display: block;

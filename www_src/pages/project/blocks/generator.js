@@ -14,7 +14,7 @@ Generator.generateBlock = function(options) {
     return <Text value={options.value} />;
   }
   if (options.type === Generator.LINK) {
-   return <Link href={options.href} label={options.label} active={options.active}/>;
+   return <Link href={options.href} label={options.label} active={options.active} />;
   }
   if (options.type === Generator.IMAGE) {
     return <Image src={options.src} alt={options.alt} />;
