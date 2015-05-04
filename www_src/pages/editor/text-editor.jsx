@@ -24,20 +24,20 @@ var TextEditor = React.createClass({
       {
         id: 'fontWeight',
         icon: '../../img/B.svg',
-        uncheckedValue: 'normal',
-        checkedValue: 'bold'
+        uncheckedLabel: 'normal',
+        checkedLabel: 'bold'
       },
       {
         id: 'fontStyle',
         icon: '../../img/I.svg',
-        uncheckedValue: 'normal',
-        checkedValue: 'italic'
+        uncheckedLabel: 'normal',
+        checkedLabel: 'italic'
       },
       {
         id: 'textDecoration',
         icon: '../../img/U.svg',
-        uncheckedValue: 'none',
-        checkedValue: 'underline'
+        uncheckedLabel: 'none',
+        checkedLabel: 'underline'
       }
     ];
     var textAlignOptions = [

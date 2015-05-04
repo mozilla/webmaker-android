@@ -15,16 +15,16 @@ var Checkbox = React.createClass({
   getDefaultProps: function () {
     return {
       linkState: this.linkState,
-      checkedValue: true,
-      uncheckedValue: false
+      checkedLabel: true,
+      uncheckedLabel: false
     };
   },
   onChange: function (e) {
-    var val = e.target.checked ? this.props.checkedValue : this.props.uncheckedValue;
+    var val = e.target.checked ? this.props.checkedLabel : this.props.uncheckedLabel;
     this.valueLink.requestChange(val);
   },
   isChecked: function () {
-    return this.valueLink.value === this.props.checkedValue;
+    return this.valueLink.value === this.props.checkedLabel;
   },
   render: function () {
     var linkState = this.props.linkState;
