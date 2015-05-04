@@ -171,31 +171,29 @@
     height: 100%;
     width: 100%;
 
-    .touchOverlay {
-      position: fixed;
-      top: 0;
-      right: 0;
-      bottom: 0;
-      left: 0;
-      z-index: 2147483647; /* signed 32bit maxint */
-    }
+    .positionableContainer {
 
-    .positionable {
-      padding: 10px;
-      user-select: none;
-
-      position: relative;
-      display: inline-block;
-      z-index: 0;
-      background: inherit;
-
-      div {
-        box-sizing: content-box;
+      .touchOverlay {
+        position: fixed;
+        top: 0;
+        right: 0;
+        bottom: 0;
+        left: 0;
+        z-index: 2147483647; /* signed 32bit maxint */
       }
 
-      p {
-        margin: 0;
-      }
+      .positionable {
+        padding: 10px;
+        user-select: none;
+
+        position: relative;
+        display: inline-block;
+        z-index: 0;
+        background: inherit;
+
+        div {
+          box-sizing: content-box;
+        }
 
       &.current {
         margin: -1px;

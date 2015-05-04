@@ -34,14 +34,14 @@ var Project = React.createClass({
     }
 
     return <div id="project" className="demo">
-      <div ref="container" className="pages-container">
+      <div className="pages-container">
         <div className="page next top" />
         <div className="page next right" />
         <div className="page next bottom" />
         <div className="page next left" />
         <div className="page">
           <div className="inner">
-            <div className="positionables">{ positionables }</div>
+            <div ref="container" className="positionables">{ positionables }</div>
           </div>
         </div>3
       </div>
@@ -68,6 +68,10 @@ var Project = React.createClass({
     </div>
   },
 
+  componentDidMount: function() {
+    this.dims = this.refs.container.getDOMNode().getBoundingClientRect();
+  },
+
   deleteElement: function() {
     if(this.state.currentElement === -1) return;
     var content = this.state.content;
@@ -85,6 +89,8 @@ var Project = React.createClass({
   formPositionables: function(content) {
     return content.map((m, i) => {
       var element = Generator.generateBlock(m);
+      m.parentWidth = this.dims.width;
+      m.parentHeight = this.dims.height;
       return <div>
         <Positionable ref={"positionable"+i} key={"positionable"+i} {...m} current={this.state.currentElement===i} onUpdate={this.updateElement(i)}>
           {element}
