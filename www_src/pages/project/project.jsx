@@ -78,6 +78,7 @@ var Project = React.createClass({
 
   formPositionables: function(content) {
     return content.map((m, i) => {
+      if(m===false) return false;
       var element = Generator.generateBlock(m);
       m.parentWidth = this.dims.width;
       m.parentHeight = this.dims.height;
