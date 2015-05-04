@@ -2,15 +2,13 @@
 * Range
 */
 .range {
-  @_background: #E9EBF0;
-  @_rangeLine: #CDD2DD;
   display: flex;
   align-items: center;
   input[type=range] {
     -webkit-appearance: none;
     padding: 0;
     height: 2px;
-    background: @_rangeLine;
+    background: @heatherGrey;
     margin: 20px 0;
     &::before {
       content: '';
@@ -27,7 +25,7 @@
     cursor: pointer;
     // Generally, it's a good idea to avoid transparency
     // in moving parts where possible to improve animation performance
-    box-shadow: 0px 1px 0 1px darken(@_background, 4%);
+    box-shadow: 0px 1px 0 1px darken(@lightGrey, 4%);
   }
 
   .range-summary {

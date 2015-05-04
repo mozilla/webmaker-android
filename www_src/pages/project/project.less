@@ -2,7 +2,6 @@
   @_gutter: 10px;
   @_baseWidth: 320px;
   @_baseHeight: 440px;
-  @_bgYellow: #F0CF62;
 
   position: fixed;
   top: 0;
@@ -23,7 +22,7 @@
       left: 0;
       width: 100%;
       height: 100%;
-      background: @_bgYellow;
+      background: @yellow;
 
       .inner {
         width: 100%;
@@ -104,7 +103,7 @@
       left: 50%;
       border-radius: 50%;
       border: none;
-      color: #69A0FC;
+      color: @blue;
       background: white;
       overflow: hidden;
       height: 46px;
@@ -122,8 +121,8 @@
       &.add {
         transition: 0.2s ease-in-out;
         bottom: 0;
-        background: #69A0FC;
-        color: #FFF;
+        background: @blue;
+        color: @white;
         width: 56px;
         height: 56px;
         margin-left: -28px;
@@ -132,7 +131,7 @@
         &::after {
           content: '';
           display: block;
-          background: white;
+          background: @white;
           height: 22px;
           width: 4px;
           position: absolute;
@@ -190,7 +189,7 @@
 
       &.current {
         margin: -1px;
-        border: 1px dashed #FFF;
+        border: 1px dashed @white;
         &::after {
           z-index: -1;
           content: '';
@@ -200,7 +199,7 @@
           left: 0;
           width: 100%;
           height: 100%;
-          border: 1px dashed #69A0FC;
+          border: 1px dashed @blue;
         }
       }
     }
