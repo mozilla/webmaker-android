@@ -35,7 +35,7 @@ var ColorGroup = React.createClass({
         };
         return <label className={classNames(className)}>
           <span className={classNames(innerClassName)} style={{backgroundColor: color}} />
-          <input name="color" type="radio" value={color} checked={this.valueLink.value === color ? true : null} onChange={this.onChange} />
+          <input className="sr-only" name="color" type="radio" value={color} checked={this.valueLink.value === color ? true : null} onChange={this.onChange} />
         </label>
       })}
       <div className="tinker-container">

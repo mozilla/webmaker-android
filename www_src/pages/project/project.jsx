@@ -33,6 +33,8 @@ var Project = React.createClass({
       linkData = '#' + this.state.content[this.state.currentElement].type;
     }
 
+    console.log('/projects/123/elements/' + this.state.currentElement + linkData);
+
     return <div id="project" className="demo">
       <div className="pages-container">
         <div className="page next top" />
