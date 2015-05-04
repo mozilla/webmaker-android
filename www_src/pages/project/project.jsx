@@ -43,7 +43,7 @@ var Project = React.createClass({
           <div className="inner">
             <div ref="container" className="positionables">{ positionables }</div>
           </div>
-        </div>3
+        </div>
       </div>
 
       <div className={classNames({overlay: true, active: this.state.showAddMenu})}/>
