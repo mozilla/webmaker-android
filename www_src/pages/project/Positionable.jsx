@@ -83,7 +83,7 @@ var Positionable = React.createClass({
     };
 
     return (
-      <div className="positionableContainer" style={mainstyle}>
+      <div className="positionableContainer" style={mainstyle} key={this.props.key}>
         <div ref="overlay" className="touchOverlay" hidden={!this.state.touchactive} />
         <div style={style} className={className}>
           { this.props.children }

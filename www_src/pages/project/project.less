@@ -195,19 +195,20 @@
           box-sizing: content-box;
         }
 
-      &.current {
-        margin: -1px;
-        border: 1px dashed @white;
-        &::after {
-          z-index: -1;
-          content: '';
-          display: block;
-          position: absolute;
-          top: 0;
-          left: 0;
-          width: 100%;
-          height: 100%;
-          border: 1px dashed @blue;
+        &.current {
+          margin: -1px;
+          border: 1px dashed @white;
+          &::after {
+            z-index: -1;
+            content: '';
+            display: block;
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            border: 1px dashed @blue;
+          }
         }
       }
     }

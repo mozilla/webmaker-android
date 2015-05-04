@@ -72,16 +72,6 @@ var Project = React.createClass({
     this.dims = this.refs.container.getDOMNode().getBoundingClientRect();
   },
 
-  deleteElement: function() {
-    if(this.state.currentElement === -1) return;
-    var content = this.state.content;
-    content.splice(this.state.currentElement,1);
-    this.setState({
-      content: content,
-      currentElement: -1
-    });
-  },
-
   toggleAddMenu: function () {
     this.setState({showAddMenu: !this.state.showAddMenu});
   },
@@ -99,6 +89,13 @@ var Project = React.createClass({
     });
   },
 
+  appendElement: function(obj) {
+    this.setState({
+      content: this.state.content.concat([obj]),
+      showAddMenu: false
+    });
+  },
+
   updateElement: function(index) {
     return function(data) {
       var content = this.state.content;
@@ -108,15 +105,20 @@ var Project = React.createClass({
     }.bind(this);
   },
 
-  append: function(obj) {
+  deleteElement: function() {
+    if(this.state.currentElement === -1) return;
+    var content = this.state.content;
+    content[this.state.currentElement] = false;
+    // note that we do not splice, because the updateElement
+    // function relies on immutable array indices.
     this.setState({
-      content: this.state.content.concat([obj]),
-      showAddMenu: false
+      content: content,
+      currentElement: -1
     });
   },
 
   addLink: function() {
-    this.append(Generator.generateDefinition(Generator.LINK, {
+    this.appendElement(Generator.generateDefinition(Generator.LINK, {
       href: "https://webmaker.org",
       label: "webmaker.org",
       active: false
@@ -124,13 +126,13 @@ var Project = React.createClass({
   },
 
   addText: function() {
-    this.append(Generator.generateDefinition(Generator.TEXT, {
+    this.appendElement(Generator.generateDefinition(Generator.TEXT, {
       value: "This is a paragraph of text"
     }));
   },
 
   addImage: function() {
-    this.append(Generator.generateDefinition(Generator.IMAGE, {
+    this.appendElement(Generator.generateDefinition(Generator.IMAGE, {
       src: "../../img/toucan.svg",
       alt: "This is Tucker"
     }));
