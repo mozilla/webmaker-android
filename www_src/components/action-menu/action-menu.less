@@ -3,12 +3,6 @@
 */
 .action-menu {
   @_bottomGutter: 10px;
-
-  @_primaryBg: #69A0FC;
-  @_primaryText: #FFF;
-  @_secondaryBg: #FFF;
-  @_secondaryText: #718095;
-
   @_primarySize: 56px;
   @_secondarySize: 40px;
   @_spacing: 56px;
@@ -41,8 +35,8 @@
   .primary-btn {
     width: @_primarySize;
     height: @_primarySize;
-    background: @_primaryBg;
-    color: @_primaryText;
+    background: @blue;
+    color: @white;
     position: absolute;
     bottom: 0;
     left: 0;
@@ -62,8 +56,8 @@
     bottom: ((@_primarySize - @_secondarySize)/2);
     width: @_secondarySize;
     height: @_secondarySize;
-    background: @_secondaryBg;
-    color: @_secondaryText;
+    background: @white;
+    color: @slate;
     &.left {
       margin-left: -(@_secondarySize/2 + @_spacing);
     }
