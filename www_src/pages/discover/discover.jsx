@@ -11,13 +11,7 @@ var Discover = React.createClass({
     this.list = require('./mock.json');
 
     return {
-      list: this.list,
-      offset: 0,
-      limit: 10,
-      locale: {
-        language: 'en',
-        country: 'us'
-      }
+      list: this.list
     };
   },
   render: function () {
