@@ -77,13 +77,15 @@ var Project = React.createClass({
   },
 
   formPositionables: function(content) {
-    return content.map((m, i) => {
-      if(m===false) return false;
-      var element = Generator.generateBlock(m);
-      m.parentWidth = this.dims.width;
-      m.parentHeight = this.dims.height;
+    return content.map((props, i) => {
+      if (props === false) {
+        return false;
+      }
+      props.parentWidth = this.dims.width;
+      props.parentHeight = this.dims.height;
+      var element = Generator.generateBlock(props);
       return <div>
-        <Positionable ref={"positionable"+i} key={"positionable"+i} {...m} current={this.state.currentElement===i} onUpdate={this.updateElement(i)}>
+        <Positionable ref={"positionable"+i} key={"positionable"+i} {...props} current={this.state.currentElement===i} onUpdate={this.updateElement(i)}>
           {element}
         </Positionable>
       </div>;
