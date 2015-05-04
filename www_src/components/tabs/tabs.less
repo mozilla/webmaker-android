@@ -2,8 +2,6 @@
 * Tabs
 */
 .tabs {
-  @_color: #FFF;
-  @_borderColor: #414468;
   .tab-menu {
     margin: 0 0 20px 0;
     padding: 0;
@@ -14,7 +12,7 @@
       padding: 0;
       flex: 1;
       text-align: center;
-      box-shadow: inset -2px 0 0 @_borderColor;
+      box-shadow: inset -2px 0 0 @plum;
       &:last-child {
         box-shadow: none;
       }
@@ -29,7 +27,7 @@
       padding: 10px;
       width: 100%;
       &.selected {
-        box-shadow: 0 2px 0 @_color;
+        box-shadow: 0 2px 0 @white;
         .icon {
           opacity: 1;
         }
