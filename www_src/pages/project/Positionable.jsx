@@ -20,19 +20,23 @@ var Positionable = React.createClass({
   componentDidMount: function() {
     if(!this.state.interactive) return;
     var touchHandler = this.touchhandler = require("./touchhandler")(this);
-
     var dnode = this.getDOMNode();
-    dnode.addEventListener("touchstart", touchHandler.startmark);
     dnode.addEventListener("mousedown", touchHandler.startmark);
-    dnode.addEventListener("touchmove", touchHandler.panmove);
     dnode.addEventListener("mousemove", touchHandler.panmove);
-    dnode.addEventListener("touchend", touchHandler.endmark);
     dnode.addEventListener("mouseup", touchHandler.endmark);
 
+    // touch start enables the transform overlay, which handles
+    // all the touch/mouse interaction as long as there are any
+    // active fingers
+    dnode.addEventListener("touchstart", touchHandler.startmark);
+    dnode.addEventListener("touchmove", touchHandler.panmove);
+    dnode.addEventListener("touchend", touchHandler.endmark);
+
+    // the overlay handles all the two finger touch events
     var onode = this.refs.overlay.getDOMNode();
     onode.addEventListener("touchstart", touchHandler.secondFinger);
-    onode.addEventListener("touchmove", touchHandler.handleRS);
-    onode.addEventListener("touchend", touchHandler.endSecondFinger);
+    onode.addEventListener("touchmove", touchHandler.panmove);
+    onode.addEventListener("touchend", touchHandler.endmark);
   },
 
   componentDidUpdate: function(prevProps, prevState) {
@@ -44,7 +48,7 @@ var Positionable = React.createClass({
   render: function() {
     var x = this.state.x,
         y = this.state.y,
-        angle = this.state.angle,
+        angle = this.state.angle * 180/Math.PI,
         scale = this.state.scale,
         zIndex = this.state.zIndex;
 
@@ -76,8 +80,8 @@ var Positionable = React.createClass({
 
   handleTranslation: function(x, y) {
     this.setState({
-      x: this.transform.x + x,
-      y: this.transform.y + y
+      x: x,
+      y: y
     }, function() {
       if(this.props.onUpdate) {
         this.props.onUpdate(this.state);
@@ -87,8 +91,8 @@ var Positionable = React.createClass({
 
   handleRotationAndScale: function(angle, scale) {
     this.setState({
-      angle: this.transform.angle + angle,
-      scale: this.transform.scale * scale
+      angle: angle,
+      scale: scale
     }, function() {
       if(this.props.onUpdate) {
         this.props.onUpdate(this.state);
