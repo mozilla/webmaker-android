@@ -4,6 +4,7 @@
 .btn {
   position: relative;
   padding: 12px 24px;
+  margin-bottom: 10px;
   color: @slate;
   background: @white;
   border: none;
@@ -12,13 +13,16 @@
   display: inline-flex;
   align-items: center;
   justify-content: center;
+  .active {
+    box-shadow: none;
+    top: 2px;
+  }
   &.btn-block {
     display: flex;
     width: 100%;
   }
   &:active {
-    box-shadow: none;
-    top: 2px;
+    .active;
   }
   .icon {
     height: 1.2em;
@@ -27,6 +31,14 @@
     }
     &:last-child {
       margin-left: 0.3em;
+    }
+  }
+  &.btn-teal {
+    background: @teal;
+    color: @white;
+    box-shadow: 0 2px 0 0 darken(@teal, 20%);
+    &:active {
+      .active;
     }
   }
 }
