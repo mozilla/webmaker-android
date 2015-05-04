@@ -1,7 +1,7 @@
 [
     {
         "id": 1,
-        "version": "0.0.0",
+        "version": 1,
         "title": "The Birds of the Amazon",
         "featured": true,
         "history": {
@@ -32,7 +32,7 @@
     },
     {
         "id": 2,
-        "version": "0.0.0",
+        "version": 1,
         "title": "Something else",
         "featured": true,
         "history": {
@@ -63,7 +63,7 @@
     },
     {
         "id": 3,
-        "version": "0.0.0",
+        "version": 1,
         "title": "Something else",
         "featured": true,
         "history": {
@@ -94,7 +94,7 @@
     },
     {
         "id": 4,
-        "version": "0.0.0",
+        "version": 1,
         "title": "Something else",
         "featured": true,
         "history": {
