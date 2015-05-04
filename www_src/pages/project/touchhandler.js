@@ -27,7 +27,7 @@
       startmark: function(evt) {
         evt.preventDefault();
         evt.stopPropagation();
-        if(evt.touches.length === 1) {
+        if(!evt.touches || evt.touches.length === 1) {
           mark = copy(positionable.state);
           transform.x1 = evt.clientX || evt.touches[0].pageX;
           transform.y1 = evt.clientY || evt.touches[0].pageY;
@@ -41,6 +41,7 @@
       panmove: function(evt) {
         evt.preventDefault();
         evt.stopPropagation();
+        if (!transform.x1 && !transform.y1) return;
         if (evt.touches && evt.touches.length > 1) {
           return handlers.handleTouchRepositioning(evt);
         }
@@ -53,7 +54,7 @@
        * When all fingers are off the device, stop being in "touch mode"
        */
       endmark: function(evt) {
-        if(evt.touches.length > 0) {
+        if(evt.touches && evt.touches.length > 0) {
           return handlers.endSecondFinger(evt);
         }
         mark = copy(positionable.state);
