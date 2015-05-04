@@ -54,7 +54,6 @@ var Radio = React.createClass({
     linkState: this.linkState
   },
   onChange: function (e) {
-    console.log(e.target.value);
     this.valueLink.requestChange(e.target.value);
   },
   render: function () {
