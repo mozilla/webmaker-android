@@ -6,6 +6,7 @@ var ColorGroup = require('../../components/color-group/color-group.jsx');
 var ColorSpectrum = require('../../components/color-spectrum/color-spectrum.jsx');
 var Range = require('../../components/range/range.jsx');
 var Tabs = require('../../components/tabs/tabs.jsx');
+var ProjectSnapshot = require('../../components/project-snapshot/project-snapshot.jsx');
 
 var tabs = [
   {
@@ -53,8 +54,16 @@ var StyleGuide = React.createClass({
 
         <h2>Components</h2>
 
-        <h3>Button (.btn)</h3>
+        <h3>Button</h3>
+
+        <h4>Standard <code>btn</code></h4>
         <button className="btn">Button</button>
+
+        <h4>Full Width <code>btn btn-block</code></h4>
+        <button className="btn btn-block">Button</button>
+
+        <h4>Teal <code>btn btn-teal</code></h4>
+        <button className="btn btn-teal">Button</button>
 
         <h3>ColorGroup (JSX)</h3>
         <ColorGroup/>
@@ -67,6 +76,13 @@ var StyleGuide = React.createClass({
 
         <h3>Tabs (JSX)</h3>
         <Tabs tabs={tabs} className="editor-options"></Tabs>
+
+        <h3>ProjectSnapshot (JSX)</h3>
+        <ProjectSnapshot
+          url="/map/123"
+          href="/pages/map"
+          thumbnail="../../img/toucan.svg"
+          title="The Birds of the Amazon"/>
 
       </div>
     );

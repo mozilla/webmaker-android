@@ -10,6 +10,7 @@
 @import "components/color-spectrum/color-spectrum";
 @import "components/tabs/tabs";
 @import "components/action-menu/action-menu";
+@import "components/project-snapshot/project-snapshot";
 
 // Pages ----------------------------------------------------------------------
 
@@ -55,55 +56,5 @@ code, pre {
   > div {
     background: @lightGrey;
     min-height: 100%;
-  }
-}
-
-.tile {
-  display: inline-block;
-  border: 1px solid #CCC;
-  padding: 5px;
-  background: white;
-  img {
-    display: block;
-    max-width: 300px;
-  }
-}
-
-.demo {
-  padding: 20px;
-  text-align: center;
-}
-
-.tile.tile-demo {
-  position: relative;
-  .inner {
-    width: 280px;
-    height: 400px;
-    background: #F0CF62;
-  }
-  .img {
-    position: absolute;
-    top: 100px;
-    left: 40px;
-    width: 150px;
-    &.editable {
-      border: 1px dashed #669EFF;
-    }
-    img {
-      width: 100%;
-      display: block;
-    }
-  }
-}
-
-.tile.map-tile {
-  background: #F0CF62;
-  float: left;
-  margin-left: 10px;
-  margin-top: 10px;
-  width: 150px;
-  height: 200px;
-  img {
-    width: 50px;
   }
 }
