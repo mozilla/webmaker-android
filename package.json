@@ -5,23 +5,19 @@
   "main": "index.js",
   "scripts": {
     "start": "npm run build && npm-run-all --parallel webserver watch:**",
-
     "build": "npm-run-all build:**",
     "build:clean": "rimraf app/src/main/assets/www/ && mkdirp app/src/main/assets/www/",
     "build:static": "mkdirp www_src/static/ && mkdirp app/src/main/assets/ && ncp www_src/static/ app/src/main/assets/www/",
     "build:js": "webpack",
     "build:css": "npm run watch:css -- --no-watch",
     "build:html": "node ./npm_tasks/bin/build-html",
-
     "test": "npm-run-all test:**",
     "test:mocha": "mocha -R spec npm_tasks/tests",
     "test:lint": "jsxhint --harmony --config .jshintrc \"www_src/**/*.{js,jsx}\"",
-
     "watch:static": "watch \"npm run build:static\" www_src/static",
     "watch:js": "npm run build:js -- -d --watch",
     "watch:css": "autoless --source-map --autoprefix \"last 2 versions, android >= 4.2\" www_src app/src/main/assets/www",
     "watch:html": "watch \"npm run build:html\" www_src/html",
-
     "webserver": "live-server ./app/src/main/assets/www --port=4242"
   },
   "repository": {
@@ -64,6 +60,8 @@
     "lodash.defaults": "3.1.1",
     "react": "0.13.1",
     "react-hammerjs": "0.2.2",
+    "react-imageloader": "1.2.0",
+    "react-loadermixin": "1.0.4",
     "xhr": "2.0.1"
   }
 }
