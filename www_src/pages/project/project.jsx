@@ -68,10 +68,6 @@ var Project = React.createClass({
     </div>
   },
 
-  componentDidMount: function() {
-    this.containerDims = this.refs.container.getDOMNode().getBoundingClientRect();
-  },
-
   deleteElement: function() {
     if(this.state.currentElement === -1) return;
     var content = this.state.content;
@@ -89,8 +85,6 @@ var Project = React.createClass({
   formPositionables: function(content) {
     return content.map((m, i) => {
       var element = Generator.generateBlock(m);
-      m.parentWidth = this.containerDims.width;
-      m.parentHeight = this.containerDims.height;
       return <div>
         <Positionable ref={"positionable"+i} key={"positionable"+i} {...m} current={this.state.currentElement===i} onUpdate={this.updateElement(i)}>
           {element}

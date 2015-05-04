@@ -7,8 +7,8 @@ var Positionable = React.createClass({
 
   getInitialState: function() {
     return {
-      x: (this.props.x || 0) + Math.floor(this.props.parentWidth / 2),
-      y: (this.props.y || 0) + Math.floor(this.props.parentHeight / 2),
+      x: this.props.x || 0,
+      y: this.props.y || 0,
       scale: this.props.scale || 1,
       angle: this.props.angle || 0,
       zIndex: (typeof this.props.zIndex !== "undefined") ? this.props.zIndex : 1,
@@ -37,16 +37,6 @@ var Positionable = React.createClass({
     onode.addEventListener("touchstart", touchHandler.secondFinger);
     onode.addEventListener("touchmove", touchHandler.panmove);
     onode.addEventListener("touchend", touchHandler.endmark);
-
-    // make sure we're centered.
-    var dims = this.refs.positionable.getDOMNode().getBoundingClientRect();
-
-    console.log(this.props.parentWidth, this.props.parentHeight, dims.width, dims.height);
-
-    this.setState({
-      x: this.state.x - Math.floor(dims.width * 0.75),
-      y: this.state.y - Math.floor(dims.height * 0.75),
-    })
   },
 
   componentDidUpdate: function(prevProps, prevState) {
@@ -81,7 +71,7 @@ var Positionable = React.createClass({
     return (
       <div>
         <div ref="overlay" className="touchOverlay" hidden={!this.state.touchactive} />
-        <div ref="positionable" style={style} className={className}>
+        <div style={style} className={className}>
           { this.props.children }
         </div>
       </div>
