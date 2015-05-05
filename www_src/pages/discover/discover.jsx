@@ -1,43 +1,43 @@
-var React = require('react');
-var render = require('../../lib/render.jsx');
-var Binding = require('../../lib/binding.jsx');
+var React = require('react/addons');
+var ImageLoader = require('react-imageloader');
+
 var api = require('../../lib/api.js');
-var ProjectSnapshot = require('../../components/project-snapshot/project-snapshot.jsx');
+var render = require('../../lib/render.jsx');
+var Link = require('../../components/link/link.jsx');
 
 var Discover = React.createClass({
-  mixins: [Binding],
-  componentWillMount: function () {
-    api({
-      uri: '/c0645e6953e9949f8e5c/raw/'
-    }, function (err, body) {
-      console.dir(err);
-      console.dir(body);
-    });
+  mixins: [],
+  getInitialState: function () {
+    this.list = require('./mock.json');
+
+    return {
+      list: this.list
+    };
   },
   render: function () {
+    var cards = this.state.list.map( project => {
+      return (
+        <Link url={"/map/" + project.id} href="/pages/map" key={project.id} className="card">
+          <div className="thumbnail">
+            <ImageLoader src={project.thumbnail[480]}>
+              // @todo Show image error icon / graphic
+            </ImageLoader>
+          </div>
+
+          <div className="meta">
+            <div className="title">{project.title}</div>
+            <div className="author">{project.author.username}</div>
+          </div>
+        </Link>
+      );
+    });
+
     return (
       <div id="discover">
-        <ProjectSnapshot
-          url="/map/123"
-          href="/pages/map"
-          thumbnail="../../img/toucan.svg"
-          title="The Birds of the Amazon"/>
-
-        <ProjectSnapshot
-          url="/map/123"
-          href="/pages/map"
-          thumbnail="../../img/toucan.svg"
-          title="More birds"/>
-
-        <ProjectSnapshot
-          url="/map/123"
-          href="/pages/map"
-          thumbnail="../../img/toucan.svg"
-          title="Cool stuff, yo"/>
+        {cards}
       </div>
     );
   }
 });
 
-// Render!
 render(Discover);
