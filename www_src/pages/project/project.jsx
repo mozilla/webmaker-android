@@ -20,20 +20,25 @@ var Project = React.createClass({
     };
   },
 
+  componentWillMount: function() {
+    this.dims = {
+      width: 0,
+      height: 0
+    };
+  },
+
   render: function () {
     var positionables = this.formPositionables(this.state.content);
-    var editBtnClass = classNames({
+    var editButtonClass = classNames({
       edit: true,
-      active: this.state.currentElement >= 0 && !this.state.showAddMenu
+      active: this.state.currentElement > -1 && !this.state.showAddMenu
     });
 
     // Temporary
     var linkData = '';
-    if (this.state.currentElement >= 0) {
+    if (this.state.currentElement > -1) {
       linkData = '#' + this.state.content[this.state.currentElement].type;
     }
-
-    console.log('/projects/123/elements/' + this.state.currentElement + linkData);
 
     return <div id="project" className="demo">
       <div className="pages-container">
@@ -56,12 +61,12 @@ var Project = React.createClass({
           <button className="image" onClick={this.addImage}><img className="icon" src="../../img/camera.svg" /></button>
           <button className="link" onClick={this.addLink}><img className="icon" src="../../img/link.svg" /></button>
         </div>
-        <button className="add" onClick={this.toggleAddMenu}></button>
         <button className="delete" onClick={this.deleteElement} hidden={this.state.currentElement===-1}>
           <img className="icon" src="../../img/trash.svg" />
         </button>
+        <button className="add" onClick={this.toggleAddMenu}></button>
         <Link
-          className={editBtnClass}
+          className={editButtonClass}
           url={'/projects/123/elements/' + this.state.currentElement + linkData}
           href={'/pages/editor' + linkData}>
           <img className="icon" src="../../img/brush.svg" />
@@ -71,7 +76,10 @@ var Project = React.createClass({
   },
 
   componentDidMount: function() {
-    this.dims = this.refs.container.getDOMNode().getBoundingClientRect();
+    var bbox = this.refs.container.getDOMNode().getBoundingClientRect();
+    if(bbox) {
+      this.dims = bbox;
+    }
   },
 
   toggleAddMenu: function () {
