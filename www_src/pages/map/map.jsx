@@ -1,39 +1,48 @@
-var React = require('react');
+var React = require('react/addons');
+var update = React.addons.update;
 var assign = require('react/lib/Object.assign');
 var classNames = require('classnames');
 
-var uuid = require('../../lib/uuid');
 var render = require('../../lib/render.jsx');
-var Binding = require('../../lib/binding.jsx');
 var Cartesian = require('../../lib/cartesian');
 
 var Link = require('../../components/link/link.jsx');
 var {Menu, PrimaryButton, SecondaryButton} = require('../../components/action-menu/action-menu.jsx');
 
-
-var elements = require('./fakeElements');
+var api = require('../../lib/api');
 
 var Map = React.createClass({
   getInitialState: function () {
+    return {
+      selectedEl: '',
+      elements: [],
+      camera: {
+        x: 0,
+        y: 0
+      },
+      zoom: 0.5
+    };
+  },
+  componentWillMount: function () {
 
     var width = 300;
     var height = 380;
     var gutter = 20;
 
     this.cartesian = new Cartesian({
-      allCoords: elements.map(el => el.coords),
+      allCoords: [],
       width,
       height,
       gutter
     });
-
-    return {
-      selectedEl: '',
-      camera: this.cartesian.getFocusTransform({x: 0, y: 0}),
-      zoom: 0.5
-    };
+    api({uri: '/users/foo/projects/bar/pages'}, (err, pages) => {
+      this.cartesian.allCoords = pages.map(el => el.coords);
+      this.setState({
+        elements: pages,
+        camera: this.cartesian.getFocusTransform({x: 0, y: 0}),
+      });
+    });
   },
-  mixins: [Binding],
   componentDidMount: function () {
     var el = this.getDOMNode();
     var bounding = this.refs.bounding;
@@ -88,36 +97,40 @@ var Map = React.createClass({
   zoomIn: function () {
     this.setState({zoom: this.state.zoom * 2});
   },
-  edit: function () {
-    // todo - go to editor
-  },
   addPage: function (coords) {
     return () => {
-      var id = uuid();
-      elements.push({id, coords: coords, text: 'wahoo...'});
-      this.cartesian.allCoords.push(coords);
-      this.setState({
-        camera: this.cartesian.getFocusTransform(coords),
-        selectedEl: id
+      api({method: 'post', uri:'/users/foo/projects/bar/pages', json: {
+        coords: coords,
+        style: {backgroundColor: '#FFFFFF'},
+        elements: []
+      }}, (err, newEl) => {
+        this.cartesian.allCoords.push(coords);
+        this.setState({
+          elements: update(this.state.elements, {$push: [newEl]}),
+          camera: this.cartesian.getFocusTransform(coords),
+          selectedEl: newEl.id
+        })
       });
     };
   },
   removePage: function () {
     var index;
-    elements.forEach((el, i) => {
+    this.state.elements.forEach((el, i) => {
       if (el.id === this.state.selectedEl) index = i;
     });
     if (typeof index === 'undefined') return;
-    elements.splice(index, 1);
-    this.cartesian.allCoords.splice(index, 1);
-    var el = elements[index] || elements[index-1] || elements[0];
-    this.setState({
-      zoom: 0.5,
-      selectedEl: ''
+
+    api({method: 'delete', uri:'/users/foo/projects/bar/pages/' + this.state.selectedEl}, (err) => {
+      this.cartesian.allCoords.splice(index, 1);
+      this.setState({
+        elements: update(this.state.elements, {$splice: [[index, 1]]}),
+        zoom: this.state.zoom === 1 ? 0.5 : this.state.zoom,
+        selectedEl: ''
+      });
     });
+
   },
   render: function () {
-
     var containerStyle = {
       width: this.cartesian.width + 'px',
       height: this.cartesian.height + 'px'
@@ -132,14 +145,18 @@ var Map = React.createClass({
 
     return (
       <div id="map">
-        <div className="scaler" style={{transform: `scale(${this.state.zoom})`}}>
+
+        <div style={{opacity: this.state.elements.length ? 0 : 1}}>
+          Loading...
+        </div>
+
+        <div className="scaler" style={{opacity: this.state.elements.length ? 1 : 0 , transform: `scale(${this.state.zoom})`}}>
           <div ref="bounding" className="bounding" style={boundingStyle}>
             <div className="test-container" style={containerStyle}>
-            {elements.map((el) => {
+            {this.state.elements.map((el) => {
               return (<div className={classNames({'page-container': true, selected: el.id === this.state.selectedEl, unselected: el.id !== this.state.selectedEl && this.state.zoom === 1})}
-                  style={{transform: this.cartesian.getTransform(el.coords)}}
+                  style={{backgroundColor: el.style.backgroundColor, transform: this.cartesian.getTransform(el.coords)}}
                   onClick={this.selectPage(el)}>
-                <p>{el.text}</p>
               </div>);
             })}
             {this.cartesian.edges.map(coords => {

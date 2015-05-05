@@ -61,6 +61,7 @@
     "react": "0.13.1",
     "react-hammerjs": "0.2.2",
     "react-imageloader": "1.2.0",
+    "url-pattern": "^0.8.0",
     "xhr": "2.0.1"
   }
 }
