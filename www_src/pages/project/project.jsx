@@ -32,7 +32,7 @@ var Project = React.createClass({
     var secondaryClass = (name => {
       var names = {
         secondary: true,
-        active: this.state.currentElement >= 0 && !this.state.showAddMenu
+        active: this.state.currentElement > -1 && !this.state.showAddMenu
       };
       names[name] = true;
       return classNames(names);
@@ -40,7 +40,7 @@ var Project = React.createClass({
 
     // Temporary
     var linkData = '';
-    if (this.state.currentElement >= 0) {
+    if (this.state.currentElement > -1) {
       linkData = '#' + this.state.content[this.state.currentElement].type;
     }
 
