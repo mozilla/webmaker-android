@@ -2,6 +2,7 @@ var React = require('react/addons');
 var Binding = require('../../lib/binding.jsx');
 var ColorGroup = require('../../components/color-group/color-group.jsx');
 var Range = require('../../components/range/range.jsx');
+var Alert = require('../../components/alert/alert.jsx');
 
 var ImageEditor = React.createClass({
   mixins: [React.addons.LinkedStateMixin, Binding],
@@ -11,6 +12,9 @@ var ImageEditor = React.createClass({
       borderWidth: 0,
       borderColor: 'transparent'
     };
+  },
+  onChangeImageClick: function () {
+    this.refs.notImplementedWarning.show();
   },
   render: function () {
     var style = {
@@ -26,7 +30,8 @@ var ImageEditor = React.createClass({
         </div>
         <div className="editor-options">
           <div className="form-group">
-            <button className="btn btn-block"><img className="icon" src="../../img/change-image.svg" /> Change Image</button>
+            <button onClick={this.onChangeImageClick} className="btn btn-block"><img className="icon" src="../../img/change-image.svg" /> Change Image</button>
+            <Alert ref="notImplementedWarning">Not implemented (yet)</Alert>
           </div>
           <div className="form-group">
             <label>Transparency</label>

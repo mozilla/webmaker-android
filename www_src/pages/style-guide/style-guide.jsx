@@ -7,6 +7,7 @@ var ColorSpectrum = require('../../components/color-spectrum/color-spectrum.jsx'
 var Range = require('../../components/range/range.jsx');
 var Tabs = require('../../components/tabs/tabs.jsx');
 var ProjectSnapshot = require('../../components/project-snapshot/project-snapshot.jsx');
+var Alert = require('../../components/alert/alert.jsx');
 
 var tabs = [
   {
@@ -54,7 +55,7 @@ var StyleGuide = React.createClass({
 
         <h2>Components</h2>
 
-        <h3>Button</h3>
+        <h3>Buttons</h3>
 
         <h4>Standard <code>btn</code></h4>
         <button className="btn">Button</button>
@@ -64,6 +65,9 @@ var StyleGuide = React.createClass({
 
         <h4>Teal <code>btn btn-teal</code></h4>
         <button className="btn btn-teal">Button</button>
+
+        <h3>Alert (JSX)</h3>
+        <Alert>Bad bad bad!</Alert>
 
         <h3>ColorGroup (JSX)</h3>
         <ColorGroup/>
