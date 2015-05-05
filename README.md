@@ -38,6 +38,13 @@ To run and develop in a web browser without testing on device, simply run
 npm start
 ```
 
+## Contact Us
+IRC: `#webmaker` on `irc.mozilla.org`
+
+Forum: [https://groups.google.com/forum/#!forum/mozilla.webmaker](https://groups.google.com/forum/#!forum/mozilla.webmaker)
+
+---
+
 ## Adding New Pages or Components
 
 There are a few standards to bear in mind when adding new pages or components to the project.
@@ -58,8 +65,23 @@ Component markup should contain a top-level class name that corresponds to its f
 
 File names are hyphenated lowercase. For example: `section-2.jsx`.
 
-## Contact Us
-IRC: `#webmaker` on `irc.mozilla.org`
+## Network Assets
 
-Forum: [https://groups.google.com/forum/#!forum/mozilla.webmaker](https://groups.google.com/forum/#!forum/mozilla.webmaker)
+Webmaker for Android attempts to use network resources as sparingly as possible. In addition, it is important to cover failure and loading states gracefully at all times. To this end, we have a few React components and libraries included in the project to help make this easier:
 
+#### API Requests
+The `./lib/api.js` module is the primary way in which you should interact with api.webmaker.org. This module uses Android's `SharedPreferences` API to cache API requests by default thus reducing network requests. If you need to bypass the cache, you can send `useCache: false` to the module:
+
+```js
+var api = require('./lib/api.js');
+
+api({
+    uri: '/discover',
+    useCache: false
+}, function (err, results) {
+    // do stuff! 
+});
+``` 
+
+#### Loading Images
+Any time you are loading images over the network, we recommend that you use the `ImageLoader` react component. This gives you access to important events like loading and error states as well as a hook for providing a loading animation. Full documentation can be found here: https://github.com/hzdg/react-imageloader
