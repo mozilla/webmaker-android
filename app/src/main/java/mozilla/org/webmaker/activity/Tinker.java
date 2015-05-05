@@ -1,6 +1,7 @@
 package mozilla.org.webmaker.activity;
 
 import android.app.ActionBar;
+import android.content.res.Resources;
 import android.graphics.Color;
 import android.graphics.drawable.ColorDrawable;
 import android.os.Bundle;
@@ -22,16 +23,18 @@ public class Tinker extends WebmakerActivity {
         super.onCreate(savedInstanceState);
 
         // Custom styles
+        Resources res = getResources();
+        int shadowPlum = res.getColor(R.color.shadow_plum);
+        int plum = res.getColor(R.color.plum);
+
         ActionBar actionBar = getActionBar();
-        ColorDrawable colorOne = new ColorDrawable(Color.parseColor("#ff303250"));
-        ColorDrawable colorTwo = new ColorDrawable(Color.parseColor("#ff303250"));
-        actionBar.setStackedBackgroundDrawable(colorOne);
-        actionBar.setBackgroundDrawable(colorTwo);
+        actionBar.setStackedBackgroundDrawable(plum);
+        actionBar.setBackgroundDrawable(plum);
 
         Window window = getWindow();
         window.addFlags(WindowManager.LayoutParams.FLAG_DRAWS_SYSTEM_BAR_BACKGROUNDS);
         window.clearFlags(WindowManager.LayoutParams.FLAG_TRANSLUCENT_STATUS);
-        window.setStatusBarColor(0xff282733);
+        window.setStatusBarColor(shadowPlum);
     }
 
     @Override
