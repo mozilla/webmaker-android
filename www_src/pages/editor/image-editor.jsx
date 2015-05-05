@@ -31,7 +31,7 @@ var ImageEditor = React.createClass({
         <div className="editor-options">
           <div className="form-group">
             <button onClick={this.onChangeImageClick} className="btn btn-block"><img className="icon" src="../../img/change-image.svg" /> Change Image</button>
-            <Alert ref="notImplementedWarning">Not implemented (yet)</Alert>
+            <Alert ref="notImplementedWarning">Coming Soon!</Alert>
           </div>
           <div className="form-group">
             <label>Transparency</label>
