@@ -35,6 +35,8 @@ public class MainActivity extends Activity implements ActionBar.TabListener {
         final ActionBar actionBar = getActionBar();
         if (actionBar == null) throw new NullPointerException("ActionBar has returned null!");
         actionBar.setNavigationMode(ActionBar.NAVIGATION_MODE_TABS);
+        actionBar.setDisplayShowTitleEnabled(false);
+        actionBar.setDisplayShowHomeEnabled(false);
 
         // Create the adapter that will return a fragment for each of the three primary sections of the activity.
         SectionsPagerAdapter mSectionsPagerAdapter = new SectionsPagerAdapter(getFragmentManager(), this);
