@@ -39,22 +39,4 @@ public class WebmakerActivity extends Activity {
         view = null;
         super.onDestroy();
     }
-
-    /**
-     * Inflate the menu; this adds items to the action bar if it is present.
-     */
-    @Override
-    public boolean onCreateOptionsMenu(Menu menu) {
-        getMenuInflater().inflate(menuResId, menu);
-        return true;
-    }
-
-    /**
-     * Handle action bar item clicks here. The action bar will automatically handle
-     * clicks on the Home/Up button, so long as you specify a parent activity in AndroidManifest.xml
-     */
-    @Override
-    public boolean onOptionsItemSelected(MenuItem item) {
-        return item.getItemId() == R.id.action_settings;
-    }
 }
