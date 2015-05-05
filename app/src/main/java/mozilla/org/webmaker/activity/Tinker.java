@@ -24,11 +24,10 @@ public class Tinker extends WebmakerActivity {
 
         // Custom styles
         Resources res = getResources();
+        ColorDrawable plum = new ColorDrawable(getResources().getColor(R.color.plum));
         int shadowPlum = res.getColor(R.color.shadow_plum);
-        int plum = res.getColor(R.color.plum);
 
         ActionBar actionBar = getActionBar();
-        actionBar.setStackedBackgroundDrawable(plum);
         actionBar.setBackgroundDrawable(plum);
 
         Window window = getWindow();
