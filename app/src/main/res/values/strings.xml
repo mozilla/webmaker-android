@@ -3,10 +3,10 @@
 
     <string name="title_section1">Discover</string>
     <string name="title_section2">Make</string>
-    <string name="title_activity_map">Map</string>
-    <string name="title_activity_project">Project</string>
-    <string name="title_activity_editor">Editor</string>
-    <string name="title_activity_tinker">Tinker</string>
+    <string name="title_activity_map">Project</string>
+    <string name="title_activity_project">Page</string>
+    <string name="title_activity_editor">Options</string>
+    <string name="title_activity_tinker">Options</string>
 
     <string name="action_play">Play</string>
     <string name="action_settings">Project Settings</string>
