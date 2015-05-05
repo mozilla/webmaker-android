@@ -10,6 +10,10 @@
 @import "components/color-spectrum/color-spectrum";
 @import "components/tabs/tabs";
 @import "components/action-menu/action-menu";
+@import "components/project-snapshot/project-snapshot";
+@import "components/select/select";
+@import "components/option-panel/option-panel";
+
 
 // Pages ----------------------------------------------------------------------
 
@@ -58,52 +62,14 @@ code, pre {
   }
 }
 
-.tile {
-  display: inline-block;
-  border: 1px solid #CCC;
-  padding: 5px;
-  background: white;
-  img {
-    display: block;
-    max-width: 300px;
-  }
-}
-
-.demo {
-  padding: 20px;
-  text-align: center;
-}
-
-.tile.tile-demo {
-  position: relative;
-  .inner {
-    width: 280px;
-    height: 400px;
-    background: #F0CF62;
-  }
-  .img {
-    position: absolute;
-    top: 100px;
-    left: 40px;
-    width: 150px;
-    &.editable {
-      border: 1px dashed #669EFF;
-    }
-    img {
-      width: 100%;
-      display: block;
-    }
-  }
-}
-
-.tile.map-tile {
-  background: #F0CF62;
-  float: left;
-  margin-left: 10px;
-  margin-top: 10px;
-  width: 150px;
-  height: 200px;
-  img {
-    width: 50px;
-  }
+// Screen readers only
+.sr-only {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  padding: 0;
+  margin: -1px;
+  overflow: hidden;
+  clip: rect(0 0 0 0);
+  border: 0;
 }

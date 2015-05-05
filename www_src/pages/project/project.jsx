@@ -33,6 +33,8 @@ var Project = React.createClass({
       linkData = '#' + this.state.content[this.state.currentElement].type;
     }
 
+    console.log('/projects/123/elements/' + this.state.currentElement + linkData);
+
     return <div id="project" className="demo">
       <div className="pages-container">
         <div className="page next top" />
@@ -41,7 +43,7 @@ var Project = React.createClass({
         <div className="page next left" />
         <div className="page">
           <div className="inner">
-            <div className="positionables">{ positionables }</div>
+            <div ref="container" className="positionables">{ positionables }</div>
           </div>
         </div>
       </div>
@@ -55,6 +57,9 @@ var Project = React.createClass({
           <button className="link" onClick={this.addLink}><img className="icon" src="../../img/link.svg" /></button>
         </div>
         <button className="add" onClick={this.toggleAddMenu}></button>
+        <button className="delete" onClick={this.deleteElement} hidden={this.state.currentElement===-1}>
+          <img className="icon" src="../../img/trash.svg" />
+        </button>
         <Link
           className={editBtnClass}
           url={'/projects/123/elements/' + this.state.currentElement + linkData}
@@ -65,18 +70,34 @@ var Project = React.createClass({
     </div>
   },
 
+  componentDidMount: function() {
+    this.dims = this.refs.container.getDOMNode().getBoundingClientRect();
+  },
+
   toggleAddMenu: function () {
     this.setState({showAddMenu: !this.state.showAddMenu});
   },
 
   formPositionables: function(content) {
-    return content.map((m, i) => {
-      var element = Generator.generateBlock(m);
+    return content.map((props, i) => {
+      if (props === false) {
+        return false;
+      }
+      props.parentWidth = this.dims.width;
+      props.parentHeight = this.dims.height;
+      var element = Generator.generateBlock(props);
       return <div>
-        <Positionable ref={"positionable"+i} key={"positionable"+i} {...m} current={this.state.currentElement===i} onUpdate={this.updateElement(i)}>
+        <Positionable ref={"positionable"+i} key={"positionable"+i} {...props} current={this.state.currentElement===i} onUpdate={this.updateElement(i)}>
           {element}
         </Positionable>
       </div>;
+    });
+  },
+
+  appendElement: function(obj) {
+    this.setState({
+      content: this.state.content.concat([obj]),
+      showAddMenu: false
     });
   },
 
@@ -89,15 +110,20 @@ var Project = React.createClass({
     }.bind(this);
   },
 
-  append: function(obj) {
+  deleteElement: function() {
+    if(this.state.currentElement === -1) return;
+    var content = this.state.content;
+    content[this.state.currentElement] = false;
+    // note that we do not splice, because the updateElement
+    // function relies on immutable array indices.
     this.setState({
-      content: this.state.content.concat([obj]),
-      showAddMenu: false
+      content: content,
+      currentElement: -1
     });
   },
 
   addLink: function() {
-    this.append(Generator.generateDefinition(Generator.LINK, {
+    this.appendElement(Generator.generateDefinition(Generator.LINK, {
       href: "https://webmaker.org",
       label: "webmaker.org",
       active: false
@@ -105,13 +131,13 @@ var Project = React.createClass({
   },
 
   addText: function() {
-    this.append(Generator.generateDefinition(Generator.TEXT, {
+    this.appendElement(Generator.generateDefinition(Generator.TEXT, {
       value: "This is a paragraph of text"
     }));
   },
 
   addImage: function() {
-    this.append(Generator.generateDefinition(Generator.IMAGE, {
+    this.appendElement(Generator.generateDefinition(Generator.IMAGE, {
       src: "../../img/toucan.svg",
       alt: "This is Tucker"
     }));
