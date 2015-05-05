@@ -1,5 +1,8 @@
-var xhr = require('xhr');
+//var xhr = require('xhr');
+var xhr = require('./api-mock').getResponse;
 var defaults = require('lodash.defaults');
+var BASE_URL = '';
+var mocks = require('./api-mock');
 
 module.exports = function (options, callback) {
   // Set default options
@@ -15,11 +18,11 @@ module.exports = function (options, callback) {
     options.uri = options.url;
     delete options.url;
   }
-  options.uri = 'https://gist.githubusercontent.com/thisandagain' + options.uri;
+  options.uri = BASE_URL + options.uri;
 
   // Set cache key
   var key = 'cache::' + options.method.toLowerCase() + '::' + options.uri;
-  
+
   // Use device cache if window.Android is available & options.useCache is true
   if (window.Android && options.useCache === true) {
     window.Android.logText('Fetching from cache "' + key + '"');
@@ -35,7 +38,7 @@ module.exports = function (options, callback) {
     if (window.Android) {
       window.Android.setSharedPreferences(key, JSON.stringify(body));
     }
-    
+
     // Return response body
     callback(null, body);
   });

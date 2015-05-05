@@ -1,7 +1,6 @@
 var React = require('react');
 var classNames = require('classnames');
 var render = require('../../lib/render.jsx');
-var Binding = require('../../lib/binding.jsx');
 
 var Link = require('../../components/link/link.jsx');
 
@@ -9,8 +8,6 @@ var Positionable = require('./positionable.jsx');
 var Generator = require('./blocks/generator');
 
 var Project = React.createClass({
-
-  mixins: [Binding],
 
   getInitialState: function() {
     return {
