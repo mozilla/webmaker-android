@@ -35,7 +35,7 @@ var Map = React.createClass({
       height,
       gutter
     });
-    api({uri: '/users/foo/projects/bar/pages', useCache: false}, (err, pages) => {
+    api({uri: '/users/foo/projects/bar/pages'}, (err, pages) => {
       this.cartesian.allCoords = pages.map(el => el.coords);
       this.setState({
         elements: pages,
@@ -99,7 +99,7 @@ var Map = React.createClass({
   },
   addPage: function (coords) {
     return () => {
-      api({method: 'post', uri:'/users/foo/projects/bar/pages', useCache: false, json: {
+      api({method: 'post', uri:'/users/foo/projects/bar/pages', json: {
         coords: coords,
         style: {backgroundColor: '#FFFFFF'},
         elements: []
@@ -120,7 +120,7 @@ var Map = React.createClass({
     });
     if (typeof index === 'undefined') return;
 
-    api({method: 'delete', uri:'/users/foo/projects/bar/pages/' + this.state.selectedEl, useCache: false}, (err) => {
+    api({method: 'delete', uri:'/users/foo/projects/bar/pages/' + this.state.selectedEl}, (err) => {
       this.cartesian.allCoords.splice(index, 1);
       this.setState({
         elements: update(this.state.elements, {$splice: [[index, 1]]}),

@@ -8,7 +8,7 @@ module.exports = function (options, callback) {
   // Set default options
   defaults(options, {
     method: 'GET',
-    useCache: true,
+    useCache: false,
     json: {},
     timeout: 60000    // 60 seconds
   });
