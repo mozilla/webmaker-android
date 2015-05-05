@@ -1,15 +1,14 @@
 <resources>
     <string name="app_name">Webmaker</string>
 
-
     <string name="title_section1">Discover</string>
     <string name="title_section2">Make</string>
-
-    <string name="hello_world">Hello world!</string>
-
-    <string name="action_settings">Settings</string>
     <string name="title_activity_map">Map</string>
     <string name="title_activity_project">Project</string>
-    <string name="title_activity_editor">Editor</string>
-    <string name="title_activity_tinker">Tinker</string>
+    <string name="title_activity_editor">Options</string>
+    <string name="title_activity_tinker">Options</string>
+
+    <string name="action_play">Play</string>
+    <string name="action_settings">Project Settings</string>
+    <string name="action_share">Share Project</string>
 </resources>
