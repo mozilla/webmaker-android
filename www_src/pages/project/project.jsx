@@ -65,10 +65,10 @@ var Project = React.createClass({
           <button className="image" onClick={this.addImage}><img className="icon" src="../../img/camera.svg" /></button>
           <button className="link" onClick={this.addLink}><img className="icon" src="../../img/link.svg" /></button>
         </div>
-        <button className="add" onClick={this.toggleAddMenu}></button>
         <button className={ secondaryClass("delete") } onClick={this.deleteElement} active={this.state.currentElement===-1}>
           <img className="icon" src="../../img/trash.svg" />
         </button>
+        <button className="add" onClick={this.toggleAddMenu}></button>
         <Link
           className={ secondaryClass("edit") }
           url={'/projects/123/elements/' + this.state.currentElement + linkData}
