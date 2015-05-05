@@ -29,7 +29,7 @@
         height: 100%;
       }
 
-      // This is the "next" page preview stuff
+      // These are the previews of the adjacent pages
       &.next {
         opacity: 0.3;
       }
@@ -82,6 +82,7 @@
     right: 0;
     z-index: 999;
     margin: 0 auto;
+
     &.add-active {
       .add-menu button {
         transform: translateY(-80px);
@@ -97,6 +98,7 @@
         transform: rotate(45deg);
       }
     }
+
     button,
     a {
       position: absolute;
@@ -114,10 +116,12 @@
       display: flex;
       align-items: center;
       justify-content: center;
+
       .icon {
         height: 16px;
         display: block;
       }
+
       &.add {
         transition: 0.2s ease-in-out;
         bottom: 0;
@@ -127,8 +131,9 @@
         height: 56px;
         margin-left: -28px;
         box-shadow: 0 4px 3px -2px rgba(0,0,0,0.2);
-        &::before,
-        &::after {
+
+        &:before,
+        &:after {
           content: '';
           display: block;
           background: @white;
@@ -141,27 +146,23 @@
           margin-top: -11px;
           border-radius: 3px;
         }
-        &::after {
+
+        &:after {
           transform: rotate(90deg);
         }
       }
-      &.edit {
+
+      &.secondary {
         margin-left: 36px;
+        &.delete {
+          margin-left: -82px;
+        }
         bottom: 5px;
         box-shadow: 0 4px 3px -2px rgba(0,0,0,0.2);
         transform: translateY(80px);
         &.active {
           transform: translateY(0);
         }
-      }
-
-      &.delete {
-        position: fixed;
-        top: 3em;
-        left: 3em;
-      }
-      &.delete[hidden] {
-        display: none;
       }
     }
   }

@@ -29,14 +29,18 @@ var Project = React.createClass({
 
   render: function () {
     var positionables = this.formPositionables(this.state.content);
-    var editButtonClass = classNames({
-      edit: true,
-      active: this.state.currentElement > -1 && !this.state.showAddMenu
+    var secondaryClass = (name => {
+      var names = {
+        secondary: true,
+        active: this.state.currentElement >= 0 && !this.state.showAddMenu
+      };
+      names[name] = true;
+      return classNames(names);
     });
 
     // Temporary
     var linkData = '';
-    if (this.state.currentElement > -1) {
+    if (this.state.currentElement >= 0) {
       linkData = '#' + this.state.content[this.state.currentElement].type;
     }
 
@@ -61,12 +65,12 @@ var Project = React.createClass({
           <button className="image" onClick={this.addImage}><img className="icon" src="../../img/camera.svg" /></button>
           <button className="link" onClick={this.addLink}><img className="icon" src="../../img/link.svg" /></button>
         </div>
-        <button className="delete" onClick={this.deleteElement} hidden={this.state.currentElement===-1}>
+        <button className="add" onClick={this.toggleAddMenu}></button>
+        <button className={ secondaryClass("delete") } onClick={this.deleteElement} active={this.state.currentElement===-1}>
           <img className="icon" src="../../img/trash.svg" />
         </button>
-        <button className="add" onClick={this.toggleAddMenu}></button>
         <Link
-          className={editButtonClass}
+          className={ secondaryClass("edit") }
           url={'/projects/123/elements/' + this.state.currentElement + linkData}
           href={'/pages/editor' + linkData}>
           <img className="icon" src="../../img/brush.svg" />
