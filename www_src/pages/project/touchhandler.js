@@ -71,6 +71,9 @@
         evt.preventDefault();
         evt.stopPropagation();
         if (evt.touches.length < 2) return;
+        // we need to rebind finger 1, because it may have moved!
+        transform.x1 = evt.touches[0].pageX;
+        transform.y1 = evt.touches[0].pageY;
         transform.x2 = evt.touches[1].pageX;
         transform.y2 = evt.touches[1].pageY;
         var x1 = transform.x1,
