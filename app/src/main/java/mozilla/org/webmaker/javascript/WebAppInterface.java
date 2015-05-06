@@ -7,21 +7,28 @@ import android.webkit.JavascriptInterface;
 import android.content.SharedPreferences;
 
 import mozilla.org.webmaker.router.Router;
+import org.json.JSONObject;
 
 public class WebAppInterface {
 
-    private Context mContext;
-    private SharedPreferences mPrefs;
-    private String mPrefKey;
-    private String mPageState;
+    protected Context mContext;
+    protected SharedPreferences mPrefs;
+    protected JSONObject mRoute;
+    protected String mPrefKey;
+    protected String mPageState;
 
     public static final String WEBMAKER_PREFS = "WEBMAKER";
 
     public WebAppInterface(Context c) {
+        this(c, null);
+    }
+
+    public WebAppInterface(Context c, JSONObject routeParams) {
         mContext = c;
         mPrefKey = mContext.getClass().getSimpleName() + "_prefs";
         mPrefs = mContext.getSharedPreferences(mPrefKey, 0);
         mPageState = mPrefs.getString("page_state", "{}");
+        mRoute = routeParams;
         Log.v("wm", "getting state " + mPrefKey + ": " + mPageState);
     }
 
@@ -58,5 +65,15 @@ public class WebAppInterface {
     @JavascriptInterface
     public void setView(String url) {
         Router.sharedRouter().open(url);
+    }
+
+    @JavascriptInterface
+    public String getRouteParams() {
+        if (mRoute == null) {
+            return "";
+        }
+
+        Log.v("Router", mRoute.toString());
+        return mRoute.toString();
     }
 }
