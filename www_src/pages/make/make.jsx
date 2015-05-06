@@ -2,7 +2,7 @@ var React = require('react');
 var render = require('../../lib/render.jsx');
 var Binding = require('../../lib/binding.jsx');
 var api = require('../../lib/api.js');
-var ProjectSnapshot = require('../../components/project-snapshot/project-snapshot.jsx');
+var Card = require('../../components/card/card.jsx');
 
 var Make = React.createClass({
   mixins: [Binding],
@@ -18,23 +18,23 @@ var Make = React.createClass({
     return (
       <div id="make">
         <button className="btn btn-block btn-teal">+ Create a Project</button>
-        <ProjectSnapshot
+        <Card
           url="/map/123"
           href="/pages/map"
           thumbnail="../../img/toucan.svg"
-          title="The Birds of the Amazon"/>
+          title="The Birds of the Amazon" />
 
-        <ProjectSnapshot
+        <Card
           url="/map/123"
           href="/pages/map"
           thumbnail="../../img/toucan.svg"
-          title="More birds"/>
+          title="More birds" />
 
-        <ProjectSnapshot
+        <Card
           url="/map/123"
           href="/pages/map"
           thumbnail="../../img/toucan.svg"
-          title="Cool stuff, yo"/>
+          title="Cool stuff, yo" />
       </div>
     );
   }
