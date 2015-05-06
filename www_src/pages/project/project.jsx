@@ -1,183 +1,181 @@
-var React = require('react');
+var React = require('react/addons');
+var update = React.addons.update;
+var assign = require('react/lib/Object.assign');
 var classNames = require('classnames');
+
 var render = require('../../lib/render.jsx');
+var Cartesian = require('../../lib/cartesian');
 
 var Link = require('../../components/link/link.jsx');
+var {Menu, PrimaryButton, SecondaryButton} = require('../../components/action-menu/action-menu.jsx');
 
-var Positionable = require('./positionable.jsx');
-var Generator = require('./blocks/generator');
+var api = require('../../lib/api');
 
-var Project = React.createClass({
-
-  getInitialState: function() {
+var Map = React.createClass({
+  getInitialState: function () {
     return {
-      content: [],
-      currentElement: -1,
-      showAddMenu: false
+      selectedEl: '',
+      elements: [],
+      camera: {
+        x: 0,
+        y: 0
+      },
+      zoom: 0.5
     };
   },
+  componentWillMount: function () {
 
-  componentWillMount: function() {
-    this.dims = {
-      width: 0,
-      height: 0
-    };
+    var width = 300;
+    var height = 380;
+    var gutter = 20;
+
+    this.cartesian = new Cartesian({
+      allCoords: [],
+      width,
+      height,
+      gutter
+    });
+    api({uri: '/users/foo/projects/bar/pages'}, (err, pages) => {
+      this.cartesian.allCoords = pages.map(el => el.coords);
+      this.setState({
+        elements: pages,
+        camera: this.cartesian.getFocusTransform({x: 0, y: 0}),
+      });
+    });
   },
+  componentDidMount: function () {
+    var el = this.getDOMNode();
+    var bounding = this.refs.bounding;
+    var boundingEl = bounding.getDOMNode();
+    var startX, startY, deltaX, deltaY;
+    var didMove = false;
 
-  render: function () {
-    var positionables = this.formPositionables(this.state.content);
-    var secondaryClass = (name => {
-      var names = {
-        secondary: true,
-        active: this.state.currentElement > -1 && !this.state.showAddMenu
-      };
-      names[name] = true;
-      return classNames(names);
+    el.addEventListener('touchstart', (event) => {
+      didMove = false;
+      startX = event.touches[0].clientX;
+      startY = event.touches[0].clientY;
+      boundingEl.style.transition = 'none';
     });
 
-    // Temporary
-    var linkData = '';
-    if (this.state.currentElement > -1) {
-      linkData = '#' + this.state.content[this.state.currentElement].type;
-    }
+    el.addEventListener('touchmove', (event) => {
+      didMove = true;
 
-    return <div id="project" className="demo">
-      <div className="pages-container">
-        <div className="page next top" />
-        <div className="page next right" />
-        <div className="page next bottom" />
-        <div className="page next left" />
-        <div className="page">
-          <div className="inner">
-            <div ref="container" className="positionables">{ positionables }</div>
+      var x = parseInt(this.state.camera.x);
+      var y = parseInt(this.state.camera.y);
+
+      deltaX = (event.touches[0].clientX - startX) / this.state.zoom;
+      deltaY = (event.touches[0].clientY - startY) / this.state.zoom;
+
+      var translation = 'translate(' + (x + deltaX) + 'px, ' + (y + deltaY) + 'px)';
+      boundingEl.style.transform = translation;
+
+    });
+
+    el.addEventListener('touchend', (event) => {
+      boundingEl.style.transition = '';
+      if (didMove) {
+        this.state.camera.x += deltaX;
+        this.state.camera.y += deltaY;
+      }
+    });
+  },
+  selectPage: function (el) {
+    return () => {
+      var state = {
+        camera: this.cartesian.getFocusTransform(el.coords),
+        selectedEl: el.id,
+      };
+      if (this.state.selectedEl === el.id) {
+        state.zoom = 1;
+      }
+      this.setState(state);
+    };
+  },
+  zoomOut: function () {
+    this.setState({zoom: this.state.zoom / 2});
+  },
+  zoomIn: function () {
+    this.setState({zoom: this.state.zoom * 2});
+  },
+  addPage: function (coords) {
+    return () => {
+      api({method: 'post', uri:'/users/foo/projects/bar/pages', json: {
+        coords: coords,
+        style: {backgroundColor: '#FFFFFF'},
+        elements: []
+      }}, (err, newEl) => {
+        this.cartesian.allCoords.push(coords);
+        this.setState({
+          elements: update(this.state.elements, {$push: [newEl]}),
+          camera: this.cartesian.getFocusTransform(coords),
+          selectedEl: newEl.id
+        })
+      });
+    };
+  },
+  removePage: function () {
+    var index;
+    this.state.elements.forEach((el, i) => {
+      if (el.id === this.state.selectedEl) index = i;
+    });
+    if (typeof index === 'undefined') return;
+
+    api({method: 'delete', uri:'/users/foo/projects/bar/pages/' + this.state.selectedEl}, (err) => {
+      this.cartesian.allCoords.splice(index, 1);
+      this.setState({
+        elements: update(this.state.elements, {$splice: [[index, 1]]}),
+        zoom: this.state.zoom === 1 ? 0.5 : this.state.zoom,
+        selectedEl: ''
+      });
+    });
+
+  },
+  render: function () {
+    var containerStyle = {
+      width: this.cartesian.width + 'px',
+      height: this.cartesian.height + 'px'
+    };
+
+    var boundingStyle = assign(
+      {transform: `translate(${this.state.camera.x}px, ${this.state.camera.y}px)`},
+      this.cartesian.getBoundingSize()
+    );
+
+    var addContainerStyle = classNames('page-container add', {off: this.state.zoom == 1});
+
+    return (
+      <div id="map">
+
+        <div style={{opacity: this.state.elements.length ? 0 : 1}}>
+          Loading...
+        </div>
+
+        <div className="scaler" style={{opacity: this.state.elements.length ? 1 : 0 , transform: `scale(${this.state.zoom})`}}>
+          <div ref="bounding" className="bounding" style={boundingStyle}>
+            <div className="test-container" style={containerStyle}>
+            {this.state.elements.map((el) => {
+              return (<div className={classNames({'page-container': true, selected: el.id === this.state.selectedEl, unselected: el.id !== this.state.selectedEl && this.state.zoom === 1})}
+                  style={{backgroundColor: el.style.backgroundColor, transform: this.cartesian.getTransform(el.coords)}}
+                  onClick={this.selectPage(el)}>
+              </div>);
+            })}
+            {this.cartesian.edges.map(coords => {
+              return (<div className={addContainerStyle} style={{transform: this.cartesian.getTransform(coords)}} onClick={this.addPage(coords)}>
+                <img className="icon" src="../../img/plus.svg" />
+              </div>);
+            })}
+            </div>
           </div>
         </div>
+        <Menu>
+          <SecondaryButton side="left" off={this.state.zoom <= 0.25} onClick={this.zoomOut} icon="../../img/zoom-out.svg" />
+          <SecondaryButton side="right" off={!this.state.selectedEl} onClick={this.removePage} icon="../../img/trash.svg" />
+          <PrimaryButton onClick={this.zoomIn} off={this.state.zoom >= 1} icon="../../img/zoom-in.svg" />
+          <PrimaryButton url="/projects/123" href="/pages/project" off={this.state.zoom < 1} icon="../../img/pencil.svg" />
+        </Menu>
       </div>
-
-      <div className={classNames({overlay: true, active: this.state.showAddMenu})}/>
-
-      <div className={classNames({'controls': true, 'add-active': this.state.showAddMenu})}>
-        <div className="add-menu">
-          <button className="text" onClick={this.addText}><img className="icon" src="../../img/text.svg" /></button>
-          <button className="image" onClick={this.addImage}><img className="icon" src="../../img/camera.svg" /></button>
-          <button className="link" onClick={this.addLink}><img className="icon" src="../../img/link.svg" /></button>
-        </div>
-        <button className={ secondaryClass("delete") } onClick={this.deleteElement} active={this.state.currentElement===-1}>
-          <img className="icon" src="../../img/trash.svg" />
-        </button>
-        <button className="add" onClick={this.toggleAddMenu}></button>
-        <Link
-          className={ secondaryClass("edit") }
-          url={'/projects/123/elements/' + this.state.currentElement + linkData}
-          href={'/pages/editor' + linkData}>
-          <img className="icon" src="../../img/brush.svg" />
-        </Link>
-      </div>
-    </div>
-  },
-
-  componentDidMount: function() {
-    var bbox = this.refs.container.getDOMNode().getBoundingClientRect();
-    if(bbox) {
-      this.dims = bbox;
-    }
-  },
-
-  toggleAddMenu: function () {
-    this.setState({showAddMenu: !this.state.showAddMenu});
-  },
-
-  formPositionables: function(content) {
-    return content.map((props, i) => {
-      if (props === false) {
-        return false;
-      }
-      props.parentWidth = this.dims.width;
-      props.parentHeight = this.dims.height;
-      var element = Generator.generateBlock(props);
-      return <div>
-        <Positionable ref={"positionable"+i} key={"positionable"+i} {...props} current={this.state.currentElement===i} onUpdate={this.updateElement(i)}>
-          {element}
-        </Positionable>
-      </div>;
-    });
-  },
-
-  appendElement: function(obj) {
-    this.setState({
-      content: this.state.content.concat([obj]),
-      showAddMenu: false
-    });
-  },
-
-  updateElement: function(index) {
-    return function(data) {
-      var content = this.state.content;
-      var entry = content[index];
-      Object.keys(data).forEach(k => entry[k] = data[k]);
-      this.setState({ currentElement: index });
-    }.bind(this);
-  },
-
-  deleteElement: function() {
-    if(this.state.currentElement === -1) return;
-    var content = this.state.content;
-    content[this.state.currentElement] = false;
-    // note that we do not splice, because the updateElement
-    // function relies on immutable array indices.
-    this.setState({
-      content: content,
-      currentElement: -1
-    });
-  },
-
-  addLink: function() {
-    this.appendElement(Generator.generateDefinition(Generator.LINK, {
-      href: "https://webmaker.org",
-      label: "webmaker.org",
-      active: false
-    }));
-  },
-
-  addText: function() {
-    this.appendElement(Generator.generateDefinition(Generator.TEXT, {
-      value: "This is a paragraph of text"
-    }));
-  },
-
-  addImage: function() {
-    this.appendElement(Generator.generateDefinition(Generator.IMAGE, {
-      src: "../../img/toucan.svg",
-      alt: "This is Tucker"
-    }));
-  },
-
-  save: function() {
-    return JSON.stringify(this.state.content);
-  },
-
-  saveToString: function() {
-    prompt("Content data:", this.save())
-  },
-
-  load: function(content) {
-    this.setState({
-      content: content
-    }, function() {
-      console.log("restored state");
-    });
-  },
-
-  loadFromString: function() {
-    var data = prompt("Content data:");
-    try {
-      var content = JSON.parse(data);
-      this.load(content);
-    } catch (e) {
-      console.error("could not parse data as JSON");
-    }
+    );
   }
 });
 
-// Render!
-render(Project);
+render(Map);

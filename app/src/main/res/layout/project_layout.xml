@@ -3,5 +3,4 @@
     android:layout_height="match_parent"
     tools:context="mozilla.org.webmaker.activity.Project"
     android:id="@+id/project_layout">
-
 </RelativeLayout>

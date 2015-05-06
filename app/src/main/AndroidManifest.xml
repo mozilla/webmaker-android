@@ -23,23 +23,14 @@
             </intent-filter>
         </activity>
         <activity
-            android:name=".activity.Map"
-            android:label="@string/title_activity_map"
+            android:name=".activity.Project"
+            android:label="@string/title_activity_project"
             android:parentActivityName=".MainActivity"
             android:screenOrientation="portrait" >
         </activity>
         <activity
-            android:name=".activity.Project"
-            android:label="@string/title_activity_project"
-            android:parentActivityName=".activity.Map"
-            android:screenOrientation="portrait" >
-            <meta-data
-                android:name="android.support.PARENT_ACTIVITY"
-                android:value=".activity.Map" />
-        </activity>
-        <activity
-            android:name=".activity.Editor"
-            android:label="@string/title_activity_editor"
+            android:name=".activity.Page"
+            android:label="@string/title_activity_page"
             android:parentActivityName=".activity.Project"
             android:screenOrientation="portrait" >
             <meta-data
@@ -47,13 +38,22 @@
                 android:value=".activity.Project" />
         </activity>
         <activity
-            android:name=".activity.Tinker"
-            android:label="@string/title_activity_tinker"
-            android:parentActivityName=".activity.Editor"
+            android:name=".activity.Element"
+            android:label="@string/title_activity_element"
+            android:parentActivityName=".activity.Page"
             android:screenOrientation="portrait" >
             <meta-data
                 android:name="android.support.PARENT_ACTIVITY"
-                android:value=".activity.Editor" />
+                android:value=".activity.Page" />
+        </activity>
+        <activity
+            android:name=".activity.Tinker"
+            android:label="@string/title_activity_tinker"
+            android:parentActivityName=".activity.Element"
+            android:screenOrientation="portrait" >
+            <meta-data
+                android:name="android.support.PARENT_ACTIVITY"
+                android:value=".activity.Element" />
         </activity>
     </application>
 </manifest>
