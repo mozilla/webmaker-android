@@ -23,7 +23,7 @@
             </intent-filter>
         </activity>
         <activity
-            android:name=".activity.Map"
+            android:name=".activity.Project"
             android:label="@string/title_activity_map"
             android:parentActivityName=".MainActivity"
             android:screenOrientation="portrait" >
@@ -31,11 +31,11 @@
         <activity
             android:name=".activity.Page"
             android:label="@string/title_activity_project"
-            android:parentActivityName=".activity.Map"
+            android:parentActivityName=".activity.Project"
             android:screenOrientation="portrait" >
             <meta-data
                 android:name="android.support.PARENT_ACTIVITY"
-                android:value=".activity.Map" />
+                android:value=".activity.Project" />
         </activity>
         <activity
             android:name=".activity.Editor"

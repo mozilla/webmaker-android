@@ -9,9 +9,9 @@ import mozilla.org.webmaker.R;
 import mozilla.org.webmaker.WebmakerActivity;
 import mozilla.org.webmaker.view.WebmakerWebView;
 
-public class Map extends WebmakerActivity {
-    public Map() {
-        super("map", R.id.map_layout, R.layout.map_layout, R.menu.menu_map);
+public class Project extends WebmakerActivity {
+    public Project() {
+        super("project", R.id.map_layout, R.layout.map_layout, R.menu.menu_map);
     }
 
     @Override
