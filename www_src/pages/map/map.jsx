@@ -29,6 +29,13 @@ var Map = React.createClass({
     var height = 380;
     var gutter = 20;
 
+    if (window.Android) {
+      var routeParams = window.Android.getRouteParams();
+      console.dir('----------------------');
+      console.dir(route);
+      console.dir('----------------------');
+    }
+
     this.cartesian = new Cartesian({
       allCoords: [],
       width,

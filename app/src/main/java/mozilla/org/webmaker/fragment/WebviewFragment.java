@@ -49,7 +49,7 @@ public class WebviewFragment extends Fragment {
         }
 
         // Create webview
-        mWebView = new WebmakerWebView(mView.getContext(), pageId);
+        mWebView = new WebmakerWebView(mView.getContext(), pageId, null);
         RelativeLayout layout = (RelativeLayout)mView.findViewById(R.id.webview_fragment);
         layout.addView(mWebView);
         return mView;
