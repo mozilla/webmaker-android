@@ -7,7 +7,7 @@ var Link = require('../../components/link/link.jsx');
 var Positionable = require('./positionable.jsx');
 var Generator = require('./blocks/generator');
 
-var Page = React.createClass({
+var Project = React.createClass({
 
   getInitialState: function() {
     return {
@@ -25,6 +25,10 @@ var Page = React.createClass({
   },
 
   render: function () {
+    var content = this.state.content;
+    var currentElement = this.state.currentElement;
+    var currentElementType = content[currentElement] ? content[currentElement].type : '';
+
     var positionables = this.formPositionables(this.state.content);
     var secondaryClass = (name => {
       var names = {
@@ -34,12 +38,6 @@ var Page = React.createClass({
       names[name] = true;
       return classNames(names);
     });
-
-    // Temporary
-    var linkData = '';
-    if (this.state.currentElement > -1) {
-      linkData = '#' + this.state.content[this.state.currentElement].type;
-    }
 
     return <div id="project" className="demo">
       <div className="pages-container">
@@ -62,14 +60,14 @@ var Page = React.createClass({
           <button className="image" onClick={this.addImage}><img className="icon" src="../../img/camera.svg" /></button>
           <button className="link" onClick={this.addLink}><img className="icon" src="../../img/link.svg" /></button>
         </div>
-        <button className={ secondaryClass("delete") } onClick={this.deleteElement} active={this.state.currentElement===-1}>
+        <button className={secondaryClass("delete")} onClick={this.deleteElement} active={this.state.currentElement===-1}>
           <img className="icon" src="../../img/trash.svg" />
         </button>
         <button className="add" onClick={this.toggleAddMenu}></button>
         <Link
-          className={ secondaryClass("edit") }
-          url={'/projects/123/elements/' + this.state.currentElement + linkData}
-          href={'/pages/editor' + linkData}>
+          className={secondaryClass("edit")}
+          url={'/elements/123/' + currentElement + '/' + currentElementType}
+          href={'/pages/element' + '#' + currentElementType} >
           <img className="icon" src="../../img/brush.svg" />
         </Link>
       </div>
@@ -180,4 +178,4 @@ var Page = React.createClass({
 });
 
 // Render!
-render(Page);
+render(Project);
