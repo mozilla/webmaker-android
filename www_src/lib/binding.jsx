@@ -3,9 +3,6 @@ module.exports = {
   componentWillMount: function () {
     if (this.android) {
       var state = JSON.parse(this.android.getState());
-      var route = JSON.parse(this.android.getRouteParams());
-      
-      state.route = route;
       this.setState(state);
     }
   },
