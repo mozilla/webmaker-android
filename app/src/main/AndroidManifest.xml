@@ -29,7 +29,7 @@
             android:screenOrientation="portrait" >
         </activity>
         <activity
-            android:name=".activity.Project"
+            android:name=".activity.Page"
             android:label="@string/title_activity_project"
             android:parentActivityName=".activity.Map"
             android:screenOrientation="portrait" >
@@ -40,11 +40,11 @@
         <activity
             android:name=".activity.Editor"
             android:label="@string/title_activity_editor"
-            android:parentActivityName=".activity.Project"
+            android:parentActivityName=".activity.Page"
             android:screenOrientation="portrait" >
             <meta-data
                 android:name="android.support.PARENT_ACTIVITY"
-                android:value=".activity.Project" />
+                android:value=".activity.Page" />
         </activity>
         <activity
             android:name=".activity.Tinker"

@@ -7,7 +7,7 @@ var Link = require('../../components/link/link.jsx');
 var Positionable = require('./positionable.jsx');
 var Generator = require('./blocks/generator');
 
-var Project = React.createClass({
+var Page = React.createClass({
 
   getInitialState: function() {
     return {
@@ -180,4 +180,4 @@ var Project = React.createClass({
 });
 
 // Render!
-render(Project);
+render(Page);
