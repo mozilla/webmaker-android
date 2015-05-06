@@ -38,8 +38,8 @@
                 android:value=".activity.Project" />
         </activity>
         <activity
-            android:name=".activity.Editor"
-            android:label="@string/title_activity_editor"
+            android:name=".activity.Element"
+            android:label="@string/title_activity_element"
             android:parentActivityName=".activity.Page"
             android:screenOrientation="portrait" >
             <meta-data
@@ -49,11 +49,11 @@
         <activity
             android:name=".activity.Tinker"
             android:label="@string/title_activity_tinker"
-            android:parentActivityName=".activity.Editor"
+            android:parentActivityName=".activity.Element"
             android:screenOrientation="portrait" >
             <meta-data
                 android:name="android.support.PARENT_ACTIVITY"
-                android:value=".activity.Editor" />
+                android:value=".activity.Element" />
         </activity>
     </application>
 </manifest>

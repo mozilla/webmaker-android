@@ -3,7 +3,7 @@ package mozilla.org.webmaker;
 import android.app.Application;
 import android.util.Log;
 
-import mozilla.org.webmaker.activity.Editor;
+import mozilla.org.webmaker.activity.Element;
 import mozilla.org.webmaker.activity.Project;
 import mozilla.org.webmaker.activity.Page;
 import mozilla.org.webmaker.activity.Tinker;
@@ -32,7 +32,7 @@ public class WebmakerApplication extends Application {
         Router.sharedRouter().map("/main/:tab", MainActivity.class);
         Router.sharedRouter().map("/map/:projectId", Project.class);
         Router.sharedRouter().map("/projects/:projectId", Page.class);
-        Router.sharedRouter().map("/projects/:projectId/elements/:elementId", Editor.class);
+        Router.sharedRouter().map("/projects/:projectId/elements/:elementId", Element.class);
         Router.sharedRouter().map("/projects/:projectId/elements/:elementId/:attributeId", Tinker.class);
 
         // @todo Restore state

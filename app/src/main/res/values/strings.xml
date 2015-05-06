@@ -5,7 +5,7 @@
     <string name="title_section2">Make</string>
     <string name="title_activity_project">Project</string>
     <string name="title_activity_page">Page</string>
-    <string name="title_activity_editor">Options</string>
+    <string name="title_activity_element">Options</string>
     <string name="title_activity_tinker">Options</string>
 
     <string name="action_play">Play</string>
