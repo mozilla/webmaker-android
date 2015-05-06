@@ -11,11 +11,11 @@ import org.json.JSONObject;
 
 public class WebAppInterface {
 
-    private Context mContext;
-    private SharedPreferences mPrefs;
-    private JSONObject mRoute;
-    private String mPrefKey;
-    private String mPageState;
+    protected Context mContext;
+    protected SharedPreferences mPrefs;
+    protected JSONObject mRoute;
+    protected String mPrefKey;
+    protected String mPageState;
 
     public static final String WEBMAKER_PREFS = "WEBMAKER";
 
