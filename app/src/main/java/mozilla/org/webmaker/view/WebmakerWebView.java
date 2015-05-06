@@ -11,6 +11,10 @@ import org.json.JSONObject;
 
 public class WebmakerWebView extends WebView {
 
+    public WebmakerWebView(Context context, String pageName) {
+        this(context, pageName, null);
+    }
+
     @SuppressLint("SetJavaScriptEnabled")
     public WebmakerWebView(Context context, String pageName, JSONObject routeParams) {
         super(context);

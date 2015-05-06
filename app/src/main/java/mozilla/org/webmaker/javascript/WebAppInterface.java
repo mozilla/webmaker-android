@@ -19,6 +19,10 @@ public class WebAppInterface {
 
     public static final String WEBMAKER_PREFS = "WEBMAKER";
 
+    public WebAppInterface(Context c) {
+        this(c, null);
+    }
+
     public WebAppInterface(Context c, JSONObject routeParams) {
         mContext = c;
         mPrefKey = mContext.getClass().getSimpleName() + "_prefs";
