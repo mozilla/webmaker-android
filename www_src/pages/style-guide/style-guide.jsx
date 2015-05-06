@@ -6,7 +6,7 @@ var ColorGroup = require('../../components/color-group/color-group.jsx');
 var ColorSpectrum = require('../../components/color-spectrum/color-spectrum.jsx');
 var Range = require('../../components/range/range.jsx');
 var Tabs = require('../../components/tabs/tabs.jsx');
-var ProjectSnapshot = require('../../components/project-snapshot/project-snapshot.jsx');
+var Card = require('../../components/card/card.jsx');
 var Alert = require('../../components/alert/alert.jsx');
 
 var tabs = [
@@ -81,12 +81,13 @@ var StyleGuide = React.createClass({
         <h3>Tabs (JSX)</h3>
         <Tabs tabs={tabs} className="editor-options"></Tabs>
 
-        <h3>ProjectSnapshot (JSX)</h3>
-        <ProjectSnapshot
+        <h3>Card (JSX)</h3>
+        <Card
           url="/map/123"
           href="/pages/map"
           thumbnail="../../img/toucan.svg"
-          title="The Birds of the Amazon"/>
+          title="The Birds of the Amazon"
+          author="someperson" />
 
       </div>
     );
