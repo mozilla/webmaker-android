@@ -49,39 +49,74 @@ var Map = React.createClass({
       });
     });
   },
+
   componentDidMount: function () {
     var el = this.getDOMNode();
     var bounding = this.refs.bounding;
     var boundingEl = bounding.getDOMNode();
-    var startX, startY, deltaX, deltaY;
+    var scaleEl = this.refs.scaler.getDOMNode();
+    var isZoom, startX, startY, startDistance, deltaX, deltaY, currentZoom;
     var didMove = false;
+    var ZOOM_SENSITIVITY = 300;
 
     el.addEventListener('touchstart', (event) => {
       didMove = false;
       startX = event.touches[0].clientX;
       startY = event.touches[0].clientY;
       boundingEl.style.transition = 'none';
+      scaleEl.style.transition = 'none';
+
+      if (event.touches.length > 1) {
+        isZoom = true;
+        var dx = event.touches[1].clientX - startX;
+        var dy = event.touches[1].clientY - startY;
+        startDistance = Math.sqrt(dx*dx + dy*dy);
+      } else {
+        isZoom = false;
+      }
+
     });
 
     el.addEventListener('touchmove', (event) => {
       didMove = true;
+      if (isZoom && event.touches.length > 1) {
+        currentZoom = this.state.zoom;
+        var dx = event.touches[1].clientX - event.touches[0].clientX
+        var dy = event.touches[1].clientY - event.touches[0].clientY;
+        var distance = Math.sqrt(dx*dx + dy*dy);
 
-      var x = parseInt(this.state.camera.x);
-      var y = parseInt(this.state.camera.y);
+        currentZoom = currentZoom + ((distance - startDistance) / ZOOM_SENSITIVITY);
+        currentZoom = Math.min(Math.max(currentZoom, 0.25), 1);
 
-      deltaX = (event.touches[0].clientX - startX) / this.state.zoom;
-      deltaY = (event.touches[0].clientY - startY) / this.state.zoom;
+        scaleEl.style.transform = 'scale(' + currentZoom + ')';
+      } else if (!isZoom) {
+        var x = this.state.camera.x;
+        var y = this.state.camera.y;
 
-      var translation = 'translate(' + (x + deltaX) + 'px, ' + (y + deltaY) + 'px)';
-      boundingEl.style.transform = translation;
+        deltaX = (event.touches[0].clientX - startX) / this.state.zoom;
+        deltaY = (event.touches[0].clientY - startY) / this.state.zoom;
+
+        var translation = 'translate(' + (x + deltaX) + 'px, ' + (y + deltaY) + 'px)';
+        boundingEl.style.transform = translation;
+      }
 
     });
 
     el.addEventListener('touchend', (event) => {
       boundingEl.style.transition = '';
-      if (didMove) {
-        this.state.camera.x += deltaX;
-        this.state.camera.y += deltaY;
+      scaleEl.style.transition = '';
+      if (!didMove) return;
+      if (isZoom) {
+        this.setState({
+          zoom: currentZoom
+        });
+      } else {
+        this.setState({
+          camera: {
+            x: this.state.camera.x + deltaX,
+            y: this.state.camera.y + deltaY
+          }
+        });
       }
     });
   },
@@ -91,9 +126,6 @@ var Map = React.createClass({
         camera: this.cartesian.getFocusTransform(el.coords),
         selectedEl: el.id,
       };
-      if (this.state.selectedEl === el.id) {
-        state.zoom = 1;
-      }
       this.setState(state);
     };
   },
@@ -130,7 +162,7 @@ var Map = React.createClass({
       this.cartesian.allCoords.splice(index, 1);
       this.setState({
         elements: update(this.state.elements, {$splice: [[index, 1]]}),
-        zoom: this.state.zoom === 1 ? 0.5 : this.state.zoom,
+        zoom: this.state.zoom >= 1 ? 0.5 : this.state.zoom,
         selectedEl: ''
       });
     });
@@ -147,8 +179,6 @@ var Map = React.createClass({
       this.cartesian.getBoundingSize()
     );
 
-    var addContainerStyle = classNames('page-container add', {off: this.state.zoom == 1});
-
     return (
       <div id="map">
 
@@ -156,17 +186,17 @@ var Map = React.createClass({
           Loading...
         </div>
 
-        <div className="scaler" style={{opacity: this.state.elements.length ? 1 : 0 , transform: `scale(${this.state.zoom})`}}>
+        <div ref="scaler" className="scaler" style={{opacity: this.state.elements.length ? 1 : 0 , transform: `scale(${this.state.zoom})`}}>
           <div ref="bounding" className="bounding" style={boundingStyle}>
             <div className="test-container" style={containerStyle}>
             {this.state.elements.map((el) => {
-              return (<div className={classNames({'page-container': true, selected: el.id === this.state.selectedEl, unselected: el.id !== this.state.selectedEl && this.state.zoom === 1})}
+              return (<div className={classNames({'page-container': true, selected: el.id === this.state.selectedEl})}
                   style={{backgroundColor: el.style.backgroundColor, transform: this.cartesian.getTransform(el.coords)}}
                   onClick={this.selectPage(el)}>
               </div>);
             })}
             {this.cartesian.edges.map(coords => {
-              return (<div className={addContainerStyle} style={{transform: this.cartesian.getTransform(coords)}} onClick={this.addPage(coords)}>
+              return (<div className="page-container add" style={{transform: this.cartesian.getTransform(coords)}} onClick={this.addPage(coords)}>
                 <img className="icon" src="../../img/plus.svg" />
               </div>);
             })}
@@ -174,10 +204,8 @@ var Map = React.createClass({
           </div>
         </div>
         <Menu>
-          <SecondaryButton side="left" off={this.state.zoom <= 0.25} onClick={this.zoomOut} icon="../../img/zoom-out.svg" />
           <SecondaryButton side="right" off={!this.state.selectedEl} onClick={this.removePage} icon="../../img/trash.svg" />
-          <PrimaryButton onClick={this.zoomIn} off={this.state.zoom >= 1} icon="../../img/zoom-in.svg" />
-          <PrimaryButton url="/projects/123" href="/pages/project" off={this.state.zoom < 1} icon="../../img/pencil.svg" />
+          <PrimaryButton url="/projects/123" off={!this.state.selectedEl} href="/pages/project" icon="../../img/pencil.svg" />
         </Menu>
       </div>
     );
