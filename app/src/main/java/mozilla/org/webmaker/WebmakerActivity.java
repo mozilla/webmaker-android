@@ -31,12 +31,15 @@ public class WebmakerActivity extends Activity {
         super.onCreate(savedInstanceState);
 
         // Extract route information from intent extras
-        Bundle intentExtras = getIntent().getExtras();
         routeParams = new JSONObject();
-        try {
-            routeParams.put("project", intentExtras.get("projectId"));
-        } catch (JSONException e) {
-            e.printStackTrace();
+
+        Bundle intentExtras = getIntent().getExtras();
+        if (intentExtras != null) {
+            try {
+                routeParams.put("project", intentExtras.get("projectId"));
+            } catch (JSONException e) {
+                e.printStackTrace();
+            }
         }
 
         // Add webview to layout
