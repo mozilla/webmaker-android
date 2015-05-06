@@ -69,6 +69,10 @@ public class WebAppInterface {
 
     @JavascriptInterface
     public String getRouteParams() {
+        if (mRoute == null) {
+            return "";
+        }
+
         Log.v("Router", mRoute.toString());
         return mRoute.toString();
     }
