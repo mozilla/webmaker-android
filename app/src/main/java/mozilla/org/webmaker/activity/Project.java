@@ -11,7 +11,7 @@ import mozilla.org.webmaker.view.WebmakerWebView;
 
 public class Project extends WebmakerActivity {
     public Project() {
-        super("project", R.id.map_layout, R.layout.map_layout, R.menu.menu_map);
+        super("project", R.id.project_layout, R.layout.project_layout, R.menu.menu_project);
     }
 
     @Override
