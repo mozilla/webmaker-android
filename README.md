@@ -79,9 +79,18 @@ api({
     uri: '/discover',
     useCache: false
 }, function (err, results) {
-    // do stuff! 
+    // do stuff!
 });
-``` 
+```
 
 #### Loading Images
 Any time you are loading images over the network, we recommend that you use the `<ImageLoader>` react component. This gives you access to important events like loading and error states as well as a hook for providing a loading animation. Full documentation can be found here: https://github.com/hzdg/react-imageloader
+
+#### Accessing Android Route Parameters
+```js
+var router = require('./lib/router.js');
+var params = router.getRouteParams();
+
+console.dir(params);
+// will log an object containing all parameters from the Android `Router` class
+```
