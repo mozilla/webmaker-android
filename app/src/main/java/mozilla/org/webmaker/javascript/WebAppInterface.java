@@ -65,6 +65,7 @@ public class WebAppInterface {
 
     @JavascriptInterface
     public JSONObject getRouteParams() {
+        Log.v("ROUTE!!", mRoute.toString());
         return mRoute;
     }
 }

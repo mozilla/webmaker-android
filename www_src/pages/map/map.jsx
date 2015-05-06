@@ -30,9 +30,9 @@ var Map = React.createClass({
     var gutter = 20;
 
     if (window.Android) {
-      var routeParams = window.Android.getRouteParams();
+      var params = window.Android.getRouteParams();
       console.dir('----------------------');
-      console.dir(route);
+      console.dir(params.toString());
       console.dir('----------------------');
     }
 
