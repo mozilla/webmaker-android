@@ -4,7 +4,6 @@ module.exports = {
     if (window.Android) {
       p = JSON.parse(window.Android.getRouteParams());
     }
-
     return p;
   }
 };
