@@ -30,7 +30,7 @@
         </activity>
         <activity
             android:name=".activity.Page"
-            android:label="@string/title_activity_project"
+            android:label="@string/title_activity_page"
             android:parentActivityName=".activity.Project"
             android:screenOrientation="portrait" >
             <meta-data
