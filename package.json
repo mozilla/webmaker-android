@@ -34,7 +34,7 @@
     "autoless": "^0.1.7",
     "babel-core": "^4.7.16",
     "babel-loader": "^4.3.0",
-    "colors": "^1.0.3",
+    "colors": "~1.1.0",
     "fs-extra": "^0.18.0",
     "json-loader": "^0.5.1",
     "jsx-loader": "^0.12.2",
@@ -57,7 +57,7 @@
   },
   "dependencies": {
     "classnames": "1.2.1",
-    "color": "^0.8.0",
+    "color": "0.8.0",
     "lodash.defaults": "3.1.1",
     "react": "0.13.1",
     "react-hammerjs": "0.2.2",
