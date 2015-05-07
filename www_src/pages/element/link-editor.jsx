@@ -13,8 +13,15 @@ var LinkEditor = React.createClass({
     return {
       borderRadius: 5,
       color: "#69A0FC",
-      fontFamily: 'Roboto'
+      fontFamily: 'Roboto',
+      innerHTML: 'Tap me'
     };
+  },
+  editText: function () {
+    var text = window.prompt('Edit the text');
+    this.setState({
+      innerHTML: text
+    });
   },
   render: function () {
     var tapStyle = {
@@ -28,7 +35,7 @@ var LinkEditor = React.createClass({
     return (
       <div id="editor">
         <div className="editor-preview">
-          <button className="btn" style={tapStyle}>Tap me</button>
+          <button className="btn" onClick={this.editText} style={tapStyle}>{this.state.innerHTML}</button>
         </div>
         <div className="editor-options">
           <div className="form-group">
