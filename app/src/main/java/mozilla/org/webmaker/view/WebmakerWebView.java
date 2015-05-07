@@ -8,7 +8,7 @@ import android.view.animation.AlphaAnimation;
 import android.view.animation.Animation;
 import android.view.animation.DecelerateInterpolator;
 import android.webkit.WebView;
-//import mozilla.org.webmaker.client.WebClient;
+
 import android.webkit.JsPromptResult;
 import android.webkit.WebChromeClient;
 import mozilla.org.webmaker.javascript.WebAppInterface;
@@ -25,7 +25,6 @@ public class WebmakerWebView extends WebView {
         super(context);
         this.setLayoutParams(new ViewGroup.LayoutParams(ViewGroup.LayoutParams.MATCH_PARENT, ViewGroup.LayoutParams.MATCH_PARENT));
         this.getSettings().setJavaScriptEnabled(true);
-//        this.setWebViewClient(new WebClient());
         this.setWebChromeClient(new WebChromeClient() {
             private void animate(WebView view) {
                 Animation fadeIn = new AlphaAnimation(0, 1);
