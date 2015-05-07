@@ -1,13 +1,22 @@
 var React = require('react/addons');
 var render = require('../../lib/render.jsx');
 
-var ImageEditor = require('./image-editor.jsx');
-var LinkEditor = require('./link-editor.jsx');
-var TextEditor = require('./text-editor.jsx');
+var Router = require('../../lib/router.js');
 
-// Render!
-var hash = window.location.hash;
-if (hash==="#link") { render(LinkEditor); }
-else if (hash === "#text") { render(TextEditor); }
-else if (hash === "#image") { render(ImageEditor); }
-else { render(LinkEditor); }
+var editors = {
+  image: require('./image-editor.jsx'),
+  link: require('./link-editor.jsx'),
+  text: require('./text-editor.jsx')
+};
+
+var Element = React.createClass({
+  mixins: [Router],
+  render: function () {
+    var params = this.getRouteParams();
+    var Editor = (params.editor && editors[params.editor]) || (window.hash && editors[window.hash.replace('#', '')]) || editors['text'];
+    console.log(Editor);
+    return Editor;
+  }
+});
+
+render(Element);

@@ -6,7 +6,6 @@ var classNames = require('classnames');
 var render = require('../../lib/render.jsx');
 var router = require('../../lib/router.jsx');
 var Cartesian = require('../../lib/cartesian');
-
 var Link = require('../../components/link/link.jsx');
 var {Menu, PrimaryButton, SecondaryButton} = require('../../components/action-menu/action-menu.jsx');
 
@@ -32,10 +31,6 @@ var Map = React.createClass({
   },
 
   componentWillMount: function () {
-    console.log('--------------');
-    console.dir(this.state.route);
-    console.dir(this.state.route.project);
-    console.log('--------------');
 
     var width = 300;
     var height = 380;
@@ -187,6 +182,8 @@ var Map = React.createClass({
       this.cartesian.getBoundingSize()
     );
 
+    var pageUrl = `projects/${this.state.route.project}/pages/${this.state.selectedEl}`;
+
     return (
       <div id="map">
 
@@ -213,7 +210,7 @@ var Map = React.createClass({
 
         <Menu>
           <SecondaryButton side="right" off={!this.state.selectedEl} onClick={this.removePage} icon="../../img/trash.svg" />
-          <PrimaryButton url="/projects/123" off={!this.state.selectedEl} href="/pages/page" icon="../../img/pencil.svg" />
+          <PrimaryButton url={pageUrl}  off={!this.state.selectedEl} href="/pages/page" icon="../../img/pencil.svg" />
         </Menu>
       </div>
     );

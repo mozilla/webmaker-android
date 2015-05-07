@@ -29,6 +29,9 @@ public class WebAppInterface {
         mPrefs = mContext.getSharedPreferences(mPrefKey, 0);
         mPageState = mPrefs.getString("page_state", "{}");
         mRoute = routeParams;
+        if (routeParams != null) {
+            Log.v("wm", "routeparams " + routeParams.toString());
+        }
         Log.v("wm", "getting state " + mPrefKey + ": " + mPageState);
     }
 

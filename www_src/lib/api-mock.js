@@ -40,13 +40,19 @@ function getResponse(options, cb) {
 
     // get page
     if (method === 'get') {
-      cb(null, {}, JSON.parse(JSON.stringify(pages[id])));
+      var data = pages[id] ? JSON.parse(JSON.stringify(pages[id])) : null;
+      cb(null, {}, data);
     }
 
     // update page
     else if (method === 'put') {
-      pages[id] = object.assign({}, pages[id], options.json);
-      cb(null, {}, JSON.parse(JSON.stringify(pages[id])));
+      console.log(id, pages[id], options.json);
+      if (!pages[id]) {
+        cb(new Error('Page with id ' + id + ' does not exist'));
+      } else {
+        pages[id] = object.assign({}, pages[id], options.json);
+        cb(null, {}, JSON.parse(JSON.stringify(pages[id])));
+      }
     }
 
     // delete page

@@ -19,20 +19,20 @@ var Make = React.createClass({
       <div id="make">
         <button className="btn btn-block btn-teal">+ Create a Project</button>
         <Card
-          url="/map/123"
-          href="/pages/map"
+          url="/projects/123"
+          href="/pages/project"
           thumbnail="../../img/toucan.svg"
           title="The Birds of the Amazon" />
 
         <Card
-          url="/map/123"
-          href="/pages/map"
+          url="/projects/123"
+          href="/pages/project"
           thumbnail="../../img/toucan.svg"
           title="More birds" />
 
         <Card
-          url="/map/123"
-          href="/pages/map"
+          url="/projects/123"
+          href="/pages/project"
           thumbnail="../../img/toucan.svg"
           title="Cool stuff, yo" />
       </div>
