@@ -46,11 +46,10 @@ function getResponse(options, cb) {
 
     // update page
     else if (method === 'put') {
-      console.log(id, pages[id], options.json);
       if (!pages[id]) {
         cb(new Error('Page with id ' + id + ' does not exist'));
       } else {
-        pages[id] = object.assign({}, pages[id], options.json);
+        pages[id] = assign({}, pages[id], options.json);
         cb(null, {}, JSON.parse(JSON.stringify(pages[id])));
       }
     }
