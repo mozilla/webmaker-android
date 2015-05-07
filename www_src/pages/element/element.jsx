@@ -1,7 +1,6 @@
 var React = require('react/addons');
 var render = require('../../lib/render.jsx');
-
-var Router = require('../../lib/router.js');
+var router = require('../../lib/router.js');
 
 var editors = {
   image: require('./image-editor.jsx'),
@@ -9,14 +8,13 @@ var editors = {
   text: require('./text-editor.jsx')
 };
 
-var Element = React.createClass({
-  mixins: [Router],
-  render: function () {
-    var params = this.getRouteParams();
-    var Editor = (params.editor && editors[params.editor]) || (window.hash && editors[window.hash.replace('#', '')]) || editors['text'];
-    console.log(Editor);
-    return Editor;
-  }
-});
+var Editor;
+var params = router.getRouteParams();
 
-render(Element);
+if (params.editor) {
+  Editor = editors[params.editor];
+} else if (window.location.hash) {
+  Editor = editors[window.location.hash.replace('#', '')];
+}
+
+render(Editor || editors.text);
