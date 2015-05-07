@@ -87,10 +87,31 @@ api({
 Any time you are loading images over the network, we recommend that you use the `<ImageLoader>` react component. This gives you access to important events like loading and error states as well as a hook for providing a loading animation. Full documentation can be found here: https://github.com/hzdg/react-imageloader
 
 #### Accessing Android Route Parameters
+The application uses an Android class called `Router` to move between activities. Similar to how you can pass parameters in a URL router like [Express](http://expressjs.com/), the Android `Router` class can provide route parameters via the `router.js` mixin. When using the mixin, route parameters will be bound to `route` within the react class's state.
 ```js
 var router = require('./lib/router.js');
-var params = router.getRouteParams();
 
-console.dir(params);
-// will log an object containing all parameters from the Android `Router` class
+var MyThing = React.createClass({
+  mixins: [router],
+  // ...
+  componentWillMount: function () {
+    console.log(this.state.route);
+  }
+});
 ```
+
+#### Interacting with SharedPreferences
+`SharedPreferences` is a simple key/value store API native to Android that can be used to persist values to disk that are only available to the Webmaker application. You can both set and get values to `SharedPreferences` using Java <-> JS bindings that are provided within `WebAppInterface.java`:
+```js
+if (window.Android) {
+  window.Android.setSharedPreferences('my::cache::key', 'foobar', false);
+  var hit = window.Android.getSharedPreferences('my::cache::key', false);
+  console.log(hit); // prints "foobar"
+}
+```
+
+`SharedPreferences` can be namespaced to the current activity by using the last "scope" parameter. For example using the following in an Activity called "MyActivity":
+```js
+window.Android.getSharedPreferences('state', true);
+```
+will result in a `SharedPreferences` key of `state::MyActivity`.

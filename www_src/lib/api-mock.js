@@ -5,7 +5,7 @@ var pages = require('./api-fake-data');
 
 // Set cache if window.Android is available
 if (window.Android) {
-  var hit = window.Android.getSharedPreferences('fakePages');
+  var hit = window.Android.getSharedPreferences('mock::pages', false);
   if (hit) pages = JSON.parse(hit);
 }
 
@@ -62,7 +62,7 @@ function getResponse(options, cb) {
 
   // Update Android
   if (window.Android && ['put', 'post', 'delete'].indexOf(method) > -1) {
-    window.Android.setSharedPreferences('fakePages', JSON.stringify(pages));
+    window.Android.setSharedPreferences('mock::pages', JSON.stringify(pages), false);
   }
 
 }

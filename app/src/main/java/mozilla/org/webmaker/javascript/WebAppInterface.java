@@ -25,7 +25,7 @@ public class WebAppInterface {
 
     public WebAppInterface(Context c, JSONObject routeParams) {
         mContext = c;
-        mPrefKey = mContext.getClass().getSimpleName() + "_prefs";
+        mPrefKey = "::".concat(mContext.getClass().getSimpleName());
         mPrefs = mContext.getSharedPreferences(mPrefKey, 0);
         mPageState = mPrefs.getString("page_state", "{}");
         mRoute = routeParams;
@@ -33,14 +33,20 @@ public class WebAppInterface {
     }
 
     @JavascriptInterface
-    public String getSharedPreferences(String key) {
+    public String getSharedPreferences(String key, boolean scope) {
         SharedPreferences getter = mContext.getSharedPreferences(WEBMAKER_PREFS, 0);
+        if (scope) {
+            key = key.concat(mPrefKey);
+        }
         return getter.getString(key, null);
     }
 
     @JavascriptInterface
-    public void setSharedPreferences(String key, String value) {
+    public void setSharedPreferences(String key, String value, boolean scope) {
         SharedPreferences.Editor editor = mContext.getSharedPreferences(WEBMAKER_PREFS, 0).edit();
+        if (scope) {
+            key = key.concat(mPrefKey);
+        }
         editor.putString(key, value);
         editor.apply();
     }
