@@ -16,8 +16,15 @@ var TextEditor = React.createClass({
       fontWeight: 'normal',
       fontStyle: 'normal',
       textDecoration: 'none',
-      textAlign: 'center'
+      textAlign: 'center',
+      innerHTML: 'Hello world'
     };
+  },
+  editText: function () {
+    var text = window.prompt('Edit the text');
+    this.setState({
+      innerHTML: text
+    });
   },
   render: function () {
     var textStyleOptions = [
@@ -57,7 +64,7 @@ var TextEditor = React.createClass({
     return (
       <div id="editor">
         <div className="editor-preview">
-          <p style={this.state}>Hello world</p>
+          <p onClick={this.editText} style={this.state}>{this.state.innerHTML}</p>
         </div>
         <div className="editor-options">
           <div className="form-group">
