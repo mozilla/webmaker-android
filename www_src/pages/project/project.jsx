@@ -16,7 +16,7 @@ var MIN_ZOOM = 0.18;
 var DEFAULT_ZOOM = 0.5;
 var ZOOM_SENSITIVITY = 300;
 
-var Map = React.createClass({
+var Project = React.createClass({
   mixins: [router],
   getInitialState: function () {
     return {
@@ -28,6 +28,16 @@ var Map = React.createClass({
       },
       zoom: DEFAULT_ZOOM
     };
+  },
+
+  load: function () {
+    api({uri: '/users/foo/projects/bar/pages'}, (err, pages) => {
+      this.cartesian.allCoords = pages.map(el => el.coords);
+      this.setState({
+        elements: pages,
+        camera: this.cartesian.getFocusTransform({x: 0, y: 0}, this.state.zoom),
+      });
+    });
   },
 
   componentWillMount: function () {
@@ -42,13 +52,14 @@ var Map = React.createClass({
       height,
       gutter
     });
-    api({uri: '/users/foo/projects/bar/pages'}, (err, pages) => {
-      this.cartesian.allCoords = pages.map(el => el.coords);
-      this.setState({
-        elements: pages,
-        camera: this.cartesian.getFocusTransform({x: 0, y: 0}, this.state.zoom),
-      });
-    });
+    this.load():
+  },
+
+  componentDidUpdate: function (prevProps) {
+    if (this.props.isVisible && !prevProps.isVisible) {
+      this.load();
+      console.log('restored!');
+    }
   },
 
   componentDidMount: function () {
@@ -218,4 +229,4 @@ var Map = React.createClass({
   }
 });
 
-render(Map);
+render(Project);
