@@ -17,23 +17,23 @@ var Project = React.createClass({
     return {
       content: [],
       currentElement: -1,
-      showAddMenu: false
+      showAddMenu: false,
+      dims: {
+        width: 0,
+        height: 0
+      }
     };
   },
 
   componentWillMount: function() {
     if (this.state.params.page) {
       api({
+        method: 'get',
         uri: '/users/foo/projects/bar/pages/' + this.state.params.page
       }, (err, data) => {
-        this.load(data.elements);
+        this.load(data);
       });
     }
-
-    this.dims = {
-      width: 0,
-      height: 0
-    };
   },
 
   componentDidUpdate: function () {
@@ -104,7 +104,9 @@ var Project = React.createClass({
   componentDidMount: function() {
     var bbox = this.refs.container.getDOMNode().getBoundingClientRect();
     if(bbox) {
-      this.dims = bbox;
+      this.setState({
+        dims: bbox
+      });
     }
   },
 
@@ -117,11 +119,16 @@ var Project = React.createClass({
       if (props === false) {
         return false;
       }
-      props.parentWidth = this.dims.width;
-      props.parentHeight = this.dims.height;
+
+      props.parentWidth = this.state.dims.width;
+      props.parentHeight = this.state.dims.height;
       var element = Generator.generateBlock(props);
+
+      props.ref = "positionable"+i;
+      props.key = "positionable"+i;
+      props.current = this.state.currentElement===i;
       return <div>
-        <Positionable ref={"positionable"+i} key={"positionable"+i} {...props} current={this.state.currentElement===i} onUpdate={this.updateElement(i)}>
+        <Positionable {...props} onUpdate={this.updateElement(i)}>
           {element}
         </Positionable>
       </div>;
@@ -140,7 +147,10 @@ var Project = React.createClass({
       var content = this.state.content;
       var entry = content[index];
       Object.keys(data).forEach(k => entry[k] = data[k]);
-      this.setState({ currentElement: index });
+      this.setState({
+        content: content,
+        currentElement: index
+      });
     }.bind(this);
   },
 
@@ -178,38 +188,20 @@ var Project = React.createClass({
   },
 
   save: function() {
-    console.log(this.state.params);
+    // FIXME: TODO: this needs to be split into "cache this page's current running state" vs.
+    //              "only get the data relevan to for saving this page to db".
     api({
       method: 'put',
       uri: '/users/foo/projects/bar/pages/' + this.state.params.page,
-      json: {
-        elements: this.state.content
-      }
-    }, function () {
-      console.log('saved!');
+      json: this.state
     });
   },
 
-  saveToString: function() {
-    prompt("Content data:", JSON.stringify(this.state.content));
-  },
-
-  load: function(content) {
-    this.setState({
-      content: content
-    }, function() {
-      console.log("restored state");
-    });
-  },
-
-  loadFromString: function() {
-    var data = prompt("Content data:");
-    try {
-      var content = JSON.parse(data);
-      this.load(content);
-    } catch (e) {
-      console.error("could not parse data as JSON");
-    }
+  load: function(cachedState) {
+    if (!cachedState || Object.keys(cachedState).length === 0) return;
+    // FIXME: TODO: this needs to be split into "loading the page's previous running state" vs.
+    //              "build page based on project stored in db".
+    this.setState(cachedState);
   }
 });
 
