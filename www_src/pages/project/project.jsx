@@ -128,17 +128,10 @@ var Map = React.createClass({
   },
   selectPage: function (el) {
     return () => {
-      if (this.state.selectedEl !== el.id) {
-        this.setState({
-          camera: this.cartesian.getFocusTransform(el.coords, this.state.zoom),
-          selectedEl: el.id
-        });
-      } else {
-        this.setState({
-          selectedEl: ''
-        });
-      }
-
+      this.setState({
+        camera: this.cartesian.getFocusTransform(el.coords, this.state.zoom),
+        selectedEl: el.id
+      });
     };
   },
   zoomOut: function () {
