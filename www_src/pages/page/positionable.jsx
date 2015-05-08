@@ -6,17 +6,18 @@ var classes = require("classnames");
 var Positionable = React.createClass({
 
   getInitialState: function() {
-    return {
+    var initial = {
       x: this.props.x || 0,
       y: this.props.y || 0,
       scale: this.props.scale || 1,
       angle: this.props.angle || 0,
-      xoffset: 0,
-      yoffset: 0,
+      xoffset: this.props.parentWidth >>> 1 || 0,
+      yoffset: this.props.parentHeight >>> 1 || 0,
       zIndex: (typeof this.props.zIndex !== "undefined") ? this.props.zIndex : 1,
       interactive: (typeof this.props.interactive !== "undefined") ? this.props.interactive : true,
       touchactive: false
     };
+    return initial;
   },
 
   componentDidMount: function() {
@@ -117,28 +118,6 @@ var Positionable = React.createClass({
   handleZIndexChange: function(zIndex) {
     this.setState({
       zIndex: zIndex
-    });
-  },
-
-  // TODO: stub function while we settle on a schema here
-  getTransform: function() {
-    return {
-      x: this.state.x,
-      y: this.state.y,
-      angle: this.state.angle,
-      scale: this.state.scale,
-      zIndex: this.state.zIndex
-    };
-  },
-
-  // TODO: stub function while we settle on a schema here
-  setTransform: function(obj) {
-    this.setState({
-      x: obj.x,
-      y: obj.y,
-      angle: obj.angle,
-      scale: obj.scale,
-      zIndex: obj.zIndex
     });
   }
 });

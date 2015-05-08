@@ -7,11 +7,21 @@ var mocks = require('./api-mock');
 module.exports = function (options, callback) {
   // Set default options
   defaults(options, {
-    method: 'GET',
+    method: 'get',
     useCache: false,
     json: {},
     timeout: 60000    // 60 seconds
   });
+
+  // ensure user-supplied methods conform to what we need.
+  options.method = options.method.toLowerCase();
+
+  if (options.method === 'get' && !callback) {
+    // Signal an error, but don't throw, as that would crash the app:
+    console.error('API request for stored data received without a callback handler to forward the data with.');
+    console.trace();
+    return;
+  }
 
   // Use URI and prepend the API host
   if (typeof options.url !== 'undefined') {
@@ -21,7 +31,7 @@ module.exports = function (options, callback) {
   options.uri = BASE_URL + options.uri;
 
   // Set cache key
-  var key = 'cache::' + options.method.toLowerCase() + '::' + options.uri;
+  var key = 'cache::' + options.method + '::' + options.uri;
 
   // Use device cache if window.Android is available & options.useCache is true
   if (window.Android && options.useCache === true) {
@@ -39,7 +49,9 @@ module.exports = function (options, callback) {
       window.Android.setSharedPreferences(key, JSON.stringify(body), false);
     }
 
-    // Return response body
-    callback(null, body);
+    // If there is a callback, forward the response body
+    if(callback) {
+      callback(null, body);
+    }
   });
 };
