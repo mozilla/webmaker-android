@@ -1,6 +1,8 @@
 var React = require('react');
 var classNames = require('classnames');
 var render = require('../../lib/render.jsx');
+var router = require('../../lib/router.jsx');
+var api = require('../../lib/api.js');
 
 var Link = require('../../components/link/link.jsx');
 
@@ -8,6 +10,8 @@ var Positionable = require('./positionable.jsx');
 var Generator = require('./blocks/generator');
 
 var Project = React.createClass({
+
+  mixins: [router],
 
   getInitialState: function() {
     return {
@@ -18,10 +22,24 @@ var Project = React.createClass({
   },
 
   componentWillMount: function() {
+    if (this.state.params.page) {
+      api({
+        uri: '/users/foo/projects/bar/pages/' + this.state.params.page
+      }, (err, data) => {
+        this.load(data.elements);
+      });
+    }
+
     this.dims = {
       width: 0,
       height: 0
     };
+  },
+
+  componentDidUpdate: function () {
+    // This will need to happen less frequently
+    // When we are hitting a real API server
+    this.save();
   },
 
   render: function () {
@@ -38,6 +56,15 @@ var Project = React.createClass({
       names[name] = true;
       return classNames(names);
     });
+
+    // Url for link to element editor
+    var href = '';
+    var url = '';
+    var currentEl = this.state.content[this.state.currentElement];
+    if (typeof currentEl !== 'undefined') {
+      href = '/pages/element/#' + currentEl.type;
+      url =  '/projects/123/pages/' + this.state.params.page + '/elements/' + this.state.currentElement + '/editor/' + currentEl.type;
+    }
 
     return <div id="project" className="demo">
       <div className="pages-container">
@@ -65,9 +92,9 @@ var Project = React.createClass({
         </button>
         <button className="add" onClick={this.toggleAddMenu}></button>
         <Link
-          className={secondaryClass("edit")}
-          url={'/elements/123/' + currentElement + '/' + currentElementType}
-          href={'/pages/element' + '#' + currentElementType} >
+          className={ secondaryClass("edit") }
+          url={url}
+          href={href}>
           <img className="icon" src="../../img/brush.svg" />
         </Link>
       </div>
@@ -151,11 +178,20 @@ var Project = React.createClass({
   },
 
   save: function() {
-    return JSON.stringify(this.state.content);
+    console.log(this.state.params);
+    api({
+      method: 'put',
+      uri: '/users/foo/projects/bar/pages/' + this.state.params.page,
+      json: {
+        elements: this.state.content
+      }
+    }, function () {
+      console.log('saved!');
+    });
   },
 
   saveToString: function() {
-    prompt("Content data:", this.save())
+    prompt("Content data:", JSON.stringify(this.state.content));
   },
 
   load: function(content) {

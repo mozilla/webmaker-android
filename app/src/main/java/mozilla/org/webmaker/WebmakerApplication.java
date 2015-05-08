@@ -30,10 +30,10 @@ public class WebmakerApplication extends Application {
         Router.sharedRouter().setContext(getApplicationContext());
         Router.sharedRouter().map("/main", MainActivity.class);
         Router.sharedRouter().map("/main/:tab", MainActivity.class);
-        Router.sharedRouter().map("/map/:projectId", Project.class);
-        Router.sharedRouter().map("/projects/:projectId", Page.class);
-        Router.sharedRouter().map("/elements/:projectId/:elementId/:type", Element.class);
-        Router.sharedRouter().map("/projects/:projectId/elements/:elementId/:attributeId", Tinker.class);
+        Router.sharedRouter().map("/projects/:project", Project.class);
+        Router.sharedRouter().map("/projects/:project/pages/:page", Page.class);
+        Router.sharedRouter().map("/projects/:project/pages/:page/elements/:element/editor/:editor", Element.class);
+        Router.sharedRouter().map("/projects/:project/pages/:page/elements/:element/attributes/:attribute/editor/:editor", Tinker.class);
 
         // @todo Restore state
     }
