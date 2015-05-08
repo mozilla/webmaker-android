@@ -42,7 +42,7 @@ module.exports = function (options, callback) {
 
   // XHR request
   xhr(options, function (err, res, body) {
-    if (err) return callback(err);
+    if (err && callback) return callback(err);
 
     // Set cache if window.Android is available
     if (window.Android) {

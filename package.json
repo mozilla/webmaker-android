@@ -62,7 +62,7 @@
     "react": "0.13.1",
     "react-hammerjs": "0.2.2",
     "react-imageloader": "1.2.0",
-    "url-pattern": "^0.8.0",
+    "url-pattern": "git://github.com/k88hudson/url-pattern.git#hyphenunderscore",
     "xhr": "2.0.1"
   }
 }

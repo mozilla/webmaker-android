@@ -3,22 +3,26 @@ var Binding = require('../../lib/binding.jsx');
 var ColorGroup = require('../../components/color-group/color-group.jsx');
 var Range = require('../../components/range/range.jsx');
 var Alert = require('../../components/alert/alert.jsx');
+var ImageBlock = require('../../blocks/image.jsx');
+var defaults = require('lodash.defaults');
 
 var ImageEditor = React.createClass({
-  mixins: [React.addons.LinkedStateMixin, Binding],
+  mixins: [React.addons.LinkedStateMixin],
   getInitialState: function () {
-    return {
-      transparency: 70,
-      borderWidth: 0,
-      borderColor: 'transparent'
-    };
+    var props = this.props.element || {};
+    return defaults(props, ImageBlock.defaults);
+  },
+  componentDidUpdate: function () {
+    this.props.save(this.state);
   },
   onChangeImageClick: function () {
     this.refs.notImplementedWarning.show();
   },
   render: function () {
-    var style = {
-      opacity: this.state.transparency / 100,
+    var imageProps= {
+      src: '../../img/toucan.svg',
+      alt: 'Toucan',
+      opacity: this.state.opacity,
       borderStyle: 'solid',
       borderWidth: this.state.borderWidth,
       borderColor: this.state.borderColor
@@ -26,7 +30,7 @@ var ImageEditor = React.createClass({
     return (
       <div id="editor">
         <div className="editor-preview">
-          <img src="../../img/toucan.svg" style={style} />
+          <ImageBlock {...imageProps} />
         </div>
         <div className="editor-options">
           <div className="form-group">
@@ -35,7 +39,7 @@ var ImageEditor = React.createClass({
           </div>
           <div className="form-group">
             <label>Transparency</label>
-            <Range id="transparency" linkState={this.linkState} />
+            <Range id="opacity" min={0} max={1} step={0.01} linkState={this.linkState} />
           </div>
           <div className="form-group">
             <label>Border Width</label>

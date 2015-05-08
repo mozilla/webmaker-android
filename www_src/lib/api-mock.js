@@ -1,4 +1,4 @@
-var UrlPattern = require('url-pattern');
+var UrlPattern = require('./url-pattern');
 var assign = require('react/lib/Object.assign');
 var uuid = require('./uuid');
 var pages = require('./api-fake-data');
@@ -58,6 +58,45 @@ function getResponse(options, cb) {
     else if (method === 'delete') {
       delete pages[id];
       cb(null, {});
+    }
+  }
+
+  else if (new UrlPattern('/users/:user/projects/:project/pages/:page/elements/:element').match(uri)) {
+    var params = new UrlPattern('/users/:user/projects/:project/pages/:page/elements/:element').match(uri);
+    var page = pages[params.page];
+
+    if (!page) {
+      cb(new Error('Page with id ' + params.page + ' does not exist'));
+    }
+    else if (!page.elements) {
+      cb(new Error('Element with id ' + params.element + ' does not exist'));
+    }
+
+    else {
+
+      var elements = page.elements;
+      var element;
+      var index;
+
+      // find element first
+      elements.forEach((el, i) => {
+        if (el.id === params.element) {
+          element = el;
+          index = i;
+        }
+      });
+
+      // get element
+      if (method === 'get') {
+        cb(null, {}, (element ? JSON.parse(JSON.stringify(element)) : null));
+      }
+
+      // update element
+      else if (method === 'put') {
+        elements[index] = assign({}, element, options.json);
+        cb(null, {}, JSON.parse(JSON.stringify(elements[index])));
+      }
+
     }
   }
 
