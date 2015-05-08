@@ -23,7 +23,7 @@ var Range = React.createClass({
     return (
       <div className="range">
         <input min={this.props.min} max={this.props.max} step={this.props.step} type="range" valueLink={valueLink}/>
-        <div className={'range-summary' + (parseFloat(valueLink.value, 10) === this.props.min ? ' min' : '')}>{valueLink.value}{this.props.unit}</div>
+        <div className={'range-summary' + (parseFloat(valueLink.value) === this.props.min ? ' min' : '')}>{valueLink.value}{this.props.unit}</div>
       </div>
     );
   }

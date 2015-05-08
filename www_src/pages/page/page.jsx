@@ -121,14 +121,15 @@ var Project = React.createClass({
 
       props.parentWidth = this.state.dims.width;
       props.parentHeight = this.state.dims.height;
-      var element = Generator.generateBlock(props);
+
+      var Element = Generator.blocks[props.type];
 
       props.ref = "positionable"+i;
       props.key = "positionable"+i;
       props.current = this.state.currentElement===i;
       return <div>
         <Positionable {...props} onUpdate={this.updateElement(i)}>
-          {element}
+          <Element {...props} />
         </Positionable>
       </div>;
     });
