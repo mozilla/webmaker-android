@@ -1,11 +1,28 @@
-module.exports = {
+var data = {
   'foo0': {
     id: 'foo0',
     coords: {x: 0, y: 0},
     style: {
-      backgroundColor: '#BC3B20'
+      backgroundColor: '#F0CF62'
     },
-    elements: []
+    elements: [
+      {
+        id: 'bar1',
+        alt: 'This is Tucker',
+        angle: 0,
+        parentHeight: 440,
+        parentWidth: 320,
+        scale: 1,
+        src: '../../img/toucan.svg',
+        type: 'image',
+        x: 51,
+        xoffset: -10,
+        y: 118,
+        yoffset: -21.5,
+        zIndex: 1,
+        opacity: 0.5
+      }
+    ]
   },
   'foo1': {
     id: 'foo1',
@@ -35,7 +52,7 @@ module.exports = {
     id: 'foo4',
     coords: {x: 0, y: 1},
     style: {
-      backgroundColor: '#F0CF62'
+      backgroundColor: '#BC3B20'
     },
     elements: []
   },
@@ -56,3 +73,5 @@ module.exports = {
     elements: []
   }
 };
+window.fakeData = data;
+module.exports = data;

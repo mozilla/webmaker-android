@@ -1,24 +1,21 @@
 var React = require('react/addons');
+var defaults = require('lodash.defaults');
 var render = require('../../lib/render.jsx');
 var Binding = require('../../lib/binding.jsx');
 
+var TextBlock = require('../../blocks/text.jsx');
 var Range = require('../../components/range/range.jsx');
 var ColorGroup = require('../../components/color-group/color-group.jsx');
 var {CheckboxSet, Radio} = require('../../components/option-panel/option-panel.jsx');
 
 var TextEditor = React.createClass({
-  mixins: [React.addons.LinkedStateMixin, Binding],
+  mixins: [React.addons.LinkedStateMixin],
   getInitialState: function () {
-    return {
-      fontSize: 18,
-      fontFamily: 'Roboto',
-      color: '#645839',
-      fontWeight: 'normal',
-      fontStyle: 'normal',
-      textDecoration: 'none',
-      textAlign: 'center',
-      innerHTML: 'Hello world'
-    };
+    var props = this.props.element || {};
+    return defaults(props, TextBlock.defaults);
+  },
+  componentDidUpdate: function () {
+    this.props.save(this.state);
   },
   editText: function () {
     var text = window.prompt('Edit the text');
@@ -63,8 +60,8 @@ var TextEditor = React.createClass({
     ];
     return (
       <div id="editor">
-        <div className="editor-preview">
-          <p onClick={this.editText} style={this.state}>{this.state.innerHTML}</p>
+        <div className="editor-preview" onClick={this.editText}>
+          <TextBlock {...this.state} />
         </div>
         <div className="editor-options">
           <div className="form-group">
