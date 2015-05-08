@@ -4,6 +4,7 @@ var assign = require('react/lib/Object.assign');
 var classNames = require('classnames');
 
 var render = require('../../lib/render.jsx');
+var router = require('../../lib/router.jsx');
 var Cartesian = require('../../lib/cartesian');
 
 var Link = require('../../components/link/link.jsx');
@@ -12,6 +13,7 @@ var {Menu, PrimaryButton, SecondaryButton} = require('../../components/action-me
 var api = require('../../lib/api');
 
 var Map = React.createClass({
+  mixins: [router],
   getInitialState: function () {
     return {
       selectedEl: '',
@@ -24,6 +26,10 @@ var Map = React.createClass({
     };
   },
   componentWillMount: function () {
+    console.log('--------------');
+    console.dir(this.state.route);
+    console.dir(this.state.route.project);
+    console.log('--------------');
 
     var width = 300;
     var height = 380;

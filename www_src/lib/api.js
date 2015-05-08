@@ -26,7 +26,7 @@ module.exports = function (options, callback) {
   // Use device cache if window.Android is available & options.useCache is true
   if (window.Android && options.useCache === true) {
     window.Android.logText('Fetching from cache "' + key + '"');
-    var hit = window.Android.getSharedPreferences(key);
+    var hit = window.Android.getSharedPreferences(key, false);
     if (typeof hit === 'string') return callback(null, JSON.parse(hit));
   }
 
@@ -36,7 +36,7 @@ module.exports = function (options, callback) {
 
     // Set cache if window.Android is available
     if (window.Android) {
-      window.Android.setSharedPreferences(key, JSON.stringify(body));
+      window.Android.setSharedPreferences(key, JSON.stringify(body), false);
     }
 
     // Return response body
