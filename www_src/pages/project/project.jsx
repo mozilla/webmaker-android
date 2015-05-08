@@ -12,8 +12,9 @@ var {Menu, PrimaryButton, SecondaryButton} = require('../../components/action-me
 
 var api = require('../../lib/api');
 
-var MAX_ZOOM = 1;
+var MAX_ZOOM = 0.8;
 var MIN_ZOOM = 0.18;
+var DEFAULT_ZOOM = 0.5;
 var ZOOM_SENSITIVITY = 300;
 
 var Map = React.createClass({
@@ -26,7 +27,7 @@ var Map = React.createClass({
         x: 0,
         y: 0
       },
-      zoom: 0.5
+      zoom: DEFAULT_ZOOM
     };
   },
 
@@ -167,7 +168,7 @@ var Map = React.createClass({
       this.cartesian.allCoords.splice(index, 1);
       this.setState({
         elements: update(this.state.elements, {$splice: [[index, 1]]}),
-        zoom: this.state.zoom >= 1 ? 0.5 : this.state.zoom,
+        zoom: this.state.zoom >= MAX_ZOOM ? DEFAULT_ZOOM : this.state.zoom,
         selectedEl: ''
       });
     });
