@@ -36,7 +36,7 @@ var Project = React.createClass({
     }
   },
 
-  componentDidUpdate: function (prevProps, prevState) {
+  componentDidUpdate: function () {
     // This will need to happen less frequently
     // When we are hitting a real API server
     this.save();
