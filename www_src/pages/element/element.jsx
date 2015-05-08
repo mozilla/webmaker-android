@@ -1,6 +1,6 @@
 var React = require('react/addons');
 var render = require('../../lib/render.jsx');
-var router = require('../../lib/router.js');
+var router = require('../../lib/router.jsx');
 
 var editors = {
   image: require('./image-editor.jsx'),

@@ -1,7 +1,7 @@
 var React = require('react');
 var classNames = require('classnames');
 var render = require('../../lib/render.jsx');
-var Router = require('../../lib/router.js');
+var router = require('../../lib/router.jsx');
 var api = require('../../lib/api.js');
 
 var Link = require('../../components/link/link.jsx');
@@ -11,14 +11,13 @@ var Generator = require('./blocks/generator');
 
 var Project = React.createClass({
 
-  mixins: [Router],
+  mixins: [router],
 
   getInitialState: function() {
     return {
       content: [],
       currentElement: -1,
-      showAddMenu: false,
-      params: this.getRouteParams()
+      showAddMenu: false
     };
   },
 

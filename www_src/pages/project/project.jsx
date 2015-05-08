@@ -182,7 +182,8 @@ var Map = React.createClass({
       this.cartesian.getBoundingSize()
     );
 
-    var pageUrl = `projects/${this.state.route.project}/pages/${this.state.selectedEl}`;
+    var projectId = this.state.params.project || 123;
+    var pageUrl = `projects/${projectId}/pages/${this.state.selectedEl}`;
 
     return (
       <div id="map">

@@ -1,6 +1,6 @@
 module.exports = {
   android: window.Android,
-  getInitialState: function () {
+  getRouteParams: function () {
     var r = {};
 
     if (this.android) {
@@ -20,8 +20,11 @@ module.exports = {
       }
     }
 
+    return r;
+  },
+  getInitialState: function () {
     return {
-      route: r
+      params: this.getRouteParams()
     };
   }
 };
