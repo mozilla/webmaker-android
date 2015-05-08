@@ -14,7 +14,9 @@ module.exports = {
         this.android.setSharedPreferences(key, routeParams, true);
       } else {
         var hit = this.android.getSharedPreferences(key, true);
-        r = JSON.parse(hit);
+        try {
+          r = JSON.parse(hit);
+        } catch (e) {}
       }
     }
 
