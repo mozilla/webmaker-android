@@ -12,6 +12,11 @@ var {Menu, PrimaryButton, SecondaryButton} = require('../../components/action-me
 
 var api = require('../../lib/api');
 
+var MAX_ZOOM = 0.8;
+var MIN_ZOOM = 0.18;
+var DEFAULT_ZOOM = 0.5;
+var ZOOM_SENSITIVITY = 300;
+
 var Map = React.createClass({
   mixins: [router],
   getInitialState: function () {
@@ -22,9 +27,10 @@ var Map = React.createClass({
         x: 0,
         y: 0
       },
-      zoom: 0.5
+      zoom: DEFAULT_ZOOM
     };
   },
+
   componentWillMount: function () {
     console.log('--------------');
     console.dir(this.state.route);
@@ -45,56 +51,88 @@ var Map = React.createClass({
       this.cartesian.allCoords = pages.map(el => el.coords);
       this.setState({
         elements: pages,
-        camera: this.cartesian.getFocusTransform({x: 0, y: 0}),
+        camera: this.cartesian.getFocusTransform({x: 0, y: 0}, this.state.zoom),
       });
     });
   },
+
   componentDidMount: function () {
     var el = this.getDOMNode();
     var bounding = this.refs.bounding;
     var boundingEl = bounding.getDOMNode();
-    var startX, startY, deltaX, deltaY;
+    var startX, startY, startDistance, currentX, currentY, currentZoom;
     var didMove = false;
 
     el.addEventListener('touchstart', (event) => {
+      console.log('start', event.touches.length);
       didMove = false;
-      startX = event.touches[0].clientX;
-      startY = event.touches[0].clientY;
-      boundingEl.style.transition = 'none';
+
+      if (event.touches.length > 1) {
+        var dx = event.touches[1].clientX - event.touches[0].clientX;
+        var dy = event.touches[1].clientY - event.touches[0].clientY;
+        startDistance = Math.sqrt(dx*dx + dy*dy);
+      } else {
+        startX = event.touches[0].clientX;
+        startY = event.touches[0].clientY;
+        boundingEl.style.transition = 'none';
+      }
+
     });
 
     el.addEventListener('touchmove', (event) => {
+      console.log('touchmove', event.touches.length);
       didMove = true;
+      var translateStr = 'translate(' + this.state.camera.x + 'px, ' + this.state.camera.y + 'px)';
+      var scaleStr = 'scale(' + this.state.zoom + ')';
+      var center;
+      if (event.touches.length > 1) {
+        currentZoom = this.state.zoom;
+        var dx = event.touches[1].clientX - event.touches[0].clientX
+        var dy = event.touches[1].clientY - event.touches[0].clientY;
+        var distance = Math.sqrt(dx*dx + dy*dy);
 
-      var x = parseInt(this.state.camera.x);
-      var y = parseInt(this.state.camera.y);
+        currentZoom = currentZoom + ((distance - startDistance) / ZOOM_SENSITIVITY);
+        currentZoom = Math.min(Math.max(currentZoom, MIN_ZOOM), MAX_ZOOM);
+        scaleStr = 'scale(' + currentZoom + ')';
+      }
 
-      deltaX = (event.touches[0].clientX - startX) / this.state.zoom;
-      deltaY = (event.touches[0].clientY - startY) / this.state.zoom;
-
-      var translation = 'translate(' + (x + deltaX) + 'px, ' + (y + deltaY) + 'px)';
-      boundingEl.style.transform = translation;
-
+      var x = this.state.camera.x;
+      var y = this.state.camera.y;
+      currentX = x + (event.touches[0].clientX - startX);
+      currentY = y + (event.touches[0].clientY - startY);
+      translateStr = 'translate(' + currentX + 'px, ' + currentY + 'px)';
+      boundingEl.style.transform = translateStr + ' ' + scaleStr;
     });
 
     el.addEventListener('touchend', (event) => {
-      boundingEl.style.transition = '';
-      if (didMove) {
-        this.state.camera.x += deltaX;
-        this.state.camera.y += deltaY;
+      console.log('end', event.touches.length, event);
+      if (event.touches.length === 0) {
+        boundingEl.style.transition = '';
+        if (!didMove) return;
+
+        var state = {camera: {
+          x: currentX,
+          y: currentY
+        }};
+        if (typeof currentZoom !== 'undefined') state.zoom = currentZoom;
+        this.setState(state);
+        startX, startY, startDistance, currentX, currentY, currentZoom = undefined;
+      } else {
+        startX = event.touches[0].clientX;
+        startY = event.touches[0].clientY;
+        this.state.camera.x = currentX;
+        this.state.camera.y = currentY;
+        this.state.zoom = currentZoom;
       }
+
     });
   },
   selectPage: function (el) {
     return () => {
-      var state = {
-        camera: this.cartesian.getFocusTransform(el.coords),
-        selectedEl: el.id,
-      };
-      if (this.state.selectedEl === el.id) {
-        state.zoom = 1;
-      }
-      this.setState(state);
+      this.setState({
+        camera: this.cartesian.getFocusTransform(el.coords, this.state.zoom),
+        selectedEl: el.id
+      });
     };
   },
   zoomOut: function () {
@@ -113,7 +151,7 @@ var Map = React.createClass({
         this.cartesian.allCoords.push(coords);
         this.setState({
           elements: update(this.state.elements, {$push: [newEl]}),
-          camera: this.cartesian.getFocusTransform(coords),
+          camera: this.cartesian.getFocusTransform(coords, this.state.zoom),
           selectedEl: newEl.id
         })
       });
@@ -130,7 +168,7 @@ var Map = React.createClass({
       this.cartesian.allCoords.splice(index, 1);
       this.setState({
         elements: update(this.state.elements, {$splice: [[index, 1]]}),
-        zoom: this.state.zoom === 1 ? 0.5 : this.state.zoom,
+        zoom: this.state.zoom >= MAX_ZOOM ? DEFAULT_ZOOM : this.state.zoom,
         selectedEl: ''
       });
     });
@@ -142,12 +180,12 @@ var Map = React.createClass({
       height: this.cartesian.height + 'px'
     };
 
-    var boundingStyle = assign(
-      {transform: `translate(${this.state.camera.x}px, ${this.state.camera.y}px)`},
+    var boundingStyle = assign({
+        transform: `translate(${this.state.camera.x}px, ${this.state.camera.y}px) scale(${this.state.zoom})`,
+        opacity: this.state.elements.length ? 1 : 0
+      },
       this.cartesian.getBoundingSize()
     );
-
-    var addContainerStyle = classNames('page-container add', {off: this.state.zoom == 1});
 
     return (
       <div id="map">
@@ -156,28 +194,26 @@ var Map = React.createClass({
           Loading...
         </div>
 
-        <div className="scaler" style={{opacity: this.state.elements.length ? 1 : 0 , transform: `scale(${this.state.zoom})`}}>
-          <div ref="bounding" className="bounding" style={boundingStyle}>
-            <div className="test-container" style={containerStyle}>
-            {this.state.elements.map((el) => {
-              return (<div className={classNames({'page-container': true, selected: el.id === this.state.selectedEl, unselected: el.id !== this.state.selectedEl && this.state.zoom === 1})}
-                  style={{backgroundColor: el.style.backgroundColor, transform: this.cartesian.getTransform(el.coords)}}
-                  onClick={this.selectPage(el)}>
-              </div>);
-            })}
-            {this.cartesian.edges.map(coords => {
-              return (<div className={addContainerStyle} style={{transform: this.cartesian.getTransform(coords)}} onClick={this.addPage(coords)}>
-                <img className="icon" src="../../img/plus.svg" />
-              </div>);
-            })}
-            </div>
+        <div ref="bounding" className="bounding" style={boundingStyle}>
+          <div className="test-container" style={containerStyle}>
+          {this.state.elements.map((el) => {
+            var isSelected = el.id === this.state.selectedEl;
+            return (<div className={classNames({'page-container': true, selected: isSelected, unselected: this.state.selectedEl && !isSelected})}
+                style={{backgroundColor: el.style.backgroundColor, transform: this.cartesian.getTransform(el.coords)}}
+                onClick={this.selectPage(el)}>
+            </div>);
+          })}
+          {this.cartesian.edges.map(coords => {
+            return (<div className="page-container add" style={{transform: this.cartesian.getTransform(coords)}} onClick={this.addPage(coords)}>
+              <img className="icon" src="../../img/plus.svg" />
+            </div>);
+          })}
           </div>
         </div>
+
         <Menu>
-          <SecondaryButton side="left" off={this.state.zoom <= 0.25} onClick={this.zoomOut} icon="../../img/zoom-out.svg" />
           <SecondaryButton side="right" off={!this.state.selectedEl} onClick={this.removePage} icon="../../img/trash.svg" />
-          <PrimaryButton onClick={this.zoomIn} off={this.state.zoom >= 1} icon="../../img/zoom-in.svg" />
-          <PrimaryButton url="/projects/123" href="/pages/project" off={this.state.zoom < 1} icon="../../img/pencil.svg" />
+          <PrimaryButton url="/projects/123" off={!this.state.selectedEl} href="/pages/page" icon="../../img/pencil.svg" />
         </Menu>
       </div>
     );

@@ -85,7 +85,8 @@ class Cartesian {
   // getFocusTransform(Object coords) => Object translation
   //    coords: e.g [0, -1]
   //    translation: the translation in px e.g. {x: -100, y: 200}
-  getFocusTransform(coords) {
+  getFocusTransform(coords, zoom) {
+    zoom = zoom || 1;
 
     var x = this.allX;
     var y = this.allY;
@@ -93,8 +94,8 @@ class Cartesian {
     var midX = (Math.max.apply(null, x) + Math.min.apply(null, x)) / 2;
     var midY = (Math.max.apply(null, y) + Math.min.apply(null, y)) / 2;
 
-    var translateX = (midX - coords.x) * this.widthPadded;
-    var translateY = (midY - coords.y) * this.heightPadded;
+    var translateX = (midX - coords.x) * this.widthPadded * zoom;
+    var translateY = (midY - coords.y) * this.heightPadded * zoom;
 
     return {
       x: translateX,
