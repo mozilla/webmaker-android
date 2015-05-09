@@ -9,10 +9,10 @@ var data = {
       {
         id: 'bar1',
         alt: 'This is Tucker',
-        angle: 0,
+        angle: 20,
         parentHeight: 440,
         parentWidth: 320,
-        scale: 1,
+        scale: 0.75,
         src: '../../img/toucan.svg',
         type: 'image',
         x: 51,
@@ -20,6 +20,37 @@ var data = {
         y: 118,
         yoffset: -21.5,
         zIndex: 1,
+        opacity: 0.5
+      },
+      {
+        id: 'bar2',
+        type: 'link',
+        href: 'https://mozilla.org',
+        innerHTML: 'mozilla',
+        angle: 0,
+        parentHeight: 440,
+        parentWidth: 320,
+        scale: 1,
+        x: 100,
+        xoffset: 0,
+        y: 50,
+        yoffset: 0,
+        zIndex: 3,
+        opacity: 0.5
+      },
+      {
+        id: 'bar3',
+        innerHTML: 'Hello world',
+        type: 'text',
+        angle: -5,
+        parentHeight: 440,
+        parentWidth: 320,
+        scale: 1,
+        x: 5,
+        xoffset: 0,
+        y: 350,
+        yoffset: 0,
+        zIndex: 2,
         opacity: 0.5
       }
     ]
