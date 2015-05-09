@@ -7,9 +7,9 @@ var data = {
     },
     elements: [
       {
-        id: 'bar1',
+        id: 'barimage',
         alt: 'This is Tucker',
-        angle: 20,
+        angle: 0.02,
         parentHeight: 440,
         parentWidth: 320,
         scale: 0.75,
@@ -23,11 +23,11 @@ var data = {
         opacity: 0.5
       },
       {
-        id: 'bar2',
+        id: 'barlink',
         type: 'link',
         href: 'https://mozilla.org',
         innerHTML: 'mozilla',
-        angle: 0,
+        angle: -0.05,
         parentHeight: 440,
         parentWidth: 320,
         scale: 1,
@@ -39,14 +39,14 @@ var data = {
         opacity: 0.5
       },
       {
-        id: 'bar3',
+        id: 'bartext',
         innerHTML: 'Hello world',
         type: 'text',
-        angle: -5,
+        angle: 0,
         parentHeight: 440,
         parentWidth: 320,
         scale: 1,
-        x: 5,
+        x: 50,
         xoffset: 0,
         y: 350,
         yoffset: 0,

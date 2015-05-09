@@ -1,21 +1,21 @@
 var React = require('react/addons');
-var Binding = require('../../lib/binding.jsx');
+var defaults = require('lodash.defaults');
+
+var LinkBlock = require('../../blocks/link.jsx');
+
 var ColorGroup = require('../../components/color-group/color-group.jsx');
 var Range = require('../../components/range/range.jsx');
-var getContrastingColor = require('../../lib/color').getContrastingColor;
 
 var LinkEditor = React.createClass({
   mixins: [
-    React.addons.LinkedStateMixin,
-    Binding
+    React.addons.LinkedStateMixin
   ],
   getInitialState: function () {
-    return {
-      borderRadius: 5,
-      backgroundColor: "#69A0FC",
-      fontFamily: 'Roboto',
-      innerHTML: 'Tap me'
-    };
+    var props = this.props.element || {};
+    return defaults(props, LinkBlock.defaults);
+  },
+  componentDidUpdate: function () {
+    this.props.save(this.state);
   },
   editText: function () {
     var text = window.prompt('Edit the text');
@@ -24,18 +24,10 @@ var LinkEditor = React.createClass({
     });
   },
   render: function () {
-    var tapStyle = {
-      backgroundColor: this.state.backgroundColor,
-      color: getContrastingColor(this.state.backgroundColor),
-      boxShadow: "none",
-      borderRadius: this.state.borderRadius,
-      fontFamily: this.state.fontFamily
-    };
-
     return (
       <div id="editor">
         <div className="editor-preview">
-          <button className="btn" onClick={this.editText} style={tapStyle}>{this.state.innerHTML}</button>
+          <LinkBlock {...this.state} />
         </div>
         <div className="editor-options">
           <div className="form-group">
@@ -57,7 +49,7 @@ var LinkEditor = React.createClass({
           </div>
           <div className="form-group">
             <label>Background Color</label>
-            <ColorGroup id="color" linkState={this.linkState} />
+            <ColorGroup id="backgroundColor" linkState={this.linkState} />
           </div>
         </div>
       </div>
