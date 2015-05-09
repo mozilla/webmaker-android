@@ -176,7 +176,7 @@ var Project = React.createClass({
     return () => {
       api({method: 'post', uri:'/users/foo/projects/bar/pages', json: {
         coords: coords,
-        style: {backgroundColor: '#FFFFFF'},
+        style: {backgroundColor: '#F0CF62'},
         elements: []
       }}, (err, newEl) => {
         this.cartesian.allCoords.push(coords);

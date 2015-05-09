@@ -59,7 +59,7 @@ var data = {
     id: 'foo1',
     coords: {x: 0, y: -1},
     style: {
-      backgroundColor: '#EBC4BB'
+      backgroundColor: '#F0CF62'
     },
     elements: []
   },
@@ -67,7 +67,7 @@ var data = {
     id: 'foo2',
     coords: {x: -1, y: 0},
     style: {
-      backgroundColor: '#AABDD6'
+      backgroundColor: '#F0CF62'
     },
     elements: []
   },
@@ -75,7 +75,7 @@ var data = {
     id: 'foo3',
     coords: {x: 1, y: 0},
     style: {
-      backgroundColor: '#DF465E'
+      backgroundColor: '#F0CF62'
     },
     elements: []
   },
@@ -83,7 +83,7 @@ var data = {
     id: 'foo4',
     coords: {x: 0, y: 1},
     style: {
-      backgroundColor: '#BC3B20'
+      backgroundColor: '#F0CF62'
     },
     elements: []
   },
@@ -91,7 +91,7 @@ var data = {
     id: 'foo5',
     coords: {x: 0, y: 2},
     style: {
-      backgroundColor: '#6ADBD5'
+      backgroundColor: '#F0CF62'
     },
     elements: []
   },
@@ -99,7 +99,7 @@ var data = {
     id: 'foo6',
     coords: {x: 2, y: 0},
     style: {
-      backgroundColor: '#923574'
+      backgroundColor: '#F0CF62'
     },
     elements: []
   }
