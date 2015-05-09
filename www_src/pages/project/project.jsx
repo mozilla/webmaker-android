@@ -52,7 +52,7 @@ var Project = React.createClass({
       height,
       gutter
     });
-    this.load():
+    this.load();
   },
 
   componentDidUpdate: function (prevProps) {
