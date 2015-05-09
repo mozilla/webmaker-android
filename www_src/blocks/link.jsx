@@ -7,11 +7,11 @@ var Link = React.createClass({
   getDefaultProps: function () {
     return {
       href: '',
-      active: false,
       borderRadius: 5,
       backgroundColor: '#69A0FC',
       fontFamily: 'Roboto',
-      innerHTML: 'Tap me'
+      innerHTML: 'Tap me',
+      active: false
     };
   },
   render: function() {
@@ -28,7 +28,9 @@ var Link = React.createClass({
       style = assign(style, utils.propsToPosition(props));
     }
 
-    return <a className="btn" style={style} href={props.active && props.href}>{props.innerHTML}</a>
+    var Element = this.props.active ? 'a' : 'span';
+
+    return <Element className="btn" style={style} href={props.href}>{props.innerHTML}</Element>
   }
 });
 
