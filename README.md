@@ -72,16 +72,16 @@ File names are hyphenated lowercase. For example: `section-2.jsx`.
 Webmaker for Android attempts to use network resources as sparingly as possible. In addition, it is important to cover failure and loading states gracefully at all times. To this end, we have a few React components and libraries included in the project to help make this easier:
 
 #### API Requests
-The `./lib/api.js` module is the primary way in which you should interact with api.webmaker.org. This module uses Android's `SharedPreferences` API to cache API requests by default thus reducing network requests. If you need to bypass the cache, you can send `useCache: false` to the module:
+The `./lib/api.js` module is the primary way in which you should interact with api.webmaker.org. This module can use Android's `SharedPreferences` API to cache API requests thus reducing network requests. If you would like to use the cache, you can send `useCache: true` to the module:
 
 ```js
 var api = require('./lib/api.js');
 
 api({
     uri: '/discover',
-    useCache: false
+    useCache: true
 }, function (err, results) {
-    // do stuff!
+    // do stuff w/ cached results if found!
 });
 ```
 
