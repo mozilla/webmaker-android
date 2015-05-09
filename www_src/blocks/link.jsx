@@ -4,15 +4,18 @@ var utils = require('../lib/propUtils');
 var getContrastingColor = require('../lib/color').getContrastingColor;
 
 var Link = React.createClass({
-  getDefaultProps: function () {
-    return {
+  statics: {
+    defaults: {
       href: '',
       borderRadius: 5,
       backgroundColor: '#69A0FC',
       fontFamily: 'Roboto',
       innerHTML: 'Tap me',
       active: false
-    };
+    }
+  },
+  getDefaultProps: function () {
+    return this.defaults;
   },
   render: function() {
     var props = this.props;

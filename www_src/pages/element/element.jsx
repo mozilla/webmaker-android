@@ -9,12 +9,15 @@ var editors = {
   text: require('./text-editor.jsx')
 };
 
+var hash = window.location.hash && window.location.hash.replace('#', '');
+var fakeParams = {project: '123', page: 'foo0', element: 'bar' + hash};
+
 render(React.createClass({
   mixins: [router],
   uri: function () {
     var params = this.state.params
     // for testing
-    if (!params.element) params = {project: '123', page: 'foo0', element: 'bar1'};
+    if (!params.element) params = fakeParams;
     return `/users/foo/projects/${params.project}/pages/${params.page}/elements/${params.element}`;
   },
   componentWillMount: function() {
@@ -30,7 +33,6 @@ render(React.createClass({
   render: function () {
     var Editor;
     var {params, element} = this.state;
-    var hash = window.location.hash && window.location.hash.replace('#', '');
 
     if (typeof element === 'undefined') return (<div>Loading...</div>);
 
