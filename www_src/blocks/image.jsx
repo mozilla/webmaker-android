@@ -1,6 +1,6 @@
-"use strict";
-
-var React = require("react");
+var React = require('react');
+var utils = require('../lib/propUtils');
+var assign = require('react/lib/Object.assign');
 
 var Image = React.createClass({
   statics: {
@@ -16,12 +16,18 @@ var Image = React.createClass({
     return this.defaults;
   },
   render: function() {
+    var props = this.props;
     var style = {
-      opacity: this.props.opacity,
+      opacity: props.opacity,
       borderStyle: 'solid',
-      borderWidth: this.props.borderWidth,
-      borderColor: this.props.borderColor
+      borderWidth: props.borderWidth,
+      borderColor: props.borderColor
     };
+
+    if (props.position) {
+      style = assign(style, utils.propsToPosition(props));
+    }
+
     return <img style={style} src={this.props.src} alt={this.props.alt} />
   }
 });

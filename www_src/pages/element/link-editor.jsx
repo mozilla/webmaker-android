@@ -12,7 +12,7 @@ var LinkEditor = React.createClass({
   getInitialState: function () {
     return {
       borderRadius: 5,
-      color: "#69A0FC",
+      backgroundColor: "#69A0FC",
       fontFamily: 'Roboto',
       innerHTML: 'Tap me'
     };
@@ -25,8 +25,8 @@ var LinkEditor = React.createClass({
   },
   render: function () {
     var tapStyle = {
-      backgroundColor: this.state.color,
-      color: getContrastingColor(this.state.color),
+      backgroundColor: this.state.backgroundColor,
+      color: getContrastingColor(this.state.backgroundColor),
       boxShadow: "none",
       borderRadius: this.state.borderRadius,
       fontFamily: this.state.fontFamily

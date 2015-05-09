@@ -33,7 +33,7 @@ var Page = React.createClass({
     var elements = this.props.page.elements.map(props => {
       if (!blocks[props.type]) return;
       var Component = blocks[props.type];
-      return <Component {...props} />;
+      return <Component position={true} {...props} />;
     });
 
     return (<div className={classes} style={style} onClick={this.props.onClick}>
