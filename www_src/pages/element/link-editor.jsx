@@ -2,7 +2,7 @@ var React = require('react/addons');
 var defaults = require('lodash.defaults');
 
 var LinkBlock = require('../../blocks/link.jsx');
-
+var Alert = require('../../components/alert/alert.jsx');
 var ColorGroup = require('../../components/color-group/color-group.jsx');
 var Range = require('../../components/range/range.jsx');
 
@@ -23,6 +23,9 @@ var LinkEditor = React.createClass({
       innerHTML: text
     });
   },
+  onChangeLinkClick: function () {
+    this.refs.notImplementedWarning.show();
+  },
   render: function () {
     return (
       <div id="editor">
@@ -31,9 +34,10 @@ var LinkEditor = React.createClass({
         </div>
         <div className="editor-options">
           <div className="form-group">
-            <button onClick={this.onChangeImageClick} className="btn btn-block">
+            <button onClick={this.onChangeLinkClick} className="btn btn-block">
               <img className="icon" src="../../img/change-image.svg" /> Set Link Destination
             </button>
+            <Alert ref="notImplementedWarning">Coming Soon!</Alert>
           </div>
           <div className="form-group">
             <label>Corners</label>
