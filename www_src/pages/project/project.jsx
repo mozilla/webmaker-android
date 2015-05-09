@@ -4,6 +4,7 @@ var assign = require('react/lib/Object.assign');
 var classNames = require('classnames');
 
 var render = require('../../lib/render.jsx');
+var binding = require('../../lib/binding.jsx');
 var router = require('../../lib/router.jsx');
 var Cartesian = require('../../lib/cartesian');
 var Link = require('../../components/link/link.jsx');
@@ -42,7 +43,7 @@ var Page = React.createClass({
 });
 
 var Project = React.createClass({
-  mixins: [router],
+  mixins: [router, binding],
   getInitialState: function () {
     return {
       selectedEl: '',
@@ -58,10 +59,9 @@ var Project = React.createClass({
   load: function () {
     api({uri: '/users/foo/projects/bar/pages'}, (err, pages) => {
       this.cartesian.allCoords = pages.map(el => el.coords);
-      this.setState({
-        elements: pages,
-        camera: this.cartesian.getFocusTransform({x: 0, y: 0}, this.state.zoom),
-      });
+      var state = {elements: pages};
+      if (!this.state.selectedEl) state.camera = this.cartesian.getFocusTransform({x: 0, y: 0}, this.state.zoom);
+      this.setState(state);
     });
   },
 
