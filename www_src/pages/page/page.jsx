@@ -198,11 +198,12 @@ var Page = React.createClass({
 
   },
 
-  load: function(cachedState) {
+  load: function() {
     var id = this.state.params.page || 'foo0';
     api({
       uri: '/users/foo/projects/bar/pages/' + id
     }, (err, cachedState) => {
+      console.log(cachedState);
       if (!cachedState || Object.keys(cachedState).length === 0) return;
       // FIXME: TODO: this needs to be split into "loading the page's previous running state" vs.
       //              "build page based on project stored in db".
