@@ -16,7 +16,6 @@ var Image = React.createClass({
     return this.defaults;
   },
   render: function() {
-    console.log(this.props);
     var style = {
       opacity: this.props.opacity,
       borderStyle: 'solid',
