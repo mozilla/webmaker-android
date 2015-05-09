@@ -54,6 +54,18 @@ public class WebmakerActivity extends Activity {
     }
 
     @Override
+    protected void onResume() {
+        super.onResume();
+        view.loadUrl("javascript: window.jsComm && window.jsComm('onResume')");
+    }
+    @Override
+    protected void onPause() {
+        super.onPause();
+        view.loadUrl("javascript: window.jsComm && window.jsComm('onPause')");
+    }
+
+
+    @Override
     public void onDestroy() {
         Log.v("wm", "onDestroy");
         if (view == null) return;

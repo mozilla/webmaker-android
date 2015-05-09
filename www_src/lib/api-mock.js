@@ -3,11 +3,7 @@ var assign = require('react/lib/Object.assign');
 var uuid = require('./uuid');
 var pages = require('./api-fake-data');
 
-// Set cache if window.Android is available
-if (window.Android) {
-  var hit = window.Android.getSharedPreferences('mock::pages', false);
-  if (hit) pages = JSON.parse(hit);
-}
+
 
 function pagesAsArray() {
   var arr = Object.keys(pages).map(key => pages[key]);
@@ -16,6 +12,13 @@ function pagesAsArray() {
 
 
 function getResponse(options, cb) {
+
+  // Set cache if window.Android is available
+  if (window.Android) {
+    var hit = window.Android.getSharedPreferences('mock::pages', false);
+    if (hit) pages = JSON.parse(hit);
+  }
+
   var uri = options.uri;
   var method = options.method.toLowerCase();
 
@@ -112,6 +115,5 @@ function getResponse(options, cb) {
 }
 
 module.exports = {
-  pages,
   getResponse
 }

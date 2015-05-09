@@ -10,7 +10,7 @@ var Generator = require('../../blocks/generator');
 
 var Positionable = require('./positionable.jsx');
 
-var Project = React.createClass({
+var Page = React.createClass({
 
   mixins: [router],
 
@@ -27,18 +27,18 @@ var Project = React.createClass({
   },
 
   componentWillMount: function() {
-    var id = this.state.params.page || 'foo0';
-    api({
-      uri: '/users/foo/projects/bar/pages/' + id
-    }, (err, data) => {
-      this.load(data);
-    });
+    this.load();
   },
 
-  componentDidUpdate: function () {
-    // This will need to happen less frequently
-    // When we are hitting a real API server
-    this.save();
+  componentDidUpdate: function (prevProps) {
+    if (this.props.isVisible && !prevProps.isVisible) {
+      this.load();
+      console.log('restored!');
+    } else {
+      // This will need to happen less frequently
+      // When we are hitting a real API server
+      this.save();
+    }
   },
 
   render: function () {
@@ -198,13 +198,19 @@ var Project = React.createClass({
 
   },
 
-  load: function(cachedState) {
-    if (!cachedState || Object.keys(cachedState).length === 0) return;
-    // FIXME: TODO: this needs to be split into "loading the page's previous running state" vs.
-    //              "build page based on project stored in db".
-    this.setState(cachedState);
+  load: function() {
+    var id = this.state.params.page || 'foo0';
+    api({
+      uri: '/users/foo/projects/bar/pages/' + id
+    }, (err, cachedState) => {
+      console.log(cachedState);
+      if (!cachedState || Object.keys(cachedState).length === 0) return;
+      // FIXME: TODO: this needs to be split into "loading the page's previous running state" vs.
+      //              "build page based on project stored in db".
+      this.setState(cachedState);
+    });
   }
 });
 
 // Render!
-render(Project);
+render(Page);
