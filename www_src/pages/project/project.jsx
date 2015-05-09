@@ -8,6 +8,7 @@ var router = require('../../lib/router.jsx');
 var Cartesian = require('../../lib/cartesian');
 var Link = require('../../components/link/link.jsx');
 var {Menu, PrimaryButton, SecondaryButton} = require('../../components/action-menu/action-menu.jsx');
+var blocks = require('../../blocks/generator').blocks;
 
 var api = require('../../lib/api');
 
@@ -15,6 +16,30 @@ var MAX_ZOOM = 0.8;
 var MIN_ZOOM = 0.18;
 var DEFAULT_ZOOM = 0.5;
 var ZOOM_SENSITIVITY = 300;
+
+var Page = React.createClass({
+  render: function () {
+    var classes = classNames('page-container', {
+      selected: this.props.selected,
+      unselected: this.props.unselected
+    });
+    var style = {
+      backgroundColor: this.props.page.style.backgroundColor,
+      transform: this.props.transform
+    };
+
+    // Build element tree
+    var elements = this.props.page.elements.map(props => {
+      if (!blocks[props.type]) return;
+      var Component = blocks[props.type];
+      return <Component position={true} {...props} />;
+    });
+
+    return (<div className={classes} style={style} onClick={this.props.onClick}>
+      {elements}
+    </div>);
+  }
+});
 
 var Project = React.createClass({
   mixins: [router],
@@ -42,8 +67,8 @@ var Project = React.createClass({
 
   componentWillMount: function () {
 
-    var width = 300;
-    var height = 380;
+    var width = 320;
+    var height = 440;
     var gutter = 20;
 
     this.cartesian = new Cartesian({
@@ -205,12 +230,14 @@ var Project = React.createClass({
 
         <div ref="bounding" className="bounding" style={boundingStyle}>
           <div className="test-container" style={containerStyle}>
-          {this.state.elements.map((el) => {
-            var isSelected = el.id === this.state.selectedEl;
-            return (<div className={classNames({'page-container': true, selected: isSelected, unselected: this.state.selectedEl && !isSelected})}
-                style={{backgroundColor: el.style.backgroundColor, transform: this.cartesian.getTransform(el.coords)}}
-                onClick={this.selectPage(el)}>
-            </div>);
+          {this.state.elements.map((page) => {
+            var props = {
+              page,
+              selected: page.id === this.state.selectedEl,
+              transform: this.cartesian.getTransform(page.coords),
+              onClick: this.selectPage(page)
+            };
+            return (<Page {...props} />);
           })}
           {this.cartesian.edges.map(coords => {
             return (<div className="page-container add" style={{transform: this.cartesian.getTransform(coords)}} onClick={this.addPage(coords)}>
