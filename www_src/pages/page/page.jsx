@@ -72,7 +72,7 @@ var Page = React.createClass({
         <div className="page next bottom" />
         <div className="page next left" />
         <div className="page">
-          <div className="inner" style={{backgroundColor: this.state.backgroundColor}}>
+          <div className="inner" style={{backgroundColor: this.state.style.backgroundColor}}>
             <div ref="container" className="positionables">{ positionables }</div>
           </div>
         </div>
