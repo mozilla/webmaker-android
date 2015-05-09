@@ -88,7 +88,11 @@ api({
 #### Loading Images
 Any time you are loading images over the network, we recommend that you use the `<ImageLoader>` react component. This gives you access to important events like loading and error states as well as a hook for providing a loading animation. Full documentation can be found here: https://github.com/hzdg/react-imageloader
 
-#### Accessing Android Route Parameters
+## Interacting with Android APIs
+
+While very few native Android APIs are used throughout the app, there are a few instances where native APIs are exposed to JS and react using the `WebAppInterace.java` class:
+
+#### Router
 The application uses an Android class called `Router` to move between activities. Similar to how you can pass parameters in a URL router like [Express](http://expressjs.com/), the Android `Router` class can provide route parameters via the `router.js` mixin. When using the mixin, route parameters will be bound to `route` within the react class's state.
 ```js
 var router = require('./lib/router.js');
@@ -102,7 +106,7 @@ var MyThing = React.createClass({
 });
 ```
 
-#### Interacting with SharedPreferences
+#### SharedPreferences
 `SharedPreferences` is a simple key/value store API native to Android that can be used to persist values to disk that are only available to the Webmaker application. You can both set and get values to `SharedPreferences` using Java <-> JS bindings that are provided within `WebAppInterface.java`:
 ```js
 if (window.Android) {
