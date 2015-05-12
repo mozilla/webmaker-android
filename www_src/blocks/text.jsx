@@ -23,7 +23,7 @@ var Text = React.createClass({
   render: function() {
     var style = {};
     var props = this.props;
-    ['fontSize', 'fontFamily', 'color', 'fontWeight', 'fontStyle', 'textDecoration', 'textAlign']
+    ['fontFamily', 'color', 'fontWeight', 'fontStyle', 'textDecoration', 'textAlign']
       .forEach(prop => style[prop] = props[prop]);
 
     if (props.position) {
