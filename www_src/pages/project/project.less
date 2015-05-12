@@ -26,8 +26,10 @@
     position: absolute;
     left: 0;
     top: 0;
+
     &.selected {
-      box-shadow: 0 12px 10px -4px fade(darken(@lightGrey, 30%), 50%);
+      border: 8px solid @lightGrey;
+      outline: 6px solid @blue;
     }
     &.unselected {
       opacity: 0.3;
