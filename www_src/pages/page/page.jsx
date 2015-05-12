@@ -78,7 +78,7 @@ var Page = React.createClass({
         </div>
       </div>
 
-      <div className={classNames({overlay: true, active: this.state.showAddMenu})}/>
+      <div className={classNames({overlay: true, active: this.state.showAddMenu})} onClick={this.toggleAddMenu}/>
 
       <div className={classNames({'controls': true, 'add-active': this.state.showAddMenu})}>
         <div className="add-menu">
