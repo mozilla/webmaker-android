@@ -12,8 +12,15 @@ var Text = React.createClass({
       fontStyle: 'normal',
       textDecoration: 'none',
       textAlign: 'center',
+      whiteSpace: 'nowrap',
       innerHTML: 'Hello world'
     }
+  },
+
+  getInitialState: function() {
+    return {
+      editing: false
+    };
   },
 
   getDefaultProps: function () {
@@ -23,14 +30,47 @@ var Text = React.createClass({
   render: function() {
     var style = {};
     var props = this.props;
-    ['fontFamily', 'color', 'fontWeight', 'fontStyle', 'textDecoration', 'textAlign']
-      .forEach(prop => style[prop] = props[prop]);
+    Object.keys(props).forEach(prop => {
+      if (prop === "innerHTML") return;
+      style[prop] = props[prop]
+    });
 
     if (props.position) {
       style = assign(style, utils.propsToPosition(props));
     }
 
-    return <p style={style}>{props.innerHTML}</p>;
+    var inputStyle = assign({}, style);
+    inputStyle.background = "transparent";
+    inputStyle.border = "none";
+
+    var content = props.innerHTML;
+    if (this.state.editing) {
+      content = <input ref="input" style={inputStyle} onBlur={this.commitText} onChange={this.sendTextUpdate} value={content} />;
+    }
+    return <p style={style} onClick={this.editText}>{content}</p>;
+  },
+
+  componentDidUpdate: function(prevProps, prevState) {
+    if(this.refs.input) {
+      this.refs.input.getDOMNode().focus();
+    }
+  },
+
+  sendTextUpdate: function(evt) {
+    var value = evt.target.value;
+    this.props.updateText(value);
+  },
+
+  editText: function() {
+    this.setState({
+      editing: true
+    });
+  },
+
+  commitText: function() {
+    this.setState({
+      editing: false
+    });
   }
 });
 
