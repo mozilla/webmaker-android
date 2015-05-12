@@ -65,10 +65,6 @@ var TextEditor = React.createClass({
         </div>
         <div className="editor-options">
           <div className="form-group">
-            <label>Text Size</label>
-            <Range id="fontSize" min={10} max={32} unit="px" linkState={this.linkState} />
-          </div>
-          <div className="form-group">
             <label>Font</label>
             <select className="select" valueLink={this.linkState('fontFamily')}>
               <option value="Roboto">Roboto</option>
