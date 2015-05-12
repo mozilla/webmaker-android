@@ -30,10 +30,8 @@ var Text = React.createClass({
   render: function() {
     var style = {};
     var props = this.props;
-    Object.keys(props).forEach(prop => {
-      if (prop === "innerHTML") return;
-      style[prop] = props[prop]
-    });
+    ['fontFamily', 'color', 'fontWeight', 'fontStyle', 'textDecoration', 'textAlign', 'whiteSpace']
+      .forEach(prop => style[prop] = props[prop]);
 
     if (props.position) {
       style = assign(style, utils.propsToPosition(props));
