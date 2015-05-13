@@ -17,9 +17,12 @@ public class WebmakerApplication extends Application {
 
     // Singleton
     private WebmakerApplication singleton;
-    public WebmakerApplication getInstance(){
-        return singleton;
-    }
+    private GoogleAnalytics analytics;
+    private Tracker tracker;
+
+    public WebmakerApplication getInstance(){ return singleton; }
+    public GoogleAnalytics getAnalytics() { return analytics; }
+    public Tracker getTracker() { return tracker; }
 
     @Override
     public void onCreate() {
@@ -29,15 +32,14 @@ public class WebmakerApplication extends Application {
         Log.v("[Webmaker]", "Application created.");
 
         // Dry run allows you to debug Google Analytics locally without sending data to any servers.
-        GoogleAnalytics analytics = GoogleAnalytics.getInstance(this);
+        analytics = GoogleAnalytics.getInstance(this);
         analytics.setDryRun(false);
 
-        Tracker tracker = analytics.newTracker(R.xml.app_tracker);
+        tracker = analytics.newTracker(R.xml.app_tracker);
         tracker.setAppId(res.getString(R.string.ga_appId));
         tracker.setAppName(res.getString(R.string.ga_appName));
         tracker.enableAutoActivityTracking(true);
         tracker.enableExceptionReporting(true);
-
 
         // Router
         Router.sharedRouter().setContext(getApplicationContext());
