@@ -17,15 +17,18 @@ module.exports = {
     loaders: [
       {
         test: /\.js$/,
-        loaders:  ['babel-loader']
+        loaders:  ['babel-loader'],
+        include: __dirname + '/www_src'
       },
       {
         test: /\.jsx$/,
-        loaders:  ['babel-loader', 'jsx-loader']
+        loaders:  ['babel-loader', 'jsx-loader'],
+        include: __dirname + '/www_src'
       },
       {
         test: /\.json$/,
-        loader: 'json-loader'
+        loader: 'json-loader',
+        include: [__dirname + '/www_src',  __dirname + '/node_modules/color']
       }
     ]
   }
