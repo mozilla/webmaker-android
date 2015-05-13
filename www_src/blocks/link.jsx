@@ -10,10 +10,14 @@ var Link = React.createClass({
       borderRadius: 5,
       backgroundColor: '#69A0FC',
       fontFamily: 'Roboto',
+      whiteSpace: 'pre',
       innerHTML: 'Tap me',
       active: false
     }
   },
+  mixins: [
+    require('./textedit')
+  ],
   getDefaultProps: function () {
     return this.defaults;
   },
@@ -24,16 +28,22 @@ var Link = React.createClass({
       borderRadius: props.borderRadius,
       backgroundColor: props.backgroundColor,
       color: getContrastingColor(props.backgroundColor),
-      fontFamily: props.fontFamily
+      fontFamily: props.fontFamily,
+      whiteSpace: props.whiteSpace
     };
 
     if (props.position) {
       style = assign(style, utils.propsToPosition(props));
     }
 
-    var Element = this.props.active ? 'a' : 'span';
+    var Element = this.props.activelink ? 'a' : 'span';
+    var content = this.makeEditable(props.innerHTML, style);
+    var onPClick = this.activate;
+    if (this.state.editing) {
+      onPClick = false;
+    }
 
-    return <Element className="btn" style={style} href={props.href}>{props.innerHTML}</Element>
+    return <Element className="btn" style={style} onClick={onPClick} href={props.href}>{content}</Element>;
   }
 });
 
