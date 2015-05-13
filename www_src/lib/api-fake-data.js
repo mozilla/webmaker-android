@@ -8,50 +8,62 @@ var data = {
     elements: [
       {
         id: 'barimage',
-        alt: 'This is Tucker',
-        angle: 0.02,
-        parentHeight: 440,
-        parentWidth: 320,
-        scale: 0.75,
-        src: '../../img/toucan.svg',
         type: 'image',
-        x: 51,
-        xoffset: -10,
-        y: 118,
-        yoffset: -21.5,
-        zIndex: 1,
-        opacity: 0.5
+        attributes: {
+          alt: 'This is Tucker',
+          src: '../../img/toucan.svg',
+          parentHeight: 440,
+          parentWidth: 320,
+        },
+        styles: {
+          angle: 0.02,
+          scale: 0.75,
+          x: 51,
+          xoffset: -10,
+          y: 118,
+          yoffset: -21.5,
+          zIndex: 1,
+          opacity: 0.5
+        }
       },
       {
         id: 'barlink',
         type: 'link',
-        href: 'https://mozilla.org',
-        innerHTML: 'mozilla',
-        angle: -0.05,
-        parentHeight: 440,
-        parentWidth: 320,
-        scale: 1,
-        x: 100,
-        xoffset: 0,
-        y: 50,
-        yoffset: 0,
-        zIndex: 3,
-        opacity: 0.5
+        attributes: {
+          href: 'https://mozilla.org',
+          innerHTML: 'mozilla',
+          parentHeight: 440,
+          parentWidth: 320
+        },
+        styles: {
+          angle: -0.05,
+          scale: 1,
+          x: 100,
+          xoffset: 0,
+          y: 50,
+          yoffset: 0,
+          zIndex: 3,
+          opacity: 0.5
+        }
       },
       {
         id: 'bartext',
         innerHTML: 'Hello world',
         type: 'text',
-        angle: 0,
-        parentHeight: 440,
-        parentWidth: 320,
-        scale: 1,
-        x: 50,
-        xoffset: 0,
-        y: 350,
-        yoffset: 0,
-        zIndex: 2,
-        opacity: 0.5
+        attributes: {
+          parentHeight: 440,
+          parentWidth: 320,
+        },
+        styles: {
+          angle: 0,
+          scale: 1,
+          x: 50,
+          xoffset: 0,
+          y: 350,
+          yoffset: 0,
+          zIndex: 2,
+          opacity: 0.5
+        }
       }
     ]
   },
