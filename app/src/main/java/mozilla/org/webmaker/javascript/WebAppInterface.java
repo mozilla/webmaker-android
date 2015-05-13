@@ -1,5 +1,7 @@
 package mozilla.org.webmaker.javascript;
 
+import android.content.Intent;
+import android.provider.MediaStore;
 import mozilla.org.webmaker.router.Router;
 import android.content.Context;
 import android.util.Log;
@@ -32,6 +34,12 @@ public class WebAppInterface {
         Log.v("wm", "getting state " + mPrefKey + ": " + mPageState);
     }
 
+    /**
+     * ---------------------------------------
+     * SharedPreferences
+     * ---------------------------------------
+     */
+
     @JavascriptInterface
     public String getSharedPreferences(String key, boolean scope) {
         SharedPreferences getter = mContext.getSharedPreferences(WEBMAKER_PREFS, 0);
@@ -63,10 +71,22 @@ public class WebAppInterface {
         edit.commit();
     }
 
+    /**
+     * ---------------------------------------
+     * Utility
+     * ---------------------------------------
+     */
+
     @JavascriptInterface
     public void logText(String txt){
         Log.v("wm", txt);
     }
+
+    /**
+     * ---------------------------------------
+     * Router
+     * ---------------------------------------
+     */
 
     @JavascriptInterface
     public void setView(String url) {
@@ -81,5 +101,15 @@ public class WebAppInterface {
 
         Log.v("Router", mRoute.toString());
         return mRoute.toString();
+    }
+
+    /**
+     * ---------------------------------------
+     * Camera
+     * ---------------------------------------
+     */
+    @JavascriptInterface
+    public void launchCamera() {
+
     }
 }

@@ -16,7 +16,17 @@ var ImageEditor = React.createClass({
     this.props.save(this.state);
   },
   onChangeImageClick: function () {
-    this.refs.notImplementedWarning.show();
+    // this.refs.notImplementedWarning.show();
+    if (window.Android) {
+      window.Android.getFromCamera(
+        function (image) {
+          console.dir(image);
+        },
+        function (err) {
+          console.dir(err);
+        }
+      );
+    }
   },
   render: function () {
     var imageProps= {
