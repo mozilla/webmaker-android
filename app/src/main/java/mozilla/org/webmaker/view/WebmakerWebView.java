@@ -7,12 +7,13 @@ import android.view.ViewGroup;
 import android.view.animation.AlphaAnimation;
 import android.view.animation.Animation;
 import android.view.animation.DecelerateInterpolator;
-import android.webkit.WebView;
-
 import android.webkit.JsPromptResult;
 import android.webkit.WebChromeClient;
-import mozilla.org.webmaker.javascript.WebAppInterface;
+import android.webkit.WebView;
+
 import org.json.JSONObject;
+
+import mozilla.org.webmaker.javascript.WebAppInterface;
 
 public class WebmakerWebView extends WebView {
 
