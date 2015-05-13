@@ -8,6 +8,35 @@ var Range = require('../../components/range/range.jsx');
 var ColorGroup = require('../../components/color-group/color-group.jsx');
 var {CheckboxSet, Radio} = require('../../components/option-panel/option-panel.jsx');
 
+
+var textStyleOptions = [
+  {
+    id: 'fontWeight',
+    icon: '../../img/B.svg',
+    uncheckedLabel: 'normal',
+    checkedLabel: 'bold'
+  },
+  {
+    id: 'fontStyle',
+    icon: '../../img/I.svg',
+    uncheckedLabel: 'normal',
+    checkedLabel: 'italic'
+  },
+  {
+    id: 'textDecoration',
+    icon: '../../img/U.svg',
+    uncheckedLabel: 'none',
+    checkedLabel: 'underline'
+  }
+];
+
+var textAlignOptions = ['left', 'center', 'right'].map(e => {
+  return {
+    value: e,
+    icon: '../../img/align-'+e+'.svg'
+  };
+});
+
 var TextEditor = React.createClass({
   mixins: [React.addons.LinkedStateMixin],
   getInitialState: function () {
@@ -17,51 +46,16 @@ var TextEditor = React.createClass({
   componentDidUpdate: function () {
     this.props.save(this.state);
   },
-  editText: function () {
-    var text = window.prompt('Edit the text');
+  updateText: function (text) {
     this.setState({
       innerHTML: text
     });
   },
   render: function () {
-    var textStyleOptions = [
-      {
-        id: 'fontWeight',
-        icon: '../../img/B.svg',
-        uncheckedLabel: 'normal',
-        checkedLabel: 'bold'
-      },
-      {
-        id: 'fontStyle',
-        icon: '../../img/I.svg',
-        uncheckedLabel: 'normal',
-        checkedLabel: 'italic'
-      },
-      {
-        id: 'textDecoration',
-        icon: '../../img/U.svg',
-        uncheckedLabel: 'none',
-        checkedLabel: 'underline'
-      }
-    ];
-    var textAlignOptions = [
-      {
-        value: 'left',
-        icon: '../../img/align-left.svg',
-      },
-      {
-        value: 'center',
-        icon: '../../img/align-center.svg',
-      },
-      {
-        value: 'right',
-        icon: '../../img/align-right.svg',
-      }
-    ];
     return (
       <div id="editor">
-        <div className="editor-preview" onClick={this.editText}>
-          <TextBlock {...this.state} />
+        <div className="editor-preview">
+          <TextBlock {...this.state} updateText={this.updateText} />
         </div>
         <div className="editor-options">
           <div className="form-group">
