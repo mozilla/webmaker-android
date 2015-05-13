@@ -1,7 +1,11 @@
 package mozilla.org.webmaker;
 
 import android.app.Application;
+import android.content.res.Resources;
 import android.util.Log;
+
+import com.google.android.gms.analytics.GoogleAnalytics;
+import com.google.android.gms.analytics.Tracker;
 
 import mozilla.org.webmaker.activity.Element;
 import mozilla.org.webmaker.activity.Project;
@@ -21,10 +25,19 @@ public class WebmakerApplication extends Application {
     public void onCreate() {
         super.onCreate();
         singleton = this;
-
+        Resources res = getResources();
         Log.v("[Webmaker]", "Application created.");
 
-        // @todo Google Analytics
+        // Dry run allows you to debug Google Analytics locally without sending data to any servers.
+        GoogleAnalytics analytics = GoogleAnalytics.getInstance(this);
+        analytics.setDryRun(false);
+
+        Tracker tracker = analytics.newTracker(R.xml.app_tracker);
+        tracker.setAppId(res.getString(R.string.ga_appId));
+        tracker.setAppName(res.getString(R.string.ga_appName));
+        tracker.enableAutoActivityTracking(true);
+        tracker.enableExceptionReporting(true);
+
 
         // Router
         Router.sharedRouter().setContext(getApplicationContext());
