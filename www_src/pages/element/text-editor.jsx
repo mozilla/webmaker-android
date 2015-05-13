@@ -73,7 +73,7 @@ var TextEditor = React.createClass({
         </div>
         <div className="editor-options">
           <div className="form-group">
-            <button className="btn btn-block" onClick={this.editText}>{ this.state.editing? "done" : "edit text"}</button>
+            <button className="btn btn-block" onClick={this.editText}>{ this.state.editing? "Done" : "Edit text"}</button>
           </div>
           <div className="form-group">
             <label>Font</label>
