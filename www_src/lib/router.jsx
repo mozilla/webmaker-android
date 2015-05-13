@@ -18,6 +18,13 @@ module.exports = {
           r = JSON.parse(hit);
         } catch (e) {}
       }
+    } else {
+      r = {
+        user: 1,
+        project: 1,
+        page: 1,
+        element: 1
+      };
     }
 
     return r;

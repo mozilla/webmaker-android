@@ -1,7 +1,7 @@
-//var xhr = require('xhr');
-var xhr = require('./api-mock').getResponse;
+var xhr = require('xhr');
+//var xhr = require('./api-mock').getResponse;
 var defaults = require('lodash.defaults');
-var BASE_URL = '';
+var BASE_URL = 'https://webmaker-api.herokuapp.com';
 var mocks = require('./api-mock');
 
 module.exports = function (options, callback) {
@@ -9,7 +9,7 @@ module.exports = function (options, callback) {
   defaults(options, {
     method: 'get',
     useCache: false,
-    json: {},
+    headers: {},
     timeout: 60000    // 60 seconds
   });
 
@@ -29,6 +29,14 @@ module.exports = function (options, callback) {
     delete options.url;
   }
   options.uri = BASE_URL + options.uri;
+
+  // Use a fake token for now
+  if (options.method !== 'get') {
+    options.headers.Authorization = 'token validToken';
+  }
+
+  // Return json response
+  if (options.method !== 'delete' && !options.json) options.json = {};
 
   // Set cache key
   var key = 'cache::' + options.method + '::' + options.uri;
