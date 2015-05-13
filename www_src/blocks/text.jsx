@@ -38,14 +38,25 @@ var Text = React.createClass({
     }
 
     var inputStyle = assign({}, style);
-    inputStyle.background = "transparent";
-    inputStyle.border = "none";
+    assign(inputStyle, {
+      display: "inline-block",
+      background: "transparent",
+      border: "none",
+      width: "100%",
+      height: "100%"
+    });
 
+    var onPClick = this.activate;
     var content = props.innerHTML;
     if (this.state.editing) {
-      content = <input ref="input" style={inputStyle} onBlur={this.commitText} onChange={this.sendTextUpdate} value={content} />;
+      onPClick = false;
+      content = <input ref="input"
+                       style={inputStyle}
+                       onClick={this.killEvent}
+                       onChange={this.sendTextUpdate}
+                       value={content} />;
     }
-    return <p style={style} onClick={this.editText}>{content}</p>;
+    return <p ref="dims" style={style} onClick={onPClick}>{content}</p>;
   },
 
   componentDidUpdate: function(prevProps, prevState) {
@@ -54,21 +65,45 @@ var Text = React.createClass({
     }
   },
 
+  // start editing, but only if we were built with the "activate" property
+  activate: function() {
+    if (!!this.props.active) {
+      this.startEditing();
+    }
+  },
+
+  // prevent this click from going up to the owning element(s)
+  killEvent: function(evt) {
+    evt.stopPropagation();
+  },
+
+  // send our current value up to our parent for handling
   sendTextUpdate: function(evt) {
     var value = evt.target.value;
     this.props.updateText(value);
   },
 
-  editText: function() {
+  // public API: "flip between editing/not editing"
+  toggleEditing: function() {
     this.setState({
-      editing: true
+      editing: !this.state.editing
+    }, function() {
+      this.props.setEditMode(this.state.editing);
     });
   },
 
-  commitText: function() {
-    this.setState({
-      editing: false
-    });
+  // public API: "start editing"
+  startEditing: function() {
+    if (!this.state.editing) {
+      this.toggleEditing();
+    }
+  },
+
+  // public API: "stop editing"
+  stopEditing: function() {
+    if (this.state.editing) {
+      this.toggleEditing();
+    }
   }
 });
 
