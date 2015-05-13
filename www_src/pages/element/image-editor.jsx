@@ -18,14 +18,7 @@ var ImageEditor = React.createClass({
   onChangeImageClick: function () {
     // this.refs.notImplementedWarning.show();
     if (window.Android) {
-      window.Android.getFromCamera(
-        function (image) {
-          console.dir(image);
-        },
-        function (err) {
-          console.dir(err);
-        }
-      );
+      window.Android.getFromCamera();
     }
   },
   render: function () {
