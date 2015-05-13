@@ -38,15 +38,19 @@ var Text = React.createClass({
     }
 
     var inputStyle = assign({}, style);
-    inputStyle.background = "transparent";
-    inputStyle.border = "2px dotted";
-    inputStyle.borderWidth = "0 0 2px 0";
+    assign(inputStyle, {
+      display: "inline-block",
+      background: "transparent",
+      border: "none",
+      width: "100%",
+      height: "100%"
+    });
 
     var content = props.innerHTML;
     if (this.state.editing) {
       content = <input ref="input" style={inputStyle} onBlur={this.commitText} onChange={this.sendTextUpdate} value={content} />;
     }
-    return <p style={style}>{content}</p>;
+    return <p ref="dims" style={style}>{content}</p>;
   },
 
   componentDidUpdate: function(prevProps, prevState) {
