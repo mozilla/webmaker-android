@@ -3,14 +3,13 @@ package mozilla.org.webmaker;
 import android.app.Activity;
 import android.os.Bundle;
 import android.util.Log;
-import android.view.Menu;
 import android.view.MenuItem;
-import android.webkit.JavascriptInterface;
 import android.widget.RelativeLayout;
 
-import mozilla.org.webmaker.view.WebmakerWebView;
 import org.json.JSONException;
 import org.json.JSONObject;
+
+import mozilla.org.webmaker.view.WebmakerWebView;
 
 public class WebmakerActivity extends Activity {
 

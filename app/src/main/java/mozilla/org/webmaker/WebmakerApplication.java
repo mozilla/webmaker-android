@@ -8,8 +8,8 @@ import com.google.android.gms.analytics.GoogleAnalytics;
 import com.google.android.gms.analytics.Tracker;
 
 import mozilla.org.webmaker.activity.Element;
-import mozilla.org.webmaker.activity.Project;
 import mozilla.org.webmaker.activity.Page;
+import mozilla.org.webmaker.activity.Project;
 import mozilla.org.webmaker.activity.Tinker;
 import mozilla.org.webmaker.router.Router;
 
