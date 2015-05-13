@@ -97,7 +97,7 @@ var Text = React.createClass({
     if (!this.state.editing) {
       this.toggleEditing();
     }
-  }
+  },
 
   // public API: "stop editing"
   stopEditing: function() {
