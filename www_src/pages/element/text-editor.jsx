@@ -46,6 +46,11 @@ var TextEditor = React.createClass({
   componentDidUpdate: function () {
     this.props.save(this.state);
   },
+  editText: function() {
+    this.setState({
+      editing: this.refs.element.toggleEditing()
+    });
+  },
   updateText: function (text) {
     this.setState({
       innerHTML: text
@@ -55,9 +60,12 @@ var TextEditor = React.createClass({
     return (
       <div id="editor">
         <div className="editor-preview">
-          <TextBlock {...this.state} updateText={this.updateText} />
+          <TextBlock {...this.state} ref="element" updateText={this.updateText} />
         </div>
         <div className="editor-options">
+          <div className="form-group">
+            <button className="btn btn-block" onClick={this.editText}>{ this.state.editing? "done" : "edit text"}</button>
+          </div>
           <div className="form-group">
             <label>Font</label>
             <select className="select" valueLink={this.linkState('fontFamily')}>

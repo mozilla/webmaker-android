@@ -39,13 +39,14 @@ var Text = React.createClass({
 
     var inputStyle = assign({}, style);
     inputStyle.background = "transparent";
-    inputStyle.border = "none";
+    inputStyle.border = "2px dotted";
+    inputStyle.borderWidth = "0 0 2px 0";
 
     var content = props.innerHTML;
     if (this.state.editing) {
       content = <input ref="input" style={inputStyle} onBlur={this.commitText} onChange={this.sendTextUpdate} value={content} />;
     }
-    return <p style={style} onClick={this.editText}>{content}</p>;
+    return <p style={style}>{content}</p>;
   },
 
   componentDidUpdate: function(prevProps, prevState) {
@@ -59,16 +60,12 @@ var Text = React.createClass({
     this.props.updateText(value);
   },
 
-  editText: function() {
+  toggleEditing: function() {
+    var toggled = !this.state.editing;
     this.setState({
-      editing: true
+      editing: toggled
     });
-  },
-
-  commitText: function() {
-    this.setState({
-      editing: false
-    });
+    return toggled;
   }
 });
 
