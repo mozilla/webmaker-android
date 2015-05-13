@@ -46,11 +46,17 @@ var Text = React.createClass({
       height: "100%"
     });
 
+    var onPClick = this.activate;
     var content = props.innerHTML;
     if (this.state.editing) {
-      content = <input ref="input" style={inputStyle} onBlur={this.commitText} onChange={this.sendTextUpdate} value={content} />;
+      onPClick = false;
+      content = <input ref="input"
+                       style={inputStyle}
+                       onClick={this.killEvent}
+                       onChange={this.sendTextUpdate}
+                       value={content} />;
     }
-    return <p ref="dims" style={style}>{content}</p>;
+    return <p ref="dims" style={style} onClick={onPClick}>{content}</p>;
   },
 
   componentDidUpdate: function(prevProps, prevState) {
@@ -59,17 +65,45 @@ var Text = React.createClass({
     }
   },
 
+  // start editing, but only if we were built with the "activate" property
+  activate: function() {
+    if (!!this.props.active) {
+      this.startEditing();
+    }
+  },
+
+  // prevent this click from going up to the owning element(s)
+  killEvent: function(evt) {
+    evt.stopPropagation();
+  },
+
+  // send our current value up to our parent for handling
   sendTextUpdate: function(evt) {
     var value = evt.target.value;
     this.props.updateText(value);
   },
 
+  // public API: "flip between editing/not editing"
   toggleEditing: function() {
-    var toggled = !this.state.editing;
     this.setState({
-      editing: toggled
+      editing: !this.state.editing
+    }, function() {
+      this.props.setEditMode(this.state.editing);
     });
-    return toggled;
+  },
+
+  // public API: "start editing"
+  startEditing: function() {
+    if (!this.state.editing) {
+      this.toggleEditing();
+    }
+  }
+
+  // public API: "stop editing"
+  stopEditing: function() {
+    if (this.state.editing) {
+      this.toggleEditing();
+    }
   }
 });
 

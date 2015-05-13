@@ -46,9 +46,18 @@ var TextEditor = React.createClass({
   componentDidUpdate: function () {
     this.props.save(this.state);
   },
-  editText: function() {
+  editText: function(evt) {
+    evt.stopPropagation();
+    evt.preventDefault();
+    this.refs.element.toggleEditing();
+    // calls our setEditing function after changing state
+  },
+  stopEditing: function(evt) {
+    this.refs.element.stopEditing();
+  },
+  setEditing: function(boolval) {
     this.setState({
-      editing: this.refs.element.toggleEditing()
+      editing: boolval
     });
   },
   updateText: function (text) {
@@ -58,9 +67,9 @@ var TextEditor = React.createClass({
   },
   render: function () {
     return (
-      <div id="editor">
+      <div id="editor" onClick={this.stopEditing}>
         <div className="editor-preview">
-          <TextBlock {...this.state} ref="element" updateText={this.updateText} />
+          <TextBlock {...this.state} ref="element" active={true} updateText={this.updateText} setEditMode={this.setEditing} />
         </div>
         <div className="editor-options">
           <div className="form-group">
