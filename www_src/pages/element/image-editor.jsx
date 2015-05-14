@@ -17,19 +17,10 @@ var ImageEditor = React.createClass({
     this.props.save(this.state);
   },
   render: function () {
-    var imageProps = {
-      src: this.state.src,
-      alt: '',
-      opacity: this.state.opacity,
-      borderStyle: 'solid',
-      borderWidth: this.state.borderWidth,
-      borderColor: this.state.borderColor
-    };
-
     return (
       <div id="editor">
         <div className="editor-preview">
-          <ImageBlock {...imageProps} />
+          <ImageBlock {...this.state} />
         </div>
         <div className="editor-options">
           <div className="form-group">
