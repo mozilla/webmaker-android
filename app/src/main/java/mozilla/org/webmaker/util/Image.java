@@ -19,6 +19,12 @@ public class Image {
      * ---------------------------------
      */
 
+    /**
+     * Returns an ACTION_IMAGE_CAPTURE intent.
+     *
+     * @param f File instance for image storage
+     * @return Intent
+     */
     public static Intent getCameraIntent(File f) {
         Intent intent = new Intent(MediaStore.ACTION_IMAGE_CAPTURE);
         intent.putExtra(MediaStore.EXTRA_OUTPUT, Uri.fromFile(f));
@@ -27,6 +33,12 @@ public class Image {
         return intent;
     }
 
+    /**
+     * Returns an ACTION_GET_CONTENT intent (image-only).
+     *
+     * @param f File instance for image storage
+     * @return Intent
+     */
     public static Intent getMediaStoreIntent(File f) {
         Intent intent = new Intent(Intent.ACTION_GET_CONTENT);
         intent.putExtra(MediaStore.EXTRA_OUTPUT, Uri.fromFile(f));

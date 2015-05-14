@@ -31,9 +31,9 @@ var ImageEditor = React.createClass({
     });
   },
   render: function () {
-    var imageProps= {
-      src: '../../img/toucan.svg',
-      alt: 'Toucan',
+    var imageProps = {
+      src: this.state.src,
+      alt: '',
       opacity: this.state.opacity,
       borderStyle: 'solid',
       borderWidth: this.state.borderWidth,
