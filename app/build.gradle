@@ -23,6 +23,20 @@ android {
         sourceCompatibility JavaVersion.VERSION_1_7
         targetCompatibility JavaVersion.VERSION_1_7
     }
+
+    productFlavors {
+        armv7 {
+            ndk {
+                abiFilters "armeabi-v7a", ""
+            }
+        }
+
+        x86 {
+            ndk {
+                abiFilters "x86", ""
+            }
+        }
+    }
 }
 
 repositories {
