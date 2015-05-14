@@ -57,9 +57,9 @@ var Positionable = React.createClass({
     });
 
     return (
-      <div style={style} className={className} key={this.props.key}>
+      <div className="positionableContainer" key={this.props.key}>
         <div ref="overlay" className="touchOverlay" hidden={!this.state.touchactive} />
-        { this.props.children }
+        <div style={style} className={className}>{ this.props.children }</div>
       </div>
     );
   },
