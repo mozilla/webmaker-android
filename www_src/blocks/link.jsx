@@ -3,11 +3,11 @@ var assign = require('react/lib/Object.assign');
 var getContrastingColor = require('../lib/color').getContrastingColor;
 var Spec = require('../lib/spec');
 
-var spec = new Spec(assign({
-innerHTML: {
+var spec = new Spec('link', assign({
+  innerHTML: {
     category: 'attributes',
     validation: React.PropTypes.string,
-    default: ''
+    default: 'Tap me'
   },
   href: {
     category: 'attributes',

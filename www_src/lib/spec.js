@@ -9,8 +9,9 @@ function validateDefinition(spec) {
   });
 }
 
-function Spec(spec) {
+function Spec(type, spec) {
   validateDefinition(spec);
+  this.type = type;
   this.spec = spec;
 };
 
@@ -52,7 +53,7 @@ Spec.propsToPosition = function (props) {
     top: 0,
     left: 0,
     transform: [
-      'translate('+(props.x + props.xoffset)+'px, '+(props.y + props.yoffset)+'px)',
+      'translate('+props.x+'px, '+props.y+'px)',
       'rotate('+(props.angle * 180/Math.PI)+'deg)',
       'scale('+props.scale+')'
     ].join(' '),
@@ -83,10 +84,10 @@ Spec.prototype.getPropTypes = function () {
   return result;
 };
 
-
 Spec.prototype.flatten = function (props, options) {
   options = options || {};
   var element = JSON.parse(JSON.stringify(props));
+
   Object.keys(this.spec).forEach(key => {
     var category = this.spec[key].category;
     if (!element[category]) element[category] = {};
@@ -96,23 +97,35 @@ Spec.prototype.flatten = function (props, options) {
       element[key] = this.spec[key].default;
     }
   });
+
   delete element.styles;
   delete element.attributes;
+
   return element;
 };
 
-Spec.prototype.expand = function (props) {
+Spec.prototype.expand = function (props, options) {
+  options = options || {};
   var element = JSON.parse(JSON.stringify(props));
-  Object.keys(element).forEach(key => {
-    var prop = this.spec[key];
-    if (typeof prop !== 'undefined') {
-      if (!element[prop.category]) element[prop.category] = {};
-      element[prop.category][key] = element[key];
+
+  Object.keys(this.spec).forEach(key => {
+    var category = this.spec[key].category;
+    if (!element[category]) element[category] = {};
+    if (typeof element[key] !== 'undefined') {
+      element[category][key] = element[key];
       delete element[key];
+    } else if (options.defaults) {
+      element[category][key] = this.spec[key].default;
     }
   });
+
   return element;
 };
 
+Spec.prototype.generate = function (props) {
+  var result = this.expand(props || {}, {defaults: true});
+  result.type = this.type;
+  return result;
+};
 
 module.exports = Spec;

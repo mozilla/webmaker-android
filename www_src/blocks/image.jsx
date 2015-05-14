@@ -2,11 +2,11 @@ var React = require('react/addons');
 var assign = require('react/lib/Object.assign');
 var Spec = require('../lib/spec');
 
-var spec = new Spec(assign({
+var spec = new Spec('image', assign({
   src: {
     category: 'attributes',
     validation: React.PropTypes.string,
-    default: ''
+    default: '../../img/toucan.svg'
   },
   alt: {
     category: 'attributes',

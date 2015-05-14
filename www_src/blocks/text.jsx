@@ -2,11 +2,11 @@ var React = require('react');
 var assign = require('react/lib/Object.assign');
 var Spec = require('../lib/spec');
 
-var spec = new Spec(assign({
+var spec = new Spec('text', assign({
   innerHTML: {
     category: 'attributes',
     validation: React.PropTypes.string,
-    default: ''
+    default: 'Hello world'
   },
   fontFamily: {
     category: 'styles',

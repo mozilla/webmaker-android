@@ -12,11 +12,8 @@ Generator.blocks[Generator.TEXT] = require('./text.jsx');
 Generator.blocks[Generator.LINK] = require('./link.jsx');
 Generator.blocks[Generator.IMAGE] = require('./image.jsx');
 
-Generator.generateDefinition = function(type, options) {
-  var def = JSON.parse(JSON.stringify(options));
-  def.id = uuid();
-  def.type = type;
-  return def;
+Generator.generateDefinition = function(type, props) {
+  return Generator.blocks[type].spec.generate(props);
 };
 
 module.exports = Generator;

@@ -10,8 +10,9 @@ module.exports = function (options, callback) {
   defaults(options, {
     method: 'get',
     useCache: false,
+    json: {},
     headers: {},
-    timeout: 60000    // 60 seconds
+    timeout: 60000 // 60 seconds
   });
 
   // ensure user-supplied methods conform to what we need.
@@ -35,9 +36,6 @@ module.exports = function (options, callback) {
   if (options.method !== 'get') {
     options.headers.Authorization = 'token validToken';
   }
-
-  // Return json response
-  if (options.method !== 'delete' && !options.json) options.json = {};
 
   // Set cache key
   var key = 'cache::' + options.method + '::' + options.uri;

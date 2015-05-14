@@ -7,16 +7,22 @@ var uuid = require('../../lib/uuid.js');
 
 var Link = require('../../components/link/link.jsx');
 var Generator = require('../../blocks/generator');
-
+var blocks = Generator.blocks;
 var Positionable = require('./positionable.jsx');
 
 var Page = React.createClass({
 
   mixins: [router],
 
+  uri: function () {
+    var params = this.state.params;
+    return `/users/${params.user}/projects/${params.project}/pages/${params.page}`;
+  },
+
   getInitialState: function() {
     return {
       elements: [],
+      styles: {},
       currentElement: -1,
       showAddMenu: false,
       dims: {
@@ -72,7 +78,7 @@ var Page = React.createClass({
         <div className="page next bottom" />
         <div className="page next left" />
         <div className="page">
-          <div className="inner" style={{backgroundColor: this.state.style.backgroundColor}}>
+          <div className="inner" style={{backgroundColor: this.state.styles.backgroundColor}}>
             <div ref="container" className="positionables">{ positionables }</div>
           </div>
         </div>
@@ -82,9 +88,9 @@ var Page = React.createClass({
 
       <div className={classNames({'controls': true, 'add-active': this.state.showAddMenu})}>
         <div className="add-menu">
-          <button className="text" onClick={this.addText}><img className="icon" src="../../img/text.svg" /></button>
-          <button className="image" onClick={this.addImage}><img className="icon" src="../../img/camera.svg" /></button>
-          <button className="link" onClick={this.addLink}><img className="icon" src="../../img/link.svg" /></button>
+          <button className="text" onClick={this.addElement('text')}><img className="icon" src="../../img/text.svg" /></button>
+          <button className="image" onClick={this.addElement('image')}><img className="icon" src="../../img/camera.svg" /></button>
+          <button className="link" onClick={this.addElement('link')}><img className="icon" src="../../img/link.svg" /></button>
         </div>
         <button className={secondaryClass("delete")} onClick={this.deleteElement} active={this.state.currentElement===-1}>
           <img className="icon" src="../../img/trash.svg" />
@@ -135,12 +141,21 @@ var Page = React.createClass({
     });
   },
 
-  appendElement: function(obj) {
-    this.setState({
-      currentElement: this.state.elements.length,
-      elements: this.state.elements.concat([obj]),
-      showAddMenu: false
-    });
+  addElement: function(type) {
+    return () => {
+      var json = Generator.generateDefinition(type);
+
+      api({method: 'post', uri: this.uri() + '/elements', json}, (err, data) => {
+        var state = {showAddMenu: false};
+        if (err) console.log('There was an error creating an element', err);
+        if (data && data.element) {
+          json.id = data.element.id;
+          state.elements = this.state.elements.concat([this.flatten(json)]);
+          state.currentElement = this.state.elements.length,
+        }
+        this.setState(state);
+      });
+    };
   },
 
   updateElement: function(index) {
@@ -172,48 +187,37 @@ var Page = React.createClass({
     });
   },
 
-  addLink: function() {
-    this.appendElement(Generator.generateDefinition(Generator.LINK, {
-      href: "https://webmaker.org",
-      label: "webmaker.org",
-      active: false
-    }));
-  },
-
-  addText: function() {
-    this.appendElement(Generator.generateDefinition(Generator.TEXT, {
-      value: "This is a paragraph of text"
-    }));
-  },
-
-  addImage: function() {
-    this.appendElement(Generator.generateDefinition(Generator.IMAGE, {
-      src: "../../img/toucan.svg",
-      alt: "This is Tucker"
-    }));
-  },
-
   save: function() {
-    // FIXME: TODO: this needs to be split into "cache this page's current running state" vs.
-    //              "only get the data relevan to for saving this page to db".
-    api({
-      method: 'put',
-      uri: '/users/foo/projects/bar/pages/' + this.state.params.page,
-      json: this.state
-    });
 
+    // api({
+    //   method: 'put',
+    //   uri: '/users/foo/projects/bar/pages/' + this.state.params.page,
+    //   json: this.state
+    // });
+
+  },
+
+  flatten: function (element) {
+    return blocks[element.type].spec.flatten(element);
   },
 
   load: function() {
     var id = this.state.params.page || 'foo0';
     api({
-      uri: '/users/foo/projects/bar/pages/' + id
-    }, (err, cachedState) => {
-      console.log(cachedState);
-      if (!cachedState || Object.keys(cachedState).length === 0) return;
-      // FIXME: TODO: this needs to be split into "loading the page's previous running state" vs.
-      //              "build page based on project stored in db".
-      this.setState(cachedState);
+      uri: this.uri()
+    }, (err, data) => {
+      if (err) return console.error('There was an error getting the Page', err);
+      if (!data && !data.page) console.log('Could not find the page');
+
+      var page = data.page;
+      var styles = page.styles;
+      var elements = page.elements.map(element => {
+        return this.flatten(element);
+      });
+      this.setState({
+        styles,
+        elements
+      });
     });
   }
 });
