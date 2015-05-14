@@ -31,7 +31,7 @@ render(React.createClass({
           element = 2;
       }
     }
-    return `/users/${params.user}/projects/${params.project}/pages/${params.page}/elements/${element}`;
+    return `/users/1/projects/${params.project}/pages/${params.page}/elements/${element}`;
   },
   componentWillMount: function() {
     this.load();

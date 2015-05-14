@@ -7,18 +7,42 @@ var Link = require('../../components/link/link.jsx');
 
 var Make = React.createClass({
   mixins: [Binding],
+  getInitialState: function () {
+    return {
+      projects: []
+    };
+  },
+  componentWillMount: function () {
+    api({
+      uri: '/users/1/projects'
+    }, (err, body) => {
+      if (err) return console.error('Error getting projects', err);
+      if (!body || !body.projects) return console.log('No projects found');
+      this.setState({
+        projects: body.projects
+      });
+    });
+  },
   render: function () {
+
+    var cards = this.state.projects.map(project => {
+      return (
+        <Card
+          key={project.id}
+          url={"/projects/" + project.id}
+          href="/pages/project"
+          thumbnail={project.thumbnail[400]}
+          title={project.title}
+          author={project.author.username} />
+      );
+    });
+
     return (
       <div id="make">
         <Link url="/projects/new" href="/pages/project" className="btn btn-block btn-teal">
           + Create a Project
         </Link>
-        
-        <Card
-          url="/projects/123"
-          href="/pages/project"
-          thumbnail="../../img/demo.png"
-          title="The Birds of the Amazon" />
+        {cards}
       </div>
     );
   }

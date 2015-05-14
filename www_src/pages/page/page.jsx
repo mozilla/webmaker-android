@@ -16,7 +16,7 @@ var Page = React.createClass({
 
   uri: function () {
     var params = this.state.params;
-    return `/users/${params.user}/projects/${params.project}/pages/${params.page}`;
+    return `/users/1/projects/${params.project}/pages/${params.page}`;
   },
 
   getInitialState: function() {
@@ -64,7 +64,8 @@ var Page = React.createClass({
     var currentEl = elements[this.state.currentElement];
     if (typeof currentEl !== 'undefined') {
       href = '/pages/element/#' + currentEl.type;
-      url =  '/projects/123/pages/' + this.state.params.page + '/elements/' + currentEl.id + '/editor/' + currentEl.type;
+      var params = this.state.params;
+      url = `/projects/${params.project}/pages/${params.page}/elements/${currentEl.id}/editor/${currentEl.type}`;
     }
 
     return <div id="project" className="demo">
