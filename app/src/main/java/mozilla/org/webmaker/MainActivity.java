@@ -3,16 +3,11 @@ package mozilla.org.webmaker;
 import android.app.ActionBar;
 import android.app.Activity;
 import android.app.FragmentTransaction;
-import android.graphics.Color;
-import android.graphics.drawable.ColorDrawable;
 import android.os.Bundle;
 import android.support.v4.view.ViewPager;
 import android.util.Log;
-import android.view.Menu;
 import android.view.MenuItem;
 
-import android.view.Window;
-import android.view.WindowManager;
 import mozilla.org.webmaker.adapter.SectionsPagerAdapter;
 
 
