@@ -180,8 +180,9 @@ var Project = React.createClass({
           y: page.y
         }
         page.elements = page.elements.map(element => {
+          if (!blocks[element.type]) return false;
           return blocks[element.type].spec.flatten(element);
-        });
+        }).filter(element => element);
         delete page.x;
         delete page.y;
         return page;

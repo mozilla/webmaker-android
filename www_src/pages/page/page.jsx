@@ -194,6 +194,7 @@ var Page = React.createClass({
   },
 
   flatten: function (element) {
+    if (!blocks[element.type]) return false;
     return blocks[element.type].spec.flatten(element);
   },
 
@@ -209,7 +210,7 @@ var Page = React.createClass({
       var styles = page.styles;
       var elements = page.elements.map(element => {
         return this.flatten(element);
-      });
+      }).filter(element => element);
       this.setState({
         styles,
         elements
