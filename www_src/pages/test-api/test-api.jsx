@@ -1,6 +1,7 @@
 var React = require('react');
 var render = require('../../lib/render.jsx');
 var xhr = require('xhr');
+var Image = require('../../blocks/image.jsx');
 
 function parse(string) {
   try {
@@ -69,7 +70,7 @@ var ApiTest = React.createClass({
 
 
     return (<div>
-      API tests
+        <Image src="http://cdn.playbuzz.com/cdn/0079c830-3406-4c05-a5c1-bc43e8f01479/8c7524f9-b5f9-4ff6-8878-b6ed1a4085f5_560_420.jpg" />
     </div>);
   }
 });

@@ -10,24 +10,42 @@ var editors = {
 };
 
 var hash = window.location.hash && window.location.hash.replace('#', '');
-var fakeParams = {project: '123', page: 'foo0', element: 'bar' + hash};
 
 render(React.createClass({
   mixins: [router],
   uri: function () {
-    var params = this.state.params
-    // for testing
-    if (!params.element) params = fakeParams;
-    return `/users/foo/projects/${params.project}/pages/${params.page}/elements/${params.element}`;
+    var params = this.state.params;
+    var element = params.element;
+    if (hash) {
+      switch(hash) {
+        case 'image':
+          element = 1;
+          break;
+        case 'text':
+          element = 2;
+          break;
+        case 'link':
+          element = 3;
+          break;
+        default:
+          element = 2;
+      }
+    }
+    return `/users/${params.user}/projects/${params.project}/pages/${params.page}/elements/${element}`;
   },
   componentWillMount: function() {
-    api({uri: this.uri()}, (err, data) => {
-      this.setState({element: data});
-    });
+    this.load();
   },
   save: function (json) {
-    api({method: 'put', uri: this.uri(), json}, (err, data) => {
-      if (data) console.log('saved!');
+    // api({method: 'put', uri: this.uri(), json}, (err, data) => {
+    //   if (data) console.log('saved!');
+    // });
+  },
+  load: function () {
+    api({uri: this.uri()}, (err, data) => {
+      if (err) return console.error('Error loading element', err);
+      if (!data || !data.element) return console.log('No element found');
+      this.setState({element: data.element});
     });
   },
   render: function () {

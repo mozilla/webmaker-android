@@ -1,28 +1,50 @@
 var React = require('react');
 var assign = require('react/lib/Object.assign');
-var utils = require('../lib/propUtils');
 var getContrastingColor = require('../lib/color').getContrastingColor;
+var Spec = require('../lib/spec');
+
+var spec = new Spec(assign({
+innerHTML: {
+    category: 'attributes',
+    validation: React.PropTypes.string,
+    default: ''
+  },
+  href: {
+    category: 'attributes',
+    validation: React.PropTypes.string,
+    default: ''
+  },
+  fontFamily: {
+    category: 'styles',
+    validation: React.PropTypes.string,
+    default: 'sans-serif'
+  },
+  backgroundColor: {
+    category: 'styles',
+    validation: React.PropTypes.string,
+    default: '#333'
+  }
+}, Spec.getPositionProps()));
 
 var Link = React.createClass({
-  statics: {
-    defaults: {
-      href: '',
-      borderRadius: 5,
-      backgroundColor: '#69A0FC',
-      fontFamily: 'Roboto',
-      whiteSpace: 'pre',
-      innerHTML: 'Tap me',
-      active: false
-    }
-  },
+
   mixins: [
     require('./textedit')
   ],
+
+  statics: {spec},
+
+  propTypes: spec.getPropTypes(),
+
   getDefaultProps: function () {
-    return this.defaults;
+    return assign(spec.getDefaultProps(), {
+      active: false
+    });
   },
+
   render: function() {
     var props = this.props;
+
     var style = {
       boxShadow: 'none',
       borderRadius: props.borderRadius,

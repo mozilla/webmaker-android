@@ -8,7 +8,6 @@ var Range = require('../../components/range/range.jsx');
 var ColorGroup = require('../../components/color-group/color-group.jsx');
 var {CheckboxSet, Radio} = require('../../components/option-panel/option-panel.jsx');
 
-
 var textStyleOptions = [
   {
     id: 'fontWeight',
@@ -43,8 +42,7 @@ var TextEditor = React.createClass({
     require('./witheditable')
   ],
   getInitialState: function () {
-    var props = this.props.element || {};
-    return defaults(props, TextBlock.defaults);
+    return TextBlock.spec.flatten(this.props.element, {defaults: true});
   },
   componentDidUpdate: function () {
     this.props.save(this.state);

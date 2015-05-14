@@ -1,20 +1,45 @@
-var React = require('react');
-var utils = require('../lib/propUtils');
+var React = require('react/addons');
 var assign = require('react/lib/Object.assign');
+var Spec = require('../lib/spec');
+
+var spec = new Spec(assign({
+  src: {
+    category: 'attributes',
+    validation: React.PropTypes.string,
+    default: ''
+  },
+  alt: {
+    category: 'attributes',
+    validation: React.PropTypes.string,
+    default: ''
+  },
+  opacity: {
+    category: 'styles',
+    validation: React.PropTypes.number,
+    default: 1
+  },
+  borderWidth: {
+    category: 'styles',
+    validation: React.PropTypes.number,
+    default: 0
+  },
+  borderColor: {
+    category: 'styles',
+    validation: React.PropTypes.string,
+    default: 'transparent'
+  }
+}, Spec.getPositionProps()));
 
 var Image = React.createClass({
-  statics: {
-    defaults: {
-      src: '',
-      alt: '',
-      opacity: 1,
-      borderWidth: 0,
-      borderColor: 'transparent'
-    }
-  },
+
+  statics: {spec},
+
+  propTypes: spec.getPropTypes(),
+
   getDefaultProps: function () {
-    return this.defaults;
+    return spec.getDefaultProps();
   },
+
   render: function() {
     var props = this.props;
     var style = {
@@ -25,7 +50,7 @@ var Image = React.createClass({
     };
 
     if (props.position) {
-      style = assign(style, utils.propsToPosition(props));
+      style = assign(style, Spec.propsToPosition(props));
     }
 
     return <img style={style} src={this.props.src} alt={this.props.alt} />
