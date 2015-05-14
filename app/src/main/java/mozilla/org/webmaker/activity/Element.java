@@ -10,6 +10,7 @@ import android.util.Log;
 import android.webkit.JavascriptInterface;
 import mozilla.org.webmaker.R;
 import mozilla.org.webmaker.WebmakerActivity;
+import mozilla.org.webmaker.util.Image;
 
 import java.io.ByteArrayOutputStream;
 
@@ -44,22 +45,9 @@ public class Element extends WebmakerActivity {
             Bundle extras = data.getExtras();
             Bitmap imageBitmap = (Bitmap) extras.get("data");
 //            mImageView.setImageBitmap(imageBitmap);
-            Log.v("DATAURI", bitmapToDataUri(imageBitmap));
+
+            Log.v("DATAURI", Image.createDataUriFromBitmap(imageBitmap, R.integer.image_quality));
 
         }
-    }
-
-    protected String bitmapToDataUri(Bitmap image) {
-        return "data:image/jpg;base64,".concat(encodeTobase64(image));
-    }
-
-    protected String encodeTobase64(Bitmap image) {
-        Bitmap immagex=image;
-        ByteArrayOutputStream baos = new ByteArrayOutputStream();
-        immagex.compress(Bitmap.CompressFormat.JPEG, 100, baos);
-        byte[] b = baos.toByteArray();
-        String imageEncoded = Base64.encodeToString(b, Base64.DEFAULT);
-
-        return imageEncoded;
     }
 }
