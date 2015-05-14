@@ -6,12 +6,13 @@ import android.provider.MediaStore;
 import mozilla.org.webmaker.activity.Element;
 import mozilla.org.webmaker.router.Router;
 import android.content.Context;
+import android.content.SharedPreferences;
 import android.util.Log;
 import android.webkit.JavascriptInterface;
-import android.content.SharedPreferences;
+
+import org.json.JSONObject;
 
 import mozilla.org.webmaker.router.Router;
-import org.json.JSONObject;
 
 public class WebAppInterface {
 

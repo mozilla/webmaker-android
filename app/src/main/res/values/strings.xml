@@ -1,6 +1,5 @@
 <resources>
     <string name="app_name">Webmaker</string>
-
     <string name="title_section1">Discover</string>
     <string name="title_section2">Make</string>
     <string name="title_activity_project">Project</string>
@@ -11,4 +10,8 @@
     <string name="action_play">Play</string>
     <string name="action_settings">Project Settings</string>
     <string name="action_share">Share Project</string>
+
+    <!-- Google Analytics App Name & Id -->
+    <string name="ga_appName">Mobile App</string>
+    <string name="ga_appId">97402987</string>
 </resources>

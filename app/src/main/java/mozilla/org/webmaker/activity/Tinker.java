@@ -2,16 +2,13 @@ package mozilla.org.webmaker.activity;
 
 import android.app.ActionBar;
 import android.content.res.Resources;
-import android.graphics.Color;
 import android.graphics.drawable.ColorDrawable;
 import android.os.Bundle;
-import android.view.Menu;
 import android.view.Window;
 import android.view.WindowManager;
-import android.widget.RelativeLayout;
+
 import mozilla.org.webmaker.R;
 import mozilla.org.webmaker.WebmakerActivity;
-import mozilla.org.webmaker.view.WebmakerWebView;
 
 public class Tinker extends WebmakerActivity {
     public Tinker() {

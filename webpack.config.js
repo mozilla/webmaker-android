@@ -1,4 +1,5 @@
 var getPages = require('./npm_tasks/get-pages');
+var path = require('path');
 
 // Prep all entry points
 var entry = {};
@@ -17,15 +18,18 @@ module.exports = {
     loaders: [
       {
         test: /\.js$/,
-        loaders:  ['babel-loader']
+        loaders:  ['babel-loader'],
+        include: path.resolve(__dirname, 'www_src')
       },
       {
         test: /\.jsx$/,
-        loaders:  ['babel-loader', 'jsx-loader']
+        loaders:  ['babel-loader', 'jsx-loader'],
+        include: path.resolve(__dirname, 'www_src')
       },
       {
         test: /\.json$/,
-        loader: 'json-loader'
+        loader: 'json-loader',
+        include: [path.resolve(__dirname, 'www_src'),  path.resolve(__dirname, 'node_modules')]
       }
     ]
   }
