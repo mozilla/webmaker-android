@@ -8,6 +8,7 @@ var Range = require('../../components/range/range.jsx');
 var Tabs = require('../../components/tabs/tabs.jsx');
 var Card = require('../../components/card/card.jsx');
 var Alert = require('../../components/alert/alert.jsx');
+var TextInput = require('../../components/text-input/text-input.jsx');
 
 var tabs = [
   {
@@ -88,6 +89,9 @@ var StyleGuide = React.createClass({
           thumbnail="../../img/toucan.svg"
           title="The Birds of the Amazon"
           author="someperson" />
+
+        <h3>TextInput (JSX)</h3>
+        <TextInput label="Title" maxlength={25} />
 
       </div>
     );
