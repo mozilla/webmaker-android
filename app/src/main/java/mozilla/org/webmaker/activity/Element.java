@@ -1,22 +1,19 @@
 package mozilla.org.webmaker.activity;
 
-import android.app.Activity;
 import android.content.Intent;
 import android.graphics.Bitmap;
-import android.os.Bundle;
+import android.net.Uri;
+import android.os.Environment;
 import android.provider.MediaStore;
-import android.util.Base64;
 import android.util.Log;
-import android.webkit.JavascriptInterface;
 import mozilla.org.webmaker.R;
 import mozilla.org.webmaker.WebmakerActivity;
 import mozilla.org.webmaker.util.Image;
-
-import java.io.ByteArrayOutputStream;
+import java.io.File;
 
 public class Element extends WebmakerActivity {
 
-    static final int REQUEST_IMAGE_CAPTURE = 1;
+    final int CAPTURE_IMAGE_FULLSIZE_ACTIVITY_REQUEST_CODE = 1888;
 
     public Element() {
         super("element", R.id.element_layout, R.layout.element_layout, R.menu.menu_element);
@@ -26,10 +23,10 @@ public class Element extends WebmakerActivity {
      * Dispatches a new image capture intent.
      */
     public void dispatchTakePictureIntent() {
-        Intent takePictureIntent = new Intent(MediaStore.ACTION_IMAGE_CAPTURE);
-        if (takePictureIntent.resolveActivity(getPackageManager()) != null) {
-            startActivityForResult(takePictureIntent, REQUEST_IMAGE_CAPTURE);
-        }
+        Intent intent = new Intent("android.media.action.IMAGE_CAPTURE");
+        File file = new File(Environment.getExternalStorageDirectory() + File.separator + "image.jpg");
+        intent.putExtra(MediaStore.EXTRA_OUTPUT, Uri.fromFile(file));
+        startActivityForResult(intent, CAPTURE_IMAGE_FULLSIZE_ACTIVITY_REQUEST_CODE);
     }
 
     /**
@@ -41,13 +38,11 @@ public class Element extends WebmakerActivity {
      */
     @Override
     protected void onActivityResult(int requestCode, int resultCode, Intent data) {
-        if (requestCode == REQUEST_IMAGE_CAPTURE && resultCode == RESULT_OK) {
-            Bundle extras = data.getExtras();
-            Bitmap imageBitmap = (Bitmap) extras.get("data");
-//            mImageView.setImageBitmap(imageBitmap);
-
-            Log.v("DATAURI", Image.createDataUriFromBitmap(imageBitmap, R.integer.image_quality));
-
+        if (requestCode == CAPTURE_IMAGE_FULLSIZE_ACTIVITY_REQUEST_CODE) {
+            File file = new File(Environment.getExternalStorageDirectory() + File.separator + "image.jpg");
+            Bitmap bitmap = Image.decodeBitmapFromFile(file.getAbsolutePath(), 1000, 700);
+            String uri = Image.createDataUriFromBitmap(bitmap, 60);
+            Log.v("DATAURI", uri);
         }
     }
 }

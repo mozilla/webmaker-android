@@ -1,10 +1,17 @@
 package mozilla.org.webmaker.util;
 
+import android.content.Context;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
+import android.os.Environment;
 import android.util.Base64;
 
 import java.io.ByteArrayOutputStream;
+import java.io.File;
+import java.io.IOException;
+import java.text.SimpleDateFormat;
+import java.util.Date;
+import java.util.Locale;
 
 public class Image {
 
@@ -53,6 +60,21 @@ public class Image {
     public static String createDataUriFromBitmap(Bitmap bitmap, int quality) {
         String data = convertBitmapToBase64(bitmap, quality);
         return "data:image/jpg;base64,".concat(data);
+    }
+
+    /**
+     * Create a JPG file within the local filesystem.
+     *
+     * @param context Context from current activity
+     * @return File (filepath)
+     * @throws IOException
+     */
+    public static File createImageFile(Context context) throws IOException {
+        String timeStamp = new SimpleDateFormat("yyyyMMdd_HHmmss", Locale.US).format(new Date());
+        String imageFileName = "JPEG_" + timeStamp + "_";
+        File storageDir = context.getExternalFilesDir(null);
+        File image = File.createTempFile(imageFileName, ".jpg", storageDir);
+        return image;
     }
 
     /**
