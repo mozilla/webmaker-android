@@ -40,10 +40,6 @@ var Page = React.createClass({
     if (this.props.isVisible && !prevProps.isVisible) {
       this.load();
       console.log('restored!');
-    } else {
-      // This will need to happen less frequently
-      // When we are hitting a real API server
-      this.save();
     }
   },
 
@@ -173,28 +169,28 @@ var Page = React.createClass({
   deleteElement: function() {
     if(this.state.currentElement === -1) return;
     var elements = this.state.elements;
-    elements[this.state.currentElement] = false;
-    var currentElement = -1;
-    elements.some(function(e,idx) {
-      currentElement = idx;
-      return !!e;
-    });
-    // note that we do not splice, because the updateElement
-    // function relies on immutable array indices.
-    this.setState({
-      elements: elements,
-      currentElement: currentElement
+    var id = elements[this.state.currentElement].id;
+
+    // Don't delete test elements for real;
+    if (parseInt(id, 10) <= 3) return alert('this is a test element, not deleting.');
+
+    api({method: 'delete', uri: this.uri() + '/elements/' + id}, (err, data) => {
+      if (err) return console.error('There was a problem deleting the element');
+      elements[this.state.currentElement] = false;
+      var currentElement = -1;
+      elements.some(function(e,idx) {
+        currentElement = idx;
+        return !!e;
+      });
+      this.setState({
+        elements: elements,
+        currentElement: -1
+      });
     });
   },
 
   save: function() {
-
-    // api({
-    //   method: 'put',
-    //   uri: '/users/foo/projects/bar/pages/' + this.state.params.page,
-    //   json: this.state
-    // });
-
+    // todo
   },
 
   flatten: function (element) {

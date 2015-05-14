@@ -179,6 +179,9 @@ var Project = React.createClass({
           x: page.x,
           y: page.y
         }
+        page.elements = page.elements.map(element => {
+          return blocks[element.type].spec.flatten(element);
+        });
         delete page.x;
         delete page.y;
         return page;
@@ -227,6 +230,9 @@ var Project = React.createClass({
       if (el.id === currentId) index = i;
     });
     if (typeof index === 'undefined') return;
+
+    // Don't delete test elements for real;
+    if (parseInt(currentId, 10) === 1) return alert('this is a test page, not deleting.');
 
     api({
       method: 'delete',

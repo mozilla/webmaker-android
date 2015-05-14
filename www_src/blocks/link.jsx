@@ -55,7 +55,7 @@ var Link = React.createClass({
     };
 
     if (props.position) {
-      style = assign(style, utils.propsToPosition(props));
+      style = assign(style, Spec.propsToPosition(props));
     }
 
     var Element = this.props.activelink ? 'a' : 'span';
