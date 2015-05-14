@@ -40,9 +40,11 @@ public class Element extends WebmakerActivity {
     protected void onActivityResult(int requestCode, int resultCode, Intent data) {
         if (requestCode == CAPTURE_IMAGE_FULLSIZE_ACTIVITY_REQUEST_CODE) {
             File file = new File(Environment.getExternalStorageDirectory() + File.separator + "image.jpg");
-            Bitmap bitmap = Image.decodeBitmapFromFile(file.getAbsolutePath(), 1000, 700);
+            Bitmap bitmap = Image.decodeBitmapFromFile(file.getAbsolutePath(), 400, 400);
             String uri = Image.createDataUriFromBitmap(bitmap, 60);
+
             Log.v("DATAURI", uri);
+            view.loadUrl("javascript: window.imageReady && window.imageReady('" + uri + "')");
         }
     }
 }

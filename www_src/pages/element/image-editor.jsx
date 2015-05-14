@@ -8,7 +8,16 @@ var defaults = require('lodash.defaults');
 
 var ImageEditor = React.createClass({
   mixins: [React.addons.LinkedStateMixin],
+  imageReady: function (uri) {
+    this.setState({
+      src: uri
+    });
+  },
   getInitialState: function () {
+    // Expose image handler to Android
+    window.imageReady = this.imageReady;
+
+    // Bind props
     var props = this.props.element || {};
     return defaults(props, ImageBlock.defaults);
   },
@@ -37,8 +46,9 @@ var ImageEditor = React.createClass({
         </div>
         <div className="editor-options">
           <div className="form-group">
-            <button onClick={this.onChangeImageClick} className="btn btn-block"><img className="icon" src="../../img/change-image.svg" /> Change Image</button>
-            <Alert ref="notImplementedWarning">Coming Soon!</Alert>
+            <button onClick={this.onChangeImageClick} className="btn btn-block">
+              <img className="icon" src="../../img/change-image.svg" /> Change Image
+            </button>
           </div>
           <div className="form-group">
             <label>Transparency</label>
