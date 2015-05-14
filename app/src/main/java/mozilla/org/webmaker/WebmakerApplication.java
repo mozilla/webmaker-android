@@ -10,6 +10,7 @@ import com.google.android.gms.analytics.Tracker;
 import mozilla.org.webmaker.activity.Element;
 import mozilla.org.webmaker.activity.Page;
 import mozilla.org.webmaker.activity.Project;
+import mozilla.org.webmaker.activity.ProjectSettings;
 import mozilla.org.webmaker.activity.Tinker;
 import mozilla.org.webmaker.router.Router;
 
@@ -49,6 +50,7 @@ public class WebmakerApplication extends Application {
         Router.sharedRouter().map("/projects/:project/pages/:page", Page.class);
         Router.sharedRouter().map("/projects/:project/pages/:page/elements/:element/editor/:editor", Element.class);
         Router.sharedRouter().map("/projects/:project/pages/:page/elements/:element/attributes/:attribute/editor/:editor", Tinker.class);
+        Router.sharedRouter().map("/projects/:project/settings", ProjectSettings.class);
 
         // @todo Restore state
     }
