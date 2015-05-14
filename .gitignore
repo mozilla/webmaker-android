@@ -7,6 +7,6 @@
 node_modules/
 app/src/main/assets/www/
 .idea
-webmaker-app.iml
+webmaker-*.iml
 npm-debug.log*
 TODO.txt
