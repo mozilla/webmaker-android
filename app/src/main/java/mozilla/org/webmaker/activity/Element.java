@@ -2,18 +2,21 @@ package mozilla.org.webmaker.activity;
 
 import android.content.Intent;
 import android.graphics.Bitmap;
-import android.net.Uri;
 import android.os.Environment;
-import android.provider.MediaStore;
 import android.util.Log;
 import mozilla.org.webmaker.R;
 import mozilla.org.webmaker.WebmakerActivity;
 import mozilla.org.webmaker.util.Image;
+
 import java.io.File;
+import java.util.UUID;
 
 public class Element extends WebmakerActivity {
 
-    final int CAPTURE_IMAGE_FULLSIZE_ACTIVITY_REQUEST_CODE = 1888;
+    public String mUuid = UUID.randomUUID().toString();
+    public File mFile = new File(Environment.getExternalStorageDirectory() + File.separator + mUuid + ".jpg");
+    protected final int CAMERA_REQUEST_CODE = 1888;
+    protected final int MEDIA_REQUEST_CODE = 1889;
 
     public Element() {
         super("element", R.id.element_layout, R.layout.element_layout, R.menu.menu_element);
@@ -22,11 +25,17 @@ public class Element extends WebmakerActivity {
     /**
      * Dispatches a new image capture intent.
      */
-    public void dispatchTakePictureIntent() {
-        Intent intent = new Intent("android.media.action.IMAGE_CAPTURE");
-        File file = new File(Environment.getExternalStorageDirectory() + File.separator + "image.jpg");
-        intent.putExtra(MediaStore.EXTRA_OUTPUT, Uri.fromFile(file));
-        startActivityForResult(intent, CAPTURE_IMAGE_FULLSIZE_ACTIVITY_REQUEST_CODE);
+    public void dispatchCameraIntent() {
+        Intent intent = Image.getCameraIntent(mFile);
+        startActivityForResult(intent, CAMERA_REQUEST_CODE);
+    }
+
+    /**
+     * Dispatches a new media gallery intent.
+     */
+    public void dispatchMediaIntent() {
+        Intent intent = Image.getMediaStoreIntent(mFile);
+        startActivityForResult(intent, MEDIA_REQUEST_CODE);
     }
 
     /**
@@ -38,13 +47,27 @@ public class Element extends WebmakerActivity {
      */
     @Override
     protected void onActivityResult(int requestCode, int resultCode, Intent data) {
-        if (requestCode == CAPTURE_IMAGE_FULLSIZE_ACTIVITY_REQUEST_CODE) {
-            File file = new File(Environment.getExternalStorageDirectory() + File.separator + "image.jpg");
-            Bitmap bitmap = Image.decodeBitmapFromFile(file.getAbsolutePath(), 400, 400);
-            String uri = Image.createDataUriFromBitmap(bitmap, 60);
+        Bitmap bitmap = null;
 
-            Log.v("DATAURI", uri);
-            view.loadUrl("javascript: window.imageReady && window.imageReady('" + uri + "')");
+        // Handle camera activity
+        if (requestCode == CAMERA_REQUEST_CODE) {
+            bitmap = Image.decodeBitmapFromFile(mFile.getAbsolutePath(), 400, 400);
         }
+
+        // Handle media (gallery) activity
+        if (requestCode == MEDIA_REQUEST_CODE) {
+            bitmap = Image.decodeBitmapFromMediaStore(data.getData(), 400, this);
+        }
+
+        // @todo Handle error
+        if (bitmap == null) {
+            Log.e("DATAURI:ERROR", "Bitmap is null");
+            return;
+        }
+
+        // Convert bitmap to data uri and forward to JS
+        String uri = Image.createDataUriFromBitmap(bitmap, 60);
+        view.loadUrl("javascript: window.imageReady && window.imageReady('" + uri + "')");
+        Log.v("DATAURI:RESULT", uri);
     }
 }

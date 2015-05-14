@@ -8,11 +8,6 @@ var defaults = require('lodash.defaults');
 
 var ImageEditor = React.createClass({
   mixins: [React.addons.LinkedStateMixin],
-  imageReady: function (uri) {
-    this.setState({
-      src: uri
-    });
-  },
   getInitialState: function () {
     // Expose image handler to Android
     window.imageReady = this.imageReady;
@@ -25,10 +20,15 @@ var ImageEditor = React.createClass({
     this.props.save(this.state);
   },
   onChangeImageClick: function () {
-    // this.refs.notImplementedWarning.show();
     if (window.Android) {
-      window.Android.getFromCamera();
+      // window.Android.getFromCamera();
+      window.Android.getFromMedia();
     }
+  },
+  imageReady: function (uri) {
+    this.setState({
+      src: uri
+    });
   },
   render: function () {
     var imageProps= {

@@ -115,12 +115,15 @@ public class WebAppInterface {
     public void getFromCamera() {
         Element elementActivity = (Element) mContext;
         if (elementActivity != null) {
-            elementActivity.dispatchTakePictureIntent();
+            elementActivity.dispatchCameraIntent();
         }
     }
 
     @JavascriptInterface
-    public void getFromGallery() {
-
+    public void getFromMedia() {
+        Element elementActivity = (Element) mContext;
+        if (elementActivity != null) {
+            elementActivity.dispatchMediaIntent();
+        }
     }
 }

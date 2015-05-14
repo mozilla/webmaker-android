@@ -1,19 +1,46 @@
 package mozilla.org.webmaker.util;
 
 import android.content.Context;
+import android.content.Intent;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
-import android.os.Environment;
+import android.net.Uri;
+import android.os.ParcelFileDescriptor;
+import android.provider.MediaStore;
 import android.util.Base64;
 
-import java.io.ByteArrayOutputStream;
-import java.io.File;
-import java.io.IOException;
-import java.text.SimpleDateFormat;
-import java.util.Date;
-import java.util.Locale;
+import java.io.*;
 
 public class Image {
+
+    /**
+     * ---------------------------------
+     * Intent generation
+     * ---------------------------------
+     */
+
+    public static Intent getCameraIntent(File f) {
+        Intent intent = new Intent(MediaStore.ACTION_IMAGE_CAPTURE);
+        intent.putExtra(MediaStore.EXTRA_OUTPUT, Uri.fromFile(f));
+        intent.setType("image/*");
+
+        return intent;
+    }
+
+    public static Intent getMediaStoreIntent(File f) {
+        Intent intent = new Intent(Intent.ACTION_GET_CONTENT);
+        intent.putExtra(MediaStore.EXTRA_OUTPUT, Uri.fromFile(f));
+        intent.putExtra("outputFormat", Bitmap.CompressFormat.JPEG.toString());
+        intent.setType("image/*");
+
+        return intent;
+    }
+
+    /**
+     * ---------------------------------
+     * Image manipulation & conversion
+     * ---------------------------------
+     */
 
     /**
      * Returns a scaled bitmap from the specified file path.
@@ -51,6 +78,58 @@ public class Image {
     }
 
     /**
+     * Returns a scaled bitmap from the specified file path.
+     *
+     * @param uri Filepath (URI) for bitmap
+     * @param size Maximum width / height
+     * @param c Context from calling activity
+     * @return Scaled bitmap
+     */
+    public static Bitmap decodeBitmapFromMediaStore(Uri uri, int size, Context c) {
+        ParcelFileDescriptor parcelFD = null;
+        Bitmap bitmap = null;
+
+        try {
+            parcelFD = c.getContentResolver().openFileDescriptor(uri, "r");
+            FileDescriptor imageSource = parcelFD.getFileDescriptor();
+
+            // Decode image size
+            BitmapFactory.Options o = new BitmapFactory.Options();
+            o.inJustDecodeBounds = true;
+            BitmapFactory.decodeFileDescriptor(imageSource, null, o);
+
+            // Find the correct scale value. It should be the power of 2.
+            int width_tmp = o.outWidth, height_tmp = o.outHeight;
+            int scale = 1;
+            while (true) {
+                if (width_tmp < size && height_tmp < size) {
+                    break;
+                }
+                width_tmp /= 2;
+                height_tmp /= 2;
+                scale *= 2;
+            }
+
+            // decode with inSampleSize
+            BitmapFactory.Options o2 = new BitmapFactory.Options();
+            o2.inSampleSize = scale;
+            bitmap = BitmapFactory.decodeFileDescriptor(imageSource, null, o2);
+        } catch (FileNotFoundException e) {
+            // ignored
+        }
+
+        if (parcelFD != null) {
+            try {
+                parcelFD.close();
+            } catch (IOException e) {
+                // ignored
+            }
+        }
+
+        return bitmap;
+    }
+
+    /**
      * Creates a data URI (RFC 2397) from a provided bitmap.
      *
      * @param bitmap Bitmap to be converted into a datauri
@@ -60,21 +139,6 @@ public class Image {
     public static String createDataUriFromBitmap(Bitmap bitmap, int quality) {
         String data = convertBitmapToBase64(bitmap, quality);
         return "data:image/jpg;base64,".concat(data);
-    }
-
-    /**
-     * Create a JPG file within the local filesystem.
-     *
-     * @param context Context from current activity
-     * @return File (filepath)
-     * @throws IOException
-     */
-    public static File createImageFile(Context context) throws IOException {
-        String timeStamp = new SimpleDateFormat("yyyyMMdd_HHmmss", Locale.US).format(new Date());
-        String imageFileName = "JPEG_" + timeStamp + "_";
-        File storageDir = context.getExternalFilesDir(null);
-        File image = File.createTempFile(imageFileName, ".jpg", storageDir);
-        return image;
     }
 
     /**
