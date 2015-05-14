@@ -6,8 +6,7 @@ var api = require('../../lib/api.js');
 var uuid = require('../../lib/uuid.js');
 
 var Link = require('../../components/link/link.jsx');
-var Generator = require('../../blocks/generator');
-var blocks = Generator.blocks;
+var blocks = require('../../blocks/all.jsx');
 var Positionable = require('./positionable.jsx');
 
 var Page = React.createClass({
@@ -125,7 +124,7 @@ var Page = React.createClass({
       props.parentWidth = this.state.dims.width;
       props.parentHeight = this.state.dims.height;
 
-      var Element = Generator.blocks[props.type];
+      var Element = blocks[props.type];
 
       props.ref = "positionable"+i;
       props.key = "positionable"+i;
@@ -140,7 +139,7 @@ var Page = React.createClass({
 
   addElement: function(type) {
     return () => {
-      var json = Generator.generateDefinition(type);
+      var json = blocks[type].spec.generate();
 
       api({method: 'post', uri: this.uri() + '/elements', json}, (err, data) => {
         var state = {showAddMenu: false};

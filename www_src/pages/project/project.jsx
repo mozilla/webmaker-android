@@ -9,7 +9,7 @@ var router = require('../../lib/router.jsx');
 var Cartesian = require('../../lib/cartesian');
 var Link = require('../../components/link/link.jsx');
 var {Menu, PrimaryButton, SecondaryButton} = require('../../components/action-menu/action-menu.jsx');
-var blocks = require('../../blocks/generator').blocks;
+var blocks = require('../../blocks/all.jsx');
 
 var api = require('../../lib/api');
 
