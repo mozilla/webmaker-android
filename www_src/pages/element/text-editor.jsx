@@ -68,34 +68,36 @@ var TextEditor = React.createClass({
   render: function () {
     return (
       <div id="editor" onClick={this.stopEditing}>
-        <div className="editor-preview">
-          <TextBlock {...this.state} ref="element" active={true} updateText={this.updateText} setEditMode={this.setEditing} />
-        </div>
-        <div className="editor-options">
-          <div className="form-group">
-            <button className="btn btn-block" onClick={this.editText}>{ this.state.editing? "Done" : "Edit text"}</button>
+        <form>
+          <div className="editor-preview">
+            <TextBlock {...this.state} ref="element" active={true} updateText={this.updateText} setEditMode={this.setEditing} />
           </div>
-          <div className="form-group">
-            <label>Font</label>
-            <select className="select" valueLink={this.linkState('fontFamily')}>
-              <option value="Roboto">Roboto</option>
-              <option value="Bitter">Bitter</option>
-              <option value="Pacifico">Pacifico</option>
-            </select>
+          <div className="editor-options">
+            <div className="form-group">
+              <button className="btn btn-block" onClick={this.editText}>{ this.state.editing? "Done" : "Edit text"}</button>
+            </div>
+            <div className="form-group">
+              <label>Font</label>
+              <select className="select" valueLink={this.linkState('fontFamily')}>
+                <option value="Roboto">Roboto</option>
+                <option value="Bitter">Bitter</option>
+                <option value="Pacifico">Pacifico</option>
+              </select>
+            </div>
+            <div className="form-group">
+              <label>Color</label>
+              <ColorGroup id="color" linkState={this.linkState} />
+            </div>
+            <div className="form-group">
+              <label>Text Style</label>
+              <CheckboxSet options={textStyleOptions} linkState={this.linkState} />
+            </div>
+            <div className="form-group">
+              <label>Text Alignment</label>
+              <Radio id="textAlign" options={textAlignOptions} linkState={this.linkState} />
+            </div>
           </div>
-          <div className="form-group">
-            <label>Color</label>
-            <ColorGroup id="color" linkState={this.linkState} />
-          </div>
-          <div className="form-group">
-            <label>Text Style</label>
-            <CheckboxSet options={textStyleOptions} linkState={this.linkState} />
-          </div>
-          <div className="form-group">
-            <label>Text Alignment</label>
-            <Radio id="textAlign" options={textAlignOptions} linkState={this.linkState} />
-          </div>
-        </div>
+        </form>
       </div>
     );
   }
