@@ -22,7 +22,12 @@ var spec = new Spec('link', assign({
   backgroundColor: {
     category: 'styles',
     validation: React.PropTypes.string,
-    default: '#333'
+    default: '#69A0FC'
+  },
+  borderRadius: {
+    category: 'styles',
+    validation: React.PropTypes.number,
+    default: 5
   }
 }, Spec.getPositionProps()));
 

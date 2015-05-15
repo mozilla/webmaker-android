@@ -4,7 +4,6 @@ var assign = require('react/lib/Object.assign');
 var classNames = require('classnames');
 
 var render = require('../../lib/render.jsx');
-var binding = require('../../lib/binding.jsx');
 var router = require('../../lib/router.jsx');
 var Cartesian = require('../../lib/cartesian');
 var Link = require('../../components/link/link.jsx');
@@ -43,7 +42,7 @@ var Page = React.createClass({
 });
 
 var Project = React.createClass({
-  mixins: [router, binding],
+  mixins: [router],
   getInitialState: function () {
     return {
       selectedEl: '',
@@ -80,6 +79,7 @@ var Project = React.createClass({
       this.load();
       console.log('restored!');
     }
+    if (window.Android) window.Android.setState(JSON.stringify(this.state));
   },
 
   componentDidMount: function () {
@@ -88,6 +88,17 @@ var Project = React.createClass({
     var boundingEl = bounding.getDOMNode();
     var startX, startY, startDistance, currentX, currentY, currentZoom;
     var didMove = false;
+
+    if (window.Android) {
+      var state = JSON.parse(window.Android.getState());
+      if (state.params.page === this.state.params.page) {
+        this.setState({
+          selectedEl: state.selectedEl,
+          camera: state.camera,
+          zoom: state.zoom
+        });
+      }
+    }
 
     el.addEventListener('touchstart', (event) => {
       console.log('start', event.touches.length);
@@ -266,7 +277,7 @@ var Project = React.createClass({
       this.cartesian.getBoundingSize()
     );
 
-    var pageUrl = `projects/${this.state.params.project}/pages/${this.state.selectedEl}`;
+    var pageUrl = `/projects/${this.state.params.project}/pages/${this.state.selectedEl}`;
 
     return (
       <div id="map">

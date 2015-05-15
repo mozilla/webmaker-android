@@ -1,7 +1,6 @@
 var React = require('react/addons');
 var defaults = require('lodash.defaults');
 var render = require('../../lib/render.jsx');
-var Binding = require('../../lib/binding.jsx');
 
 var TextBlock = require('../../blocks/text.jsx');
 var Range = require('../../components/range/range.jsx');

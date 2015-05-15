@@ -20,6 +20,7 @@ var Page = React.createClass({
 
   getInitialState: function() {
     return {
+      loaded: false,
       elements: [],
       styles: {},
       currentElement: -1,
@@ -68,39 +69,42 @@ var Page = React.createClass({
       url = `/projects/${params.project}/pages/${params.page}/elements/${currentEl.id}/editor/${currentEl.type}`;
     }
 
-    return <div id="project" className="demo">
-      <div className="pages-container">
-        <div className="page next top" />
-        <div className="page next right" />
-        <div className="page next bottom" />
-        <div className="page next left" />
-        <div className="page">
-          <div className="inner" style={{backgroundColor: this.state.styles.backgroundColor}}>
-            <div ref="container" className="positionables">{ positionables }</div>
+    return (<div id="project" className="demo">
+      <div hidden={this.state.loaded}>Loading...</div>
+      <div hidden={!this.state.loaded}>
+        <div className="pages-container">
+          <div className="page next top" />
+          <div className="page next right" />
+          <div className="page next bottom" />
+          <div className="page next left" />
+          <div className="page">
+            <div className="inner" style={{backgroundColor: this.state.styles.backgroundColor}}>
+              <div ref="container" className="positionables">{ positionables }</div>
+            </div>
           </div>
         </div>
-      </div>
 
-      <div className={classNames({overlay: true, active: this.state.showAddMenu})} onClick={this.toggleAddMenu}/>
+        <div className={classNames({overlay: true, active: this.state.showAddMenu})} onClick={this.toggleAddMenu}/>
 
-      <div className={classNames({'controls': true, 'add-active': this.state.showAddMenu})}>
-        <div className="add-menu">
-          <button className="text" onClick={this.addElement('text')}><img className="icon" src="../../img/text.svg" /></button>
-          <button className="image" onClick={this.addElement('image')}><img className="icon" src="../../img/camera.svg" /></button>
-          <button className="link" onClick={this.addElement('link')}><img className="icon" src="../../img/link.svg" /></button>
+        <div className={classNames({'controls': true, 'add-active': this.state.showAddMenu})}>
+          <div className="add-menu">
+            <button className="text" onClick={this.addElement('text')}><img className="icon" src="../../img/text.svg" /></button>
+            <button className="image" onClick={this.addElement('image')}><img className="icon" src="../../img/camera.svg" /></button>
+            <button className="link" onClick={this.addElement('link')}><img className="icon" src="../../img/link.svg" /></button>
+          </div>
+          <button className={secondaryClass("delete")} onClick={this.deleteElement} active={this.state.currentElement===-1}>
+            <img className="icon" src="../../img/trash.svg" />
+          </button>
+          <button className="add" onClick={this.toggleAddMenu}></button>
+          <Link
+            className={ secondaryClass("edit") }
+            url={url}
+            href={href}>
+            <img className="icon" src="../../img/brush.svg" />
+          </Link>
         </div>
-        <button className={secondaryClass("delete")} onClick={this.deleteElement} active={this.state.currentElement===-1}>
-          <img className="icon" src="../../img/trash.svg" />
-        </button>
-        <button className="add" onClick={this.toggleAddMenu}></button>
-        <Link
-          className={ secondaryClass("edit") }
-          url={url}
-          href={href}>
-          <img className="icon" src="../../img/brush.svg" />
-        </Link>
       </div>
-    </div>
+    </div>);
   },
 
   componentDidMount: function() {
@@ -209,7 +213,7 @@ var Page = React.createClass({
       uri: this.uri()
     }, (err, data) => {
       if (err) return console.error('There was an error getting the Page', err);
-      if (!data && !data.page) console.log('Could not find the page');
+      if (!data || !data.page) return console.log('Could not find the page');
 
       var page = data.page;
       var styles = page.styles;
@@ -217,6 +221,7 @@ var Page = React.createClass({
         return this.flatten(element);
       }).filter(element => element);
       this.setState({
+        loaded: true,
         styles,
         elements
       });
@@ -234,7 +239,7 @@ var Page = React.createClass({
         }
       }, (err, data) => {
         if (err) return console.error('There was an error updating the element', err);
-        if (!data && !data.page) console.log('Could not find the element');
+        if (!data || !data.element) console.log('Could not find the element');
       });
     };
   }
