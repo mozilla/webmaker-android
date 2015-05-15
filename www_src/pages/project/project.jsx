@@ -7,6 +7,7 @@ var render = require('../../lib/render.jsx');
 var router = require('../../lib/router.jsx');
 var Cartesian = require('../../lib/cartesian');
 var Link = require('../../components/link/link.jsx');
+var Loading = require('../../components/loading/loading.jsx');
 var {Menu, PrimaryButton, SecondaryButton} = require('../../components/action-menu/action-menu.jsx');
 var blocks = require('../../blocks/all.jsx');
 
@@ -45,6 +46,7 @@ var Project = React.createClass({
   mixins: [router],
   getInitialState: function () {
     return {
+      loading: true,
       selectedEl: '',
       pages: [],
       camera: {
@@ -180,26 +182,31 @@ var Project = React.createClass({
 
   load: function () {
     var params = this.state.params;
+    this.setState({loading: true});
     api({uri: this.uri()}, (err, data) => {
-      if (err) return console.log('Error loading project', err);
-      if (!data || !data.pages) return console.log('No pages returned');
-
-      var pages = data.pages.map(page => {
-        page.coords = {
-          x: page.x,
-          y: page.y
-        }
-        page.elements = page.elements.map(element => {
-          if (!blocks[element.type]) return false;
-          return blocks[element.type].spec.flatten(element);
-        }).filter(element => element);
-        delete page.x;
-        delete page.y;
-        return page;
-      });
-      this.cartesian.allCoords = pages.map(el => el.coords);
-      var state = {pages};
-      if (!this.state.selectedEl) state.camera = this.cartesian.getFocusTransform({x: 0, y: 0}, this.state.zoom);
+      var state = {loading: false};
+      if (err) {
+        console.log('Error loading project', err);
+      } else if (!data || !data.pages) {
+        console.log('No pages returned');
+      } else {
+        var pages = data.pages.map(page => {
+          page.coords = {
+            x: page.x,
+            y: page.y
+          }
+          page.elements = page.elements.map(element => {
+            if (!blocks[element.type]) return false;
+            return blocks[element.type].spec.flatten(element);
+          }).filter(element => element);
+          delete page.x;
+          delete page.y;
+          return page;
+        });
+        this.cartesian.allCoords = pages.map(el => el.coords);
+        state.pages = pages;
+        if (!this.state.selectedEl) state.camera = this.cartesian.getFocusTransform({x: 0, y: 0}, this.state.zoom);
+      }
       this.setState(state);
     });
   },
@@ -212,11 +219,13 @@ var Project = React.createClass({
         y: coords.y,
         styles: {backgroundColor: '#F0CF62'}
       };
+      this.setState({loading: true});
       api({
         method: 'post',
         uri: this.uri(),
         json
       }, (err, data) => {
+        this.setState({loading: false});
         if (err) return console.log('Error loading project', err);
         if (!data || !data.page) return console.log('No page id returned');
 
@@ -237,6 +246,7 @@ var Project = React.createClass({
   removePage: function () {
     var currentId = this.state.selectedEl;
     var index;
+    this.setState({loading: true});
     this.state.pages.forEach((el, i) => {
       if (el.id === currentId) index = i;
     });
@@ -249,6 +259,7 @@ var Project = React.createClass({
       method: 'delete',
       uri: `${this.uri()}/${currentId}`
     }, (err) => {
+      this.setState({loading: false});
       if (err) return console.error('There was an error deleting the page', err);
       this.cartesian.allCoords.splice(index, 1);
       this.setState({
@@ -281,10 +292,6 @@ var Project = React.createClass({
     return (
       <div id="map">
 
-        <div style={{opacity: this.state.pages.length ? 0 : 1}}>
-          Loading...
-        </div>
-
         <div ref="bounding" className="bounding" style={boundingStyle}>
           <div className="test-container" style={containerStyle}>
           {this.state.pages.map((page) => {
@@ -308,6 +315,8 @@ var Project = React.createClass({
           <SecondaryButton side="right" off={!this.state.selectedEl} onClick={this.removePage} icon="../../img/trash.svg" />
           <PrimaryButton url={pageUrl}  off={!this.state.selectedEl} href="/pages/page" icon="../../img/pencil.svg" />
         </Menu>
+
+        <Loading on={this.state.loading} />
       </div>
     );
   }

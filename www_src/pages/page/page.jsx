@@ -6,6 +6,7 @@ var api = require('../../lib/api.js');
 var uuid = require('../../lib/uuid.js');
 
 var Link = require('../../components/link/link.jsx');
+var Loading = require('../../components/loading/loading.jsx');
 var blocks = require('../../blocks/all.jsx');
 var Positionable = require('./positionable.jsx');
 
@@ -20,7 +21,7 @@ var Page = React.createClass({
 
   getInitialState: function() {
     return {
-      loaded: false,
+      loading: true,
       elements: [],
       styles: {},
       currentElement: -1,
@@ -69,40 +70,38 @@ var Page = React.createClass({
     }
 
     return (<div id="project" className="demo">
-      <div hidden={this.state.loaded}>Loading...</div>
-      <div hidden={!this.state.loaded}>
-        <div className="pages-container">
-          <div className="page next top" />
-          <div className="page next right" />
-          <div className="page next bottom" />
-          <div className="page next left" />
-          <div className="page">
-            <div className="inner" style={{backgroundColor: this.state.styles.backgroundColor}}>
-              <div ref="container" className="positionables">{ positionables }</div>
-            </div>
+      <div className="pages-container">
+        <div className="page next top" />
+        <div className="page next right" />
+        <div className="page next bottom" />
+        <div className="page next left" />
+        <div className="page">
+          <div className="inner" style={{backgroundColor: this.state.styles.backgroundColor}}>
+            <div ref="container" className="positionables">{ positionables }</div>
           </div>
-        </div>
-
-        <div className={classNames({overlay: true, active: this.state.showAddMenu})} onClick={this.toggleAddMenu}/>
-
-        <div className={classNames({'controls': true, 'add-active': this.state.showAddMenu})}>
-          <div className="add-menu">
-            <button className="text" onClick={this.addElement('text')}><img className="icon" src="../../img/text.svg" /></button>
-            <button className="image" onClick={this.addElement('image')}><img className="icon" src="../../img/camera.svg" /></button>
-            <button className="link" onClick={this.addElement('link')}><img className="icon" src="../../img/link.svg" /></button>
-          </div>
-          <button className={secondaryClass("delete")} onClick={this.deleteElement} active={this.state.currentElement===-1}>
-            <img className="icon" src="../../img/trash.svg" />
-          </button>
-          <button className="add" onClick={this.toggleAddMenu}></button>
-          <Link
-            className={ secondaryClass("edit") }
-            url={url}
-            href={href}>
-            <img className="icon" src="../../img/brush.svg" />
-          </Link>
         </div>
       </div>
+
+      <div className={classNames({overlay: true, active: this.state.showAddMenu})} onClick={this.toggleAddMenu}/>
+
+      <div className={classNames({'controls': true, 'add-active': this.state.showAddMenu})}>
+        <div className="add-menu">
+          <button className="text" onClick={this.addElement('text')}><img className="icon" src="../../img/text.svg" /></button>
+          <button className="image" onClick={this.addElement('image')}><img className="icon" src="../../img/camera.svg" /></button>
+          <button className="link" onClick={this.addElement('link')}><img className="icon" src="../../img/link.svg" /></button>
+        </div>
+        <button className={secondaryClass("delete")} onClick={this.deleteElement} active={this.state.currentElement===-1}>
+          <img className="icon" src="../../img/trash.svg" />
+        </button>
+        <button className="add" onClick={this.toggleAddMenu}></button>
+        <Link
+          className={ secondaryClass("edit") }
+          url={url}
+          href={href}>
+          <img className="icon" src="../../img/brush.svg" />
+        </Link>
+      </div>
+      <Loading on={this.state.loading} />
     </div>);
   },
 
@@ -220,7 +219,7 @@ var Page = React.createClass({
         return this.flatten(element);
       }).filter(element => element);
       this.setState({
-        loaded: true,
+        loading: false,
         styles,
         elements
       });

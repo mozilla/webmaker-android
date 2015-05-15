@@ -2,6 +2,7 @@ var React = require('react/addons');
 var render = require('../../lib/render.jsx');
 var router = require('../../lib/router.jsx');
 var api = require('../../lib/api.js');
+var Loading = require('../../components/loading/loading.jsx');
 
 var editors = {
   image: require('./image-editor.jsx'),
@@ -68,7 +69,7 @@ render(React.createClass({
     var Editor;
     var {params, element} = this.state;
 
-    if (typeof element === 'undefined') return (<div>Loading...</div>);
+    if (typeof element === 'undefined') return (<Loading on={true} />);
 
     Editor = editors[params.editor] || editors[hash] || editors.link;
 
