@@ -12,27 +12,18 @@ var editors = {
 var blocks = require('../../blocks/all.jsx');
 
 var hash = window.location.hash && window.location.hash.replace('#', '');
+var testIds = {
+  image: 1,
+  text: 2,
+  link: 3
+};
 
 render(React.createClass({
   mixins: [router],
   uri: function () {
     var params = this.state.params;
     var element = params.element;
-    if (hash) {
-      switch(hash) {
-        case 'image':
-          element = 1;
-          break;
-        case 'text':
-          element = 2;
-          break;
-        case 'link':
-          element = 3;
-          break;
-        default:
-          element = 2;
-      }
-    }
+    if (hash) element = testIds[hash];
     return `/users/1/projects/${params.project}/pages/${params.page}/elements/${element}`;
   },
 
