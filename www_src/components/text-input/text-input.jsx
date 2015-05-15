@@ -36,6 +36,13 @@ var TextInput = React.createClass({
       });
     }
   },
+  validate: function () {
+    if (this.state.text.length > this.props.minlength) {
+      return true;
+    } else {
+      return false;
+    }
+  },
   render: function () {
     return (
       <div className={'text-input' + (this.state.justTriedToOverflow ? ' maxed' : '')}>
