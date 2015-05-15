@@ -49,14 +49,20 @@ public class Element extends WebmakerActivity {
     protected void onActivityResult(int requestCode, int resultCode, Intent data) {
         Bitmap bitmap = null;
 
+        // Return if user exited without capturing / selecting an image
+        if (resultCode == 0) {
+            Log.v("DATAURI:RESULT", resultCode + "");
+            return;
+        }
+
         // Handle camera activity
         if (requestCode == CAMERA_REQUEST_CODE) {
-            bitmap = Image.decodeBitmapFromFile(mFile.getAbsolutePath(), 400, 400);
+            bitmap = Image.decodeBitmapFromFile(mFile.getAbsolutePath(), 200, 200);
         }
 
         // Handle media (gallery) activity
         if (requestCode == MEDIA_REQUEST_CODE) {
-            bitmap = Image.decodeBitmapFromMediaStore(data.getData(), 400, this);
+            bitmap = Image.decodeBitmapFromMediaStore(data.getData(), 600, this);
         }
 
         // @todo Handle error
@@ -68,6 +74,5 @@ public class Element extends WebmakerActivity {
         // Convert bitmap to data uri and forward to JS
         String uri = Image.createDataUriFromBitmap(bitmap, 60);
         view.loadUrl("javascript: window.imageReady && window.imageReady('" + uri + "')");
-        Log.v("DATAURI:RESULT", uri);
     }
 }

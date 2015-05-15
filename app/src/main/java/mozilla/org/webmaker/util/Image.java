@@ -28,7 +28,6 @@ public class Image {
     public static Intent getCameraIntent(File f) {
         Intent intent = new Intent(MediaStore.ACTION_IMAGE_CAPTURE);
         intent.putExtra(MediaStore.EXTRA_OUTPUT, Uri.fromFile(f));
-        intent.setType("image/*");
 
         return intent;
     }

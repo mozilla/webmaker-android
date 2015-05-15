@@ -36,7 +36,7 @@ render(React.createClass({
 
     if (typeof element === 'undefined') return (<div>Loading...</div>);
 
-    Editor = editors[params.editor] || editors[hash] || editors.text;
+    Editor = editors[params.editor] || editors[hash] || editors.image;
 
     var props = {params, save: this.save};
     if (element) props.element = element;
