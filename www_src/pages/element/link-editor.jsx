@@ -14,7 +14,7 @@ var LinkEditor = React.createClass({
     return LinkBlock.spec.flatten(this.props.element, {defaults: true});
   },
   componentDidUpdate: function () {
-    this.props.save(this.state);
+    this.props.cacheEdits(this.state);
   },
   onChangeLinkClick: function () {
     this.refs.notImplementedWarning.show();

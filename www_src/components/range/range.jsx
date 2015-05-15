@@ -25,7 +25,7 @@ var Range = React.createClass({
 
     return (
       <div className="range">
-        <input min={this.props.min} max={this.props.max} step={this.props.step} type="range" onChange={this.onChange}/>
+        <input value={valueLink.value} min={this.props.min} max={this.props.max} step={this.props.step} type="range" onChange={this.onChange} />
         <div className={'range-summary' + (parseFloat(valueLink.value) === this.props.min ? ' min' : '')}>{valueLink.value}{this.props.unit}</div>
       </div>
     );

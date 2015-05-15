@@ -9,6 +9,8 @@ var editors = {
   text: require('./text-editor.jsx')
 };
 
+var blocks = require('../../blocks/all.jsx');
+
 var hash = window.location.hash && window.location.hash.replace('#', '');
 
 render(React.createClass({
@@ -33,13 +35,37 @@ render(React.createClass({
     }
     return `/users/1/projects/${params.project}/pages/${params.page}/elements/${element}`;
   },
+
   componentWillMount: function() {
     this.load();
   },
-  save: function (json) {
-    // api({method: 'put', uri: this.uri(), json}, (err, data) => {
-    //   if (data) console.log('saved!');
-    // });
+  componentDidUpdate: function (prevProps) {
+    // resume
+    if (this.props.isVisible && !prevProps.isVisible) {
+      this.load();
+      console.log('restored!');
+    }
+    // pause - if there are edits
+    if (this.edits && !this.props.isVisible && prevProps.isVisible) {
+      this.save();
+    }
+  },
+  cacheEdits: function (edits) {
+    this.edits = edits;
+  },
+  save: function () {
+    var edits = this.edits;
+    var json = blocks[edits.type].spec.expand(edits);
+    api({method: 'patch', uri: this.uri(), json: {
+      styles: json.styles,
+      attributes: json.attributes
+    }}, (err, data) => {
+      console.log(err, data);
+      this.setState({
+        elements: edits
+      });
+      this.edits = false;
+    });
   },
   load: function () {
     api({uri: this.uri()}, (err, data) => {
@@ -56,7 +82,7 @@ render(React.createClass({
 
     Editor = editors[params.editor] || editors[hash] || editors.link;
 
-    var props = {params, save: this.save};
+    var props = {params, cacheEdits: this.cacheEdits};
     if (element) props.element = element;
 
     return (<Editor {...props} />);

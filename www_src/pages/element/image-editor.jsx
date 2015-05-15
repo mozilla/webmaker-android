@@ -14,7 +14,7 @@ var ImageEditor = React.createClass({
     return ImageBlock.spec.flatten(this.props.element, {defaults: true});
   },
   componentDidUpdate: function () {
-    this.props.save(this.state);
+    this.props.cacheEdits(this.state);
   },
   render: function () {
     return (
