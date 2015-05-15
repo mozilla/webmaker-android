@@ -36,6 +36,7 @@ var Page = React.createClass({
   },
 
   componentDidUpdate: function (prevProps) {
+    // resume
     if (this.props.isVisible && !prevProps.isVisible) {
       this.load();
       console.log('restored!');
@@ -129,6 +130,9 @@ var Page = React.createClass({
       props.ref = "positionable"+i;
       props.key = "positionable"+i;
       props.current = this.state.currentElement===i;
+
+      props.onTouchEnd = this.save(i);
+
       return <div>
         <Positionable {...props} onUpdate={this.updateElement(i)}>
           <Element {...props} />
@@ -189,13 +193,14 @@ var Page = React.createClass({
     });
   },
 
-  save: function() {
-    // todo
-  },
-
   flatten: function (element) {
     if (!blocks[element.type]) return false;
     return blocks[element.type].spec.flatten(element);
+  },
+
+  expand: function (element) {
+    if (!blocks[element.type]) return false;
+    return blocks[element.type].spec.expand(element);
   },
 
   load: function() {
@@ -216,6 +221,22 @@ var Page = React.createClass({
         elements
       });
     });
+  },
+
+  save: function (index) {
+    return () => {
+      var el = this.expand(this.state.elements[index]);
+      api({
+        method: 'patch',
+        uri: this.uri() + '/elements/' + el.id,
+        json: {
+          styles: el.styles
+        }
+      }, (err, data) => {
+        if (err) return console.error('There was an error updating the element', err);
+        if (!data && !data.page) console.log('Could not find the element');
+      });
+    };
   }
 });
 

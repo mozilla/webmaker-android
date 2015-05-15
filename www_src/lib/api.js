@@ -8,7 +8,7 @@ var mocks = require('./api-mock');
 module.exports = function (options, callback) {
   // Set default options
   defaults(options, {
-    method: 'get',
+    method: 'GET',
     useCache: false,
     json: {},
     headers: {},
@@ -16,9 +16,9 @@ module.exports = function (options, callback) {
   });
 
   // ensure user-supplied methods conform to what we need.
-  options.method = options.method.toLowerCase();
+  options.method = options.method.toUpperCase();
 
-  if (options.method === 'get' && !callback) {
+  if (options.method === 'GET' && !callback) {
     // Signal an error, but don't throw, as that would crash the app:
     console.error('API request for stored data received without a callback handler to forward the data with.');
     console.trace();
@@ -33,7 +33,7 @@ module.exports = function (options, callback) {
   options.uri = BASE_URL + options.uri;
 
   // Use a fake token for now
-  if (options.method !== 'get') {
+  if (options.method !== 'GET') {
     options.headers.Authorization = 'token validToken';
   }
 

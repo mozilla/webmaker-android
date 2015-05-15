@@ -64,6 +64,10 @@ var Positionable = React.createClass({
     );
   },
 
+  onTouchEnd: function () {
+    if (this.props.onTouchEnd) this.props.onTouchEnd(this.state);
+  },
+
   handleTranslation: function(x, y) {
     this.setState({
       x: x,

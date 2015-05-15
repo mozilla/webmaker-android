@@ -1,18 +1,26 @@
 var React = require('react');
 var render = require('../../lib/render.jsx');
-var Binding = require('../../lib/binding.jsx');
 var api = require('../../lib/api.js');
 var Card = require('../../components/card/card.jsx');
 var Link = require('../../components/link/link.jsx');
 
 var Make = React.createClass({
-  mixins: [Binding],
+  mixins: [],
   getInitialState: function () {
     return {
       projects: []
     };
   },
   componentWillMount: function () {
+    this.load();
+  },
+  componentDidUpdate: function (prevProps) {
+    if (this.props.isVisible && !prevProps.isVisible) {
+      this.load();
+      console.log('restored!');
+    }
+  },
+  load: function () {
     api({
       uri: '/users/1/projects'
     }, (err, body) => {

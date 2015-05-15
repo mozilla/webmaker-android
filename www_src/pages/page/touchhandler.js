@@ -60,6 +60,7 @@
         mark = copy(positionable.state);
         transform = resetTransform();
         positionable.setState({ touchactive: false });
+        if (positionable.onTouchEnd) positionable.onTouchEnd();
       },
 
       /**
