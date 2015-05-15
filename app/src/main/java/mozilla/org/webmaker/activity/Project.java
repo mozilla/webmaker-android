@@ -1,6 +1,5 @@
 package mozilla.org.webmaker.activity;
 
-import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
 
