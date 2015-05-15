@@ -50,10 +50,7 @@ public class Element extends WebmakerActivity {
         Bitmap bitmap = null;
 
         // Return if user exited without capturing / selecting an image
-        if (resultCode == 0) {
-            Log.v("DATAURI:RESULT", resultCode + "");
-            return;
-        }
+        if (resultCode == 0) return;
 
         // Handle camera activity
         if (requestCode == CAMERA_REQUEST_CODE) {
