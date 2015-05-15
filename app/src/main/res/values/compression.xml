@@ -1,6 +1,0 @@
-<?xml version="1.0" encoding="utf-8"?>
-<resources>
-    <integer name="image_quality">60</integer>
-    <integer name="image_width">600</integer>
-    <integer name="image_height">600</integer>
-</resources>
