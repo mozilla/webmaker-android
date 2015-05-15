@@ -33,6 +33,15 @@
             android:screenOrientation="portrait" >
         </activity>
         <activity
+                android:name=".activity.ProjectSettings"
+                android:label="@string/title_activity_project_settings"
+                android:parentActivityName=".activity.Project"
+                android:screenOrientation="portrait" >
+            <meta-data
+                    android:name="android.support.PARENT_ACTIVITY"
+                    android:value=".activity.Project" />
+        </activity>
+        <activity
             android:name=".activity.Page"
             android:label="@string/title_activity_page"
             android:parentActivityName=".activity.Project"

@@ -5,6 +5,8 @@ import android.view.MenuItem;
 
 import mozilla.org.webmaker.R;
 import mozilla.org.webmaker.WebmakerActivity;
+import mozilla.org.webmaker.router.Router;
+import org.json.JSONException;
 
 public class Project extends WebmakerActivity {
     public Project() {
@@ -19,6 +21,27 @@ public class Project extends WebmakerActivity {
 
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {
-        return item.getItemId() == R.id.action_settings;
+        // Fetch project ID
+        String id;
+        try {
+            id = routeParams.get("project").toString();
+        } catch (JSONException e) {
+            return super.onOptionsItemSelected(item);
+        }
+
+        // Handle button press
+        switch (item.getItemId()) {
+            case R.id.action_play:
+                // @todo
+                return true;
+            case R.id.action_settings:
+                Router.sharedRouter().open("/projects/" + id + "/settings");
+                return true;
+            case R.id.action_share:
+                // @todo
+                return true;
+            default:
+                return super.onOptionsItemSelected(item);
+        }
     }
 }
