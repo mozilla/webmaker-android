@@ -77,7 +77,6 @@ var Project = React.createClass({
   componentDidUpdate: function (prevProps) {
     if (this.props.isVisible && !prevProps.isVisible) {
       this.load();
-      console.log('restored!');
     }
     if (window.Android) window.Android.setState(JSON.stringify(this.state));
   },

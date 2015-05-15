@@ -66,13 +66,13 @@ Spec.getPositionProps = function () {
 
 Spec.propsToPosition = function (props) {
   return {
-    position:'absolute',
+    position: 'absolute',
     top: 0,
     left: 0,
     transform: [
-      'translate('+props.x+'px, '+props.y+'px)',
-      'rotate('+(props.angle * 180/Math.PI)+'deg)',
-      'scale('+props.scale+')'
+      `translate(${props.x}px, ${props.y}px)`,
+      `rotate(${props.angle * 180/Math.PI}deg)`,
+      `scale(${props.scale})`
     ].join(' '),
     transformOrigin: 'center',
     zIndex: props.zIndex

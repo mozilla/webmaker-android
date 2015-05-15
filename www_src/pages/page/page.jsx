@@ -40,7 +40,6 @@ var Page = React.createClass({
     // resume
     if (this.props.isVisible && !prevProps.isVisible) {
       this.load();
-      console.log('restored!');
     }
   },
 

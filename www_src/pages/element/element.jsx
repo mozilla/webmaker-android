@@ -34,7 +34,6 @@ render(React.createClass({
     // resume
     if (this.props.isVisible && !prevProps.isVisible) {
       this.load();
-      console.log('restored!');
     }
     // pause - if there are edits
     if (this.edits && !this.props.isVisible && prevProps.isVisible) {
@@ -51,7 +50,7 @@ render(React.createClass({
       styles: json.styles,
       attributes: json.attributes
     }}, (err, data) => {
-      console.log(err, data);
+      if (err) console.error('There was an error updating the element', err);
       this.setState({
         elements: edits
       });
