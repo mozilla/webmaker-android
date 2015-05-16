@@ -163,7 +163,7 @@ var Page = React.createClass({
     // function relies on immutable array indices.
     this.setState({
       elements: elements,
-      currentElement: -1
+      currentElement: elements.length - 1
     });
   },
 
