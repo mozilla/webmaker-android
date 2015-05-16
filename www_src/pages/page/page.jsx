@@ -159,7 +159,7 @@ var Page = React.createClass({
     if(this.state.currentElement === -1) return;
     var elements = this.state.elements;
     elements[this.state.currentElement] = false;
-    var currentElement = -1;;
+    var currentElement = -1;
     elements.some(function(e,idx) {
       currentElement = idx;
       return !!e;
