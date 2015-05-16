@@ -137,6 +137,7 @@ var Page = React.createClass({
 
   appendElement: function(obj) {
     this.setState({
+      currentElement: this.state.elements.length,
       elements: this.state.elements.concat([obj]),
       showAddMenu: false
     });
