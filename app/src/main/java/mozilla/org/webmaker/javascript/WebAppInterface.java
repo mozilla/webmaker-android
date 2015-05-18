@@ -3,9 +3,9 @@ package mozilla.org.webmaker.javascript;
 import android.content.Context;
 import android.content.SharedPreferences;
 import android.util.Log;
-import android.webkit.JavascriptInterface;
 
 import org.json.JSONObject;
+import org.xwalk.core.JavascriptInterface;
 
 import mozilla.org.webmaker.router.Router;
 
