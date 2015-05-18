@@ -39,12 +39,26 @@ public class WebClient extends XWalkResourceClient {
 
     /**
      * Notify the client that the {@link org.xwalk.core.XWalkView} completes to load
-     * the resource specified by the given url.
+     * the resource specified by the given URL.
      */
     @Override
     public void onLoadFinished(XWalkView view, String url) {
         animate(view);
         view.setVisibility(View.VISIBLE);
         super.onLoadFinished(view, url);
+    }
+
+    /**
+     * Notify the client the progress info of loading a specific URL.
+     */
+    @Override
+    public void onProgressChanged(XWalkView view, int progressInPercent) {
+        if (progressInPercent != 0) {
+            animate(view);
+            view.setVisibility(View.VISIBLE);
+        } else {
+            view.setVisibility(View.GONE);
+        }
+        super.onProgressChanged(view, progressInPercent);
     }
 }
