@@ -1,5 +1,6 @@
 package mozilla.org.webmaker;
 
+import android.app.ActionBar;
 import android.app.Activity;
 import android.os.Bundle;
 import android.view.MenuItem;
@@ -44,12 +45,19 @@ public class WebmakerActivity extends Activity {
             }
         }
 
+        ActionBar actionBar = getActionBar();
+        if (actionBar != null) actionBar.setDisplayHomeAsUpEnabled(true);
+
         setContentView(layoutResID);
+        super.onCreate(savedInstanceState);
+    }
+
+    @Override
+    protected void onStart() {
         view = new WebmakerWebView(this, this, pageName, routeParams);
         RelativeLayout layout = (RelativeLayout) findViewById(id);
         layout.addView(view);
-
-        super.onCreate(savedInstanceState);
+        super.onStart();
     }
 
     @Override
@@ -57,12 +65,12 @@ public class WebmakerActivity extends Activity {
         view.load("javascript: window.jsComm && window.jsComm('onResume')", null);
         super.onResume();
     }
+
     @Override
     protected void onPause() {
         view.load("javascript: window.jsComm && window.jsComm('onPause')", null);
         super.onPause();
     }
-
 
     @Override
     public void onDestroy() {

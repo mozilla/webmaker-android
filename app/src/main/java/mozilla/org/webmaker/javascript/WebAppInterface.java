@@ -1,8 +1,7 @@
 package mozilla.org.webmaker.javascript;
 
 import android.app.Activity;
-import android.content.Intent;
-import android.provider.MediaStore;
+import android.os.*;
 import mozilla.org.webmaker.activity.Element;
 import mozilla.org.webmaker.router.Router;
 import android.content.Context;
@@ -92,8 +91,16 @@ public class WebAppInterface {
      */
 
     @JavascriptInterface
-    public void setView(String url) {
-        Router.sharedRouter().open(url);
+    public void setView(final String url) {
+        Activity activity = (Activity) mContext;
+        if (activity == null) return;
+
+        activity.runOnUiThread(new Runnable() {
+            @Override
+            public void run() {
+                Router.sharedRouter().open(url);
+            }
+        });
     }
 
     @JavascriptInterface
