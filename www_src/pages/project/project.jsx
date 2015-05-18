@@ -206,6 +206,9 @@ var Project = React.createClass({
 
   },
   render: function () {
+    // Prevent pull to refresh
+    document.body.style.overflowY = 'hidden';
+
     var containerStyle = {
       width: this.cartesian.width + 'px',
       height: this.cartesian.height + 'px'
