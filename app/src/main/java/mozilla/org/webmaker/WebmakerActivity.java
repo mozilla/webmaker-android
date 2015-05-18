@@ -2,7 +2,6 @@ package mozilla.org.webmaker;
 
 import android.app.Activity;
 import android.os.Bundle;
-import android.util.Log;
 import android.view.MenuItem;
 import android.widget.RelativeLayout;
 
@@ -67,7 +66,6 @@ public class WebmakerActivity extends Activity {
 
     @Override
     public void onDestroy() {
-        Log.v("wm", "onDestroy");
         if (view != null) {
             view.onDestroy();
             view = null;
