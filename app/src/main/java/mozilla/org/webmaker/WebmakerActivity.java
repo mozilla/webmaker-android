@@ -25,11 +25,11 @@ public class WebmakerActivity extends Activity {
         this.menuResId = menuResId;
     }
 
+    /**
+     * Extracts route information from intent extras & Adds {@link mozilla.org.webmaker.view.WebmakerWebView} to layout.
+     */
     @Override
     protected void onCreate(Bundle savedInstanceState) {
-        super.onCreate(savedInstanceState);
-
-        // Extract route information from intent extras
         routeParams = new JSONObject();
 
         Bundle intentExtras = getIntent().getExtras();
@@ -45,31 +45,33 @@ public class WebmakerActivity extends Activity {
             }
         }
 
-        // Add webview to layout
         setContentView(layoutResID);
         view = new WebmakerWebView(this, this, pageName, routeParams);
         RelativeLayout layout = (RelativeLayout) findViewById(id);
         layout.addView(view);
+
+        super.onCreate(savedInstanceState);
     }
 
     @Override
     protected void onResume() {
-        super.onResume();
         view.load("javascript: window.jsComm && window.jsComm('onResume')", null);
+        super.onResume();
     }
     @Override
     protected void onPause() {
-        super.onPause();
         view.load("javascript: window.jsComm && window.jsComm('onPause')", null);
+        super.onPause();
     }
 
 
     @Override
     public void onDestroy() {
         Log.v("wm", "onDestroy");
-        if (view == null) return;
-        view.onDestroy();
-        view = null;
+        if (view != null) {
+            view.onDestroy();
+            view = null;
+        }
         super.onDestroy();
     }
 

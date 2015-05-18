@@ -24,12 +24,12 @@ public class WebAppInterface {
 
     public static final String WEBMAKER_PREFS = "WEBMAKER";
 
-    public WebAppInterface(Context c) {
-        this(c, null);
+    public WebAppInterface(Context context) {
+        this(context, null);
     }
 
-    public WebAppInterface(Context c, JSONObject routeParams) {
-        mContext = c;
+    public WebAppInterface(Context context, JSONObject routeParams) {
+        mContext = context;
         mPrefKey = "::".concat(mContext.getClass().getSimpleName());
         mPrefs = mContext.getSharedPreferences(mPrefKey, 0);
         mPageState = mPrefs.getString("page_state", "{}");
