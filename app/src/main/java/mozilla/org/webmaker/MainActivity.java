@@ -5,7 +5,6 @@ import android.app.Activity;
 import android.app.FragmentTransaction;
 import android.os.Bundle;
 import android.support.v4.view.ViewPager;
-import android.util.Log;
 import android.view.MenuItem;
 
 import mozilla.org.webmaker.adapter.SectionsPagerAdapter;
@@ -18,13 +17,9 @@ public class MainActivity extends Activity implements ActionBar.TabListener {
      */
     private ViewPager mViewPager;
 
-
     @Override
     protected void onCreate(Bundle savedInstanceState) {
-        super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
-
-        Log.v("[Webmaker]", "MainActivity created.");
 
         // Set up the action bar.
         final ActionBar actionBar = getActionBar();
@@ -61,6 +56,8 @@ public class MainActivity extends Activity implements ActionBar.TabListener {
              */
             actionBar.addTab(actionBar.newTab().setText(mSectionsPagerAdapter.getPageTitle(i)).setTabListener(this));
         }
+
+        super.onCreate(savedInstanceState);
     }
 
     /**

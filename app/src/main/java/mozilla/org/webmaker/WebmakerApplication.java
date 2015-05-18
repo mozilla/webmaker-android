@@ -41,7 +41,6 @@ public class WebmakerApplication extends Application {
         tracker.enableAutoActivityTracking(true);
         tracker.enableExceptionReporting(true);
 
-        // Router
         Router.sharedRouter().setContext(getApplicationContext());
         Router.sharedRouter().map("/main", MainActivity.class);
         Router.sharedRouter().map("/main/:tab", MainActivity.class);
