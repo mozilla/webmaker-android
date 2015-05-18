@@ -7,6 +7,7 @@ import android.view.ViewGroup;
 import org.json.JSONObject;
 import org.xwalk.core.XWalkView;
 
+import mozilla.org.webmaker.client.WebClient;
 import mozilla.org.webmaker.javascript.WebAppInterface;
 
 public class WebmakerWebView extends XWalkView {
@@ -19,6 +20,7 @@ public class WebmakerWebView extends XWalkView {
         super(context, activity);
         this.setLayoutParams(new ViewGroup.LayoutParams(ViewGroup.LayoutParams.MATCH_PARENT, ViewGroup.LayoutParams.MATCH_PARENT));
         this.load("file:///android_asset/www/pages/" + pageName + "/index.html", null);
+        this.setResourceClient(new WebClient(this));
         this.setBackgroundColor(0x00000000);
         this.addJavascriptInterface(new WebAppInterface(context, routeParams), "Android");
     }
