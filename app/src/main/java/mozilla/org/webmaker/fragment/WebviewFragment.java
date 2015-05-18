@@ -1,6 +1,5 @@
 package mozilla.org.webmaker.fragment;
 
-import android.annotation.SuppressLint;
 import android.app.Activity;
 import android.app.Fragment;
 import android.os.Bundle;
@@ -12,7 +11,6 @@ import android.widget.RelativeLayout;
 import mozilla.org.webmaker.R;
 import mozilla.org.webmaker.view.WebmakerWebView;
 
-@SuppressLint("SetJavaScriptEnabled")
 public class WebviewFragment extends Fragment {
 
     /**
@@ -32,6 +30,9 @@ public class WebviewFragment extends Fragment {
         return fragment;
     }
 
+    /**
+     * Called to have the fragment instantiate its user interface view.
+     */
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
         View mView = inflater.inflate(R.layout.fragment_main, container, false);
@@ -48,17 +49,19 @@ public class WebviewFragment extends Fragment {
                 break;
         }
 
-        // Create webview
         mWebView = new WebmakerWebView(mView.getContext(), (Activity) mView.getContext(), pageId);
-        RelativeLayout layout = (RelativeLayout)mView.findViewById(R.id.webview_fragment);
+        RelativeLayout layout = (RelativeLayout) mView.findViewById(R.id.webview_fragment);
         layout.addView(mWebView);
         return mView;
     }
 
+    /**
+     * Called when the view previously created by {@link android.app.Fragment#onCreateView(LayoutInflater, ViewGroup, Bundle)}
+     * has been detached from the fragment.
+     */
     @Override
     public void onDestroyView() {
-        if (mWebView == null) return;
-        mWebView = null;
+        if (mWebView != null) mWebView = null;
         super.onDestroyView();
     }
 }
