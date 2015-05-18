@@ -7,14 +7,6 @@ var Link = require('../../components/link/link.jsx');
 
 var Make = React.createClass({
   mixins: [Binding],
-  componentWillMount: function () {
-    api({
-      uri: '/c0645e6953e9949f8e5c/raw/'
-    }, function (err, body) {
-      console.dir(err);
-      console.dir(body);
-    });
-  },
   render: function () {
     return (
       <div id="make">
