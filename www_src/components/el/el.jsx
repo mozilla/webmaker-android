@@ -94,14 +94,54 @@ var El = React.createClass({
   },
 
   handleTranslation: function(x, y) {
+    var thresh = 45;
+
+    var width = document.body.getBoundingClientRect().width/2 - thresh;
+    var height = document.body.getBoundingClientRect().height/2 - thresh;
+
     this.setState({
       x: x,
       y: y
     }, function() {
-      if(this.props.onUpdate) {
-        this.props.onUpdate(this.state);
+      var changed = false;
+      var updatefunction = function() {
+        if(this.props.onUpdate) {
+          this.props.onUpdate(this.state);
+        }
+      }.bind(this);
+
+      updatefunction();
+
+      var x = this.state.x;
+      var y = this.state.y;
+
+      if (x > width ) {/* Moving right and we're already near the right edge */
+        x = width;
+        changed = true;
       }
-    });
+
+      if (x < -width) { /* Moving left and we're already near the left edge */
+        x = -width;
+        changed = true;
+      }
+
+      if (y > height) { /* Moving down and we're already near the bottom */
+        y = height;
+        changed = true;
+      }
+
+      if (y < -height) {/* Moving up and we're already near the top */
+          y = -height;
+          changed = true;
+      }
+
+      if (changed) {
+        this.setState({
+            x: x,
+            y: y
+          }, updatefunction);
+      }
+    }.bind(this));
   },
 
   handleRotationAndScale: function(angle, scale) {
