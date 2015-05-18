@@ -4,28 +4,47 @@ import android.view.View;
 import android.view.animation.AlphaAnimation;
 import android.view.animation.Animation;
 import android.view.animation.DecelerateInterpolator;
-import android.webkit.WebView;
-import android.webkit.WebViewClient;
 
-public class WebClient extends WebViewClient {
+import org.xwalk.core.XWalkResourceClient;
+import org.xwalk.core.XWalkView;
 
-    private void animate(WebView view) {
+public class WebClient extends XWalkResourceClient {
+
+    /**
+     * Default {@link org.xwalk.core.XWalkResourceClient} constructor method.
+     */
+    public WebClient(XWalkView view) {
+        super(view);
+    }
+
+    /**
+     * A graphical animation played when a {@link org.xwalk.core.XWalkView} is being displayed visually.
+     */
+    private void animate(XWalkView view) {
         Animation fadeIn = new AlphaAnimation(0, 1);
-        fadeIn.setInterpolator(new DecelerateInterpolator()); //add this
+        fadeIn.setInterpolator(new DecelerateInterpolator());
         fadeIn.setDuration(1000);
         view.startAnimation(fadeIn);
     }
 
+    /**
+     * Determines whether the host application is given the chance to take control when a new URL
+     * is about to be loaded in the current {@link org.xwalk.core.XWalkView}.
+     */
     @Override
-    public boolean shouldOverrideUrlLoading(WebView view, String url) {
+    public boolean shouldOverrideUrlLoading(XWalkView view, String url) {
         view.setVisibility(View.GONE);
         return false;
     }
 
+    /**
+     * Notify the client that the {@link org.xwalk.core.XWalkView} completes to load
+     * the resource specified by the given url.
+     */
     @Override
-    public void onPageFinished(WebView view, String url) {
+    public void onLoadFinished(XWalkView view, String url) {
         animate(view);
         view.setVisibility(View.VISIBLE);
-        super.onPageFinished(view, url);
+        super.onLoadFinished(view, url);
     }
 }
