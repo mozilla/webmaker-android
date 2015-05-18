@@ -47,7 +47,7 @@ public class WebmakerActivity extends Activity {
 
         // Add webview to layout
         setContentView(layoutResID);
-        view = new WebmakerWebView(this, pageName, routeParams);
+        view = new WebmakerWebView(this, this, pageName, routeParams);
         RelativeLayout layout = (RelativeLayout) findViewById(id);
         layout.addView(view);
     }
@@ -55,12 +55,12 @@ public class WebmakerActivity extends Activity {
     @Override
     protected void onResume() {
         super.onResume();
-        view.loadUrl("javascript: window.jsComm && window.jsComm('onResume')");
+        view.load("javascript: window.jsComm && window.jsComm('onResume')", null);
     }
     @Override
     protected void onPause() {
         super.onPause();
-        view.loadUrl("javascript: window.jsComm && window.jsComm('onPause')");
+        view.load("javascript: window.jsComm && window.jsComm('onPause')", null);
     }
 
 
@@ -68,7 +68,7 @@ public class WebmakerActivity extends Activity {
     public void onDestroy() {
         Log.v("wm", "onDestroy");
         if (view == null) return;
-        view.destroy();
+        view.onDestroy();
         view = null;
         super.onDestroy();
     }

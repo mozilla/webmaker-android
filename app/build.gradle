@@ -23,6 +23,27 @@ android {
         sourceCompatibility JavaVersion.VERSION_1_7
         targetCompatibility JavaVersion.VERSION_1_7
     }
+
+    productFlavors {
+        armv7 {
+            ndk {
+                abiFilters "armeabi-v7a", ""
+            }
+        }
+
+        x86 {
+            ndk {
+                abiFilters "x86", ""
+            }
+        }
+    }
+}
+
+repositories {
+    mavenCentral()
+    maven {
+        url 'https://download.01.org/crosswalk/releases/crosswalk/android/maven2'
+    }
 }
 
 dependencies {
@@ -30,4 +51,5 @@ dependencies {
     compile 'com.android.support:support-v13:22.1.1'
     compile 'com.android.support:appcompat-v7:22.1.1'
     compile 'com.google.android.gms:play-services-analytics:7.3.0'
+    compile 'org.xwalk:xwalk_core_library:13.42.319.11'
 }

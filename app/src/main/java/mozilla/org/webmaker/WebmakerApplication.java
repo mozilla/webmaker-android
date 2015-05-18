@@ -21,7 +21,7 @@ public class WebmakerApplication extends Application {
     private GoogleAnalytics analytics;
     private Tracker tracker;
 
-    public WebmakerApplication getInstance(){ return singleton; }
+    public WebmakerApplication getInstance() { return singleton; }
     public GoogleAnalytics getAnalytics() { return analytics; }
     public Tracker getTracker() { return tracker; }
 

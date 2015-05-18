@@ -23,6 +23,8 @@ npm install
 #### Android
 While the majority of `webmaker-android` is built using Web technologies, it runs within a native Android wrapper that is included as part of this codebase. If you would like to make changes to the wrapper or if you'd like to test the app, we recommend you use [Android Studio](http://developer.android.com/sdk/index.html).
 
+If you make a change regarding activities within this native Android wrapper, you will need to update the ```res/xml/app_tracker.xml``` file to create a display name for that new activity, in Google Analytics.
+
 - Create the built assets with `npm run build`
 - Install and configure [Android Studio](http://developer.android.com/sdk)
 - Open Android Studio and select "Import Project"
