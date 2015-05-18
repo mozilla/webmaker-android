@@ -1,6 +1,7 @@
 package mozilla.org.webmaker.fragment;
 
 import android.annotation.SuppressLint;
+import android.app.Activity;
 import android.app.Fragment;
 import android.os.Bundle;
 import android.view.LayoutInflater;
@@ -48,7 +49,7 @@ public class WebviewFragment extends Fragment {
         }
 
         // Create webview
-        mWebView = new WebmakerWebView(mView.getContext(), pageId);
+        mWebView = new WebmakerWebView(mView.getContext(), (Activity) mView.getContext(), pageId);
         RelativeLayout layout = (RelativeLayout)mView.findViewById(R.id.webview_fragment);
         layout.addView(mWebView);
         return mView;
@@ -57,7 +58,6 @@ public class WebviewFragment extends Fragment {
     @Override
     public void onDestroyView() {
         if (mWebView == null) return;
-        mWebView.destroy();
         mWebView = null;
         super.onDestroyView();
     }
