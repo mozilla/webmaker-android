@@ -9,7 +9,11 @@ import android.os.ParcelFileDescriptor;
 import android.provider.MediaStore;
 import android.util.Base64;
 
-import java.io.*;
+import java.io.ByteArrayOutputStream;
+import java.io.File;
+import java.io.FileDescriptor;
+import java.io.FileNotFoundException;
+import java.io.IOException;
 
 public class Image {
 

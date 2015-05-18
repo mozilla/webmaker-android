@@ -4,10 +4,10 @@ import android.app.Activity;
 import android.content.Context;
 import android.view.ViewGroup;
 
-import mozilla.org.webmaker.R;
 import org.json.JSONObject;
 import org.xwalk.core.XWalkView;
 
+import mozilla.org.webmaker.R;
 import mozilla.org.webmaker.client.WebClient;
 import mozilla.org.webmaker.javascript.WebAppInterface;
 

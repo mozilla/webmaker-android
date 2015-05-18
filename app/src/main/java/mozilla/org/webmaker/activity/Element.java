@@ -4,12 +4,13 @@ import android.content.Intent;
 import android.graphics.Bitmap;
 import android.os.Environment;
 import android.util.Log;
-import mozilla.org.webmaker.R;
-import mozilla.org.webmaker.WebmakerActivity;
-import mozilla.org.webmaker.util.Image;
 
 import java.io.File;
 import java.util.UUID;
+
+import mozilla.org.webmaker.R;
+import mozilla.org.webmaker.WebmakerActivity;
+import mozilla.org.webmaker.util.Image;
 
 public class Element extends WebmakerActivity {
 
@@ -40,10 +41,6 @@ public class Element extends WebmakerActivity {
 
     /**
      * Result handler for the image capture activity.
-     *
-     * @param requestCode
-     * @param resultCode
-     * @param data
      */
     @Override
     protected void onActivityResult(int requestCode, int resultCode, Intent data) {

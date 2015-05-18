@@ -1,9 +1,6 @@
 package mozilla.org.webmaker.javascript;
 
 import android.app.Activity;
-import android.os.*;
-import mozilla.org.webmaker.activity.Element;
-import mozilla.org.webmaker.router.Router;
 import android.content.Context;
 import android.content.SharedPreferences;
 import android.util.Log;
@@ -11,6 +8,7 @@ import android.util.Log;
 import org.json.JSONObject;
 import org.xwalk.core.JavascriptInterface;
 
+import mozilla.org.webmaker.activity.Element;
 import mozilla.org.webmaker.router.Router;
 
 public class WebAppInterface {

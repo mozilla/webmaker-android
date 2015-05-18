@@ -3,10 +3,11 @@ package mozilla.org.webmaker.activity;
 import android.view.Menu;
 import android.view.MenuItem;
 
+import org.json.JSONException;
+
 import mozilla.org.webmaker.R;
 import mozilla.org.webmaker.WebmakerActivity;
 import mozilla.org.webmaker.router.Router;
-import org.json.JSONException;
 
 public class Project extends WebmakerActivity {
     public Project() {
