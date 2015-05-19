@@ -53,12 +53,6 @@ var Text = React.createClass({
     return spec.getDefaultProps();
   },
 
-  getInitialState: function() {
-    return {
-      editing: false
-    };
-  },
-
   render: function() {
     var props = this.props;
     var style = {

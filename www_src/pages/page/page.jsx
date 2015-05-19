@@ -153,7 +153,7 @@ var Page = React.createClass({
         if (data && data.element) {
           json.id = data.element.id;
           state.elements = this.state.elements.concat([this.flatten(json)]);
-          state.currentElement = this.state.elements.length,
+          state.currentElement = this.state.elements.length;
         }
         this.setState(state);
       });
