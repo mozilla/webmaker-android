@@ -23,7 +23,7 @@ public class WebClient extends XWalkResourceClient {
     private void animate(XWalkView view) {
         Animation fadeIn = new AlphaAnimation(0, 1);
         fadeIn.setInterpolator(new DecelerateInterpolator());
-        fadeIn.setDuration(1000);
+        fadeIn.setDuration(500);
         view.startAnimation(fadeIn);
     }
 
@@ -46,19 +46,5 @@ public class WebClient extends XWalkResourceClient {
         animate(view);
         view.setVisibility(View.VISIBLE);
         super.onLoadFinished(view, url);
-    }
-
-    /**
-     * Notify the client the progress info of loading a specific URL.
-     */
-    @Override
-    public void onProgressChanged(XWalkView view, int progressInPercent) {
-        if (progressInPercent != 0) {
-            animate(view);
-            view.setVisibility(View.VISIBLE);
-        } else {
-            view.setVisibility(View.GONE);
-        }
-        super.onProgressChanged(view, progressInPercent);
     }
 }
