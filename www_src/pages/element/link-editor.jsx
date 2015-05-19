@@ -1,5 +1,4 @@
 var React = require('react/addons');
-var defaults = require('lodash.defaults');
 
 var LinkBlock = require('../../blocks/link.jsx');
 var Alert = require('../../components/alert/alert.jsx');
@@ -12,11 +11,10 @@ var LinkEditor = React.createClass({
     require('./witheditable')
   ],
   getInitialState: function () {
-    var props = this.props.element || {};
-    return defaults(props, LinkBlock.defaults);
+    return LinkBlock.spec.flatten(this.props.element, {defaults: true});
   },
   componentDidUpdate: function () {
-    this.props.save(this.state);
+    this.props.cacheEdits(this.state);
   },
   onChangeLinkClick: function () {
     this.refs.notImplementedWarning.show();

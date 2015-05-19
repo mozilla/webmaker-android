@@ -6,17 +6,24 @@ var api = require('../../lib/api.js');
 var uuid = require('../../lib/uuid.js');
 
 var Link = require('../../components/link/link.jsx');
-var Generator = require('../../blocks/generator');
-
+var Loading = require('../../components/loading/loading.jsx');
+var blocks = require('../../blocks/all.jsx');
 var Positionable = require('./positionable.jsx');
 
 var Page = React.createClass({
 
   mixins: [router],
 
+  uri: function () {
+    var params = this.state.params;
+    return `/users/1/projects/${params.project}/pages/${params.page}`;
+  },
+
   getInitialState: function() {
     return {
+      loading: true,
       elements: [],
+      styles: {},
       currentElement: -1,
       showAddMenu: false,
       dims: {
@@ -31,13 +38,9 @@ var Page = React.createClass({
   },
 
   componentDidUpdate: function (prevProps) {
+    // resume
     if (this.props.isVisible && !prevProps.isVisible) {
       this.load();
-      console.log('restored!');
-    } else {
-      // This will need to happen less frequently
-      // When we are hitting a real API server
-      this.save();
     }
   },
 
@@ -62,17 +65,18 @@ var Page = React.createClass({
     var currentEl = elements[this.state.currentElement];
     if (typeof currentEl !== 'undefined') {
       href = '/pages/element/#' + currentEl.type;
-      url =  '/projects/123/pages/' + this.state.params.page + '/elements/' + currentEl.id + '/editor/' + currentEl.type;
+      var params = this.state.params;
+      url = `/projects/${params.project}/pages/${params.page}/elements/${currentEl.id}/editor/${currentEl.type}`;
     }
 
-    return <div id="project" className="demo">
+    return (<div id="project" className="demo">
       <div className="pages-container">
         <div className="page next top" />
         <div className="page next right" />
         <div className="page next bottom" />
         <div className="page next left" />
         <div className="page">
-          <div className="inner" style={{backgroundColor: this.state.style.backgroundColor}}>
+          <div className="inner" style={{backgroundColor: this.state.styles.backgroundColor}}>
             <div ref="container" className="positionables">{ positionables }</div>
           </div>
         </div>
@@ -82,9 +86,9 @@ var Page = React.createClass({
 
       <div className={classNames({'controls': true, 'add-active': this.state.showAddMenu})}>
         <div className="add-menu">
-          <button className="text" onClick={this.addText}><img className="icon" src="../../img/text.svg" /></button>
-          <button className="image" onClick={this.addImage}><img className="icon" src="../../img/camera.svg" /></button>
-          <button className="link" onClick={this.addLink}><img className="icon" src="../../img/link.svg" /></button>
+          <button className="text" onClick={this.addElement('text')}><img className="icon" src="../../img/text.svg" /></button>
+          <button className="image" onClick={this.addElement('image')}><img className="icon" src="../../img/camera.svg" /></button>
+          <button className="link" onClick={this.addElement('link')}><img className="icon" src="../../img/link.svg" /></button>
         </div>
         <button className={secondaryClass("delete")} onClick={this.deleteElement} active={this.state.currentElement===-1}>
           <img className="icon" src="../../img/trash.svg" />
@@ -97,7 +101,8 @@ var Page = React.createClass({
           <img className="icon" src="../../img/brush.svg" />
         </Link>
       </div>
-    </div>
+      <Loading on={this.state.loading} />
+    </div>);
   },
 
   componentDidMount: function() {
@@ -122,11 +127,14 @@ var Page = React.createClass({
       props.parentWidth = this.state.dims.width;
       props.parentHeight = this.state.dims.height;
 
-      var Element = Generator.blocks[props.type];
+      var Element = blocks[props.type];
 
       props.ref = "positionable"+i;
       props.key = "positionable"+i;
       props.current = this.state.currentElement===i;
+
+      props.onTouchEnd = this.save(i);
+
       return <div>
         <Positionable {...props} onUpdate={this.updateElement(i)}>
           <Element {...props} />
@@ -135,12 +143,21 @@ var Page = React.createClass({
     });
   },
 
-  appendElement: function(obj) {
-    this.setState({
-      currentElement: this.state.elements.length,
-      elements: this.state.elements.concat([obj]),
-      showAddMenu: false
-    });
+  addElement: function(type) {
+    return () => {
+      var json = blocks[type].spec.generate();
+
+      api({method: 'post', uri: this.uri() + '/elements', json}, (err, data) => {
+        var state = {showAddMenu: false};
+        if (err) console.log('There was an error creating an element', err);
+        if (data && data.element) {
+          json.id = data.element.id;
+          state.elements = this.state.elements.concat([this.flatten(json)]);
+          state.currentElement = this.state.elements.length;
+        }
+        this.setState(state);
+      });
+    };
   },
 
   updateElement: function(index) {
@@ -158,63 +175,71 @@ var Page = React.createClass({
   deleteElement: function() {
     if(this.state.currentElement === -1) return;
     var elements = this.state.elements;
-    elements[this.state.currentElement] = false;
-    var currentElement = -1;
-    elements.some(function(e,idx) {
-      currentElement = idx;
-      return !!e;
+    var id = elements[this.state.currentElement].id;
+
+    // Don't delete test elements for real;
+    if (parseInt(id, 10) <= 3) return alert('this is a test element, not deleting.');
+
+    api({method: 'delete', uri: this.uri() + '/elements/' + id}, (err, data) => {
+      if (err) return console.error('There was a problem deleting the element');
+      elements[this.state.currentElement] = false;
+      var currentElement = -1;
+      elements.some(function(e,idx) {
+        currentElement = idx;
+        return !!e;
+      });
+      this.setState({
+        elements: elements,
+        currentElement: -1
+      });
     });
-    // note that we do not splice, because the updateElement
-    // function relies on immutable array indices.
-    this.setState({
-      elements: elements,
-      currentElement: currentElement
-    });
   },
 
-  addLink: function() {
-    this.appendElement(Generator.generateDefinition(Generator.LINK, {
-      href: "https://webmaker.org",
-      label: "webmaker.org",
-      active: false
-    }));
+  flatten: function (element) {
+    if (!blocks[element.type]) return false;
+    return blocks[element.type].spec.flatten(element);
   },
 
-  addText: function() {
-    this.appendElement(Generator.generateDefinition(Generator.TEXT, {
-      value: "This is a paragraph of text"
-    }));
-  },
-
-  addImage: function() {
-    this.appendElement(Generator.generateDefinition(Generator.IMAGE, {
-      src: "../../img/toucan.svg",
-      alt: "This is Tucker"
-    }));
-  },
-
-  save: function() {
-    // FIXME: TODO: this needs to be split into "cache this page's current running state" vs.
-    //              "only get the data relevan to for saving this page to db".
-    api({
-      method: 'put',
-      uri: '/users/foo/projects/bar/pages/' + this.state.params.page,
-      json: this.state
-    });
-
+  expand: function (element) {
+    if (!blocks[element.type]) return false;
+    return blocks[element.type].spec.expand(element);
   },
 
   load: function() {
     var id = this.state.params.page || 'foo0';
     api({
-      uri: '/users/foo/projects/bar/pages/' + id
-    }, (err, cachedState) => {
-      console.log(cachedState);
-      if (!cachedState || Object.keys(cachedState).length === 0) return;
-      // FIXME: TODO: this needs to be split into "loading the page's previous running state" vs.
-      //              "build page based on project stored in db".
-      this.setState(cachedState);
+      uri: this.uri()
+    }, (err, data) => {
+      if (err) return console.error('There was an error getting the Page', err);
+      if (!data || !data.page) return console.log('Could not find the page');
+
+      var page = data.page;
+      var styles = page.styles;
+      var elements = page.elements.map(element => {
+        return this.flatten(element);
+      }).filter(element => element);
+      this.setState({
+        loading: false,
+        styles,
+        elements
+      });
     });
+  },
+
+  save: function (index) {
+    return () => {
+      var el = this.expand(this.state.elements[index]);
+      api({
+        method: 'patch',
+        uri: this.uri() + '/elements/' + el.id,
+        json: {
+          styles: el.styles
+        }
+      }, (err, data) => {
+        if (err) return console.error('There was an error updating the element', err);
+        if (!data || !data.element) console.log('Could not find the element');
+      });
+    };
   }
 });
 

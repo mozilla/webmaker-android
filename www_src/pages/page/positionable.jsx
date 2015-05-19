@@ -1,7 +1,6 @@
-"use strict";
-
 var React = require("react");
 var classes = require("classnames");
+var Spec = require('../../lib/spec');
 
 var Positionable = React.createClass({
 
@@ -11,8 +10,6 @@ var Positionable = React.createClass({
       y: this.props.y || 0,
       scale: this.props.scale || 1,
       angle: this.props.angle || 0,
-      xoffset: this.props.parentWidth >>> 1 || 0,
-      yoffset: this.props.parentHeight >>> 1 || 0,
       zIndex: (typeof this.props.zIndex !== "undefined") ? this.props.zIndex : 1,
       interactive: (typeof this.props.interactive !== "undefined") ? this.props.interactive : true,
       touchactive: false
@@ -42,10 +39,6 @@ var Positionable = React.createClass({
     onode.addEventListener("touchend", touchHandler.endmark);
 
     var dims = dnode.getBoundingClientRect();
-    this.setState({
-      xoffset: (this.props.parentWidth - dims.width)/2,
-      yoffset: (this.props.parentHeight - dims.height)/2
-    });
   },
 
   componentDidUpdate: function(prevProps, prevState) {
@@ -55,21 +48,7 @@ var Positionable = React.createClass({
   },
 
   render: function() {
-    var x = this.state.x,
-        y = this.state.y,
-        angle = this.state.angle * 180/Math.PI,
-        scale = this.state.scale,
-        zIndex = this.state.zIndex;
-
-    var style = {
-      transform: [
-        "translate("+x+"px, "+y+"px)",
-        "rotate("+angle+"deg)",
-        "scale("+scale+")"
-      ].join(" "),
-      transformOrigin: "center",
-      zIndex: zIndex
-    };
+    var style = Spec.propsToPosition(this.state);
 
     var className = classes({
       positionable: true,
@@ -77,20 +56,16 @@ var Positionable = React.createClass({
       current: this.props.current
     });
 
-    var mainstyle = {
-      position: "absolute",
-      left: this.state.xoffset,
-      top: this.state.yoffset
-    };
-
     return (
-      <div className="positionableContainer" style={mainstyle} key={this.props.key}>
+      <div className="positionableContainer" key={this.props.key}>
         <div ref="overlay" className="touchOverlay" hidden={!this.state.touchactive} />
-        <div style={style} className={className}>
-          { this.props.children }
-        </div>
+        <div style={style} className={className}>{ this.props.children }</div>
       </div>
     );
+  },
+
+  onTouchEnd: function () {
+    if (this.props.onTouchEnd) this.props.onTouchEnd(this.state);
   },
 
   handleTranslation: function(x, y) {

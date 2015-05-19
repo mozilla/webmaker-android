@@ -9,6 +9,7 @@ var Tabs = require('../../components/tabs/tabs.jsx');
 var Card = require('../../components/card/card.jsx');
 var Alert = require('../../components/alert/alert.jsx');
 var TextInput = require('../../components/text-input/text-input.jsx');
+var Loading = require('../../components/loading/loading.jsx');
 
 var tabs = [
   {
@@ -22,6 +23,17 @@ var tabs = [
 ];
 
 var StyleGuide = React.createClass({
+  getInitialState: function () {
+    return {
+      loading: false
+    };
+  },
+  toggleLoading: function () {
+    this.setState({loading: true});
+    setTimeout(() => {
+      this.setState({loading: false})
+    }, 3000);
+  },
   render: function () {
     return (
       <div id="style-guide">
@@ -92,6 +104,10 @@ var StyleGuide = React.createClass({
 
         <h3>TextInput (JSX)</h3>
         <TextInput label="Title" maxlength={25} />
+
+        <h3>Loading</h3>
+        <button className="btn" onClick={this.toggleLoading}>Show loading</button>
+        <Loading on={this.state.loading} />
 
       </div>
     );

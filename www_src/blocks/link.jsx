@@ -1,28 +1,55 @@
 var React = require('react');
 var assign = require('react/lib/Object.assign');
-var utils = require('../lib/propUtils');
 var getContrastingColor = require('../lib/color').getContrastingColor;
+var Spec = require('../lib/spec');
+
+var spec = new Spec('link', assign({
+  innerHTML: {
+    category: 'attributes',
+    validation: React.PropTypes.string,
+    default: 'Tap me'
+  },
+  href: {
+    category: 'attributes',
+    validation: React.PropTypes.string,
+    default: ''
+  },
+  fontFamily: {
+    category: 'styles',
+    validation: React.PropTypes.string,
+    default: 'sans-serif'
+  },
+  backgroundColor: {
+    category: 'styles',
+    validation: React.PropTypes.string,
+    default: '#69A0FC'
+  },
+  borderRadius: {
+    category: 'styles',
+    validation: React.PropTypes.number,
+    default: 5
+  }
+}, Spec.getPositionProps()));
 
 var Link = React.createClass({
-  statics: {
-    defaults: {
-      href: '',
-      borderRadius: 5,
-      backgroundColor: '#69A0FC',
-      fontFamily: 'Roboto',
-      whiteSpace: 'pre',
-      innerHTML: 'Tap me',
-      active: false
-    }
-  },
+
   mixins: [
     require('./textedit')
   ],
+
+  statics: {spec},
+
+  propTypes: spec.getPropTypes(),
+
   getDefaultProps: function () {
-    return this.defaults;
+    return assign(spec.getDefaultProps(), {
+      active: false
+    });
   },
+
   render: function() {
     var props = this.props;
+
     var style = {
       boxShadow: 'none',
       borderRadius: props.borderRadius,
@@ -33,7 +60,7 @@ var Link = React.createClass({
     };
 
     if (props.position) {
-      style = assign(style, utils.propsToPosition(props));
+      style = assign(style, Spec.propsToPosition(props));
     }
 
     var Element = this.props.activelink ? 'a' : 'span';

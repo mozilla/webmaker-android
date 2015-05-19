@@ -1,14 +1,12 @@
 var React = require('react');
 
 var render = require('../../lib/render.jsx');
-var Binding = require('../../lib/binding.jsx');
 
 var Tabs = require('../../components/tabs/tabs.jsx');
 var ColorSpectrum = require('../../components/color-spectrum/color-spectrum.jsx');
 var Range = require('../../components/range/range.jsx');
 
 var Tinker = React.createClass({
-  mixins: [Binding],
   getInitialState: function () {
     return {
       color: '#8FB70A'

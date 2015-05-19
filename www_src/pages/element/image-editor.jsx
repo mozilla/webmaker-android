@@ -1,40 +1,25 @@
 var React = require('react/addons');
 var classNames = require('classnames');
-var Binding = require('../../lib/binding.jsx');
 var ColorGroup = require('../../components/color-group/color-group.jsx');
 var Range = require('../../components/range/range.jsx');
 var Alert = require('../../components/alert/alert.jsx');
 var ImageBlock = require('../../blocks/image.jsx');
-var defaults = require('lodash.defaults');
 
 var ImageEditor = React.createClass({
   mixins: [React.addons.LinkedStateMixin],
   getInitialState: function () {
     // Expose image handler to Android
     window.imageReady = this.imageReady;
-
-    // Bind props
-    var props = this.props.element || {};
-    props.showMenu = false;
-    return defaults(props, ImageBlock.defaults);
+    return ImageBlock.spec.flatten(this.props.element, {defaults: true});
   },
   componentDidUpdate: function () {
-    this.props.save(this.state);
+    this.props.cacheEdits(this.state);
   },
   render: function () {
-    var imageProps = {
-      src: this.state.src,
-      alt: '',
-      opacity: this.state.opacity,
-      borderStyle: 'solid',
-      borderWidth: this.state.borderWidth,
-      borderColor: this.state.borderColor
-    };
-
     return (
       <div id="editor">
         <div className="editor-preview">
-          <ImageBlock {...imageProps} />
+          <ImageBlock {...this.state} />
         </div>
         <div className="editor-options">
           <div className="form-group">

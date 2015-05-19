@@ -1,35 +1,68 @@
 var React = require('react');
-var utils = require('../lib/propUtils');
 var assign = require('react/lib/Object.assign');
+var Spec = require('../lib/spec');
+
+var spec = new Spec('text', assign({
+  innerHTML: {
+    category: 'attributes',
+    validation: React.PropTypes.string,
+    default: 'Hello world'
+  },
+  fontFamily: {
+    category: 'styles',
+    validation: React.PropTypes.string,
+    default: 'sans-serif'
+  },
+  color: {
+    category: 'styles',
+    validation: React.PropTypes.string,
+    default: '#333'
+  },
+  fontStyle: {
+    category: 'styles',
+    validation: React.PropTypes.string,
+    default: 'normal'
+  },
+  fontWeight: {
+    category: 'styles',
+    validation: React.PropTypes.string,
+    default: 'normal'
+  },
+  textDecoration: {
+    category: 'styles',
+    validation: React.PropTypes.string,
+    default: 'none'
+  },
+  textAlign: {
+    category: 'styles',
+    validation: React.PropTypes.string,
+    default: 'center'
+  }
+}, Spec.getPositionProps()));
 
 var Text = React.createClass({
-  statics: {
-    defaults: {
-      fontSize: 18,
-      fontFamily: 'Roboto',
-      color: '#645839',
-      fontWeight: 'normal',
-      fontStyle: 'normal',
-      textDecoration: 'none',
-      textAlign: 'center',
-      whiteSpace: 'pre',
-      innerHTML: 'Hello world'
-    }
-  },
   mixins: [
     require('./textedit')
   ],
+
+  statics: {spec},
+
+  propTypes: spec.getPropTypes(),
+
   getDefaultProps: function () {
-    return this.defaults;
+    return spec.getDefaultProps();
   },
+
   render: function() {
-    var style = {};
     var props = this.props;
-    ['fontFamily', 'color', 'fontWeight', 'fontStyle', 'textDecoration', 'textAlign', 'whiteSpace']
+    var style = {
+      whiteSpace: 'nowrap'
+    };
+    ['fontFamily', 'color', 'fontWeight', 'fontStyle', 'textDecoration', 'textAlign']
       .forEach(prop => style[prop] = props[prop]);
 
     if (props.position) {
-      style = assign(style, utils.propsToPosition(props));
+      style = assign(style, Spec.propsToPosition(props));
     }
 
     var content = this.makeEditable(props.innerHTML, style);
