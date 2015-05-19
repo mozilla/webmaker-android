@@ -77,6 +77,7 @@ var Page = React.createClass({
         <div className="page next left" />
         <div className="page">
           <div className="inner" style={{backgroundColor: this.state.styles.backgroundColor}}>
+            <div className="deselector" onClick={this.deselectAll} />
             <div ref="container" className="positionables">{ positionables }</div>
           </div>
         </div>
@@ -116,6 +117,12 @@ var Page = React.createClass({
 
   toggleAddMenu: function () {
     this.setState({showAddMenu: !this.state.showAddMenu});
+  },
+
+  deselectAll: function () {
+    this.setState({
+      currentElement: -1
+    });
   },
 
   formPositionables: function(content) {
