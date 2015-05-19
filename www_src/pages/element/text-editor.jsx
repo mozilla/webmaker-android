@@ -38,32 +38,16 @@ var textAlignOptions = ['left', 'center', 'right'].map(e => {
 });
 
 var TextEditor = React.createClass({
-  mixins: [React.addons.LinkedStateMixin],
+  mixins: [
+    React.addons.LinkedStateMixin,
+    require('./witheditable')
+  ],
   getInitialState: function () {
     var props = this.props.element || {};
     return defaults(props, TextBlock.defaults);
   },
   componentDidUpdate: function () {
     this.props.save(this.state);
-  },
-  editText: function(evt) {
-    evt.stopPropagation();
-    evt.preventDefault();
-    this.refs.element.toggleEditing();
-    // calls our setEditing function after changing state
-  },
-  stopEditing: function(evt) {
-    this.refs.element.stopEditing();
-  },
-  setEditing: function(boolval) {
-    this.setState({
-      editing: boolval
-    });
-  },
-  updateText: function (text) {
-    this.setState({
-      innerHTML: text
-    });
   },
   render: function () {
     return (
