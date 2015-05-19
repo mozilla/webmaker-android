@@ -10,10 +10,6 @@ android {
         targetSdkVersion 21
         versionCode 1
         versionName "1.0"
-
-        ndk {
-            moduleName "webmaker"
-        }
     }
 
     buildTypes {
@@ -31,7 +27,7 @@ android {
     productFlavors {
         armv7 {
             ndk {
-                abiFilters "armeabi-v7a", "armeabi", ""
+                abiFilters "armeabi-v7a", ""
             }
         }
 
@@ -39,15 +35,6 @@ android {
             ndk {
                 abiFilters "x86", ""
             }
-        }
-    }
-
-    splits {
-        abi {
-            enable true
-            reset()
-            include 'x86', 'armeabi-v7a'
-            universalApk true
         }
     }
 }
