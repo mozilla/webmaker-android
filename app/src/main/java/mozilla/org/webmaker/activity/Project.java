@@ -1,5 +1,6 @@
 package mozilla.org.webmaker.activity;
 
+import android.os.Bundle;
 import android.view.Menu;
 import android.view.MenuItem;
 
@@ -12,6 +13,17 @@ import mozilla.org.webmaker.router.Router;
 public class Project extends WebmakerActivity {
     public Project() {
         super("project", R.id.project_layout, R.layout.project_layout, R.menu.menu_project);
+    }
+
+    @Override
+    protected void onCreate(Bundle savedInstanceState) {
+        super.onCreate(savedInstanceState);
+        
+        try {
+            routeParams.put("mode", "edit");
+        } catch (JSONException e) {
+            // do nothing
+        }
     }
 
     @Override
@@ -33,7 +45,7 @@ public class Project extends WebmakerActivity {
         // Handle button press
         switch (item.getItemId()) {
             case R.id.action_play:
-                // @todo
+                Router.sharedRouter().open("/projects/" + id + "/play");
                 return true;
             case R.id.action_settings:
                 Router.sharedRouter().open("/projects/" + id + "/settings");
