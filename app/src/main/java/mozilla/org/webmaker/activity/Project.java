@@ -33,7 +33,7 @@ public class Project extends WebmakerActivity {
         // Handle button press
         switch (item.getItemId()) {
             case R.id.action_play:
-                // @todo
+                Router.sharedRouter().open("/projects/" + id + "/play");
                 return true;
             case R.id.action_settings:
                 Router.sharedRouter().open("/projects/" + id + "/settings");
