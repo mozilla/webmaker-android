@@ -6,6 +6,11 @@ Android 5.0.1 or greater (>= 4.2 support coming soon)
 An internet connection
 ```
 
+## Enable Untrusted Sources
+- Open the Android "Settings" application
+- Navigate to "Applications"
+- If the check box for "Unknown Sources" is unchecked, check it
+
 ## Installing a Nightly or Release Build
 To install either the nightly or release build, simply navigate to the APK package below using either Firefox or Chrome on your Android device. If using Firefox, navigate to the "Downloads" menu and tap on the APK. If using Chrome, use the "Downloads" application and tap on the APK to begin the install process. If you have previously installed a version of the app from source, you may need to delete the app from your device prior to installing a nightly or release build.
 
