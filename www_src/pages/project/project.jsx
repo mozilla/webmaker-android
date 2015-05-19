@@ -92,7 +92,7 @@ var Project = React.createClass({
 
     if (window.Android) {
       var state = JSON.parse(window.Android.getState());
-      if (state.params.page === this.state.params.page) {
+      if (state.params && state.params.page === this.state.params.page) {
         this.setState({
           selectedEl: state.selectedEl,
           camera: state.camera,
