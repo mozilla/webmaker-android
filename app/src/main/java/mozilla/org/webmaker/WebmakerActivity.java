@@ -17,6 +17,7 @@ public class WebmakerActivity extends Activity {
     protected JSONObject routeParams;
     protected String pageName;
     protected int id, layoutResID, menuResId;
+    protected boolean mIsRestart = false;
 
     public WebmakerActivity(String pageName, int id, int layoutResID, int menuResId) {
         this.pageName = pageName;
@@ -53,10 +54,19 @@ public class WebmakerActivity extends Activity {
     }
 
     @Override
+    protected void onRestart() {
+        mIsRestart = true;
+        super.onRestart();
+    }
+
+    @Override
     protected void onStart() {
-        view = new WebmakerWebView(this, this, pageName, routeParams);
-        RelativeLayout layout = (RelativeLayout) findViewById(id);
-        layout.addView(view);
+        if (!mIsRestart) {
+            view = new WebmakerWebView(this, this, pageName, routeParams);
+            RelativeLayout layout = (RelativeLayout) findViewById(id);
+            layout.addView(view);
+        }
+
         super.onStart();
     }
 
