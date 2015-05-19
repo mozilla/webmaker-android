@@ -73,7 +73,8 @@ var TextEditor = React.createClass({
               <label>Text Style</label>
               <CheckboxSet options={textStyleOptions} linkState={this.linkState} />
             </div>
-            <div className="form-group">
+            {/* Hide the text alignment editor until multi-line text is added.*/}
+            <div className="form-group" style={{display: 'none'}}>
               <label>Text Alignment</label>
               <Radio id="textAlign" options={textAlignOptions} linkState={this.linkState} />
             </div>
