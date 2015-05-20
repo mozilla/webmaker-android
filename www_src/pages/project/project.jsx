@@ -12,6 +12,7 @@ var types = require('../../components/el/el.jsx').types;
 var ElementGroup = require('../../components/element-group/element-group.jsx');
 
 var api = require('../../lib/api');
+var calculateSwipe = require('../../lib/swipe.js');
 
 var MAX_ZOOM = 0.8;
 var MIN_ZOOM = 0.18;
@@ -83,7 +84,7 @@ var Project = React.createClass({
     var el = this.getDOMNode();
     var bounding = this.refs.bounding;
     var boundingEl = bounding.getDOMNode();
-    var startX, startY, startDistance, currentX, currentY, currentZoom;
+    var startX, startY, endX, endY, startDistance, currentX, currentY, currentZoom;
     var didMove = false;
 
     if (window.Android) {
@@ -113,11 +114,6 @@ var Project = React.createClass({
     });
 
     el.addEventListener('touchmove', (event) => {
-      // ?
-      if (this.state.params.mode === 'play' && this.state.isPageZoomed) {
-        return;
-      }
-
       didMove = true;
       var translateStr = 'translate(' + this.state.camera.x + 'px, ' + this.state.camera.y + 'px)';
       var scaleStr = 'scale(' + this.state.zoom + ')';
@@ -137,7 +133,14 @@ var Project = React.createClass({
       currentX = x + (event.touches[0].clientX - startX);
       currentY = y + (event.touches[0].clientY - startY);
       translateStr = 'translate(' + currentX + 'px, ' + currentY + 'px)';
-      boundingEl.style.transform = translateStr + ' ' + scaleStr;
+
+      endX = event.touches[0].clientX;
+      endY = event.touches[0].clientY;
+
+      // Only pan the bounding box if you're not zoomed in on a page
+      if (!this.state.isPageZoomed) {
+        boundingEl.style.transform = translateStr + ' ' + scaleStr;
+      }
     });
 
     el.addEventListener('touchend', (event) => {
@@ -147,22 +150,50 @@ var Project = React.createClass({
           return;
         }
 
-        var state = {camera: {
-          x: currentX,
-          y: currentY
-        }};
+        if (!this.state.isPageZoomed) {
+          var state = {camera: {
+            x: currentX,
+            y: currentY
+          }};
 
-        if (typeof currentZoom !== 'undefined') {
-          state.zoom = currentZoom;
+          if (typeof currentZoom !== 'undefined') {
+            state.zoom = currentZoom;
+          }
+          this.setState(state);
+
+          startX = undefined;
+          startY = undefined;
+          startDistance = undefined;
+          currentX = undefined;
+          currentY = undefined;
+          currentZoom = undefined;
+        } else {
+          // Handle swipe
+          var swipeDirection = calculateSwipe(startX, startY, endX, endY);
+
+          if (swipeDirection) {
+            var panTargets = {
+              LEFT: {x: this.state.zoomedPageCoords.x + 1, y: this.state.zoomedPageCoords.y},
+              RIGHT: {x: this.state.zoomedPageCoords.x - 1, y: this.state.zoomedPageCoords.y},
+              UP: {x: this.state.zoomedPageCoords.x, y: this.state.zoomedPageCoords.y + 1},
+              DOWN: {x: this.state.zoomedPageCoords.x, y: this.state.zoomedPageCoords.y - 1}
+            };
+
+            // Determine if an adjacent page exists
+            var isAdjacentPage = false;
+            var target = panTargets[swipeDirection];
+
+            this.state.pages.forEach(function (page) {
+              if (page.coords.x === target.x && page.coords.y === target.y) {
+                isAdjacentPage = true;
+              }
+            });
+
+            if (isAdjacentPage) {
+              this.zoomToPage(target);
+            }
+          }
         }
-        this.setState(state);
-
-        startX = undefined;
-        startY = undefined;
-        startDistance = undefined;
-        currentX = undefined;
-        currentY = undefined;
-        currentZoom = undefined;
       } else {
         startX = event.touches[0].clientX;
         startY = event.touches[0].clientY;
@@ -174,26 +205,22 @@ var Project = React.createClass({
     });
   },
   selectPage: function (el) {
-    return () => {
-      this.setState({
-        camera: this.cartesian.getFocusTransform(el.coords, this.state.zoom),
-        selectedEl: el.id
-      });
-    };
+    this.setState({
+      camera: this.cartesian.getFocusTransform(el.coords, this.state.zoom),
+      selectedEl: el.id
+    });
   },
-  zoomToPage: function (el) {
-    return () => {
-      this.setState({
-        camera: this.cartesian.getFocusTransform(el.coords, 1),
-        zoom: 1,
-        isPageZoomed: true,
-        zoomedPage: el
-      });
-    };
+  zoomToPage: function (coords) {
+    this.setState({
+      camera: this.cartesian.getFocusTransform(coords, 1),
+      zoom: 1,
+      isPageZoomed: true,
+      zoomedPageCoords: coords
+    });
   },
   zoomFromPage: function () {
     this.setState({
-      camera: this.cartesian.getFocusTransform(this.state.zoomedPage.coords, DEFAULT_ZOOM),
+      camera: this.cartesian.getFocusTransform(this.state.zoomedPageCoords, DEFAULT_ZOOM),
       zoom: DEFAULT_ZOOM,
       isPageZoomed: false
     });
@@ -346,6 +373,14 @@ var Project = React.createClass({
 
   },
 
+  onPageClick: function (page) {
+    if (this.state.params.mode === 'play') {
+      this.zoomToPage(page.coords);
+    } else {
+      this.selectPage(page);
+    }
+  },
+
   render: function () {
     // Prevent pull to refresh
     document.body.style.overflowY = 'hidden';
@@ -387,7 +422,7 @@ var Project = React.createClass({
               page,
               selected: page.id === this.state.selectedEl,
               transform: this.cartesian.getTransform(page.coords),
-              onClick: isPlayOnly ? this.zoomToPage(page) : this.selectPage(page)
+              onClick: this.onPageClick.bind(this, page)
             };
             return (<Page {...props} />);
           })}
