@@ -1,7 +1,6 @@
 package mozilla.org.webmaker;
 
 import android.app.ActionBar;
-import android.app.Activity;
 import android.app.FragmentTransaction;
 import android.os.Bundle;
 import android.support.v4.view.ViewPager;
@@ -10,7 +9,7 @@ import android.view.MenuItem;
 import mozilla.org.webmaker.adapter.SectionsPagerAdapter;
 
 
-public class MainActivity extends Activity implements ActionBar.TabListener {
+public class MainActivity extends BaseActivity implements ActionBar.TabListener {
 
     /**
      * The {@link ViewPager} that will host the section contents.

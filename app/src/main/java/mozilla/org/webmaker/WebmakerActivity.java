@@ -11,7 +11,7 @@ import org.json.JSONObject;
 
 import mozilla.org.webmaker.view.WebmakerWebView;
 
-public class WebmakerActivity extends Activity {
+public class WebmakerActivity extends BaseActivity {
 
     public WebmakerWebView view;
     protected JSONObject routeParams;
@@ -69,6 +69,11 @@ public class WebmakerActivity extends Activity {
         }
 
         super.onStart();
+    }
+
+    @Override
+    public void onBackPressed() {
+        view.load("javascript: window.jsComm && window.jsComm('onBackPressed')", null);
     }
 
     @Override
