@@ -1,9 +1,11 @@
 var React = require('react');
+var assign = require('react/lib/Object.assign');
 var classNames = require('classnames');
 var render = require('../../lib/render.jsx');
 var router = require('../../lib/router.jsx');
 var api = require('../../lib/api.js');
 var uuid = require('../../lib/uuid.js');
+
 
 var Link = require('../../components/link/link.jsx');
 var Loading = require('../../components/loading/loading.jsx');
@@ -71,10 +73,6 @@ var Page = React.createClass({
 
     return (<div id="project" className="demo">
       <div className="pages-container">
-        <div className="page next top" />
-        <div className="page next right" />
-        <div className="page next bottom" />
-        <div className="page next left" />
         <div className="page">
           <div className="inner" style={{backgroundColor: this.state.styles.backgroundColor}}>
             <div className="deselector" onClick={this.deselectAll} />
@@ -131,22 +129,18 @@ var Page = React.createClass({
         return false;
       }
 
-      props.parentWidth = this.state.dims.width;
-      props.parentHeight = this.state.dims.height;
+      props = assign({}, props, {
+        parentWidth: this.state.dims.width,
+        parentHeight: this.state.dims.height,
+        ref: 'positionable' + i,
+        key: 'positionable' + i,
+        isCurrent: this.state.currentElement === i,
+        onTouchEnd: this.save(i),
+        onUpdate: this.updateElement(i),
+        interactive: true
+      });
 
-      var Element = blocks[props.type];
-
-      props.ref = "positionable"+i;
-      props.key = "positionable"+i;
-      props.current = this.state.currentElement===i;
-
-      props.onTouchEnd = this.save(i);
-
-      return <div>
-        <Positionable {...props} onUpdate={this.updateElement(i)}>
-          <Element {...props} />
-        </Positionable>
-      </div>;
+      return <Positionable {...props} />
     });
   },
 
