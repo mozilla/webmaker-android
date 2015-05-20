@@ -348,7 +348,7 @@ var Project = React.createClass({
           <PrimaryButton url={pageUrl}  off={!this.state.selectedEl} href="/pages/page" icon="../../img/pencil.svg" />
         </Menu>
 
-        <Loading on={this.state.loading} />
+        <Loading on={true} />
       </div>
     );
   }

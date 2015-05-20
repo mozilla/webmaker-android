@@ -11,6 +11,7 @@ var Link = require('../../components/link/link.jsx');
 var Loading = require('../../components/loading/loading.jsx');
 var blocks = require('../../blocks/all.jsx');
 var Positionable = require('./positionable.jsx');
+var ElementGroup = require('../../components/element-group/element-group.jsx');
 
 var Page = React.createClass({
 
@@ -75,8 +76,16 @@ var Page = React.createClass({
       <div className="pages-container">
         <div className="page">
           <div className="inner" style={{backgroundColor: this.state.styles.backgroundColor}}>
-            <div className="deselector" onClick={this.deselectAll} />
-            <div ref="container" className="positionables">{ positionables }</div>
+            {/*<div ref="container" className="positionables">{ positionables }</div>*/}
+            <ElementGroup
+              ref="container"
+              interactive={true}
+              dims={this.state.dims}
+              elements={this.state.elements}
+              currentElement={this.state.currentElement}
+              onTouchEnd={this.save}
+              onUpdate={this.updateElement}
+              onDeselect={this.deselectAll} />
           </div>
         </div>
       </div>
