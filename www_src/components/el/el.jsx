@@ -1,25 +1,47 @@
-var React = require("react");
-var classes = require("classnames");
+var React = require('react');
+var classes = require('classnames');
 var Spec = require('../../lib/spec');
+var touchhandler = require("../../lib/touchhandler");
 
-var Positionable = React.createClass({
+var El = React.createClass({
+
+  statics: {
+    types: {
+      image: require('./types/image.jsx'),
+      text: require('./types/text.jsx'),
+      link: require('./types/link.jsx')
+    }
+  },
+
+  getDefaultProps: function () {
+    return {
+      interactive: false,
+      x: 0,
+      y: 0,
+      scale: 1,
+      angle: 0,
+      zIndex: 1
+    };
+  },
 
   getInitialState: function() {
     var initial = {
-      x: this.props.x || 0,
-      y: this.props.y || 0,
-      scale: this.props.scale || 1,
-      angle: this.props.angle || 0,
-      zIndex: (typeof this.props.zIndex !== "undefined") ? this.props.zIndex : 1,
-      interactive: (typeof this.props.interactive !== "undefined") ? this.props.interactive : true,
+      x: this.props.x,
+      y: this.props.y,
+      scale: this.props.scale,
+      angle: this.props.angle,
+      zIndex: this.props.zIndex,
       touchactive: false
     };
     return initial;
   },
 
   componentDidMount: function() {
-    if(!this.state.interactive) return;
-    var touchHandler = this.touchhandler = require("./touchhandler")(this);
+
+    // Don't attach touch handlers for non-interactive elements
+    if(!this.props.interactive) return;
+
+    var touchHandler = this.touchhandler = touchhandler(this);
     var dnode = this.getDOMNode();
     dnode.addEventListener("mousedown", touchHandler.startmark);
     dnode.addEventListener("mousemove", touchHandler.panmove);
@@ -50,16 +72,19 @@ var Positionable = React.createClass({
   render: function() {
     var style = Spec.propsToPosition(this.state);
 
-    var className = classes({
-      positionable: true,
+    var className = classes('el', 'el-' + this.props.type, {
       touchactive: this.state.touchactive,
-      current: this.props.current
+      current: this.props.isCurrent
     });
 
+    var Element = El.types[this.props.type];
+
     return (
-      <div className="positionableContainer" key={this.props.key}>
-        <div ref="overlay" className="touchOverlay" hidden={!this.state.touchactive} />
-        <div style={style} className={className}>{ this.props.children }</div>
+      <div className="el-container" key={this.props.key}>
+        <div ref="overlay" className="touch-overlay" hidden={!this.state.touchactive} />
+        <div className={className} style={style}>
+          <Element {...this.props} />
+        </div>
       </div>
     );
   },
@@ -97,4 +122,4 @@ var Positionable = React.createClass({
   }
 });
 
-module.exports = Positionable;
+module.exports = El;

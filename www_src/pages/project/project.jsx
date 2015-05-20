@@ -9,7 +9,8 @@ var Cartesian = require('../../lib/cartesian');
 var Link = require('../../components/link/link.jsx');
 var Loading = require('../../components/loading/loading.jsx');
 var {Menu, PrimaryButton, SecondaryButton} = require('../../components/action-menu/action-menu.jsx');
-var blocks = require('../../blocks/all.jsx');
+var types = require('../../components/el/el.jsx').types;
+var ElementGroup = require('../../components/element-group/element-group.jsx');
 
 var api = require('../../lib/api');
 
@@ -28,16 +29,8 @@ var Page = React.createClass({
       backgroundColor: this.props.page.styles.backgroundColor,
       transform: this.props.transform
     };
-
-    // Build element tree
-    var elements = this.props.page.elements && this.props.page.elements.map(props => {
-      if (!blocks[props.type]) return;
-      var Component = blocks[props.type];
-      return <Component position={true} {...props} />;
-    });
-
     return (<div className={classes} style={style} onClick={this.props.onClick}>
-      {elements}
+      <ElementGroup elements={this.props.page.elements} />
     </div>);
   }
 });
@@ -188,8 +181,8 @@ var Project = React.createClass({
         y: page.y
       }
       page.elements = page.elements.map(element => {
-        if (!blocks[element.type]) return false;
-        return blocks[element.type].spec.flatten(element);
+        if (!types[element.type]) return false;
+        return types[element.type].spec.flatten(element);
       }).filter(element => element);
       delete page.x;
       delete page.y;

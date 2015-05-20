@@ -1,14 +1,14 @@
 var React = require('react');
+var assign = require('react/lib/Object.assign');
 var classNames = require('classnames');
 var render = require('../../lib/render.jsx');
 var router = require('../../lib/router.jsx');
 var api = require('../../lib/api.js');
-var uuid = require('../../lib/uuid.js');
+var types = require('../../components/el/el.jsx').types;
 
 var Link = require('../../components/link/link.jsx');
 var Loading = require('../../components/loading/loading.jsx');
-var blocks = require('../../blocks/all.jsx');
-var Positionable = require('./positionable.jsx');
+var ElementGroup = require('../../components/element-group/element-group.jsx');
 
 var Page = React.createClass({
 
@@ -49,7 +49,7 @@ var Page = React.createClass({
     var currentElement = this.state.currentElement;
     var currentElementType = elements[currentElement] ? elements[currentElement].type : '';
 
-    var positionables = this.formPositionables(elements);
+    // var positionables = this.formPositionables(elements);
     var secondaryClass = (name => {
       var names = {
         secondary: true,
@@ -71,14 +71,18 @@ var Page = React.createClass({
 
     return (<div id="project" className="demo">
       <div className="pages-container">
-        <div className="page next top" />
-        <div className="page next right" />
-        <div className="page next bottom" />
-        <div className="page next left" />
         <div className="page">
           <div className="inner" style={{backgroundColor: this.state.styles.backgroundColor}}>
-            <div className="deselector" onClick={this.deselectAll} />
-            <div ref="container" className="positionables">{ positionables }</div>
+            {/*<div ref="container" className="positionables">{ positionables }</div>*/}
+            <ElementGroup
+              ref="container"
+              interactive={true}
+              dims={this.state.dims}
+              elements={this.state.elements}
+              currentElement={this.state.currentElement}
+              onTouchEnd={this.save}
+              onUpdate={this.updateElement}
+              onDeselect={this.deselectAll} />
           </div>
         </div>
       </div>
@@ -125,34 +129,9 @@ var Page = React.createClass({
     });
   },
 
-  formPositionables: function(content) {
-    return content.map((props, i) => {
-      if (props === false) {
-        return false;
-      }
-
-      props.parentWidth = this.state.dims.width;
-      props.parentHeight = this.state.dims.height;
-
-      var Element = blocks[props.type];
-
-      props.ref = "positionable"+i;
-      props.key = "positionable"+i;
-      props.current = this.state.currentElement===i;
-
-      props.onTouchEnd = this.save(i);
-
-      return <div>
-        <Positionable {...props} onUpdate={this.updateElement(i)}>
-          <Element {...props} />
-        </Positionable>
-      </div>;
-    });
-  },
-
   addElement: function(type) {
     return () => {
-      var json = blocks[type].spec.generate();
+      var json = types[type].spec.generate();
 
       api({method: 'post', uri: this.uri() + '/elements', json}, (err, data) => {
         var state = {showAddMenu: false};
@@ -203,13 +182,13 @@ var Page = React.createClass({
   },
 
   flatten: function (element) {
-    if (!blocks[element.type]) return false;
-    return blocks[element.type].spec.flatten(element);
+    if (!types[element.type]) return false;
+    return types[element.type].spec.flatten(element);
   },
 
   expand: function (element) {
-    if (!blocks[element.type]) return false;
-    return blocks[element.type].spec.expand(element);
+    if (!types[element.type]) return false;
+    return types[element.type].spec.expand(element);
   },
 
   load: function() {

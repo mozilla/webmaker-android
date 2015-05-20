@@ -1,3 +1,5 @@
+
+
 #project {
   @_gutter: 10px;
   @_baseWidth: 320px;
@@ -32,31 +34,6 @@
 
       .deselector {
         position: absolute;
-      }
-
-      // These are the previews of the adjacent pages
-      &.next {
-        opacity: 0.3;
-      }
-      &.right {
-        transform: translateX(100%);
-        left: @_gutter;
-        display: none;
-      }
-      &.left {
-        transform: translateX(-100%);
-        left: -(@_gutter);
-        display: none;
-      }
-      &.top {
-        transform: translateY(-100%);
-        top: -(@_gutter);
-        display: none;
-      }
-      &.bottom {
-        transform: translateY(100%);
-        top: @_gutter;
-        display: none;
       }
     }
   }
@@ -169,62 +146,5 @@
         }
       }
     }
-  }
-  .positionables {
-    overflow: auto;
-    height: 100%;
-    width: 100%;
-
-    .positionableContainer {
-      position: absolute;
-      width: 100%;
-    }
-
-    .touchOverlay {
-      position: fixed;
-      top: 0;
-      right: 0;
-      bottom: 0;
-      left: 0;
-      z-index: 2147483647; /* signed 32bit maxint */
-    }
-
-    .positionable {
-
-      padding: 10px;
-      user-select: none;
-
-      position: relative;
-      display: inline-block;
-      z-index: 0;
-      background: inherit;
-
-      div {
-        box-sizing: content-box;
-      }
-
-      p {
-        margin: 0;
-      }
-
-      &.current {
-        margin: -1px;
-        border: 1px dashed @white;
-
-        &:after {
-          z-index: -1;
-          content: '';
-          display: block;
-          position: absolute;
-          top: 0;
-          left: 0;
-          width: 100%;
-          height: 100%;
-          border: 1px dashed @blue;
-        }
-      }
-    }
-
-
   }
 }
