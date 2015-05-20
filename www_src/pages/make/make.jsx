@@ -30,6 +30,36 @@ var Make = React.createClass({
       });
     });
   },
+  addProject: function () {
+    var defaultTitle = 'My project';
+    var userInfo = {
+      username: 'testuser'
+    };
+
+    api({
+      method: 'post',
+      uri: '/users/1/projects',
+      json: {
+        title: defaultTitle
+      }
+    }, (err, body) => {
+      if (err) return console.error('Error creating a project');
+      if (!body || !body.project) return console.log('No project');
+      if (window.Android) {
+        window.Android.setView('/projects/' + body.project.id);
+      } else {
+        this.setState({
+          projects: [{
+            id: body.project.id,
+            title: defaultTitle,
+            thumbnail: {},
+            // todo
+            author: userInfo
+          }].concat(this.state.projects)
+        });
+      }
+    });
+  },
   render: function () {
 
     var cards = this.state.projects.map(project => {
@@ -46,9 +76,9 @@ var Make = React.createClass({
 
     return (
       <div id="make">
-        <Link url="/projects/new" href="/pages/project" className="btn btn-block btn-teal">
+        <button onClick={this.addProject} className="btn btn-block btn-teal">
           + Create a Project
-        </Link>
+        </button>
         {cards}
       </div>
     );

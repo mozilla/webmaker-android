@@ -180,34 +180,66 @@ var Project = React.createClass({
     this.setState({zoom: this.state.zoom * 2});
   },
 
+  loadPages: function (pages) {
+    var state = {loading: false};
+    var pages = pages.map(page => {
+      page.coords = {
+        x: page.x,
+        y: page.y
+      }
+      page.elements = page.elements.map(element => {
+        if (!blocks[element.type]) return false;
+        return blocks[element.type].spec.flatten(element);
+      }).filter(element => element);
+      delete page.x;
+      delete page.y;
+      return page;
+    });
+    this.cartesian.allCoords = pages.map(el => el.coords);
+    state.pages = pages;
+    if (!this.state.selectedEl) {
+      state.camera = this.cartesian.getFocusTransform({x: 0, y: 0}, this.state.zoom);
+    }
+    this.setState(state);
+  },
+
   load: function () {
     var params = this.state.params;
     this.setState({loading: true});
     api({uri: this.uri()}, (err, data) => {
-      var state = {loading: false};
       if (err) {
-        console.log('Error loading project', err);
-      } else if (!data || !data.pages) {
-        console.log('No pages returned');
-      } else {
-        var pages = data.pages.map(page => {
-          page.coords = {
-            x: page.x,
-            y: page.y
+        console.error('Error loading project', err);
+        this.setState({loading: false});
+      } else if (!data || !data.pages || !data.pages.length) {
+        // Create the first page
+        api({
+          method: 'POST',
+          uri: this.uri(),
+          json: {
+            x: 0,
+            y: 0
           }
-          page.elements = page.elements.map(element => {
-            if (!blocks[element.type]) return false;
-            return blocks[element.type].spec.flatten(element);
-          }).filter(element => element);
-          delete page.x;
-          delete page.y;
-          return page;
+        }, (err, data) => {
+          console.log(err, data);
+          if (err) {
+            console.error('Error creating first page', err);
+            this.setState({loading: false});
+          } else if (!data || !data.page) {
+            console.log('No page id was returned');
+            this.setState({loading: false});
+          } else {
+            this.loadPages([{
+              id: data.page.id,
+              x: 0,
+              y: 0,
+              styles: {},
+              elements: []
+            }]);
+          }
         });
-        this.cartesian.allCoords = pages.map(el => el.coords);
-        state.pages = pages;
-        if (!this.state.selectedEl) state.camera = this.cartesian.getFocusTransform({x: 0, y: 0}, this.state.zoom);
+      } else {
+        this.loadPages(data.pages);
       }
-      this.setState(state);
     });
   },
 
