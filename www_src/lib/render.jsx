@@ -2,17 +2,22 @@ var React = require('react');
 
 var Base = React.createClass({
   onResume: function () {
-    this.setState({isVisible: true})
+    this.setState({isVisible: true});
   },
   onPause: function () {
-    this.setState({isVisible: false})
+    this.setState({isVisible: false});
   },
   onBackPressed: function() {
-    if (this.state.onBackPressed) return this.state.onBackPressed();
-    else if (window.Android) window.Android.goBack();
+    if (this.state.onBackPressed) {
+      return this.state.onBackPressed();
+    } else if (window.Android) {
+      window.Android.goBack();
+    }
   },
   jsComm: function (event) {
-    if (this[event]) this[event]();
+    if (this[event]) {
+      this[event]();
+    }
   },
   getInitialState: function () {
     // Expose to android

@@ -75,19 +75,16 @@ describe('Spec', () => {
   describe('#propsToPosition', () => {
     it('should return valid props', () => {
       should.deepEqual(Spec.propsToPosition({
-      x: 50,
-      y: -12,
-      angle: 90 * Math.PI / 180,
-      scale: 2.5,
-      zIndex: 5
-    }), {
-      position: 'absolute',
-      top: 0,
-      left: 0,
-      transform: 'translate(50px, -12px) rotate(90deg) scale(2.5)',
-      transformOrigin: 'center',
-      zIndex: 5
-    });
+        x: 50,
+        y: -12,
+        angle: 90 * Math.PI / 180,
+        scale: 2.5,
+        zIndex: 5
+      }), {
+        transform: 'translate(50px, -12px) rotate(90deg) scale(2.5)',
+        transformOrigin: 'center',
+        zIndex: 5
+      });
     });
   });
 
