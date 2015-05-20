@@ -7,14 +7,28 @@ var Card = require('../../components/card/card.jsx');
 var Discover = React.createClass({
   mixins: [],
   getInitialState: function () {
-    this.list = require('./mock.json');
-
     return {
-      list: this.list
+      projects: [],
+      loading: true
     };
   },
+  load: function () {
+    api({
+      uri: '/discover'
+    }, (err, body) => {
+      if (err) return console.error('Error getting discovery projects', err);
+      if (!body || !body.projects || !body.projects.length) return console.log('No discovery projects found');
+      this.setState({
+        projects: body.projects,
+        loading: false
+      });
+    });
+  },
+  componentWillMount: function () {
+    this.load();
+  },
   render: function () {
-    var cards = this.state.list.map( project => {
+    var cards = this.state.projects.map( project => {
       return (
         <Card
           key={project.id}
@@ -29,6 +43,8 @@ var Discover = React.createClass({
     return (
       <div id="discover">
         {cards}
+        <div hidden={this.state.loading || }>Sorry, no projects found.</div>
+        <Loading on={this.state.loading} />
       </div>
     );
   }
