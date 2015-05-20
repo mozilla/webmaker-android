@@ -37,10 +37,16 @@ var Page = React.createClass({
     this.load();
   },
 
-  componentDidUpdate: function (prevProps) {
+  componentDidUpdate: function (prevProps, prevState) {
     // resume
     if (this.props.isVisible && !prevProps.isVisible) {
       this.load();
+    }
+    // set parent back button state
+    if (this.state.showAddMenu !== prevState.showAddMenu) {
+      this.props.update({
+        onBackPressed: this.state.showAddMenu ? this.toggleAddMenu : false
+      });
     }
   },
 

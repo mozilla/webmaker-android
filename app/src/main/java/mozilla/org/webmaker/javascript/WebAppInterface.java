@@ -8,12 +8,14 @@ import android.util.Log;
 import org.json.JSONObject;
 import org.xwalk.core.JavascriptInterface;
 
+import mozilla.org.webmaker.BaseActivity;
 import mozilla.org.webmaker.activity.Element;
 import mozilla.org.webmaker.router.Router;
 
 public class WebAppInterface {
 
     protected Context mContext;
+    protected BaseActivity mActivity;
     protected SharedPreferences mPrefs;
     protected JSONObject mRoute;
     protected String mPrefKey;
@@ -27,6 +29,7 @@ public class WebAppInterface {
 
     public WebAppInterface(Context context, JSONObject routeParams) {
         mContext = context;
+        mActivity = (BaseActivity) context;
         mPrefKey = "::".concat(mContext.getClass().getSimpleName());
         mPrefs = mContext.getSharedPreferences(mPrefKey, 0);
         mPageState = mPrefs.getString("page_state", "{}");
@@ -80,6 +83,15 @@ public class WebAppInterface {
     @JavascriptInterface
     public void logText(String txt){
         Log.v("wm", txt);
+    }
+
+    @JavascriptInterface
+    public void goBack() {
+        mActivity.runOnUiThread(new Runnable() {
+            public void run() {
+                mActivity.goBack();
+            }
+        });
     }
 
     /**
