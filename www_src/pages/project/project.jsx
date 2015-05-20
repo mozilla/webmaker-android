@@ -45,7 +45,8 @@ var Project = React.createClass({
         x: 0,
         y: 0
       },
-      zoom: DEFAULT_ZOOM
+      zoom: DEFAULT_ZOOM,
+      isPageZoomed: false
     };
   },
 
@@ -72,7 +73,7 @@ var Project = React.createClass({
     if (this.props.isVisible && !prevProps.isVisible) {
       this.load();
     }
-    
+
     if (window.Android) {
       window.Android.setState(JSON.stringify(this.state));
     }
@@ -112,6 +113,11 @@ var Project = React.createClass({
     });
 
     el.addEventListener('touchmove', (event) => {
+      // ?
+      if (this.state.params.mode === 'play' && this.state.isPageZoomed) {
+        return;
+      }
+
       didMove = true;
       var translateStr = 'translate(' + this.state.camera.x + 'px, ' + this.state.camera.y + 'px)';
       var scaleStr = 'scale(' + this.state.zoom + ')';
@@ -174,6 +180,23 @@ var Project = React.createClass({
         selectedEl: el.id
       });
     };
+  },
+  zoomToPage: function (el) {
+    return () => {
+      this.setState({
+        camera: this.cartesian.getFocusTransform(el.coords, 1),
+        zoom: 1,
+        isPageZoomed: true,
+        zoomedPage: el
+      });
+    };
+  },
+  zoomFromPage: function () {
+    this.setState({
+      camera: this.cartesian.getFocusTransform(this.state.zoomedPage.coords, DEFAULT_ZOOM),
+      zoom: DEFAULT_ZOOM,
+      isPageZoomed: false
+    });
   },
   zoomOut: function () {
     this.setState({zoom: this.state.zoom / 2});
@@ -327,6 +350,9 @@ var Project = React.createClass({
     // Prevent pull to refresh
     document.body.style.overflowY = 'hidden';
 
+    var self = this;
+    var isPlayOnly = this.state.params.mode === 'play' ? true : false;
+
     var containerStyle = {
       width: this.cartesian.width + 'px',
       height: this.cartesian.height + 'px'
@@ -341,6 +367,16 @@ var Project = React.createClass({
 
     var pageUrl = `/projects/${this.state.params.project}/pages/${this.state.selectedEl}`;
 
+    function generateAddContainers() {
+      if (!isPlayOnly) {
+        return self.cartesian.edges.map(coords => {
+          return (<div className="page-container add" style={{transform: self.cartesian.getTransform(coords)}} onClick={self.addPage(coords)}>
+            <img className="icon" src="../../img/plus.svg" />
+          </div>);
+        });
+      }
+    }
+
     return (
       <div id="map">
 
@@ -351,21 +387,18 @@ var Project = React.createClass({
               page,
               selected: page.id === this.state.selectedEl,
               transform: this.cartesian.getTransform(page.coords),
-              onClick: this.selectPage(page)
+              onClick: isPlayOnly ? this.zoomToPage(page) : this.selectPage(page)
             };
             return (<Page {...props} />);
           })}
-          {this.cartesian.edges.map(coords => {
-            return (<div className="page-container add" style={{transform: this.cartesian.getTransform(coords)}} onClick={this.addPage(coords)}>
-              <img className="icon" src="../../img/plus.svg" />
-            </div>);
-          })}
+          { generateAddContainers() }
           </div>
         </div>
 
         <Menu>
-          <SecondaryButton side="right" off={!this.state.selectedEl} onClick={this.removePage} icon="../../img/trash.svg" />
-          <PrimaryButton url={pageUrl}  off={!this.state.selectedEl} href="/pages/page" icon="../../img/pencil.svg" />
+          <SecondaryButton side="right" off={isPlayOnly || !this.state.selectedEl} onClick={this.removePage} icon="../../img/trash.svg" />
+          <PrimaryButton url={pageUrl} off={isPlayOnly || !this.state.selectedEl} href="/pages/page" icon="../../img/pencil.svg" />
+          <PrimaryButton onClick={this.zoomFromPage} off={!this.state.isPageZoomed} icon="../../img/zoom-out.svg" />
         </Menu>
 
         <Loading on={this.state.loading} />
