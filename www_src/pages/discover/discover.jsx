@@ -3,6 +3,7 @@ var React = require('react/addons');
 var api = require('../../lib/api.js');
 var render = require('../../lib/render.jsx');
 var Card = require('../../components/card/card.jsx');
+var Loading = require('../../components/loading/loading.jsx');
 
 var Discover = React.createClass({
   mixins: [],
@@ -43,7 +44,7 @@ var Discover = React.createClass({
     return (
       <div id="discover">
         {cards}
-        <div hidden={this.state.loading || }>Sorry, no projects found.</div>
+        <div hidden={this.state.loading || this.state.projects}>Sorry, no projects found.</div>
         <Loading on={this.state.loading} />
       </div>
     );
