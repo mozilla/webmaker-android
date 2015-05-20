@@ -25,6 +25,6 @@ public class WebmakerWebView extends XWalkView {
         this.load("file:///android_asset/www/pages/" + pageName + "/index.html", null);
         this.setResourceClient(new WebClient(this));
         this.setBackgroundColor(getResources().getColor(R.color.light_gray));
-        this.addJavascriptInterface(new WebAppInterface(context, routeParams), "Android");
+        this.addJavascriptInterface(new WebAppInterface(context, activity, routeParams), "Android");
     }
 }

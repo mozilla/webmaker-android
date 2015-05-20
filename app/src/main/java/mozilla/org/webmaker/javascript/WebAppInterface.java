@@ -14,6 +14,7 @@ import mozilla.org.webmaker.router.Router;
 public class WebAppInterface {
 
     protected Context mContext;
+    protected Activity mActivity;
     protected SharedPreferences mPrefs;
     protected JSONObject mRoute;
     protected String mPrefKey;
@@ -21,12 +22,13 @@ public class WebAppInterface {
 
     public static final String WEBMAKER_PREFS = "WEBMAKER";
 
-    public WebAppInterface(Context context) {
-        this(context, null);
+    public WebAppInterface(Context context, Activity activity) {
+        this(context, activity, null);
     }
 
-    public WebAppInterface(Context context, JSONObject routeParams) {
+    public WebAppInterface(Context context, Activity activity, JSONObject routeParams) {
         mContext = context;
+        mActivity = activity;
         mPrefKey = "::".concat(mContext.getClass().getSimpleName());
         mPrefs = mContext.getSharedPreferences(mPrefKey, 0);
         mPageState = mPrefs.getString("page_state", "{}");
@@ -80,6 +82,11 @@ public class WebAppInterface {
     @JavascriptInterface
     public void logText(String txt){
         Log.v("wm", txt);
+    }
+
+    @JavascriptInterface
+    public void goBack() {
+        mActivity.finish();
     }
 
     /**

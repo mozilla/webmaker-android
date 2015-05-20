@@ -13,7 +13,7 @@ import mozilla.org.webmaker.view.WebmakerWebView;
 
 public class WebmakerActivity extends Activity {
 
-    protected WebmakerWebView view;
+    public WebmakerWebView view;
     protected JSONObject routeParams;
     protected String pageName;
     protected int id, layoutResID, menuResId;
