@@ -1,7 +1,7 @@
 var React = require('react');
 var assign = require('react/lib/Object.assign');
-var getContrastingColor = require('../lib/color').getContrastingColor;
-var Spec = require('../lib/spec');
+var getContrastingColor = require('../../../lib/color').getContrastingColor;
+var Spec = require('../../../lib/spec');
 
 var spec = new Spec('link', assign({
   innerHTML: {
@@ -58,10 +58,6 @@ var Link = React.createClass({
       fontFamily: props.fontFamily,
       whiteSpace: props.whiteSpace
     };
-
-    if (props.position) {
-      style = assign(style, Spec.propsToPosition(props));
-    }
 
     var Element = this.props.activelink ? 'a' : 'span';
     var content = this.makeEditable(props.innerHTML, style);

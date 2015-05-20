@@ -10,7 +10,7 @@ var editors = {
   text: require('./text-editor.jsx')
 };
 
-var blocks = require('../../blocks/all.jsx');
+var types = require('../../components/el/el.jsx').types;
 
 var hash = window.location.hash && window.location.hash.replace('#', '');
 var testIds = {
@@ -46,7 +46,7 @@ render(React.createClass({
   },
   save: function () {
     var edits = this.edits;
-    var json = blocks[edits.type].spec.expand(edits);
+    var json = types[edits.type].spec.expand(edits);
     api({method: 'patch', uri: this.uri(), json: {
       styles: json.styles,
       attributes: json.attributes

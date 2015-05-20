@@ -4,13 +4,10 @@ var classNames = require('classnames');
 var render = require('../../lib/render.jsx');
 var router = require('../../lib/router.jsx');
 var api = require('../../lib/api.js');
-var uuid = require('../../lib/uuid.js');
-
+var types = require('../../components/el/el.jsx').types;
 
 var Link = require('../../components/link/link.jsx');
 var Loading = require('../../components/loading/loading.jsx');
-var blocks = require('../../blocks/all.jsx');
-var Positionable = require('./positionable.jsx');
 var ElementGroup = require('../../components/element-group/element-group.jsx');
 
 var Page = React.createClass({
@@ -52,7 +49,7 @@ var Page = React.createClass({
     var currentElement = this.state.currentElement;
     var currentElementType = elements[currentElement] ? elements[currentElement].type : '';
 
-    var positionables = this.formPositionables(elements);
+    // var positionables = this.formPositionables(elements);
     var secondaryClass = (name => {
       var names = {
         secondary: true,
@@ -132,30 +129,9 @@ var Page = React.createClass({
     });
   },
 
-  formPositionables: function(content) {
-    return content.map((props, i) => {
-      if (props === false) {
-        return false;
-      }
-
-      props = assign({}, props, {
-        parentWidth: this.state.dims.width,
-        parentHeight: this.state.dims.height,
-        ref: 'positionable' + i,
-        key: 'positionable' + i,
-        isCurrent: this.state.currentElement === i,
-        onTouchEnd: this.save(i),
-        onUpdate: this.updateElement(i),
-        interactive: true
-      });
-
-      return <Positionable {...props} />
-    });
-  },
-
   addElement: function(type) {
     return () => {
-      var json = blocks[type].spec.generate();
+      var json = types[type].spec.generate();
 
       api({method: 'post', uri: this.uri() + '/elements', json}, (err, data) => {
         var state = {showAddMenu: false};
@@ -206,13 +182,13 @@ var Page = React.createClass({
   },
 
   flatten: function (element) {
-    if (!blocks[element.type]) return false;
-    return blocks[element.type].spec.flatten(element);
+    if (!types[element.type]) return false;
+    return types[element.type].spec.flatten(element);
   },
 
   expand: function (element) {
-    if (!blocks[element.type]) return false;
-    return blocks[element.type].spec.expand(element);
+    if (!types[element.type]) return false;
+    return types[element.type].spec.expand(element);
   },
 
   load: function() {

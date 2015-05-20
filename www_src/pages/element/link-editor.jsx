@@ -1,6 +1,6 @@
 var React = require('react/addons');
 
-var LinkBlock = require('../../blocks/link.jsx');
+var LinkBlock = require('../../components/el/types/link.jsx');
 var Alert = require('../../components/alert/alert.jsx');
 var ColorGroup = require('../../components/color-group/color-group.jsx');
 var Range = require('../../components/range/range.jsx');

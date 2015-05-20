@@ -1,9 +1,17 @@
-var React = require("react");
-var classes = require("classnames");
+var React = require('react');
+var classes = require('classnames');
 var Spec = require('../../lib/spec');
-var blocks = require('../../blocks/all.jsx');
+var touchhandler = require("../../lib/touchhandler");
 
-var Positionable = React.createClass({
+var El = React.createClass({
+
+  statics: {
+    types: {
+      image: require('./types/image.jsx'),
+      text: require('./types/text.jsx'),
+      link: require('./types/link.jsx')
+    }
+  },
 
   getDefaultProps: function () {
     return {
@@ -33,7 +41,7 @@ var Positionable = React.createClass({
     // Don't attach touch handlers for non-interactive elements
     if(!this.props.interactive) return;
 
-    var touchHandler = this.touchhandler = require("./touchhandler")(this);
+    var touchHandler = this.touchhandler = touchhandler(this);
     var dnode = this.getDOMNode();
     dnode.addEventListener("mousedown", touchHandler.startmark);
     dnode.addEventListener("mousemove", touchHandler.panmove);
@@ -64,16 +72,15 @@ var Positionable = React.createClass({
   render: function() {
     var style = Spec.propsToPosition(this.state);
 
-    var className = classes({
-      positionable: true,
+    var className = classes('el', 'el-' + this.props.type, {
       touchactive: this.state.touchactive,
       current: this.props.isCurrent
     });
 
-    var Element = blocks[this.props.type];
+    var Element = El.types[this.props.type];
 
     return (
-      <div className="positionable-container" key={this.props.key}>
+      <div className="el-container" key={this.props.key}>
         <div ref="overlay" className="touch-overlay" hidden={!this.state.touchactive} />
         <div className={className} style={style}>
           <Element {...this.props} />
@@ -115,4 +122,4 @@ var Positionable = React.createClass({
   }
 });
 
-module.exports = Positionable;
+module.exports = El;

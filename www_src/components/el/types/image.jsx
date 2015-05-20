@@ -1,6 +1,6 @@
 var React = require('react/addons');
 var assign = require('react/lib/Object.assign');
-var Spec = require('../lib/spec');
+var Spec = require('../../../lib/spec');
 
 var spec = new Spec('image', assign({
   src: {
@@ -48,11 +48,6 @@ var Image = React.createClass({
       borderWidth: props.borderWidth,
       borderColor: props.borderColor
     };
-
-    if (props.position) {
-      style = assign(style, Spec.propsToPosition(props));
-    }
-
     return <img style={style} src={this.props.src} alt={this.props.alt} />
   }
 });
