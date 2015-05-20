@@ -27,7 +27,7 @@ public class WebmakerApplication extends Application {
 
         // Dry run allows you to debug Google Analytics locally without sending data to any servers.
         analytics = GoogleAnalytics.getInstance(this);
-        analytics.setDryRun(false);
+        analytics.setDryRun(BuildConfig.DEBUG);
 
         tracker = analytics.newTracker(R.xml.app_tracker);
         tracker.setAppId(res.getString(R.string.ga_appId));
