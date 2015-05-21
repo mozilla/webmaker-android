@@ -4,6 +4,7 @@ import android.app.Activity;
 import android.content.Context;
 import android.content.SharedPreferences;
 import android.util.Log;
+import android.util.LruCache;
 
 import org.json.JSONObject;
 import org.xwalk.core.JavascriptInterface;
@@ -18,7 +19,6 @@ public class WebAppInterface {
     protected BaseActivity mActivity;
     protected SharedPreferences mPrefs;
     protected JSONObject mRoute;
-    protected String mRouteData;
     protected String mPrefKey;
     protected String mPageState;
 
@@ -118,7 +118,6 @@ public class WebAppInterface {
     public void setView(final String url, final String routeData) {
         Activity activity = (Activity) mContext;
         if (activity == null) return;
-        if(routeData != null) this.mRouteData = routeData;
 
         activity.runOnUiThread(new Runnable() {
             @Override
@@ -132,12 +131,6 @@ public class WebAppInterface {
     public String getRouteParams() {
         if (mRoute == null) return "";
         return mRoute.toString();
-    }
-
-    @JavascriptInterface
-    public String getRouteData() {
-        if (mRouteData == null) return "";
-        return mRouteData;
     }
 
     /**
