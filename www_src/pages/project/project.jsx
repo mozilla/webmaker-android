@@ -210,11 +210,15 @@ var Project = React.createClass({
       selectedEl: el.id
     });
   },
-  zoomToPage: function (coords) {
+  zoomToPage: function (coords, play) {
+    if (typeof play === 'undefined') {
+      play = true;
+    }
+
     this.setState({
       camera: this.cartesian.getFocusTransform(coords, 1),
       zoom: 1,
-      isPageZoomed: true,
+      isPageZoomed: play,
       zoomedPageCoords: coords
     });
   },
@@ -375,7 +379,9 @@ var Project = React.createClass({
 
   onPageClick: function (page) {
     if (this.state.params.mode === 'play') {
-      this.zoomToPage(page.coords);
+      this.zoomToPage(page.coords, true);
+    } else if (page.id === this.state.selectedEl) {
+      this.zoomToPage(page.coords, false);
     } else {
       this.selectPage(page);
     }
