@@ -222,6 +222,7 @@ var Project = React.createClass({
               id: data.page.id,
               x: 0,
               y: 0,
+              selectedEl: data.page.id,
               styles: {},
               elements: []
             }]);
