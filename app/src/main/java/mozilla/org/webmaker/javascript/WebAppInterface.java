@@ -4,7 +4,6 @@ import android.app.Activity;
 import android.content.Context;
 import android.content.SharedPreferences;
 import android.util.Log;
-import android.util.LruCache;
 
 import org.json.JSONObject;
 import org.xwalk.core.JavascriptInterface;

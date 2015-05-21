@@ -7,7 +7,7 @@ import android.util.LruCache;
 public class MemStorage {
 
     private static Context context;
-    private static int cacheSize;
+    private static int cacheSize = 5 * 1024 * 2014;
     private static final Cache cache = new Cache(cacheSize);
     private static final MemStorage storage = new MemStorage();
 
@@ -16,11 +16,7 @@ public class MemStorage {
      * If a constructor isn't provided, the default is 5 MB.
      */
     public MemStorage() {
-        if (context == null) {
-            cacheSize = 5 * 1024 * 1024;
-        } else {
-            cacheSize = determineSize();
-        }
+        if (context != null) cacheSize = determineSize();
     }
 
     /**
