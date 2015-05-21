@@ -12,6 +12,7 @@ import org.xwalk.core.JavascriptInterface;
 import mozilla.org.webmaker.BaseActivity;
 import mozilla.org.webmaker.activity.Element;
 import mozilla.org.webmaker.router.Router;
+import mozilla.org.webmaker.storage.MemStorage;
 
 public class WebAppInterface {
 
@@ -118,6 +119,7 @@ public class WebAppInterface {
     public void setView(final String url, final String routeData) {
         Activity activity = (Activity) mContext;
         if (activity == null) return;
+        MemStorage.sharedCache().put(url, routeData);
 
         activity.runOnUiThread(new Runnable() {
             @Override
@@ -131,6 +133,11 @@ public class WebAppInterface {
     public String getRouteParams() {
         if (mRoute == null) return "";
         return mRoute.toString();
+    }
+
+    @JavascriptInterface
+    public String getRouteData(final String url) {
+        return (String) MemStorage.sharedCache().get(url);
     }
 
     /**

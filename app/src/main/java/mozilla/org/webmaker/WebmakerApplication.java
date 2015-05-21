@@ -8,6 +8,7 @@ import com.google.android.gms.analytics.Tracker;
 
 import mozilla.org.webmaker.activity.*;
 import mozilla.org.webmaker.router.Router;
+import mozilla.org.webmaker.storage.MemStorage;
 
 public class WebmakerApplication extends Application {
 
@@ -34,6 +35,8 @@ public class WebmakerApplication extends Application {
         tracker.setAppName(res.getString(R.string.ga_appName));
         tracker.enableAutoActivityTracking(true);
         tracker.enableExceptionReporting(true);
+
+        MemStorage.getMemStorage().setContext(getApplicationContext());
 
         Router.sharedRouter().setContext(getApplicationContext());
         Router.sharedRouter().map("/main", MainActivity.class);
