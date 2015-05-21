@@ -2,7 +2,7 @@
 
 #### Prerequisites
 ```bash
-Android 5.0.1 or greater (>= 4.2 support coming soon)
+Android 4.0.1 or greater
 An internet connection
 ```
 
