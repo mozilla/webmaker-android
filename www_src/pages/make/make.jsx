@@ -3,12 +3,14 @@ var render = require('../../lib/render.jsx');
 var api = require('../../lib/api.js');
 var Card = require('../../components/card/card.jsx');
 var Link = require('../../components/link/link.jsx');
+var Loading = require('../../components/loading/loading.jsx');
 
 var Make = React.createClass({
   mixins: [],
   getInitialState: function () {
     return {
-      projects: []
+      projects: [],
+      loading: true
     };
   },
   componentWillMount: function () {
@@ -19,13 +21,23 @@ var Make = React.createClass({
       this.load();
     }
   },
+  onError: function (err) {
+    console.error(err);
+    this.setState({loading: false});
+  },
+  onEmpty: function () {
+    console.log('No projects found');
+    this.setState({loading: false});
+  },
   load: function () {
+    this.setState({loading: true});
     api({
       uri: '/users/1/projects'
     }, (err, body) => {
-      if (err) return console.error('Error getting projects', err);
-      if (!body || !body.projects) return console.log('No projects found');
+      if (err) return this.onError(err);
+      if (!body || !body.projects || !body.projects.length) return this.onEmpty();
       this.setState({
+        loading: false,
         projects: body.projects
       });
     });
@@ -35,7 +47,7 @@ var Make = React.createClass({
     var userInfo = {
       username: 'testuser'
     };
-
+    this.setState({loading: true});
     api({
       method: 'post',
       uri: '/users/1/projects',
@@ -43,12 +55,13 @@ var Make = React.createClass({
         title: defaultTitle
       }
     }, (err, body) => {
-      if (err) return console.error('Error creating a project');
-      if (!body || !body.project) return console.log('No project');
+      if (err) return this.onError(err);
+      if (!body || !body.project) return this.onEmpty();
       if (window.Android) {
         window.Android.setView('/projects/' + body.project.id);
       } else {
         this.setState({
+          loading: false,
           projects: [{
             id: body.project.id,
             title: defaultTitle,
@@ -80,6 +93,7 @@ var Make = React.createClass({
           + Create a Project
         </button>
         {cards}
+        <Loading on={this.state.loading} />
       </div>
     );
   }
