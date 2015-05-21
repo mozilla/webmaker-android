@@ -135,6 +135,16 @@ var Page = React.createClass({
     });
   },
 
+  getElementIndexById: function (id) {
+    var index;
+    this.state.elements.forEach((element, i) => {
+      if (element.id === id) {
+        index = i;
+      }
+    });
+    return index;
+  },
+
   addElement: function(type) {
     return () => {
       var json = types[type].spec.generate();
@@ -152,16 +162,17 @@ var Page = React.createClass({
     };
   },
 
-  updateElement: function(index) {
-    return function(data) {
-      var elements = this.state.elements;
-      var entry = elements[index];
-      Object.keys(data).forEach(k => entry[k] = data[k]);
+  updateElement: function (id) {
+    return (newProps) => {
+      var index = this.getElementIndexById(id);
+      var elements = this.state.elements
+      var element = elements[index];
+      elements[index]  = assign(element, newProps);
       this.setState({
         elements: elements,
         currentElement: index
       });
-    }.bind(this);
+    };
   },
 
   deleteElement: function() {
@@ -218,12 +229,12 @@ var Page = React.createClass({
     });
   },
 
-  save: function (index) {
+  save: function (id) {
     return () => {
-      var el = this.expand(this.state.elements[index]);
+      var el = this.expand(this.state.elements[this.getElementIndexById(id)]);
       api({
         method: 'patch',
-        uri: this.uri() + '/elements/' + el.id,
+        uri: this.uri() + '/elements/' + id,
         json: {
           styles: el.styles
         }
