@@ -30,7 +30,7 @@ var spec = new Spec('image', assign({
   }
 }, Spec.getPositionProps()));
 
-var Image = React.createClass({
+module.exports = React.createClass({
 
   statics: {spec},
 
@@ -51,5 +51,3 @@ var Image = React.createClass({
     return <img style={style} src={this.props.src} alt={this.props.alt} />;
   }
 });
-
-module.exports = Image;

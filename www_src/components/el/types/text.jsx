@@ -40,7 +40,7 @@ var spec = new Spec('text', assign({
   }
 }, Spec.getPositionProps()));
 
-var Text = React.createClass({
+module.exports = React.createClass({
   mixins: [
     require('./textedit')
   ],
@@ -65,7 +65,9 @@ var Text = React.createClass({
       'fontStyle',
       'textDecoration',
       'textAlign'
-    ].forEach(prop => style[prop] = props[prop]);
+    ].forEach(function (prop) {
+      style[prop] = props[prop];
+    });
 
     var content = this.makeEditable(props.innerHTML, style);
     var onPClick = this.activate;
@@ -75,5 +77,3 @@ var Text = React.createClass({
     return <p ref="dims" style={style} onClick={onPClick}>{content}</p>;
   }
 });
-
-module.exports = Text;
