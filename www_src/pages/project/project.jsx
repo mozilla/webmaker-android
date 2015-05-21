@@ -97,7 +97,6 @@ var Project = React.createClass({
     }
 
     el.addEventListener('touchstart', (event) => {
-      console.log('start', event.touches.length);
       didMove = false;
 
       if (event.touches.length > 1) {
@@ -113,7 +112,6 @@ var Project = React.createClass({
     });
 
     el.addEventListener('touchmove', (event) => {
-      console.log('touchmove', event.touches.length);
       didMove = true;
       var translateStr = 'translate(' + this.state.camera.x + 'px, ' + this.state.camera.y + 'px)';
       var scaleStr = 'scale(' + this.state.zoom + ')';
@@ -137,7 +135,6 @@ var Project = React.createClass({
     });
 
     el.addEventListener('touchend', (event) => {
-      console.log('end', event.touches.length, event);
       if (event.touches.length === 0) {
         boundingEl.style.transition = '';
         if (!didMove) {
@@ -241,6 +238,7 @@ var Project = React.createClass({
               id: data.page.id,
               x: 0,
               y: 0,
+              selectedEl: data.page.id,
               styles: {},
               elements: []
             }]);

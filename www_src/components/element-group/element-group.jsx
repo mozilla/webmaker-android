@@ -26,7 +26,11 @@ var ElementGroup = React.createClass({
 
         // Add callbacks for interactive mode
         if (this.props.onTouchEnd) {
-          elProps.onTouchEnd = this.props.onTouchEnd(i);
+          elProps.onTouchEnd = this.props.onTouchEnd(elProps.id);
+        }
+
+        if (this.props.onUpdate) {
+          elProps.onUpdate = this.props.onUpdate(elProps.id);
         }
 
         if (this.props.onUpdate) {

@@ -65,7 +65,7 @@ var El = React.createClass({
 
   componentDidUpdate: function(prevProps, prevState) {
     if(!prevState.touchactive && this.state.touchactive) {
-      this.props.onUpdate(this.state);
+      this.onUpdate();
     }
   },
 
@@ -91,7 +91,13 @@ var El = React.createClass({
 
   onTouchEnd: function () {
     if (this.props.onTouchEnd) {
-      this.props.onTouchEnd(this.state);
+      this.props.onTouchEnd();
+    }
+  },
+
+  onUpdate: function () {
+    if (this.props.onUpdate) {
+      this.props.onUpdate(this.state);
     }
   },
 
@@ -105,12 +111,9 @@ var El = React.createClass({
       x: x,
       y: y
     }, function() {
+
       var changed = false;
-      var updatefunction = function() {
-        if(this.props.onUpdate) {
-          this.props.onUpdate(this.state);
-        }
-      }.bind(this);
+      var updatefunction = this.onUpdate;
 
       updatefunction();
 
@@ -151,9 +154,7 @@ var El = React.createClass({
       angle: angle,
       scale: scale
     }, function() {
-      if(this.props.onUpdate) {
-        this.props.onUpdate(this.state);
-      }
+      this.onUpdate();
     });
   },
 

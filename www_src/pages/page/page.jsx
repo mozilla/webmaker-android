@@ -1,5 +1,6 @@
 var React = require('react');
 var classNames = require('classnames');
+var assign = require('react/lib/Object.assign');
 var render = require('../../lib/render.jsx');
 var router = require('../../lib/router.jsx');
 var api = require('../../lib/api.js');
@@ -132,6 +133,16 @@ var Page = React.createClass({
     });
   },
 
+  getElementIndexById: function (id) {
+    var index;
+    this.state.elements.forEach((element, i) => {
+      if (element.id === id) {
+        index = i;
+      }
+    });
+    return index;
+  },
+
   addElement: function(type) {
     return () => {
       var json = types[type].spec.generate();
@@ -151,16 +162,17 @@ var Page = React.createClass({
     };
   },
 
-  updateElement: function(index) {
-    return function(data) {
+  updateElement: function (id) {
+    return (newProps) => {
+      var index = this.getElementIndexById(id);
       var elements = this.state.elements;
-      var entry = elements[index];
-      Object.keys(data).forEach(k => entry[k] = data[k]);
+      var element = elements[index];
+      elements[index] = assign(element, newProps);
       this.setState({
         elements: elements,
         currentElement: index
       });
-    }.bind(this);
+    };
   },
 
   deleteElement: function() {
@@ -235,12 +247,12 @@ var Page = React.createClass({
     });
   },
 
-  save: function (index) {
+  save: function (id) {
     return () => {
-      var el = this.expand(this.state.elements[index]);
+      var el = this.expand(this.state.elements[this.getElementIndexById(id)]);
       api({
         method: 'patch',
-        uri: this.uri() + '/elements/' + el.id,
+        uri: this.uri() + '/elements/' + id,
         json: {
           styles: el.styles
         }
