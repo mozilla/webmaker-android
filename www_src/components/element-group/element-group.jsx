@@ -34,7 +34,7 @@ var ElementGroup = React.createClass({
         }
 
         if (this.props.onUpdate) {
-          elProps.onUpdate = this.props.onUpdate(i);
+          elProps.onUpdate = this.props.onUpdate(elProps.id);
         }
 
         return (<El key={'positionable' + i} {...elProps} />);

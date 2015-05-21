@@ -229,7 +229,7 @@ var Page = React.createClass({
       if (err) {
         return console.error('There was an error getting the Page', err);
       }
-      
+
       if (!data || !data.page) {
         return console.log('Could not find the page');
       }
