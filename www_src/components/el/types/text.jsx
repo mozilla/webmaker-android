@@ -58,8 +58,14 @@ var Text = React.createClass({
     var style = {
       whiteSpace: 'nowrap'
     };
-    ['fontFamily', 'color', 'fontWeight', 'fontStyle', 'textDecoration', 'textAlign']
-      .forEach(prop => style[prop] = props[prop]);
+    [
+      'fontFamily',
+      'color',
+      'fontWeight',
+      'fontStyle',
+      'textDecoration',
+      'textAlign'
+    ].forEach(prop => style[prop] = props[prop]);
 
     var content = this.makeEditable(props.innerHTML, style);
     var onPClick = this.activate;

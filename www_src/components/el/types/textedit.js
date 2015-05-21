@@ -11,17 +11,17 @@ module.exports = {
   },
 
   componentDidUpdate: function(prevProps, prevState) {
-    if(this.refs.input) {
+    if (this.refs.input) {
       this.resizeInput();
-      var el = this.refs.input.getDOMNode()
+      var el = this.refs.input.getDOMNode();
       el.focus();
 
       // we only want to put the cursor at the end on the very first
       // editing action.
-      if(!this.state.focussed) {
-        if(typeof el.selectionStart == "number") {
+      if (!this.state.focussed) {
+        if (typeof el.selectionStart === "number") {
           el.selectionStart = el.selectionEnd = el.value.length;
-        } else if (typeof el.createTextRange != "undefined") {
+        } else if (typeof el.createTextRange !== "undefined") {
           var range = el.createTextRange();
           range.collapse(false);
           range.select();
@@ -35,7 +35,7 @@ module.exports = {
       if (this.state.initialload) {
         this.setState({
           initialload: false
-        })
+        });
       }
     }
   },
@@ -46,7 +46,7 @@ module.exports = {
       var sizer = this.refs.sizer.getDOMNode();
       sizer.textContent = input.value;
       setTimeout(function() {
-        if(sizer.scrollWidth > 5) {
+        if (sizer.scrollWidth > 5) {
           input.style.width = sizer.scrollWidth + "px";
         }
       }, 1);
@@ -67,7 +67,9 @@ module.exports = {
   },
 
   makeEditable: function(content, style) {
-    if (!this.state.editing) return content;
+    if (!this.state.editing) {
+      return content;
+    }
 
     var inputStyle = this.formInputStyle(style);
 

@@ -39,7 +39,9 @@ var El = React.createClass({
   componentDidMount: function() {
 
     // Don't attach touch handlers for non-interactive elements
-    if(!this.props.interactive) return;
+    if (!this.props.interactive) {
+      return;
+    }
 
     var touchHandler = this.touchhandler = touchhandler(this);
     var dnode = this.getDOMNode();
@@ -59,8 +61,6 @@ var El = React.createClass({
     onode.addEventListener("touchstart", touchHandler.secondFinger);
     onode.addEventListener("touchmove", touchHandler.panmove);
     onode.addEventListener("touchend", touchHandler.endmark);
-
-    var dims = dnode.getBoundingClientRect();
   },
 
   componentDidUpdate: function(prevProps, prevState) {
@@ -90,7 +90,9 @@ var El = React.createClass({
   },
 
   onTouchEnd: function () {
-    if (this.props.onTouchEnd) this.props.onTouchEnd(this.state);
+    if (this.props.onTouchEnd) {
+      this.props.onTouchEnd(this.state);
+    }
   },
 
   handleTranslation: function(x, y) {

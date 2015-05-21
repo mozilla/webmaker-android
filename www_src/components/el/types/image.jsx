@@ -48,7 +48,7 @@ var Image = React.createClass({
       borderWidth: props.borderWidth,
       borderColor: props.borderColor
     };
-    return <img style={style} src={this.props.src} alt={this.props.alt} />
+    return <img style={style} src={this.props.src} alt={this.props.alt} />;
   }
 });
 

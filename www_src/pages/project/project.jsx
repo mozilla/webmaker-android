@@ -6,7 +6,6 @@ var classNames = require('classnames');
 var render = require('../../lib/render.jsx');
 var router = require('../../lib/router.jsx');
 var Cartesian = require('../../lib/cartesian');
-var Link = require('../../components/link/link.jsx');
 var Loading = require('../../components/loading/loading.jsx');
 var {Menu, PrimaryButton, SecondaryButton} = require('../../components/action-menu/action-menu.jsx');
 var types = require('../../components/el/el.jsx').types;
@@ -73,7 +72,10 @@ var Project = React.createClass({
     if (this.props.isVisible && !prevProps.isVisible) {
       this.load();
     }
-    if (window.Android) window.Android.setState(JSON.stringify(this.state));
+    
+    if (window.Android) {
+      window.Android.setState(JSON.stringify(this.state));
+    }
   },
 
   componentDidMount: function () {
@@ -115,10 +117,9 @@ var Project = React.createClass({
       didMove = true;
       var translateStr = 'translate(' + this.state.camera.x + 'px, ' + this.state.camera.y + 'px)';
       var scaleStr = 'scale(' + this.state.zoom + ')';
-      var center;
       if (event.touches.length > 1) {
         currentZoom = this.state.zoom;
-        var dx = event.touches[1].clientX - event.touches[0].clientX
+        var dx = event.touches[1].clientX - event.touches[0].clientX;
         var dy = event.touches[1].clientY - event.touches[0].clientY;
         var distance = Math.sqrt(dx*dx + dy*dy);
 
@@ -139,15 +140,26 @@ var Project = React.createClass({
       console.log('end', event.touches.length, event);
       if (event.touches.length === 0) {
         boundingEl.style.transition = '';
-        if (!didMove) return;
+        if (!didMove) {
+          return;
+        }
 
         var state = {camera: {
           x: currentX,
           y: currentY
         }};
-        if (typeof currentZoom !== 'undefined') state.zoom = currentZoom;
+
+        if (typeof currentZoom !== 'undefined') {
+          state.zoom = currentZoom;
+        }
         this.setState(state);
-        startX, startY, startDistance, currentX, currentY, currentZoom = undefined;
+
+        startX = undefined;
+        startY = undefined;
+        startDistance = undefined;
+        currentX = undefined;
+        currentY = undefined;
+        currentZoom = undefined;
       } else {
         startX = event.touches[0].clientX;
         startY = event.touches[0].clientY;
@@ -179,13 +191,18 @@ var Project = React.createClass({
       page.coords = {
         x: page.x,
         y: page.y
-      }
+      };
+
       page.elements = page.elements.map(element => {
-        if (!types[element.type]) return false;
+        if (!types[element.type]) {
+          return false;
+        }
         return types[element.type].spec.flatten(element);
       }).filter(element => element);
+
       delete page.x;
       delete page.y;
+
       return page;
     });
     this.cartesian.allCoords = pages.map(el => el.coords);
@@ -197,7 +214,6 @@ var Project = React.createClass({
   },
 
   load: function () {
-    var params = this.state.params;
     this.setState({loading: true});
     api({uri: this.uri()}, (err, data) => {
       if (err) {
@@ -238,7 +254,6 @@ var Project = React.createClass({
 
   addPage: function (coords) {
     return () => {
-      var params = this.state.params;
       var json = {
         x: coords.x,
         y: coords.y,
@@ -251,8 +266,13 @@ var Project = React.createClass({
         json
       }, (err, data) => {
         this.setState({loading: false});
-        if (err) return console.log('Error loading project', err);
-        if (!data || !data.page) return console.log('No page id returned');
+        if (err) {
+          return console.log('Error loading project', err);
+        }
+
+        if (!data || !data.page) {
+          return console.log('No page id returned');
+        }
 
         json.id = data.page.id;
         json.coords = {x: json.x, y: json.y};
@@ -273,19 +293,28 @@ var Project = React.createClass({
     var index;
     this.setState({loading: true});
     this.state.pages.forEach((el, i) => {
-      if (el.id === currentId) index = i;
+      if (el.id === currentId) {
+        index = i;
+      }
     });
-    if (typeof index === 'undefined') return;
+    if (typeof index === 'undefined') {
+      return;
+    }
 
     // Don't delete test elements for real;
-    if (parseInt(currentId, 10) === 1) return alert('this is a test page, not deleting.');
+    if (parseInt(currentId, 10) === 1) {
+      return window.alert('this is a test page, not deleting.');
+    }
 
     api({
       method: 'delete',
       uri: `${this.uri()}/${currentId}`
     }, (err) => {
       this.setState({loading: false});
-      if (err) return console.error('There was an error deleting the page', err);
+      if (err) {
+        return console.error('There was an error deleting the page', err);
+      }
+
       this.cartesian.allCoords.splice(index, 1);
       this.setState({
         pages: update(this.state.pages, {$splice: [[index, 1]]}),

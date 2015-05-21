@@ -15,7 +15,9 @@ var ElementGroup = React.createClass({
       <div className="deselector" onClick={this.props.onDeselect} />
       {this.props.elements.map((elProps, i) => {
 
-        if (!elProps || !elProps.type) return false;
+        if (!elProps || !elProps.type) {
+          return false;
+        }
 
         elProps = assign({}, elProps, {
           isCurrent: this.props.currentElement === i,
@@ -23,10 +25,15 @@ var ElementGroup = React.createClass({
         });
 
         // Add callbacks for interactive mode
-        if (this.props.onTouchEnd) elProps.onTouchEnd = this.props.onTouchEnd(i);
-        if (this.props.onUpdate) elProps.onUpdate = this.props.onUpdate(i);
+        if (this.props.onTouchEnd) {
+          elProps.onTouchEnd = this.props.onTouchEnd(i);
+        }
 
-        return <El key={'positionable' + i} {...elProps} />
+        if (this.props.onUpdate) {
+          elProps.onUpdate = this.props.onUpdate(i);
+        }
+
+        return (<El key={'positionable' + i} {...elProps} />);
       })}
     </div>);
   }

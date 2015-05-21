@@ -2,7 +2,6 @@ var React = require('react');
 var render = require('../../lib/render.jsx');
 var api = require('../../lib/api.js');
 var Card = require('../../components/card/card.jsx');
-var Link = require('../../components/link/link.jsx');
 
 var Make = React.createClass({
   mixins: [],
@@ -23,8 +22,14 @@ var Make = React.createClass({
     api({
       uri: '/users/1/projects'
     }, (err, body) => {
-      if (err) return console.error('Error getting projects', err);
-      if (!body || !body.projects) return console.log('No projects found');
+      if (err) {
+        return console.error('Error getting projects', err);
+      }
+      
+      if (!body || !body.projects) {
+        return console.log('No projects found');
+      }
+      
       this.setState({
         projects: body.projects
       });
@@ -43,8 +48,14 @@ var Make = React.createClass({
         title: defaultTitle
       }
     }, (err, body) => {
-      if (err) return console.error('Error creating a project');
-      if (!body || !body.project) return console.log('No project');
+      if (err) {
+        return console.error('Error creating a project');
+      }
+
+      if (!body || !body.project) {
+        return console.log('No project');
+      }
+
       if (window.Android) {
         window.Android.setView('/projects/' + body.project.id);
       } else {

@@ -31,7 +31,7 @@ var StyleGuide = React.createClass({
   toggleLoading: function () {
     this.setState({loading: true});
     setTimeout(() => {
-      this.setState({loading: false})
+      this.setState({loading: false});
     }, 3000);
   },
   render: function () {

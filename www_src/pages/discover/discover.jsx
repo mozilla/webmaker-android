@@ -17,8 +17,14 @@ var Discover = React.createClass({
     api({
       uri: '/discover'
     }, (err, body) => {
-      if (err) return console.error('Error getting discovery projects', err);
-      if (!body || !body.projects || !body.projects.length) return console.log('No discovery projects found');
+      if (err) {
+        return console.error('Error getting discovery projects', err);
+      }
+      
+      if (!body || !body.projects || !body.projects.length) {
+        return console.log('No discovery projects found');
+      }
+      
       this.setState({
         projects: body.projects,
         loading: false
