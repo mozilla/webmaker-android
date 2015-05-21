@@ -1,7 +1,7 @@
 var React = require('react/addons');
 var classNames = require('classnames');
 var ColorGroup = require('../../components/color-group/color-group.jsx');
-var Range = require('../../components/range/range.jsx');
+var Slider = require('../../components/range/range.jsx');
 var ImageBlock = require('../../components/el/types/image.jsx');
 
 var ImageEditor = React.createClass({
@@ -28,11 +28,11 @@ var ImageEditor = React.createClass({
           </div>
           <div className="form-group">
             <label>Transparency</label>
-            <Range id="opacity" min={0} max={1} step={0.01} linkState={this.linkState} />
+            <Slider id="opacity" min={0} max={1} step={0.01} linkState={this.linkState} />
           </div>
           <div className="form-group">
             <label>Border Width</label>
-            <Range id="borderWidth" max={10} unit="px" linkState={this.linkState} />
+            <Slider id="borderWidth" max={10} unit="px" linkState={this.linkState} />
           </div>
           <div className="form-group">
             <label>Border Color</label>

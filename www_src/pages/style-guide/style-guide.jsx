@@ -4,7 +4,7 @@ var render = require('../../lib/render.jsx');
 // Components
 var ColorGroup = require('../../components/color-group/color-group.jsx');
 var ColorSpectrum = require('../../components/color-spectrum/color-spectrum.jsx');
-var Range = require('../../components/range/range.jsx');
+var Slider = require('../../components/range/range.jsx');
 var Tabs = require('../../components/tabs/tabs.jsx');
 var Card = require('../../components/card/card.jsx');
 var Alert = require('../../components/alert/alert.jsx');
@@ -88,8 +88,8 @@ var StyleGuide = React.createClass({
         <h3>ColorSpectrum (JSX)</h3>
         <ColorSpectrum value={'#fff'} onChange="" />
 
-        <h3>Range (JSX)</h3>
-        <Range min={0} max={255} unit="" />
+        <h3>Slider (JSX)</h3>
+        <Slider min={0} max={255} unit="" />
 
         <h3>Tabs (JSX)</h3>
         <Tabs tabs={tabs} className="editor-options"></Tabs>

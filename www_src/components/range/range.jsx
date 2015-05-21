@@ -1,6 +1,6 @@
 var React = require('react/addons');
 
-var Range = React.createClass({
+module.exports = React.createClass({
   mixins: [React.addons.LinkedStateMixin],
   getDefaultProps: function () {
     return {
@@ -31,5 +31,3 @@ var Range = React.createClass({
     );
   }
 });
-
-module.exports = Range;

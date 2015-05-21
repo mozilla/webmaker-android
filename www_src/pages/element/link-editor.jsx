@@ -3,7 +3,7 @@ var React = require('react/addons');
 var LinkBlock = require('../../components/el/types/link.jsx');
 var Alert = require('../../components/alert/alert.jsx');
 var ColorGroup = require('../../components/color-group/color-group.jsx');
-var Range = require('../../components/range/range.jsx');
+var Slider = require('../../components/range/range.jsx');
 
 var LinkEditor = React.createClass({
   mixins: [
@@ -37,7 +37,7 @@ var LinkEditor = React.createClass({
           </div>
           <div className="form-group">
             <label>Corners</label>
-            <Range id="borderRadius" min={0} value={this.state.borderRadius} max={32} unit="px" linkState={this.linkState} />
+            <Slider id="borderRadius" min={0} value={this.state.borderRadius} max={32} unit="px" linkState={this.linkState} />
           </div>
           <div className="form-group">
             <label>Font</label>
