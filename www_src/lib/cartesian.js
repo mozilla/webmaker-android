@@ -110,7 +110,7 @@ class Cartesian {
     var allStr = this.allCoords.map(coords => `${coords.x}/${coords.y}`);
     this.allCoords.forEach(coords => {
       var {x, y} = coords;
-      var edges = [
+      [
         {x: x - 1, y},
         {x: x + 1, y},
         {x, y: y - 1},

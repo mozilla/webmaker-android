@@ -24,7 +24,9 @@ render(React.createClass({
   uri: function () {
     var params = this.state.params;
     var element = params.element;
-    if (hash) element = testIds[hash];
+    if (hash) {
+      element = testIds[hash];
+    }
     return `/users/1/projects/${params.project}/pages/${params.page}/elements/${element}`;
   },
 
@@ -51,7 +53,10 @@ render(React.createClass({
       styles: json.styles,
       attributes: json.attributes
     }}, (err, data) => {
-      if (err) console.error('There was an error updating the element', err);
+      if (err) {
+        console.error('There was an error updating the element', err);
+      }
+
       this.setState({
         elements: edits
       });
@@ -60,8 +65,14 @@ render(React.createClass({
   },
   load: function () {
     api({uri: this.uri()}, (err, data) => {
-      if (err) return console.error('Error loading element', err);
-      if (!data || !data.element) return console.log('No element found');
+      if (err) {
+        return console.error('Error loading element', err);
+      }
+
+      if (!data || !data.element) {
+        return console.log('No element found');
+      }
+
       this.setState({element: data.element});
     });
   },
@@ -69,12 +80,16 @@ render(React.createClass({
     var Editor;
     var {params, element} = this.state;
 
-    if (typeof element === 'undefined') return (<Loading on={true} />);
+    if (typeof element === 'undefined') {
+      return (<Loading on={true} />);
+    }
 
     Editor = editors[params.editor] || editors[hash] || editors.link;
 
     var props = {params, cacheEdits: this.cacheEdits};
-    if (element) props.element = element;
+    if (element) {
+      props.element = element;
+    }
 
     return (<Editor {...props} />);
   }

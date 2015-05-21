@@ -1,6 +1,6 @@
 var React = require('react');
-var assign = require('react/lib/Object.assign');
 var classNames = require('classnames');
+var assign = require('react/lib/Object.assign');
 var render = require('../../lib/render.jsx');
 var router = require('../../lib/router.jsx');
 var api = require('../../lib/api.js');
@@ -52,8 +52,6 @@ var Page = React.createClass({
 
   render: function () {
     var elements = this.state.elements;
-    var currentElement = this.state.currentElement;
-    var currentElementType = elements[currentElement] ? elements[currentElement].type : '';
 
     // var positionables = this.formPositionables(elements);
     var secondaryClass = (name => {
@@ -151,7 +149,9 @@ var Page = React.createClass({
 
       api({method: 'post', uri: this.uri() + '/elements', json}, (err, data) => {
         var state = {showAddMenu: false};
-        if (err) console.log('There was an error creating an element', err);
+        if (err) {
+          console.log('There was an error creating an element', err);
+        }
         if (data && data.element) {
           json.id = data.element.id;
           state.elements = this.state.elements.concat([this.flatten(json)]);
@@ -165,9 +165,9 @@ var Page = React.createClass({
   updateElement: function (id) {
     return (newProps) => {
       var index = this.getElementIndexById(id);
-      var elements = this.state.elements
+      var elements = this.state.elements;
       var element = elements[index];
-      elements[index]  = assign(element, newProps);
+      elements[index] = assign(element, newProps);
       this.setState({
         elements: elements,
         currentElement: index
@@ -176,15 +176,23 @@ var Page = React.createClass({
   },
 
   deleteElement: function() {
-    if(this.state.currentElement === -1) return;
+    if (this.state.currentElement === -1) {
+      return;
+    }
+
     var elements = this.state.elements;
     var id = elements[this.state.currentElement].id;
 
     // Don't delete test elements for real;
-    if (parseInt(id, 10) <= 3) return alert('this is a test element, not deleting.');
+    if (parseInt(id, 10) <= 3) {
+      return window.alert('this is a test element, not deleting.');
+    }
 
     api({method: 'delete', uri: this.uri() + '/elements/' + id}, (err, data) => {
-      if (err) return console.error('There was a problem deleting the element');
+      if (err) {
+        return console.error('There was a problem deleting the element');
+      }
+
       elements[this.state.currentElement] = false;
       var currentElement = -1;
       elements.some(function(e,idx) {
@@ -199,22 +207,32 @@ var Page = React.createClass({
   },
 
   flatten: function (element) {
-    if (!types[element.type]) return false;
+    if (!types[element.type]) {
+      return false;
+    }
+
     return types[element.type].spec.flatten(element);
   },
 
   expand: function (element) {
-    if (!types[element.type]) return false;
+    if (!types[element.type]) {
+      return false;
+    }
+
     return types[element.type].spec.expand(element);
   },
 
   load: function() {
-    var id = this.state.params.page || 'foo0';
     api({
       uri: this.uri()
     }, (err, data) => {
-      if (err) return console.error('There was an error getting the Page', err);
-      if (!data || !data.page) return console.log('Could not find the page');
+      if (err) {
+        return console.error('There was an error getting the Page', err);
+      }
+      
+      if (!data || !data.page) {
+        return console.log('Could not find the page');
+      }
 
       var page = data.page;
       var styles = page.styles;
@@ -239,8 +257,13 @@ var Page = React.createClass({
           styles: el.styles
         }
       }, (err, data) => {
-        if (err) return console.error('There was an error updating the element', err);
-        if (!data || !data.element) console.log('Could not find the element');
+        if (err) {
+          return console.error('There was an error updating the element', err);
+        }
+
+        if (!data || !data.element) {
+          console.log('Could not find the element');
+        }
       });
     };
   }

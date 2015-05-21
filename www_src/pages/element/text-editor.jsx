@@ -1,9 +1,6 @@
 var React = require('react/addons');
-var defaults = require('lodash.defaults');
-var render = require('../../lib/render.jsx');
 
 var TextBlock = require('../../components/el/types/text.jsx');
-var Range = require('../../components/range/range.jsx');
 var ColorGroup = require('../../components/color-group/color-group.jsx');
 var {CheckboxSet, Radio} = require('../../components/option-panel/option-panel.jsx');
 

@@ -14,7 +14,9 @@ function getValidationErrors(spec) {
   keys.forEach(key => {
     var prop = spec[key];
     Object.keys(prop).forEach(propKey => {
-      if (VALID_KEYS.indexOf(propKey) <= -1) result = key + ' is not a valid key';
+      if (VALID_KEYS.indexOf(propKey) <= -1) {
+        result = key + ' is not a valid key';
+      }
     });
     if (VALID_CATEGORIES.indexOf(prop.category) <= -1) {
       result = prop.category + ' is not a valid category definition for ' + key;
@@ -25,12 +27,18 @@ function getValidationErrors(spec) {
 }
 
 function Spec(type, spec) {
-  if (typeof type !== 'string' || typeof spec !== 'object') throw new Error('Spec takes two params: type (String) and spec (Object)');
+  if (typeof type !== 'string' || typeof spec !== 'object') {
+    throw new Error('Spec takes two params: type (String) and spec (Object)');
+  }
+
   var error = getValidationErrors(spec);
-  if (error) throw new Error(error);
+  if (error) {
+    throw new Error(error);
+  }
+
   this.type = type;
   this.spec = spec;
-};
+}
 
 Spec.getValidationErrors = getValidationErrors;
 
@@ -80,7 +88,9 @@ Spec.prototype.getDefaultProps = function () {
   var props = this.spec;
   var result = {};
   Object.keys(props).forEach(prop => {
-    if (typeof props[prop].default !== 'undefined') result[prop] = props[prop].default;
+    if (typeof props[prop].default !== 'undefined') {
+      result[prop] = props[prop].default;
+    }
   });
   return result;
 };
@@ -89,7 +99,9 @@ Spec.prototype.getPropTypes = function () {
   var props = this.spec;
   var result = {};
   Object.keys(props).forEach(prop => {
-     if (typeof props[prop].validation !== 'undefined') result[prop] = props[prop].validation;
+    if (typeof props[prop].validation !== 'undefined') {
+      result[prop] = props[prop].validation;
+    }
   });
   return result;
 };
@@ -101,11 +113,16 @@ Spec.prototype.flatten = function (props, options) {
 
   Object.keys(this.spec).forEach(key => {
     var category = this.spec[key].category;
-    if (!element[category]) element[category] = {};
+    if (!element[category]) {
+      element[category] = {};
+    }
+
     if (typeof element[category][key] !== 'undefined') {
       element[key] = element[category][key];
     } else if (options.defaults) {
-      if (typeof this.spec[key].default !== 'undefined') element[key] = this.spec[key].default;
+      if (typeof this.spec[key].default !== 'undefined') {
+        element[key] = this.spec[key].default;
+      }
     }
   });
 
@@ -122,12 +139,17 @@ Spec.prototype.expand = function (props, options) {
 
   Object.keys(this.spec).forEach(key => {
     var category = this.spec[key].category;
-    if (!element[category]) element[category] = {};
+    if (!element[category]) {
+      element[category] = {};
+    }
+
     if (typeof element[key] !== 'undefined') {
       element[category][key] = element[key];
       delete element[key];
     } else if (options.defaults) {
-      if (typeof this.spec[key].default !== 'undefined') element[category][key] = this.spec[key].default;
+      if (typeof this.spec[key].default !== 'undefined') {
+        element[category][key] = this.spec[key].default;
+      }
     }
   });
 

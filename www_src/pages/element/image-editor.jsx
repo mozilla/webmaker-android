@@ -2,7 +2,6 @@ var React = require('react/addons');
 var classNames = require('classnames');
 var ColorGroup = require('../../components/color-group/color-group.jsx');
 var Range = require('../../components/range/range.jsx');
-var Alert = require('../../components/alert/alert.jsx');
 var ImageBlock = require('../../components/el/types/image.jsx');
 
 var ImageEditor = React.createClass({
@@ -60,11 +59,15 @@ var ImageEditor = React.createClass({
   },
   onCameraClick: function () {
     this.toggleMenu();
-    if (window.Android) window.Android.getFromCamera();
+    if (window.Android) {
+      window.Android.getFromCamera();
+    }
   },
   onMediaClick: function () {
     this.toggleMenu();
-    if (window.Android) window.Android.getFromMedia();
+    if (window.Android) {
+      window.Android.getFromMedia();
+    }
   },
   imageReady: function (uri) {
     this.setState({

@@ -41,12 +41,16 @@ module.exports = function (options, callback) {
   if (window.Android && options.useCache === true) {
     window.Android.logText('Fetching from cache "' + key + '"');
     var hit = window.Android.getSharedPreferences(key, false);
-    if (typeof hit === 'string') return callback(null, JSON.parse(hit));
+    if (typeof hit === 'string') {
+      return callback(null, JSON.parse(hit));
+    }
   }
 
   // XHR request
   xhr(options, function (err, res, body) {
-    if (err && callback) return callback(err);
+    if (err && callback) {
+      return callback(err);
+    }
 
     // Set cache if window.Android is available
     if (window.Android) {

@@ -22,7 +22,7 @@ var Tabs = React.createClass({
             'tab-btn': true,
             'selected': this.state.selectedIndex === i
           });
-          return <li key={i}><button className={className} onClick={this.setTab(i)}>{tab.menu}</button></li>
+          return (<li key={i}><button className={className} onClick={this.setTab(i)}>{tab.menu}</button></li>);
         })}
       </ul>
       <div className="tab-content">
@@ -31,7 +31,7 @@ var Tabs = React.createClass({
             'tab-body': true,
             'selected': this.state.selectedIndex === i
           });
-          return <div className={className}>{tab.body}</div>
+          return (<div className={className}>{tab.body}</div>);
         })}
       </div>
     </div>);

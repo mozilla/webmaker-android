@@ -2,7 +2,6 @@ var React = require('react');
 var render = require('../../lib/render.jsx');
 var api = require('../../lib/api.js');
 var Card = require('../../components/card/card.jsx');
-var Link = require('../../components/link/link.jsx');
 var Loading = require('../../components/loading/loading.jsx');
 
 var Make = React.createClass({
@@ -34,8 +33,14 @@ var Make = React.createClass({
     api({
       uri: '/users/1/projects'
     }, (err, body) => {
-      if (err) return this.onError(err);
-      if (!body || !body.projects || !body.projects.length) return this.onEmpty();
+      if (err) {
+        return this.onError(err);
+      }
+
+      if (!body || !body.projects || !body.projects.length) {
+        return this.onEmpty();
+      }
+
       this.setState({
         loading: false,
         projects: body.projects
@@ -55,8 +60,14 @@ var Make = React.createClass({
         title: defaultTitle
       }
     }, (err, body) => {
-      if (err) return this.onError(err);
-      if (!body || !body.project) return this.onEmpty();
+      if (err) {
+        return this.onError(err);
+      }
+      
+      if (!body || !body.project) {
+        return this.onEmpty();
+      }
+      
       if (window.Android) {
         window.Android.setView('/projects/' + body.project.id);
       } else {
