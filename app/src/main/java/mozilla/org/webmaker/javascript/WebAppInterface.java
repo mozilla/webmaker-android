@@ -136,7 +136,7 @@ public class WebAppInterface {
 
     @JavascriptInterface
     public String getRouteData(final String url) {
-        return (String) MemStorage.sharedCache().get(url);
+        return MemStorage.sharedCache().get(url);
     }
 
     /**

@@ -58,7 +58,7 @@ public class MemStorage {
     /**
      * The actual cache class that is being wrapped around and provided with the maxSize.
      */
-    public static class Cache extends LruCache {
+    public static class Cache extends LruCache<String, String> {
         /**
          * @param maxSize for caches that do not override {@link #sizeOf}, this is
          * the maximum number of entries in the cache. For all other caches,
