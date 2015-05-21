@@ -63,25 +63,22 @@ var Make = React.createClass({
       if (err) {
         return this.onError(err);
       }
-      
       if (!body || !body.project) {
         return this.onEmpty();
       }
-      
       if (window.Android) {
         window.Android.setView('/projects/' + body.project.id);
-      } else {
-        this.setState({
-          loading: false,
-          projects: [{
-            id: body.project.id,
-            title: defaultTitle,
-            thumbnail: {},
-            // todo
-            author: userInfo
-          }].concat(this.state.projects)
-        });
       }
+      this.setState({
+        loading: false,
+        projects: [{
+          id: body.project.id,
+          title: defaultTitle,
+          thumbnail: {},
+          // todo
+          author: userInfo
+        }].concat(this.state.projects)
+      });
     });
   },
   render: function () {
