@@ -1,5 +1,6 @@
 package mozilla.org.webmaker.activity;
 
+import android.annotation.TargetApi;
 import android.app.ActionBar;
 import android.content.res.Resources;
 import android.graphics.drawable.ColorDrawable;
@@ -16,7 +17,7 @@ public class Tinker extends WebmakerActivity {
         super("tinker", R.id.tinker_layout, R.layout.tinker_layout, R.menu.menu_tinker);
     }
 
-    @Override
+    @Override @TargetApi(Build.VERSION_CODES.LOLLIPOP)
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
 
