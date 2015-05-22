@@ -1,43 +1,27 @@
 var React = require('react');
 
 var TextInput = React.createClass({
+  propTypes: {
+    maxlength: React.PropTypes.number.isRequired,
+    minlength: React.PropTypes.number
+  },
   getInitialState: function () {
     return {
       inputLength: 0,
       text: '',
-      justTriedToOverflow: false
+      isTooLong: false
     };
   },
   onChange: function (e) {
     this.setState({
       text: e.target.value,
-      inputLength: e.target.value.length
+      inputLength: e.target.value.length,
+      isTooLong: e.target.value.length > this.props.maxlength ? true : false
     });
   },
-  onKeyDown: function (e) {
-    // Allow the backspace key to work (code: 8)
-    if (this.state.inputLength === this.props.maxlength && e.keyCode !== 8) {
-      if (!this.state.justTriedToOverflow) {
-        this.setState({
-          justTriedToOverflow: true
-        });
-
-        setTimeout(function() {
-          this.setState({
-            justTriedToOverflow: false
-          });
-        }.bind(this), 1000);
-      }
-
-      e.preventDefault();
-    } else {
-      this.setState({
-        justTriedToOverflow: false
-      });
-    }
-  },
   validate: function () {
-    if (this.state.text.length > this.props.minlength) {
+    if ((!this.props.minlength || this.state.text.length > this.props.minlength) &&
+      this.state.text.length <= this.props.maxlength) {
       return true;
     } else {
       return false;
@@ -45,15 +29,13 @@ var TextInput = React.createClass({
   },
   render: function () {
     return (
-      <div className={'text-input' + (this.state.justTriedToOverflow ? ' maxed' : '')}>
+      <div className={'text-input' + (this.state.isTooLong ? ' maxed' : '')}>
         <label>{this.props.label}</label>
 
         <input
           value={this.state.text}
           ref="input"
-          maxLength={this.props.maxlength}
           onChange={this.onChange}
-          onKeyDown={this.onKeyDown}
           type="text"/>
 
         <div className="indicator">{this.state.inputLength} / {this.props.maxlength}</div>

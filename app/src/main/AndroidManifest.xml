@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
+    android:installLocation="auto"
     package="mozilla.org.webmaker" >
 
     <uses-permission android:name="android.permission.INTERNET" />
@@ -17,6 +18,7 @@
         android:icon="@mipmap/ic_launcher"
         android:label="@string/app_name"
         android:theme="@style/AppTheme" >
+
         <activity
             android:name=".MainActivity"
             android:label="@string/app_name"
@@ -26,57 +28,55 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
+
         <activity
             android:name=".activity.Project"
             android:label="@string/title_activity_project"
-            android:parentActivityName=".MainActivity"
             android:screenOrientation="portrait" >
-
             <meta-data
                     android:name="android.support.PARENT_ACTIVITY"
                     android:value=".MainActivity" />
         </activity>
+
         <activity
                 android:name=".activity.Play"
                 android:label="@string/title_activity_play"
-                android:parentActivityName=".MainActivity"
                 android:screenOrientation="portrait" >
-
             <meta-data
                     android:name="android.support.PARENT_ACTIVITY"
                     android:value=".MainActivity" />
         </activity>
+
         <activity
                 android:name=".activity.ProjectSettings"
                 android:label="@string/title_activity_project_settings"
-                android:parentActivityName=".activity.Project"
                 android:screenOrientation="portrait" >
             <meta-data
                     android:name="android.support.PARENT_ACTIVITY"
                     android:value=".activity.Project" />
         </activity>
+
         <activity
             android:name=".activity.Page"
             android:label="@string/title_activity_page"
-            android:parentActivityName=".activity.Project"
             android:screenOrientation="portrait" >
             <meta-data
                 android:name="android.support.PARENT_ACTIVITY"
                 android:value=".activity.Project" />
         </activity>
+
         <activity
             android:name=".activity.Element"
             android:label="@string/title_activity_element"
-            android:parentActivityName=".activity.Page"
             android:screenOrientation="portrait" >
             <meta-data
                 android:name="android.support.PARENT_ACTIVITY"
                 android:value=".activity.Page" />
         </activity>
+
         <activity
             android:name=".activity.Tinker"
             android:label="@string/title_activity_tinker"
-            android:parentActivityName=".activity.Element"
             android:screenOrientation="portrait" >
             <meta-data
                 android:name="android.support.PARENT_ACTIVITY"

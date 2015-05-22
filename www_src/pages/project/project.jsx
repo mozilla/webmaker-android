@@ -321,7 +321,7 @@ var Project = React.createClass({
       var json = {
         x: coords.x,
         y: coords.y,
-        styles: {backgroundColor: '#F0CF62'}
+        styles: {backgroundColor: '#fafcff'}
       };
       this.setState({loading: true});
       api({
