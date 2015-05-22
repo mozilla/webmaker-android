@@ -1,7 +1,6 @@
 package mozilla.org.webmaker;
 
 import android.app.ActionBar;
-import android.app.Activity;
 import android.os.Bundle;
 import android.view.MenuItem;
 import android.widget.RelativeLayout;
