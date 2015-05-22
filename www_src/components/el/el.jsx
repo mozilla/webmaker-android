@@ -70,7 +70,7 @@ var El = React.createClass({
   },
 
   render: function() {
-    var style = Spec.propsToPosition(this.state);
+    var style = Spec.propsToPosition(this.getInitialState());
 
     var className = classes('el', 'el-' + this.props.type, {
       touchactive: this.state.touchactive,
