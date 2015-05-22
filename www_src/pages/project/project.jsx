@@ -210,15 +210,11 @@ var Project = React.createClass({
       selectedEl: el.id
     });
   },
-  zoomToPage: function (coords, play) {
-    if (typeof play === 'undefined') {
-      play = true;
-    }
-
+  zoomToPage: function (coords) {
     this.setState({
       camera: this.cartesian.getFocusTransform(coords, 1),
       zoom: 1,
-      isPageZoomed: play,
+      isPageZoomed: true,
       zoomedPageCoords: coords
     });
   },
@@ -229,6 +225,22 @@ var Project = React.createClass({
       isPageZoomed: false
     });
   },
+
+  /**
+   * Zoom into a specified page while retaining the current mode (edit/play)
+   *
+   * @param  {object} coords Co-ordinates (x,y) for page
+   *
+   * @return {void}
+   */
+  zoomToSelection: function (coords) {
+    this.setState({
+      camera: this.cartesian.getFocusTransform(coords, 1),
+      zoom: 1,
+      zoomedPageCoords: coords
+    });
+  },
+
   zoomOut: function () {
     this.setState({zoom: this.state.zoom / 2});
   },
@@ -379,9 +391,9 @@ var Project = React.createClass({
 
   onPageClick: function (page) {
     if (this.state.params.mode === 'play') {
-      this.zoomToPage(page.coords, true);
+      this.zoomToPage(page.coords);
     } else if (page.id === this.state.selectedEl) {
-      this.zoomToPage(page.coords, false);
+      this.zoomToSelection(page.coords);
     } else {
       this.selectPage(page);
     }
