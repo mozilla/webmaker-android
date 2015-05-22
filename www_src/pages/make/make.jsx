@@ -69,15 +69,12 @@ var Make = React.createClass({
       if (window.Android) {
         window.Android.setView('/projects/' + body.project.id);
       }
+
+      body.project.author = body.project.author || userInfo;
+
       this.setState({
         loading: false,
-        projects: [{
-          id: body.project.id,
-          title: defaultTitle,
-          thumbnail: {},
-          // todo
-          author: userInfo
-        }].concat(this.state.projects)
+        projects: [body.project].concat(this.state.projects)
       });
     });
   },
