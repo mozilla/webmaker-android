@@ -1,8 +1,16 @@
 <resources>
-
-    <!-- Base application theme. -->
     <style name="AppTheme" parent="android:Theme.Holo.Light.DarkActionBar">
-        <!-- Customize your theme here. -->
+        <item name="android:actionBarStyle">@style/AppTheme.ActionBar</item>
+        <item name="android:actionBarTabStyle">@style/AppTheme.ActionBar.Tab</item>
     </style>
 
+    <style name="AppTheme.ActionBar" parent="android:style/Widget.Holo.ActionBar">
+        <item name="android:background">@color/blue</item>
+        <item name="android:textColor">@color/white</item>
+    </style>
+
+    <style name="AppTheme.ActionBar.Tab" parent="android:style/Widget.Holo.ActionBar.TabView">
+        <item name="android:background">@color/blue</item>
+        <item name="android:textColor">@color/white</item>
+    </style>
 </resources>
