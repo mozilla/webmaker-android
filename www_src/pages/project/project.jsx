@@ -14,10 +14,14 @@ var ElementGroup = require('../../components/element-group/element-group.jsx');
 var api = require('../../lib/api');
 var calculateSwipe = require('../../lib/swipe.js');
 
+// I'm sorrry
+var $ = require('jquery');
+require('../../lib/panzoom-jquery.js');
+
 var MAX_ZOOM = 0.8;
 var MIN_ZOOM = 0.18;
 var DEFAULT_ZOOM = 0.5;
-var ZOOM_SENSITIVITY = 300;
+
 
 var Page = React.createClass({
   render: function () {
@@ -42,11 +46,7 @@ var Project = React.createClass({
       loading: true,
       selectedEl: '',
       pages: [],
-      camera: {
-        x: 0,
-        y: 0
-      },
-      zoom: DEFAULT_ZOOM,
+      matrix: [ DEFAULT_ZOOM, 0, 0, DEFAULT_ZOOM, 0, 0 ],
       isPageZoomed: false
     };
   },
@@ -81,147 +81,82 @@ var Project = React.createClass({
   },
 
   componentDidMount: function () {
-    var el = this.getDOMNode();
     var bounding = this.refs.bounding;
     var boundingEl = bounding.getDOMNode();
-    var startX, startY, endX, endY, startDistance, currentX, currentY, currentZoom;
-    var didMove = false;
 
     if (window.Android) {
       var state = JSON.parse(window.Android.getState());
       if (state.params && state.params.page === this.state.params.page) {
-        this.setState({
-          selectedEl: state.selectedEl,
-          camera: state.camera,
-          zoom: state.zoom
-        });
+        var newState = {};
+        if (state.selectedEl) newState.selectedEl = state.selectedEl;
+        if (state.matrix) newState.matrix = state.matrix;
+        this.setState(newState);
       }
     }
 
-    el.addEventListener('touchstart', (event) => {
-      didMove = false;
+    this.$boundingEl = $(boundingEl);
 
-      if (event.touches.length > 1) {
-        var dx = event.touches[1].clientX - event.touches[0].clientX;
-        var dy = event.touches[1].clientY - event.touches[0].clientY;
-        startDistance = Math.sqrt(dx*dx + dy*dy);
-      } else {
-        startX = event.touches[0].clientX;
-        startY = event.touches[0].clientY;
-        boundingEl.style.transition = 'none';
-      }
-
+    this.$boundingEl.panzoom({
+      minScale: MIN_ZOOM,
+      maxScale: MAX_ZOOM
     });
 
-    el.addEventListener('touchmove', (event) => {
-      didMove = true;
-      var translateStr = 'translate(' + this.state.camera.x + 'px, ' + this.state.camera.y + 'px)';
-      var scaleStr = 'scale(' + this.state.zoom + ')';
-      if (event.touches.length > 1) {
-        currentZoom = this.state.zoom;
-        var dx = event.touches[1].clientX - event.touches[0].clientX;
-        var dy = event.touches[1].clientY - event.touches[0].clientY;
-        var distance = Math.sqrt(dx*dx + dy*dy);
-
-        currentZoom = currentZoom + ((distance - startDistance) / ZOOM_SENSITIVITY);
-        currentZoom = Math.min(Math.max(currentZoom, MIN_ZOOM), MAX_ZOOM);
-        scaleStr = 'scale(' + currentZoom + ')';
-      }
-
-      var x = this.state.camera.x;
-      var y = this.state.camera.y;
-      currentX = x + (event.touches[0].clientX - startX);
-      currentY = y + (event.touches[0].clientY - startY);
-      translateStr = 'translate(' + currentX + 'px, ' + currentY + 'px)';
-
-      endX = event.touches[0].clientX;
-      endY = event.touches[0].clientY;
-
-      // Only pan the bounding box if you're not zoomed in on a page
-      if (!this.state.isPageZoomed) {
-        boundingEl.style.transform = translateStr + ' ' + scaleStr;
-      }
-    });
-
-    el.addEventListener('touchend', (event) => {
-      if (event.touches.length === 0) {
-        boundingEl.style.transition = '';
-        if (!didMove) {
-          return;
-        }
-
-        if (!this.state.isPageZoomed) {
-          var state = {camera: {
-            x: currentX,
-            y: currentY
-          }};
-
-          if (typeof currentZoom !== 'undefined') {
-            state.zoom = currentZoom;
-          }
-          this.setState(state);
-
-          startX = undefined;
-          startY = undefined;
-          startDistance = undefined;
-          currentX = undefined;
-          currentY = undefined;
-          currentZoom = undefined;
-        } else {
-          // Handle swipe
-          var swipeDirection = calculateSwipe(startX, startY, endX, endY);
-
-          if (swipeDirection) {
-            var panTargets = {
-              LEFT: {x: this.state.zoomedPageCoords.x + 1, y: this.state.zoomedPageCoords.y},
-              RIGHT: {x: this.state.zoomedPageCoords.x - 1, y: this.state.zoomedPageCoords.y},
-              UP: {x: this.state.zoomedPageCoords.x, y: this.state.zoomedPageCoords.y + 1},
-              DOWN: {x: this.state.zoomedPageCoords.x, y: this.state.zoomedPageCoords.y - 1}
-            };
-
-            // Determine if an adjacent page exists
-            var isAdjacentPage = false;
-            var target = panTargets[swipeDirection];
-
-            this.state.pages.forEach(function (page) {
-              if (page.coords.x === target.x && page.coords.y === target.y) {
-                isAdjacentPage = true;
-              }
-            });
-
-            if (isAdjacentPage) {
-              this.zoomToPage(target);
-            }
-          }
-        }
-      } else {
-        startX = event.touches[0].clientX;
-        startY = event.touches[0].clientY;
-        this.state.camera.x = currentX;
-        this.state.camera.y = currentY;
-        this.state.zoom = currentZoom;
-      }
-
-    });
   },
+
+  getZoom: function () {
+    return this.state.matrix[0];
+  },
+
+  panMatrix: function (x, y, matrix) {
+    matrix = matrix || this.$boundingEl.panzoom('getMatrix');
+
+    matrix[4] = x;
+    matrix[5] = y;
+
+    return matrix;
+  },
+
+  panZoomMatrix: function (x, y, zoom) {
+    var matrix = this.panMatrix(x, y);
+    matrix[0] = zoom;
+    matrix[3] = zoom;
+
+    return matrix;
+  },
+
+  getFocusTransform: function (x, y, zoom) {
+    zoom = zoom || this.getZoom();
+    var coords = this.cartesian.getFocusTransform({x, y}, zoom);
+    return this.panZoomMatrix(coords.x, coords.y, zoom);
+  },
+
   selectPage: function (el) {
+    this.$boundingEl.panzoom('transition');
     this.setState({
-      camera: this.cartesian.getFocusTransform(el.coords, this.state.zoom),
+      matrix: this.getFocusTransform(el.coords.x, el.coords.y),
       selectedEl: el.id
     });
   },
+
   zoomToPage: function (coords) {
+    this.$boundingEl.panzoom('transition');
+    this.$boundingEl.panzoom('enable');
+
     this.setState({
-      camera: this.cartesian.getFocusTransform(coords, 1),
-      zoom: 1,
+      matrix: this.getFocusTransform(coords.x, coords.y, 1),
       isPageZoomed: true,
       zoomedPageCoords: coords
     });
+
+    this.$boundingEl.panzoom('disable');
   },
+
   zoomFromPage: function () {
+    this.$boundingEl.panzoom('transition');
+    this.$boundingEl.panzoom('enable');
+    var coords = this.state.zoomedPageCoords;
     this.setState({
-      camera: this.cartesian.getFocusTransform(this.state.zoomedPageCoords, DEFAULT_ZOOM),
-      zoom: DEFAULT_ZOOM,
+      matrix: this.getFocusTransform(coords.x, coords.y, DEFAULT_ZOOM),
       isPageZoomed: false
     });
   },
@@ -234,18 +169,83 @@ var Project = React.createClass({
    * @return {void}
    */
   zoomToSelection: function (coords) {
+    this.$boundingEl.panzoom('transition');
     this.setState({
-      camera: this.cartesian.getFocusTransform(coords, 1),
-      zoom: 1,
+      matrix: this.getFocusTransform(coords.x, coords.y, 1),
       zoomedPageCoords: coords
     });
   },
 
-  zoomOut: function () {
-    this.setState({zoom: this.state.zoom / 2});
+  touchState: {
+    didMove: false,
+    startX: 0,
+    startY: 0,
+    endX: 0,
+    endY: 0
   },
-  zoomIn: function () {
-    this.setState({zoom: this.state.zoom * 2});
+
+  onTouchStart: function (event) {
+    this.touchState.didMove = false;
+    if (event.touches.length !== 1) {
+      return;
+    }
+    this.touchState.startX = event.touches[0].clientX;
+    this.touchState.startY = event.touches[0].clientY;
+  },
+
+  onTouchMove: function (event) {
+    this.touchState.didMove = true;
+    this.touchState.endX = event.touches[0].clientX;
+    this.touchState.endY = event.touches[0].clientY;
+  },
+
+  onTouchEnd: function (event) {
+
+    if (this.touchState.didMove) {
+      this.setState({
+        matrix: this.$boundingEl.panzoom('getMatrix')
+      });
+    }
+
+    // Only needs to be run for swipes when
+    // zoomed in, in play mode
+    if (event.touches.length !== 0 || !this.state.isPageZoomed) {
+      return;
+    }
+
+    var startX = this.touchState.startX;
+    var startY = this.touchState.startY;
+    var {startX, startY, endX, endY} = this.touchState;
+
+    var swipeDirection = calculateSwipe(startX, startY, endX, endY);
+    var pageX = this.state.zoomedPageCoords.x;
+    var pageY = this.state.zoomedPageCoords.y;
+
+    if (!swipeDirection) {
+      return;
+    }
+
+    var panTargets = {
+      LEFT: {x: pageX + 1, y: pageY},
+      RIGHT: {x: pageX - 1, y: pageY},
+      UP: {x: pageX, y: pageY + 1},
+      DOWN: {x: pageX, y: pageY - 1}
+    };
+
+    // Determine if an adjacent page exists
+    var isAdjacentPage = false;
+    var target = panTargets[swipeDirection];
+
+    this.state.pages.forEach(function (page) {
+      if (page.coords.x === target.x && page.coords.y === target.y) {
+        isAdjacentPage = true;
+      }
+    });
+
+    if (isAdjacentPage) {
+      this.zoomToPage(target);
+    }
+
   },
 
   loadPages: function (pages) {
@@ -271,7 +271,7 @@ var Project = React.createClass({
     this.cartesian.allCoords = pages.map(el => el.coords);
     state.pages = pages;
     if (!this.state.selectedEl) {
-      state.camera = this.cartesian.getFocusTransform({x: 0, y: 0}, this.state.zoom);
+      state.matrix = this.getFocusTransform(0, 0);
     }
     this.setState(state);
   },
@@ -342,10 +342,14 @@ var Project = React.createClass({
         json.coords = {x: json.x, y: json.y};
         delete json.x;
         delete json.y;
+
+        var matrix = this.getFocusTransform(coords.x, coords.y);
+
         this.cartesian.allCoords.push(coords);
+        this.$boundingEl.panzoom('transition');
         this.setState({
           pages: update(this.state.pages, {$push: [json]}),
-          camera: this.cartesian.getFocusTransform(coords, this.state.zoom),
+          matrix,
           selectedEl: json.id
         });
       });
@@ -380,9 +384,9 @@ var Project = React.createClass({
       }
 
       this.cartesian.allCoords.splice(index, 1);
+      this.$boundingEl.panzoom('transition');
       this.setState({
         pages: update(this.state.pages, {$splice: [[index, 1]]}),
-        zoom: this.state.zoom >= MAX_ZOOM ? DEFAULT_ZOOM : this.state.zoom,
         selectedEl: ''
       });
     });
@@ -390,6 +394,7 @@ var Project = React.createClass({
   },
 
   onPageClick: function (page) {
+
     if (this.state.params.mode === 'play') {
       this.zoomToPage(page.coords);
     } else if (page.id === this.state.selectedEl) {
@@ -404,19 +409,25 @@ var Project = React.createClass({
     document.body.style.overflowY = 'hidden';
 
     var self = this;
-    var isPlayOnly = this.state.params.mode === 'play' ? true : false;
+    var isPlayOnly = this.state.params.mode === 'play';
 
-    var containerStyle = {
+    if (this.state.isPageZoomed) {
+      this.$boundingEl.panzoom('disable');
+    }
+
+    var boundingProps = {
+      style: assign(this.cartesian.getBoundingSize(), {
+        transform: this.state.matrix ? `matrix(${this.state.matrix.join(', ')})` : false
+      }),
+      onTouchStart: this.onTouchStart,
+      onTouchMove: this.onTouchMove,
+      onTouchEnd: this.onTouchEnd
+    };
+
+    var innerStyle = {
       width: this.cartesian.width + 'px',
       height: this.cartesian.height + 'px'
     };
-
-    var boundingStyle = assign({
-        transform: `translate(${this.state.camera.x}px, ${this.state.camera.y}px) scale(${this.state.zoom})`,
-        opacity: this.state.pages.length ? 1 : 0
-      },
-      this.cartesian.getBoundingSize()
-    );
 
     var pageUrl = `/projects/${this.state.params.project}/pages/${this.state.selectedEl}`;
 
@@ -433,8 +444,8 @@ var Project = React.createClass({
     return (
       <div id="map">
 
-        <div ref="bounding" className="bounding" style={boundingStyle}>
-          <div className="test-container" style={containerStyle}>
+        <div ref="bounding" className="bounding" {...boundingProps}>
+          <div className="bounding-inner" style={innerStyle}>
           {this.state.pages.map((page) => {
             var props = {
               page,

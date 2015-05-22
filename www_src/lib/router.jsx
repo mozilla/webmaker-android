@@ -20,8 +20,9 @@ module.exports = {
       }
     } else {
       r = {
+        // mode: 'play',
         user: 1,
-        project: 1,
+        project: 21,
         page: 1,
         element: 1
       };
