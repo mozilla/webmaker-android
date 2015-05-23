@@ -88,8 +88,11 @@ var Project = React.createClass({
       var state = JSON.parse(window.Android.getState());
       if (state.params && state.params.page === this.state.params.page) {
         var newState = {};
-        if (state.selectedEl) newState.selectedEl = state.selectedEl;
-        if (state.matrix) newState.matrix = state.matrix;
+        ['selectedEl', 'matrix'].forEach(prop => {
+          if (state[prop]) {
+            newState[prop] = state[prop];
+          }
+        });
         this.setState(newState);
       }
     }
