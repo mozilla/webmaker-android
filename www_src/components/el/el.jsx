@@ -67,10 +67,28 @@ var El = React.createClass({
     if(!prevState.touchactive && this.state.touchactive) {
       this.onUpdate();
     }
+
+    this.positionButton();
+  },
+
+  // Button position is based on the rendered DOM, so we're setting it directly post-render
+  positionButton: function () {
+    var elWrapper = this.getDOMNode();
+    var elStyleWrapper = elWrapper.querySelector('.style-wrapper');
+    var elButton = elWrapper.querySelector('.meta-button');
+
+    var boundingBox = elStyleWrapper.getBoundingClientRect();
+    var buttonStyle = this.getInitialState();
+
+    buttonStyle.y += (((boundingBox.bottom - boundingBox.top) / 2) + 20);
+
+    elButton.style.transform = Spec.propsToPosition(buttonStyle).transform;
   },
 
   render: function() {
-    var style = Spec.propsToPosition(this.getInitialState());
+    var state = this.getInitialState();
+
+    // state.angle = Math.random() * 100; // TODO / TEMP : For test purposes
 
     var className = classes('el', 'el-' + this.props.type, {
       touchactive: this.state.touchactive,
@@ -80,10 +98,15 @@ var El = React.createClass({
     var Element = El.types[this.props.type];
 
     return (
-      <div className="el-container" key={this.props.key}>
-        <div ref="overlay" className="touch-overlay" hidden={!this.state.touchactive} />
-        <div className={className} style={style}>
-          <Element {...this.props} />
+      <div className="el-wrapper">
+        <div className="el-container" key={this.props.key}>
+          <div ref="overlay" className="touch-overlay" hidden={!this.state.touchactive} />
+          <div className={className + ' style-wrapper'} style={Spec.propsToPosition(state)}>
+            <Element {...this.props} />
+          </div>
+        </div>
+        <div className="el-container" key={this.props.key + '-2'}>
+          <button className="meta-button">Set destination</button>
         </div>
       </div>
     );
