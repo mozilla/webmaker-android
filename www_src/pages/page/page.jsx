@@ -53,7 +53,6 @@ var Page = React.createClass({
   render: function () {
     var elements = this.state.elements;
 
-    // var positionables = this.formPositionables(elements);
     var secondaryClass = (name => {
       var names = {
         secondary: true,
@@ -130,41 +129,6 @@ var Page = React.createClass({
   deselectAll: function () {
     this.setState({
       currentElement: -1
-    });
-  },
-
-  formPositionables: function(content) {
-    return content.map((props, i) => {
-      if (props === false) {
-        return false;
-      }
-
-      props.parentWidth = this.state.dims.width;
-      props.parentHeight = this.state.dims.height;
-
-      var Element = Generator.blocks[props.type];
-
-      props.ref = "positionable"+i;
-      props.key = "positionable"+i;
-      props.current = this.state.currentElement===i;
-
-      var setDestination;
-
-      // Give link blocks a Set Destination button
-      if (props.type === 'link') {
-        setDestination = (
-          <button className="btn setDestination">Set destination</button>
-        );
-      }
-
-      return (
-        <div>
-          <Positionable {...props} onUpdate={this.updateElement(i)}>
-            <Element {...props} />
-            {setDestination}
-          </Positionable>
-        </div>
-      );
     });
   },
 
