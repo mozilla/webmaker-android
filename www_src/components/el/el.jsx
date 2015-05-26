@@ -68,7 +68,9 @@ var El = React.createClass({
       this.onUpdate();
     }
 
-    this.positionButton();
+    if (this.props.type === 'link') {
+      this.positionButton();
+    }
   },
 
   // Button position is based on the rendered DOM, so we're setting it directly post-render
@@ -80,7 +82,7 @@ var El = React.createClass({
     var boundingBox = elStyleWrapper.getBoundingClientRect();
     var buttonStyle = this.getInitialState();
 
-    buttonStyle.y += (((boundingBox.bottom - boundingBox.top) / 2) + 20);
+    buttonStyle.y += (((boundingBox.bottom - boundingBox.top) / 2) + 40);
 
     elButton.style.transform = Spec.propsToPosition(buttonStyle).transform;
   },
@@ -97,6 +99,16 @@ var El = React.createClass({
 
     var Element = El.types[this.props.type];
 
+    var setDestinationButton;
+
+    if (this.props.type === 'link') {
+      setDestinationButton = (
+        <div className="el-container" key={this.props.key + '-2'}>
+          <button className="btn meta-button">Set destination</button>
+        </div>
+      );
+    }
+
     return (
       <div className="el-wrapper">
         <div className="el-container" key={this.props.key}>
@@ -105,9 +117,7 @@ var El = React.createClass({
             <Element {...this.props} />
           </div>
         </div>
-        <div className="el-container" key={this.props.key + '-2'}>
-          <button className="meta-button">Set destination</button>
-        </div>
+        { setDestinationButton }
       </div>
     );
   },
