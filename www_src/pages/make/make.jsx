@@ -1,32 +1,105 @@
 var React = require('react');
 var render = require('../../lib/render.jsx');
-var Binding = require('../../lib/binding.jsx');
 var api = require('../../lib/api.js');
 var Card = require('../../components/card/card.jsx');
-var Link = require('../../components/link/link.jsx');
+var Loading = require('../../components/loading/loading.jsx');
 
 var Make = React.createClass({
-  mixins: [Binding],
+  mixins: [],
+  getInitialState: function () {
+    return {
+      projects: [],
+      loading: true
+    };
+  },
   componentWillMount: function () {
+    this.load();
+  },
+  componentDidUpdate: function (prevProps) {
+    if (this.props.isVisible && !prevProps.isVisible) {
+      this.load();
+    }
+  },
+  onError: function (err) {
+    console.error(err);
+    this.setState({loading: false});
+  },
+  onEmpty: function () {
+    console.log('No projects found');
+    this.setState({loading: false});
+  },
+  load: function () {
+    this.setState({loading: true});
     api({
-      uri: '/c0645e6953e9949f8e5c/raw/'
-    }, function (err, body) {
-      console.dir(err);
-      console.dir(body);
+      uri: '/users/1/projects',
+      useCache: true
+    }, (err, body) => {
+      if (err) {
+        return this.onError(err);
+      }
+
+      if (!body || !body.projects || !body.projects.length) {
+        return this.onEmpty();
+      }
+
+      this.setState({
+        loading: false,
+        projects: body.projects
+      });
+    });
+  },
+  addProject: function () {
+    var defaultTitle = 'My project';
+    var userInfo = {
+      username: 'testuser'
+    };
+    this.setState({loading: true});
+    api({
+      method: 'post',
+      uri: '/users/1/projects',
+      json: {
+        title: defaultTitle
+      }
+    }, (err, body) => {
+      if (err) {
+        return this.onError(err);
+      }
+      if (!body || !body.project) {
+        return this.onEmpty();
+      }
+      if (window.Android) {
+        window.Android.setView('/projects/' + body.project.id);
+      }
+
+      body.project.author = body.project.author || userInfo;
+
+      this.setState({
+        loading: false,
+        projects: [body.project].concat(this.state.projects)
+      });
     });
   },
   render: function () {
+
+    var cards = this.state.projects.map(project => {
+      return (
+        <Card
+          key={project.id}
+          url={"/projects/" + project.id}
+          href="/pages/project"
+          thumbnail={project.thumbnail[400]}
+          title={project.title}
+          author={project.author.username} />
+      );
+    });
+
     return (
       <div id="make">
-        <Link url="/projects/new" href="/pages/project" className="btn btn-block btn-teal">
+        <button onClick={this.addProject} className="btn btn-block btn-teal">
           + Create a Project
-        </Link>
-        
-        <Card
-          url="/projects/123"
-          href="/pages/project"
-          thumbnail="../../img/demo.png"
-          title="The Birds of the Amazon" />
+        </button>
+        {cards}
+        <Loading on={this.state.loading} />
       </div>
     );
   }

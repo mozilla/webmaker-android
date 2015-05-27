@@ -1,17 +1,29 @@
 package mozilla.org.webmaker.activity;
 
 import android.os.Bundle;
-import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
-import android.widget.RelativeLayout;
+
+import org.json.JSONException;
+
 import mozilla.org.webmaker.R;
 import mozilla.org.webmaker.WebmakerActivity;
-import mozilla.org.webmaker.view.WebmakerWebView;
+import mozilla.org.webmaker.router.Router;
 
 public class Project extends WebmakerActivity {
     public Project() {
         super("project", R.id.project_layout, R.layout.project_layout, R.menu.menu_project);
+    }
+
+    @Override
+    protected void onCreate(Bundle savedInstanceState) {
+        super.onCreate(savedInstanceState);
+        
+        try {
+            routeParams.put("mode", "edit");
+        } catch (JSONException e) {
+            // do nothing
+        }
     }
 
     @Override
@@ -22,6 +34,27 @@ public class Project extends WebmakerActivity {
 
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {
-        return item.getItemId() == R.id.action_settings;
+        // Fetch project ID
+        String id;
+        try {
+            id = routeParams.get("project").toString();
+        } catch (JSONException e) {
+            return super.onOptionsItemSelected(item);
+        }
+
+        // Handle button press
+        switch (item.getItemId()) {
+            case R.id.action_play:
+                Router.sharedRouter().open("/projects/" + id + "/play");
+                return true;
+            case R.id.action_settings:
+                Router.sharedRouter().open("/projects/" + id + "/settings");
+                return true;
+            case R.id.action_share:
+                // @todo
+                return true;
+            default:
+                return super.onOptionsItemSelected(item);
+        }
     }
 }

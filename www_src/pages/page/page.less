@@ -1,3 +1,5 @@
+
+
 #project {
   @_gutter: 10px;
   @_baseWidth: 320px;
@@ -22,32 +24,16 @@
       left: 0;
       width: 100%;
       height: 100%;
-      background: @yellow;
+      background: @softGrey;
 
-      .inner {
+      .inner,
+      .deselector {
         width: 100%;
         height: 100%;
       }
 
-      // These are the previews of the adjacent pages
-      &.next {
-        opacity: 0.3;
-      }
-      &.right {
-        transform: translateX(100%);
-        left: @_gutter;
-      }
-      &.left {
-        transform: translateX(-100%);
-        left: -(@_gutter);
-      }
-      &.top {
-        transform: translateY(-100%);
-        top: -(@_gutter);
-      }
-      &.bottom {
-        transform: translateY(100%);
-        top: @_gutter;
+      .deselector {
+        position: absolute;
       }
     }
   }
@@ -161,57 +147,18 @@
       }
     }
   }
-  .positionables {
-    overflow: auto;
-    height: 100%;
-    width: 100%;
+}
 
-    .positionableContainer {
+.element-group {
+  .el-wrapper {
+    button {
+      box-shadow: rgba(0, 0, 0, 0.298039) 0px 3px 10px;
+      flex-shrink: 0;
+      display: none;
+    }
 
-      .touchOverlay {
-        position: fixed;
-        top: 0;
-        right: 0;
-        bottom: 0;
-        left: 0;
-        z-index: 2147483647; /* signed 32bit maxint */
-      }
-
-      .positionable {
-
-        padding: 10px;
-        user-select: none;
-
-        position: relative;
-        display: inline-block;
-        z-index: 0;
-        background: inherit;
-
-        div {
-          box-sizing: content-box;
-        }
-
-        p {
-          margin: 0;
-        }
-
-        &.current {
-          margin: -1px;
-          border: 1px dashed @white;
-
-          &:after {
-            z-index: -1;
-            content: '';
-            display: block;
-            position: absolute;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            border: 1px dashed @blue;
-          }
-        }
-      }
+    &.current button {
+      display: block;
     }
   }
 }

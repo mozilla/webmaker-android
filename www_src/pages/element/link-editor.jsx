@@ -1,38 +1,34 @@
 var React = require('react/addons');
-var defaults = require('lodash.defaults');
 
-var LinkBlock = require('../../blocks/link.jsx');
+var LinkBlock = require('../../components/el/types/link.jsx');
 var Alert = require('../../components/alert/alert.jsx');
 var ColorGroup = require('../../components/color-group/color-group.jsx');
-var Range = require('../../components/range/range.jsx');
+var Slider = require('../../components/range/range.jsx');
 
 var LinkEditor = React.createClass({
   mixins: [
-    React.addons.LinkedStateMixin
+    React.addons.LinkedStateMixin,
+    require('./witheditable')
   ],
   getInitialState: function () {
-    var props = this.props.element || {};
-    return defaults(props, LinkBlock.defaults);
+    return LinkBlock.spec.flatten(this.props.element, {defaults: true});
   },
   componentDidUpdate: function () {
-    this.props.save(this.state);
-  },
-  editText: function () {
-    var text = window.prompt('Edit the text');
-    this.setState({
-      innerHTML: text
-    });
+    this.props.cacheEdits(this.state);
   },
   onChangeLinkClick: function () {
     this.refs.notImplementedWarning.show();
   },
   render: function () {
     return (
-      <div id="editor">
+      <div id="editor" onClick={this.stopEditing}>
         <div className="editor-preview">
-          <LinkBlock {...this.state} />
+          <LinkBlock {...this.state} ref="element" active={true} updateText={this.updateText} setEditMode={this.setEditing} />
         </div>
         <div className="editor-options">
+          <div className="form-group">
+            <button className="btn btn-block" onClick={this.editText}>{ this.state.editing? "Done" : "Edit Label"}</button>
+          </div>
           <div className="form-group">
             <button onClick={this.onChangeLinkClick} className="btn btn-block">
               <img className="icon" src="../../img/change-image.svg" /> Set Link Destination
@@ -41,7 +37,7 @@ var LinkEditor = React.createClass({
           </div>
           <div className="form-group">
             <label>Corners</label>
-            <Range id="borderRadius" min={0} value={this.state.borderRadius} max={32} unit="px" linkState={this.linkState} />
+            <Slider id="borderRadius" min={0} value={this.state.borderRadius} max={32} unit="px" linkState={this.linkState} />
           </div>
           <div className="form-group">
             <label>Font</label>

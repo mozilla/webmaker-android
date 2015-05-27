@@ -1,23 +1,30 @@
 var React = require('react');
 var classNames = require('classnames');
+var assign = require('react/lib/Object.assign');
 var render = require('../../lib/render.jsx');
 var router = require('../../lib/router.jsx');
 var api = require('../../lib/api.js');
-var uuid = require('../../lib/uuid.js');
+var types = require('../../components/el/el.jsx').types;
 
 var Link = require('../../components/link/link.jsx');
-var Generator = require('../../blocks/generator');
-
-var Positionable = require('./positionable.jsx');
+var Loading = require('../../components/loading/loading.jsx');
+var ElementGroup = require('../../components/element-group/element-group.jsx');
 
 var Page = React.createClass({
 
   mixins: [router],
 
+  uri: function () {
+    var params = this.state.params;
+    return `/users/1/projects/${params.project}/pages/${params.page}`;
+  },
+
   getInitialState: function() {
     return {
-      elements: [],
-      currentElement: -1,
+      loading: true,
+      elements: {},
+      styles: {},
+      currentElementId: -1,
       showAddMenu: false,
       dims: {
         width: 0,
@@ -30,27 +37,26 @@ var Page = React.createClass({
     this.load();
   },
 
-  componentDidUpdate: function (prevProps) {
+  componentDidUpdate: function (prevProps, prevState) {
+    // resume
     if (this.props.isVisible && !prevProps.isVisible) {
       this.load();
-      console.log('restored!');
-    } else {
-      // This will need to happen less frequently
-      // When we are hitting a real API server
-      this.save();
+    }
+    // set parent back button state
+    if (this.state.showAddMenu !== prevState.showAddMenu) {
+      this.props.update({
+        onBackPressed: this.state.showAddMenu ? this.toggleAddMenu : false
+      });
     }
   },
 
   render: function () {
     var elements = this.state.elements;
-    var currentElement = this.state.currentElement;
-    var currentElementType = elements[currentElement] ? elements[currentElement].type : '';
 
-    var positionables = this.formPositionables(elements);
     var secondaryClass = (name => {
       var names = {
         secondary: true,
-        active: this.state.currentElement > -1 && !this.state.showAddMenu
+        active: this.state.currentElementId > -1 && !this.state.showAddMenu
       };
       names[name] = true;
       return classNames(names);
@@ -59,34 +65,40 @@ var Page = React.createClass({
     // Url for link to element editor
     var href = '';
     var url = '';
-    var currentEl = elements[this.state.currentElement];
+    var currentEl = elements[this.state.currentElementId];
     if (typeof currentEl !== 'undefined') {
       href = '/pages/element/#' + currentEl.type;
-      url =  '/projects/123/pages/' + this.state.params.page + '/elements/' + currentEl.id + '/editor/' + currentEl.type;
+      var params = this.state.params;
+      url = `/projects/${params.project}/pages/${params.page}/elements/${currentEl.id}/editor/${currentEl.type}`;
     }
 
-    return <div id="project" className="demo">
+    return (<div id="project" className="demo">
       <div className="pages-container">
-        <div className="page next top" />
-        <div className="page next right" />
-        <div className="page next bottom" />
-        <div className="page next left" />
         <div className="page">
-          <div className="inner" style={{backgroundColor: this.state.style.backgroundColor}}>
-            <div ref="container" className="positionables">{ positionables }</div>
+          <div className="inner" style={{backgroundColor: this.state.styles.backgroundColor}}>
+            {/*<div ref="container" className="positionables">{ positionables }</div>*/}
+            <ElementGroup
+              ref="container"
+              interactive={true}
+              dims={this.state.dims}
+              elements={this.state.elements}
+              currentElementId={this.state.currentElementId}
+              onTouchEnd={this.save}
+              onUpdate={this.updateElement}
+              onDeselect={this.deselectAll} />
           </div>
         </div>
       </div>
 
-      <div className={classNames({overlay: true, active: this.state.showAddMenu})}/>
+      <div className={classNames({overlay: true, active: this.state.showAddMenu})} onClick={this.toggleAddMenu}/>
 
       <div className={classNames({'controls': true, 'add-active': this.state.showAddMenu})}>
         <div className="add-menu">
-          <button className="text" onClick={this.addText}><img className="icon" src="../../img/text.svg" /></button>
-          <button className="image" onClick={this.addImage}><img className="icon" src="../../img/camera.svg" /></button>
-          <button className="link" onClick={this.addLink}><img className="icon" src="../../img/link.svg" /></button>
+          <button className="text" onClick={this.addElement('text')}><img className="icon" src="../../img/text.svg" /></button>
+          <button className="image" onClick={this.addElement('image')}><img className="icon" src="../../img/camera.svg" /></button>
+          <button className="link" onClick={this.addElement('link')}><img className="icon" src="../../img/link.svg" /></button>
         </div>
-        <button className={secondaryClass("delete")} onClick={this.deleteElement} active={this.state.currentElement===-1}>
+        <button className={secondaryClass("delete")} onClick={this.deleteElement} active={this.state.currentElementId===-1}>
           <img className="icon" src="../../img/trash.svg" />
         </button>
         <button className="add" onClick={this.toggleAddMenu}></button>
@@ -97,7 +109,8 @@ var Page = React.createClass({
           <img className="icon" src="../../img/brush.svg" />
         </Link>
       </div>
-    </div>
+      <Loading on={this.state.loading} />
+    </div>);
   },
 
   componentDidMount: function() {
@@ -113,102 +126,143 @@ var Page = React.createClass({
     this.setState({showAddMenu: !this.state.showAddMenu});
   },
 
-  formPositionables: function(content) {
-    return content.map((props, i) => {
-      if (props === false) {
-        return false;
-      }
-
-      props.parentWidth = this.state.dims.width;
-      props.parentHeight = this.state.dims.height;
-
-      var Element = Generator.blocks[props.type];
-
-      props.ref = "positionable"+i;
-      props.key = "positionable"+i;
-      props.current = this.state.currentElement===i;
-      return <div>
-        <Positionable {...props} onUpdate={this.updateElement(i)}>
-          <Element {...props} />
-        </Positionable>
-      </div>;
-    });
-  },
-
-  appendElement: function(obj) {
+  deselectAll: function () {
     this.setState({
-      elements: this.state.elements.concat([obj]),
-      showAddMenu: false
+      currentElementId: -1
     });
   },
 
-  updateElement: function(index) {
-    return function(data) {
+  addElement: function(type) {
+    return () => {
+      var json = types[type].spec.generate();
+
+      api({method: 'post', uri: this.uri() + '/elements', json}, (err, data) => {
+        var state = {showAddMenu: false};
+        if (err) {
+          console.log('There was an error creating an element', err);
+        }
+        if (data && data.element) {
+          var id = data.element.id;
+          json.id = id;
+          state.elements = this.state.elements;
+          state.elements[id] = this.flatten(json);
+          state.currentElementId = id;
+        }
+        this.setState(state);
+      });
+    };
+  },
+
+  updateElement: function (elementId) {
+    return (newProps) => {
       var elements = this.state.elements;
-      var entry = elements[index];
-      Object.keys(data).forEach(k => entry[k] = data[k]);
+      var element = elements[elementId];
+      elements[elementId] = assign(element, newProps);
       this.setState({
         elements: elements,
-        currentElement: index
+        currentElementId: elementId
       });
-    }.bind(this);
+    };
   },
 
   deleteElement: function() {
-    if(this.state.currentElement === -1) return;
+    if (this.state.currentElementId === -1) {
+      return;
+    }
+
     var elements = this.state.elements;
-    elements[this.state.currentElement] = false;
-    // note that we do not splice, because the updateElement
-    // function relies on immutable array indices.
-    this.setState({
-      elements: elements,
-      currentElement: -1
+    var id = this.state.currentElementId;
+
+    // Don't delete test elements for real;
+    if (parseInt(id, 10) <= 3) {
+      return window.alert('this is a test element, not deleting.');
+    }
+
+    api({method: 'delete', uri: this.uri() + '/elements/' + id}, (err, data) => {
+      if (err) {
+        return console.error('There was a problem deleting the element');
+      }
+
+      elements[id] = false;
+      var currentElementId = -1;
+      Object.keys(elements).some(function(e) {
+        if (e.id) { currentElementId = e.id; }
+        return !!e;
+      });
+
+      this.setState({
+        elements: elements,
+        currentElementId: currentElementId
+      });
     });
   },
 
-  addLink: function() {
-    this.appendElement(Generator.generateDefinition(Generator.LINK, {
-      href: "https://webmaker.org",
-      label: "webmaker.org",
-      active: false
-    }));
+  flatten: function (element) {
+    if (!types[element.type]) {
+      return false;
+    }
+
+    return types[element.type].spec.flatten(element);
   },
 
-  addText: function() {
-    this.appendElement(Generator.generateDefinition(Generator.TEXT, {
-      value: "This is a paragraph of text"
-    }));
-  },
+  expand: function (element) {
+    if (!types[element.type]) {
+      return false;
+    }
 
-  addImage: function() {
-    this.appendElement(Generator.generateDefinition(Generator.IMAGE, {
-      src: "../../img/toucan.svg",
-      alt: "This is Tucker"
-    }));
-  },
-
-  save: function() {
-    // FIXME: TODO: this needs to be split into "cache this page's current running state" vs.
-    //              "only get the data relevan to for saving this page to db".
-    api({
-      method: 'put',
-      uri: '/users/foo/projects/bar/pages/' + this.state.params.page,
-      json: this.state
-    });
-
+    return types[element.type].spec.expand(element);
   },
 
   load: function() {
-    var id = this.state.params.page || 'foo0';
     api({
-      uri: '/users/foo/projects/bar/pages/' + id
-    }, (err, cachedState) => {
-      console.log(cachedState);
-      if (!cachedState || Object.keys(cachedState).length === 0) return;
-      // FIXME: TODO: this needs to be split into "loading the page's previous running state" vs.
-      //              "build page based on project stored in db".
-      this.setState(cachedState);
+      uri: this.uri()
+    }, (err, data) => {
+      if (err) {
+        return console.error('There was an error getting the page to load', err);
+      }
+
+      if (!data || !data.page) {
+        return console.error('Could not find the page to load');
+      }
+
+      var page = data.page;
+      var styles = page.styles;
+      var elements = {};
+
+      page.elements.forEach(element => {
+        var element = this.flatten(element);
+        if(element) {
+          elements[element.id] = element;
+        }
+      });
+
+      this.setState({
+        loading: false,
+        styles,
+        elements
+      });
     });
+  },
+
+  save: function (id) {
+    return () => {
+      var el = this.expand(this.state.elements[id]);
+      api({
+        method: 'patch',
+        uri: this.uri() + '/elements/' + id,
+        json: {
+          styles: el.styles
+        }
+      }, (err, data) => {
+        if (err) {
+          return console.error('There was an error updating the element', err);
+        }
+
+        if (!data || !data.element) {
+          console.error('Could not find the element to save');
+        }
+      });
+    };
   }
 });
 

@@ -1,14 +1,12 @@
 var React = require('react');
 
 var render = require('../../lib/render.jsx');
-var Binding = require('../../lib/binding.jsx');
 
 var Tabs = require('../../components/tabs/tabs.jsx');
 var ColorSpectrum = require('../../components/color-spectrum/color-spectrum.jsx');
-var Range = require('../../components/range/range.jsx');
+var Slider = require('../../components/range/range.jsx');
 
 var Tinker = React.createClass({
-  mixins: [Binding],
   getInitialState: function () {
     return {
       color: '#8FB70A'
@@ -29,7 +27,7 @@ var Tinker = React.createClass({
           </div>
           <div className="form-group">
             <label>Transparency</label>
-            <Range />
+            <Slider />
           </div>
         </div>)
       },
@@ -39,12 +37,12 @@ var Tinker = React.createClass({
           {['Red', 'Green', 'Blue'].map((color, i) => {
             return (<div className="form-group">
               <label>{color}</label>
-              <Range max={255} unit="" />
+              <Slider max={255} unit="" />
             </div>);
           })}
           <div className="form-group">
             <label>Transparency</label>
-            <Range />
+            <Slider />
           </div>
         </div>)
       }

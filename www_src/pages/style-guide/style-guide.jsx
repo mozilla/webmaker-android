@@ -4,10 +4,12 @@ var render = require('../../lib/render.jsx');
 // Components
 var ColorGroup = require('../../components/color-group/color-group.jsx');
 var ColorSpectrum = require('../../components/color-spectrum/color-spectrum.jsx');
-var Range = require('../../components/range/range.jsx');
+var Slider = require('../../components/range/range.jsx');
 var Tabs = require('../../components/tabs/tabs.jsx');
 var Card = require('../../components/card/card.jsx');
 var Alert = require('../../components/alert/alert.jsx');
+var TextInput = require('../../components/text-input/text-input.jsx');
+var Loading = require('../../components/loading/loading.jsx');
 
 var tabs = [
   {
@@ -21,6 +23,17 @@ var tabs = [
 ];
 
 var StyleGuide = React.createClass({
+  getInitialState: function () {
+    return {
+      loading: false
+    };
+  },
+  toggleLoading: function () {
+    this.setState({loading: true});
+    setTimeout(() => {
+      this.setState({loading: false});
+    }, 3000);
+  },
   render: function () {
     return (
       <div id="style-guide">
@@ -47,10 +60,10 @@ var StyleGuide = React.createClass({
           <div className="color slate"><span>@slate</span></div>
           <div className="color heatherGrey"><span>@heatherGrey</span></div>
           <div className="color lightGrey"><span>@lightGrey</span></div>
+          <div className="color softGrey"><span>@softGrey</span></div>
           <div className="color plum"><span>@plum</span></div>
           <div className="color shadowPlum"><span>@shadowPlum</span></div>
           <div className="color brick"><span>@brick</span></div>
-          <div className="color yellow"><span>@yellow</span></div>
         </div>
 
         <h2>Components</h2>
@@ -75,8 +88,8 @@ var StyleGuide = React.createClass({
         <h3>ColorSpectrum (JSX)</h3>
         <ColorSpectrum value={'#fff'} onChange="" />
 
-        <h3>Range (JSX)</h3>
-        <Range min={0} max={255} unit="" />
+        <h3>Slider (JSX)</h3>
+        <Slider min={0} max={255} unit="" />
 
         <h3>Tabs (JSX)</h3>
         <Tabs tabs={tabs} className="editor-options"></Tabs>
@@ -88,6 +101,13 @@ var StyleGuide = React.createClass({
           thumbnail="../../img/toucan.svg"
           title="The Birds of the Amazon"
           author="someperson" />
+
+        <h3>TextInput (JSX)</h3>
+        <TextInput label="Title" maxlength={25} />
+
+        <h3>Loading</h3>
+        <button className="btn" onClick={this.toggleLoading}>Show loading</button>
+        <Loading on={this.state.loading} />
 
       </div>
     );

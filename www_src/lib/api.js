@@ -1,22 +1,21 @@
-//var xhr = require('xhr');
-var xhr = require('./api-mock').getResponse;
+var xhr = require('xhr');
 var defaults = require('lodash.defaults');
-var BASE_URL = '';
-var mocks = require('./api-mock');
+var BASE_URL = 'https://webmaker-api.herokuapp.com';
 
 module.exports = function (options, callback) {
   // Set default options
   defaults(options, {
-    method: 'get',
+    method: 'GET',
     useCache: false,
     json: {},
-    timeout: 60000    // 60 seconds
+    headers: {},
+    timeout: 60000 // 60 seconds
   });
 
   // ensure user-supplied methods conform to what we need.
-  options.method = options.method.toLowerCase();
+  options.method = options.method.toUpperCase();
 
-  if (options.method === 'get' && !callback) {
+  if (options.method === 'GET' && !callback) {
     // Signal an error, but don't throw, as that would crash the app:
     console.error('API request for stored data received without a callback handler to forward the data with.');
     console.trace();
@@ -30,28 +29,37 @@ module.exports = function (options, callback) {
   }
   options.uri = BASE_URL + options.uri;
 
+  // Use a fake token for now
+  if (options.method !== 'GET') {
+    options.headers.Authorization = 'token validToken';
+  }
+
   // Set cache key
   var key = 'cache::' + options.method + '::' + options.uri;
 
   // Use device cache if window.Android is available & options.useCache is true
-  if (window.Android && options.useCache === true) {
-    window.Android.logText('Fetching from cache "' + key + '"');
-    var hit = window.Android.getSharedPreferences(key, false);
-    if (typeof hit === 'string') return callback(null, JSON.parse(hit));
+  if (window.Android && options.useCache === true && options.method === 'GET') {
+    console.log('Fetching from cache "' + key + '"');
+    var hit = window.Android.getMemStorage(key, true);
+    if (typeof hit === 'string') {
+      return callback(null, JSON.parse(hit));
+    }
   }
 
   // XHR request
   xhr(options, function (err, res, body) {
-    if (err && callback) return callback(err);
+    if (err && callback) {
+      return callback(err);
+    }
 
     // Set cache if window.Android is available
     if (window.Android) {
-      window.Android.setSharedPreferences(key, JSON.stringify(body), false);
+      window.Android.setMemStorage(key, JSON.stringify(body), true);
     }
 
     // If there is a callback, forward the response body
-    if(callback) {
-      callback(null, body);
+    if (callback) {
+      callback(false, body);
     }
   });
 };

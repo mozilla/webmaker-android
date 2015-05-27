@@ -41,7 +41,9 @@
       panmove: function(evt) {
         evt.preventDefault();
         evt.stopPropagation();
-        if (!transform.x1 && !transform.y1) return;
+        if (!transform.x1 && !transform.y1) {
+          return;
+        }
         if (evt.touches && evt.touches.length > 1) {
           return handlers.handleTouchRepositioning(evt);
         }
@@ -60,6 +62,9 @@
         mark = copy(positionable.state);
         transform = resetTransform();
         positionable.setState({ touchactive: false });
+        if (positionable.onTouchEnd) {
+          positionable.onTouchEnd();
+        }
       },
 
       /**
@@ -70,7 +75,9 @@
       secondFinger: function(evt) {
         evt.preventDefault();
         evt.stopPropagation();
-        if (evt.touches.length < 2) return;
+        if (evt.touches.length < 2) {
+          return;
+        }
         // we need to rebind finger 1, because it may have moved!
         transform.x1 = evt.touches[0].pageX;
         transform.y1 = evt.touches[0].pageY;
@@ -94,7 +101,9 @@
       handleTouchRepositioning: function(evt) {
         evt.preventDefault();
         evt.stopPropagation();
-        if (evt.touches.length < 2) return;
+        if (evt.touches.length < 2) {
+          return;
+        }
         var x1 = evt.touches[0].pageX,
             y1 = evt.touches[0].pageY,
             x2 = evt.touches[1].pageX,
@@ -115,13 +124,15 @@
       endSecondFinger: function(evt) {
         evt.preventDefault();
         evt.stopPropagation();
-        if(evt.touches.length !== 1) return;
+        if (evt.touches.length !== 1) {
+          return;
+        }
         handlers.startmark(evt);
       }
     };
 
     return handlers;
-  };
+  }
 
   module.exports = generator;
 }());

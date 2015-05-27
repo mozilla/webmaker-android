@@ -17,7 +17,9 @@ var ColorGroup = React.createClass({
     };
   },
   onChange: function (e) {
-    if (this.valueLink) this.valueLink.requestChange(e.target.value);
+    if (this.valueLink) {
+      this.valueLink.requestChange(e.target.value);
+    }
   },
   render: function () {
     var linkState = this.props.linkState || this.linkState;
@@ -33,10 +35,10 @@ var ColorGroup = React.createClass({
           transparent: color === 'transparent',
           white: color === '#FFF'
         };
-        return <label className={classNames(className)}>
+        return (<label className={classNames(className)}>
           <span className={classNames(innerClassName)} style={{backgroundColor: color}} />
           <input className="sr-only" name="color" type="radio" value={color} checked={this.valueLink.value === color ? true : null} onChange={this.onChange} />
-        </label>
+        </label>);
       })}
       <div className="tinker-container">
         <Link className="tinker" url={this.props.tinkerUrl} href="/pages/tinker">

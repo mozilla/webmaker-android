@@ -39,7 +39,9 @@ var Checkbox = React.createClass({
 var CheckboxSet = React.createClass({
   mixins: [React.addons.LinkedStateMixin],
   getDefaultProps: function () {
-    linkState: this.linkState
+    return {
+      linkState: this.linkState
+    };
   },
   render: function () {
     return (<OptionPanel>
@@ -51,7 +53,9 @@ var CheckboxSet = React.createClass({
 var Radio = React.createClass({
   mixins: [React.addons.LinkedStateMixin],
   getDefaultProps: function () {
-    linkState: this.linkState
+    return {
+      linkState: this.linkState
+    };
   },
   onChange: function (e) {
     this.valueLink.requestChange(e.target.value);
