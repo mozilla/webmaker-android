@@ -114,14 +114,28 @@ var MyThing = React.createClass({
 `SharedPreferences` is a simple key/value store API native to Android that can be used to persist values to disk that are only available to the Webmaker application. You can both set and get values to `SharedPreferences` using Java <-> JS bindings that are provided within `WebAppInterface.java`:
 ```js
 if (window.Android) {
-  window.Android.setSharedPreferences('my::cache::key', 'foobar', false);
-  var hit = window.Android.getSharedPreferences('my::cache::key', false);
+  window.Android.setSharedPreferences('my::cache::key', 'foobar');
+  var hit = window.Android.getSharedPreferences('my::cache::key');
   console.log(hit); // prints "foobar"
 }
 ```
 
-`SharedPreferences` can be namespaced to the current activity by using the last "scope" parameter. For example using the following in an Activity called "MyActivity":
+`SharedPreferences` is automatically namespaced to the current activity. You can override this behavior by passing `true` to the optional "global" parameter:
 ```js
 window.Android.getSharedPreferences('state', true);
 ```
-will result in a `SharedPreferences` key of `state::MyActivity`.
+
+#### LRU Cache
+`MemStorage` is a single `LRUCache` instance that is provided as a singleton. This can be used to persist values to memory that are **not needed in-between app sessions**. You can both set and get values to `MemStorage` using Java <-> JS bindings that are provided within `WebAppInterface.java`:
+```js
+if (window.Android) {
+  window.Android.setMemStorage('my::cache::key', 'foobar', false);
+  var hit = window.Android.getMemStorage('my::cache::key', false);
+  console.log(hit); // prints "foobar"
+}
+```
+
+`MemStorage` is automatically namespaced to the current activity. You can override this behavior by passing `true` to the optional "global" parameter:
+```js
+window.Android.getMemStorage('state', true);
+```

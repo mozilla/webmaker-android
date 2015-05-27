@@ -41,8 +41,6 @@ public class WebmakerApplication extends Application {
         tracker.enableAutoActivityTracking(true);
         tracker.enableExceptionReporting(true);
 
-        MemStorage.getMemStorage().setContext(getApplicationContext());
-
         Router.sharedRouter().setContext(getApplicationContext());
         Router.sharedRouter().map("/main", MainActivity.class);
         Router.sharedRouter().map("/main/:tab", MainActivity.class);
@@ -52,8 +50,6 @@ public class WebmakerApplication extends Application {
         Router.sharedRouter().map("/projects/:project/pages/:page/elements/:element/attributes/:attribute/editor/:editor", Tinker.class);
         Router.sharedRouter().map("/projects/:project/settings", ProjectSettings.class);
         Router.sharedRouter().map("/projects/:project/:mode", Play.class);
-
-        // @todo Restore state
     }
 
     @Override

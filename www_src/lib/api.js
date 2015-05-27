@@ -38,9 +38,9 @@ module.exports = function (options, callback) {
   var key = 'cache::' + options.method + '::' + options.uri;
 
   // Use device cache if window.Android is available & options.useCache is true
-  if (window.Android && options.useCache === true) {
-    window.Android.logText('Fetching from cache "' + key + '"');
-    var hit = window.Android.getSharedPreferences(key, false);
+  if (window.Android && options.useCache === true && options.method === 'GET') {
+    console.log('Fetching from cache "' + key + '"');
+    var hit = window.Android.getMemStorage(key, true);
     if (typeof hit === 'string') {
       return callback(null, JSON.parse(hit));
     }
@@ -54,12 +54,12 @@ module.exports = function (options, callback) {
 
     // Set cache if window.Android is available
     if (window.Android) {
-      window.Android.setSharedPreferences(key, JSON.stringify(body), false);
+      window.Android.setMemStorage(key, JSON.stringify(body), true);
     }
 
     // If there is a callback, forward the response body
-    if(callback) {
-      callback(null, body);
+    if (callback) {
+      callback(false, body);
     }
   });
 };
