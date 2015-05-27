@@ -11,35 +11,41 @@ var ElementGroup = React.createClass({
     };
   },
   render: function () {
-    return (<div className="element-group">
-      <div className="deselector" onClick={this.props.onDeselect} />
-      {this.props.elements.map((elProps, i) => {
+    return (
+      <div className="element-group">
+        <div className="deselector" onClick={this.props.onDeselect} />
+        {this.props.elements.map((elProps, i) => {
 
-        if (!elProps || !elProps.type) {
-          return false;
-        }
+          if (!elProps || !elProps.type) {
+            return false;
+          }
 
-        elProps = assign({}, elProps, {
-          isCurrent: this.props.currentElement === i,
-          interactive: this.props.interactive
-        });
+          elProps = assign({}, elProps, {
+            isCurrent: this.props.currentElement === i,
+            interactive: this.props.interactive
+          });
 
-        // Add callbacks for interactive mode
-        if (this.props.onTouchEnd) {
-          elProps.onTouchEnd = this.props.onTouchEnd(elProps.id);
-        }
+          // Add callbacks for interactive mode
+          if (this.props.onTouchEnd) {
+            elProps.onTouchEnd = this.props.onTouchEnd(elProps.id);
+          }
 
-        if (this.props.onUpdate) {
-          elProps.onUpdate = this.props.onUpdate(elProps.id);
-        }
+          if (this.props.onUpdate) {
+            elProps.onUpdate = this.props.onUpdate(elProps.id);
+          }
 
-        if (this.props.onUpdate) {
-          elProps.onUpdate = this.props.onUpdate(elProps.id);
-        }
+          if (this.props.onUpdate) {
+            elProps.onUpdate = this.props.onUpdate(elProps.id);
+          }
 
-        return (<El key={'positionable' + i} {...elProps} />);
-      })}
-    </div>);
+          return (
+            <div className={'el-wrapper' + (elProps.isCurrent ? ' current' : '')}>
+              <El key={'positionable' + i} {...elProps} />
+            </div>
+          );
+        })}
+      </div>
+    );
   }
 });
 

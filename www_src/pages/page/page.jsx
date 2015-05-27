@@ -53,7 +53,6 @@ var Page = React.createClass({
   render: function () {
     var elements = this.state.elements;
 
-    // var positionables = this.formPositionables(elements);
     var secondaryClass = (name => {
       var names = {
         secondary: true,
