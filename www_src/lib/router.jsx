@@ -35,7 +35,9 @@ module.exports = {
 
     if (this.android) {
       var routeData = this.android.getRouteData();
-      r = JSON.parse(routeData);
+      if (typeof routeData !== 'undefined') {
+        r = JSON.parse(routeData);
+      }
     }
 
     return r;
