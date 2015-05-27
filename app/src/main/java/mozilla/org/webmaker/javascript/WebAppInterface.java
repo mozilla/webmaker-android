@@ -33,110 +33,47 @@ public class WebAppInterface {
         mActivity = (BaseActivity) context;
         mPrefKey = "::".concat(mContext.getClass().getSimpleName());
         mPrefs = mContext.getSharedPreferences(mPrefKey, 0);
-        mPageState = mPrefs.getString("page_state", "{}");
         mRoute = routeParams;
         Log.v("wm", "getting state " + mPrefKey + ": " + mPageState);
     }
 
     /**
      * ---------------------------------------
-     * SharedPreferences
+     * Disk-based Storage
      * ---------------------------------------
      */
 
     @JavascriptInterface
-    public String getSharedPreferences(String key, boolean scope) {
+    public String getSharedPreferences(String key, final boolean scope) {
         SharedPreferences getter = mContext.getSharedPreferences(WEBMAKER_PREFS, 0);
-        if (scope) {
-            key = key.concat(mPrefKey);
-        }
+        if (scope) key = key.concat(mPrefKey);
         return getter.getString(key, null);
     }
 
     @JavascriptInterface
-    public void setSharedPreferences(String key, String value, boolean scope) {
+    public void setSharedPreferences(String key, final String value, final boolean scope) {
         SharedPreferences.Editor editor = mContext.getSharedPreferences(WEBMAKER_PREFS, 0).edit();
-        if (scope) {
-            key = key.concat(mPrefKey);
-        }
+        if (scope) key = key.concat(mPrefKey);
         editor.putString(key, value);
         editor.apply();
     }
 
-    @JavascriptInterface
-    public String getState() {
-        return mPrefs.getString("page_state", "{}");
-    }
-
-    @JavascriptInterface
-    public void setState(String serializedState) {
-        SharedPreferences.Editor edit = mPrefs.edit();
-        edit.putString("page_state", serializedState);
-        edit.apply();
-    }
-
     /**
      * ---------------------------------------
-     * Utility
+     * Memory-based Storage
      * ---------------------------------------
      */
 
     @JavascriptInterface
-    public void logText(String txt){
-        Log.v("wm", txt);
+    public String getMemStorage (String key, final boolean scope) {
+        if (scope) key = key.concat(mPrefKey);
+        return MemStorage.sharedStorage().get(key);
     }
 
     @JavascriptInterface
-    public void goBack() {
-        mActivity.runOnUiThread(new Runnable() {
-            public void run() {
-                mActivity.goBack();
-            }
-        });
-    }
-
-    /**
-     * ---------------------------------------
-     * Router
-     * ---------------------------------------
-     */
-
-    @JavascriptInterface
-    public void setView(final String url) {
-        Activity activity = (Activity) mContext;
-        if (activity == null) return;
-
-        activity.runOnUiThread(new Runnable() {
-            @Override
-            public void run() {
-                Router.sharedRouter().open(url);
-            }
-        });
-    }
-
-    @JavascriptInterface
-    public void setView(final String url, final String routeData) {
-        Activity activity = (Activity) mContext;
-        if (activity == null) return;
-        MemStorage.sharedCache().put(url, routeData);
-
-        activity.runOnUiThread(new Runnable() {
-            @Override
-            public void run() {
-                Router.sharedRouter().open(url);
-            }
-        });
-    }
-
-    @JavascriptInterface
-    public String getRouteParams() {
-        if (mRoute == null) return "";
-        return mRoute.toString();
-    }
-
-    @JavascriptInterface
-    public String getRouteData(final String url) {
-        return MemStorage.sharedCache().get(url);
+    public void setMemStorage (String key, final String value, final boolean scope) {
+        if (scope) key = key.concat(mPrefKey);
+        MemStorage.sharedStorage().put(key, value);
     }
 
     /**
@@ -158,5 +95,64 @@ public class WebAppInterface {
         if (elementActivity != null) {
             elementActivity.dispatchMediaIntent();
         }
+    }
+
+    /**
+     * ---------------------------------------
+     * Router
+     * ---------------------------------------
+     */
+
+    @JavascriptInterface
+    public void goBack() {
+        mActivity.runOnUiThread(new Runnable() {
+            public void run() {
+                mActivity.goBack();
+            }
+        });
+    }
+
+    @JavascriptInterface
+    public void setView(final String url) {
+        Activity activity = (Activity) mContext;
+        if (activity == null) return;
+
+        activity.runOnUiThread(new Runnable() {
+            @Override
+            public void run() {
+                Router.sharedRouter().open(url);
+            }
+        });
+    }
+
+    @JavascriptInterface
+    public void setView(final String url, final String routeData) {
+        Activity activity = (Activity) mContext;
+        if (activity == null) return;
+        MemStorage.sharedStorage().put("route::data", routeData);
+
+        activity.runOnUiThread(new Runnable() {
+            @Override
+            public void run() {
+                Router.sharedRouter().open(url);
+            }
+        });
+    }
+
+    /**
+     * ---------------------------------------
+     * Router Bindings
+     * ---------------------------------------
+     */
+
+    @JavascriptInterface
+    public String getRouteParams() {
+        if (mRoute == null) return "";
+        return mRoute.toString();
+    }
+
+    @JavascriptInterface
+    public String getRouteData() {
+        return MemStorage.sharedStorage().get("route::data");
     }
 }
