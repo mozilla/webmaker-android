@@ -20,7 +20,6 @@ module.exports = {
       }
     } else {
       params = {
-        // mode: 'play',
         user: 1,
         project: 1,
         page: 1,
