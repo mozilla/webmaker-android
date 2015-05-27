@@ -143,7 +143,7 @@ var Page = React.createClass({
         }
         if (data && data.element) {
           var id = data.element.id;
-          json.id = id
+          json.id = id;
           state.elements = this.state.elements;
           state.elements[id] = this.flatten(json);
           state.currentElementId = id;
