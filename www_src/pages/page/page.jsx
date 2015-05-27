@@ -22,9 +22,9 @@ var Page = React.createClass({
   getInitialState: function() {
     return {
       loading: true,
-      elements: [],
+      elements: {},
       styles: {},
-      currentElement: -1,
+      currentElementId: -1,
       showAddMenu: false,
       dims: {
         width: 0,
@@ -56,7 +56,7 @@ var Page = React.createClass({
     var secondaryClass = (name => {
       var names = {
         secondary: true,
-        active: this.state.currentElement > -1 && !this.state.showAddMenu
+        active: this.state.currentElementId > -1 && !this.state.showAddMenu
       };
       names[name] = true;
       return classNames(names);
@@ -65,7 +65,7 @@ var Page = React.createClass({
     // Url for link to element editor
     var href = '';
     var url = '';
-    var currentEl = elements[this.state.currentElement];
+    var currentEl = elements[this.state.currentElementId];
     if (typeof currentEl !== 'undefined') {
       href = '/pages/element/#' + currentEl.type;
       var params = this.state.params;
@@ -82,7 +82,7 @@ var Page = React.createClass({
               interactive={true}
               dims={this.state.dims}
               elements={this.state.elements}
-              currentElement={this.state.currentElement}
+              currentElementId={this.state.currentElementId}
               onTouchEnd={this.save}
               onUpdate={this.updateElement}
               onDeselect={this.deselectAll} />
@@ -98,7 +98,7 @@ var Page = React.createClass({
           <button className="image" onClick={this.addElement('image')}><img className="icon" src="../../img/camera.svg" /></button>
           <button className="link" onClick={this.addElement('link')}><img className="icon" src="../../img/link.svg" /></button>
         </div>
-        <button className={secondaryClass("delete")} onClick={this.deleteElement} active={this.state.currentElement===-1}>
+        <button className={secondaryClass("delete")} onClick={this.deleteElement} active={this.state.currentElementId===-1}>
           <img className="icon" src="../../img/trash.svg" />
         </button>
         <button className="add" onClick={this.toggleAddMenu}></button>
@@ -128,18 +128,8 @@ var Page = React.createClass({
 
   deselectAll: function () {
     this.setState({
-      currentElement: -1
+      currentElementId: -1
     });
-  },
-
-  getElementIndexById: function (id) {
-    var index;
-    this.state.elements.forEach((element, i) => {
-      if (element.id === id) {
-        index = i;
-      }
-    });
-    return index;
   },
 
   addElement: function(type) {
@@ -152,35 +142,36 @@ var Page = React.createClass({
           console.log('There was an error creating an element', err);
         }
         if (data && data.element) {
-          json.id = data.element.id;
-          state.elements = this.state.elements.concat([this.flatten(json)]);
-          state.currentElement = this.state.elements.length;
+          var id = data.element.id;
+          json.id = id
+          state.elements = this.state.elements;
+          state.elements[id] = this.flatten(json);
+          state.currentElementId = id;
         }
         this.setState(state);
       });
     };
   },
 
-  updateElement: function (id) {
+  updateElement: function (elementId) {
     return (newProps) => {
-      var index = this.getElementIndexById(id);
       var elements = this.state.elements;
-      var element = elements[index];
-      elements[index] = assign(element, newProps);
+      var element = elements[elementId];
+      elements[elementId] = assign(element, newProps);
       this.setState({
         elements: elements,
-        currentElement: index
+        currentElementId: elementId
       });
     };
   },
 
   deleteElement: function() {
-    if (this.state.currentElement === -1) {
+    if (this.state.currentElementId === -1) {
       return;
     }
 
     var elements = this.state.elements;
-    var id = elements[this.state.currentElement].id;
+    var id = this.state.currentElementId;
 
     // Don't delete test elements for real;
     if (parseInt(id, 10) <= 3) {
@@ -192,15 +183,16 @@ var Page = React.createClass({
         return console.error('There was a problem deleting the element');
       }
 
-      elements[this.state.currentElement] = false;
-      var currentElement = -1;
-      elements.some(function(e,idx) {
-        currentElement = idx;
+      elements[id] = false;
+      var currentElementId = -1;
+      Object.keys(elements).some(function(e) {
+        if (e.id) { currentElementId = e.id; }
         return !!e;
       });
+
       this.setState({
         elements: elements,
-        currentElement: -1
+        currentElementId: currentElementId
       });
     });
   },
@@ -226,18 +218,24 @@ var Page = React.createClass({
       uri: this.uri()
     }, (err, data) => {
       if (err) {
-        return console.error('There was an error getting the Page', err);
+        return console.error('There was an error getting the page to load', err);
       }
 
       if (!data || !data.page) {
-        return console.log('Could not find the page');
+        return console.error('Could not find the page to load');
       }
 
       var page = data.page;
       var styles = page.styles;
-      var elements = page.elements.map(element => {
-        return this.flatten(element);
-      }).filter(element => element);
+      var elements = {};
+
+      page.elements.forEach(element => {
+        var element = this.flatten(element);
+        if(element) {
+          elements[element.id] = element;
+        }
+      });
+
       this.setState({
         loading: false,
         styles,
@@ -248,7 +246,7 @@ var Page = React.createClass({
 
   save: function (id) {
     return () => {
-      var el = this.expand(this.state.elements[this.getElementIndexById(id)]);
+      var el = this.expand(this.state.elements[id]);
       api({
         method: 'patch',
         uri: this.uri() + '/elements/' + id,
@@ -261,7 +259,7 @@ var Page = React.createClass({
         }
 
         if (!data || !data.element) {
-          console.log('Could not find the element');
+          console.error('Could not find the element to save');
         }
       });
     };
