@@ -17,7 +17,7 @@ var ElementGroup = React.createClass({
         <div className="deselector" onClick={this.props.onDeselect} />
         {Object.keys(elements).map(elementId => {
 
-          var elProps = elements[elementId]
+          var elProps = elements[elementId];
 
           if (!elProps || !elProps.type) {
             return false;
