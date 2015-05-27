@@ -27,6 +27,43 @@
     left: 0;
     top: 0;
 
+    .shim {
+      display: none;
+    }
+
+    &.source .shim,
+    &.target .shim {
+      display: block;
+      position: absolute;
+      width: 100%;
+      height: 100%;
+      z-index: 2;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+
+      .indicator {
+        // Create square bounding box based off 160:220 aspect ratio
+        width: 30%;
+        height: 160/220 * 30%;
+        border-radius: 50%;
+      }
+    }
+
+    &.source .shim {
+      background-color: rgba(0,0,0,0.2);
+
+      .indicator {
+        background: url(img/oval-droplet.svg) no-repeat center center / 100%;
+      }
+    }
+
+    &.target .shim {
+      .indicator {
+        background: url(img/oval-flag.svg) no-repeat center center / 100%;
+      }
+    }
+
     &.selected {
       border: 8px solid @lightGrey;
       outline: 6px solid @blue;

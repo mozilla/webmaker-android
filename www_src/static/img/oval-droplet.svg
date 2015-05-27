@@ -1,0 +1,22 @@
+<svg width="52" height="52" viewBox="0 0 52 52" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+    <defs>
+        <circle id="a" cx="25" cy="25" r="25"/>
+    </defs>
+    <g fill="none" fill-rule="evenodd">
+        <g>
+            <g>
+                <g transform="translate(-246 -426) translate(247 427)">
+                    <use fill="#FAFAFA" xlink:href="#a"/>
+                    <use xlink:href="#a"/>
+                    <use xlink:href="#a"/>
+                    <use stroke="#A4A8AD" stroke-width=".5" xlink:href="#a"/>
+                </g>
+                <text fill="#669EFF" font-family="Ionicons" font-size="34.259" font-weight="420" transform="translate(-246 -426) translate(247 427)">
+                    <tspan x="15.278" y="38.333">
+                        
+                    </tspan>
+                </text>
+            </g>
+        </g>
+    </g>
+</svg>

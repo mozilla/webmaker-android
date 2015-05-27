@@ -23,13 +23,18 @@ var Page = React.createClass({
   render: function () {
     var classes = classNames('page-container', {
       selected: this.props.selected,
-      unselected: this.props.unselected
+      unselected: this.props.unselected,
+      source: this.props.source,
+      target: this.props.target
     });
     var style = {
       backgroundColor: this.props.page.styles.backgroundColor,
       transform: this.props.transform
     };
     return (<div className={classes} style={style} onClick={this.props.onClick}>
+      <div className="shim">
+        <div className="indicator"/>
+      </div>
       <ElementGroup elements={this.props.page.elements} />
     </div>);
   }
@@ -208,11 +213,33 @@ var Project = React.createClass({
 
     });
   },
-  selectPage: function (el) {
-    this.setState({
-      camera: this.cartesian.getFocusTransform(el.coords, this.state.zoom),
-      selectedEl: el.id
-    });
+  /**
+   * Highlight a page in the UI and move camera to center it
+   * @param  {Number|String} id ID of page
+   * @param  {Number|String} type Type of highlight ("selected", "source")
+   */
+  highlightPage: function (id, type) {
+    if (this.state.sourcePageID !== id) {
+      var selectedPage;
+
+      this.state.pages.forEach(function (page) {
+        if (parseInt(page.id, 10) === parseInt(id, 10)) {
+          selectedPage = page;
+        }
+      });
+
+      var newState = {
+        camera: this.cartesian.getFocusTransform(selectedPage.coords, this.state.zoom)
+      };
+
+      if (type === 'selected') {
+        newState.selectedEl = id;
+      } else if (type === 'source') {
+        newState.sourcePageID = id;
+      }
+
+      this.setState(newState);
+    }
   },
   zoomToPage: function (coords) {
     this.setState({
@@ -278,6 +305,11 @@ var Project = React.createClass({
       state.camera = this.cartesian.getFocusTransform({x: 0, y: 0}, this.state.zoom);
     }
     this.setState(state);
+
+    // Highlight the source page if you're in link destination mode
+    if (this.state.params.mode === 'linkDestination') {
+      this.highlightPage('408', 'source'); // TEMP / TODO - Hardcoded. Should come from passed value.
+    }
   },
 
   load: function () {
@@ -396,10 +428,10 @@ var Project = React.createClass({
   onPageClick: function (page) {
     if (this.state.params.mode === 'play') {
       this.zoomToPage(page.coords);
-    } else if (page.id === this.state.selectedEl) {
+    } else if (page.id === this.state.selectedEl && this.state.params.mode !== 'linkDestination') {
       this.zoomToSelection(page.coords);
     } else {
-      this.selectPage(page);
+      this.highlightPage(page.id, 'selected');
     }
   },
 
@@ -408,7 +440,8 @@ var Project = React.createClass({
     document.body.style.overflowY = 'hidden';
 
     var self = this;
-    var isPlayOnly = this.state.params.mode === 'play' ? true : false;
+
+    var isPlayOnly = this.state.params.mode === 'play' || this.state.params.mode === 'linkDestination';
 
     var containerStyle = {
       width: this.cartesian.width + 'px',
@@ -443,6 +476,8 @@ var Project = React.createClass({
             var props = {
               page,
               selected: page.id === this.state.selectedEl,
+              source: page.id === this.state.sourcePageID,
+              target: page.id === this.state.selectedEl && this.state.params.mode === 'linkDestination',
               transform: this.cartesian.getTransform(page.coords),
               onClick: this.onPageClick.bind(this, page)
             };
