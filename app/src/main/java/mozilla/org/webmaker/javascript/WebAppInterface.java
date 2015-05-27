@@ -48,25 +48,25 @@ public class WebAppInterface {
 
     @JavascriptInterface
     public String getSharedPreferences(String key) {
-        return getSharedPreferences(key, true);
+        return getSharedPreferences(key, false);
     }
 
     @JavascriptInterface
-    public String getSharedPreferences(String key, final boolean scope) {
+    public String getSharedPreferences(String key, final boolean global) {
         SharedPreferences getter = mContext.getSharedPreferences(SHARED_PREFIX, 0);
-        if (scope) key = key.concat(mPrefKey);
+        if (!global) key = key.concat(mPrefKey);
         return getter.getString(key, null);
     }
 
     @JavascriptInterface
     public void setSharedPreferences(String key, final String value) {
-        setSharedPreferences(key, value, true);
+        setSharedPreferences(key, value, false);
     }
 
     @JavascriptInterface
-    public void setSharedPreferences(String key, final String value, final boolean scope) {
+    public void setSharedPreferences(String key, final String value, final boolean global) {
         SharedPreferences.Editor editor = mContext.getSharedPreferences(SHARED_PREFIX, 0).edit();
-        if (scope) key = key.concat(mPrefKey);
+        if (!global) key = key.concat(mPrefKey);
         editor.putString(key, value);
         editor.apply();
     }
@@ -79,23 +79,23 @@ public class WebAppInterface {
 
     @JavascriptInterface
     public String getMemStorage (String key) {
-        return getMemStorage(key, true);
+        return getMemStorage(key, false);
     }
 
     @JavascriptInterface
-    public String getMemStorage (String key, final boolean scope) {
-        if (scope) key = key.concat(mPrefKey);
+    public String getMemStorage (String key, final boolean global) {
+        if (!global) key = key.concat(mPrefKey);
         return MemStorage.sharedStorage().get(key);
     }
 
     @JavascriptInterface
     public void setMemStorage (String key, final String value) {
-        setMemStorage(key, value, true);
+        setMemStorage(key, value, false);
     }
 
     @JavascriptInterface
-    public void setMemStorage (String key, final String value, final boolean scope) {
-        if (scope) key = key.concat(mPrefKey);
+    public void setMemStorage (String key, final String value, final boolean global) {
+        if (!global) key = key.concat(mPrefKey);
         MemStorage.sharedStorage().put(key, value);
     }
 

@@ -76,7 +76,7 @@ var Project = React.createClass({
     }
 
     if (window.Android) {
-      window.Android.setMemStorage('state', JSON.stringify(this.state), true);
+      window.Android.setMemStorage('state', JSON.stringify(this.state));
     }
   },
 
@@ -85,7 +85,7 @@ var Project = React.createClass({
     var boundingEl = bounding.getDOMNode();
 
     if (window.Android) {
-      var state = JSON.parse(window.Android.getMemStorage('state', true));
+      var state = JSON.parse(window.Android.getMemStorage('state'));
       if (state.params && state.params.page === this.state.params.page) {
         var newState = {};
         ['selectedEl', 'matrix'].forEach(prop => {

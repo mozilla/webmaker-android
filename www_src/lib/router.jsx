@@ -8,12 +8,12 @@ module.exports = {
       var routeParams = this.android.getRouteParams();
       var key = 'route::params';
 
-      // If they do, save them. If not, fetch from SharedPreferences
+      // If they do, save them. If not, fetch from storage
       if (routeParams !== '{}') {
         params = JSON.parse(routeParams);
-        this.android.setMemStorage(key, routeParams, true);
+        this.android.setMemStorage(key, routeParams);
       } else {
-        var hit = this.android.getMemStorage(key, true);
+        var hit = this.android.getMemStorage(key);
         try {
           params = JSON.parse(hit);
         } catch (e) {}
