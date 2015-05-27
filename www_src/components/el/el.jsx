@@ -83,6 +83,8 @@ var El = React.createClass({
     var buttonStyle = this.getInitialState();
 
     buttonStyle.y += (((boundingBox.bottom - boundingBox.top) / 2) + 40);
+    buttonStyle.angle = 0;
+    buttonStyle.scale = 1;
 
     elButton.style.transform = Spec.propsToPosition(buttonStyle).transform;
   },
