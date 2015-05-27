@@ -125,3 +125,19 @@ if (window.Android) {
 window.Android.getSharedPreferences('state', true);
 ```
 will result in a `SharedPreferences` key of `state::MyActivity`.
+
+#### LRU Cache
+`MemStorage` is a single `LRUCache` instance that is provided as a singleton. This can be used to persist values to memory that are **not needed in-between app sessions**. You can both set and get values to `MemStorage` using Java <-> JS bindings that are provided within `WebAppInterface.java`:
+```js
+if (window.Android) {
+  window.Android.setMemStorage('my::cache::key', 'foobar', false);
+  var hit = window.Android.getMemStorage('my::cache::key', false);
+  console.log(hit); // prints "foobar"
+}
+```
+
+`MemStorage` can be namespaced to the current activity by using the last "scope" parameter. For example using the following in an Activity called "MyActivity":
+```js
+window.Android.getMemStorage('state', true);
+```
+will result in a `MemStorage` key of `state::MyActivity`.
