@@ -59,7 +59,7 @@ module.exports = function (options, callback) {
 
     // If there is a callback, forward the response body
     if (callback) {
-      callback(null, body);
+      callback(false, body);
     }
   });
 };

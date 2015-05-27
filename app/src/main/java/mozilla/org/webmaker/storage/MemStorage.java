@@ -4,7 +4,7 @@ import android.util.LruCache;
 
 public class MemStorage {
 
-    private static int cacheSize = 24 * 1024 * 2014;
+    private static int cacheSize = 24 * 1024 * 2014;    // 24mb (100 images at current transcoding settings)
     private static final Cache cache = new Cache(cacheSize);
 
     /**

@@ -1,7 +1,7 @@
 module.exports = {
   android: window.Android,
   getRouteParams: function () {
-    var r = {};
+    var params = {};
 
     if (this.android) {
       // Check to see if route params exist & create cache key
@@ -10,16 +10,16 @@ module.exports = {
 
       // If they do, save them. If not, fetch from SharedPreferences
       if (routeParams !== '{}') {
-        r = JSON.parse(routeParams);
+        params = JSON.parse(routeParams);
         this.android.setMemStorage(key, routeParams, true);
       } else {
         var hit = this.android.getMemStorage(key, true);
         try {
-          r = JSON.parse(hit);
+          params = JSON.parse(hit);
         } catch (e) {}
       }
     } else {
-      r = {
+      params = {
         // mode: 'play',
         user: 1,
         project: 21,
@@ -28,19 +28,19 @@ module.exports = {
       };
     }
 
-    return r;
+    return params;
   },
   getRouteData: function () {
-    var r = {};
+    var data = {};
 
     if (this.android) {
       var routeData = this.android.getRouteData();
       if (typeof routeData !== 'undefined') {
-        r = JSON.parse(routeData);
+        data = JSON.parse(routeData);
       }
     }
 
-    return r;
+    return data;
   },
   getInitialState: function () {
     return {
