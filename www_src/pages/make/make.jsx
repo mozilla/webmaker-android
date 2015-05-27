@@ -31,7 +31,8 @@ var Make = React.createClass({
   load: function () {
     this.setState({loading: true});
     api({
-      uri: '/users/1/projects'
+      uri: '/users/1/projects',
+      useCache: true
     }, (err, body) => {
       if (err) {
         return this.onError(err);

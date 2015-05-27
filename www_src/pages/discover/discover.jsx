@@ -15,7 +15,8 @@ var Discover = React.createClass({
   },
   load: function () {
     api({
-      uri: '/discover'
+      uri: '/discover',
+      useCache: true
     }, (err, body) => {
       if (err) {
         return console.error('Error getting discovery projects', err);
