@@ -30,9 +30,20 @@ module.exports = {
 
     return r;
   },
+  getRouteData: function () {
+    var r = {};
+
+    if (this.android) {
+      var routeData = this.android.getRouteData();
+      r = JSON.parse(routeData);
+    }
+
+    return r;
+  },
   getInitialState: function () {
     return {
-      params: this.getRouteParams()
+      params: this.getRouteParams(),
+      routeData: this.getRouteData()
     };
   }
 };
