@@ -88,13 +88,17 @@ var Project = React.createClass({
     var didMove = false;
 
     if (window.Android) {
-      var state = JSON.parse(window.Android.getMemStorage('state'));
-      if (state.params && state.params.page === this.state.params.page) {
-        this.setState({
-          selectedEl: state.selectedEl,
-          camera: state.camera,
-          zoom: state.zoom
-        });
+      var state = window.Android.getMemStorage('state');
+      if (typeof state !== 'undefined' && state !== '') {
+        state = JSON.parse(state);
+
+        if (state.params && state.params.page === this.state.params.page) {
+          this.setState({
+            selectedEl: state.selectedEl,
+            camera: state.camera,
+            zoom: state.zoom
+          });
+        }
       }
     }
 
