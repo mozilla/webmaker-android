@@ -9,6 +9,7 @@ import org.json.JSONException;
 import org.mozilla.webmaker.R;
 import org.mozilla.webmaker.WebmakerActivity;
 import org.mozilla.webmaker.router.Router;
+import org.mozilla.webmaker.util.Share;
 
 public class Project extends WebmakerActivity {
     public Project() {
@@ -51,7 +52,8 @@ public class Project extends WebmakerActivity {
                 Router.sharedRouter().open("/projects/" + id + "/settings");
                 return true;
             case R.id.action_share:
-                // @todo
+                final String url = getString(R.string.share_url).concat(id);
+                Share.launchShareIntent(url, this);
                 return true;
             default:
                 return super.onOptionsItemSelected(item);
