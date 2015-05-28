@@ -7,7 +7,7 @@ import org.mozilla.webmaker.R;
 public class Share {
 
     /**
-     * Launches a share intent using a specified subject and body.
+     * Launches a share intent.
      *
      * @param url URL to be appended to the share body
      * @param activity Base activity
