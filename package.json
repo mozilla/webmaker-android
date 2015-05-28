@@ -13,7 +13,7 @@
     "build:html": "node ./npm_tasks/bin/build-html",
     "test": "npm-run-all test:**",
     "test:mocha": "mocha -R spec --compilers js:babel/register \"./{www_src,npm_tasks}/**/*.test.js\"",
-    "test:lint": "jsxhint --harmony --config .jshintrc \"www_src/{components,html,lib,pages,static}/{**,.}/*.{js,jsx}\"",
+    "test:lint": "jsxhint --harmony --config node_modules/mofo-style/linters/.jshintrc \"www_src/{components,html,lib,pages,static}/{**,.}/*.{js,jsx}\"",
     "watch:static": "watch \"npm run build:static\" www_src/static",
     "watch:js": "npm run build:js -- -d --watch",
     "watch:css": "autoless --source-map --autoprefix \"last 2 versions, android >= 4.2\" www_src app/src/main/assets/www",
