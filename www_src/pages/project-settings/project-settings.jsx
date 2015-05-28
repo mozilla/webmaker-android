@@ -20,7 +20,7 @@ var ProjectSettings = React.createClass({
 
     // Build up URI for API requests
     var params = this.state.params;
-    var uri = '/users/' + params.user + '/projects/' + params.project;
+    var uri = '/users/1/projects/' + params.project;
 
     // Fetch a fresh copy of the project's metadata & update state
     api({
