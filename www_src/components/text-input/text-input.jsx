@@ -1,6 +1,7 @@
-var React = require('react');
+var React = require('react/addons');
 
 var TextInput = React.createClass({
+  mixins: [React.addons.LinkedStateMixin],
   propTypes: {
     maxlength: React.PropTypes.number.isRequired,
     minlength: React.PropTypes.number
@@ -13,8 +14,9 @@ var TextInput = React.createClass({
     };
   },
   onChange: function (e) {
+    this.valueLink.requestChange(e.target.value);
+
     this.setState({
-      text: e.target.value,
       inputLength: e.target.value.length,
       isTooLong: e.target.value.length > this.props.maxlength ? true : false
     });
@@ -28,12 +30,15 @@ var TextInput = React.createClass({
     }
   },
   render: function () {
+    var linkState = this.props.linkState || this.linkState;
+    var valueLink = this.valueLink = linkState(this.props.id);
+
     return (
       <div className={'text-input' + (this.state.isTooLong ? ' maxed' : '')}>
         <label>{this.props.label}</label>
 
         <input
-          value={this.state.text}
+          value={valueLink.value}
           ref="input"
           onChange={this.onChange}
           type="text"/>
