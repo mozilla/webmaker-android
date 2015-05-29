@@ -31,14 +31,14 @@ var TextInput = React.createClass({
   },
   render: function () {
     var linkState = this.props.linkState || this.linkState;
-    var valueLink = this.valueLink = linkState(this.props.id);
+    this.valueLink = linkState(this.props.id);
 
     return (
       <div className={'text-input' + (this.state.isTooLong ? ' maxed' : '')}>
         <label>{this.props.label}</label>
 
         <input
-          value={valueLink.value}
+          value={this.valueLink.value}
           ref="input"
           onChange={this.onChange}
           type="text"/>
