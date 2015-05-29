@@ -5,6 +5,7 @@ var render = require('../../lib/render.jsx');
 var router = require('../../lib/router.jsx');
 var api = require('../../lib/api.js');
 var types = require('../../components/el/el.jsx').types;
+var dispatcher = require('../../lib/dispatcher');
 
 var Link = require('../../components/link/link.jsx');
 var Loading = require('../../components/loading/loading.jsx');
@@ -120,6 +121,20 @@ var Page = React.createClass({
         dims: bbox
       });
     }
+
+    var parentProjectID = this.state.params.project;
+
+    dispatcher.on('linkDestinationClicked', function (e) {
+      // Data to pass to the Project Link activity to determine its initial state and where to return its data
+      var metadata = {
+        elementID: e.id,
+        pageID: this.state.params.page
+      };
+
+      if (window.Android) {
+        window.Android.setView('/projects/' + parentProjectID + '/link', JSON.stringify(metadata));
+      }
+    }.bind(this));
   },
 
   toggleAddMenu: function () {
