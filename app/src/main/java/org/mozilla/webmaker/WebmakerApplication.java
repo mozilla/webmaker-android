@@ -6,14 +6,8 @@ import android.content.res.Resources;
 import com.google.android.gms.analytics.GoogleAnalytics;
 import com.google.android.gms.analytics.Tracker;
 
-import org.mozilla.webmaker.activity.Element;
-import org.mozilla.webmaker.activity.Page;
-import org.mozilla.webmaker.activity.Play;
-import org.mozilla.webmaker.activity.Project;
-import org.mozilla.webmaker.activity.ProjectSettings;
-import org.mozilla.webmaker.activity.Tinker;
+import org.mozilla.webmaker.activity.*;
 import org.mozilla.webmaker.router.Router;
-import org.mozilla.webmaker.storage.MemStorage;
 
 public class WebmakerApplication extends Application {
 
@@ -44,12 +38,15 @@ public class WebmakerApplication extends Application {
         Router.sharedRouter().setContext(getApplicationContext());
         Router.sharedRouter().map("/main", MainActivity.class);
         Router.sharedRouter().map("/main/:tab", MainActivity.class);
+
         Router.sharedRouter().map("/projects/:project", Project.class);
+        Router.sharedRouter().map("/projects/:project/settings", ProjectSettings.class);
+        Router.sharedRouter().map("/projects/:project/play", Play.class);
+        Router.sharedRouter().map("/projects/:project/link", Link.class);
+
         Router.sharedRouter().map("/projects/:project/pages/:page", Page.class);
         Router.sharedRouter().map("/projects/:project/pages/:page/elements/:element/editor/:editor", Element.class);
         Router.sharedRouter().map("/projects/:project/pages/:page/elements/:element/attributes/:attribute/editor/:editor", Tinker.class);
-        Router.sharedRouter().map("/projects/:project/settings", ProjectSettings.class);
-        Router.sharedRouter().map("/projects/:project/:mode", Play.class);
     }
 
     @Override

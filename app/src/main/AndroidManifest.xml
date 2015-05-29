@@ -48,6 +48,15 @@
         </activity>
 
         <activity
+                android:name=".activity.Link"
+                android:label="@string/title_activity_link"
+                android:screenOrientation="portrait" >
+            <meta-data
+                    android:name="android.support.PARENT_ACTIVITY"
+                    android:value=".activity.Element" />
+        </activity>
+
+        <activity
                 android:name=".activity.ProjectSettings"
                 android:label="@string/title_activity_project_settings"
                 android:screenOrientation="portrait" >
