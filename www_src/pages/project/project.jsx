@@ -307,8 +307,10 @@ var Project = React.createClass({
     this.setState(state);
 
     // Highlight the source page if you're in link destination mode
-    if (this.state.params.mode === 'linkDestination') {
-      this.highlightPage('408', 'source'); // TEMP / TODO - Hardcoded. Should come from passed value.
+    if (this.state.params.mode === 'link') {
+      if (window.Android) {
+        this.highlightPage(this.state.routeData.pageID, 'source');
+      }
     }
   },
 
@@ -428,7 +430,7 @@ var Project = React.createClass({
   onPageClick: function (page) {
     if (this.state.params.mode === 'play') {
       this.zoomToPage(page.coords);
-    } else if (page.id === this.state.selectedEl && this.state.params.mode !== 'linkDestination') {
+    } else if (page.id === this.state.selectedEl && this.state.params.mode !== 'link') {
       this.zoomToSelection(page.coords);
     } else {
       this.highlightPage(page.id, 'selected');
@@ -441,7 +443,7 @@ var Project = React.createClass({
 
     var self = this;
 
-    var isPlayOnly = this.state.params.mode === 'play' || this.state.params.mode === 'linkDestination';
+    var isPlayOnly = this.state.params.mode === 'play' || this.state.params.mode === 'link';
 
     var containerStyle = {
       width: this.cartesian.width + 'px',
@@ -477,7 +479,7 @@ var Project = React.createClass({
               page,
               selected: page.id === this.state.selectedEl,
               source: page.id === this.state.sourcePageID,
-              target: page.id === this.state.selectedEl && this.state.params.mode === 'linkDestination',
+              target: page.id === this.state.selectedEl && this.state.params.mode === 'link',
               transform: this.cartesian.getTransform(page.coords),
               onClick: this.onPageClick.bind(this, page)
             };

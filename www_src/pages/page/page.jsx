@@ -122,15 +122,19 @@ var Page = React.createClass({
       });
     }
 
+    var parentProjectID = this.state.params.project;
+
     dispatcher.on('linkDestinationClicked', function (e) {
-      console.log('page', e);
-      // TODO : Switch to Project activity and pass necessary metadata
+      // Data to pass to the Project Link activity to determine its initial state and where to return its data
+      var metadata = {
+        elementID: e.id,
+        pageID: this.state.params.page
+      };
 
       if (window.Android) {
-        console.log('switching to play view');
-        window.Android.setView('/projects/1/play');
+        window.Android.setView('/projects/' + parentProjectID + '/link', JSON.stringify(metadata));
       }
-    });
+    }.bind(this));
   },
 
   toggleAddMenu: function () {
