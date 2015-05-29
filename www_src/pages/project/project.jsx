@@ -467,6 +467,10 @@ var Project = React.createClass({
       }
     }
 
+    var removePageButton = this.state.pages.length > 1 ? (
+      <SecondaryButton side="left" off={isPlayOnly || !this.state.selectedEl} onClick={this.removePage} icon="../../img/trash.svg" />
+    ) : false;
+
     return (
       <div id="map">
 
@@ -488,7 +492,7 @@ var Project = React.createClass({
         </div>
 
         <Menu>
-          <SecondaryButton side="right" off={isPlayOnly || !this.state.selectedEl} onClick={this.removePage} icon="../../img/trash.svg" />
+          {removePageButton}
           <PrimaryButton url={pageUrl} off={isPlayOnly || !this.state.selectedEl} href="/pages/page" icon="../../img/pencil.svg" />
           <PrimaryButton onClick={this.zoomFromPage} off={!this.state.isPageZoomed} icon="../../img/zoom-out.svg" />
         </Menu>
