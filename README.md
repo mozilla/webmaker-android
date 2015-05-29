@@ -2,7 +2,7 @@
 
 [![Build Status](https://travis-ci.org/mozilla/webmaker-android.svg?branch=develop)](https://travis-ci.org/mozilla/webmaker-android)
 
-Mozilla Webmaker's mission is to help enable a new generation of digital creators and webmakers, giving people the tools and skills they need to move from using the Web to actively making the Web. To this end, the Webmaker App is an entry point to the Webmaker community that provides a radically simple interface for creating mobile application directly on device.
+Mozilla Webmaker's mission is to help enable a new generation of digital creators and webmakers, giving people the tools and skills they need to move from using the Web to actively making the Web. To this end, the Webmaker App is an entry point to the Webmaker community that provides a radically simple interface for creating mobile applications directly on device.
 
 ![Webmaker for Android](https://cloud.githubusercontent.com/assets/747641/7551523/6e866ae2-f640-11e4-8606-2e7f890b438e.jpg)
 
