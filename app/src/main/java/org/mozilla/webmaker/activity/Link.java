@@ -5,8 +5,8 @@ import org.json.JSONException;
 import org.mozilla.webmaker.R;
 import org.mozilla.webmaker.WebmakerActivity;
 
-public class Play extends WebmakerActivity {
-    public Play() {
+public class Link extends WebmakerActivity {
+    public Link() {
         super("project", R.id.page_layout, R.layout.page_layout, R.menu.menu_page);
     }
 
@@ -15,7 +15,7 @@ public class Play extends WebmakerActivity {
         super.onCreate(savedInstanceState);
 
         try {
-            routeParams.put("mode", "play");
+            routeParams.put("mode", "link");
         } catch (JSONException e) {
             // do nothing
         }

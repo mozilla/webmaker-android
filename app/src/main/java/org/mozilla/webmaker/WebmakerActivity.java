@@ -40,7 +40,6 @@ public class WebmakerActivity extends BaseActivity {
                 routeParams.put("element", intentExtras.get("element"));
                 routeParams.put("attribute", intentExtras.get("attribute"));
                 routeParams.put("editor", intentExtras.get("editor"));
-                routeParams.put("mode", intentExtras.get("mode"));
             } catch (JSONException e) {
                 e.printStackTrace();
             }
