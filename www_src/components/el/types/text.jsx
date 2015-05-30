@@ -56,8 +56,11 @@ module.exports = React.createClass({
   render: function() {
     var props = this.props;
     var style = {
-      whiteSpace: 'nowrap'
+      whiteSpace: 'nowrap',
+      overflow: "hidden",
+      textOverflow: "ellipsis"
     };
+
     [
       'fontFamily',
       'color',
