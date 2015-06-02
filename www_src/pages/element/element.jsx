@@ -89,6 +89,7 @@ render(React.createClass({
       }
 
       this.setState({element: data.element});
+
     });
   },
   render: function () {
