@@ -138,7 +138,9 @@ var Page = React.createClass({
   },
 
   toggleAddMenu: function () {
-    this.setState({showAddMenu: !this.state.showAddMenu});
+    this.setState({
+      showAddMenu: !this.state.showAddMenu
+    });
   },
 
   deselectAll: function () {
@@ -147,9 +149,18 @@ var Page = React.createClass({
     });
   },
 
+  getHighestIndex: function() {
+    return Object.keys(this.state.elements)
+                 .map(e => this.state.elements[e].zIndex)
+                 .reduce((a,b) => a > b ? a : b, 1);
+  },
+
   addElement: function(type) {
+    var highestIndex = this.getHighestIndex();
+
     return () => {
       var json = types[type].spec.generate();
+      json.styles.zIndex = highestIndex + 1;
 
       api({method: 'post', uri: this.uri() + '/elements', json}, (err, data) => {
         var state = {showAddMenu: false};
