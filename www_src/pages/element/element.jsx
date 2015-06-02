@@ -35,7 +35,7 @@ render(React.createClass({
 
     var saveBeforeSwitch = function() {
       var goBack = function() {
-        window.Android.goBack()
+        window.Android.goBack();
       };
       if (!this.edits) {
         return goBack();
