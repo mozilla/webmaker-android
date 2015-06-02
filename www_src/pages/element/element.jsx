@@ -27,6 +27,7 @@ render(React.createClass({
     if (hash) {
       element = testIds[hash];
     }
+    // FIXME: TODO: potential bug: hardcoded user account
     return `/users/1/projects/${params.project}/pages/${params.page}/elements/${element}`;
   },
 
