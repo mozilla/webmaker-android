@@ -32,23 +32,34 @@ render(React.createClass({
 
   componentWillMount: function() {
     this.load();
+
+    var saveBeforeSwitch = function() {
+      var goBack = function() {
+        window.Android.goBack()
+      };
+      if (!this.edits) {
+        return goBack();
+      }
+      this.save(goBack);
+    }.bind(this);
+
+    this.props.update({
+      onBackPressed: saveBeforeSwitch
+    });
   },
   componentDidUpdate: function (prevProps) {
     // resume
     if (this.props.isVisible && !prevProps.isVisible) {
       this.load();
     }
-    // pause - if there are edits
-    if (this.edits && !this.props.isVisible && prevProps.isVisible) {
-      this.save();
-    }
   },
   cacheEdits: function (edits) {
     this.edits = edits;
   },
-  save: function () {
+  save: function (postSave) {
     var edits = this.edits;
     var json = types[edits.type].spec.expand(edits);
+
     api({method: 'patch', uri: this.uri(), json: {
       styles: json.styles,
       attributes: json.attributes
@@ -61,6 +72,10 @@ render(React.createClass({
         elements: edits
       });
       this.edits = false;
+
+      if (postSave) {
+        postSave();
+      }
     });
   },
   load: function () {
