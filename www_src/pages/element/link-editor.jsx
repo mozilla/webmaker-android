@@ -1,7 +1,6 @@
 var React = require('react/addons');
 
 var LinkBlock = require('../../components/el/types/link.jsx');
-var Alert = require('../../components/alert/alert.jsx');
 var ColorGroup = require('../../components/color-group/color-group.jsx');
 var Slider = require('../../components/range/range.jsx');
 
@@ -28,8 +27,18 @@ var LinkEditor = React.createClass({
     }
 
   },
-  onChangeLinkClick: function () {
-    this.refs.notImplementedWarning.show();
+  onDestClick: function () {
+    var metadata = {
+      elementID: this.props.params.element,
+      pageID: this.props.params.page
+    };
+
+    if (window.Android) {
+      window.Android.setView(
+        `/projects/${this.props.params.project}/link`,
+        JSON.stringify(metadata)
+      );
+    }
   },
   render: function () {
     return (
@@ -42,10 +51,9 @@ var LinkEditor = React.createClass({
             <button className="btn btn-block" onClick={this.editText}>{ this.state.editing? "Done" : "Edit Label"}</button>
           </div>
           <div className="form-group">
-            <button onClick={this.onChangeLinkClick} className="btn btn-block">
-              <img className="icon" src="../../img/change-image.svg" /> Set Link Destination
+            <button onClick={this.onDestClick} className="btn btn-block">
+              <img className="icon" src="../../img/change-image.svg" /> {this.state.targetPageId ? 'Change Link Destination' : 'Set Link Destination'}
             </button>
-            <Alert ref="notImplementedWarning">Coming Soon!</Alert>
           </div>
           <div className="form-group">
             <label>Corners</label>

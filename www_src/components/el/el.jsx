@@ -90,8 +90,14 @@ var El = React.createClass({
     elButton.style.transform = Spec.propsToPosition(buttonStyle).transform;
   },
 
-  setLinkDestination: function () {
-    dispatcher.fire('linkDestinationClicked', this.props);
+  onLinkDestClick: function () {
+    if (this.props.targetPageId) {
+      if (window.Android) {
+        window.Android.setView(`/projects/${this.props.targetProjectId}/pages/${this.props.targetPageId}`);
+      }
+    } else {
+      dispatcher.fire('linkDestinationClicked', this.props);
+    }
   },
 
   render: function() {
@@ -112,8 +118,8 @@ var El = React.createClass({
           {/* using onTouchEnd because onClick doesn't work for some reason...touchhandler.js preventing it? */}
           <button
             className="btn meta-button"
-            onTouchEnd={this.setLinkDestination}>
-              Set destination
+            onTouchEnd={this.onLinkDestClick}>
+              {this.props.targetPageId ? 'Follow Link' : 'Set Destination'}
           </button>
         </div>
       );
