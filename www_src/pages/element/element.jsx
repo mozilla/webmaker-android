@@ -1,6 +1,6 @@
 var React = require('react/addons');
 var render = require('../../lib/render.jsx');
-var router = require('../../lib/router.jsx');
+var router = require('../../lib/router');
 var api = require('../../lib/api.js');
 var Loading = require('../../components/loading/loading.jsx');
 
@@ -27,8 +27,7 @@ render(React.createClass({
     if (hash) {
       element = testIds[hash];
     }
-    // FIXME: TODO: potential bug: hardcoded user account
-    return `/users/1/projects/${params.project}/pages/${params.page}/elements/${element}`;
+    return `/users/${params.user}/projects/${params.project}/pages/${params.page}/elements/${element}`;
   },
 
   componentWillMount: function() {

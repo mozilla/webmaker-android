@@ -2,7 +2,7 @@ var React = require('react/addons');
 
 var api = require('../../lib/api');
 var render = require('../../lib/render.jsx');
-var router = require('../../lib/router.jsx');
+var router = require('../../lib/router');
 var TextInput = require('../../components/text-input/text-input.jsx');
 
 var ProjectSettings = React.createClass({
@@ -19,7 +19,7 @@ var ProjectSettings = React.createClass({
     var _this = this;
 
     // Build up URI for API requests
-    var uri = '/users/1/projects/' + this.state.params.project;
+    var uri = '/users/' + this.state.params.user + '/projects/' + this.state.params.project;
 
     // Fetch a fresh copy of the project's metadata & update state
     api({

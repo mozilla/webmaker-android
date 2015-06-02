@@ -8,7 +8,7 @@ var ColorGroup = React.createClass({
   getDefaultProps: function () {
     return {
       id: 'value',
-      tinkerUrl: '/projects/123/pages/0/elements/1/attributes/color/editor/color'
+      tinkerUrl: '/users/1/projects/123/pages/0/elements/1/attributes/color/editor/color'
     };
   },
   getInitialState: function () {

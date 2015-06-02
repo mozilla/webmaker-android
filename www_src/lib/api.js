@@ -1,10 +1,12 @@
 var xhr = require('xhr');
 var defaults = require('lodash.defaults');
-var BASE_URL = 'https://webmaker-api.herokuapp.com';
-
+var {jsonToFormEncoded, parseJSON} = require('./jsonUtils');
+var router = require('./router');
+var assign = require('react/lib/Object.assign');
 var dispatcher = require('./dispatcher');
 
-module.exports = function (options, callback) {
+function api(options, callback) {
+
   // Set default options
   defaults(options, {
     spinOnLag: true,
@@ -31,11 +33,11 @@ module.exports = function (options, callback) {
     options.uri = options.url;
     delete options.url;
   }
-  options.uri = BASE_URL + options.uri;
+  options.uri = api.BASE_URI + options.uri;
 
   // Use a fake token for now
   if (options.method !== 'GET') {
-    options.headers.Authorization = 'token validToken';
+    options.headers.Authorization = 'token ' + router.getUserSession().token;
   }
 
   // Set cache key
@@ -75,4 +77,127 @@ module.exports = function (options, callback) {
       callback(false, body);
     }
   });
+}
+
+api.BASE_URI = 'https://webmaker-api.herokuapp.com';
+api.BASE_LOGIN_URI = 'https://id.mofostaging.net';
+
+api.AUTHENTICATE_URI = api.BASE_LOGIN_URI + '/login/oauth/access_token';
+api.SIGN_UP_URI = api.BASE_LOGIN_URI + '/create-user';
+api.USER_URI = api.BASE_LOGIN_URI + '/user';
+
+// #authenticate (object options, function callback)
+//
+// Given a username and password in options.json,
+// calls callback with error if authentication attempt failed, or user data and token if it succeeded
+// e.g.
+// options.json:
+//      uid: 'keito',
+//      password: f00123d,
+// callback (err, data)
+//    err =>
+//      null or {message: 'Some error'}
+//    data =>
+//      token: 'foo123dasd'
+//      user: {username: 'keito', ...}
+api.authenticate = function (options, callback) {
+  if (!options) {
+    return callback(new Error('You must supply options.json to login'));
+  }
+
+  // Add in other required fields
+  var json = assign({
+    client_id: 'wm_id_zIPGbkEDB5Cv9dCzo7nS',
+    grant_type: 'password',
+    scopes: 'user projects'
+  }, options.json);
+
+  xhr({
+    method: 'POST',
+    uri: api.AUTHENTICATE_URI,
+    body: jsonToFormEncoded(json),
+    headers: {
+      'Content-Type': 'application/x-www-form-urlencoded'
+    }
+  }, function (err, resp, body) {
+
+    if (err || resp.statusCode !== 200) {
+      return callback(parseJSON(body));
+    }
+
+    body = parseJSON(body);
+    var token = body.access_token;
+
+    // If we provided a user object already, just return it with the token
+    if (options.user) {
+      return callback(null, {token, user: options.user});
+    }
+
+    // Assuming the request was successful, get user info
+    xhr({
+      method: 'GET',
+      uri: api.USER_URI,
+      headers: {
+        Authorization: 'token ' + token
+      }
+    }, function (err, resp, body) {
+      if (err || resp.statusCode !== 200) {
+        return callback(parseJSON(body));
+      }
+      body = parseJSON(body);
+      callback(null, {token, user: body});
+    });
+  });
+
 };
+
+// #signUp (object options, function callback)
+//
+// Given a username, email, password, and feedback options.json,
+// attempts to create a user account and get a valid token.
+// If the attempt fails, calls callback with an error
+// If it succeeds, returns a user session object with token and user data
+// e.g.
+// options.json:
+//      username: 'keito',
+//      email: 'keito@blah.com'
+//      password: f00123d,
+// callback (err, data)
+//    err =>
+//      null or {message: 'Some error'}
+//    data =>
+//      token: 'foo123dasd'
+//      user: {username: 'keito', ...}
+api.signUp = function (options, callback) {
+  if (!options) {
+    return callback(new Error('You must supply options.json to sign up'));
+  }
+
+  var json = assign({
+    client_id: 'wm_id_zIPGbkEDB5Cv9dCzo7nS'
+  }, options.json);
+
+  xhr({
+    method: 'POST',
+    uri: api.SIGN_UP_URI,
+    body: jsonToFormEncoded(json),
+    headers: {
+      'Content-Type': 'application/x-www-form-urlencoded'
+    }
+  }, function (err, resp, body) {
+    if (err || resp.statusCode !== 200) {
+      return callback(parseJSON(body));
+    }
+    body = parseJSON(body);
+    // Cool, let's authenticate now
+    api.authenticate({
+      user: body,
+      json: {
+        uid: body.username,
+        password: json.password
+      }
+    }, callback);
+  });
+};
+
+module.exports = api;

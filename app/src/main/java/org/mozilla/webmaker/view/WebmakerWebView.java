@@ -21,10 +21,12 @@ public class WebmakerWebView extends XWalkView {
     public WebmakerWebView(Context context, Activity activity, String pageName, JSONObject routeParams) {
         super(context, activity);
         XWalkPreferences.setValue(XWalkPreferences.REMOTE_DEBUGGING, true);
+        XWalkPreferences.setValue(XWalkPreferences.ALLOW_UNIVERSAL_ACCESS_FROM_FILE, true);
         this.setLayoutParams(new ViewGroup.LayoutParams(ViewGroup.LayoutParams.MATCH_PARENT, ViewGroup.LayoutParams.MATCH_PARENT));
         this.load("file:///android_asset/www/pages/" + pageName + "/index.html", null);
         this.setResourceClient(new WebClient(this));
         this.setBackgroundColor(getResources().getColor(R.color.light_gray));
         this.addJavascriptInterface(new WebAppInterface(context, routeParams), "Android");
+
     }
 }

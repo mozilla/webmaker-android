@@ -3,6 +3,7 @@ package org.mozilla.webmaker.javascript;
 import android.app.Activity;
 import android.content.Context;
 import android.content.SharedPreferences;
+import android.content.Intent;
 import android.util.Log;
 
 import com.google.android.gms.analytics.HitBuilders;
@@ -22,12 +23,14 @@ public class WebAppInterface {
     protected Context mContext;
     protected BaseActivity mActivity;
     protected SharedPreferences mPrefs;
+    protected SharedPreferences mUserPrefs;
     protected JSONObject mRoute;
     protected String mPrefKey;
     protected String mPageState;
 
     public static final String SHARED_PREFIX = "prefs::".concat(BuildConfig.VERSION_NAME);
     public static final String ROUTE_KEY = "route::data";
+    public static final String USER_SESSION_KEY =  "user::session";
 
     public WebAppInterface(Context context) {
         this(context, null);
@@ -38,6 +41,7 @@ public class WebAppInterface {
         mActivity = (BaseActivity) context;
         mPrefKey = "::".concat(mContext.getClass().getSimpleName());
         mPrefs = mContext.getSharedPreferences(mPrefKey, 0);
+        mUserPrefs = mContext.getSharedPreferences(USER_SESSION_KEY, 0);
         mRoute = routeParams;
         Log.v("wm", "getting state " + mPrefKey + ": " + mPageState);
     }
@@ -71,6 +75,25 @@ public class WebAppInterface {
         if (!global) key = key.concat(mPrefKey);
         editor.putString(key, value);
         editor.apply();
+    }
+
+    @JavascriptInterface
+    public void setUserSession(String userData) {
+        SharedPreferences.Editor editor = mUserPrefs.edit();
+        editor.putString("session", userData);
+        editor.commit();
+    }
+
+    @JavascriptInterface
+    public void clearUserSession() {
+        SharedPreferences.Editor editor = mUserPrefs.edit();
+        editor.clear();
+        editor.commit();
+    }
+
+    @JavascriptInterface
+    public String getUserSession() {
+       return mUserPrefs.getString("session", "");
     }
 
     /**
@@ -135,6 +158,14 @@ public class WebAppInterface {
                 mActivity.goBack();
             }
         });
+    }
+
+    @JavascriptInterface
+    public void goToHomeScreen() {
+        Intent startMain = new Intent(Intent.ACTION_MAIN);
+        startMain.addCategory(Intent.CATEGORY_HOME);
+        startMain.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
+        mActivity.startActivity(startMain);
     }
 
     /**

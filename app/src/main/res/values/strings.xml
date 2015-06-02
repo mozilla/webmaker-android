@@ -9,6 +9,7 @@
     <string name="title_activity_page">Page</string>
     <string name="title_activity_element">Options</string>
     <string name="title_activity_tinker">Options</string>
+    <string name="title_activity_login">Login</string>
 
     <string name="action_play">Play</string>
     <string name="action_settings">Project Settings</string>
@@ -21,4 +22,5 @@
     <!-- Google Analytics App Name & Id -->
     <string name="ga_appName">Mobile App</string>
     <string name="ga_appId">97402987</string>
+
 </resources>

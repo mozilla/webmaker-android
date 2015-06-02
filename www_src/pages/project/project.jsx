@@ -3,7 +3,7 @@ var update = React.addons.update;
 var assign = require('react/lib/Object.assign');
 
 var render = require('../../lib/render.jsx');
-var router = require('../../lib/router.jsx');
+var router = require('../../lib/router');
 var Cartesian = require('../../lib/cartesian');
 var Loading = require('../../components/loading/loading.jsx');
 var {Menu, PrimaryButton, SecondaryButton} = require('../../components/action-menu/action-menu.jsx');
@@ -37,11 +37,11 @@ var Project = React.createClass({
   },
 
   uri: function () {
-    return `/users/1/projects/${this.state.params.project}/pages`;
+    return `/users/${this.state.params.user}/projects/${this.state.params.project}/pages`;
   },
 
   componentWillMount: function () {
-
+    console.log(JSON.stringify(this.state.params));
     var width = 320;
     var height = 440;
     var gutter = 20;
@@ -455,10 +455,11 @@ var Project = React.createClass({
     // Patch old attributes object to prevent overwritten properties
     patchedState.attributes.targetPageId = this.state.selectedEl;
     patchedState.attributes.targetProjectId = this.state.params.project;
+    patchedState.attributes.targetUserId = this.state.params.user;
 
     api({
       method: 'patch',
-      uri: `/users/1/projects/${this.state.routeData.projectID}/pages/${this.state.routeData.pageID}/elements/${this.state.routeData.elementID}`,
+      uri: `/users/${this.state.routeData.userID}/projects/${this.state.routeData.projectID}/pages/${this.state.routeData.pageID}/elements/${this.state.routeData.elementID}`,
       json: {
         attributes: patchedState.attributes
       }
@@ -493,7 +494,7 @@ var Project = React.createClass({
       this.cartesian.getBoundingSize()
     );
 
-    var pageUrl = `/projects/${this.state.params.project}/pages/${this.state.selectedEl}`;
+    var pageUrl = `/users/${this.state.params.user}/projects/${this.state.params.project}/pages/${this.state.selectedEl}`;
 
     function generateAddContainers() {
       if (!isPlayOnly) {
