@@ -35,7 +35,8 @@ var textAlignOptions = ['left', 'center', 'right'].map(e => {
 var TextEditor = React.createClass({
   mixins: [
     React.addons.LinkedStateMixin,
-    require('./witheditable')
+    require('./witheditable'),
+    require('./font-selector')
   ],
   getInitialState: function () {
     return TextBlock.spec.flatten(this.props.element, {defaults: true});
@@ -56,11 +57,7 @@ var TextEditor = React.createClass({
             </div>
             <div className="form-group">
               <label>Font</label>
-              <select className="select" valueLink={this.linkState('fontFamily')}>
-                <option value="Roboto">Roboto</option>
-                <option value="Bitter">Bitter</option>
-                <option value="Pacifico">Pacifico</option>
-              </select>
+              { this.generateFontSelector() }
             </div>
             <div className="form-group">
               <label>Color</label>

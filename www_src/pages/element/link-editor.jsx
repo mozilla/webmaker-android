@@ -8,7 +8,8 @@ var Slider = require('../../components/range/range.jsx');
 var LinkEditor = React.createClass({
   mixins: [
     React.addons.LinkedStateMixin,
-    require('./witheditable')
+    require('./witheditable'),
+    require('./font-selector')
   ],
   getInitialState: function () {
     return LinkBlock.spec.flatten(this.props.element, {defaults: true});
@@ -53,11 +54,7 @@ var LinkEditor = React.createClass({
           </div>
           <div className="form-group">
             <label>Font</label>
-            <select className="select" valueLink={this.linkState('fontFamily')}>
-              <option value="Roboto">Roboto</option>
-              <option value="Bitter">Bitter</option>
-              <option value="Pacifico">Pacifico</option>
-            </select>
+            { this.generateFontSelector() }
           </div>
           <div className="form-group">
             <label>Background Color</label>
