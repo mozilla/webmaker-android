@@ -2,6 +2,7 @@ var React = require('react');
 var assign = require('react/lib/Object.assign');
 var getContrastingColor = require('../../../lib/color').getContrastingColor;
 var Spec = require('../../../lib/spec');
+var dispatcher = require('../../../lib/dispatcher');
 
 var spec = new Spec('link', assign({
   innerHTML: {
@@ -57,6 +58,14 @@ var Link = React.createClass({
     });
   },
 
+  onClick: function () {
+    if (this.state.editing) {
+      this.activate();
+    } else {
+      dispatcher.fire('linkClicked', this.props);
+    }
+  },
+
   render: function() {
     var props = this.props;
 
@@ -71,12 +80,8 @@ var Link = React.createClass({
 
     var Element = this.props.activelink ? 'a' : 'span';
     var content = this.makeEditable(props.innerHTML, style);
-    var onPClick = this.activate;
-    if (this.state.editing) {
-      onPClick = false;
-    }
 
-    return <Element className="btn" style={style} onClick={onPClick} href={props.href}>{content}</Element>;
+    return <Element className="btn" style={style} onClick={this.onClick} href={props.href}>{content}</Element>;
   }
 });
 

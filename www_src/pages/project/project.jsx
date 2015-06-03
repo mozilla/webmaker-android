@@ -10,6 +10,7 @@ var Loading = require('../../components/loading/loading.jsx');
 var {Menu, PrimaryButton, SecondaryButton} = require('../../components/action-menu/action-menu.jsx');
 var types = require('../../components/el/el.jsx').types;
 var ElementGroup = require('../../components/element-group/element-group.jsx');
+var dispatcher = require('../../lib/dispatcher');
 
 var api = require('../../lib/api');
 var calculateSwipe = require('../../lib/swipe.js');
@@ -212,7 +213,33 @@ var Project = React.createClass({
       }
 
     });
+
+    // Handle button actions on zoomed in pages
+    dispatcher.on('linkClicked', (event) => {
+      if (event.targetPageId && this.state.isPageZoomed) {
+        this.zoomToPage( this.pageIdToCoords(event.targetPageId) );
+      }
+    });
   },
+
+  /**
+   * Get the coordinates for a particular page ID
+   * @param  {String} id Page ID
+   * @return {Object}    Coordinate object {x:Number, y:Number}
+   */
+  pageIdToCoords: function (id) {
+    var coords;
+
+    for (var i = 0; i < this.state.pages.length; i++) {
+      if (id === this.state.pages[i].id) {
+        coords = this.state.pages[i].coords;
+        break;
+      }
+    }
+
+    return coords;
+  },
+
   /**
    * Highlight a page in the UI and move camera to center it
    * @param  {Number|String} id ID of page
@@ -429,7 +456,11 @@ var Project = React.createClass({
 
   onPageClick: function (page) {
     if (this.state.params.mode === 'play') {
-      this.zoomToPage(page.coords);
+      if (!this.state.isPageZoomed ||
+          this.state.zoomedPageCoords.x !== page.coords.x &&
+          this.state.zoomedPageCoords.y !== page.coords.y) {
+        this.zoomToPage(page.coords);
+      }
     } else if (page.id === this.state.selectedEl && this.state.params.mode !== 'link') {
       this.zoomToSelection(page.coords);
     } else {
