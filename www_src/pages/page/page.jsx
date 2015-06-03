@@ -27,6 +27,7 @@ var Page = React.createClass({
       styles: {},
       currentElementId: -1,
       showAddMenu: false,
+      disableButtons: false,
       dims: {
         width: 0,
         height: 0
@@ -95,9 +96,9 @@ var Page = React.createClass({
 
       <div className={classNames({'controls': true, 'add-active': this.state.showAddMenu})}>
         <div className="add-menu">
-          <button className="text" onClick={this.addElement('text')}><img className="icon" src="../../img/text.svg" /></button>
-          <button className="image" onClick={this.addElement('image')}><img className="icon" src="../../img/camera.svg" /></button>
-          <button className="link" onClick={this.addElement('link')}><img className="icon" src="../../img/link.svg" /></button>
+          <button className="text" disabled={this.state.disableButtons} onClick={this.addElement('text')}><img className="icon" src="../../img/text.svg" /></button>
+          <button className="image" disabled={this.state.disableButtons} onClick={this.addElement('image')}><img className="icon" src="../../img/camera.svg" /></button>
+          <button className="link" disabled={this.state.disableButtons} onClick={this.addElement('link')}><img className="icon" src="../../img/link.svg" /></button>
         </div>
         <button className={secondaryClass("delete")} onClick={this.deleteElement} active={this.state.currentElementId===-1}>
           <img className="icon" src="../../img/trash.svg" />
@@ -161,6 +162,7 @@ var Page = React.createClass({
     return () => {
       var json = types[type].spec.generate();
       json.styles.zIndex = highestIndex + 1;
+      this.setState({disableButtons: true});
 
       api({method: 'post', uri: this.uri() + '/elements', json}, (err, data) => {
         var state = {showAddMenu: false};
@@ -175,6 +177,14 @@ var Page = React.createClass({
           state.currentElementId = id;
         }
         this.setState(state);
+
+        //Ensure we don't reach a race conditions where the buttons are
+        //re-enabled before the menu is hidden. 200ms matches the css animation
+        //speed.
+
+        setTimeout(function() {
+          this.setState({disableButtons: false });
+        }.bind(this), 200);
       });
     };
   },
