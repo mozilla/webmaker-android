@@ -30,7 +30,8 @@ var LinkEditor = React.createClass({
   onDestClick: function () {
     var metadata = {
       elementID: this.props.params.element,
-      pageID: this.props.params.page
+      pageID: this.props.params.page,
+      projectID: this.props.params.project
     };
 
     if (window.Android) {
