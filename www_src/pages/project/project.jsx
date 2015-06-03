@@ -8,7 +8,6 @@ var Cartesian = require('../../lib/cartesian');
 var Loading = require('../../components/loading/loading.jsx');
 var {Menu, PrimaryButton, SecondaryButton} = require('../../components/action-menu/action-menu.jsx');
 var types = require('../../components/el/el.jsx').types;
-var ElementGroup = require('../../components/element-group/element-group.jsx');
 var dispatcher = require('../../lib/dispatcher');
 
 var api = require('../../lib/api');
