@@ -4,6 +4,9 @@ var LinkBlock = require('../../components/el/types/link.jsx');
 var ColorGroup = require('../../components/color-group/color-group.jsx');
 var Slider = require('../../components/range/range.jsx');
 
+var api = require('../../lib/api');
+var types = require('../../components/el/el.jsx').types;
+
 var LinkEditor = React.createClass({
   mixins: [
     React.addons.LinkedStateMixin,
@@ -30,16 +33,32 @@ var LinkEditor = React.createClass({
   onDestClick: function () {
     var metadata = {
       elementID: this.props.params.element,
+      linkState: this.state,
       pageID: this.props.params.page,
       projectID: this.props.params.project
     };
 
-    if (window.Android) {
-      window.Android.setView(
-        `/projects/${this.props.params.project}/link`,
-        JSON.stringify(metadata)
-      );
-    }
+    var expanded = types.link.spec.expand(this.state);
+
+    api({
+      method: 'patch',
+      uri: `/users/1/projects/${metadata.projectID}/pages/${metadata.pageID}/elements/${metadata.elementID}`,
+      json: {
+        attributes: expanded.attributes,
+        styles: expanded.styles
+      }
+    }, (err, data) => {
+      if (err) {
+        console.error('There was an error updating the element', err);
+      }
+
+      if (window.Android) {
+        window.Android.setView(
+          `/projects/${this.props.params.project}/link`,
+          JSON.stringify(metadata)
+        );
+      }
+    });
   },
   render: function () {
     return (

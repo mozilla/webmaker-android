@@ -469,16 +469,19 @@ var Project = React.createClass({
   },
 
   setDestination: function () {
-    // var pageUrl = `/projects/${this.state.params.project}/pages/${this.state.routeData.pageID}`;
+    var patchedState = this.state.routeData.linkState;
+
+    patchedState = types.link.spec.expand(patchedState);
+
+    // Patch old attributes object to prevent overwritten properties
+    patchedState.attributes.targetPageId = this.state.selectedEl;
+    patchedState.attributes.targetProjectId = this.state.params.project;
 
     api({
       method: 'patch',
       uri: `/users/1/projects/${this.state.params.project}/pages/${this.state.routeData.pageID}/elements/${this.state.routeData.elementID}`,
       json: {
-        attributes: {
-          targetPageId: this.state.selectedEl,
-          targetProjectId: this.state.params.project
-        }
+        attributes: patchedState.attributes
       }
     }, (err, data) => {
       if (err) {
@@ -486,7 +489,6 @@ var Project = React.createClass({
       }
 
       if (window.Android) {
-        // window.Android.setView(pageUrl);
         window.Android.goBack();
       }
     });
