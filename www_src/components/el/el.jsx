@@ -119,6 +119,7 @@ var El = React.createClass({
           <button
             className="btn meta-button"
             onTouchEnd={this.onLinkDestClick}>
+              <img className="icon" src="../../img/flag.svg" />
               {this.props.targetPageId ? 'Follow Link' : 'Set Destination'}
           </button>
         </div>

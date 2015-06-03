@@ -72,7 +72,7 @@ var LinkEditor = React.createClass({
           </div>
           <div className="form-group">
             <button onClick={this.onDestClick} className="btn btn-block">
-              <img className="icon" src="../../img/change-image.svg" /> {this.state.targetPageId ? 'Change Link Destination' : 'Set Link Destination'}
+              <img className="icon" src="../../img/flag.svg" /> {this.state.targetPageId ? 'Change Link Destination' : 'Set Link Destination'}
             </button>
           </div>
           <div className="form-group">
