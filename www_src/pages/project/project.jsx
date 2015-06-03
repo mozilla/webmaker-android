@@ -479,7 +479,7 @@ var Project = React.createClass({
 
     api({
       method: 'patch',
-      uri: `/users/1/projects/${this.state.params.project}/pages/${this.state.routeData.pageID}/elements/${this.state.routeData.elementID}`,
+      uri: `/users/1/projects/${this.state.routeData.projectID}/pages/${this.state.routeData.pageID}/elements/${this.state.routeData.elementID}`,
       json: {
         attributes: patchedState.attributes
       }
