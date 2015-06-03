@@ -129,7 +129,8 @@ var Page = React.createClass({
       // Data to pass to the Project Link activity to determine its initial state and where to return its data
       var metadata = {
         elementID: e.id,
-        pageID: this.state.params.page
+        pageID: this.state.params.page,
+        projectID: this.state.params.project
       };
 
       if (window.Android) {

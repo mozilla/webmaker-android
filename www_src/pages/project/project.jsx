@@ -10,6 +10,7 @@ var Loading = require('../../components/loading/loading.jsx');
 var {Menu, PrimaryButton, SecondaryButton} = require('../../components/action-menu/action-menu.jsx');
 var types = require('../../components/el/el.jsx').types;
 var ElementGroup = require('../../components/element-group/element-group.jsx');
+var dispatcher = require('../../lib/dispatcher');
 
 var api = require('../../lib/api');
 var calculateSwipe = require('../../lib/swipe.js');
@@ -212,7 +213,33 @@ var Project = React.createClass({
       }
 
     });
+
+    // Handle button actions on zoomed in pages
+    dispatcher.on('linkClicked', (event) => {
+      if (event.targetPageId && this.state.isPageZoomed) {
+        this.zoomToPage( this.pageIdToCoords(event.targetPageId) );
+      }
+    });
   },
+
+  /**
+   * Get the coordinates for a particular page ID
+   * @param  {String} id Page ID
+   * @return {Object}    Coordinate object {x:Number, y:Number}
+   */
+  pageIdToCoords: function (id) {
+    var coords;
+
+    for (var i = 0; i < this.state.pages.length; i++) {
+      if (id === this.state.pages[i].id) {
+        coords = this.state.pages[i].coords;
+        break;
+      }
+    }
+
+    return coords;
+  },
+
   /**
    * Highlight a page in the UI and move camera to center it
    * @param  {Number|String} id ID of page
@@ -429,12 +456,42 @@ var Project = React.createClass({
 
   onPageClick: function (page) {
     if (this.state.params.mode === 'play') {
-      this.zoomToPage(page.coords);
+      if (!this.state.isPageZoomed ||
+          this.state.zoomedPageCoords.x !== page.coords.x &&
+          this.state.zoomedPageCoords.y !== page.coords.y) {
+        this.zoomToPage(page.coords);
+      }
     } else if (page.id === this.state.selectedEl && this.state.params.mode !== 'link') {
       this.zoomToSelection(page.coords);
     } else {
       this.highlightPage(page.id, 'selected');
     }
+  },
+
+  setDestination: function () {
+    var patchedState = this.state.routeData.linkState;
+
+    patchedState = types.link.spec.expand(patchedState);
+
+    // Patch old attributes object to prevent overwritten properties
+    patchedState.attributes.targetPageId = this.state.selectedEl;
+    patchedState.attributes.targetProjectId = this.state.params.project;
+
+    api({
+      method: 'patch',
+      uri: `/users/1/projects/${this.state.routeData.projectID}/pages/${this.state.routeData.pageID}/elements/${this.state.routeData.elementID}`,
+      json: {
+        attributes: patchedState.attributes
+      }
+    }, (err, data) => {
+      if (err) {
+        console.error('There was an error updating the element', err);
+      }
+
+      if (window.Android) {
+        window.Android.goBack();
+      }
+    });
   },
 
   render: function () {
@@ -475,7 +532,8 @@ var Project = React.createClass({
 
     return (
       <div id="map">
-
+        {/* TODO - Eliminate this button and use Android navbar instead */}
+        <button hidden={this.state.params.mode !== 'link'} onClick={this.setDestination} style={{position: 'absolute', right: '10px', top: '10px', zIndex: 999999, padding: '10px'}}>✓</button>
         <div ref="bounding" className="bounding" style={boundingStyle}>
           <div className="test-container" style={containerStyle}>
           {this.state.pages.map((page) => {
