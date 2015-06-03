@@ -85,8 +85,8 @@ var Page = React.createClass({
               dims={this.state.dims}
               elements={this.state.elements}
               currentElementId={this.state.currentElementId}
-              onTouchEnd={this.save}
-              onUpdate={this.updateElement}
+              onTouchEnd={this.onTouchEnd}
+              onUpdate={this.onUpdate}
               onDeselect={this.deselectAll} />
           </div>
         </div>
@@ -162,6 +162,50 @@ var Page = React.createClass({
                  .reduce((a,b) => a > b ? a : b, 1);
   },
 
+  /**
+   * Elements need to save themselves on a touchend, but depending
+   * on whether they were manipulated or not should make sure their
+   * z-index is the highest index available for rendering: if an
+   * element was only tapped, not manipulated, it should become the
+   * highest visible element on the page.
+   */
+  onTouchEnd: function(elementId) {
+    var save = this.save(elementId);
+    return (modified) => {
+      if(modified) {
+        return save();
+      }
+
+      // A plain tap without positional modificationss means we need
+      // to raise this element's z-index to "the highest number".
+      var elements = this.state.elements,
+          element = elements[elementId],
+          highestIndex = this.getHighestIndex();
+
+      if (element.zIndex !== highestIndex) {
+        element.zIndex = highestIndex + 1;
+      }
+
+      this.setState({
+        elements: elements
+      }, function() {
+        save();
+      });
+    };
+  },
+
+  onUpdate: function (elementId) {
+    return (newProps) => {
+      var elements = this.state.elements;
+      var element = elements[elementId];
+      elements[elementId] = assign(element, newProps);
+      this.setState({
+        elements: elements,
+        currentElementId: elementId
+      });
+    };
+  },
+
   addElement: function(type) {
     var highestIndex = this.getHighestIndex();
 
@@ -173,36 +217,33 @@ var Page = React.createClass({
       api({method: 'post', uri: this.uri() + '/elements', json}, (err, data) => {
         var state = {showAddMenu: false};
         if (err) {
-          console.log('There was an error creating an element', err);
+          console.error('There was an error creating an element', err);
         }
+        var save = function(){};
         if (data && data.element) {
-          var id = data.element.id;
-          json.id = id;
+          var elementId = data.element.id;
+          json.id = elementId;
           state.elements = this.state.elements;
-          state.elements[id] = this.flatten(json);
-          state.currentElementId = id;
+          state.elements[elementId] = this.flatten(json);
+          state.currentElementId = elementId;
+          save = this.save(elementId);
         }
-        this.setState(state);
+        this.setState(state, function() {
+          save();
+        });
 
-        //Ensure we don't reach a race conditions where the buttons are
-        //re-enabled before the menu is hidden. 200ms matches the css animation
-        //speed.
+        // FIXME: TODO: This timeout should not be here, if the buttons are disabled
+        //              until the element has been added, then the element finishing
+        //              adding itself should lead -in that child element- to a call
+        //              to its "this.props.dosomething", which was passed down by
+        //              the parent, and then in this component that function would
+        //              lead to a this.setState({ disabledButtons: false }).
+        //
+        // https://github.com/mozilla/webmaker-android/issues/2074 has been filed to fix this
 
         setTimeout(function() {
           this.setState({disableButtons: false });
         }.bind(this), 200);
-      });
-    };
-  },
-
-  updateElement: function (elementId) {
-    return (newProps) => {
-      var elements = this.state.elements;
-      var element = elements[elementId];
-      elements[elementId] = assign(element, newProps);
-      this.setState({
-        elements: elements,
-        currentElementId: elementId
       });
     };
   },

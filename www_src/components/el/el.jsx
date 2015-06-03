@@ -1,3 +1,9 @@
+/**
+ * FIXME: TODO: This file need heavy refactoring, as it's mixing props and state to
+ *              a very entangle data thing, even tapping into getInitialState during
+ *              render, which we should never be doing.
+ */
+
 var React = require('react');
 var classes = require('classnames');
 var Spec = require('../../lib/spec');
@@ -74,9 +80,15 @@ var El = React.createClass({
     }
   },
 
-  // Button position is based on the rendered DOM, so we're setting it directly post-render
+  // FIXME: TODO: This function needs to at the very least be moved to the link element,
+  //              but should really be reengineered out of existence, as it's using old
+  //              HTML+JS to solve a problem in React, which has very different ways of
+  //              doing so.
   positionButton: function () {
+    // Button position is based on the rendered DOM, so we're setting it directly post-render
     var elWrapper = this.getDOMNode();
+
+    // FIXME: TODO: React has references, so using querySelector is an immediate red flag
     var elStyleWrapper = elWrapper.querySelector('.style-wrapper');
     var elButton = elWrapper.querySelector('.meta-button');
 
@@ -87,6 +99,9 @@ var El = React.createClass({
     buttonStyle.angle = 0;
     buttonStyle.scale = 1;
 
+    // FIXME: TODO: this should not be here. This data should be read from state (since we
+    //              set it purely during the component's life time), and then use that to
+    //              render the button with the correct style in render().
     elButton.style.transform = Spec.propsToPosition(buttonStyle).transform;
   },
 
@@ -101,6 +116,9 @@ var El = React.createClass({
   },
 
   render: function() {
+    // FIXME: TODO: this should be this.state - getInitialState() is purely for
+    //              getting the state of a component prior to mounting, we've
+    //              overloaded it to do somehow it was never intended to do.
     var state = this.getInitialState();
 
     var className = classes('el', 'el-' + this.props.type, {
@@ -126,6 +144,7 @@ var El = React.createClass({
       );
     }
 
+    // Note: we're rending the element off of this.props, NOT this.state:
     return (
       <div className="el-wrapper">
         <div className="el-container" key={this.props.key}>
@@ -139,9 +158,9 @@ var El = React.createClass({
     );
   },
 
-  onTouchEnd: function () {
+  onTouchEnd: function (modified) {
     if (this.props.onTouchEnd) {
-      this.props.onTouchEnd();
+      this.props.onTouchEnd(modified);
     }
   },
 
@@ -151,6 +170,11 @@ var El = React.createClass({
     }
   },
 
+  /**
+   * Translate an element on the page but prevent it from being dragged
+   * off entirely, by forcing a "safe zone" into which elements get locked
+   * if they'd otherwise run off the page.
+   */
   handleTranslation: function(x, y) {
     var thresh = 45;
 
@@ -162,9 +186,10 @@ var El = React.createClass({
       y: y
     }, function() {
 
+      // FIXME: TODO: this should be done before, not after, updating the state.
       var changed = false;
-      var updatefunction = this.onUpdate;
 
+      var updatefunction = this.onUpdate;
       updatefunction();
 
       var x = this.state.x;
@@ -196,7 +221,7 @@ var El = React.createClass({
             y: y
           }, updatefunction);
       }
-    }.bind(this));
+    });
   },
 
   handleRotationAndScale: function(angle, scale) {
