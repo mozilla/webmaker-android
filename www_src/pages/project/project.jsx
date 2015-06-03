@@ -532,7 +532,8 @@ var Project = React.createClass({
 
     return (
       <div id="map">
-        <button onClick={this.setDestination} style={{position: 'absolute', right: 0, zIndex: 999999, padding: '10px'}}>✓</button>
+        {/* TODO - Eliminate this button and use Android navbar instead */}
+        <button hidden={this.state.params.mode !== 'link'} onClick={this.setDestination} style={{position: 'absolute', right: '10px', top: '10px', zIndex: 999999, padding: '10px'}}>✓</button>
         <div ref="bounding" className="bounding" style={boundingStyle}>
           <div className="test-container" style={containerStyle}>
           {this.state.pages.map((page) => {
