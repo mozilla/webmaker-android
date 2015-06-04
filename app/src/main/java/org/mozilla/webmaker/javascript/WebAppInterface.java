@@ -3,11 +3,13 @@ package org.mozilla.webmaker.javascript;
 import android.app.Activity;
 import android.content.Context;
 import android.content.SharedPreferences;
-import android.os.Build;
 import android.util.Log;
+
+import com.google.android.gms.analytics.HitBuilders;
 
 import org.mozilla.webmaker.BuildConfig;
 import org.json.JSONObject;
+import org.mozilla.webmaker.WebmakerApplication;
 import org.xwalk.core.JavascriptInterface;
 
 import org.mozilla.webmaker.BaseActivity;
@@ -78,23 +80,23 @@ public class WebAppInterface {
      */
 
     @JavascriptInterface
-    public String getMemStorage (String key) {
+    public String getMemStorage(String key) {
         return getMemStorage(key, false);
     }
 
     @JavascriptInterface
-    public String getMemStorage (String key, final boolean global) {
+    public String getMemStorage(String key, final boolean global) {
         if (!global) key = key.concat(mPrefKey);
         return MemStorage.sharedStorage().get(key);
     }
 
     @JavascriptInterface
-    public void setMemStorage (String key, final String value) {
+    public void setMemStorage(String key, final String value) {
         setMemStorage(key, value, false);
     }
 
     @JavascriptInterface
-    public void setMemStorage (String key, final String value, final boolean global) {
+    public void setMemStorage(String key, final String value, final boolean global) {
         if (!global) key = key.concat(mPrefKey);
         MemStorage.sharedStorage().put(key, value);
     }
@@ -178,5 +180,23 @@ public class WebAppInterface {
     @JavascriptInterface
     public String getRouteData() {
         return MemStorage.sharedStorage().get(ROUTE_KEY);
+    }
+
+    /**
+     * ----------------------------------------
+     * Google Analytics
+     * ----------------------------------------
+     */
+
+    @JavascriptInterface
+    public void trackEvent(String category, String action, String label) {
+        WebmakerApplication.getTracker().send(new HitBuilders.EventBuilder()
+                .setCategory(category).setAction(action).setLabel(label).build());
+    }
+
+    @JavascriptInterface
+    public void trackEvent(String category, String action, String label, long value) {
+        WebmakerApplication.getTracker().send(new HitBuilders.EventBuilder()
+                .setCategory(category).setAction(action).setLabel(label).setValue(value).build());
     }
 }
