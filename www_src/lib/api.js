@@ -2,9 +2,13 @@ var xhr = require('xhr');
 var defaults = require('lodash.defaults');
 var BASE_URL = 'https://webmaker-api.herokuapp.com';
 
+var dispatcher = require('./dispatcher');
+
 module.exports = function (options, callback) {
   // Set default options
   defaults(options, {
+    spinOnLag: true,
+    acceptableLag: 1000, // in MS
     method: 'GET',
     useCache: false,
     json: {},
@@ -46,8 +50,17 @@ module.exports = function (options, callback) {
     }
   }
 
+  var lagTimer = setTimeout(() => {
+    if (options.spinOnLag) {
+      dispatcher.fire('apiLagging');
+    }
+  }, options.acceptableLag);
+
   // XHR request
   xhr(options, function (err, res, body) {
+    clearTimeout(lagTimer);
+    dispatcher.fire('apiCallFinished');
+
     if (err && callback) {
       return callback(err);
     }

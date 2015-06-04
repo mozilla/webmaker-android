@@ -214,7 +214,7 @@ var Page = React.createClass({
       json.styles.zIndex = highestIndex + 1;
       this.setState({disableButtons: true});
 
-      api({method: 'post', uri: this.uri() + '/elements', json}, (err, data) => {
+      api({spinOnLag: false, method: 'post', uri: this.uri() + '/elements', json}, (err, data) => {
         var state = {showAddMenu: false};
         if (err) {
           console.error('There was an error creating an element', err);
@@ -261,7 +261,7 @@ var Page = React.createClass({
       return window.alert('this is a test element, not deleting.');
     }
 
-    api({method: 'delete', uri: this.uri() + '/elements/' + id}, (err, data) => {
+    api({spinOnLag: false, method: 'delete', uri: this.uri() + '/elements/' + id}, (err, data) => {
       if (err) {
         return console.error('There was a problem deleting the element');
       }
@@ -331,6 +331,7 @@ var Page = React.createClass({
     return () => {
       var el = this.expand(this.state.elements[id]);
       api({
+        spinOnLag: false,
         method: 'patch',
         uri: this.uri() + '/elements/' + id,
         json: {
