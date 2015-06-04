@@ -27,7 +27,7 @@ var ImageEditor = React.createClass({
             </button>
           </div>
           <div className="form-group">
-            <label>Transparency</label>
+            <label>Opacity</label>
             <Slider id="opacity" min={0} max={1} step={0.01} linkState={this.linkState} />
           </div>
           <div className="form-group">
@@ -37,6 +37,10 @@ var ImageEditor = React.createClass({
           <div className="form-group">
             <label>Border Color</label>
             <ColorGroup id="borderColor" linkState={this.linkState} />
+          </div>
+          <div className="form-group">
+            <label>Corner Radius</label>
+            <Slider id="borderRadius" min={0} value={this.state.borderRadius} max={32} unit="px" linkState={this.linkState} />
           </div>
         </div>
 
