@@ -8,7 +8,7 @@ var spec = new Spec('link', assign({
   innerHTML: {
     category: 'attributes',
     validation: React.PropTypes.string,
-    default: 'Tap me'
+    default: 'Button link'
   },
   targetPageId: {
     category: 'attributes',
@@ -38,7 +38,7 @@ var spec = new Spec('link', assign({
   borderRadius: {
     category: 'styles',
     validation: React.PropTypes.number,
-    default: 5
+    default: 3
   }
 }, Spec.getPositionProps()));
 
