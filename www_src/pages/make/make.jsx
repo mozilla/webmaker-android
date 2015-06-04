@@ -67,6 +67,7 @@ var Make = React.createClass({
         return this.onEmpty();
       }
       if (window.Android) {
+        window.Android.trackEvent('Make', 'Create a Project', 'New Project Started');
         window.Android.setView('/projects/' + body.project.id);
       }
 
