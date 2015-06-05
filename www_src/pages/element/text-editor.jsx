@@ -4,6 +4,9 @@ var TextBlock = require('../../components/el/types/text.jsx');
 var ColorGroup = require('../../components/color-group/color-group.jsx');
 var {CheckboxSet, Radio} = require('../../components/option-panel/option-panel.jsx');
 
+var colorChoices = ColorGroup.defaultColors.splice(0);
+colorChoices[0] = '#444';
+
 var textStyleOptions = [
   {
     id: 'fontWeight',
@@ -61,7 +64,7 @@ var TextEditor = React.createClass({
             </div>
             <div className="form-group">
               <label>Color</label>
-              <ColorGroup id="color" linkState={this.linkState} />
+              <ColorGroup id="color" linkState={this.linkState} colors={colorChoices} />
             </div>
             <div className="form-group">
               <label>Text Style</label>
