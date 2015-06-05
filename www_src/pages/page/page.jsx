@@ -71,7 +71,7 @@ var Page = React.createClass({
     if (typeof currentEl !== 'undefined') {
       href = '/pages/element/#' + currentEl.type;
       var params = this.state.params;
-      url = `/projects/${params.project}/pages/${params.page}/elements/${currentEl.id}/editor/${currentEl.type}`;
+      url = `/users/${params.user}/projects/${params.project}/pages/${params.page}/elements/${currentEl.id}/editor/${currentEl.type}`;
     }
 
     return (<div id="project" className="demo">
