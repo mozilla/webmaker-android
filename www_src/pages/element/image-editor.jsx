@@ -31,12 +31,12 @@ var ImageEditor = React.createClass({
             <Slider id="opacity" min={0} max={1} step={0.01} linkState={this.linkState} />
           </div>
           <div className="form-group">
-            <label>Border Width</label>
-            <Slider id="borderWidth" max={10} unit="px" linkState={this.linkState} />
-          </div>
-          <div className="form-group">
             <label>Border Color</label>
             <ColorGroup id="borderColor" linkState={this.linkState} />
+          </div>
+          <div className="form-group">
+            <label>Border Width</label>
+            <Slider id="borderWidth" max={10} unit="px" linkState={this.linkState} />
           </div>
           <div className="form-group">
             <label>Corner Radius</label>
