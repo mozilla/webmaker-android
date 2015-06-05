@@ -39,14 +39,16 @@ public class WebmakerApplication extends Application {
         Router.sharedRouter().map("/main", MainActivity.class);
         Router.sharedRouter().map("/main/:tab", MainActivity.class);
 
-        Router.sharedRouter().map("/projects/:project", Project.class);
-        Router.sharedRouter().map("/projects/:project/settings", ProjectSettings.class);
-        Router.sharedRouter().map("/projects/:project/play", Play.class);
-        Router.sharedRouter().map("/projects/:project/link", Link.class);
+        Router.sharedRouter().map("/login", Login.class);
 
-        Router.sharedRouter().map("/projects/:project/pages/:page", Page.class);
-        Router.sharedRouter().map("/projects/:project/pages/:page/elements/:element/editor/:editor", Element.class);
-        Router.sharedRouter().map("/projects/:project/pages/:page/elements/:element/attributes/:attribute/editor/:editor", Tinker.class);
+        Router.sharedRouter().map("/users/:user/projects/:project", Project.class);
+        Router.sharedRouter().map("/users/:user/projects/:project/settings", ProjectSettings.class);
+        Router.sharedRouter().map("/users/:user/projects/:project/play", Play.class);
+        Router.sharedRouter().map("/users/:user/projects/:project/link", Link.class);
+
+        Router.sharedRouter().map("/users/:user/projects/:project/pages/:page", Page.class);
+        Router.sharedRouter().map("/users/:user/projects/:project/pages/:page/elements/:element/editor/:editor", Element.class);
+        Router.sharedRouter().map("/users/:user/projects/:project/pages/:page/elements/:element/attributes/:attribute/editor/:editor", Tinker.class);
     }
 
     @Override

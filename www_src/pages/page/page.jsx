@@ -2,7 +2,7 @@ var React = require('react');
 var classNames = require('classnames');
 var assign = require('react/lib/Object.assign');
 var render = require('../../lib/render.jsx');
-var router = require('../../lib/router.jsx');
+var router = require('../../lib/router');
 var api = require('../../lib/api.js');
 var types = require('../../components/el/el.jsx').types;
 var dispatcher = require('../../lib/dispatcher');
@@ -17,7 +17,7 @@ var Page = React.createClass({
 
   uri: function () {
     var params = this.state.params;
-    return `/users/1/projects/${params.project}/pages/${params.page}`;
+    return `/users/${params.user}/projects/${params.project}/pages/${params.page}`;
   },
 
   getInitialState: function() {
@@ -130,11 +130,12 @@ var Page = React.createClass({
       var metadata = {
         elementID: e.id,
         pageID: this.state.params.page,
-        projectID: this.state.params.project
+        projectID: this.state.params.project,
+        userID: this.state.params.user
       };
 
       if (window.Android) {
-        window.Android.setView('/projects/' + parentProjectID + '/link', JSON.stringify(metadata));
+        window.Android.setView('/users/' + this.state.params.user + '/projects/' + parentProjectID + '/link', JSON.stringify(metadata));
       }
     }.bind(this));
   },

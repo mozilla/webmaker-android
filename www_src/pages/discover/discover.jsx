@@ -40,7 +40,7 @@ var Discover = React.createClass({
       return (
         <Card
           key={project.id}
-          url={"/projects/" + project.id}
+          url={"/users/" + project.author.id + "/projects/" + project.id + '/play'}
           href="/pages/project"
           thumbnail={project.thumbnail[480]}
           title={project.title}

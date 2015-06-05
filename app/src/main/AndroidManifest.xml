@@ -91,5 +91,12 @@
                 android:name="android.support.PARENT_ACTIVITY"
                 android:value=".activity.Element" />
         </activity>
+
+        <activity
+            android:name=".activity.Login"
+            android:label="@string/title_activity_login"
+            android:noHistory="true"
+            android:screenOrientation="portrait" >
+        </activity>
     </application>
 </manifest>

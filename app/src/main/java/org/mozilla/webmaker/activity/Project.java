@@ -37,8 +37,10 @@ public class Project extends WebmakerActivity {
     public boolean onOptionsItemSelected(MenuItem item) {
         // Fetch project ID
         String id;
+        String userId;
         try {
             id = routeParams.get("project").toString();
+            userId = routeParams.get("user").toString();
         } catch (JSONException e) {
             return super.onOptionsItemSelected(item);
         }
@@ -46,10 +48,10 @@ public class Project extends WebmakerActivity {
         // Handle button press
         switch (item.getItemId()) {
             case R.id.action_play:
-                Router.sharedRouter().open("/projects/" + id + "/play");
+                Router.sharedRouter().open("/users/" + userId + "/projects/" + id + "/play");
                 return true;
             case R.id.action_settings:
-                Router.sharedRouter().open("/projects/" + id + "/settings");
+                Router.sharedRouter().open("/users/" + userId + "/projects/" + id + "/settings");
                 return true;
             case R.id.action_share:
                 final String url = getString(R.string.share_url).concat(id);

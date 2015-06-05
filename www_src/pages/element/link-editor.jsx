@@ -36,14 +36,15 @@ var LinkEditor = React.createClass({
       elementID: this.props.params.element,
       linkState: this.state,
       pageID: this.props.params.page,
-      projectID: this.props.params.project
+      projectID: this.props.params.project,
+      userID: this.props.params.user
     };
 
     var expanded = types.link.spec.expand(this.state);
 
     api({
       method: 'patch',
-      uri: `/users/1/projects/${metadata.projectID}/pages/${metadata.pageID}/elements/${metadata.elementID}`,
+      uri: `/users/${metadata.userID}/projects/${metadata.projectID}/pages/${metadata.pageID}/elements/${metadata.elementID}`,
       json: {
         attributes: expanded.attributes,
         styles: expanded.styles

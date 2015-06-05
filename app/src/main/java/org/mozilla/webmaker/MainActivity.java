@@ -2,11 +2,14 @@ package org.mozilla.webmaker;
 
 import android.app.ActionBar;
 import android.app.FragmentTransaction;
+import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.support.v4.view.ViewPager;
 import android.view.MenuItem;
 
 import org.mozilla.webmaker.adapter.SectionsPagerAdapter;
+import org.mozilla.webmaker.javascript.WebAppInterface;
+import org.mozilla.webmaker.router.Router;
 
 
 public class MainActivity extends BaseActivity implements ActionBar.TabListener {
@@ -18,6 +21,15 @@ public class MainActivity extends BaseActivity implements ActionBar.TabListener 
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
+
+        SharedPreferences userSession = getSharedPreferences(WebAppInterface.USER_SESSION_KEY, 0);
+        String session = userSession.getString("session", "");
+
+        if (session == "") {
+            Router.sharedRouter().open("/login");
+            finish();
+        }
+
         setContentView(R.layout.activity_main);
 
         // Set up the action bar.
