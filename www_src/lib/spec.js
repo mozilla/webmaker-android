@@ -88,7 +88,9 @@ Spec.prototype.getDefaultProps = function () {
   var props = this.spec;
   var result = {};
   Object.keys(props).forEach(prop => {
-    if (typeof props[prop].default !== 'undefined') {
+    if (typeof props[prop].default === 'function') {
+      result[prop] = props[prop].default();
+    } else if (typeof props[prop].default !== 'undefined') {
       result[prop] = props[prop].default;
     }
   });
@@ -111,6 +113,8 @@ Spec.prototype.flatten = function (props, options) {
   props = props || {};
   var element = JSON.parse(JSON.stringify(props));
 
+  var defaults = this.getDefaultProps();
+
   Object.keys(this.spec).forEach(key => {
     var category = this.spec[key].category;
     if (!element[category]) {
@@ -120,8 +124,8 @@ Spec.prototype.flatten = function (props, options) {
     if (typeof element[category][key] !== 'undefined') {
       element[key] = element[category][key];
     } else if (options.defaults) {
-      if (typeof this.spec[key].default !== 'undefined') {
-        element[key] = this.spec[key].default;
+      if (typeof defaults[key] !== 'undefined') {
+        element[key] = defaults[key];
       }
     }
   });
@@ -137,6 +141,8 @@ Spec.prototype.expand = function (props, options) {
   props = props || {};
   var element = JSON.parse(JSON.stringify(props));
 
+  var defaults = this.getDefaultProps();
+
   Object.keys(this.spec).forEach(key => {
     var category = this.spec[key].category;
     if (!element[category]) {
@@ -147,8 +153,8 @@ Spec.prototype.expand = function (props, options) {
       element[category][key] = element[key];
       delete element[key];
     } else if (options.defaults) {
-      if (typeof this.spec[key].default !== 'undefined') {
-        element[category][key] = this.spec[key].default;
+      if (typeof defaults[key] !== 'undefined') {
+        element[category][key] = defaults[key];
       }
     }
   });

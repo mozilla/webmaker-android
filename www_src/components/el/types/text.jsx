@@ -1,12 +1,16 @@
 var React = require('react');
 var assign = require('react/lib/Object.assign');
 var Spec = require('../../../lib/spec');
+var HELLO_STRINGS = ['Hello', 'Bonjour', 'Halló', 'Hej', 'Olá', '¡Hola!', 'Ciao', 'Halo'];
 
 var spec = new Spec('text', assign({
   innerHTML: {
     category: 'attributes',
     validation: React.PropTypes.string,
-    default: 'Hello world'
+    default: function () {
+      var randomIndex = Math.floor(Math.random() * HELLO_STRINGS.length);
+      return HELLO_STRINGS[randomIndex];
+    }
   },
   fontFamily: {
     category: 'styles',
@@ -16,7 +20,12 @@ var spec = new Spec('text', assign({
   color: {
     category: 'styles',
     validation: React.PropTypes.string,
-    default: '#333'
+    default: '#E06A2C'
+  },
+  fontSize: {
+    category: 'styles',
+    validation: React.PropTypes.number,
+    default: 20
   },
   fontStyle: {
     category: 'styles',
@@ -65,6 +74,7 @@ module.exports = React.createClass({
       'fontFamily',
       'color',
       'fontWeight',
+      'fontSize',
       'fontStyle',
       'textDecoration',
       'textAlign'

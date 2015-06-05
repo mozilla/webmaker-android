@@ -100,7 +100,9 @@ describe('Spec', () => {
         },
         bar: {
           category: 'attributes',
-          default: 0
+          default: function () {
+            return 0;
+          }
         },
         baz: {
           category: 'attributes',
@@ -110,12 +112,26 @@ describe('Spec', () => {
     });
 
     describe('#getDefaultProps', () => {
-      it('should generate default props for props with defaults', () => {
+      it('should generate default props for props with non-function defaults', () => {
         should.deepEqual(s.getDefaultProps(), {
           foo: 'foo',
           bar: 0
         });
-      })
+      });
+      it('should generate call default generator functions when defined', () => {
+        var s2 = new Spec('foo', {
+          foo: {
+            category: 'styles',
+            validation: React.PropTypes.string,
+            default: function () {
+              return 'blah';
+            }
+          }
+        });
+        should.deepEqual(s2.getDefaultProps(), {
+          foo: 'blah'
+        });
+      });
     });
 
     describe('#getPropTypes', () => {
