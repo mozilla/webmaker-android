@@ -56,7 +56,7 @@ var LinkEditor = React.createClass({
 
       if (window.Android) {
         window.Android.setView(
-          `/projects/${this.props.params.project}/link`,
+          `/users/${this.props.params.user}/projects/${this.props.params.project}/link`,
           JSON.stringify(metadata)
         );
       }
