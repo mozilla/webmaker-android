@@ -48,7 +48,7 @@ public class WebmakerApplication extends Application {
 
         Router.sharedRouter().map("/users/:user/projects/:project/pages/:page", Page.class);
         Router.sharedRouter().map("/users/:user/projects/:project/pages/:page/elements/:element/editor/:editor", Element.class);
-        Router.sharedRouter().map("/users/:user/projects/:project/pages/:page/elements/:element/attributes/:attribute/editor/:editor", Tinker.class);
+        Router.sharedRouter().map("/users/:user/projects/:project/pages/:page/elements/:element/propertyName/:propertyName", Tinker.class);
     }
 
     @Override

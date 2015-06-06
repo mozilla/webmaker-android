@@ -20,7 +20,8 @@ var spec = new Spec('text', assign({
   color: {
     category: 'styles',
     validation: React.PropTypes.string,
-    default: '#E06A2C'
+    default: '#E06A2C',
+    editor: 'color'
   },
   fontSize: {
     category: 'styles',
