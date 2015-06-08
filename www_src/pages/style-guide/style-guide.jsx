@@ -41,7 +41,7 @@ var StyleGuide = React.createClass({
         header: 'Project Remix',
         body: 'This is your copy of My Yam Fries Recipe. You can add or change anything. The original will stay the same. Have fun!',
         attribution: 'fancyunicorn',
-        icon: '../../img/tinker.png',
+        icon: 'tinker.png',
         buttonText: 'OK, got it!',
         callback: () => {
           console.log('Modal confirmed!');

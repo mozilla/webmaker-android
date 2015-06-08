@@ -32,7 +32,11 @@ var Modal = React.createClass({
   },
   componentDidMount: function () {
     dispatcher.on('modal:show', (event) => {
-      this.setState(event.config);
+      if (event.config.icon) {
+        event.config.icon = '../../img/' + event.config.icon;
+      }
+
+      this.setState(React.__spread(this.getInitialState(), event.config));
       this.show();
     });
 
