@@ -72,7 +72,9 @@ render(React.createClass({
   },
   save: function (postSave) {
     var edits = this.edits;
-    if (!edits) return;
+    if (!edits) {
+      return;
+    }
     var json = types[edits.type].spec.expand(edits);
 
     this.setState({loading: true});

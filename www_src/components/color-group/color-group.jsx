@@ -1,5 +1,4 @@
 var React = require('react/addons');
-var Link = require('../link/link.jsx');
 var classNames = require('classnames');
 
 var ColorGroup = React.createClass({
