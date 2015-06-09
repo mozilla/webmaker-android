@@ -47,7 +47,10 @@ public class WebmakerActivity extends BaseActivity {
         }
 
         ActionBar actionBar = getActionBar();
-        if (actionBar != null) actionBar.setDisplayHomeAsUpEnabled(true);
+        if (actionBar != null) {
+            actionBar.setDisplayHomeAsUpEnabled(true);
+            actionBar.setIcon(android.R.color.transparent);
+        }
 
         setContentView(layoutResID);
         super.onCreate(savedInstanceState);
