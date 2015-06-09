@@ -30,6 +30,26 @@ var ColorGroup = React.createClass({
       this.valueLink.requestChange(e.target.value);
     }
   },
+
+  // Terrible hack to allow us to save before going to
+  // tinker mode
+  launchTinker: function (e) {
+    if (!window.Android) {
+      return;
+    }
+    e.preventDefault();
+    var launch = () => {
+      if (window.Android) {
+        window.Android.setView(this.getTinkerUrl());
+      }
+    };
+    if (this.props.onLaunchTinker) {
+      this.props.onLaunchTinker(launch);
+    } else {
+      launch();
+    }
+  },
+
   render: function () {
     var colors = this.props.colors;
     var linkState = this.props.linkState || this.linkState;
@@ -58,9 +78,9 @@ var ColorGroup = React.createClass({
         </label>);
       })}
       <div className="tinker-container" hidden={!this.props.params || !this.props.id}>
-        <Link className="tinker" url={this.getTinkerUrl()} href="/pages/tinker">
+        <a href="/pages/tinker" className="link tinker" onClick={this.launchTinker}>
           <img src="../../img/tinker.png" />
-        </Link>
+        </a>
       </div>
     </div>);
   }

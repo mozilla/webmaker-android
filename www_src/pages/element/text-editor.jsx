@@ -48,7 +48,7 @@ var TextEditor = React.createClass({
     this.props.cacheEdits(this.state);
 
     // Update state if parent properties change
-    if (this.props !== prevProps) {
+    if (this.props.element !== prevProps.element) {
       var state = this.getInitialState();
       this.setState(state);
     }
@@ -71,7 +71,7 @@ var TextEditor = React.createClass({
             </div>
             <div className="form-group">
               <label>Color</label>
-              <ColorGroup id="color" linkState={this.linkState} colors={colorChoices} params={this.props.params} />
+              <ColorGroup id="color" linkState={this.linkState} colors={colorChoices} params={this.props.params} onLaunchTinker={this.props.save} />
             </div>
             <div className="form-group">
               <label>Text Style</label>
