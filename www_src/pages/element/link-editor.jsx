@@ -19,7 +19,7 @@ var LinkEditor = React.createClass({
     var state = this.state;
 
     // Update state if parent properties change
-    if (this.props !== prevProps) {
+    if (this.props.element !== prevProps.element) {
       state = this.getInitialState();
       this.setState(state);
     }
@@ -86,7 +86,7 @@ var LinkEditor = React.createClass({
           </div>
           <div className="form-group">
             <label>Background Color</label>
-            <ColorGroup id="backgroundColor" linkState={this.linkState} params={this.props.params} />
+            <ColorGroup id="backgroundColor" linkState={this.linkState} params={this.props.params} onLaunchTinker={this.props.save}/>
           </div>
         </div>
       </div>
