@@ -11,6 +11,8 @@ var Link = require('../../components/link/link.jsx');
 var Loading = require('../../components/loading/loading.jsx');
 var ElementGroup = require('../../components/element-group/element-group.jsx');
 
+var ReactCSSTransitionGroup = React.addons.CSSTransitionGroup;
+
 var Page = React.createClass({
 
   mixins: [router],
@@ -92,7 +94,11 @@ var Page = React.createClass({
         </div>
       </div>
 
-      <div className={classNames({overlay: true, active: this.state.showAddMenu})} onClick={this.toggleAddMenu}/>
+      <div className="overlaydiv">
+        <ReactCSSTransitionGroup transitionName="overlay">
+            { this.state.disableButtons ? <div/> : false }
+        </ReactCSSTransitionGroup>
+      </div>
 
       <div className={classNames({'controls': true, 'add-active': this.state.showAddMenu})}>
         <div className="add-menu">
@@ -216,7 +222,7 @@ var Page = React.createClass({
       this.setState({disableButtons: true});
 
       api({spinOnLag: false, method: 'post', uri: this.uri() + '/elements', json}, (err, data) => {
-        var state = {showAddMenu: false};
+        var state = {showAddMenu: false, disableButtons: false};
         if (err) {
           console.error('There was an error creating an element', err);
         }
@@ -232,19 +238,6 @@ var Page = React.createClass({
         this.setState(state, function() {
           save();
         });
-
-        // FIXME: TODO: This timeout should not be here, if the buttons are disabled
-        //              until the element has been added, then the element finishing
-        //              adding itself should lead -in that child element- to a call
-        //              to its "this.props.dosomething", which was passed down by
-        //              the parent, and then in this component that function would
-        //              lead to a this.setState({ disabledButtons: false }).
-        //
-        // https://github.com/mozilla/webmaker-android/issues/2074 has been filed to fix this
-
-        setTimeout(function() {
-          this.setState({disableButtons: false });
-        }.bind(this), 200);
       });
     };
   },
