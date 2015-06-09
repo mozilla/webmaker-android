@@ -35,8 +35,8 @@ var StyleGuide = React.createClass({
       this.setState({loading: false});
     }, 3000);
   },
-  showModal: function () {
-    dispatcher.fire('modal:show', {
+  showModalConfirm: function () {
+    dispatcher.fire('modal-confirm:show', {
       config: {
         header: 'Project Remix',
         body: 'This is your copy of My Yam Fries Recipe. You can add or change anything. The original will stay the same. Have fun!',
@@ -45,6 +45,16 @@ var StyleGuide = React.createClass({
         buttonText: 'OK, got it!',
         callback: () => {
           console.log('Modal confirmed!');
+        }
+      }
+    });
+  },
+  showModalSwitch: function () {
+    dispatcher.fire('modal-switch:show', {
+      config: {
+        actions: ['Share', 'Duplicate', 'Delete', 'Flag as Inappropriate Content'],
+        callback: (event) => {
+          console.log('Modal switch: "' + event.label + '" chosen.');
         }
       }
     });
@@ -124,8 +134,11 @@ var StyleGuide = React.createClass({
         <button className="btn" onClick={this.toggleLoading}>Show loading</button>
         <Loading on={this.state.loading} />
 
-        <h3>Modal</h3>
-        <button className="btn" onClick={this.showModal}>Show modal</button>
+        <h3>ModalConfirm</h3>
+        <button className="btn" onClick={this.showModalConfirm}>Show confirm modal</button>
+
+        <h3>ModalSwitch</h3>
+        <button className="btn" onClick={this.showModalSwitch}>Show switchmodal</button>
 
       </div>
     );
