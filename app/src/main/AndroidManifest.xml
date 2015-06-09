@@ -45,6 +45,12 @@
             <meta-data
                     android:name="android.support.PARENT_ACTIVITY"
                     android:value=".MainActivity" />
+            <intent-filter android:label="@string/title_activity_play">
+                <action android:name="android.intent.action.VIEW" />
+                <category android:name="android.intent.category.DEFAULT" />
+                <category android:name="android.intent.category.BROWSABLE" />
+                <data android:scheme="webmaker" android:host="play" />
+            </intent-filter>
         </activity>
 
         <activity
