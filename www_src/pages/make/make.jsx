@@ -106,7 +106,7 @@ var Make = React.createClass({
           key={project.id}
           url={"/users/" + project.author.id + "/projects/" + project.id}
           href="/pages/project"
-          thumbnail={project.thumbnail[400]}
+          thumbnail={project.thumbnail[320]}
           title={project.title}
           author={project.author.username} />
       );

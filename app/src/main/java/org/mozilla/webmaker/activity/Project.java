@@ -54,7 +54,7 @@ public class Project extends WebmakerActivity {
                 Router.sharedRouter().open("/users/" + userId + "/projects/" + id + "/settings");
                 return true;
             case R.id.action_share:
-                final String url = getString(R.string.share_url).concat(id);
+                final String url = getString(R.string.share_url) + "/users/" + userId + "/projects/" + id;
                 Share.launchShareIntent(url, this);
                 return true;
             default:
