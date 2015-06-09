@@ -4,9 +4,9 @@
     <string name="ga_trackingId">UA-49796218-8</string>
 
     <!-- If set you can replace a package address with a easily readable display name instead. -->
-    <screenName name="mozilla.org.webmaker.activity.Project">Project Activity</screenName>
-    <screenName name="mozilla.org.webmaker.activity.Element">Element Activity</screenName>
-    <screenName name="mozilla.org.webmaker.activity.Page">Page Activity</screenName>
-    <screenName name="mozilla.org.webmaker.activity.Tinker">Tinker Activity</screenName>
-    <screenName name="mozilla.org.webmaker.MainActivity">Main Activity</screenName>
+    <screenName name="org.mozilla.webmaker.activity.Project">Project Activity</screenName>
+    <screenName name="org.mozilla.webmaker.activity.Element">Element Activity</screenName>
+    <screenName name="org.mozilla.webmaker.activity.Page">Page Activity</screenName>
+    <screenName name="org.mozilla.webmaker.activity.Tinker">Tinker Activity</screenName>
+    <screenName name="org.mozilla.webmaker.MainActivity">Main Activity</screenName>
 </resources>

@@ -1,6 +1,6 @@
 var React = require('react/addons');
 var render = require('../../lib/render.jsx');
-var router = require('../../lib/router.jsx');
+var router = require('../../lib/router');
 var api = require('../../lib/api.js');
 var Loading = require('../../components/loading/loading.jsx');
 
@@ -27,28 +27,39 @@ render(React.createClass({
     if (hash) {
       element = testIds[hash];
     }
-    return `/users/1/projects/${params.project}/pages/${params.page}/elements/${element}`;
+    return `/users/${params.user}/projects/${params.project}/pages/${params.page}/elements/${element}`;
   },
 
   componentWillMount: function() {
     this.load();
+
+    var saveBeforeSwitch = function() {
+      var goBack = function() {
+        window.Android.goBack();
+      };
+      if (!this.edits) {
+        return goBack();
+      }
+      this.save(goBack);
+    }.bind(this);
+
+    this.props.update({
+      onBackPressed: saveBeforeSwitch
+    });
   },
   componentDidUpdate: function (prevProps) {
     // resume
     if (this.props.isVisible && !prevProps.isVisible) {
       this.load();
     }
-    // pause - if there are edits
-    if (this.edits && !this.props.isVisible && prevProps.isVisible) {
-      this.save();
-    }
   },
   cacheEdits: function (edits) {
     this.edits = edits;
   },
-  save: function () {
+  save: function (postSave) {
     var edits = this.edits;
     var json = types[edits.type].spec.expand(edits);
+
     api({method: 'patch', uri: this.uri(), json: {
       styles: json.styles,
       attributes: json.attributes
@@ -61,6 +72,10 @@ render(React.createClass({
         elements: edits
       });
       this.edits = false;
+
+      if (postSave) {
+        postSave();
+      }
     });
   },
   load: function () {
@@ -74,6 +89,7 @@ render(React.createClass({
       }
 
       this.setState({element: data.element});
+
     });
   },
   render: function () {
@@ -91,6 +107,10 @@ render(React.createClass({
       props.element = element;
     }
 
-    return (<Editor {...props} />);
+    return (<div>
+      <Editor {...props} />
+      <button hidden={window.Android} onClick={()=>this.save()}>SAVE</button>
+    </div>);
   }
 }));
+

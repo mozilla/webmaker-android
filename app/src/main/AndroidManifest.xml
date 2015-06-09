@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     android:installLocation="auto"
-    package="mozilla.org.webmaker" >
+    package="org.mozilla.webmaker" >
 
     <uses-permission android:name="android.permission.INTERNET" />
     <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
@@ -45,6 +45,21 @@
             <meta-data
                     android:name="android.support.PARENT_ACTIVITY"
                     android:value=".MainActivity" />
+            <intent-filter android:label="@string/title_activity_play">
+                <action android:name="android.intent.action.VIEW" />
+                <category android:name="android.intent.category.DEFAULT" />
+                <category android:name="android.intent.category.BROWSABLE" />
+                <data android:scheme="webmaker" android:host="play" />
+            </intent-filter>
+        </activity>
+
+        <activity
+                android:name=".activity.Link"
+                android:label="@string/title_activity_link"
+                android:screenOrientation="portrait" >
+            <meta-data
+                    android:name="android.support.PARENT_ACTIVITY"
+                    android:value=".activity.Element" />
         </activity>
 
         <activity
@@ -81,6 +96,13 @@
             <meta-data
                 android:name="android.support.PARENT_ACTIVITY"
                 android:value=".activity.Element" />
+        </activity>
+
+        <activity
+            android:name=".activity.Login"
+            android:label="@string/title_activity_login"
+            android:noHistory="true"
+            android:screenOrientation="portrait" >
         </activity>
     </application>
 </manifest>

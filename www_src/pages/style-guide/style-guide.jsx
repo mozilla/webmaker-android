@@ -1,5 +1,6 @@
 var React = require('react');
 var render = require('../../lib/render.jsx');
+var dispatcher = require('../../lib/dispatcher');
 
 // Components
 var ColorGroup = require('../../components/color-group/color-group.jsx');
@@ -33,6 +34,20 @@ var StyleGuide = React.createClass({
     setTimeout(() => {
       this.setState({loading: false});
     }, 3000);
+  },
+  showModal: function () {
+    dispatcher.fire('modal:show', {
+      config: {
+        header: 'Project Remix',
+        body: 'This is your copy of My Yam Fries Recipe. You can add or change anything. The original will stay the same. Have fun!',
+        attribution: 'fancyunicorn',
+        icon: 'tinker.png',
+        buttonText: 'OK, got it!',
+        callback: () => {
+          console.log('Modal confirmed!');
+        }
+      }
+    });
   },
   render: function () {
     return (
@@ -108,6 +123,9 @@ var StyleGuide = React.createClass({
         <h3>Loading</h3>
         <button className="btn" onClick={this.toggleLoading}>Show loading</button>
         <Loading on={this.state.loading} />
+
+        <h3>Modal</h3>
+        <button className="btn" onClick={this.showModal}>Show modal</button>
 
       </div>
     );

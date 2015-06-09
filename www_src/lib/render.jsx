@@ -1,4 +1,6 @@
 var React = require('react');
+var Spindicator = require('../components/spindicator/spindicator.jsx');
+var Modal = require('../components/modal/modal.jsx');
 
 var Base = React.createClass({
   onResume: function () {
@@ -33,6 +35,8 @@ var Base = React.createClass({
   render: function () {
     var Route = this.props.route;
     return (<div className="container">
+      <Spindicator/>
+      <Modal/>
       <Route isVisible={this.state.isVisible} update={this.update} />
     </div>);
   }

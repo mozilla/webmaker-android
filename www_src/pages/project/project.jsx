@@ -1,15 +1,14 @@
 var React = require('react/addons');
 var update = React.addons.update;
 var assign = require('react/lib/Object.assign');
-var classNames = require('classnames');
 
 var render = require('../../lib/render.jsx');
-var router = require('../../lib/router.jsx');
+var router = require('../../lib/router');
 var Cartesian = require('../../lib/cartesian');
 var Loading = require('../../components/loading/loading.jsx');
 var {Menu, PrimaryButton, SecondaryButton} = require('../../components/action-menu/action-menu.jsx');
 var types = require('../../components/el/el.jsx').types;
-var ElementGroup = require('../../components/element-group/element-group.jsx');
+var dispatcher = require('../../lib/dispatcher');
 
 var api = require('../../lib/api');
 var calculateSwipe = require('../../lib/swipe.js');
@@ -19,21 +18,7 @@ var MIN_ZOOM = 0.18;
 var DEFAULT_ZOOM = 0.5;
 var ZOOM_SENSITIVITY = 300;
 
-var Page = React.createClass({
-  render: function () {
-    var classes = classNames('page-container', {
-      selected: this.props.selected,
-      unselected: this.props.unselected
-    });
-    var style = {
-      backgroundColor: this.props.page.styles.backgroundColor,
-      transform: this.props.transform
-    };
-    return (<div className={classes} style={style} onClick={this.props.onClick}>
-      <ElementGroup elements={this.props.page.elements} />
-    </div>);
-  }
-});
+var PageBlock = require("./pageblock.jsx");
 
 var Project = React.createClass({
   mixins: [router],
@@ -52,11 +37,11 @@ var Project = React.createClass({
   },
 
   uri: function () {
-    return `/users/1/projects/${this.state.params.project}/pages`;
+    return `/users/${this.state.params.user}/projects/${this.state.params.project}/pages`;
   },
 
   componentWillMount: function () {
-
+    console.log(JSON.stringify(this.state.params));
     var width = 320;
     var height = 440;
     var gutter = 20;
@@ -207,12 +192,60 @@ var Project = React.createClass({
       }
 
     });
-  },
-  selectPage: function (el) {
-    this.setState({
-      camera: this.cartesian.getFocusTransform(el.coords, this.state.zoom),
-      selectedEl: el.id
+
+    // Handle button actions on zoomed in pages
+    dispatcher.on('linkClicked', (event) => {
+      if (event.targetPageId && this.state.isPageZoomed) {
+        this.zoomToPage( this.pageIdToCoords(event.targetPageId) );
+      }
     });
+  },
+
+  /**
+   * Get the coordinates for a particular page ID
+   * @param  {String} id Page ID
+   * @return {Object}    Coordinate object {x:Number, y:Number}
+   */
+  pageIdToCoords: function (id) {
+    var coords;
+
+    for (var i = 0; i < this.state.pages.length; i++) {
+      if (id === this.state.pages[i].id) {
+        coords = this.state.pages[i].coords;
+        break;
+      }
+    }
+
+    return coords;
+  },
+
+  /**
+   * Highlight a page in the UI and move camera to center it
+   * @param  {Number|String} id ID of page
+   * @param  {Number|String} type Type of highlight ("selected", "source")
+   */
+  highlightPage: function (id, type) {
+    if (this.state.sourcePageID !== id) {
+      var selectedPage;
+
+      this.state.pages.forEach(function (page) {
+        if (parseInt(page.id, 10) === parseInt(id, 10)) {
+          selectedPage = page;
+        }
+      });
+
+      var newState = {
+        camera: this.cartesian.getFocusTransform(selectedPage.coords, this.state.zoom)
+      };
+
+      if (type === 'selected') {
+        newState.selectedEl = id;
+      } else if (type === 'source') {
+        newState.sourcePageID = id;
+      }
+
+      this.setState(newState);
+    }
   },
   zoomToPage: function (coords) {
     this.setState({
@@ -248,6 +281,7 @@ var Project = React.createClass({
   zoomOut: function () {
     this.setState({zoom: this.state.zoom / 2});
   },
+
   zoomIn: function () {
     this.setState({zoom: this.state.zoom * 2});
   },
@@ -278,6 +312,13 @@ var Project = React.createClass({
       state.camera = this.cartesian.getFocusTransform({x: 0, y: 0}, this.state.zoom);
     }
     this.setState(state);
+
+    // Highlight the source page if you're in link destination mode
+    if (this.state.params.mode === 'link') {
+      if (window.Android) {
+        this.highlightPage(this.state.routeData.pageID, 'source');
+      }
+    }
   },
 
   load: function () {
@@ -296,12 +337,11 @@ var Project = React.createClass({
             y: 0
           }
         }, (err, data) => {
-          console.log(err, data);
           if (err) {
             console.error('Error creating first page', err);
             this.setState({loading: false});
           } else if (!data || !data.page) {
-            console.log('No page id was returned');
+            console.error('No page id was returned');
             this.setState({loading: false});
           } else {
             this.loadPages([{
@@ -325,7 +365,7 @@ var Project = React.createClass({
       var json = {
         x: coords.x,
         y: coords.y,
-        styles: {backgroundColor: '#fafcff'}
+        styles: {backgroundColor: '#f2f6fc'}
       };
       this.setState({loading: true});
       api({
@@ -335,11 +375,11 @@ var Project = React.createClass({
       }, (err, data) => {
         this.setState({loading: false});
         if (err) {
-          return console.log('Error loading project', err);
+          return console.error('Error loading project', err);
         }
 
         if (!data || !data.page) {
-          return console.log('No page id returned');
+          return console.error('No page id returned');
         }
 
         json.id = data.page.id;
@@ -395,12 +435,43 @@ var Project = React.createClass({
 
   onPageClick: function (page) {
     if (this.state.params.mode === 'play') {
-      this.zoomToPage(page.coords);
-    } else if (page.id === this.state.selectedEl) {
+      if (!this.state.isPageZoomed ||
+          this.state.zoomedPageCoords.x !== page.coords.x &&
+          this.state.zoomedPageCoords.y !== page.coords.y) {
+        this.zoomToPage(page.coords);
+      }
+    } else if (page.id === this.state.selectedEl && this.state.params.mode !== 'link') {
       this.zoomToSelection(page.coords);
     } else {
-      this.selectPage(page);
+      this.highlightPage(page.id, 'selected');
     }
+  },
+
+  setDestination: function () {
+    var patchedState = this.state.routeData.linkState;
+
+    patchedState = types.link.spec.expand(patchedState);
+
+    // Patch old attributes object to prevent overwritten properties
+    patchedState.attributes.targetPageId = this.state.selectedEl;
+    patchedState.attributes.targetProjectId = this.state.params.project;
+    patchedState.attributes.targetUserId = this.state.params.user;
+
+    api({
+      method: 'patch',
+      uri: `/users/${this.state.routeData.userID}/projects/${this.state.routeData.projectID}/pages/${this.state.routeData.pageID}/elements/${this.state.routeData.elementID}`,
+      json: {
+        attributes: patchedState.attributes
+      }
+    }, (err, data) => {
+      if (err) {
+        console.error('There was an error updating the element', err);
+      }
+
+      if (window.Android) {
+        window.Android.goBack();
+      }
+    });
   },
 
   render: function () {
@@ -408,7 +479,8 @@ var Project = React.createClass({
     document.body.style.overflowY = 'hidden';
 
     var self = this;
-    var isPlayOnly = this.state.params.mode === 'play' ? true : false;
+
+    var isPlayOnly = this.state.params.mode === 'play' || this.state.params.mode === 'link';
 
     var containerStyle = {
       width: this.cartesian.width + 'px',
@@ -422,7 +494,7 @@ var Project = React.createClass({
       this.cartesian.getBoundingSize()
     );
 
-    var pageUrl = `/projects/${this.state.params.project}/pages/${this.state.selectedEl}`;
+    var pageUrl = `/users/${this.state.params.user}/projects/${this.state.params.project}/pages/${this.state.selectedEl}`;
 
     function generateAddContainers() {
       if (!isPlayOnly) {
@@ -434,26 +506,33 @@ var Project = React.createClass({
       }
     }
 
+    var removePageButton = this.state.pages.length > 1 ? (
+      <SecondaryButton side="left" off={isPlayOnly || !this.state.selectedEl} onClick={this.removePage} icon="../../img/trash.svg" />
+    ) : false;
+
     return (
       <div id="map">
-
+        {/* TODO - Eliminate this button and use Android navbar instead */}
+        <button hidden={this.state.params.mode !== 'link'} onClick={this.setDestination} style={{position: 'absolute', right: '10px', top: '10px', zIndex: 999999, padding: '10px'}}>✓</button>
         <div ref="bounding" className="bounding" style={boundingStyle}>
           <div className="test-container" style={containerStyle}>
           {this.state.pages.map((page) => {
             var props = {
               page,
               selected: page.id === this.state.selectedEl,
+              source: page.id === this.state.sourcePageID,
+              target: page.id === this.state.selectedEl && this.state.params.mode === 'link',
               transform: this.cartesian.getTransform(page.coords),
               onClick: this.onPageClick.bind(this, page)
             };
-            return (<Page {...props} />);
+            return (<PageBlock {...props} />);
           })}
           { generateAddContainers() }
           </div>
         </div>
 
         <Menu>
-          <SecondaryButton side="right" off={isPlayOnly || !this.state.selectedEl} onClick={this.removePage} icon="../../img/trash.svg" />
+          {removePageButton}
           <PrimaryButton url={pageUrl} off={isPlayOnly || !this.state.selectedEl} href="/pages/page" icon="../../img/pencil.svg" />
           <PrimaryButton onClick={this.zoomFromPage} off={!this.state.isPageZoomed} icon="../../img/zoom-out.svg" />
         </Menu>

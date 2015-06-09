@@ -2,9 +2,10 @@ var React = require('react');
 var classNames = require('classnames');
 var assign = require('react/lib/Object.assign');
 var render = require('../../lib/render.jsx');
-var router = require('../../lib/router.jsx');
+var router = require('../../lib/router');
 var api = require('../../lib/api.js');
 var types = require('../../components/el/el.jsx').types;
+var dispatcher = require('../../lib/dispatcher');
 
 var Link = require('../../components/link/link.jsx');
 var Loading = require('../../components/loading/loading.jsx');
@@ -16,7 +17,7 @@ var Page = React.createClass({
 
   uri: function () {
     var params = this.state.params;
-    return `/users/1/projects/${params.project}/pages/${params.page}`;
+    return `/users/${params.user}/projects/${params.project}/pages/${params.page}`;
   },
 
   getInitialState: function() {
@@ -26,6 +27,7 @@ var Page = React.createClass({
       styles: {},
       currentElementId: -1,
       showAddMenu: false,
+      disableButtons: false,
       dims: {
         width: 0,
         height: 0
@@ -69,7 +71,7 @@ var Page = React.createClass({
     if (typeof currentEl !== 'undefined') {
       href = '/pages/element/#' + currentEl.type;
       var params = this.state.params;
-      url = `/projects/${params.project}/pages/${params.page}/elements/${currentEl.id}/editor/${currentEl.type}`;
+      url = `/users/${params.user}/projects/${params.project}/pages/${params.page}/elements/${currentEl.id}/editor/${currentEl.type}`;
     }
 
     return (<div id="project" className="demo">
@@ -83,8 +85,8 @@ var Page = React.createClass({
               dims={this.state.dims}
               elements={this.state.elements}
               currentElementId={this.state.currentElementId}
-              onTouchEnd={this.save}
-              onUpdate={this.updateElement}
+              onTouchEnd={this.onTouchEnd}
+              onUpdate={this.onUpdate}
               onDeselect={this.deselectAll} />
           </div>
         </div>
@@ -94,9 +96,9 @@ var Page = React.createClass({
 
       <div className={classNames({'controls': true, 'add-active': this.state.showAddMenu})}>
         <div className="add-menu">
-          <button className="text" onClick={this.addElement('text')}><img className="icon" src="../../img/text.svg" /></button>
-          <button className="image" onClick={this.addElement('image')}><img className="icon" src="../../img/camera.svg" /></button>
-          <button className="link" onClick={this.addElement('link')}><img className="icon" src="../../img/link.svg" /></button>
+          <button className="text" disabled={this.state.disableButtons} onClick={this.addElement('text')}><img className="icon" src="../../img/text.svg" /></button>
+          <button className="image" disabled={this.state.disableButtons} onClick={this.addElement('image')}><img className="icon" src="../../img/camera.svg" /></button>
+          <button className="link" disabled={this.state.disableButtons} onClick={this.addElement('link')}><img className="icon" src="../../img/link.svg" /></button>
         </div>
         <button className={secondaryClass("delete")} onClick={this.deleteElement} active={this.state.currentElementId===-1}>
           <img className="icon" src="../../img/trash.svg" />
@@ -120,10 +122,28 @@ var Page = React.createClass({
         dims: bbox
       });
     }
+
+    var parentProjectID = this.state.params.project;
+
+    dispatcher.on('linkDestinationClicked', function (e) {
+      // Data to pass to the Project Link activity to determine its initial state and where to return its data
+      var metadata = {
+        elementID: e.id,
+        pageID: this.state.params.page,
+        projectID: this.state.params.project,
+        userID: this.state.params.user
+      };
+
+      if (window.Android) {
+        window.Android.setView('/users/' + this.state.params.user + '/projects/' + parentProjectID + '/link', JSON.stringify(metadata));
+      }
+    }.bind(this));
   },
 
   toggleAddMenu: function () {
-    this.setState({showAddMenu: !this.state.showAddMenu});
+    this.setState({
+      showAddMenu: !this.state.showAddMenu
+    });
   },
 
   deselectAll: function () {
@@ -132,28 +152,50 @@ var Page = React.createClass({
     });
   },
 
-  addElement: function(type) {
-    return () => {
-      var json = types[type].spec.generate();
+  /**
+   * Find the highest in-use zindex on the page, so that we can assign
+   * elements added to the page a sensible zindex value.
+   * @return {int} the highest in-use zindex on the page.
+   */
+  getHighestIndex: function() {
+    return Object.keys(this.state.elements)
+                 .map(e => this.state.elements[e].zIndex)
+                 .reduce((a,b) => a > b ? a : b, 1);
+  },
 
-      api({method: 'post', uri: this.uri() + '/elements', json}, (err, data) => {
-        var state = {showAddMenu: false};
-        if (err) {
-          console.log('There was an error creating an element', err);
-        }
-        if (data && data.element) {
-          var id = data.element.id;
-          json.id = id;
-          state.elements = this.state.elements;
-          state.elements[id] = this.flatten(json);
-          state.currentElementId = id;
-        }
-        this.setState(state);
+  /**
+   * Elements need to save themselves on a touchend, but depending
+   * on whether they were manipulated or not should make sure their
+   * z-index is the highest index available for rendering: if an
+   * element was only tapped, not manipulated, it should become the
+   * highest visible element on the page.
+   */
+  onTouchEnd: function(elementId) {
+    var save = this.save(elementId);
+    return (modified) => {
+      if(modified) {
+        return save();
+      }
+
+      // A plain tap without positional modificationss means we need
+      // to raise this element's z-index to "the highest number".
+      var elements = this.state.elements,
+          element = elements[elementId],
+          highestIndex = this.getHighestIndex();
+
+      if (element.zIndex !== highestIndex) {
+        element.zIndex = highestIndex + 1;
+      }
+
+      this.setState({
+        elements: elements
+      }, function() {
+        save();
       });
     };
   },
 
-  updateElement: function (elementId) {
+  onUpdate: function (elementId) {
     return (newProps) => {
       var elements = this.state.elements;
       var element = elements[elementId];
@@ -161,6 +203,48 @@ var Page = React.createClass({
       this.setState({
         elements: elements,
         currentElementId: elementId
+      });
+    };
+  },
+
+  addElement: function(type) {
+    var highestIndex = this.getHighestIndex();
+
+    return () => {
+      var json = types[type].spec.generate();
+      json.styles.zIndex = highestIndex + 1;
+      this.setState({disableButtons: true});
+
+      api({spinOnLag: false, method: 'post', uri: this.uri() + '/elements', json}, (err, data) => {
+        var state = {showAddMenu: false};
+        if (err) {
+          console.error('There was an error creating an element', err);
+        }
+        var save = function(){};
+        if (data && data.element) {
+          var elementId = data.element.id;
+          json.id = elementId;
+          state.elements = this.state.elements;
+          state.elements[elementId] = this.flatten(json);
+          state.currentElementId = elementId;
+          save = this.save(elementId);
+        }
+        this.setState(state, function() {
+          save();
+        });
+
+        // FIXME: TODO: This timeout should not be here, if the buttons are disabled
+        //              until the element has been added, then the element finishing
+        //              adding itself should lead -in that child element- to a call
+        //              to its "this.props.dosomething", which was passed down by
+        //              the parent, and then in this component that function would
+        //              lead to a this.setState({ disabledButtons: false }).
+        //
+        // https://github.com/mozilla/webmaker-android/issues/2074 has been filed to fix this
+
+        setTimeout(function() {
+          this.setState({disableButtons: false });
+        }.bind(this), 200);
       });
     };
   },
@@ -178,7 +262,7 @@ var Page = React.createClass({
       return window.alert('this is a test element, not deleting.');
     }
 
-    api({method: 'delete', uri: this.uri() + '/elements/' + id}, (err, data) => {
+    api({spinOnLag: false, method: 'delete', uri: this.uri() + '/elements/' + id}, (err, data) => {
       if (err) {
         return console.error('There was a problem deleting the element');
       }
@@ -248,6 +332,7 @@ var Page = React.createClass({
     return () => {
       var el = this.expand(this.state.elements[id]);
       api({
+        spinOnLag: false,
         method: 'patch',
         uri: this.uri() + '/elements/' + id,
         json: {

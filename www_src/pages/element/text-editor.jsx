@@ -4,6 +4,9 @@ var TextBlock = require('../../components/el/types/text.jsx');
 var ColorGroup = require('../../components/color-group/color-group.jsx');
 var {CheckboxSet, Radio} = require('../../components/option-panel/option-panel.jsx');
 
+var colorChoices = ColorGroup.defaultColors.splice(0);
+colorChoices[0] = '#444';
+
 var textStyleOptions = [
   {
     id: 'fontWeight',
@@ -35,7 +38,8 @@ var textAlignOptions = ['left', 'center', 'right'].map(e => {
 var TextEditor = React.createClass({
   mixins: [
     React.addons.LinkedStateMixin,
-    require('./witheditable')
+    require('./witheditable'),
+    require('./font-selector')
   ],
   getInitialState: function () {
     return TextBlock.spec.flatten(this.props.element, {defaults: true});
@@ -56,15 +60,11 @@ var TextEditor = React.createClass({
             </div>
             <div className="form-group">
               <label>Font</label>
-              <select className="select" valueLink={this.linkState('fontFamily')}>
-                <option value="Roboto">Roboto</option>
-                <option value="Bitter">Bitter</option>
-                <option value="Pacifico">Pacifico</option>
-              </select>
+              { this.generateFontSelector() }
             </div>
             <div className="form-group">
               <label>Color</label>
-              <ColorGroup id="color" linkState={this.linkState} />
+              <ColorGroup id="color" linkState={this.linkState} colors={colorChoices} />
             </div>
             <div className="form-group">
               <label>Text Style</label>

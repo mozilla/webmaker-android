@@ -2,7 +2,7 @@
 
 [![Build Status](https://travis-ci.org/mozilla/webmaker-android.svg?branch=develop)](https://travis-ci.org/mozilla/webmaker-android)
 
-Mozilla Webmaker's mission is to help enable a new generation of digital creators and webmakers, giving people the tools and skills they need to move from using the Web to actively making the Web. To this end, the Webmaker App is an entry point to the Webmaker community that provides a radically simple interface for creating mobile application directly on device.
+Mozilla Webmaker's mission is to help enable a new generation of digital creators and webmakers, giving people the tools and skills they need to move from using the Web to actively making the Web. To this end, the Webmaker App is an entry point to the Webmaker community that provides a radically simple interface for creating mobile applications directly on device.
 
 ![Webmaker for Android](https://cloud.githubusercontent.com/assets/747641/7551523/6e866ae2-f640-11e4-8606-2e7f890b438e.jpg)
 
@@ -138,4 +138,17 @@ if (window.Android) {
 `MemStorage` is automatically namespaced to the current activity. You can override this behavior by passing `true` to the optional "global" parameter:
 ```js
 window.Android.getMemStorage('state', true);
+```
+
+#### Google Analytics Event Firing
+
+This function allows you to send event data to Google Analytics by calling the ```trackEvent()``` method. Optionally you can specify a numeric value (int) to pass along in your event, however this isn't required. Please see the below code for example implementation.
+
+You can read more about the parameters and what they do here: https://developers.google.com/analytics/devguides/collection/android/v4/events
+
+```js
+if (window.Android) {
+    window.Android.trackEvent('category', 'action', 'label');
+    window.Android.trackEvent('category', 'action', 'label', 'value'); // optional value
+}
 ```

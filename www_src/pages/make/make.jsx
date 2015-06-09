@@ -3,22 +3,23 @@ var render = require('../../lib/render.jsx');
 var api = require('../../lib/api.js');
 var Card = require('../../components/card/card.jsx');
 var Loading = require('../../components/loading/loading.jsx');
+var router = require('../../lib/router');
 
 var Make = React.createClass({
-  mixins: [],
+  mixins: [router],
   getInitialState: function () {
     return {
       projects: [],
       loading: true
     };
   },
-  componentWillMount: function () {
-    this.load();
-  },
   componentDidUpdate: function (prevProps) {
     if (this.props.isVisible && !prevProps.isVisible) {
       this.load();
     }
+  },
+  componentDidMount: function () {
+    this.load();
   },
   onError: function (err) {
     console.error(err);
@@ -29,10 +30,16 @@ var Make = React.createClass({
     this.setState({loading: false});
   },
   load: function () {
+
+    // No user found, so nothing to load.
+    if (!this.state.user) {
+      return this.onEmpty();
+    }
+
     this.setState({loading: true});
+
     api({
-      uri: '/users/1/projects',
-      useCache: true
+      uri: `/users/${this.state.user.id}/projects`
     }, (err, body) => {
       if (err) {
         return this.onError(err);
@@ -50,13 +57,16 @@ var Make = React.createClass({
   },
   addProject: function () {
     var defaultTitle = 'My project';
-    var userInfo = {
-      username: 'testuser'
-    };
+    var user = this.state.user;
+
+    if (!user) {
+      return console.error('Tried to create project when no session was found');
+    }
+
     this.setState({loading: true});
     api({
       method: 'post',
-      uri: '/users/1/projects',
+      uri: `/users/${user.id}/projects`,
       json: {
         title: defaultTitle
       }
@@ -68,10 +78,11 @@ var Make = React.createClass({
         return this.onEmpty();
       }
       if (window.Android) {
-        window.Android.setView('/projects/' + body.project.id);
+        window.Android.trackEvent('Make', 'Create a Project', 'New Project Started');
+        window.Android.setView('/users/' + user.id + '/projects/' + body.project.id);
       }
 
-      body.project.author = body.project.author || userInfo;
+      body.project.author = body.project.author || user;
 
       this.setState({
         loading: false,
@@ -79,15 +90,23 @@ var Make = React.createClass({
       });
     });
   },
+
+  logout: function () {
+    if (window.Android) {
+      window.Android.clearUserSession();
+      window.Android.setView('/login');
+    }
+  },
+
   render: function () {
 
     var cards = this.state.projects.map(project => {
       return (
         <Card
           key={project.id}
-          url={"/projects/" + project.id}
+          url={"/users/" + project.author.id + "/projects/" + project.id}
           href="/pages/project"
-          thumbnail={project.thumbnail[400]}
+          thumbnail={project.thumbnail[320]}
           title={project.title}
           author={project.author.username} />
       );
@@ -95,7 +114,11 @@ var Make = React.createClass({
 
     return (
       <div id="make">
-        <button onClick={this.addProject} className="btn btn-block btn-teal">
+        <div className="profile-card">
+          <h3>{this.state.user.username}</h3>
+          <p><button className="btn" onClick={this.logout}>Log out</button></p>
+        </div>
+        <button onClick={this.addProject} className="btn btn-create btn-block btn-teal">
           + Create a Project
         </button>
         {cards}
