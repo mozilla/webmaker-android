@@ -3,13 +3,11 @@ package org.mozilla.webmaker.activity;
 import android.content.Intent;
 import android.net.Uri;
 import android.os.Bundle;
-import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
 import org.json.JSONException;
 import org.mozilla.webmaker.R;
 import org.mozilla.webmaker.WebmakerActivity;
-import org.mozilla.webmaker.router.Router;
 import org.mozilla.webmaker.util.Share;
 
 public class Play extends WebmakerActivity {
