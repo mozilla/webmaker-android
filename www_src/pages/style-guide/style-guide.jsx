@@ -36,7 +36,7 @@ var StyleGuide = React.createClass({
     }, 3000);
   },
   showModal: function () {
-    dispatcher.fire('modal:show', {
+    dispatcher.fire('modal-confirm:show', {
       config: {
         header: 'Project Remix',
         body: 'This is your copy of My Yam Fries Recipe. You can add or change anything. The original will stay the same. Have fun!',

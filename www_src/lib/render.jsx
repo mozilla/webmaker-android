@@ -1,6 +1,6 @@
 var React = require('react');
 var Spindicator = require('../components/spindicator/spindicator.jsx');
-var Modal = require('../components/modal/modal.jsx');
+var ModalConfirm = require('../components/modal-confirm/modal-confirm.jsx');
 
 var Base = React.createClass({
   onResume: function () {
@@ -36,7 +36,7 @@ var Base = React.createClass({
     var Route = this.props.route;
     return (<div className="container">
       <Spindicator/>
-      <Modal/>
+      <ModalConfirm/>
       <Route isVisible={this.state.isVisible} update={this.update} />
     </div>);
   }
