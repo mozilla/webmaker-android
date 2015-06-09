@@ -210,7 +210,13 @@ public class WebAppInterface {
 
     @JavascriptInterface
     public String getRouteData() {
-        return MemStorage.sharedStorage().get(ROUTE_KEY);
+        // Return route data from in-memory storage
+        final String data = MemStorage.sharedStorage().get(ROUTE_KEY);
+
+        // Destroy route data in storage after access
+        MemStorage.sharedStorage().put(ROUTE_KEY, "");
+
+        return data;
     }
 
     /**
