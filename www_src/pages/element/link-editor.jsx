@@ -3,7 +3,6 @@ var React = require('react/addons');
 var LinkBlock = require('../../components/el/types/link.jsx');
 var ColorGroup = require('../../components/color-group/color-group.jsx');
 var Slider = require('../../components/range/range.jsx');
-
 var api = require('../../lib/api');
 var types = require('../../components/el/el.jsx').types;
 
@@ -87,7 +86,7 @@ var LinkEditor = React.createClass({
           </div>
           <div className="form-group">
             <label>Background Color</label>
-            <ColorGroup id="backgroundColor" linkState={this.linkState} />
+            <ColorGroup id="backgroundColor" linkState={this.linkState} params={this.props.params} />
           </div>
         </div>
       </div>

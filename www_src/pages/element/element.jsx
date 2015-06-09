@@ -109,7 +109,7 @@ render(React.createClass({
 
     return (<div>
       <Editor {...props} />
-      <button hidden={window.Android} onClick={()=>this.save()}>SAVE</button>
+      <button hidden={window.Android} onClick={()=>this.save()}>DEBUG:SAVE</button>
     </div>);
   }
 }));

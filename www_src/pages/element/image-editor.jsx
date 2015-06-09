@@ -11,8 +11,15 @@ var ImageEditor = React.createClass({
     window.imageReady = this.imageReady;
     return ImageBlock.spec.flatten(this.props.element, {defaults: true});
   },
-  componentDidUpdate: function () {
+  componentDidUpdate: function (prevProps) {
     this.props.cacheEdits(this.state);
+
+    // Update state if parent properties change
+    if (this.props !== prevProps) {
+      var state = this.getInitialState();
+      this.setState(state);
+    }
+
   },
   render: function () {
     return (
@@ -32,7 +39,7 @@ var ImageEditor = React.createClass({
           </div>
           <div className="form-group">
             <label>Border Color</label>
-            <ColorGroup id="borderColor" linkState={this.linkState} />
+            <ColorGroup id="borderColor" linkState={this.linkState} params={this.props.params} />
           </div>
           <div className="form-group">
             <label>Border Width</label>

@@ -13,11 +13,15 @@ module.exports = React.createClass({
   },
   getInitialState: function () {
     return {
-      value: 100
+      value: this.props.value || 100
     };
   },
   onChange: function (e) {
-    this.valueLink.requestChange(parseFloat(e.target.value));
+    var value = parseFloat(e.target.value);
+    this.valueLink.requestChange(value);
+    if (this.props.onChange) {
+      this.props.onChange(value);
+    }
   },
   render: function () {
     var linkState = this.props.linkState || this.linkState;

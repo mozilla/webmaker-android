@@ -26,7 +26,8 @@ module.exports = {
         user: 1,
         project: 1,
         page: 1,
-        element: 1
+        element: 1,
+        propertyName: 'borderColor'
       };
     }
 

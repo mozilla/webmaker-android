@@ -28,7 +28,8 @@ describe('router', function () {
         project: 1,
         page: 1,
         element: 1,
-        mode: 'play'
+        mode: 'play',
+        propertyName: 'borderColor'
       });
     });
 

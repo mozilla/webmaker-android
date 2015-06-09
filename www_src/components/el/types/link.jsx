@@ -38,7 +38,8 @@ var spec = new Spec('link', assign({
   backgroundColor: {
     category: 'styles',
     validation: React.PropTypes.string,
-    default: '#69A0FC'
+    default: '#69A0FC',
+    editor: 'color'
   },
   borderRadius: {
     category: 'styles',

@@ -44,8 +44,15 @@ var TextEditor = React.createClass({
   getInitialState: function () {
     return TextBlock.spec.flatten(this.props.element, {defaults: true});
   },
-  componentDidUpdate: function () {
+  componentDidUpdate: function (prevProps) {
     this.props.cacheEdits(this.state);
+
+    // Update state if parent properties change
+    if (this.props !== prevProps) {
+      var state = this.getInitialState();
+      this.setState(state);
+    }
+
   },
   render: function () {
     return (
@@ -64,7 +71,7 @@ var TextEditor = React.createClass({
             </div>
             <div className="form-group">
               <label>Color</label>
-              <ColorGroup id="color" linkState={this.linkState} colors={colorChoices} />
+              <ColorGroup id="color" linkState={this.linkState} colors={colorChoices} params={this.props.params} />
             </div>
             <div className="form-group">
               <label>Text Style</label>
