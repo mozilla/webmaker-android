@@ -1,5 +1,6 @@
 var React = require('react/addons');
 var api = require('../../lib/api');
+var keyboard = require('../../lib/keyboard');
 var FormInput = require('./form-input.jsx');
 
 // <SignIn />
@@ -39,12 +40,15 @@ var SignIn = React.createClass({
     {
       name: 'username',
       label: 'Username',
+      type: 'email',
+      tabIndex: 1,
       required: true
     },
     {
       name: 'password',
       label: 'Password',
       type: 'password',
+      tabIndex: 2,
       required: true,
       helpText: <a href="#">Reset Password</a>
     }
@@ -87,6 +91,12 @@ var SignIn = React.createClass({
     });
   },
 
+  // Hack to get the Android WebView to use the "done" button to "tab" to the
+  // next form input by tabIndex
+  onDoneEditing: function () {
+    keyboard.focusNextInputByTabIndex();
+  },
+
   // Changes parent mode (Login component) to show sign-up
   changeMode: function (e) {
     e.preventDefault();
@@ -101,6 +111,7 @@ var SignIn = React.createClass({
     return (<form hidden={!this.props.show} className="editor-options" onSubmit={this.onSubmit}>
       {this.fields.map(field => {
         return <FormInput {...field}
+          onReturn={this.onDoneEditing}
           errors={errors[field.name]}
           valueLink={this.linkState(field.name)} />;
       })}
