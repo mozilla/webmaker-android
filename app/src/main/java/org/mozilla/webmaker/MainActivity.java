@@ -2,6 +2,7 @@ package org.mozilla.webmaker;
 
 import android.app.ActionBar;
 import android.app.FragmentTransaction;
+import android.content.Intent;
 import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.support.v4.view.ViewPager;
@@ -22,10 +23,7 @@ public class MainActivity extends BaseActivity implements ActionBar.TabListener 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
 
-        SharedPreferences userSession = getSharedPreferences(WebAppInterface.USER_SESSION_KEY, 0);
-        String session = userSession.getString("session", "");
-
-        if (session == "") {
+        if (!isLoggedIn()) {
             Router.sharedRouter().open("/login");
             finish();
         }
@@ -69,6 +67,14 @@ public class MainActivity extends BaseActivity implements ActionBar.TabListener 
         }
 
         super.onCreate(savedInstanceState);
+    }
+
+    @Override
+    public void onBackPressed() {
+        Intent startMain = new Intent(Intent.ACTION_MAIN);
+        startMain.addCategory(Intent.CATEGORY_HOME);
+        startMain.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
+        startActivity(startMain);
     }
 
     /**
