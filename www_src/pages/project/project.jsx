@@ -213,16 +213,25 @@ var Project = React.createClass({
           return console.error('Error remixing project', err);
         }
 
-        if (window.Android) {
-          window.Android.setView(
-            `/users/${this.state.user.id}/projects/${data.project.id}`,
-            JSON.stringify({
-              isFreshRemix: true,
-              title: data.project.title,
-              originalAuthor: 'TODO'
-            })
-          );
-        }
+        var projectID = data.project.id;
+        var projectTitle = data.project.title;
+
+        // Get author's username
+        api({
+          method: 'GET',
+          uri: `/users/${this.state.params.user}/projects/${this.state.params.project}`
+        }, (err, moreData) => {
+          if (window.Android) {
+            window.Android.setView(
+              `/users/${this.state.user.id}/projects/${projectID}`,
+              JSON.stringify({
+                isFreshRemix: true,
+                title: projectTitle,
+                originalAuthor: moreData.project.author.username
+              })
+            );
+          }
+        });
       });
     };
 
