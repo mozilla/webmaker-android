@@ -12,6 +12,7 @@ import com.google.android.gms.analytics.HitBuilders;
 import org.mozilla.webmaker.BuildConfig;
 import org.json.JSONObject;
 import org.mozilla.webmaker.WebmakerApplication;
+import org.mozilla.webmaker.util.Share;
 import org.xwalk.core.JavascriptInterface;
 
 import org.mozilla.webmaker.BaseActivity;
@@ -144,6 +145,16 @@ public class WebAppInterface {
         if (elementActivity != null) {
             elementActivity.dispatchMediaIntent();
         }
+    }
+
+    /**
+     * ---------------------------------------
+     * Share
+     * ---------------------------------------
+     */
+    @JavascriptInterface
+    public void shareProject(String userId, String id) {
+        Share.launchShareIntent(userId, id, mActivity);
     }
 
     /**

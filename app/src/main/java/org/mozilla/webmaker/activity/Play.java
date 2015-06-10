@@ -64,8 +64,7 @@ public class Play extends WebmakerActivity {
         // Handle button press
         switch (item.getItemId()) {
             case R.id.action_share:
-                final String url = getString(R.string.share_url) + "/users/" + userId + "/projects/" + id;
-                Share.launchShareIntent(url, this);
+                Share.launchShareIntent(userId, id, this);
                 return true;
             case R.id.action_remix:
                 view.load("javascript: window.createRemix && window.createRemix()", null);
