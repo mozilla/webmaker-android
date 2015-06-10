@@ -43,7 +43,6 @@ var Project = React.createClass({
   },
 
   componentWillMount: function () {
-    console.log(JSON.stringify(this.state.params));
     var width = 320;
     var height = 440;
     var gutter = 20;
@@ -360,9 +359,9 @@ var Project = React.createClass({
     this.setState({zoom: this.state.zoom * 2});
   },
 
-  loadPages: function (pages) {
-    var state = {loading: false};
-    var pages = pages.map(page => {
+  formatPages: function (pages) {
+    return pages.map(page => {
+
       page.coords = {
         x: page.x,
         y: page.y
@@ -380,56 +379,40 @@ var Project = React.createClass({
 
       return page;
     });
-    this.cartesian.allCoords = pages.map(el => el.coords);
-    state.pages = pages;
-    if (!this.state.selectedEl) {
-      state.camera = this.cartesian.getFocusTransform({x: 0, y: 0}, this.state.zoom);
-    }
-    this.setState(state);
-
-    // Highlight the source page if you're in link destination mode
-    if (this.state.params.mode === 'link') {
-      if (window.Android) {
-        this.highlightPage(this.state.routeData.pageID, 'source');
-      }
-    }
   },
 
   load: function () {
     this.setState({loading: true});
     api({uri: this.uri()}, (err, data) => {
+
+      this.setState({loading: false});
+
       if (err) {
         console.error('Error loading project', err);
-        this.setState({loading: false});
-      } else if (!data || !data.pages || !data.pages.length) {
-        // Create the first page
-        api({
-          method: 'POST',
-          uri: this.uri(),
-          json: {
-            x: 0,
-            y: 0
-          }
-        }, (err, data) => {
-          if (err) {
-            console.error('Error creating first page', err);
-            this.setState({loading: false});
-          } else if (!data || !data.page) {
-            console.error('No page id was returned');
-            this.setState({loading: false});
-          } else {
-            this.loadPages([{
-              id: data.page.id,
-              x: 0,
-              y: 0,
-              selectedEl: data.page.id,
-              styles: {},
-              elements: []
-            }]);
-          }
-        });
+      } else if (!data || !data.pages) {
+        console.error('No project found...');
       } else {
-        this.loadPages(data.pages);
+        var state = {};
+        var pages = this.formatPages(data.pages);
+
+        // Set cartesian coordinates
+        this.cartesian.allCoords = pages.map(el => el.coords);
+
+        state.pages = pages;
+
+        // If no selected element, set the camera to default position
+        if (!this.state.selectedEl) {
+          state.camera = this.cartesian.getFocusTransform({x: 0, y: 0}, this.state.zoom);
+        }
+
+        this.setState(state);
+
+        // Highlight the source page if you're in link destination mode
+        if (this.state.params.mode === 'link') {
+          if (window.Android) {
+            this.highlightPage(this.state.routeData.pageID, 'source');
+          }
+        }
       }
     });
   },
