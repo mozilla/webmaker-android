@@ -39,6 +39,7 @@ var SignIn = React.createClass({
     {
       name: 'username',
       label: 'Username',
+      type: 'email',
       required: true
     },
     {
