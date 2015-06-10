@@ -12,9 +12,10 @@ public class Share {
      * @param url URL to be appended to the share body
      * @param activity Base activity
      */
-    public static void launchShareIntent(final String url, final Activity activity) {
+    public static void launchShareIntent(final String userId, final String id, final Activity activity) {
         final Intent shareIntent = new Intent(android.content.Intent.ACTION_SEND);
         final String shareSubject = activity.getString(R.string.share_subject);
+        final String url = activity.getString(R.string.share_url) + "/users/" + userId + "/projects/" + id;
         final String shareBody = activity.getString(R.string.share_body).concat(" " + url);
 
         shareIntent.setType("text/plain");
