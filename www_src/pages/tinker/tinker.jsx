@@ -72,7 +72,7 @@ var Tinker = React.createClass({
       }
 
       this.setState({
-        element: spec.flatten(element),
+        element: spec.flatten(element, {defaults: true}),
         editor: spec.spec[this.state.params.propertyName].editor || 'color'
       });
     });
