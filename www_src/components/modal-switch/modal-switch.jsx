@@ -42,7 +42,7 @@ var ModalConfirm = React.createClass({
     });
 
     return (
-      <Shim ref="shim" className="modal-switch">
+      <Shim ref="shim" className="modal-switch" onClick={this.hide}>
         <div className="window">
           {buttons}
         </div>
