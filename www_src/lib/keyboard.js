@@ -1,5 +1,5 @@
 module.exports = {
-  simulateTabPress: function () {
+  focusNextInputByTabIndex: function () {
     var current = document.activeElement;
     var elements = document.getElementsByTagName('input');
     var idx = parseInt(current.getAttribute('tabIndex'), 10) + 1;

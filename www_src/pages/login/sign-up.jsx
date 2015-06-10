@@ -124,7 +124,7 @@ var SignUp = React.createClass({
   // Hack to get the Android WebView to use the "done" button to "tab" to the
   // next form input by tabIndex
   onDoneEditing: function () {
-    keyboard.simulateTabPress();
+    keyboard.focusNextInputByTabIndex();
   },
 
   // Changes parent mode to show sign in form
