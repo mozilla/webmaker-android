@@ -38,34 +38,24 @@
     }
   }
 
-  .overlay-enter {
+  .overlay {
     position: fixed;
     top: 0;
     left: 0;
     height: 100%;
     width: 100%;
-    /* Must be above everything to prevent people clicking on elements below it*/
-    /* this is the maximum z-index. */
-    z-index: 2147483647;
+    z-index: 998;
     background: #1A2237;
     opacity: 0;
     visibility: hidden;
-    transition: all 1s ease-in-out;
+    transition: all 0.1s ease-in-out;
 
-    &.overlay-enter-active {
+    &.active {
       visibility: visible;
       opacity: 0.7;
     }
   }
 
-  /* Necessary to force-remove ReactCSSTransitionGroup elements in unminified React: */
-  .overlay-leave {
-    opacity: 1;
-    transition: all 0.3s cubic-bezier(0.79, 0.14, 0.15, 0.86) 0s;
-    &.overlay-leave-active {
-      opacity: 0.01;
-    }
-  }
   /* See the end of https://facebook.github.io/react/docs/animation.html#getting-started */
 
   .controls {
@@ -74,8 +64,7 @@
     bottom: 20px;
     left: 0;
     right: 0;
-    /* highest-1, so overlay wins */
-    z-index: 2147483646;
+    z-index: 999;
     margin: 0 auto;
 
     &.add-active {
