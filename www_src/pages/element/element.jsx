@@ -73,6 +73,9 @@ render(React.createClass({
   save: function (postSave) {
     var edits = this.edits;
     if (!edits) {
+      if (postSave) {
+        postSave();
+      }
       return;
     }
     var json = types[edits.type].spec.expand(edits);
