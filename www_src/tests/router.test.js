@@ -9,6 +9,7 @@ function resetAndroidApi() {
     getUserSession: () => {},
     getRouteParams: () => {},
     getRouteData: () => {},
+    clearRouteData: () => {},
     getMemStorage: () => {},
     setMemStorage: () => {}
   };
