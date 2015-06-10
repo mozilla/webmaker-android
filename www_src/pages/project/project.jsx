@@ -221,6 +221,10 @@ var Project = React.createClass({
           method: 'GET',
           uri: `/users/${this.state.params.user}/projects/${this.state.params.project}`
         }, (err, moreData) => {
+          if (err) {
+            return console.error('Error remixing project', err);
+          }
+
           if (window.Android) {
             window.Android.setView(
               `/users/${this.state.user.id}/projects/${projectID}`,
