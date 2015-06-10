@@ -213,6 +213,11 @@ public class WebAppInterface {
         return MemStorage.sharedStorage().get(ROUTE_KEY);
     }
 
+    @JavascriptInterface
+    public void clearRouteData() {
+        MemStorage.sharedStorage().put(ROUTE_KEY, "");
+    }
+
     /**
      * ----------------------------------------
      * Google Analytics

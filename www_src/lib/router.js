@@ -39,6 +39,7 @@ module.exports = {
 
     if (this.android) {
       data = parseJSON(this.android.getRouteData());
+      this.android.clearRouteData();
     }
 
     return data;
