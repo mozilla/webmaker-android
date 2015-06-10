@@ -10,11 +10,22 @@ var Loading = require('../../components/loading/loading.jsx');
 var ElementGroup = require('../../components/element-group/element-group.jsx');
 var PageControls = require('./page-controls.jsx');
 
+
 var Page = React.createClass({
   mixins: [
     require('../../lib/router'),
     require('./flattening')
   ],
+
+  /**
+   * URI generator - the app allows for user and project switching, so we cannot
+   *                 cache these values.
+   * @return {String} the API route URI for this page
+   */
+  uri: function () {
+    var params = this.state.params;
+    return `/users/${params.user}/projects/${params.project}/pages/${params.page}`;
+  },
 
   getInitialState: function() {
     return {
@@ -31,10 +42,6 @@ var Page = React.createClass({
   },
 
   componentWillMount: function() {
-    // who are we?
-    var params = this.state.params;
-    this.uri =  `/users/${params.user}/projects/${params.project}/pages/${params.page}`;
-    // excellent. Now let's load.
     this.load();
   },
 
@@ -122,7 +129,7 @@ var Page = React.createClass({
     if (currentElement) {
       type = currentElement.type;
       href = '/pages/element/#' + type;
-      url = this.uri + `/elements/${currentId}/editor/${type}`;
+      url = this.uri() + `/elements/${currentId}/editor/${type}`;
     }
     return (
       <PageControls addElement={this.addElement}
@@ -236,7 +243,7 @@ var Page = React.createClass({
       json.styles.zIndex = highestIndex + 1;
       this.setState({loading: true});
 
-      api({spinOnLag: false, method: 'post', uri: this.uri + '/elements', json}, (err, data) => {
+      api({spinOnLag: false, method: 'post', uri: this.uri() + '/elements', json}, (err, data) => {
         var state = {showAddMenu: false, loading: false};
         if (err) {
           console.error('There was an error creating an element', err);
@@ -273,7 +280,7 @@ var Page = React.createClass({
       return window.alert('this is a test element, not deleting.');
     }
 
-    api({spinOnLag: false, method: 'delete', uri: this.uri + '/elements/' + id}, (err, data) => {
+    api({spinOnLag: false, method: 'delete', uri: this.uri() + '/elements/' + id}, (err, data) => {
       if (err) {
         return console.error('There was a problem deleting the element');
       }
@@ -299,7 +306,7 @@ var Page = React.createClass({
 
   load: function() {
     api({
-      uri: this.uri
+      uri: this.uri()
     }, (err, data) => {
       if (err) {
         return console.error('There was an error getting the page to load', err);
@@ -335,7 +342,7 @@ var Page = React.createClass({
       api({
         spinOnLag: false,
         method: 'patch',
-        uri: this.uri + '/elements/' + elementId,
+        uri: this.uri() + '/elements/' + elementId,
         json: {
           styles: el.styles
         }
