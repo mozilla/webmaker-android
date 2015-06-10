@@ -2,6 +2,7 @@ var React = require('react/addons');
 var api = require('../../lib/api');
 var keyboard = require('../../lib/keyboard');
 var FormInput = require('./form-input.jsx');
+var Link = require('../../components/link/link.jsx');
 
 // <SignUp />
 // Component for the Sign Up/Create user form. See Login view for usage.
@@ -162,7 +163,7 @@ var SignUp = React.createClass({
         <div className="error" hidden={!this.state.globalError}>
           {this.state.globalError}
         </div>
-        <p className="by-joining">By joining, I agree to Mozilla Webmaker&rsquo;s <a href="#">Terms</a> and <a href="#">Privacy Policy</a></p>
+        <p className="by-joining">By joining, I agree to Mozilla Webmaker&rsquo;s <Link external="https://webmaker.org/en-US/terms">Terms</Link> and <Link external="https://webmaker.org/en-US/privacy">Privacy Policy</Link></p>
       </div>
       <div className="form-group text-center text-larger already-joined">
         Already joined? <a href="#" onClick={this.changeMode}>Sign in</a>

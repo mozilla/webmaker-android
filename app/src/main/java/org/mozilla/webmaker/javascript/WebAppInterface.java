@@ -4,6 +4,7 @@ import android.app.Activity;
 import android.content.Context;
 import android.content.SharedPreferences;
 import android.content.Intent;
+import android.net.Uri;
 import android.util.Log;
 
 import com.google.android.gms.analytics.HitBuilders;
@@ -234,5 +235,16 @@ public class WebAppInterface {
     public void trackEvent(String category, String action, String label, long value) {
         WebmakerApplication.getTracker().send(new HitBuilders.EventBuilder()
                 .setCategory(category).setAction(action).setLabel(label).setValue(value).build());
+    }
+
+    /**
+     * ----------------------------------------
+     * Open External URL
+     * ----------------------------------------
+     */
+    @JavascriptInterface
+    public void openExternalUrl(String url) {
+        Intent i = new Intent(Intent.ACTION_VIEW, Uri.parse(url));
+        mActivity.startActivity(i);
     }
 }

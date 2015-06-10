@@ -2,6 +2,7 @@ var React = require('react/addons');
 var api = require('../../lib/api');
 var keyboard = require('../../lib/keyboard');
 var FormInput = require('./form-input.jsx');
+var Link = require('../../components/link/link.jsx');
 
 // <SignIn />
 // Component for the Sign in user form. See Login view for usage.
@@ -50,7 +51,7 @@ var SignIn = React.createClass({
       type: 'password',
       tabIndex: 2,
       required: true,
-      helpText: <a href="#">Reset Password</a>
+      helpText: <Link external="https://id.webmaker.org/reset-password">Reset Password</Link>
     }
   ],
 

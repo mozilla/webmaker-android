@@ -14,10 +14,18 @@ var Link = React.createClass({
       onClick: (e) => {
         if (window.Android) {
           e.preventDefault();
-          window.Android.setView(this.props.url);
+          if (this.props.external) {
+            window.Android.openExternalUrl(this.props.external);
+          } else if (this.props.url) {
+            window.Android.setView(this.props.url);
+          }
         }
       }
     });
+    if (this.props.external) {
+      props.target = '_blank';
+      props.href = this.props.href || this.props.external;
+    }
     return React.createElement(this.props.tagName, props);
   }
 });
