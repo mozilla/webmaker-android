@@ -31,6 +31,24 @@
     margin: 6px auto;
     padding: 2px 0 10px 10px;
     font-size: 1.2rem;
+    display: flex;
+    align-items: center;
+
+    .text {
+      flex: 1;
+    }
+
+    .action {
+      button {
+        padding: 5px 15px 5px 20px; // ~40x40px tap size
+        border: 0;
+        background: none;
+        line-height: 0;
+        img {
+          width: 6px;
+        }
+      }
+    }
   }
 
   .author {
