@@ -70,11 +70,11 @@ render(React.createClass({
       noDataRefresh: true
     });
   },
-  save: function (postSave) {
+  save: function (onSaveComplete) {
     var edits = this.edits;
     if (!edits) {
-      if (postSave) {
-        postSave();
+      if (typeof onSaveComplete === 'function') {
+        onSaveComplete();
       }
       return;
     }
@@ -96,8 +96,8 @@ render(React.createClass({
       });
       this.edits = false;
 
-      if (postSave) {
-        postSave();
+      if (typeof onSaveComplete === 'function') {
+        onSaveComplete();
       }
     });
   },
@@ -141,7 +141,7 @@ render(React.createClass({
 
     return (<div>
       <Editor {...props} />
-      <button hidden={window.Android} onClick={()=>this.save()}>DEBUG:SAVE</button>
+      <button hidden={window.Android} onClick={this.save}>DEBUG:SAVE</button>
       <Loading on={this.state.loading}/>
     </div>);
   }
