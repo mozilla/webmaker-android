@@ -11,8 +11,6 @@ var Link = require('../../components/link/link.jsx');
 var Loading = require('../../components/loading/loading.jsx');
 var ElementGroup = require('../../components/element-group/element-group.jsx');
 
-var ReactCSSTransitionGroup = React.addons.CSSTransitionGroup;
-
 var Page = React.createClass({
 
   mixins: [router],
@@ -29,7 +27,6 @@ var Page = React.createClass({
       styles: {},
       currentElementId: -1,
       showAddMenu: false,
-      disableButtons: false,
       dims: {
         width: 0,
         height: 0
@@ -94,17 +91,13 @@ var Page = React.createClass({
         </div>
       </div>
 
-      <div className="overlaydiv">
-        <ReactCSSTransitionGroup transitionName="overlay">
-            { this.state.disableButtons ? <div/> : false }
-        </ReactCSSTransitionGroup>
-      </div>
+      <div className={classNames({overlay: true, active: this.state.showAddMenu})} onClick={this.toggleAddMenu}/>
 
       <div className={classNames({'controls': true, 'add-active': this.state.showAddMenu})}>
         <div className="add-menu">
-          <button className="text" disabled={this.state.disableButtons} onClick={this.addElement('text')}><img className="icon" src="../../img/text.svg" /></button>
-          <button className="image" disabled={this.state.disableButtons} onClick={this.addElement('image')}><img className="icon" src="../../img/camera.svg" /></button>
-          <button className="link" disabled={this.state.disableButtons} onClick={this.addElement('link')}><img className="icon" src="../../img/link.svg" /></button>
+          <button className="text" onClick={this.addElement('text')}><img className="icon" src="../../img/text.svg" /></button>
+          <button className="image" onClick={this.addElement('image')}><img className="icon" src="../../img/camera.svg" /></button>
+          <button className="link" onClick={this.addElement('link')}><img className="icon" src="../../img/link.svg" /></button>
         </div>
         <button className={secondaryClass("delete")} onClick={this.deleteElement} active={this.state.currentElementId===-1}>
           <img className="icon" src="../../img/trash.svg" />
@@ -219,10 +212,10 @@ var Page = React.createClass({
     return () => {
       var json = types[type].spec.generate();
       json.styles.zIndex = highestIndex + 1;
-      this.setState({disableButtons: true});
+      this.setState({loading: true});
 
       api({spinOnLag: false, method: 'post', uri: this.uri() + '/elements', json}, (err, data) => {
-        var state = {showAddMenu: false, disableButtons: false};
+        var state = {showAddMenu: false, loading: false};
         if (err) {
           console.error('There was an error creating an element', err);
         }
