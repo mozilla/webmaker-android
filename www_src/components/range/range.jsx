@@ -13,7 +13,7 @@ module.exports = React.createClass({
   },
   getInitialState: function () {
     return {
-      value: this.props.value || 100
+      value: typeof this.props.value !== 'undefined' ? this.props.value : 100
     };
   },
   onChange: function (e) {
