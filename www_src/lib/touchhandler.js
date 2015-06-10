@@ -77,11 +77,13 @@
         }
         if (debug) { timedLog("endmark - continued"); }
         mark = copy(positionable.state);
+        var modified = transform.modified;
         transform = resetTransform();
-        positionable.setState({ touchactive: false });
-        if (positionable.onTouchEnd) {
-          positionable.onTouchEnd(transform.modified);
-        }
+        positionable.setState({ touchactive: false }, function() {
+          if (positionable.onTouchEnd) {
+            positionable.onTouchEnd(modified);
+          }
+        });
       },
 
       /**

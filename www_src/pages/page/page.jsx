@@ -2,19 +2,26 @@ var React = require('react');
 var classNames = require('classnames');
 var assign = require('react/lib/Object.assign');
 var render = require('../../lib/render.jsx');
-var router = require('../../lib/router');
 var api = require('../../lib/api.js');
-var types = require('../../components/el/el.jsx').types;
+var types = require('../../components/basic-element/basic-element.jsx').types;
 var dispatcher = require('../../lib/dispatcher');
 
-var Link = require('../../components/link/link.jsx');
 var Loading = require('../../components/loading/loading.jsx');
 var ElementGroup = require('../../components/element-group/element-group.jsx');
+var PageControls = require('./page-controls.jsx');
+
 
 var Page = React.createClass({
+  mixins: [
+    require('../../lib/router'),
+    require('./flattening')
+  ],
 
-  mixins: [router],
-
+  /**
+   * URI generator - the app allows for user and project switching, so we cannot
+   *                 cache these values.
+   * @return {String} the API route URI for this page
+   */
   uri: function () {
     var params = this.state.params;
     return `/users/${params.user}/projects/${params.project}/pages/${params.page}`;
@@ -38,11 +45,22 @@ var Page = React.createClass({
     this.load();
   },
 
+  componentDidMount: function() {
+    var bbox = this.refs.container.getDOMNode().getBoundingClientRect();
+    if(bbox) {
+      this.setState({
+        dims: bbox
+      });
+    }
+    dispatcher.on('linkDestinationClicked', this.followLinkDestination(this.state.params.project));
+  },
+
   componentDidUpdate: function (prevProps, prevState) {
     // resume
     if (this.props.isVisible && !prevProps.isVisible) {
       this.load();
     }
+
     // set parent back button state
     if (this.state.showAddMenu !== prevState.showAddMenu) {
       this.props.update({
@@ -51,33 +69,39 @@ var Page = React.createClass({
     }
   },
 
-  render: function () {
-    var elements = this.state.elements;
 
-    var secondaryClass = (name => {
-      var names = {
-        secondary: true,
-        active: this.state.currentElementId > -1 && !this.state.showAddMenu
+  /**
+   * Generator function for following link destinations tied to a specific parent project
+   * @param  {[type]} parentProjectID [description]
+   * @return {[type]}                 [description]
+   */
+  followLinkDestination: function(parentProjectID) {
+    // actual event handling function:
+    return function(e) {
+      // Data to pass to the Project Link activity to determine its initial state and where to return its data
+      var metadata = {
+        elementID: e.id,
+        pageID: this.state.params.page,
+        projectID: this.state.params.project,
+        userID: this.state.params.user
       };
-      names[name] = true;
-      return classNames(names);
-    });
+      if (window.Android) {
+        window.Android.setView('/users/' + this.state.params.user + '/projects/' + parentProjectID + '/link', JSON.stringify(metadata));
+      }
+    };
+  },
 
-    // Url for link to element editor
-    var href = '';
-    var url = '';
-    var currentEl = elements[this.state.currentElementId];
-    if (typeof currentEl !== 'undefined') {
-      href = '/pages/element/#' + currentEl.type;
-      var params = this.state.params;
-      url = `/users/${params.user}/projects/${params.project}/pages/${params.page}/elements/${currentEl.id}/editor/${currentEl.type}`;
-    }
-
-    return (<div id="project" className="demo">
+  /**
+   * Helper function for generating the JSX involved in rendering the pages-container
+   */
+  generatePagesContainer: function() {
+    var innerStyle = {
+      backgroundColor: this.state.styles.backgroundColor
+    };
+    return (
       <div className="pages-container">
         <div className="page">
-          <div className="inner" style={{backgroundColor: this.state.styles.backgroundColor}}>
-            {/*<div ref="container" className="positionables">{ positionables }</div>*/}
+          <div className="inner" style={innerStyle}>
             <ElementGroup
               ref="container"
               interactive={true}
@@ -90,61 +114,61 @@ var Page = React.createClass({
           </div>
         </div>
       </div>
-
-      <div className={classNames({overlay: true, active: this.state.showAddMenu})} onClick={this.toggleAddMenu}/>
-
-      <div className={classNames({'controls': true, 'add-active': this.state.showAddMenu})}>
-        <div className="add-menu">
-          <button className="text" onClick={this.addElement('text')}><img className="icon" src="../../img/text.svg" /></button>
-          <button className="image" onClick={this.addElement('image')}><img className="icon" src="../../img/camera.svg" /></button>
-          <button className="link" onClick={this.addElement('link')}><img className="icon" src="../../img/link.svg" /></button>
-        </div>
-        <button className={secondaryClass("delete")} onClick={this.deleteElement} active={this.state.currentElementId===-1}>
-          <img className="icon" src="../../img/trash.svg" />
-        </button>
-        <button className="add" onClick={this.toggleAddMenu}></button>
-        <Link
-          className={ secondaryClass("edit") }
-          url={url}
-          href={href}>
-          <img className="icon" src="../../img/brush.svg" />
-        </Link>
-      </div>
-      <Loading on={this.state.loading} />
-    </div>);
+    );
   },
 
-  componentDidMount: function() {
-    var bbox = this.refs.container.getDOMNode().getBoundingClientRect();
-    if(bbox) {
-      this.setState({
-        dims: bbox
-      });
+  /**
+   * Helper function for generating the JSX involved in rendering the page controls
+   */
+  generateControls: function() {
+    // Url for link to element editor
+    var elements = this.state.elements,
+        currentId = this.state.currentElementId,
+        currentElement = elements[currentId],
+        type, href, url;
+    if (currentElement) {
+      type = currentElement.type;
+      href = '/pages/element/#' + type;
+      url = this.uri() + `/elements/${currentId}/editor/${type}`;
     }
-
-    var parentProjectID = this.state.params.project;
-
-    dispatcher.on('linkDestinationClicked', function (e) {
-      // Data to pass to the Project Link activity to determine its initial state and where to return its data
-      var metadata = {
-        elementID: e.id,
-        pageID: this.state.params.page,
-        projectID: this.state.params.project,
-        userID: this.state.params.user
-      };
-
-      if (window.Android) {
-        window.Android.setView('/users/' + this.state.params.user + '/projects/' + parentProjectID + '/link', JSON.stringify(metadata));
-      }
-    }.bind(this));
+    return (
+      <PageControls addElement={this.addElement}
+                    deleteElement={this.deleteElement}
+                    toggleAddMenu={this.toggleAddMenu}
+                    currentElementId={currentId}
+                    showAddMenu={this.state.showAddMenu}
+                    url={url}
+                    href={href} />
+    );
   },
 
+  /**
+   * Renders this component to the client
+   */
+  render: function () {
+    return (
+      <div id="project" className="demo">
+        <div className={classNames({overlay: true, active: this.state.showAddMenu})} />
+        { this.generatePagesContainer() }
+        { this.generateControls() }
+        <Loading on={this.state.loading} />
+      </div>
+    );
+  },
+
+  /**
+   * Show, or hide, the menu for adding new elements to the page,
+   * toggling between the two states.
+   */
   toggleAddMenu: function () {
     this.setState({
       showAddMenu: !this.state.showAddMenu
     });
   },
 
+  /**
+   * Deselect the currently selected element(s) if there is/are any.
+   */
   deselectAll: function () {
     this.setState({
       currentElementId: -1
@@ -170,10 +194,11 @@ var Page = React.createClass({
    * highest visible element on the page.
    */
   onTouchEnd: function(elementId) {
-    var save = this.save(elementId);
-    return (modified) => {
+    var localSave = this.save(elementId);
+
+    return function saveOrReindex(modified) {
       if(modified) {
-        return save();
+        return localSave();
       }
 
       // A plain tap without positional modificationss means we need
@@ -181,20 +206,19 @@ var Page = React.createClass({
       var elements = this.state.elements,
           element = elements[elementId],
           highestIndex = this.getHighestIndex();
-
       if (element.zIndex !== highestIndex) {
         element.zIndex = highestIndex + 1;
       }
-
-      this.setState({
-        elements: elements
-      }, function() {
-        save();
-      });
-    };
+      this.setState({ elements: elements }, localSave);
+    }.bind(this);
   },
 
+  /**
+   * Factory function for generating functions that update elements
+   * based on a change in their CSS transforms.
+   */
   onUpdate: function (elementId) {
+    // actual function, bound to a specific elementId:
     return (newProps) => {
       var elements = this.state.elements;
       var element = elements[elementId];
@@ -206,9 +230,14 @@ var Page = React.createClass({
     };
   },
 
+  /**
+   * Factory function for adding elements of a particular type
+   * to the page.
+   */
   addElement: function(type) {
     var highestIndex = this.getHighestIndex();
 
+    // actual function, bound to the element type
     return () => {
       var json = types[type].spec.generate();
       json.styles.zIndex = highestIndex + 1;
@@ -219,22 +248,25 @@ var Page = React.createClass({
         if (err) {
           console.error('There was an error creating an element', err);
         }
-        var save = function(){};
+        var localSave = function(){};
         if (data && data.element) {
           var elementId = data.element.id;
           json.id = elementId;
           state.elements = this.state.elements;
           state.elements[elementId] = this.flatten(json);
           state.currentElementId = elementId;
-          save = this.save(elementId);
+          localSave = this.save(elementId);
         }
         this.setState(state, function() {
-          save();
+          localSave();
         });
       });
     };
   },
 
+  /**
+   * Remove the currently selected element from this page
+   */
   deleteElement: function() {
     if (this.state.currentElementId === -1) {
       return;
@@ -255,6 +287,8 @@ var Page = React.createClass({
 
       elements[id] = false;
       var currentElementId = -1;
+      delete elements[id];
+
       Object.keys(elements).some(function(e) {
         if (e.id) { currentElementId = e.id; }
         return !!e;
@@ -267,21 +301,8 @@ var Page = React.createClass({
     });
   },
 
-  flatten: function (element) {
-    if (!types[element.type]) {
-      return false;
-    }
-
-    return types[element.type].spec.flatten(element);
-  },
-
-  expand: function (element) {
-    if (!types[element.type]) {
-      return false;
-    }
-
-    return types[element.type].spec.expand(element);
-  },
+  // FIXME: TODO: load and save probably need to live somewhere else, either getting
+  //              tacked onto the class via mixins, or being part of Base class functionality.
 
   load: function() {
     api({
@@ -314,13 +335,14 @@ var Page = React.createClass({
     });
   },
 
-  save: function (id) {
-    return () => {
-      var el = this.expand(this.state.elements[id]);
+  save: function (elementId) {
+    // generate a named function,
+    return function saveElement() {
+      var el = this.expand(this.state.elements[elementId]);
       api({
         spinOnLag: false,
         method: 'patch',
-        uri: this.uri() + '/elements/' + id,
+        uri: this.uri() + '/elements/' + elementId,
         json: {
           styles: el.styles
         }
@@ -333,7 +355,7 @@ var Page = React.createClass({
           console.error('Could not find the element to save');
         }
       });
-    };
+    }.bind(this);
   }
 });
 
