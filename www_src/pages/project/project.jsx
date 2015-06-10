@@ -6,7 +6,7 @@ var render = require('../../lib/render.jsx');
 var router = require('../../lib/router');
 var Cartesian = require('../../lib/cartesian');
 var Loading = require('../../components/loading/loading.jsx');
-var {Menu, PrimaryButton, SecondaryButton} = require('../../components/action-menu/action-menu.jsx');
+var {Menu, PrimaryButton, SecondaryButton, FullWidthButton} = require('../../components/action-menu/action-menu.jsx');
 var types = require('../../components/el/el.jsx').types;
 var dispatcher = require('../../lib/dispatcher');
 
@@ -529,6 +529,7 @@ var Project = React.createClass({
     patchedState.attributes.targetProjectId = this.state.params.project;
     patchedState.attributes.targetUserId = this.state.params.user;
 
+    this.setState({loading: true});
     api({
       method: 'patch',
       uri: `/users/${this.state.routeData.userID}/projects/${this.state.routeData.projectID}/pages/${this.state.routeData.pageID}/elements/${this.state.routeData.elementID}`,
@@ -536,6 +537,7 @@ var Project = React.createClass({
         attributes: patchedState.attributes
       }
     }, (err, data) => {
+      this.setState({loading: false});
       if (err) {
         console.error('There was an error updating the element', err);
       }
@@ -584,8 +586,6 @@ var Project = React.createClass({
 
     return (
       <div id="map">
-        {/* TODO - Eliminate this button and use Android navbar instead */}
-        <button hidden={this.state.params.mode !== 'link'} onClick={this.setDestination} style={{position: 'absolute', right: '10px', top: '10px', zIndex: 999999, padding: '10px'}}>✓</button>
         <div ref="bounding" className="bounding" style={boundingStyle}>
           <div className="test-container" style={containerStyle}>
           {this.state.pages.map((page) => {
@@ -603,10 +603,11 @@ var Project = React.createClass({
           </div>
         </div>
 
-        <Menu>
+        <Menu fullWidth={this.state.params.mode === 'link'}>
           {removePageButton}
           <PrimaryButton url={pageUrl} off={isPlayOnly || !this.state.selectedEl} href="/pages/page" icon="../../img/pencil.svg" />
           <PrimaryButton onClick={this.zoomFromPage} off={!this.state.isPageZoomed} icon="../../img/zoom-out.svg" />
+          <FullWidthButton onClick={this.setDestination} off={this.state.params.mode !== 'link' || !this.state.selectedEl}>Set Destination</FullWidthButton>
         </Menu>
 
         <Loading on={this.state.loading} />

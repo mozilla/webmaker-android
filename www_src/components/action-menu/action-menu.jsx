@@ -5,7 +5,7 @@ var Link = require('../link/link.jsx');
 
 var Menu = React.createClass({
   render: function () {
-    return (<div className="action-menu">
+    return (<div className={classNames('action-menu', {'full-width': this.props.fullWidth})}>
       {this.props.children}
     </div>);
   }
@@ -21,6 +21,7 @@ function makeButtonType(type) {
       var props = assign({}, this.props, {className});
       return (<Tag {...props}>
         <img className="icon" src={this.props.icon} />
+        {this.props.children}
       </Tag>);
     }
   });
@@ -29,5 +30,6 @@ function makeButtonType(type) {
 module.exports = {
   Menu,
   PrimaryButton: makeButtonType('primary-btn'),
-  SecondaryButton: makeButtonType('secondary-btn')
+  SecondaryButton: makeButtonType('secondary-btn'),
+  FullWidthButton: makeButtonType('full-width-btn btn btn-teal')
 };
