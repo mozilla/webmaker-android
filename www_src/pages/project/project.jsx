@@ -6,8 +6,10 @@ var render = require('../../lib/render.jsx');
 var router = require('../../lib/router');
 var Cartesian = require('../../lib/cartesian');
 var Loading = require('../../components/loading/loading.jsx');
+
 var {Menu, PrimaryButton, SecondaryButton, FullWidthButton} = require('../../components/action-menu/action-menu.jsx');
-var types = require('../../components/el/el.jsx').types;
+var types = require('../../components/basic-element/basic-element.jsx').types;
+
 var dispatcher = require('../../lib/dispatcher');
 
 var api = require('../../lib/api');

@@ -1,10 +1,10 @@
 var React = require('react/addons');
 
-var LinkBlock = require('../../components/el/types/link.jsx');
+var LinkBlock = require('../../components/basic-element/types/link.jsx');
 var ColorGroup = require('../../components/color-group/color-group.jsx');
 var Slider = require('../../components/range/range.jsx');
 var api = require('../../lib/api');
-var types = require('../../components/el/el.jsx').types;
+var types = require('../../components/basic-element/basic-element.jsx').types;
 
 var LinkEditor = React.createClass({
   mixins: [

@@ -10,7 +10,7 @@ var editors = {
   text: require('./text-editor.jsx')
 };
 
-var types = require('../../components/el/el.jsx').types;
+var types = require('../../components/basic-element/basic-element.jsx').types;
 
 var hash = window.location.hash && window.location.hash.replace('#', '');
 var testIds = {

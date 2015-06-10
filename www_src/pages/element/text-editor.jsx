@@ -1,6 +1,6 @@
 var React = require('react/addons');
 
-var TextBlock = require('../../components/el/types/text.jsx');
+var TextBlock = require('../../components/basic-element/types/text.jsx');
 var ColorGroup = require('../../components/color-group/color-group.jsx');
 var {CheckboxSet, Radio} = require('../../components/option-panel/option-panel.jsx');
 

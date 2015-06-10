@@ -1,7 +1,7 @@
 var React = require('react');
 var render = require('../../lib/render.jsx');
 var api = require('../../lib/api');
-var elementTypes = require('../../components/el/el.jsx').types;
+var elementTypes = require('../../components/basic-element/basic-element.jsx').types;
 var assign = require('react/lib/Object.assign');
 
 var Tabs = require('../../components/tabs/tabs.jsx');

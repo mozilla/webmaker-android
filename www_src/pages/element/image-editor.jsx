@@ -2,7 +2,7 @@ var React = require('react/addons');
 var classNames = require('classnames');
 var ColorGroup = require('../../components/color-group/color-group.jsx');
 var Slider = require('../../components/range/range.jsx');
-var ImageBlock = require('../../components/el/types/image.jsx');
+var ImageBlock = require('../../components/basic-element/types/image.jsx');
 
 var ImageEditor = React.createClass({
   mixins: [React.addons.LinkedStateMixin],
