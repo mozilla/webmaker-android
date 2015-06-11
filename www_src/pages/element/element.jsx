@@ -47,6 +47,10 @@ render(React.createClass({
       onBackPressed: saveBeforeSwitch
     });
   },
+  componentDidMount: function () {
+    // Prevent pull to refresh
+    document.body.style.overflowY = 'hidden';
+  },
   componentDidUpdate: function (prevProps) {
     // resume
     if (this.props.isVisible && !prevProps.isVisible) {
@@ -139,7 +143,7 @@ render(React.createClass({
       props.element = element;
     }
 
-    return (<div>
+    return (<div id="editor">
       <Editor {...props} />
       <button hidden={window.Android} onClick={this.save}>DEBUG:SAVE</button>
       <Loading on={this.state.loading}/>

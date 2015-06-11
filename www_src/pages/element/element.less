@@ -1,5 +1,7 @@
 #editor {
   color: @slate;
+  height: 100%;
+  overflow-y: scroll;
 
   .overlay {
     position: fixed;
@@ -77,12 +79,13 @@
   display: flex;
   align-items: center;
   justify-content: center;
+  overflow-y: scroll;
   img {
     box-sizing: content-box;
     height: 70%;
   }
   p {
-    width: 70%;
+    max-width: 320px;
     font-size: 1.6rem;
   }
 }
