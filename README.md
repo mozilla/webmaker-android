@@ -73,6 +73,13 @@ console.log(config.CLIENT_ID);
 
 ```
 
+### Turning on production configuration
+
+If you are deploying/creating a build that should use production configuration, add the following to your `.env` before running `npm run build` or `npm start`:
+
+```
+NODE_ENV='PRODUCTION'
+```
 
 ## Adding New Pages or Components
 
