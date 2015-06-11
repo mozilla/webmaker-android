@@ -4,6 +4,9 @@ var ColorGroup = require('../../components/color-group/color-group.jsx');
 var Slider = require('../../components/range/range.jsx');
 var ImageBlock = require('../../components/basic-element/types/image.jsx');
 
+var colorChoices = ColorGroup.defaultColors.splice(0);
+colorChoices[0] = '#444444';
+
 var ImageEditor = React.createClass({
   mixins: [React.addons.LinkedStateMixin],
   getInitialState: function () {
@@ -19,7 +22,13 @@ var ImageEditor = React.createClass({
       var state = this.getInitialState();
       this.setState(state);
     }
-
+  },
+  onChangeColor: function () {
+    if (this.state.borderWidth === 0) {
+      this.setState({
+        borderWidth: 4
+      });
+    }
   },
   render: function () {
     return (
@@ -39,7 +48,7 @@ var ImageEditor = React.createClass({
           </div>
           <div className="form-group">
             <label>Border Color</label>
-            <ColorGroup id="borderColor" linkState={this.linkState} params={this.props.params} onLaunchTinker={this.props.save} />
+            <ColorGroup id="borderColor" colors={colorChoices} onChange={this.onChangeColor} linkState={this.linkState} params={this.props.params} onLaunchTinker={this.props.save} />
           </div>
           <div className="form-group">
             <label>Border Width</label>

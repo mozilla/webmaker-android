@@ -28,20 +28,30 @@ var ColorGroup = React.createClass({
     if (this.valueLink) {
       this.valueLink.requestChange(e.target.value);
     }
+    if (typeof this.props.onChange === 'function') {
+      this.props.onChange(e.target.value);
+    }
   },
 
   // Terrible hack to allow us to save before going to
   // tinker mode
   launchTinker: function (e) {
+
+    // Call on change so that we update the border colour if needed
+    if (typeof this.props.onChange === 'function') {
+      this.props.onChange(this.valueLink.value);
+    }
+
     if (!window.Android) {
       return;
     }
+
     e.preventDefault();
+
     var launch = () => {
-      if (window.Android) {
-        window.Android.setView(this.getTinkerUrl());
-      }
+      window.Android.setView(this.getTinkerUrl());
     };
+
     if (this.props.onLaunchTinker) {
       this.props.onLaunchTinker(launch);
     } else {
@@ -55,7 +65,7 @@ var ColorGroup = React.createClass({
     this.valueLink = linkState(this.props.id);
 
     // If current color is custom, add it to the list
-    if (colors.indexOf(this.valueLink.value) === -1) {
+    if (this.valueLink.value && colors.indexOf(this.valueLink.value) === -1) {
       colors = colors.concat([this.valueLink.value]);
     }
 
