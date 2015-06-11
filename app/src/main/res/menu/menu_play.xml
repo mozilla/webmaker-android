@@ -5,9 +5,9 @@
     <item android:id="@+id/action_share"
           android:title="@string/action_share"
           android:orderInCategory="100"
-          app:showAsAction="never" />
+          app:showAsAction="always" />
     <item android:id="@+id/action_remix"
           android:title="@string/action_remix"
           android:orderInCategory="100"
-          app:showAsAction="never" />
+          app:showAsAction="always" />
 </menu>
