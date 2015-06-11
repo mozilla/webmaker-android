@@ -79,9 +79,9 @@ function api(options, callback) {
     }
   });
 }
-
-api.BASE_URI = 'https://webmaker-api.herokuapp.com';
-api.BASE_LOGIN_URI = 'https://id.mofostaging.net';
+console.log(config);
+api.BASE_URI = config.API_URI;
+api.BASE_LOGIN_URI = config.LOGIN_URI;
 
 api.AUTHENTICATE_URI = api.BASE_LOGIN_URI + '/login/oauth/access_token';
 api.SIGN_UP_URI = api.BASE_LOGIN_URI + '/create-user';
