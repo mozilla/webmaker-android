@@ -3,12 +3,15 @@ package org.mozilla.webmaker;
 import android.app.ActionBar;
 import android.os.Bundle;
 import android.view.MenuItem;
+import android.view.ViewConfiguration;
 import android.widget.RelativeLayout;
 
 import org.json.JSONException;
 import org.json.JSONObject;
 
 import org.mozilla.webmaker.view.WebmakerWebView;
+
+import java.lang.reflect.Field;
 
 public class WebmakerActivity extends BaseActivity {
 
@@ -50,6 +53,17 @@ public class WebmakerActivity extends BaseActivity {
         if (actionBar != null) {
             actionBar.setDisplayHomeAsUpEnabled(true);
             actionBar.setIcon(android.R.color.transparent);
+        }
+
+        try {
+            ViewConfiguration config = ViewConfiguration.get(this);
+            Field menuKeyField = ViewConfiguration.class.getDeclaredField("sHasPermanentMenuKey");
+            if (menuKeyField != null) {
+                menuKeyField.setAccessible(true);
+                menuKeyField.setBoolean(config, false);
+            }
+        } catch (Exception e) {
+            e.printStackTrace();
         }
 
         setContentView(layoutResID);
