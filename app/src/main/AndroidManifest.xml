@@ -103,5 +103,11 @@
             android:label="@string/title_activity_login"
             android:screenOrientation="portrait" >
         </activity>
+
+        <activity
+            android:name=".activity.StyleGuide"
+            android:label="@string/title_activity_style_guide"
+            android:screenOrientation="portrait" >
+        </activity>
     </application>
 </manifest>

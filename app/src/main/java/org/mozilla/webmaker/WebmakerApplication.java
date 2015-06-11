@@ -41,6 +41,8 @@ public class WebmakerApplication extends Application {
 
         Router.sharedRouter().map("/login", Login.class);
 
+        Router.sharedRouter().map("/style-guide", StyleGuide.class);
+
         Router.sharedRouter().map("/users/:user/projects/:project", Project.class);
         Router.sharedRouter().map("/users/:user/projects/:project/settings", ProjectSettings.class);
         Router.sharedRouter().map("/users/:user/projects/:project/play", Play.class);

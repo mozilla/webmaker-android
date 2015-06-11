@@ -258,4 +258,14 @@ public class WebAppInterface {
         Intent i = new Intent(Intent.ACTION_VIEW, Uri.parse(url));
         mActivity.startActivity(i);
     }
+
+    /**
+     * ----------------------------------------
+     * Is Debug Build
+     * ----------------------------------------
+     */
+    @JavascriptInterface
+    public boolean isDebugBuild() {
+        return BuildConfig.DEBUG;
+    }
 }
