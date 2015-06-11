@@ -51,6 +51,29 @@ Forum: [https://groups.google.com/forum/#!forum/mozilla.webmaker](https://groups
 
 ---
 
+## Configuration
+
+### Changing configuration
+
+You can see all the default configuration in `config/defaults.env`. In order to change something, create a file called `.env` in your root directory and format configuration as follows:
+
+```
+CONFIG_VALUE='blah'
+
+```
+
+### Using configuration in js
+
+In order to access config values, simply require `config.js` (in the `www_src/`).
+
+```js
+var config = require('../config.js');
+
+console.log(config.CLIENT_ID);
+
+```
+
+
 ## Adding New Pages or Components
 
 There are a few standards to bear in mind when adding new pages or components to the project.

@@ -4,6 +4,7 @@ var {jsonToFormEncoded, parseJSON} = require('./jsonUtils');
 var router = require('./router');
 var assign = require('react/lib/Object.assign');
 var dispatcher = require('./dispatcher');
+var config = require('../config');
 
 function api(options, callback) {
 
@@ -78,9 +79,9 @@ function api(options, callback) {
     }
   });
 }
-
-api.BASE_URI = 'https://webmaker-api.herokuapp.com';
-api.BASE_LOGIN_URI = 'https://id.mofostaging.net';
+console.log(config);
+api.BASE_URI = config.API_URI;
+api.BASE_LOGIN_URI = config.LOGIN_URI;
 
 api.AUTHENTICATE_URI = api.BASE_LOGIN_URI + '/login/oauth/access_token';
 api.SIGN_UP_URI = api.BASE_LOGIN_URI + '/create-user';
@@ -137,7 +138,7 @@ api.authenticate = function (options, callback) {
 
   // Add in other required fields
   var json = assign({
-    client_id: 'wm_id_zIPGbkEDB5Cv9dCzo7nS',
+    client_id: config.CLIENT_ID,
     grant_type: 'password',
     scopes: 'user projects'
   }, options.json);
@@ -204,7 +205,7 @@ api.signUp = function (options, callback) {
   }
 
   var json = assign({
-    client_id: 'wm_id_zIPGbkEDB5Cv9dCzo7nS'
+    client_id: config.CLIENT_ID
   }, options.json);
 
   xhr({
