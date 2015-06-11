@@ -5,6 +5,7 @@ var Card = require('../../components/card/card.jsx');
 var Loading = require('../../components/loading/loading.jsx');
 var router = require('../../lib/router');
 var dispatcher = require('../../lib/dispatcher');
+var Link = require('../../components/link/link.jsx');
 
 var Make = React.createClass({
   mixins: [router],
@@ -146,7 +147,6 @@ var Make = React.createClass({
           author={project.author.username} />
       );
     });
-
     return (
       <div id="make">
         <div className="profile-card">
@@ -158,6 +158,9 @@ var Make = React.createClass({
         </button>
         {cards}
         <Loading on={this.state.loading} />
+        <Link url="/style-guide" hidden={window.Android && !window.Android.isDebugBuild()} className="btn btn-create btn-block btn-teal">
+           Open Style Guide
+        </Link>
       </div>
     );
   }
