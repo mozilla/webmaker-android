@@ -95,6 +95,7 @@ var Make = React.createClass({
 
   logout: function () {
     if (window.Android) {
+      window.Android.trackEvent('Login', 'Sign Out', 'Sign Out Success');
       window.Android.clearUserSession();
       window.Android.setView('/login');
     }
@@ -118,6 +119,9 @@ var Make = React.createClass({
                 return this.onError(err);
               }
 
+              if (window.Android) {
+                window.Android.trackEvent('Make', 'Delete Project', 'Project Deleted');
+              }
               console.warn('Deleted project: ' + e.projectID);
               this.load();
             });

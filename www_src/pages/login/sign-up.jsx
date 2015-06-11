@@ -99,6 +99,9 @@ var SignUp = React.createClass({
     api.signUp({json: options}, (err, data) => {
       this.props.setParentState({loading: false});
       if (err) {
+        if (window.Android) {
+          window.Android.trackEvent('Login', 'Sign Up', 'Sign Up Error');
+        }
         this.setState({globalError: err.message || 'Something went wrong.' });
         return;
       }
@@ -106,6 +109,7 @@ var SignUp = React.createClass({
       this.replaceState(this.getInitialState());
 
       if (window.Android) {
+        window.Android.trackEvent('Login', 'Sign Up', 'Sign Up Success');
         window.Android.setUserSession(JSON.stringify(data));
         window.Android.setView('/main');
       }
