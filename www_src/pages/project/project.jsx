@@ -77,8 +77,7 @@ var Project = React.createClass({
       var state = window.Android.getMemStorage('state');
       if (typeof state !== 'undefined' && state !== '') {
         state = JSON.parse(state);
-
-        if (state.params && state.params.page === this.state.params.page) {
+        if (state.params && state.params.project === this.state.params.project) {
           this.setState({
             selectedEl: state.selectedEl,
             camera: state.camera,
@@ -400,9 +399,18 @@ var Project = React.createClass({
 
         state.pages = pages;
 
-        // If no selected element, set the camera to default position
+        // If no currently selected page...
         if (!this.state.selectedEl) {
-          state.camera = this.cartesian.getFocusTransform({x: 0, y: 0}, this.state.zoom);
+          // ... first, try to select 0, 0
+          pages.forEach((page) => {
+            if (page.coords.x === 0 && page.coords.y === 0) {
+              state.selectedEl = page.id;
+            }
+          });
+          // ... and if it was deleted, select the first page in the array
+          if (!state.selectedEl) {
+            state.selectedEl = pages[0].id;
+          }
         }
 
         this.setState(state);
