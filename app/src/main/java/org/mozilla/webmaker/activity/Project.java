@@ -19,7 +19,6 @@ public class Project extends WebmakerActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        
         try {
             routeParams.put("mode", "edit");
         } catch (JSONException e) {
