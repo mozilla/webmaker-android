@@ -280,7 +280,9 @@ var Page = React.createClass({
       return window.alert('this is a test element, not deleting.');
     }
 
+    this.setState({loading: true});
     api({spinOnLag: false, method: 'delete', uri: this.uri() + '/elements/' + id}, (err, data) => {
+      this.setState({loading: false});
       if (err) {
         return console.error('There was a problem deleting the element');
       }
@@ -305,9 +307,11 @@ var Page = React.createClass({
   //              tacked onto the class via mixins, or being part of Base class functionality.
 
   load: function() {
+    this.setState({loading: true});
     api({
       uri: this.uri()
     }, (err, data) => {
+      this.setState({loading: false});
       if (err) {
         return console.error('There was an error getting the page to load', err);
       }

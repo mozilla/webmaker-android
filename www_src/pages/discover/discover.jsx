@@ -10,25 +10,26 @@ var Discover = React.createClass({
   getInitialState: function () {
     return {
       projects: [],
-      loading: true
+      loading: false
     };
   },
   load: function () {
+    this.setState({loading: true});
     api({
       uri: '/discover',
       useCache: true
     }, (err, body) => {
+      this.setState({loading: false});
       if (err) {
         return console.error('Error getting discovery projects', err);
       }
-      
+
       if (!body || !body.projects || !body.projects.length) {
         return console.log('No discovery projects found');
       }
-      
+
       this.setState({
-        projects: body.projects,
-        loading: false
+        projects: body.projects
       });
     });
   },
