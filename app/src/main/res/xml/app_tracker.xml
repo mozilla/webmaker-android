@@ -5,8 +5,13 @@
 
     <!-- If set you can replace a package address with a easily readable display name instead. -->
     <screenName name="org.mozilla.webmaker.activity.Project">Project Activity</screenName>
+    <screenName name="org.mozilla.webmaker.activity.ProjectSettings">Project Settings Activity</screenName>
     <screenName name="org.mozilla.webmaker.activity.Element">Element Activity</screenName>
     <screenName name="org.mozilla.webmaker.activity.Page">Page Activity</screenName>
     <screenName name="org.mozilla.webmaker.activity.Tinker">Tinker Activity</screenName>
+    <screenName name="org.mozilla.webmaker.activity.Play">Play Activity</screenName>
+    <screenName name="org.mozilla.webmaker.activity.Link">Link Activity</screenName>
     <screenName name="org.mozilla.webmaker.MainActivity">Main Activity</screenName>
+    <screenName name="org.mozilla.webmaker.StyleGuide">Style Guide Activity</screenName>
+    <screenName name="org.mozilla.webmaker.activity.Login">Login Activity</screenName>
 </resources>
