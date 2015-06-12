@@ -36,7 +36,7 @@ var Login = React.createClass({
   },
   render: function () {
     return <div id="login">
-      <div className="logo"><img src="../../img/single-wordmark.svg" /></div>
+      <div className="logo"><img src="../../img/webmaker-icon.svg" /></div>
       <SignIn show={this.state.mode === 'sign-in'} setParentState={this.setParentState} />
       <SignUp show={this.state.mode === 'sign-up'} setParentState={this.setParentState} />
       <Loading on={this.state.loading} />
