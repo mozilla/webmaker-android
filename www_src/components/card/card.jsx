@@ -1,9 +1,11 @@
 var React = require('react/addons');
 var ImageLoader = require('react-imageloader');
 var Link = require('../link/link.jsx');
-var classNames = require('classnames');
 
 var Card = React.createClass({
+  statics: {
+    DEFAULT_THUMBNAIL: '../../img/default.svg'
+  },
   actionsClicked: function (e) {
     e.preventDefault();
     e.stopPropagation();
@@ -12,8 +14,8 @@ var Card = React.createClass({
   render: function () {
     return (
       <Link url={this.props.url} href={this.props.href} className="card">
-        <div className={classNames('thumbnail', {placeholder: !this.props.thumbnail})}>
-          <ImageLoader src={this.props.thumbnail}></ImageLoader>
+        <div className="thumbnail">
+          <ImageLoader src={this.props.thumbnail || Card.DEFAULT_THUMBNAIL}></ImageLoader>
         </div>
 
         <div className="meta">

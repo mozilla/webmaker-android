@@ -1,3 +1,18 @@
+var owasp = require('owasp-password-strength-test');
+
+// this removes the repeating character required test
+// https://github.com/cadecairos/PassTest/blob/master/index.js
+owasp.tests.required.splice(2, 1);
+
+//https://github.com/mozilla/id.webmaker.org/blob/develop/web/server.js#L13
+owasp.config({
+  minLength: 8,
+  maxLength: 256,
+  minPhraseLength: 20,
+  minOptionalTestsToPass: 2,
+  allowPassphrases: true
+});
+
 module.exports = {
 
   validators: {
@@ -5,21 +20,12 @@ module.exports = {
       regex: /^[a-zA-Z0-9_.+-]+@[a-zA-Z0-9-]+\.[a-zA-Z0-9-.]+$/i,
       message: 'Please use a valid email address.'
     },
-    passwordLength: {
-      regex: /^\S{8,128}$/,
-      message: 'Must be between 8 and 128 characters.'
-    },
-    lowerCase: {
-      regex: /[a-z]+/,
-      message: 'Must contain a lower case letter.'
-    },
-    upperCase: {
-      regex: /[A-Z]+/,
-      message: 'Must contain an upper case letter.'
-    },
-    numbers: {
-      regex: /\d+/,
-      message: 'Must contain a number.'
+    password: {
+      test: function (input) {
+        input = input || '';
+        return owasp.test(input).strong;
+      },
+      message: 'Your password must be at least 8 characters and contain at least 1 number and 1 letter'
     },
     username: {
       regex: /^[a-zA-Z0-9\-]{1,20}$/,
@@ -81,13 +87,14 @@ module.exports = {
         validations.forEach(type => {
           var validation = this.validators[type];
           var errorMessage = validation.message;
-          var regex = validation.regex;
+          var test = validation.test || (input) => validation.regex.test(input);
 
           // Test the value if it is non-emptynpm tun
-          if (!isEmpty && !regex.test(value)) {
+          if (!isEmpty && !test(value)) {
             errors[field] = errors[field] || [];
             errors[field].push(errorMessage);
           }
+
         });
       }
 
