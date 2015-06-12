@@ -17,23 +17,24 @@ var BasicElement = React.createClass({
       text: require('./types/text.jsx'),
       link: require('./types/link.jsx')
     },
+    // the minimum size of the long-edge of an element, in pixels.
+    minScaledEdgeLength: 44,
     /**
      * A static function for determining whether a given scale will
      * be safe, or needs capping because it would lead to an element
      * that is visually too small to manipulate.
      */
-    safifyScale: (function() {
-      var minScaledEdgeLength = 44;
-      return function(component, scale) {
-        var node  = component.getDOMNode(),
-            style = getComputedStyle(node,null),
-            w = parseInt(style.getPropertyValue("width"), 10),
-            h = parseInt(style.getPropertyValue("height"), 10),
-            e = w>h ? w : h;
-        if(e*scale < minScaledEdgeLength) { scale = minScaledEdgeLength/e; }
-        return scale;
-      };
-    }())
+    safifyScale: function(component, scale) {
+      var node  = component.getDOMNode(),
+          style = getComputedStyle(node,null),
+          w = parseInt(style.getPropertyValue('width'), 10),
+          h = parseInt(style.getPropertyValue('height'), 10),
+          e = w>h ? w : h;
+      if(e*scale < BasicElement.minScaledEdgeLength) {
+        scale = BasicElement.minScaledEdgeLength/e;
+      }
+      return scale;
+    }
   },
 
   getDefaultProps: function () {
