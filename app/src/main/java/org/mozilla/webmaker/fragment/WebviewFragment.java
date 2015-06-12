@@ -17,7 +17,7 @@ public class WebviewFragment extends Fragment {
      * The fragment argument representing the section number for this fragment.
      */
     private static final String ARG_SECTION_NUMBER = "section_number";
-    private WebmakerWebView mWebView = null;
+    public WebmakerWebView mWebView = null;
 
     /**
      * Returns a new instance of this fragment for the given section number.
