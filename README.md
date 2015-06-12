@@ -75,10 +75,13 @@ console.log(config.CLIENT_ID);
 
 ### Turning on production configuration
 
+You will need a production `CLIENT_ID` for the id.webmaker.org OAuth server to run the app in production mode. Ask @cade or @k88hudson on irc.
+
 If you are deploying/creating a build that should use production configuration, add the following to your `.env` before running `npm run build` or `npm start`:
 
 ```
 NODE_ENV='PRODUCTION'
+CLIENT_ID='xxxxxx'
 ```
 
 ## Adding New Pages or Components
