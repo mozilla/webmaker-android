@@ -62,10 +62,10 @@
     "classnames": "1.2.1",
     "color": "0.8.0",
     "lodash.defaults": "3.1.1",
+    "owasp-password-strength-test": "1.2.2",
     "react": "0.13.1",
     "react-hammerjs": "0.2.2",
     "react-imageloader": "1.2.0",
-    "url-pattern": "git://github.com/k88hudson/url-pattern.git#hyphenunderscore",
     "xhr": "2.0.1"
   }
 }
