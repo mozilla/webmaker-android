@@ -4,7 +4,7 @@ var TextBlock = require('../../components/basic-element/types/text.jsx');
 var ColorGroup = require('../../components/color-group/color-group.jsx');
 var {CheckboxSet, Radio} = require('../../components/option-panel/option-panel.jsx');
 
-var colorChoices = ColorGroup.defaultColors.splice(0);
+var colorChoices = ColorGroup.defaultColors.slice();
 colorChoices[0] = '#444';
 
 var textStyleOptions = [
