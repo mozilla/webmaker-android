@@ -3,7 +3,7 @@ var habitat = require('habitat');
 // Local environment in .env overwrites everything else
 habitat.load('.env');
 
-var environment = habitat.get('NODE_ENV').toLowerCase();
+var environment = habitat.get('NODE_ENV', '').toLowerCase();
 
 if (environment === 'production') {
   habitat.load('config/production.env');
