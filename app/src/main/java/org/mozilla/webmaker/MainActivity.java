@@ -3,14 +3,14 @@ package org.mozilla.webmaker;
 import android.app.ActionBar;
 import android.app.FragmentTransaction;
 import android.content.Intent;
-import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.support.v4.view.ViewPager;
 import android.view.MenuItem;
 
 import org.mozilla.webmaker.adapter.SectionsPagerAdapter;
-import org.mozilla.webmaker.javascript.WebAppInterface;
+import org.mozilla.webmaker.fragment.WebviewFragment;
 import org.mozilla.webmaker.router.Router;
+import org.mozilla.webmaker.view.WebmakerWebView;
 
 
 public class MainActivity extends BaseActivity implements ActionBar.TabListener {
@@ -19,6 +19,7 @@ public class MainActivity extends BaseActivity implements ActionBar.TabListener 
      * The {@link ViewPager} that will host the section contents.
      */
     private ViewPager mViewPager;
+    private SectionsPagerAdapter mSectionsPagerAdapter;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -38,7 +39,7 @@ public class MainActivity extends BaseActivity implements ActionBar.TabListener 
         actionBar.setDisplayShowHomeEnabled(false);
 
         // Create the adapter that will return a fragment for each of the three primary sections of the activity.
-        SectionsPagerAdapter mSectionsPagerAdapter = new SectionsPagerAdapter(getFragmentManager(), this);
+        mSectionsPagerAdapter = new SectionsPagerAdapter(getFragmentManager(), this);
 
         // Set up the ViewPager with the sections adapter.
         mViewPager = (ViewPager) findViewById(R.id.pager);
@@ -67,6 +68,32 @@ public class MainActivity extends BaseActivity implements ActionBar.TabListener 
         }
 
         super.onCreate(savedInstanceState);
+    }
+
+    private void sendMessageToWebView(String eventType) {
+        int totalFragments = mSectionsPagerAdapter.getCount();
+        WebviewFragment currentFragment;
+        WebmakerWebView view;
+        for (int i = 0; i < totalFragments; i++) {
+            currentFragment = (WebviewFragment) getFragmentManager().findFragmentByTag("android:switcher:" + R.id.pager + ":" + i);
+            if (currentFragment == null) return;
+            view = currentFragment.mWebView;
+            if (view == null) return;
+            view.load("javascript: window.jsComm && window.jsComm('" + eventType + "')", null);
+        }
+
+    }
+
+    @Override
+    protected void onResume() {
+        sendMessageToWebView("onResume");
+        super.onResume();
+    }
+
+    @Override
+    protected void onPause() {
+        sendMessageToWebView("onPause");
+        super.onResume();
     }
 
     @Override
