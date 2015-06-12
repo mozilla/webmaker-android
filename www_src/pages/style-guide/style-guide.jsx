@@ -121,7 +121,7 @@ var StyleGuide = React.createClass({
 
         <h3>Card (JSX)</h3>
         <Card
-          url="/project/123"
+          url="/users/styleguide/projects/example"
           href="/pages/project"
           thumbnail="../../img/toucan.svg"
           title="The Birds of the Amazon"
