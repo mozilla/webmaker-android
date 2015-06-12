@@ -19,6 +19,7 @@ public class MainActivity extends BaseActivity implements ActionBar.TabListener 
      * The {@link ViewPager} that will host the section contents.
      */
     private ViewPager mViewPager;
+    private SectionsPagerAdapter mSectionsPagerAdapter;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -38,7 +39,7 @@ public class MainActivity extends BaseActivity implements ActionBar.TabListener 
         actionBar.setDisplayShowHomeEnabled(false);
 
         // Create the adapter that will return a fragment for each of the three primary sections of the activity.
-        SectionsPagerAdapter mSectionsPagerAdapter = new SectionsPagerAdapter(getFragmentManager(), this);
+        mSectionsPagerAdapter = new SectionsPagerAdapter(getFragmentManager(), this);
 
         // Set up the ViewPager with the sections adapter.
         mViewPager = (ViewPager) findViewById(R.id.pager);
@@ -70,11 +71,17 @@ public class MainActivity extends BaseActivity implements ActionBar.TabListener 
     }
 
     private void sendMessageToWebView(String eventType) {
-        WebviewFragment currentFragment = (WebviewFragment) getFragmentManager().findFragmentByTag("android:switcher:" + R.id.pager + ":" + mViewPager.getCurrentItem());
-        if (currentFragment == null) return;
-        WebmakerWebView view = currentFragment.mWebView;
-        if (view == null) return;
-        view.load("javascript: window.jsComm && window.jsComm('" + eventType + "')", null);
+        int totalFragments = mSectionsPagerAdapter.getCount();
+        WebviewFragment currentFragment;
+        WebmakerWebView view;
+        for (int i = 0; i < totalFragments; i++) {
+            currentFragment = (WebviewFragment) getFragmentManager().findFragmentByTag("android:switcher:" + R.id.pager + ":" + i);
+            if (currentFragment == null) return;
+            view = currentFragment.mWebView;
+            if (view == null) return;
+            view.load("javascript: window.jsComm && window.jsComm('" + eventType + "')", null);
+        }
+
     }
 
     @Override
@@ -111,14 +118,11 @@ public class MainActivity extends BaseActivity implements ActionBar.TabListener 
      */
     @Override
     public void onTabSelected(ActionBar.Tab tab, FragmentTransaction fragmentTransaction) {
-        sendMessageToWebView("onResume");
         mViewPager.setCurrentItem(tab.getPosition());
     }
 
     @Override
-    public void onTabUnselected(ActionBar.Tab tab, FragmentTransaction fragmentTransaction) {
-        sendMessageToWebView("onPause");
-    }
+    public void onTabUnselected(ActionBar.Tab tab, FragmentTransaction fragmentTransaction) {}
 
     @Override
     public void onTabReselected(ActionBar.Tab tab, FragmentTransaction fragmentTransaction) {}
