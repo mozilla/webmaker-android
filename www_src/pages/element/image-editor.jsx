@@ -4,7 +4,7 @@ var ColorGroup = require('../../components/color-group/color-group.jsx');
 var Slider = require('../../components/range/range.jsx');
 var ImageBlock = require('../../components/basic-element/types/image.jsx');
 
-var colorChoices = ColorGroup.defaultColors.splice(0);
+var colorChoices = ColorGroup.defaultColors.slice();
 colorChoices[0] = '#444444';
 
 var ImageEditor = React.createClass({
