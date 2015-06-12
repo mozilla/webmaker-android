@@ -3,6 +3,9 @@ var ImageLoader = require('react-imageloader');
 var Link = require('../link/link.jsx');
 
 var Card = React.createClass({
+  statics: {
+    DEFAULT_THUMBNAIL: '../../img/default.svg'
+  },
   actionsClicked: function (e) {
     e.preventDefault();
     e.stopPropagation();
@@ -12,7 +15,7 @@ var Card = React.createClass({
     return (
       <Link url={this.props.url} href={this.props.href} className="card">
         <div className="thumbnail">
-          <ImageLoader src={this.props.thumbnail || '../../img/default.svg'}></ImageLoader>
+          <ImageLoader src={this.props.thumbnail || Card.DEFAULT_THUMBNAIL}></ImageLoader>
         </div>
 
         <div className="meta">
