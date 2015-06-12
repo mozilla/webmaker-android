@@ -193,10 +193,12 @@ var Project = React.createClass({
 
     });
 
-    // Handle button actions on zoomed in pages
+    // Handle button actions
     dispatcher.on('linkClicked', (event) => {
       if (event.targetPageId && this.state.isPageZoomed) {
         this.zoomToPage( this.pageIdToCoords(event.targetPageId) );
+      } else {
+        this.highlightPage(event.targetPageId, 'selected');
       }
     });
 
@@ -305,6 +307,11 @@ var Project = React.createClass({
           selectedPage = page;
         }
       });
+
+      if (!selectedPage) {
+        console.warn('Page not found.');
+        return;
+      }
 
       var newState = {
         camera: this.cartesian.getFocusTransform(selectedPage.coords, this.state.zoom)

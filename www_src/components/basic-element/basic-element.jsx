@@ -11,12 +11,29 @@ var touchhandler = require("../../lib/touchhandler");
 var dispatcher = require('../../lib/dispatcher');
 
 var BasicElement = React.createClass({
-
   statics: {
     types: {
       image: require('./types/image.jsx'),
       text: require('./types/text.jsx'),
       link: require('./types/link.jsx')
+    },
+    // the minimum size of the long-edge of an element, in pixels.
+    minScaledEdgeLength: 44,
+    /**
+     * A static function for determining whether a given scale will
+     * be safe, or needs capping because it would lead to an element
+     * that is visually too small to manipulate.
+     */
+    safifyScale: function(component, scale) {
+      var node  = component.getDOMNode(),
+          style = getComputedStyle(node,null),
+          w = parseInt(style.getPropertyValue('width'), 10),
+          h = parseInt(style.getPropertyValue('height'), 10),
+          e = w>h ? w : h;
+      if(e*scale < BasicElement.minScaledEdgeLength) {
+        scale = BasicElement.minScaledEdgeLength/e;
+      }
+      return scale;
     }
   },
 
@@ -100,15 +117,6 @@ var BasicElement = React.createClass({
     }
   },
 
-  /**
-   * Propagate changes to this element to the parent
-   */
-  onUpdate: function () {
-    if (this.props.onUpdate) {
-      this.props.onUpdate(this.state);
-    }
-  },
-
   // Right now the button position is based on the rendered DOM, so we're setting it directly post-render.
   //
   // FIXME: TODO: This function needs to at the very least be moved to the link element,
@@ -154,7 +162,7 @@ var BasicElement = React.createClass({
 
   generateElement: function() {
     var Element = BasicElement.types[this.props.type];
-    return <Element {...this.props} />;
+    return <Element ref="contentElement" {...this.props} />;
   },
 
   render: function() {
@@ -209,7 +217,7 @@ var BasicElement = React.createClass({
   handleRotationAndScale: function(angle, scale) {
     this.setState({
       angle: angle,
-      scale: scale
+      scale: BasicElement.safifyScale(this.refs.contentElement, scale)
     }, function() {
       this.onUpdate();
     });
@@ -219,6 +227,16 @@ var BasicElement = React.createClass({
     this.setState({
       zIndex: zIndex
     });
+    // FIXME: TODO: this appears to be lacking an onUpdate callback
+  },
+
+  /**
+   * Propagate changes to this element to the parent
+   */
+  onUpdate: function () {
+    if (this.props.onUpdate) {
+      this.props.onUpdate(this.state);
+    }
   }
 });
 
