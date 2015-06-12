@@ -43,7 +43,7 @@ var Discover = React.createClass({
           key={project.id}
           url={"/users/" + project.author.id + "/projects/" + project.id + '/play'}
           href="/pages/project"
-          thumbnail={project.thumbnail[320].length ? project.thumbnail[320] : undefined}
+          thumbnail={project.thumbnail[320] ? project.thumbnail[320] : undefined}
           title={project.title}
           author={project.author.username} />
       );
