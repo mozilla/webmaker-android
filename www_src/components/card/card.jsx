@@ -8,16 +8,11 @@ var Card = React.createClass({
     e.stopPropagation();
     this.props.onActionsClick.call(this, this.props);
   },
-  getDefaultProps: function () {
-    return {
-      thumbnail: '../../img/default.svg'
-    };
-  },
   render: function () {
     return (
       <Link url={this.props.url} href={this.props.href} className="card">
         <div className="thumbnail">
-          <ImageLoader src={this.props.thumbnail}></ImageLoader>
+          <ImageLoader src={this.props.thumbnail || '../../img/default.svg'}></ImageLoader>
         </div>
 
         <div className="meta">
