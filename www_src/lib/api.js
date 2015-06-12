@@ -79,7 +79,7 @@ function api(options, callback) {
     }
   });
 }
-console.log(config);
+
 api.BASE_URI = config.API_URI;
 api.BASE_LOGIN_URI = config.LOGIN_URI;
 

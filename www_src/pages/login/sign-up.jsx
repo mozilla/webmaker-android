@@ -68,7 +68,7 @@ var SignUp = React.createClass({
       type: 'password',
       tabIndex: 3,
       required: true,
-      validations: ['passwordLength', 'lowerCase', 'upperCase', 'numbers']
+      validations: 'password'
     }
   ],
 
