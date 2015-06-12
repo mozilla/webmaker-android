@@ -64,7 +64,9 @@ var Link = React.createClass({
     });
   },
 
-  onClick: function () {
+  onClick: function (event) {
+    event.stopPropagation();
+
     if (this.state.editing) {
       this.activate();
     } else {
