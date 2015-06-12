@@ -10,6 +10,17 @@ module.exports = {
     };
   },
 
+  componentWillMount: function() {
+    // These are two values that are used to work around Android's
+    // remarkable way of handling text resume via the software keyboard.
+    // Without these, a first-time-focussed text input will have its
+    // content duplicated and it is rather entirely unclear as to why.
+    //
+    // See https://github.com/mozilla/webmaker-android/issues/2050 for more details.
+    this._content = false;
+    this._replaced = false;
+  },
+
   componentDidUpdate: function(prevProps, prevState) {
     if (this.refs.input) {
       this.resizeInput();
@@ -71,6 +82,9 @@ module.exports = {
       return content;
     }
 
+    // part of the android keyboard string duplication workaround
+    this._content = content;
+
     var inputStyle = this.formInputStyle(style);
     assign(inputStyle, {
       maxWidth: "100%",
@@ -123,6 +137,15 @@ module.exports = {
   onTextUpdate: function(evt) {
     this.resizeInput();
     var value = evt.target.value;
+    //
+    // The followin code "solves" a string duplication bug in Android when
+    // typing with the cursor placed at the end of an input element.
+    //
+    // See https://github.com/mozilla/webmaker-android/issues/2050 for more details.
+    if(!this._replaced && window.Android) {
+      value = value.replace(this._content, '');
+      this._replaced = true;
+    }
     this.props.updateText(value);
   },
 
