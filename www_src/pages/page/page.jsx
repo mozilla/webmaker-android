@@ -52,7 +52,9 @@ var Page = React.createClass({
         dims: bbox
       });
     }
-    dispatcher.on('linkDestinationClicked', this.followLinkDestination(this.state.params.project));
+    dispatcher.on('linkDestinationClicked', (event) => {
+      this.followLinkDestination(this.state.params.project, event.id);
+    });
   },
 
   componentDidUpdate: function (prevProps, prevState) {
@@ -71,24 +73,22 @@ var Page = React.createClass({
 
 
   /**
-   * Generator function for following link destinations tied to a specific parent project
-   * @param  {[type]} parentProjectID [description]
-   * @return {[type]}                 [description]
+   * Follow link destinations tied to a specific parent project
+   * @param   {String} parentProjectID
+   * @param   {String} elementID
    */
-  followLinkDestination: function(parentProjectID) {
-    // actual event handling function:
-    return function(e) {
-      // Data to pass to the Project Link activity to determine its initial state and where to return its data
-      var metadata = {
-        elementID: e.id,
-        pageID: this.state.params.page,
-        projectID: this.state.params.project,
-        userID: this.state.params.user
-      };
-      if (window.Android) {
-        window.Android.setView('/users/' + this.state.params.user + '/projects/' + parentProjectID + '/link', JSON.stringify(metadata));
-      }
+  followLinkDestination: function(parentProjectID, elementID) {
+    // Data to pass to the Project Link activity to determine its initial state and where to return its data
+    var metadata = {
+      elementID: elementID,
+      pageID: this.state.params.page,
+      projectID: this.state.params.project,
+      userID: this.state.params.user
     };
+
+    if (window.Android) {
+      window.Android.setView('/users/' + this.state.params.user + '/projects/' + parentProjectID + '/link', JSON.stringify(metadata));
+    }
   },
 
   /**
