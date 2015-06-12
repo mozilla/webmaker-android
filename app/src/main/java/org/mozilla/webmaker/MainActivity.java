@@ -3,14 +3,14 @@ package org.mozilla.webmaker;
 import android.app.ActionBar;
 import android.app.FragmentTransaction;
 import android.content.Intent;
-import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.support.v4.view.ViewPager;
 import android.view.MenuItem;
 
 import org.mozilla.webmaker.adapter.SectionsPagerAdapter;
-import org.mozilla.webmaker.javascript.WebAppInterface;
+import org.mozilla.webmaker.fragment.WebviewFragment;
 import org.mozilla.webmaker.router.Router;
+import org.mozilla.webmaker.view.WebmakerWebView;
 
 
 public class MainActivity extends BaseActivity implements ActionBar.TabListener {
@@ -69,6 +69,26 @@ public class MainActivity extends BaseActivity implements ActionBar.TabListener 
         super.onCreate(savedInstanceState);
     }
 
+    private void sendMessageToWebView(String eventType) {
+        WebviewFragment currentFragment = (WebviewFragment) getFragmentManager().findFragmentByTag("android:switcher:" + R.id.pager + ":" + mViewPager.getCurrentItem());
+        if (currentFragment == null) return;
+        WebmakerWebView view = currentFragment.mWebView;
+        if (view == null) return;
+        view.load("javascript: window.jsComm && window.jsComm('" + eventType + "')", null);
+    }
+
+    @Override
+    protected void onResume() {
+        sendMessageToWebView("onResume");
+        super.onResume();
+    }
+
+    @Override
+    protected void onPause() {
+        sendMessageToWebView("onPause");
+        super.onResume();
+    }
+
     @Override
     public void onBackPressed() {
         Intent startMain = new Intent(Intent.ACTION_MAIN);
@@ -91,11 +111,14 @@ public class MainActivity extends BaseActivity implements ActionBar.TabListener 
      */
     @Override
     public void onTabSelected(ActionBar.Tab tab, FragmentTransaction fragmentTransaction) {
+        sendMessageToWebView("onResume");
         mViewPager.setCurrentItem(tab.getPosition());
     }
 
     @Override
-    public void onTabUnselected(ActionBar.Tab tab, FragmentTransaction fragmentTransaction) {}
+    public void onTabUnselected(ActionBar.Tab tab, FragmentTransaction fragmentTransaction) {
+        sendMessageToWebView("onPause");
+    }
 
     @Override
     public void onTabReselected(ActionBar.Tab tab, FragmentTransaction fragmentTransaction) {}
