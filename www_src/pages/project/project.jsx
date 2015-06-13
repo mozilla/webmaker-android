@@ -24,6 +24,19 @@ var ZOOM_SENSITIVITY = 300;
 var PageBlock = require("./pageblock.jsx");
 
 var Project = React.createClass({
+  statics: {
+    findLandingPage: function(pages) {
+      var result;
+      // ... first, try to select 0, 0
+      pages.forEach((page) => {
+        if (page.coords.x === 0 && page.coords.y === 0) {
+          result = page;
+        }
+      });
+      // ... and if it was deleted, select the first page in the array
+      return result || pages[0];
+    }
+  },
   mixins: [router],
   getInitialState: function () {
     return {
@@ -385,18 +398,6 @@ var Project = React.createClass({
     });
   },
 
-  findLandingPage: function(pages) {
-    var result;
-    // ... first, try to select 0, 0
-    pages.forEach((page) => {
-      if (page.coords.x === 0 && page.coords.y === 0) {
-        result = page;
-      }
-    });
-    // ... and if it was deleted, select the first page in the array
-    return result || pages[0];
-  },
-
   load: function () {
     this.setState({loading: true});
     api({uri: this.uri()}, (err, data) => {
@@ -416,7 +417,7 @@ var Project = React.createClass({
 
         state.pages = pages;
 
-        var landingPage = this.findLandingPage(pages);
+        var landingPage = Project.findLandingPage(pages);
         var focusTransform = this.cartesian.getFocusTransform(landingPage.coords, this.state.zoom);
 
         if (this.state.params.mode === 'edit' && !this.state.selectedEl) {
