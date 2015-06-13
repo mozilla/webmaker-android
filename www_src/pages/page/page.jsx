@@ -1,15 +1,17 @@
+// FIXME: TODO: This component is huge and needs further refactoring
+
 var React = require('react');
 var classNames = require('classnames');
 var assign = require('react/lib/Object.assign');
-var render = require('../../lib/render.jsx');
-var api = require('../../lib/api.js');
-var types = require('../../components/basic-element/basic-element.jsx').types;
+var reportError = require('../../lib/errors');
+var api = require('../../lib/api');
 var dispatcher = require('../../lib/dispatcher');
 
+var render = require('../../lib/render.jsx');
+var types = require('../../components/basic-element/basic-element.jsx').types;
 var Loading = require('../../components/loading/loading.jsx');
 var ElementGroup = require('../../components/element-group/element-group.jsx');
 var PageControls = require('./page-controls.jsx');
-
 
 var Page = React.createClass({
   mixins: [
@@ -246,7 +248,7 @@ var Page = React.createClass({
       api({spinOnLag: false, method: 'post', uri: this.uri() + '/elements', json}, (err, data) => {
         var state = {showAddMenu: false, loading: false};
         if (err) {
-          console.error('There was an error creating an element', err);
+          reportError('There was an error creating an element', err);
         }
         var localSave = function(){};
         if (data && data.element) {
@@ -284,7 +286,7 @@ var Page = React.createClass({
     api({spinOnLag: false, method: 'delete', uri: this.uri() + '/elements/' + id}, (err, data) => {
       this.setState({loading: false});
       if (err) {
-        return console.error('There was a problem deleting the element');
+        return reportError('There was a problem deleting the element');
       }
 
       elements[id] = false;
@@ -313,11 +315,11 @@ var Page = React.createClass({
     }, (err, data) => {
       this.setState({loading: false});
       if (err) {
-        return console.error('There was an error getting the page to load', err);
+        return reportError('There was an error getting the page to load', err);
       }
 
       if (!data || !data.page) {
-        return console.error('Could not find the page to load');
+        return reportError('Could not find the page to load');
       }
 
       var page = data.page;
@@ -352,11 +354,11 @@ var Page = React.createClass({
         }
       }, (err, data) => {
         if (err) {
-          return console.error('There was an error updating the element', err);
+          return reportError('There was an error updating the element', err);
         }
 
         if (!data || !data.element) {
-          console.error('Could not find the element to save');
+          reportError('Could not find the element to save');
         }
       });
     }.bind(this);

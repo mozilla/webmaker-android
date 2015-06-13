@@ -1,9 +1,11 @@
 var React = require('react/addons');
+var api = require('../../lib/api');
+var reportError = require('../../lib/errors');
 
-var api = require('../../lib/api.js');
 var render = require('../../lib/render.jsx');
 var Card = require('../../components/card/card.jsx');
 var Loading = require('../../components/loading/loading.jsx');
+
 
 var Discover = React.createClass({
   mixins: [],
@@ -21,11 +23,11 @@ var Discover = React.createClass({
     }, (err, body) => {
       this.setState({loading: false});
       if (err) {
-        return console.error('Error getting discovery projects', err);
+        return reportError('Error getting discovery projects', err);
       }
 
       if (!body || !body.projects || !body.projects.length) {
-        return console.log('No discovery projects found');
+        return reportError('No discovery projects found');
       }
 
       this.setState({

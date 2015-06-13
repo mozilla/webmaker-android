@@ -1,6 +1,8 @@
 var React = require('react/addons');
+var reportError = require('../../lib/errors');
 var api = require('../../lib/api');
 var keyboard = require('../../lib/keyboard');
+
 var FormInput = require('./form-input.jsx');
 var Link = require('../../components/link/link.jsx');
 
@@ -8,7 +10,10 @@ var Link = require('../../components/link/link.jsx');
 // Component for the Sign in user form. See Login view for usage.
 var SignIn = React.createClass({
 
-  mixins: [React.addons.LinkedStateMixin, require('../../lib/validators')],
+  mixins: [
+    React.addons.LinkedStateMixin,
+    require('../../lib/validators')
+  ],
 
   // Props:
   //   show
@@ -19,6 +24,7 @@ var SignIn = React.createClass({
   //     Calls setState on parent component (Login) given a state object.
   //     Useful for setting the loading or mode state of the Login view.
   //
+  // FIXME: TODO: this function doesn't actually do anything. Remove?
   getDefaultProps: function () {
     return {};
   },
@@ -37,6 +43,7 @@ var SignIn = React.createClass({
     };
   },
 
+  // FIXME: TODO: move to statics?
   fields: [
     {
       name: 'username',
@@ -83,7 +90,7 @@ var SignIn = React.createClass({
           window.Android.trackEvent('Login', 'Sign In', 'Sign In Error');
         }
         this.setState({globalError: true});
-        return;
+        return reportError("Error while trying to log in", err);
       }
 
       this.replaceState(this.getInitialState());

@@ -1,10 +1,12 @@
 var React = require('react');
-var render = require('../../lib/render.jsx');
-var api = require('../../lib/api.js');
-var Card = require('../../components/card/card.jsx');
-var Loading = require('../../components/loading/loading.jsx');
+var api = require('../../lib/api');
 var router = require('../../lib/router');
 var dispatcher = require('../../lib/dispatcher');
+var reportError = require('../../lib/errors');
+
+var render = require('../../lib/render.jsx');
+var Card = require('../../components/card/card.jsx');
+var Loading = require('../../components/loading/loading.jsx');
 var Link = require('../../components/link/link.jsx');
 
 var Make = React.createClass({
@@ -24,15 +26,14 @@ var Make = React.createClass({
     this.load();
   },
   onError: function (err) {
-    console.error(err);
+    reportError("Error loading project", err);
     this.setState({loading: false});
   },
   onEmpty: function () {
-    console.log('No projects found');
+    reportError('No projects found');
     this.setState({loading: false});
   },
   load: function () {
-
     // No user found, so nothing to load.
     if (!this.state.user) {
       return this.onEmpty();
@@ -62,7 +63,7 @@ var Make = React.createClass({
     var user = this.state.user;
 
     if (!user) {
-      return console.error('Tried to create project when no session was found');
+      return reportError('Tried to create project when no session was found');
     }
 
     this.setState({loading: true});
@@ -122,7 +123,7 @@ var Make = React.createClass({
               if (window.Android) {
                 window.Android.trackEvent('Make', 'Delete Project', 'Project Deleted');
               }
-              console.warn('Deleted project: ' + e.projectID);
+              console.log('Deleted project: ' + e.projectID);
               this.load();
             });
           } else if (event.label === 'Share') {

@@ -1,6 +1,8 @@
 var React = require('react/addons');
+var reportError = require('../../lib/errors');
 var api = require('../../lib/api');
 var keyboard = require('../../lib/keyboard');
+
 var FormInput = require('./form-input.jsx');
 var Link = require('../../components/link/link.jsx');
 
@@ -19,6 +21,7 @@ var SignUp = React.createClass({
   //     Calls setState on parent component (Login) given a state object.
   //     Useful for setting the loading or mode state of the Login view.
   //
+  // FIXME: TODO: this function doesn't actually do anything. Remove?
   getDefaultProps: function () {
     return {};
   },
@@ -45,6 +48,7 @@ var SignUp = React.createClass({
 
   // Consumed by validationMixin
   // and used to generate form fields
+  // FIXME: TODO: move to statics?
   fields: [
     {
       name: 'username',
@@ -103,7 +107,7 @@ var SignUp = React.createClass({
           window.Android.trackEvent('Login', 'Sign Up', 'Sign Up Error');
         }
         this.setState({globalError: err.message || 'Something went wrong.' });
-        return;
+        return reportError("Error while trying to sign up", err);
       }
 
       this.replaceState(this.getInitialState());
@@ -139,7 +143,6 @@ var SignUp = React.createClass({
   },
 
   render: function () {
-
     // getValidationErrors is from validationMixin
     var errors = this.getValidationErrors();
     var isValid = Object.keys(errors).length === 0;

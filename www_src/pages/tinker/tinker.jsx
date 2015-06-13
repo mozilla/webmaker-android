@@ -1,12 +1,14 @@
 var React = require('react');
-var render = require('../../lib/render.jsx');
-var api = require('../../lib/api');
-var elementTypes = require('../../components/basic-element/basic-element.jsx').types;
 var assign = require('react/lib/Object.assign');
+var reportError = require('../../lib/errors');
+var api = require('../../lib/api');
 
+var render = require('../../lib/render.jsx');
 var Tabs = require('../../components/tabs/tabs.jsx');
 var ColorSpectrum = require('../../components/color-spectrum/color-spectrum.jsx');
 var Loading = require('../../components/loading/loading.jsx');
+
+var elementTypes = require('../../components/basic-element/basic-element.jsx').types;
 
 /**
  * Tinker: Advanced editor for specific element attributes or styles
@@ -33,18 +35,16 @@ var Tinker = React.createClass({
   },
 
   componentDidMount: function () {
-
+    // FIXME: TODO: This should be handled with a touch preventDefault,
+    //              not by reaching into the DOM.
     // Prevent pull to refresh
     document.body.style.overflowY = 'hidden';
-
     this.load();
-
     this.props.update({
       onBackPressed: () => {
         this.save(() => window.Android.goBack());
       }
     });
-
   },
 
   /**
@@ -64,7 +64,7 @@ var Tinker = React.createClass({
     api.getElement(this.state.params, (err, element) => {
       this.setState({loading: false});
       if (err) {
-        return console.error(err);
+        return reportError("Error loading element", err);
       }
       var spec = elementTypes[element.type].spec;
       if (!spec.spec[this.state.params.propertyName]) {
@@ -83,11 +83,12 @@ var Tinker = React.createClass({
    * Triggered in componentDidUpdate
    */
   save: function (onSaveComplete) {
-    var element = this.state.element;
-    var propertyName = this.state.params.propertyName;
-    var spec = elementTypes[element.type].spec;
-    var isStyleOrAttribute = spec.isStyleOrAttribute(propertyName);
-    var updateObject = {};
+    var element = this.state.element,
+        propertyName = this.state.params.propertyName,
+        spec = elementTypes[element.type].spec,
+        isStyleOrAttribute = spec.isStyleOrAttribute(propertyName),
+        updateObject = {};
+
     updateObject[isStyleOrAttribute] = spec.expand(element)[isStyleOrAttribute];
 
     this.setState({loading: true});
@@ -95,7 +96,7 @@ var Tinker = React.createClass({
     api.updateElement(options, (err, element) => {
       this.setState({loading: false});
       if (err) {
-        console.error(err);
+        reportError("Error updating element", err);
       }
       if (typeof onSaveComplete === 'function') {
         onSaveComplete();
@@ -116,9 +117,7 @@ var Tinker = React.createClass({
   },
 
   render: function () {
-
     var contents;
-
     if (this.state.element) {
       var PreviewComponent = elementTypes[this.state.element.type];
       contents = (
