@@ -1,6 +1,7 @@
 var React = require('react/addons');
 var update = React.addons.update;
 var assign = require('react/lib/Object.assign');
+var {parseJSON} = require('../../lib/jsonUtils');
 
 var render = require('../../lib/render.jsx');
 var router = require('../../lib/router');
@@ -23,16 +24,26 @@ var ZOOM_SENSITIVITY = 300;
 var PageBlock = require("./pageblock.jsx");
 
 var Project = React.createClass({
+  statics: {
+    findLandingPage: function(pages) {
+      var result;
+      // ... first, try to select 0, 0
+      pages.forEach((page) => {
+        if (page.coords.x === 0 && page.coords.y === 0) {
+          result = page;
+        }
+      });
+      // ... and if it was deleted, select the first page in the array
+      return result || pages[0];
+    }
+  },
   mixins: [router],
   getInitialState: function () {
     return {
       loading: true,
       selectedEl: '',
       pages: [],
-      camera: {
-        x: 0,
-        y: 0
-      },
+      camera: {},
       zoom: DEFAULT_ZOOM,
       isPageZoomed: false
     };
@@ -75,8 +86,8 @@ var Project = React.createClass({
 
     if (window.Android) {
       var state = window.Android.getMemStorage('state');
-      if (typeof state !== 'undefined' && state !== '') {
-        state = JSON.parse(state);
+      if (this.state.params.mode === 'edit') {
+        state = parseJSON(state);
         if (state.params && state.params.project === this.state.params.project) {
           this.setState({
             selectedEl: state.selectedEl,
@@ -406,18 +417,14 @@ var Project = React.createClass({
 
         state.pages = pages;
 
-        // If no currently selected page...
-        if (!this.state.selectedEl) {
-          // ... first, try to select 0, 0
-          pages.forEach((page) => {
-            if (page.coords.x === 0 && page.coords.y === 0) {
-              state.selectedEl = page.id;
-            }
-          });
-          // ... and if it was deleted, select the first page in the array
-          if (!state.selectedEl) {
-            state.selectedEl = pages[0].id;
-          }
+        var landingPage = Project.findLandingPage(pages);
+        var focusTransform = this.cartesian.getFocusTransform(landingPage.coords, this.state.zoom);
+
+        if (this.state.params.mode === 'edit' && !this.state.selectedEl) {
+          state.selectedEl = landingPage.id;
+          state.camera = focusTransform;
+        } else if (typeof this.state.camera.x === 'undefined') {
+          state.camera = focusTransform;
         }
 
         this.setState(state);
@@ -562,7 +569,7 @@ var Project = React.createClass({
     };
 
     var boundingStyle = assign({
-        transform: `translate(${this.state.camera.x}px, ${this.state.camera.y}px) scale(${this.state.zoom})`,
+        transform: `translate(${this.state.camera.x || 0}px, ${this.state.camera.y || 0}px) scale(${this.state.zoom})`,
         opacity: this.state.pages.length ? 1 : 0
       },
       this.cartesian.getBoundingSize()
