@@ -11,4 +11,4 @@ www_src/config.js
 webmaker-*.iml
 npm-debug.log*
 TODO.txt
-.env*
+.env
