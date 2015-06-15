@@ -65,12 +65,13 @@ var Link = React.createClass({
   },
 
   onClick: function (event) {
-    event.stopPropagation();
-
     if (this.state.editing) {
       this.activate();
     } else {
-      dispatcher.fire('linkClicked', this.props);
+      dispatcher.fire('linkClicked', {
+        props: this.props,
+        originalEvent: event
+      });
     }
   },
 

@@ -206,10 +206,17 @@ var Project = React.createClass({
 
     // Handle button actions
     dispatcher.on('linkClicked', (event) => {
-      if (event.targetPageId && this.state.isPageZoomed) {
-        this.zoomToPage( this.pageIdToCoords(event.targetPageId) );
-      } else {
-        this.highlightPage(event.targetPageId, 'selected');
+      // Ignore button actions in link mode
+      if (this.state.params.mode !== 'link') {
+        // Only trigger button actions in non-link modes
+        // Don't allow underlying page click action to trigger
+        event.originalEvent.stopPropagation();
+
+        if (event.props.targetPageId && this.state.isPageZoomed) {
+          this.zoomToPage( this.pageIdToCoords(event.props.targetPageId) );
+        } else {
+          this.highlightPage(event.props.targetPageId, 'selected');
+        }
       }
     });
 
