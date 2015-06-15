@@ -26,7 +26,7 @@ var spec = new Spec('text', assign({
   fontSize: {
     category: 'styles',
     validation: React.PropTypes.number,
-    default: 20
+    default: 35
   },
   fontStyle: {
     category: 'styles',
@@ -36,7 +36,7 @@ var spec = new Spec('text', assign({
   fontWeight: {
     category: 'styles',
     validation: React.PropTypes.string,
-    default: 'normal'
+    default: 'bold'
   },
   textDecoration: {
     category: 'styles',
