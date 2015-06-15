@@ -40,6 +40,7 @@ public class WebmakerApplication extends Application {
         Router.sharedRouter().map("/main/:tab", MainActivity.class);
 
         Router.sharedRouter().map("/login", Login.class);
+        Router.sharedRouter().map("/login/:mode", Login.class);
 
         Router.sharedRouter().map("/style-guide", StyleGuide.class);
 

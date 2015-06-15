@@ -97,7 +97,7 @@ var Make = React.createClass({
     if (window.Android) {
       window.Android.trackEvent('Login', 'Sign Out', 'Sign Out Success');
       window.Android.clearUserSession();
-      window.Android.setView('/login');
+      window.Android.setView('/login/sign-in');
     }
   },
 
