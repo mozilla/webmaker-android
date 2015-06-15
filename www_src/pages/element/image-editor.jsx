@@ -44,7 +44,7 @@ var ImageEditor = React.createClass({
           </div>
           <div className="form-group">
             <label>Opacity</label>
-            <Slider id="opacity" min={0} max={1} step={0.01} linkState={this.linkState} />
+            <Slider id="opacity" min={0} max={1} step={0.01} percentage={true} linkState={this.linkState} />
           </div>
           <div className="form-group">
             <label>Border Color</label>
