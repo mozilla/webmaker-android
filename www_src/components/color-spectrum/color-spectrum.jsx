@@ -106,7 +106,7 @@ var ColorSpectrum = React.createClass({
         <RGB color={color} onChange={this.updateColor} />
       </div>
       <div className="form-group" hidden={!this.props.Alpha}>
-        <label>Transparency</label>
+        <label>Opacity</label>
         <Alpha color={color} onChange={this.updateColor} />
       </div>
     </div>);
