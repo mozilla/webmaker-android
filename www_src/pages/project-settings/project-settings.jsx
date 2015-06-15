@@ -4,6 +4,7 @@ var api = require('../../lib/api');
 var render = require('../../lib/render.jsx');
 var TextInput = require('../../components/text-input/text-input.jsx');
 var Loading = require('../../components/loading/loading.jsx');
+var Link = require('../../components/link/link.jsx');
 
 var ProjectSettings = React.createClass({
 
@@ -45,8 +46,22 @@ var ProjectSettings = React.createClass({
   render: function () {
     return (
       <div id="projectSettings">
-        <TextInput id="title" ref="title" label="Title" maxlength={25} minlength={4} linkState={this.linkState} />
-        <button hidden={window.Android} onClick={this.save}>DEBUG:Save</button>
+        <div>
+          <TextInput id="title" ref="title" label="Title" maxlength={25} minlength={4} linkState={this.linkState} />
+          <button hidden={window.Android} onClick={this.save}>DEBUG:Save</button>
+        </div>
+
+        <div className="cc">
+          <p className="mark">
+            <img src="../../img/cc.svg"/>
+            <span>Creative Commons</span>
+          </p>
+          <p>
+            Content published under a Creative Comons license called <Link external="https://creativecommons.org/licenses/by-sa/3.0/">Attribution-ShareAlike 3.0 Unported</Link>.
+            <span className="explanation"> This means that other people can share, adapt, and remix your content if they give you credit and share their work in the same way, as all of this is described in the license.</span>
+          </p>
+        </div>
+
         <Loading on={this.state.loading} />
       </div>
     );
