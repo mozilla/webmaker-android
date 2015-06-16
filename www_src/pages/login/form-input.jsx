@@ -16,7 +16,7 @@ var FormInput = React.createClass({
   },
   render: function () {
     return (<div className="form-group">
-      <label for={this.props.name}>{this.props.label}</label>
+      <label htmlFor={this.props.name}>{this.props.label}</label>
       <input name={this.props.name} type={this.props.type} tabIndex={this.props.tabIndex} onKeyDown={this.checkForReturn} valueLink={this.props.valueLink} required={this.props.required} />
       <div className="error" hidden={!this.props.errors}>
         {this.props.errors && this.props.errors.join(' ')}

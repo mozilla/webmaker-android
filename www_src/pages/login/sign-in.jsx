@@ -123,6 +123,7 @@ var SignIn = React.createClass({
     return (<form hidden={!this.props.show} className="editor-options" onSubmit={this.onSubmit}>
       {this.fields.map(field => {
         return <FormInput {...field}
+          key={field.name}
           onReturn={this.onDoneEditing}
           errors={errors[field.name]}
           valueLink={this.linkState(field.name)} />;

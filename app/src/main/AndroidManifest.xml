@@ -102,6 +102,12 @@
             android:name=".activity.Login"
             android:label="@string/title_activity_login"
             android:screenOrientation="portrait" >
+            <intent-filter android:label="@string/title_activity_login">
+                <action android:name="android.intent.action.VIEW" />
+                <category android:name="android.intent.category.DEFAULT" />
+                <category android:name="android.intent.category.BROWSABLE" />
+                <data android:scheme="webmaker" android:host="login" />
+            </intent-filter>
         </activity>
 
         <activity

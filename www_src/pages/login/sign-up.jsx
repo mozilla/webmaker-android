@@ -151,6 +151,7 @@ var SignUp = React.createClass({
 
       {this.fields.map(field => {
         return <FormInput {...field}
+          key={field.name}
           onReturn={this.onDoneEditing}
           errors={errors[field.name]}
           valueLink={this.linkState(field.name)}/>;
