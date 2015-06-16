@@ -1,27 +1,27 @@
+// FIXME: TODO: This file needs to be refactored, it is way too big.
+
 var React = require('react/addons');
 var update = React.addons.update;
 var assign = require('react/lib/Object.assign');
+var reportError = require('../../lib/errors');
+var router = require('../../lib/router');
+var Cartesian = require('../../lib/cartesian');
+var dispatcher = require('../../lib/dispatcher');
+var api = require('../../lib/api');
+var calculateSwipe = require('../../lib/swipe');
 var {parseJSON} = require('../../lib/jsonUtils');
 
 var render = require('../../lib/render.jsx');
-var router = require('../../lib/router');
-var Cartesian = require('../../lib/cartesian');
 var Loading = require('../../components/loading/loading.jsx');
-
 var {Menu, PrimaryButton, SecondaryButton, FullWidthButton} = require('../../components/action-menu/action-menu.jsx');
 var types = require('../../components/basic-element/basic-element.jsx').types;
-
-var dispatcher = require('../../lib/dispatcher');
-
-var api = require('../../lib/api');
-var calculateSwipe = require('../../lib/swipe.js');
+var PageBlock = require("./pageblock.jsx");
 
 var MAX_ZOOM = 0.8;
 var MIN_ZOOM = 0.18;
 var DEFAULT_ZOOM = 0.5;
 var ZOOM_SENSITIVITY = 300;
 
-var PageBlock = require("./pageblock.jsx");
 
 var Project = React.createClass({
   statics: {
@@ -412,9 +412,9 @@ var Project = React.createClass({
       this.setState({loading: false});
 
       if (err) {
-        console.error('Error loading project', err);
+        reportError('Error loading project', err);
       } else if (!data || !data.pages) {
-        console.error('No project found...');
+        reportError('No project found...');
       } else {
         var state = {};
         var pages = this.formatPages(data.pages);
@@ -461,11 +461,11 @@ var Project = React.createClass({
       }, (err, data) => {
         this.setState({loading: false});
         if (err) {
-          return console.error('Error loading project', err);
+          return reportError('Error loading project', err);
         }
 
         if (!data || !data.page) {
-          return console.error('No page id returned');
+          return reportError('No page id returned');
         }
 
         json.id = data.page.id;
@@ -506,7 +506,7 @@ var Project = React.createClass({
     }, (err) => {
       this.setState({loading: false});
       if (err) {
-        return console.error('There was an error deleting the page', err);
+        return reportError('There was an error deleting the page', err);
       }
 
       this.cartesian.allCoords.splice(index, 1);
@@ -553,7 +553,7 @@ var Project = React.createClass({
     }, (err, data) => {
       this.setState({loading: false});
       if (err) {
-        console.error('There was an error updating the element', err);
+        reportError('There was an error updating the element', err);
       }
 
       if (window.Android) {
@@ -563,10 +563,11 @@ var Project = React.createClass({
   },
 
   render: function () {
+    // FIXME: TODO: this should be handled with a touch preventDefault,
+    //              not by reaching into a DOM element.
+    //
     // Prevent pull to refresh
     document.body.style.overflowY = 'hidden';
-
-    var self = this;
 
     var isPlayOnly = this.state.params.mode === 'play' || this.state.params.mode === 'link';
 
@@ -583,6 +584,9 @@ var Project = React.createClass({
     );
 
     var pageUrl = `/users/${this.state.params.user}/projects/${this.state.params.project}/pages/${this.state.selectedEl}`;
+
+    // FIXME: TODO: We should ES6-ify things so we don't need this alias
+    var self = this;
 
     function generateAddContainers() {
       if (!isPlayOnly) {

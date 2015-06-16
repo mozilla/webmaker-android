@@ -2,6 +2,7 @@ var React = require('react');
 var Spindicator = require('../components/spindicator/spindicator.jsx');
 var ModalConfirm = require('../components/modal-confirm/modal-confirm.jsx');
 var ModalSwitch = require('../components/modal-switch/modal-switch.jsx');
+var Snackbar = require('../components/snackbar/snackbar.jsx');
 
 var Base = React.createClass({
   onResume: function () {
@@ -36,6 +37,7 @@ var Base = React.createClass({
   render: function () {
     var Route = this.props.route;
     return (<div className="container">
+      <Snackbar/>
       <Spindicator/>
       <ModalConfirm/>
       <ModalSwitch/>

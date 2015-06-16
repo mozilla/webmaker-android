@@ -1,8 +1,10 @@
 var React = require('react/addons');
-var render = require('../../lib/render.jsx');
+var reportError = require('../../lib/errors');
 var router = require('../../lib/router');
-var api = require('../../lib/api.js');
+var api = require('../../lib/api');
+
 var Loading = require('../../components/loading/loading.jsx');
+var render = require('../../lib/render.jsx');
 
 var editors = {
   image: require('./image-editor.jsx'),
@@ -21,6 +23,7 @@ var testIds = {
 
 render(React.createClass({
   mixins: [router],
+
   uri: function () {
     var params = this.state.params;
     var element = params.element;
@@ -47,10 +50,14 @@ render(React.createClass({
       onBackPressed: saveBeforeSwitch
     });
   },
+
   componentDidMount: function () {
+    // FIXME: TODO: This should be handled with a touch preventDefault,
+    //              not by reaching into the DOM.
     // Prevent pull to refresh
     document.body.style.overflowY = 'hidden';
   },
+
   componentDidUpdate: function (prevProps) {
     // resume
     if (this.props.isVisible && !prevProps.isVisible) {
@@ -61,6 +68,7 @@ render(React.createClass({
       }
     }
   },
+
   cacheEdits: function (edits) {
     this.edits = edits;
   },
@@ -74,6 +82,7 @@ render(React.createClass({
       noDataRefresh: true
     });
   },
+
   save: function (onSaveComplete) {
     var edits = this.edits;
     if (!edits) {
@@ -92,7 +101,7 @@ render(React.createClass({
     }}, (err, data) => {
       this.setState({loading: false});
       if (err) {
-        console.error('There was an error updating the element', err);
+        reportError('There was an error updating the element', err);
       }
 
       this.setState({
@@ -105,24 +114,23 @@ render(React.createClass({
       }
     });
   },
+
   load: function () {
-
     this.setState({loading: true});
-
     api({uri: this.uri()}, (err, data) => {
       this.setState({loading: false});
       if (err) {
-        return console.error('Error loading element', err);
+        return reportError('Error loading element', err);
       }
 
       if (!data || !data.element) {
-        return console.log('No element found');
+        return reportError('No element found');
       }
 
       this.setState({element: data.element});
-
     });
   },
+
   render: function () {
     var Editor;
     var {params, element} = this.state;
