@@ -11,11 +11,16 @@ var Card = React.createClass({
     e.stopPropagation();
     this.props.onActionsClick.call(this, this.props);
   },
+  prerenderImage: function() {
+    return React.createElement('img', {
+      src: Card.DEFAULT_THUMBNAIL
+    });
+  },
   render: function () {
     return (
       <Link url={this.props.url} href={this.props.href} className="card">
         <div className="thumbnail">
-          <ImageLoader src={this.props.thumbnail || Card.DEFAULT_THUMBNAIL}></ImageLoader>
+          <ImageLoader src={this.props.thumbnail || Card.DEFAULT_THUMBNAIL} preloader={this.prerenderImage}></ImageLoader>
         </div>
 
         <div className="meta">
