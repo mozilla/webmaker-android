@@ -82,6 +82,7 @@ describe('Spec', () => {
         scale: 2.5,
         zIndex: 5
       }), {
+        '-webkit-transform': 'translate(50px, -12px) rotate(90deg) scale(2.5)',
         transform: 'translate(50px, -12px) rotate(90deg) scale(2.5)',
         transformOrigin: 'center',
         zIndex: 5
