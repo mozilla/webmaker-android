@@ -18,7 +18,7 @@ var Discover = React.createClass({
   load: function () {
     this.setState({loading: true});
     api({
-      uri: '/discover',
+      uri: '/discover?count=25',
       useCache: true
     }, (err, body) => {
       this.setState({loading: false});
