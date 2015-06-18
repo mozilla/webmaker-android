@@ -58,7 +58,7 @@ var SignIn = React.createClass({
       type: 'password',
       tabIndex: 2,
       required: true,
-      helpText: <Link external="https://id.webmaker.org/reset-password">Reset Password</Link>
+      helpText: <Link external="https://id.webmaker.org/reset-password?android=true">Reset Password</Link>
     }
   ],
 
