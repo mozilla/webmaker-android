@@ -603,7 +603,7 @@ var Project = React.createClass({
     ) : false;
 
     return (
-      <div id="map">
+      <div id="map" className={this.state.params.mode}>
         <div ref="bounding" className="bounding" style={boundingStyle}>
           <div className="test-container" style={containerStyle}>
           {this.state.pages.map((page) => {
