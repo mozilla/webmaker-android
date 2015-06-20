@@ -20,12 +20,13 @@ var spec = new Spec('text', assign({
   color: {
     category: 'styles',
     validation: React.PropTypes.string,
-    default: '#E06A2C'
+    default: '#E06A2C',
+    editor: 'color'
   },
   fontSize: {
     category: 'styles',
     validation: React.PropTypes.number,
-    default: 20
+    default: 35
   },
   fontStyle: {
     category: 'styles',
@@ -35,7 +36,7 @@ var spec = new Spec('text', assign({
   fontWeight: {
     category: 'styles',
     validation: React.PropTypes.string,
-    default: 'normal'
+    default: 'bold'
   },
   textDecoration: {
     category: 'styles',
@@ -64,11 +65,7 @@ module.exports = React.createClass({
 
   render: function() {
     var props = this.props;
-    var style = {
-      whiteSpace: 'nowrap',
-      overflow: "hidden",
-      textOverflow: "ellipsis"
-    };
+    var style = {};
 
     [
       'fontFamily',

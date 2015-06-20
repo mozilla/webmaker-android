@@ -40,6 +40,9 @@ public class WebmakerApplication extends Application {
         Router.sharedRouter().map("/main/:tab", MainActivity.class);
 
         Router.sharedRouter().map("/login", Login.class);
+        Router.sharedRouter().map("/login/:mode", Login.class);
+
+        Router.sharedRouter().map("/style-guide", StyleGuide.class);
 
         Router.sharedRouter().map("/users/:user/projects/:project", Project.class);
         Router.sharedRouter().map("/users/:user/projects/:project/settings", ProjectSettings.class);
@@ -48,7 +51,7 @@ public class WebmakerApplication extends Application {
 
         Router.sharedRouter().map("/users/:user/projects/:project/pages/:page", Page.class);
         Router.sharedRouter().map("/users/:user/projects/:project/pages/:page/elements/:element/editor/:editor", Element.class);
-        Router.sharedRouter().map("/users/:user/projects/:project/pages/:page/elements/:element/attributes/:attribute/editor/:editor", Tinker.class);
+        Router.sharedRouter().map("/users/:user/projects/:project/pages/:page/elements/:element/propertyName/:propertyName", Tinker.class);
     }
 
     @Override

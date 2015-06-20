@@ -1,9 +1,13 @@
 var React = require('react');
+var api = require('../../lib/api');
+var router = require('../../lib/router');
+var dispatcher = require('../../lib/dispatcher');
+var reportError = require('../../lib/errors');
+
 var render = require('../../lib/render.jsx');
-var api = require('../../lib/api.js');
 var Card = require('../../components/card/card.jsx');
 var Loading = require('../../components/loading/loading.jsx');
-var router = require('../../lib/router');
+var Link = require('../../components/link/link.jsx');
 
 var Make = React.createClass({
   mixins: [router],
@@ -22,15 +26,13 @@ var Make = React.createClass({
     this.load();
   },
   onError: function (err) {
-    console.error(err);
+    reportError("Error loading projects", err);
     this.setState({loading: false});
   },
   onEmpty: function () {
-    console.log('No projects found');
     this.setState({loading: false});
   },
   load: function () {
-
     // No user found, so nothing to load.
     if (!this.state.user) {
       return this.onEmpty();
@@ -60,7 +62,7 @@ var Make = React.createClass({
     var user = this.state.user;
 
     if (!user) {
-      return console.error('Tried to create project when no session was found');
+      return reportError('Tried to create project when no session was found');
     }
 
     this.setState({loading: true});
@@ -93,9 +95,44 @@ var Make = React.createClass({
 
   logout: function () {
     if (window.Android) {
+      window.Android.trackEvent('Login', 'Sign Out', 'Sign Out Success');
       window.Android.clearUserSession();
-      window.Android.setView('/login');
+      window.Android.setView('/login/sign-in');
     }
+  },
+
+  cardActionClick: function (e) {
+    dispatcher.fire('modal-switch:show', {
+      config: {
+        actions: ['Share', 'Delete'],
+        callback: (event) => {
+          if (event.label === 'Delete') {
+            this.setState({loading: true});
+
+            api({
+              method: 'DELETE',
+              uri: `/users/${this.state.user.id}/projects/${e.projectID}`
+            }, (err, body) => {
+              this.setState({loading: false});
+
+              if (err) {
+                return this.onError(err);
+              }
+
+              if (window.Android) {
+                window.Android.trackEvent('Make', 'Delete Project', 'Project Deleted');
+              }
+              console.log('Deleted project: ' + e.projectID);
+              this.load();
+            });
+          } else if (event.label === 'Share') {
+            if (window.Android) {
+              window.Android.shareProject(this.state.user.id, e.projectID);
+            }
+          }
+        }
+      }
+    });
   },
 
   render: function () {
@@ -103,6 +140,9 @@ var Make = React.createClass({
     var cards = this.state.projects.map(project => {
       return (
         <Card
+          showButton={true}
+          onActionsClick={this.cardActionClick}
+          projectID={project.id}
           key={project.id}
           url={"/users/" + project.author.id + "/projects/" + project.id}
           href="/pages/project"
@@ -111,7 +151,6 @@ var Make = React.createClass({
           author={project.author.username} />
       );
     });
-
     return (
       <div id="make">
         <div className="profile-card">
@@ -123,6 +162,9 @@ var Make = React.createClass({
         </button>
         {cards}
         <Loading on={this.state.loading} />
+        <Link url="/style-guide" hidden={window.Android && !window.Android.isDebugBuild()} className="btn btn-create btn-block btn-teal">
+           Open Style Guide
+        </Link>
       </div>
     );
   }

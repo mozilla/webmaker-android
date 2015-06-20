@@ -4,6 +4,7 @@ var {jsonToFormEncoded, parseJSON} = require('./jsonUtils');
 var router = require('./router');
 var assign = require('react/lib/Object.assign');
 var dispatcher = require('./dispatcher');
+var config = require('../config');
 
 function api(options, callback) {
 
@@ -79,12 +80,42 @@ function api(options, callback) {
   });
 }
 
-api.BASE_URI = 'https://webmaker-api.herokuapp.com';
-api.BASE_LOGIN_URI = 'https://id.mofostaging.net';
+api.BASE_URI = config.API_URI;
+api.BASE_LOGIN_URI = config.LOGIN_URI;
 
 api.AUTHENTICATE_URI = api.BASE_LOGIN_URI + '/login/oauth/access_token';
 api.SIGN_UP_URI = api.BASE_LOGIN_URI + '/create-user';
 api.USER_URI = api.BASE_LOGIN_URI + '/user';
+
+api.requiredOptions = function (options, requiredFields) {
+
+  requiredFields = requiredFields || [];
+
+  if (!options) {
+    throw new Error(`You must supply an options object as the first parameter.`);
+  }
+
+  requiredFields.forEach((field) => {
+    if (typeof options[field] === 'undefined') {
+      throw new Error(`${field} must be included in options`);
+    }
+  });
+};
+
+api.requiredCallback = function (callback) {
+  if (typeof callback !== 'function') {
+    throw new Error(`You must supply a callback as the second parameter`);
+  }
+};
+
+api.createErrorResponse = function (err, resp, body) {
+  var message = null;
+  if (err || resp.statusCode !== 200) {
+    message = parseJSON(body);
+    message.statusCode = resp.statusCode;
+  }
+  return message;
+};
 
 // #authenticate (object options, function callback)
 //
@@ -107,7 +138,7 @@ api.authenticate = function (options, callback) {
 
   // Add in other required fields
   var json = assign({
-    client_id: 'wm_id_zIPGbkEDB5Cv9dCzo7nS',
+    client_id: config.CLIENT_ID,
     grant_type: 'password',
     scopes: 'user projects'
   }, options.json);
@@ -174,7 +205,7 @@ api.signUp = function (options, callback) {
   }
 
   var json = assign({
-    client_id: 'wm_id_zIPGbkEDB5Cv9dCzo7nS'
+    client_id: config.CLIENT_ID
   }, options.json);
 
   xhr({
@@ -197,6 +228,41 @@ api.signUp = function (options, callback) {
         password: json.password
       }
     }, callback);
+  });
+};
+
+/**
+ * [getElement Retrieves an element from the db]
+ * @param  {Object}   options  Should include ids for: user, project, page, and element
+ * @param  {Function} callback Called with two params, err and data,
+ *                             where err.message is a descriptive error message if an error occured,
+ *                             or data is an object representing the element.
+ */
+api.getElement = function (options, callback) {
+  api.requiredOptions(options, ['user', 'project', 'page', 'element']);
+  api.requiredCallback(callback);
+  var uri = `${api.BASE_URI}/users/${options.user}/projects/${options.project}/pages/${options.page}/elements/${options.element}`;
+  xhr({
+    method: 'GET',
+    uri
+  }, function (err, resp, body) {
+    callback(api.createErrorResponse(err, resp, body), parseJSON(body).element);
+  });
+};
+
+api.updateElement = function (options, callback) {
+  api.requiredOptions(options, ['user', 'project', 'page', 'element', 'json']);
+  api.requiredCallback(callback);
+  var uri = `${api.BASE_URI}/users/${options.user}/projects/${options.project}/pages/${options.page}/elements/${options.element}`;
+  xhr({
+    method: 'PATCH',
+    uri,
+    json: options.json,
+    headers: {
+      Authorization: 'token ' + router.getUserSession().token
+    }
+  }, function (err, resp, body) {
+    callback(api.createErrorResponse(err, resp, body), parseJSON(body).element);
   });
 };
 

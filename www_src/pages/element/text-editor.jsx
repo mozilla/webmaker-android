@@ -1,10 +1,10 @@
 var React = require('react/addons');
 
-var TextBlock = require('../../components/el/types/text.jsx');
+var TextBlock = require('../../components/basic-element/types/text.jsx');
 var ColorGroup = require('../../components/color-group/color-group.jsx');
 var {CheckboxSet, Radio} = require('../../components/option-panel/option-panel.jsx');
 
-var colorChoices = ColorGroup.defaultColors.splice(0);
+var colorChoices = ColorGroup.defaultColors.slice();
 colorChoices[0] = '#444';
 
 var textStyleOptions = [
@@ -44,8 +44,15 @@ var TextEditor = React.createClass({
   getInitialState: function () {
     return TextBlock.spec.flatten(this.props.element, {defaults: true});
   },
-  componentDidUpdate: function () {
+  componentDidUpdate: function (prevProps) {
     this.props.cacheEdits(this.state);
+
+    // Update state if parent properties change
+    if (this.props.element !== prevProps.element) {
+      var state = this.getInitialState();
+      this.setState(state);
+    }
+
   },
   render: function () {
     return (
@@ -64,7 +71,7 @@ var TextEditor = React.createClass({
             </div>
             <div className="form-group">
               <label>Color</label>
-              <ColorGroup id="color" linkState={this.linkState} colors={colorChoices} />
+              <ColorGroup id="color" linkState={this.linkState} colors={colorChoices} params={this.props.params} onLaunchTinker={this.props.save} />
             </div>
             <div className="form-group">
               <label>Text Style</label>

@@ -4,6 +4,7 @@ import android.app.Activity;
 import android.content.Context;
 import android.content.SharedPreferences;
 import android.content.Intent;
+import android.net.Uri;
 import android.util.Log;
 
 import com.google.android.gms.analytics.HitBuilders;
@@ -11,6 +12,7 @@ import com.google.android.gms.analytics.HitBuilders;
 import org.mozilla.webmaker.BuildConfig;
 import org.json.JSONObject;
 import org.mozilla.webmaker.WebmakerApplication;
+import org.mozilla.webmaker.util.Share;
 import org.xwalk.core.JavascriptInterface;
 
 import org.mozilla.webmaker.BaseActivity;
@@ -147,6 +149,16 @@ public class WebAppInterface {
 
     /**
      * ---------------------------------------
+     * Share
+     * ---------------------------------------
+     */
+    @JavascriptInterface
+    public void shareProject(String userId, String id) {
+        Share.launchShareIntent(userId, id, mActivity);
+    }
+
+    /**
+     * ---------------------------------------
      * Back Button
      * ---------------------------------------
      */
@@ -213,6 +225,11 @@ public class WebAppInterface {
         return MemStorage.sharedStorage().get(ROUTE_KEY);
     }
 
+    @JavascriptInterface
+    public void clearRouteData() {
+        MemStorage.sharedStorage().put(ROUTE_KEY, "");
+    }
+
     /**
      * ----------------------------------------
      * Google Analytics
@@ -229,5 +246,26 @@ public class WebAppInterface {
     public void trackEvent(String category, String action, String label, long value) {
         WebmakerApplication.getTracker().send(new HitBuilders.EventBuilder()
                 .setCategory(category).setAction(action).setLabel(label).setValue(value).build());
+    }
+
+    /**
+     * ----------------------------------------
+     * Open External URL
+     * ----------------------------------------
+     */
+    @JavascriptInterface
+    public void openExternalUrl(String url) {
+        Intent i = new Intent(Intent.ACTION_VIEW, Uri.parse(url));
+        mActivity.startActivity(i);
+    }
+
+    /**
+     * ----------------------------------------
+     * Is Debug Build
+     * ----------------------------------------
+     */
+    @JavascriptInterface
+    public boolean isDebugBuild() {
+        return BuildConfig.DEBUG;
     }
 }

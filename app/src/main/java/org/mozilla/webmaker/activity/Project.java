@@ -19,7 +19,6 @@ public class Project extends WebmakerActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        
         try {
             routeParams.put("mode", "edit");
         } catch (JSONException e) {
@@ -54,8 +53,7 @@ public class Project extends WebmakerActivity {
                 Router.sharedRouter().open("/users/" + userId + "/projects/" + id + "/settings");
                 return true;
             case R.id.action_share:
-                final String url = getString(R.string.share_url) + "/users/" + userId + "/projects/" + id;
-                Share.launchShareIntent(url, this);
+                Share.launchShareIntent(userId, id, this);
                 return true;
             default:
                 return super.onOptionsItemSelected(item);

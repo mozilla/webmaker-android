@@ -1,5 +1,4 @@
 var React = require('react/addons');
-var Link = require('../link/link.jsx');
 var classNames = require('classnames');
 
 var ColorGroup = React.createClass({
@@ -9,9 +8,8 @@ var ColorGroup = React.createClass({
   mixins: [React.addons.LinkedStateMixin],
   getDefaultProps: function () {
     return {
-      colors: this.defaultColors,
-      id: 'value',
-      tinkerUrl: '/users/1/projects/123/pages/0/elements/1/attributes/color/editor/color'
+      colors: this.defaultColors.slice(),
+      id: 'value'
     };
   },
   getInitialState: function () {
@@ -19,16 +17,61 @@ var ColorGroup = React.createClass({
       value: this.props.colors[0]
     };
   },
+  getTinkerUrl: function () {
+    var params = this.props.params;
+    if (!params) {
+      return;
+    }
+    return `/users/${params.user}/projects/${params.project}/pages/${params.page}/elements/${params.element}/propertyName/${this.props.id}`;
+  },
   onChange: function (e) {
     if (this.valueLink) {
       this.valueLink.requestChange(e.target.value);
     }
+    if (typeof this.props.onChange === 'function') {
+      this.props.onChange(e.target.value);
+    }
   },
+
+  // Terrible hack to allow us to save before going to
+  // tinker mode
+  launchTinker: function (e) {
+
+    // Call on change so that we update the border colour if needed
+    if (typeof this.props.onChange === 'function') {
+      this.props.onChange(this.valueLink.value);
+    }
+
+    if (!window.Android) {
+      return;
+    }
+
+    e.preventDefault();
+
+    var launch = () => {
+      window.Android.setView(this.getTinkerUrl());
+    };
+
+    if (this.props.onLaunchTinker) {
+      this.props.onLaunchTinker(launch);
+    } else {
+      launch();
+    }
+  },
+
   render: function () {
+    var colors = this.props.colors;
     var linkState = this.props.linkState || this.linkState;
     this.valueLink = linkState(this.props.id);
+
+    // If current color is custom, add it to the list
+    if (this.valueLink.value && colors.indexOf(this.valueLink.value) === -1) {
+      colors = colors.concat([this.valueLink.value]);
+    }
+
     return (<div className="color-group">
-      {this.props.colors.map(color => {
+
+      {colors.map(color => {
         var className = {
           'color-swatch': true,
           checked: this.valueLink.value === color
@@ -43,10 +86,10 @@ var ColorGroup = React.createClass({
           <input className="sr-only" name="color" type="radio" value={color} checked={this.valueLink.value === color ? true : null} onChange={this.onChange} />
         </label>);
       })}
-      <div className="tinker-container">
-        <Link className="tinker" url={this.props.tinkerUrl} href="/pages/tinker">
+      <div className="tinker-container" hidden={!this.props.params || !this.props.id}>
+        <a href="/pages/tinker" className="link tinker" onClick={this.launchTinker}>
           <img src="../../img/tinker.png" />
-        </Link>
+        </a>
       </div>
     </div>);
   }

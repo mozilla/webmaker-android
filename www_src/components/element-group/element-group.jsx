@@ -1,5 +1,5 @@
 var React = require('react');
-var El = require('../../components/el/el.jsx');
+var BasicElement = require('../../components/basic-element/basic-element.jsx');
 var assign = require('react/lib/Object.assign');
 
 var ElementGroup = React.createClass({
@@ -10,19 +10,22 @@ var ElementGroup = React.createClass({
       interactive: false
     };
   },
+
   /**
    * Generate the JSX for the element
    * @param {id} elementId the element's id in the this.props-passed `elements` dictionary
-   * @param {object} elProps The element property sheet from which to build the JSX representation
+   * @param {object} properties The element property sheet from which to build the JSX representation
    * @return {JSX} an element's JSX representation
    */
-  formElement: function(elementId, elProps) {
+  formElement: function(elementId, properties) {
+
     return (
-      <div className={'el-wrapper' + (elProps.isCurrent ? ' current' : '')}>
-        <El key={'positionable' + elementId} {...elProps} />
+      <div className={'el-wrapper' + (properties.isCurrent ? ' current' : '')}>
+        <BasicElement key={'positionable' + elementId} id={elementId} {...properties} zIndex={properties.zIndex} />
       </div>
     );
   },
+
   /**
    * Process an element's property sheet, transforming it into
    * a JSX object for use by React,
@@ -30,28 +33,29 @@ var ElementGroup = React.createClass({
    * @return {JSX} an element's JSX representation
    */
   processProperties: function(elementId) {
-    var elProps = this.props.elements[elementId];
+    var properties = this.props.elements[elementId];
 
-    if (!elProps || !elProps.type) {
+    if (!properties || !properties.type) {
       return false;
     }
 
-    elProps = assign({}, elProps, {
+    properties = assign({}, properties, {
       isCurrent: this.props.currentElementId === elementId,
       interactive: this.props.interactive
     });
 
     // Add callbacks for interactive mode
     if (this.props.onTouchEnd) {
-      elProps.onTouchEnd = this.props.onTouchEnd(elementId);
+      properties.onTouchEnd = this.props.onTouchEnd(elementId);
     }
 
     if (this.props.onUpdate) {
-      elProps.onUpdate = this.props.onUpdate(elementId);
+      properties.onUpdate = this.props.onUpdate(elementId);
     }
 
-    return this.formElement(elementId, elProps);
+    return this.formElement(elementId, properties);
   },
+
   /**
    * Convert all passed element property sheets into JSX elemenets
    * @return {JSX[]} And array of JSX representations of each element in this.props.elemeents
@@ -59,6 +63,7 @@ var ElementGroup = React.createClass({
   formElements: function () {
     return Object.keys(this.props.elements).map(this.processProperties);
   },
+
   render: function () {
     return (
       <div className="element-group">

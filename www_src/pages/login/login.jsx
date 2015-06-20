@@ -8,6 +8,8 @@ var SignUp = require('./sign-up.jsx');
 // <Login />
 // View that renders sign-in and sign-up forms
 var Login = React.createClass({
+  mixins: [require('../../lib/router')],
+
   // Props:
   //   (none)
 
@@ -19,8 +21,12 @@ var Login = React.createClass({
   //     boolean
   //     Turns the UI-blocking loader on/off
   getInitialState: function () {
+    var mode = this.getRouteParams().mode;
+    if (['sign-up', 'sign-in'].indexOf(mode) === -1) {
+      mode = 'sign-up';
+    }
     return {
-      mode: 'sign-up',
+      mode,
       loading: false
     };
   },
@@ -36,7 +42,7 @@ var Login = React.createClass({
   },
   render: function () {
     return <div id="login">
-      <div className="logo"><img src="../../img/single-wordmark.svg" /></div>
+      <div className="logo"><img src="../../img/webmaker-icon.svg" /></div>
       <SignIn show={this.state.mode === 'sign-in'} setParentState={this.setParentState} />
       <SignUp show={this.state.mode === 'sign-up'} setParentState={this.setParentState} />
       <Loading on={this.state.loading} />

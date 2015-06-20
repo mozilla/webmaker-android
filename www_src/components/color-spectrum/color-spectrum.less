@@ -2,7 +2,7 @@
 * Spectrum color picker
 */
 .spectrum-container {
-  @_pickerHeight: 200px;
+  @_pickerHeight: 140px;
   @_rangeWidth: 40px;
   @_margin: 20px;
   display: flex;
@@ -29,6 +29,16 @@
   .saturation-black {
     background: linear-gradient(to top, #000, rgba(204,154,129,0));
   }
+  .sl-marker {
+    width: 20px;
+    height: 20px;
+    border-radius: 20px;
+    border: 2px solid white;
+    box-shadow: 0 0 0 2px fade(black, 10%);
+    position: absolute;
+    margin-left: -10px;
+    margin-top: -10px;
+  }
   .spectrum-right {
     position: relative;
     margin-left: @_margin;
@@ -52,10 +62,18 @@
   .hue::-webkit-slider-thumb {
     -webkit-appearance: none;
     border: none;
-    width: 20px;
+    width: 1px;
     height: 46px;
     cursor: pointer;
-    background: url(../img/slider.png) no-repeat;
-    background-size: 20px 46px;
+    background: transparent;
+    &::after {
+      position: absolute;
+      content: '';
+      width: 20px;
+      height: 46px;
+      margin-left: -10px;
+      background: url(./img/slider.png) no-repeat;
+      background-size: 20px 46px;
+    }
   }
 }

@@ -1,8 +1,10 @@
 var React = require('react/addons');
-var render = require('../../lib/render.jsx');
+var reportError = require('../../lib/errors');
 var router = require('../../lib/router');
-var api = require('../../lib/api.js');
+var api = require('../../lib/api');
+
 var Loading = require('../../components/loading/loading.jsx');
+var render = require('../../lib/render.jsx');
 
 var editors = {
   image: require('./image-editor.jsx'),
@@ -10,7 +12,7 @@ var editors = {
   text: require('./text-editor.jsx')
 };
 
-var types = require('../../components/el/el.jsx').types;
+var types = require('../../components/basic-element/basic-element.jsx').types;
 
 var hash = window.location.hash && window.location.hash.replace('#', '');
 var testIds = {
@@ -21,6 +23,7 @@ var testIds = {
 
 render(React.createClass({
   mixins: [router],
+
   uri: function () {
     var params = this.state.params;
     var element = params.element;
@@ -47,25 +50,58 @@ render(React.createClass({
       onBackPressed: saveBeforeSwitch
     });
   },
+
+  componentDidMount: function () {
+    // FIXME: TODO: This should be handled with a touch preventDefault,
+    //              not by reaching into the DOM.
+    // Prevent pull to refresh
+    document.body.style.overflowY = 'hidden';
+  },
+
   componentDidUpdate: function (prevProps) {
     // resume
     if (this.props.isVisible && !prevProps.isVisible) {
-      this.load();
+      if (this.state.noDataRefresh) {
+        this.setState({noDataRefresh: false});
+      } else {
+        this.load();
+      }
     }
   },
+
   cacheEdits: function (edits) {
     this.edits = edits;
   },
-  save: function (postSave) {
+
+  /**
+   * Hack that allows us to temporarily cancel a new api call
+   * after launching the camera activity.
+   */
+  cancelDataRefresh: function () {
+    this.setState({
+      noDataRefresh: true
+    });
+  },
+
+  save: function (onSaveComplete) {
     var edits = this.edits;
+    if (!edits) {
+      if (typeof onSaveComplete === 'function') {
+        onSaveComplete();
+      }
+      return;
+    }
     var json = types[edits.type].spec.expand(edits);
+
+    this.setState({loading: true});
 
     api({method: 'patch', uri: this.uri(), json: {
       styles: json.styles,
       attributes: json.attributes
     }}, (err, data) => {
+      this.setState({loading: false});
       if (err) {
-        console.error('There was an error updating the element', err);
+        reportError('There was an error updating the element', err);
       }
 
       this.setState({
@@ -73,25 +109,28 @@ render(React.createClass({
       });
       this.edits = false;
 
-      if (postSave) {
-        postSave();
+      if (typeof onSaveComplete === 'function') {
+        onSaveComplete();
       }
     });
   },
+
   load: function () {
+    this.setState({loading: true});
     api({uri: this.uri()}, (err, data) => {
+      this.setState({loading: false});
       if (err) {
-        return console.error('Error loading element', err);
+        return reportError('Error loading element', err);
       }
 
       if (!data || !data.element) {
-        return console.log('No element found');
+        return reportError('No element found');
       }
 
       this.setState({element: data.element});
-
     });
   },
+
   render: function () {
     var Editor;
     var {params, element} = this.state;
@@ -102,14 +141,20 @@ render(React.createClass({
 
     Editor = editors[params.editor] || editors[hash] || editors.link;
 
-    var props = {params, cacheEdits: this.cacheEdits};
+    var props = {
+      params,
+      cacheEdits: this.cacheEdits,
+      cancelDataRefresh: this.cancelDataRefresh,
+      save: this.save
+    };
     if (element) {
       props.element = element;
     }
 
-    return (<div>
+    return (<div id="editor">
       <Editor {...props} />
-      <button hidden={window.Android} onClick={()=>this.save()}>SAVE</button>
+      <button hidden={window.Android} onClick={this.save}>DEBUG:SAVE</button>
+      <Loading on={this.state.loading}/>
     </div>);
   }
 }));

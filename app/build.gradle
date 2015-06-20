@@ -8,7 +8,7 @@ android {
         applicationId "org.mozilla.webmaker"
         minSdkVersion 14
         targetSdkVersion 22
-        versionCode 1
+        versionCode 5
         versionName "1.0"
     }
 
@@ -24,13 +24,31 @@ android {
         targetCompatibility JavaVersion.VERSION_1_7
     }
 
-    splits {
-        abi {
-            enable true
-            reset()
-            include 'armeabi-v7a', 'x86'
-            universalApk false
+    flavorDimensions "abi"
+
+    productFlavors {
+        x86 {
+            flavorDimension "abi"
+            ndk {
+                abiFilters "x86", ""
+            }
+            versionCode = 3
         }
+        armv7 {
+            flavorDimension "abi"
+            ndk {
+                abiFilters "armeabi-v7a", ""
+            }
+            versionCode = 1
+        }
+    }
+
+    applicationVariants.all { variant ->
+        // get the version code of each flavor
+        def abiVersion = variant.productFlavors.get(0).versionCode
+
+        // set the composite code
+        variant.mergedFlavor.versionCode = abiVersion * 100000 + defaultConfig.versionCode
     }
 }
 

@@ -1,12 +1,19 @@
 var React = require('react/addons');
+var reportError = require('../../lib/errors');
 var api = require('../../lib/api');
+var keyboard = require('../../lib/keyboard');
+
 var FormInput = require('./form-input.jsx');
+var Link = require('../../components/link/link.jsx');
 
 // <SignIn />
 // Component for the Sign in user form. See Login view for usage.
 var SignIn = React.createClass({
 
-  mixins: [React.addons.LinkedStateMixin, require('../../lib/validators')],
+  mixins: [
+    React.addons.LinkedStateMixin,
+    require('../../lib/validators')
+  ],
 
   // Props:
   //   show
@@ -17,6 +24,7 @@ var SignIn = React.createClass({
   //     Calls setState on parent component (Login) given a state object.
   //     Useful for setting the loading or mode state of the Login view.
   //
+  // FIXME: TODO: this function doesn't actually do anything. Remove?
   getDefaultProps: function () {
     return {};
   },
@@ -35,18 +43,22 @@ var SignIn = React.createClass({
     };
   },
 
+  // FIXME: TODO: move to statics?
   fields: [
     {
       name: 'username',
       label: 'Username',
+      type: 'email',
+      tabIndex: 1,
       required: true
     },
     {
       name: 'password',
       label: 'Password',
       type: 'password',
+      tabIndex: 2,
       required: true,
-      helpText: <a href="#">Reset Password</a>
+      helpText: <Link external="https://id.webmaker.org/reset-password?android=true">Reset Password</Link>
     }
   ],
 
@@ -74,17 +86,27 @@ var SignIn = React.createClass({
     api.authenticate({json}, (err, data) => {
       this.props.setParentState({loading: false});
       if (err) {
+        if (window.Android) {
+          window.Android.trackEvent('Login', 'Sign In', 'Sign In Error');
+        }
         this.setState({globalError: true});
-        return;
+        return reportError("Error while trying to log in", err);
       }
 
       this.replaceState(this.getInitialState());
 
       if (window.Android) {
+        window.Android.trackEvent('Login', 'Sign In', 'Sign In Success');
         window.Android.setUserSession(JSON.stringify(data));
         window.Android.setView('/main');
       }
     });
+  },
+
+  // Hack to get the Android WebView to use the "done" button to "tab" to the
+  // next form input by tabIndex
+  onDoneEditing: function () {
+    keyboard.focusNextInputByTabIndex();
   },
 
   // Changes parent mode (Login component) to show sign-up
@@ -101,6 +123,8 @@ var SignIn = React.createClass({
     return (<form hidden={!this.props.show} className="editor-options" onSubmit={this.onSubmit}>
       {this.fields.map(field => {
         return <FormInput {...field}
+          key={field.name}
+          onReturn={this.onDoneEditing}
           errors={errors[field.name]}
           valueLink={this.linkState(field.name)} />;
       })}

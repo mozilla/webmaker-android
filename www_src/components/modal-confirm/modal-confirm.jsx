@@ -1,10 +1,10 @@
 var React = require('react');
+var Shim = require('../shim/shim.jsx');
 var dispatcher = require('../../lib/dispatcher');
 
-var Modal = React.createClass({
+var ModalConfirm = React.createClass({
   getInitialState: function () {
     return {
-      isActive: false,
       header: '',
       body: '',
       attribution: undefined,
@@ -14,14 +14,10 @@ var Modal = React.createClass({
     };
   },
   show: function () {
-    this.setState({
-      isActive: true
-    });
+    this.refs.shim.show();
   },
   hide: function () {
-    this.setState({
-      isActive: false
-    });
+    this.refs.shim.hide();
   },
   onConfirmClick: function () {
     this.hide();
@@ -31,7 +27,7 @@ var Modal = React.createClass({
     }
   },
   componentDidMount: function () {
-    dispatcher.on('modal:show', (event) => {
+    dispatcher.on('modal-confirm:show', (event) => {
       if (event.config.icon) {
         event.config.icon = '../../img/' + event.config.icon;
       }
@@ -40,13 +36,13 @@ var Modal = React.createClass({
       this.show();
     });
 
-    dispatcher.on('modal:hide', (event) => {
+    dispatcher.on('modal-confirm:hide', (event) => {
       this.hide();
     });
   },
   render: function () {
     return (
-      <section id="modal" hidden={ !this.state.isActive }>
+      <Shim ref="shim" className="modal-confirm">
         <div className="window">
           <header>
             <div className="text">{this.state.header}</div>
@@ -63,9 +59,9 @@ var Modal = React.createClass({
             </div>
           </div>
         </div>
-      </section>
+      </Shim>
     );
   }
 });
 
-module.exports = Modal;
+module.exports = ModalConfirm;

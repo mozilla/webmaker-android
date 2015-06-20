@@ -1,6 +1,6 @@
 .loading {
   position: fixed;
-  z-index: 10;
+  z-index: @ZINDEX_LOADING;
   top: 0;
   left: 0;
   width: 100%;
@@ -8,7 +8,7 @@
   background: transparent;
   opacity: 0;
   visibility: hidden;
-  transition: opacity 0.2s ease, visibility 0.2s ease;
+  transition: opacity 0.2s ease;
   &.on {
     opacity: 1;
     visibility: visible;
@@ -48,7 +48,7 @@
   from {
     left: 50%;
     width: 0;
-    z-index:100;
+    z-index: 100;
   }
   33.3333% {
     left: 0;

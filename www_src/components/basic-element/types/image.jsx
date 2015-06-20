@@ -41,7 +41,8 @@ var spec = new Spec('image', assign({
   borderColor: {
     category: 'styles',
     validation: React.PropTypes.string,
-    default: 'transparent'
+    editor: 'color',
+    default: ''
   },
   borderRadius: {
     category: 'styles',

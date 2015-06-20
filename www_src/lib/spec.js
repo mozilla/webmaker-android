@@ -2,7 +2,7 @@ var React = require('react/addons');
 
 function getValidationErrors(spec) {
   var result = null;
-  var VALID_KEYS = ['category', 'default', 'validation'];
+  var VALID_KEYS = ['category', 'default', 'validation', 'editor'];
   var VALID_CATEGORIES = ['styles', 'attributes'];
 
   var keys = Object.keys(spec);
@@ -75,6 +75,11 @@ Spec.getPositionProps = function () {
 Spec.propsToPosition = function (props) {
   return {
     transform: [
+      `translate(${props.x}px, ${props.y}px)`,
+      `rotate(${props.angle * 180/Math.PI}deg)`,
+      `scale(${props.scale})`
+    ].join(' '),
+    '-webkit-transform': [
       `translate(${props.x}px, ${props.y}px)`,
       `rotate(${props.angle * 180/Math.PI}deg)`,
       `scale(${props.scale})`
@@ -167,6 +172,16 @@ Spec.prototype.generate = function (props) {
   props.type = this.type;
   var result = this.expand(props || {}, {defaults: true});
   return result;
+};
+
+Spec.prototype.isStyleOrAttribute = function (name) {
+  var category;
+  Object.keys(this.spec).forEach((key) => {
+    if (key === name) {
+      category = this.spec[key].category;
+    }
+  });
+  return category;
 };
 
 module.exports = Spec;

@@ -44,16 +44,19 @@
     left: 0;
     height: 100%;
     width: 100%;
-    z-index: 998;
+    z-index: @ZINDEX_ACTION_OVERLAY;
     background: #1A2237;
     opacity: 0;
     visibility: hidden;
     transition: all 0.1s ease-in-out;
+
     &.active {
       visibility: visible;
       opacity: 0.7;
     }
   }
+
+  /* See the end of https://facebook.github.io/react/docs/animation.html#getting-started */
 
   .controls {
     @_transformDistance: 55px;
@@ -61,7 +64,7 @@
     bottom: 20px;
     left: 0;
     right: 0;
-    z-index: 999;
+    z-index: @ZINDEX_ACTION_OVERLAY + 1;
     margin: 0 auto;
 
     &.add-active {
@@ -152,6 +155,7 @@
 .element-group {
   .el-wrapper {
     .meta-button {
+      z-index: @ZINDEX_META_BUTTON;
       box-shadow: rgba(0, 0, 0, 0.298039) 0px 3px 10px;
       flex-shrink: 0;
       display: none;

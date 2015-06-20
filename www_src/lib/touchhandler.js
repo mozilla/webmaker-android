@@ -1,6 +1,15 @@
 (function() {
   "use strict";
 
+  var debug = false;
+
+  /**
+   * A timed logging function for tracing touch calls during debug
+   */
+  function timedLog(msg) {
+    console.log(Date.now() + ":" + window.performance.now() + ": " + msg);
+  }
+
   function copy(obj) {
     return JSON.parse(JSON.stringify(obj));
   }
@@ -28,7 +37,9 @@
       startmark: function(evt) {
         evt.preventDefault();
         evt.stopPropagation();
+        if (debug) { timedLog("startmark"); }
         if(!evt.touches || evt.touches.length === 1) {
+          if (debug) { timedLog("startmark - continued"); }
           mark = copy(positionable.state);
           transform.x1 = evt.clientX || evt.touches[0].pageX;
           transform.y1 = evt.clientY || evt.touches[0].pageY;
@@ -42,12 +53,14 @@
       panmove: function(evt) {
         evt.preventDefault();
         evt.stopPropagation();
+        if (debug) { timedLog("panmove"); }
         if (!transform.x1 && !transform.y1) {
           return;
         }
         if (evt.touches && evt.touches.length > 1) {
           return handlers.handleTouchRepositioning(evt);
         }
+        if (debug) { timedLog("panmove - continued"); }
         var x = evt.clientX || evt.touches[0].pageX,
             y = evt.clientY || evt.touches[0].pageY;
         transform.modified = true;
@@ -58,15 +71,19 @@
        * When all fingers are off the device, stop being in "touch mode"
        */
       endmark: function(evt) {
+        if (debug) { timedLog("endmark"); }
         if(evt.touches && evt.touches.length > 0) {
-          return handlers.endSecondFinger(evt);
+          handlers.endSecondFinger(evt);
         }
+        if (debug) { timedLog("endmark - continued"); }
         mark = copy(positionable.state);
+        var modified = transform.modified;
         transform = resetTransform();
-        positionable.setState({ touchactive: false });
-        if (positionable.onTouchEnd) {
-          positionable.onTouchEnd(transform.modified);
-        }
+        positionable.setState({ touchactive: false }, function() {
+          if (positionable.onTouchEnd) {
+            positionable.onTouchEnd(modified);
+          }
+        });
       },
 
       /**
@@ -77,6 +94,7 @@
       secondFinger: function(evt) {
         evt.preventDefault();
         evt.stopPropagation();
+        if (debug) { timedLog("secondFinger"); }
         if (evt.touches.length < 2) {
           return;
         }
@@ -103,9 +121,11 @@
       handleTouchRepositioning: function(evt) {
         evt.preventDefault();
         evt.stopPropagation();
+        if (debug) { timedLog("handleTouchRepositioning"); }
         if (evt.touches.length < 2) {
           return;
         }
+        if (debug) { timedLog("handleTouchRepositioning - continued"); }
         var x1 = evt.touches[0].pageX,
             y1 = evt.touches[0].pageY,
             x2 = evt.touches[1].pageX,
@@ -127,9 +147,12 @@
       endSecondFinger: function(evt) {
         evt.preventDefault();
         evt.stopPropagation();
-        if (evt.touches.length !== 1) {
+        if (debug) { timedLog("endSecondFinger"); }
+        if (evt.touches.length > 1) {
+          if (debug) { timedLog("endSecondFinger - capped"); }
           return;
         }
+        if (debug) { timedLog("endSecondFinger - continued"); }
         handlers.startmark(evt);
       }
     };

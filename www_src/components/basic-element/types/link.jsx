@@ -38,7 +38,8 @@ var spec = new Spec('link', assign({
   backgroundColor: {
     category: 'styles',
     validation: React.PropTypes.string,
-    default: '#69A0FC'
+    default: '#69A0FC',
+    editor: 'color'
   },
   borderRadius: {
     category: 'styles',
@@ -63,11 +64,14 @@ var Link = React.createClass({
     });
   },
 
-  onClick: function () {
+  onClick: function (event) {
     if (this.state.editing) {
       this.activate();
     } else {
-      dispatcher.fire('linkClicked', this.props);
+      dispatcher.fire('linkClicked', {
+        props: this.props,
+        originalEvent: event
+      });
     }
   },
 

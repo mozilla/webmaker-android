@@ -2,7 +2,10 @@ var React = require('react/addons');
 var classNames = require('classnames');
 var ColorGroup = require('../../components/color-group/color-group.jsx');
 var Slider = require('../../components/range/range.jsx');
-var ImageBlock = require('../../components/el/types/image.jsx');
+var ImageBlock = require('../../components/basic-element/types/image.jsx');
+
+var colorChoices = ColorGroup.defaultColors.slice();
+colorChoices[0] = '#444444';
 
 var ImageEditor = React.createClass({
   mixins: [React.addons.LinkedStateMixin],
@@ -11,8 +14,21 @@ var ImageEditor = React.createClass({
     window.imageReady = this.imageReady;
     return ImageBlock.spec.flatten(this.props.element, {defaults: true});
   },
-  componentDidUpdate: function () {
+  componentDidUpdate: function (prevProps) {
     this.props.cacheEdits(this.state);
+
+    // Update state if parent properties change
+    if (this.props.element !== prevProps.element) {
+      var state = this.getInitialState();
+      this.setState(state);
+    }
+  },
+  onChangeColor: function () {
+    if (this.state.borderWidth === 0) {
+      this.setState({
+        borderWidth: 4
+      });
+    }
   },
   render: function () {
     return (
@@ -28,11 +44,11 @@ var ImageEditor = React.createClass({
           </div>
           <div className="form-group">
             <label>Opacity</label>
-            <Slider id="opacity" min={0} max={1} step={0.01} linkState={this.linkState} />
+            <Slider id="opacity" min={0} max={1} step={0.01} percentage={true} linkState={this.linkState} />
           </div>
           <div className="form-group">
             <label>Border Color</label>
-            <ColorGroup id="borderColor" linkState={this.linkState} />
+            <ColorGroup id="borderColor" colors={colorChoices} onChange={this.onChangeColor} linkState={this.linkState} params={this.props.params} onLaunchTinker={this.props.save} />
           </div>
           <div className="form-group">
             <label>Border Width</label>
@@ -62,12 +78,22 @@ var ImageEditor = React.createClass({
     this.setState({showMenu: !this.state.showMenu});
   },
   onCameraClick: function () {
+    // Because a Pause/Resume is caused by the camera activity launching,
+    // this will trigger an API call when we resume; we need to cancel this
+    // in order for the new image to be loaded/saved.
+    this.props.cancelDataRefresh();
+
     this.toggleMenu();
     if (window.Android) {
       window.Android.getFromCamera();
     }
   },
   onMediaClick: function () {
+    // Because a Pause/Resume is caused by the camera activity launching,
+    // this will trigger an API call when we resume; we need to cancel this
+    // in order for the new image to be loaded/saved.
+    this.props.cancelDataRefresh();
+
     this.toggleMenu();
     if (window.Android) {
       window.Android.getFromMedia();
@@ -77,6 +103,7 @@ var ImageEditor = React.createClass({
     this.setState({
       src: uri
     });
+    this.props.save();
   }
 });
 

@@ -6,7 +6,9 @@
 /build
 node_modules/
 app/src/main/assets/www/
+www_src/config.js
 .idea
 webmaker-*.iml
 npm-debug.log*
 TODO.txt
+.env

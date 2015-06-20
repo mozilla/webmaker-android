@@ -26,7 +26,8 @@ module.exports = {
         user: 1,
         project: 1,
         page: 1,
-        element: 1
+        element: 1,
+        propertyName: 'borderColor'
       };
     }
 
@@ -38,6 +39,7 @@ module.exports = {
 
     if (this.android) {
       data = parseJSON(this.android.getRouteData());
+      this.android.clearRouteData();
     }
 
     return data;

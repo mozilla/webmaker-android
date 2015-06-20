@@ -1,36 +1,49 @@
+// FIXME: TODO: This file needs to be refactored, it is way too big.
+
 var React = require('react/addons');
 var update = React.addons.update;
 var assign = require('react/lib/Object.assign');
-
-var render = require('../../lib/render.jsx');
+var reportError = require('../../lib/errors');
 var router = require('../../lib/router');
 var Cartesian = require('../../lib/cartesian');
-var Loading = require('../../components/loading/loading.jsx');
-var {Menu, PrimaryButton, SecondaryButton} = require('../../components/action-menu/action-menu.jsx');
-var types = require('../../components/el/el.jsx').types;
 var dispatcher = require('../../lib/dispatcher');
-
 var api = require('../../lib/api');
-var calculateSwipe = require('../../lib/swipe.js');
+var calculateSwipe = require('../../lib/swipe');
+var {parseJSON} = require('../../lib/jsonUtils');
+
+var render = require('../../lib/render.jsx');
+var Loading = require('../../components/loading/loading.jsx');
+var {Menu, PrimaryButton, SecondaryButton, FullWidthButton} = require('../../components/action-menu/action-menu.jsx');
+var types = require('../../components/basic-element/basic-element.jsx').types;
+var PageBlock = require("./pageblock.jsx");
 
 var MAX_ZOOM = 0.8;
 var MIN_ZOOM = 0.18;
 var DEFAULT_ZOOM = 0.5;
 var ZOOM_SENSITIVITY = 300;
 
-var PageBlock = require("./pageblock.jsx");
 
 var Project = React.createClass({
+  statics: {
+    findLandingPage: function(pages) {
+      var result;
+      // ... first, try to select 0, 0
+      pages.forEach((page) => {
+        if (page.coords.x === 0 && page.coords.y === 0) {
+          result = page;
+        }
+      });
+      // ... and if it was deleted, select the first page in the array
+      return result || pages[0];
+    }
+  },
   mixins: [router],
   getInitialState: function () {
     return {
       loading: true,
       selectedEl: '',
       pages: [],
-      camera: {
-        x: 0,
-        y: 0
-      },
+      camera: {},
       zoom: DEFAULT_ZOOM,
       isPageZoomed: false
     };
@@ -41,7 +54,6 @@ var Project = React.createClass({
   },
 
   componentWillMount: function () {
-    console.log(JSON.stringify(this.state.params));
     var width = 320;
     var height = 440;
     var gutter = 20;
@@ -74,10 +86,9 @@ var Project = React.createClass({
 
     if (window.Android) {
       var state = window.Android.getMemStorage('state');
-      if (typeof state !== 'undefined' && state !== '') {
-        state = JSON.parse(state);
-
-        if (state.params && state.params.page === this.state.params.page) {
+      if (this.state.params.mode === 'edit') {
+        state = parseJSON(state);
+        if (state.params && state.params.project === this.state.params.project) {
           this.setState({
             selectedEl: state.selectedEl,
             camera: state.camera,
@@ -193,12 +204,93 @@ var Project = React.createClass({
 
     });
 
-    // Handle button actions on zoomed in pages
+    // Handle button actions
     dispatcher.on('linkClicked', (event) => {
-      if (event.targetPageId && this.state.isPageZoomed) {
-        this.zoomToPage( this.pageIdToCoords(event.targetPageId) );
+      // Ignore button actions in link mode
+      if (this.state.params.mode !== 'link') {
+        // Only trigger button actions in non-link modes
+        // Don't allow underlying page click action to trigger
+        event.originalEvent.stopPropagation();
+
+        if (event.props.targetPageId && this.state.isPageZoomed) {
+          this.zoomToPage( this.pageIdToCoords(event.props.targetPageId) );
+        } else {
+          this.highlightPage(event.props.targetPageId, 'selected');
+        }
       }
     });
+
+    // Handle remix calls from Android wrapper
+    window.createRemix = () => {
+      var uri = `/users/${this.state.params.user}/projects/${this.state.params.project}/remixes`;
+
+      // Duplicate project via API call
+      api({
+        method: 'post',
+        uri: uri
+      }, (err, data) => {
+        if (err) {
+          return console.error('Error remixing project', err);
+        }
+
+        var projectID = data.project.id;
+        var projectTitle = data.project.title;
+
+        // Get author's username
+        api({
+          method: 'GET',
+          uri: `/users/${this.state.params.user}/projects/${this.state.params.project}`
+        }, (err, moreData) => {
+          if (err) {
+            return console.error('Error remixing project', err);
+          }
+
+          if (window.Android) {
+            window.Android.setView(
+              `/users/${this.state.user.id}/projects/${projectID}`,
+              JSON.stringify({
+                isFreshRemix: true,
+                title: projectTitle,
+                originalAuthor: moreData.project.author.username
+              })
+            );
+          }
+        });
+      });
+    };
+
+    if (this.android && this.state.routeData.isFreshRemix) {
+      // Notify user that THIS IS A REEEEEEMIXXXXX
+      dispatcher.fire('modal-confirm:show', {
+        config: {
+          header: 'Project Remix',
+          body: `This is your copy of ${this.state.routeData.title}. You can add or change anything. The original will stay the same. Have fun!`,
+          attribution: this.state.routeData.originalAuthor,
+          icon: 'tinker.png',
+          buttonText: 'OK, got it!'
+        }
+      });
+
+      // Prepend "Remix of..." to project name
+
+      var remixTitle = this.state.routeData.title;
+
+      if (!remixTitle.match(/^Remix of/)) {
+        remixTitle = 'Remix of ' + remixTitle;
+      }
+
+      api({
+        method: 'PATCH',
+        uri: `/users/${this.state.user.id}/projects/${this.state.params.project}`,
+        json: {
+          title: remixTitle
+        }
+      }, function (err, body) {
+        if (err) {
+          console.error('Could not update project settings.');
+        }
+      });
+    }
   },
 
   /**
@@ -233,6 +325,11 @@ var Project = React.createClass({
           selectedPage = page;
         }
       });
+
+      if (!selectedPage) {
+        console.warn('Page not found.');
+        return;
+      }
 
       var newState = {
         camera: this.cartesian.getFocusTransform(selectedPage.coords, this.state.zoom)
@@ -286,9 +383,9 @@ var Project = React.createClass({
     this.setState({zoom: this.state.zoom * 2});
   },
 
-  loadPages: function (pages) {
-    var state = {loading: false};
-    var pages = pages.map(page => {
+  formatPages: function (pages) {
+    return pages.map(page => {
+
       page.coords = {
         x: page.x,
         y: page.y
@@ -306,56 +403,45 @@ var Project = React.createClass({
 
       return page;
     });
-    this.cartesian.allCoords = pages.map(el => el.coords);
-    state.pages = pages;
-    if (!this.state.selectedEl) {
-      state.camera = this.cartesian.getFocusTransform({x: 0, y: 0}, this.state.zoom);
-    }
-    this.setState(state);
-
-    // Highlight the source page if you're in link destination mode
-    if (this.state.params.mode === 'link') {
-      if (window.Android) {
-        this.highlightPage(this.state.routeData.pageID, 'source');
-      }
-    }
   },
 
   load: function () {
     this.setState({loading: true});
     api({uri: this.uri()}, (err, data) => {
+
+      this.setState({loading: false});
+
       if (err) {
-        console.error('Error loading project', err);
-        this.setState({loading: false});
-      } else if (!data || !data.pages || !data.pages.length) {
-        // Create the first page
-        api({
-          method: 'POST',
-          uri: this.uri(),
-          json: {
-            x: 0,
-            y: 0
-          }
-        }, (err, data) => {
-          if (err) {
-            console.error('Error creating first page', err);
-            this.setState({loading: false});
-          } else if (!data || !data.page) {
-            console.error('No page id was returned');
-            this.setState({loading: false});
-          } else {
-            this.loadPages([{
-              id: data.page.id,
-              x: 0,
-              y: 0,
-              selectedEl: data.page.id,
-              styles: {},
-              elements: []
-            }]);
-          }
-        });
+        reportError('Error loading project', err);
+      } else if (!data || !data.pages) {
+        reportError('No project found...');
       } else {
-        this.loadPages(data.pages);
+        var state = {};
+        var pages = this.formatPages(data.pages);
+
+        // Set cartesian coordinates
+        this.cartesian.allCoords = pages.map(el => el.coords);
+
+        state.pages = pages;
+
+        var landingPage = Project.findLandingPage(pages);
+        var focusTransform = this.cartesian.getFocusTransform(landingPage.coords, this.state.zoom);
+
+        if (this.state.params.mode === 'edit' && !this.state.selectedEl) {
+          state.selectedEl = landingPage.id;
+          state.camera = focusTransform;
+        } else if (typeof this.state.camera.x === 'undefined') {
+          state.camera = focusTransform;
+        }
+
+        this.setState(state);
+
+        // Highlight the source page if you're in link destination mode
+        if (this.state.params.mode === 'link') {
+          if (window.Android) {
+            this.highlightPage(this.state.routeData.pageID, 'source');
+          }
+        }
       }
     });
   },
@@ -375,11 +461,11 @@ var Project = React.createClass({
       }, (err, data) => {
         this.setState({loading: false});
         if (err) {
-          return console.error('Error loading project', err);
+          return reportError('Error loading project', err);
         }
 
         if (!data || !data.page) {
-          return console.error('No page id returned');
+          return reportError('No page id returned');
         }
 
         json.id = data.page.id;
@@ -420,7 +506,7 @@ var Project = React.createClass({
     }, (err) => {
       this.setState({loading: false});
       if (err) {
-        return console.error('There was an error deleting the page', err);
+        return reportError('There was an error deleting the page', err);
       }
 
       this.cartesian.allCoords.splice(index, 1);
@@ -457,6 +543,7 @@ var Project = React.createClass({
     patchedState.attributes.targetProjectId = this.state.params.project;
     patchedState.attributes.targetUserId = this.state.params.user;
 
+    this.setState({loading: true});
     api({
       method: 'patch',
       uri: `/users/${this.state.routeData.userID}/projects/${this.state.routeData.projectID}/pages/${this.state.routeData.pageID}/elements/${this.state.routeData.elementID}`,
@@ -464,8 +551,9 @@ var Project = React.createClass({
         attributes: patchedState.attributes
       }
     }, (err, data) => {
+      this.setState({loading: false});
       if (err) {
-        console.error('There was an error updating the element', err);
+        reportError('There was an error updating the element', err);
       }
 
       if (window.Android) {
@@ -475,10 +563,11 @@ var Project = React.createClass({
   },
 
   render: function () {
+    // FIXME: TODO: this should be handled with a touch preventDefault,
+    //              not by reaching into a DOM element.
+    //
     // Prevent pull to refresh
     document.body.style.overflowY = 'hidden';
-
-    var self = this;
 
     var isPlayOnly = this.state.params.mode === 'play' || this.state.params.mode === 'link';
 
@@ -488,13 +577,16 @@ var Project = React.createClass({
     };
 
     var boundingStyle = assign({
-        transform: `translate(${this.state.camera.x}px, ${this.state.camera.y}px) scale(${this.state.zoom})`,
+        transform: `translate(${this.state.camera.x || 0}px, ${this.state.camera.y || 0}px) scale(${this.state.zoom})`,
         opacity: this.state.pages.length ? 1 : 0
       },
       this.cartesian.getBoundingSize()
     );
 
     var pageUrl = `/users/${this.state.params.user}/projects/${this.state.params.project}/pages/${this.state.selectedEl}`;
+
+    // FIXME: TODO: We should ES6-ify things so we don't need this alias
+    var self = this;
 
     function generateAddContainers() {
       if (!isPlayOnly) {
@@ -511,9 +603,7 @@ var Project = React.createClass({
     ) : false;
 
     return (
-      <div id="map">
-        {/* TODO - Eliminate this button and use Android navbar instead */}
-        <button hidden={this.state.params.mode !== 'link'} onClick={this.setDestination} style={{position: 'absolute', right: '10px', top: '10px', zIndex: 999999, padding: '10px'}}>✓</button>
+      <div id="map" className={this.state.params.mode}>
         <div ref="bounding" className="bounding" style={boundingStyle}>
           <div className="test-container" style={containerStyle}>
           {this.state.pages.map((page) => {
@@ -531,10 +621,11 @@ var Project = React.createClass({
           </div>
         </div>
 
-        <Menu>
+        <Menu fullWidth={this.state.params.mode === 'link'}>
           {removePageButton}
           <PrimaryButton url={pageUrl} off={isPlayOnly || !this.state.selectedEl} href="/pages/page" icon="../../img/pencil.svg" />
           <PrimaryButton onClick={this.zoomFromPage} off={!this.state.isPageZoomed} icon="../../img/zoom-out.svg" />
+          <FullWidthButton onClick={this.setDestination} off={this.state.params.mode !== 'link' || !this.state.selectedEl}>Set Destination</FullWidthButton>
         </Menu>
 
         <Loading on={this.state.loading} />

@@ -13,6 +13,10 @@
   .test-container {
     position: relative;
   }
+  &.play .page-container.selected {
+    border: none;
+    outline: none;
+  }
   .page-container {
     position: relative;
     overflow: hidden;
@@ -37,7 +41,7 @@
       position: absolute;
       width: 100%;
       height: 100%;
-      z-index: 2;
+      z-index: @ZINDEX_LOADING;
       display: flex;
       justify-content: center;
       align-items: center;

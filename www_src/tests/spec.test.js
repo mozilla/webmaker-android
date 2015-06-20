@@ -7,7 +7,8 @@ function validSpec() {
     foo: {
       category: 'styles',
       validation: React.PropTypes.string,
-      default: 'foo'
+      default: 'foo',
+      editor: 'color'
     },
     bar: {
       category: 'attributes',
@@ -81,6 +82,7 @@ describe('Spec', () => {
         scale: 2.5,
         zIndex: 5
       }), {
+        '-webkit-transform': 'translate(50px, -12px) rotate(90deg) scale(2.5)',
         transform: 'translate(50px, -12px) rotate(90deg) scale(2.5)',
         transformOrigin: 'center',
         zIndex: 5
@@ -265,6 +267,18 @@ describe('Spec', () => {
             baz: 12
           }
         });
+      });
+    });
+
+    describe('#isStyleOrAttribute', () => {
+      it('should return styles for style props', () => {
+        should.equal(s.isStyleOrAttribute('foo'), 'styles');
+      });
+      it('should return attributes for attribute props', () => {
+        should.equal(s.isStyleOrAttribute('bar'), 'attributes');
+      });
+      it('should return undefined for props that aren not in the spec', () => {
+        should.equal(s.isStyleOrAttribute('bloop'), undefined);
       });
     });
 

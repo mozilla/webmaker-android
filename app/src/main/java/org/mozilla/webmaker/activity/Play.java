@@ -3,13 +3,16 @@ package org.mozilla.webmaker.activity;
 import android.content.Intent;
 import android.net.Uri;
 import android.os.Bundle;
+import android.view.Menu;
+import android.view.MenuItem;
 import org.json.JSONException;
 import org.mozilla.webmaker.R;
 import org.mozilla.webmaker.WebmakerActivity;
+import org.mozilla.webmaker.util.Share;
 
 public class Play extends WebmakerActivity {
     public Play() {
-        super("project", R.id.page_layout, R.layout.page_layout, R.menu.menu_page);
+        super("project", R.id.page_layout, R.layout.page_layout, R.menu.menu_play);
     }
 
     @Override
@@ -37,6 +40,37 @@ public class Play extends WebmakerActivity {
             routeParams.put("project", project);
         } catch (JSONException e) {
             // do nothing
+        }
+    }
+
+    @Override
+    public boolean onCreateOptionsMenu(Menu menu) {
+        getMenuInflater().inflate(menuResId, menu);
+        return true;
+    }
+
+    @Override
+    public boolean onOptionsItemSelected(MenuItem item) {
+        // Fetch project ID
+        String id;
+        String userId;
+        try {
+            id = routeParams.get("project").toString();
+            userId = routeParams.get("user").toString();
+        } catch (JSONException e) {
+            return super.onOptionsItemSelected(item);
+        }
+
+        // Handle button press
+        switch (item.getItemId()) {
+            case R.id.action_share:
+                Share.launchShareIntent(userId, id, this);
+                return true;
+            case R.id.action_remix:
+                view.load("javascript: window.createRemix && window.createRemix()", null);
+                return true;
+            default:
+                return super.onOptionsItemSelected(item);
         }
     }
 }
