@@ -63,8 +63,8 @@ var StyleGuide = React.createClass({
   render: function () {
     return (
       <div id="style-guide">
-        <h1>Style Guide</h1>
         <Alert>Git Revision: {config.GIT_REVISION}</Alert>
+        <h1>Style Guide</h1>
 
         <h2>Typography</h2>
 
