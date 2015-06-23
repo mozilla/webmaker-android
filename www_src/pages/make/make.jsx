@@ -165,6 +165,9 @@ var Make = React.createClass({
         <Link url="/style-guide" hidden={window.Android && !window.Android.isDebugBuild()} className="btn btn-create btn-block btn-teal">
            Open Style Guide
         </Link>
+        <button hidden={window.Android && !window.Android.isDebugBuild()} onClick={window.Android.resetSharedPreferences()} className="btn btn-create btn-block btn-teal">
+          Reset Shared Preferences
+        </button>
       </div>
     );
   }

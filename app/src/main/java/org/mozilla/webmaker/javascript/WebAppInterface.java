@@ -80,6 +80,11 @@ public class WebAppInterface {
     }
 
     @JavascriptInterface
+    public void resetSharedPreferences() {
+        mPrefs.edit().clear().commit();
+    }
+
+    @JavascriptInterface
     public void setUserSession(String userData) {
         SharedPreferences.Editor editor = mUserPrefs.edit();
         editor.putString("session", userData);
