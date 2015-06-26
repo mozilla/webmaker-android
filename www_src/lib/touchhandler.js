@@ -73,7 +73,9 @@
       endmark: function(evt) {
         if (debug) { timedLog("endmark"); }
         if(evt.touches && evt.touches.length > 0) {
-          handlers.endSecondFinger(evt);
+          if (handlers.endSecondFinger(evt)) {
+            return;
+          }
         }
         if (debug) { timedLog("endmark - continued"); }
         mark = copy(positionable.state);
@@ -150,10 +152,13 @@
         if (debug) { timedLog("endSecondFinger"); }
         if (evt.touches.length > 1) {
           if (debug) { timedLog("endSecondFinger - capped"); }
-          return;
+          return true;
         }
         if (debug) { timedLog("endSecondFinger - continued"); }
         handlers.startmark(evt);
+        // If there are no fingers left on the screen,
+        // we have not finished the handling
+        return evt.touches.length !== 0;
       }
     };
 
