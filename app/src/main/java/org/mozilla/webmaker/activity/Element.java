@@ -51,7 +51,7 @@ public class Element extends WebmakerActivity {
 
         // Handle camera activity
         if (requestCode == CAMERA_REQUEST_CODE) {
-            bitmap = Image.decodeBitmapFromFile(mFile.getAbsolutePath(), 200, 200);
+            bitmap = Image.decodeBitmapFromFile(mFile.getAbsolutePath(), 600, 600);
         }
 
         // Handle media (gallery) activity
@@ -66,7 +66,7 @@ public class Element extends WebmakerActivity {
         }
 
         // Convert bitmap to data uri and forward to JS
-        String uri = Image.createDataUriFromBitmap(bitmap, 60);
+        String uri = Image.createDataUriFromBitmap(bitmap, 80);
         view.load("javascript: window.imageReady && window.imageReady('" + uri + "')", null);
     }
 }
