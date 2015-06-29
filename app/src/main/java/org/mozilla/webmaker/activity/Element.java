@@ -66,7 +66,7 @@ public class Element extends WebmakerActivity {
         }
 
         // Convert bitmap to data uri and forward to JS
-        String uri = Image.createDataUriFromBitmap(bitmap, 60);
+        String uri = Image.createDataUriFromBitmap(bitmap, 80);
         view.load("javascript: window.imageReady && window.imageReady('" + uri + "')", null);
     }
 }
