@@ -25,15 +25,15 @@ npm install
 #### Android
 While the majority of `webmaker-android` is built using Web technologies, it runs within a native Android wrapper that is included as part of this codebase. If you would like to make changes to the wrapper or if you'd like to test the app, we recommend you use [Android Studio](http://developer.android.com/sdk/index.html).
 
-If you make a change regarding activities within this native Android wrapper, you will need to update the ```res/xml/app_tracker.xml``` file to create a display name for that new activity, in Google Analytics.
-
-- Create the built assets with `npm run build`
+- Create the built assets with `npm run build`. If you're going to be continuously editing HTML/JS/CSS, use `npm start` instead.
 - Install and configure [Android Studio](http://developer.android.com/sdk)
 - Open Android Studio and select "Import Project"
 - If Android Studio asks, choose "Create project from existing sources"
 - Select the "webmaker-android" directory
 
 Once you have the project open, you can run it within an emulator or on any Android device with USB debugging enabled by selecting "Run 'app'" from the "Run" dropdown menu. For more information, please check out the [Android SDK documentation](http://developer.android.com/training/index.html).
+
+Because much of the application logic takes place in WebViews, you'll likely want to set up [Remote debugging on Android with Chrome](https://developer.chrome.com/devtools/docs/remote-debugging).
 
 #### Web
 Each fragment within `webmaker-android` is actually just a web page! You can find all of the js, css, and static assets in the `./www_src/` directory. Static files in `./www_src/static/` will be copied to the main directory during build.
@@ -43,6 +43,8 @@ To run and develop in a web browser without testing on device, simply run
 ```bash
 npm start
 ```
+
+Please note that this is only really useful for basic content and style changes; a lot of functionality is likely to fail due to the absence of Android APIs and other factors.
 
 ## Contact Us
 IRC: `#webmaker` on `irc.mozilla.org`
@@ -103,6 +105,8 @@ www_src/components/link/
 Component markup should contain a top-level class name that corresponds to its filename (eg: `.link` for `link`). Pages should similarly have a top-level ID (eg: `#editor` for `editor`).
 
 File names are hyphenated lowercase. For example: `section-2.jsx`.
+
+Also, if you make a change regarding activities within the native Android wrapper, you will need to update the ```res/xml/app_tracker.xml``` file to create a display name for that new activity, in Google Analytics.
 
 ## Network Assets
 
