@@ -51,7 +51,7 @@ public class Element extends WebmakerActivity {
 
         // Handle camera activity
         if (requestCode == CAMERA_REQUEST_CODE) {
-            bitmap = Image.decodeBitmapFromFile(mFile.getAbsolutePath(), 200, 200);
+            bitmap = Image.decodeBitmapFromFile(mFile.getAbsolutePath(), 600, 600);
         }
 
         // Handle media (gallery) activity
