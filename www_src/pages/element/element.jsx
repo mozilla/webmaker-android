@@ -38,7 +38,7 @@ render(React.createClass({
 
     var saveBeforeSwitch = function() {
       var goBack = function() {
-        window.Android.goBack();
+        window.Platform.goBack();
       };
       if (!this.edits) {
         return goBack();
@@ -153,7 +153,7 @@ render(React.createClass({
 
     return (<div id="editor">
       <Editor {...props} />
-      <button hidden={window.Android} onClick={this.save}>DEBUG:SAVE</button>
+      <button hidden={window.Platform} onClick={this.save}>DEBUG:SAVE</button>
       <Loading on={this.state.loading}/>
     </div>);
   }

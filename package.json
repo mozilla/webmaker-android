@@ -62,6 +62,7 @@
     "classnames": "1.2.1",
     "color": "0.8.0",
     "lodash.defaults": "3.1.1",
+    "lru-cache": "2.6.5",
     "owasp-password-strength-test": "1.2.2",
     "react": "0.13.1",
     "react-hammerjs": "0.2.2",

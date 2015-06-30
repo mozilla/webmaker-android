@@ -62,7 +62,7 @@ var ImageEditor = React.createClass({
 
         <div className={classNames({overlay: true, active: this.state.showMenu})} onClick={this.toggleMenu}/>
         <div className={classNames({controls: true, active: this.state.showMenu})}>
-          <button hidden={window.Android && !window.Android.cameraIsAvailable()} onClick={this.onCameraClick}>
+          <button hidden={window.Platform && !window.Platform.cameraIsAvailable()} onClick={this.onCameraClick}>
             <img className="icon" src="../../img/take-photo.svg" />
             <p>Take Photo</p>
           </button>
@@ -84,8 +84,8 @@ var ImageEditor = React.createClass({
     this.props.cancelDataRefresh();
 
     this.toggleMenu();
-    if (window.Android) {
-      window.Android.getFromCamera();
+    if (window.Platform) {
+      window.Platform.getFromCamera();
     }
   },
   onMediaClick: function () {
@@ -95,8 +95,8 @@ var ImageEditor = React.createClass({
     this.props.cancelDataRefresh();
 
     this.toggleMenu();
-    if (window.Android) {
-      window.Android.getFromMedia();
+    if (window.Platform) {
+      window.Platform.getFromMedia();
     }
   },
   imageReady: function (uri) {

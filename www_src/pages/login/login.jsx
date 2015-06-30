@@ -33,7 +33,7 @@ var Login = React.createClass({
   componentWillMount: function () {
     this.props.update({
       onBackPressed: () => {
-        window.Android.goToHomeScreen();
+        window.Platform.goToHomeScreen();
       }
     });
   },

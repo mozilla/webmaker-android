@@ -88,8 +88,8 @@ var Page = React.createClass({
       userID: this.state.params.user
     };
 
-    if (window.Android) {
-      window.Android.setView('/users/' + this.state.params.user + '/projects/' + parentProjectID + '/link', JSON.stringify(metadata));
+    if (window.Platform) {
+      window.Platform.setView('/users/' + this.state.params.user + '/projects/' + parentProjectID + '/link', JSON.stringify(metadata));
     }
   },
 

@@ -51,7 +51,7 @@ module.exports = {
 
         // Highlight the source page if you're in link destination mode
         if (this.state.params.mode === 'link') {
-          if (window.Android) {
+          if (window.Platform) {
             this.highlightPage(this.state.routeData.pageID, 'source');
           }
         }

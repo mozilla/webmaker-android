@@ -2,6 +2,7 @@ var React = require('react');
 var api = require('../../lib/api');
 var router = require('../../lib/router');
 var dispatcher = require('../../lib/dispatcher');
+var platform = require('../../lib/platform');
 var reportError = require('../../lib/errors');
 
 var render = require('../../lib/render.jsx');
@@ -79,10 +80,9 @@ var Make = React.createClass({
       if (!body || !body.project) {
         return this.onEmpty();
       }
-      if (window.Android) {
-        window.Android.trackEvent('Make', 'Create a Project', 'New Project Started');
-        window.Android.setView('/users/' + user.id + '/projects/' + body.project.id);
-      }
+      
+      platform.trackEvent('Make', 'Create a Project', 'New Project Started');
+      platform.setView('/users/' + user.id + '/projects/' + body.project.id);
 
       body.project.author = body.project.author || user;
 
@@ -94,11 +94,9 @@ var Make = React.createClass({
   },
 
   logout: function () {
-    if (window.Android) {
-      window.Android.trackEvent('Login', 'Sign Out', 'Sign Out Success');
-      window.Android.clearUserSession();
-      window.Android.setView('/login/sign-in');
-    }
+    platform.trackEvent('Login', 'Sign Out', 'Sign Out Success');
+    platform.clearUserSession();
+    platform.setView('/login/sign-in');
   },
 
   cardActionClick: function (e) {
@@ -119,16 +117,12 @@ var Make = React.createClass({
                 return this.onError(err);
               }
 
-              if (window.Android) {
-                window.Android.trackEvent('Make', 'Delete Project', 'Project Deleted');
-              }
+              platform.trackEvent('Make', 'Delete Project', 'Project Deleted');
               console.log('Deleted project: ' + e.projectID);
               this.load();
             });
           } else if (event.label === 'Share') {
-            if (window.Android) {
-              window.Android.shareProject(this.state.user.id, e.projectID);
-            }
+            platform.shareProject(this.state.user.id, e.projectID);
           }
         }
       }
@@ -162,10 +156,10 @@ var Make = React.createClass({
         </button>
         {cards}
         <Loading on={this.state.loading} />
-        <Link url="/style-guide" hidden={window.Android && !window.Android.isDebugBuild()} className="btn btn-create btn-block btn-teal">
+        <Link url="/style-guide" hidden={platform.isDebugBuild()} className="btn btn-create btn-block btn-teal">
            Open Style Guide
         </Link>
-        <button hidden={window.Android && !window.Android.isDebugBuild()} onClick={window.Android.resetSharedPreferences()} className="btn btn-create btn-block btn-teal">
+        <button hidden={platform.isDebugBuild()} onClick={platform.resetSharedPreferences()} className="btn btn-create btn-block btn-teal">
           Reset Shared Preferences
         </button>
       </div>

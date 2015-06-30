@@ -22,7 +22,7 @@ describe('router', function () {
   describe('#getRouteParams', function () {
     beforeEach(resetAndroidApi);
 
-    it('should return test data when window.Android does not exist', function () {
+    it('should return test data when window.Platform does not exist', function () {
       router.android = null;
       should.deepEqual(router.getRouteParams(), {
         user: 1,
@@ -63,7 +63,7 @@ describe('router', function () {
   describe('#getRouteData', function () {
     beforeEach(resetAndroidApi);
 
-    it('should get return an empty object if no window.Android', function () {
+    it('should get return an empty object if no window.Platform', function () {
       router.android = null;
       should.deepEqual(router.getRouteData(), {});
     });
@@ -96,7 +96,7 @@ describe('router', function () {
   describe('#getUserSession', function () {
     beforeEach(resetAndroidApi);
 
-    it('should return test data if no window.Android', function () {
+    it('should return test data if no window.Platform', function () {
       router.android = null;
       should.deepEqual(router.getUserSession(),  {
         user: {
@@ -142,7 +142,7 @@ describe('router', function () {
         token: ''
       });
     });
-    it('should return appropriate test data if no window.Android', function () {
+    it('should return appropriate test data if no window.Platform', function () {
       router.android = null;
       should.deepEqual(router.getInitialState(), {
         params: router.getRouteParams(),

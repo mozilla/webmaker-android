@@ -2,7 +2,7 @@ var {parseJSON} = require('./jsonUtils');
 
 module.exports = {
 
-  android: window.Android,
+  android: window.Platform,
 
   getRouteParams: function () {
     var params = {};
@@ -49,7 +49,7 @@ module.exports = {
   //
   // Returns user session from android if it exists,
   // or else an empty object.
-  // if window.Android doesn't exist, returns test data
+  // if window.Platform doesn't exist, returns test data
   // e.g.
   // {
   //  user: {id: 1, username: 'foo', ...},

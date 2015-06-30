@@ -31,7 +31,7 @@ var ProjectSettings = React.createClass({
     // Set up the save method when we press the back button
     this.props.update({
       onBackPressed: () => {
-        this.save(() => window.Android.goBack());
+        this.save(() => window.Platform.goBack());
       }
     });
 
@@ -48,7 +48,7 @@ var ProjectSettings = React.createClass({
       <div id="projectSettings">
         <div>
           <TextInput id="title" ref="title" label="Title" maxlength={25} minlength={4} linkState={this.linkState} />
-          <button hidden={window.Android} onClick={this.save}>DEBUG:Save</button>
+          <button hidden={window.Platform} onClick={this.save}>DEBUG:Save</button>
         </div>
 
         <div className="cc">

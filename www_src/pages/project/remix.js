@@ -28,8 +28,8 @@ module.exports = {
             return console.error('Error remixing project', err);
           }
 
-          if (window.Android) {
-            window.Android.setView(
+          if (window.Platform) {
+            window.Platform.setView(
               `/users/${this.state.user.id}/projects/${projectID}`,
               JSON.stringify({
                 isFreshRemix: true,

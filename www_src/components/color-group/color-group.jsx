@@ -42,14 +42,14 @@ var ColorGroup = React.createClass({
       this.props.onChange(this.valueLink.value);
     }
 
-    if (!window.Android) {
+    if (!window.Platform) {
       return;
     }
 
     e.preventDefault();
 
     var launch = () => {
-      window.Android.setView(this.getTinkerUrl());
+      window.Platform.setView(this.getTinkerUrl());
     };
 
     if (this.props.onLaunchTinker) {

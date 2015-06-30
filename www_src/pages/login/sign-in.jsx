@@ -86,8 +86,8 @@ var SignIn = React.createClass({
     api.authenticate({json}, (err, data) => {
       this.props.setParentState({loading: false});
       if (err) {
-        if (window.Android) {
-          window.Android.trackEvent('Login', 'Sign In', 'Sign In Error');
+        if (window.Platform) {
+          window.Platform.trackEvent('Login', 'Sign In', 'Sign In Error');
         }
         this.setState({globalError: true});
         return reportError("Error while trying to log in", err);
@@ -95,10 +95,10 @@ var SignIn = React.createClass({
 
       this.replaceState(this.getInitialState());
 
-      if (window.Android) {
-        window.Android.trackEvent('Login', 'Sign In', 'Sign In Success');
-        window.Android.setUserSession(JSON.stringify(data));
-        window.Android.setView('/main');
+      if (window.Platform) {
+        window.Platform.trackEvent('Login', 'Sign In', 'Sign In Success');
+        window.Platform.setUserSession(JSON.stringify(data));
+        window.Platform.setView('/main');
       }
     });
   },
