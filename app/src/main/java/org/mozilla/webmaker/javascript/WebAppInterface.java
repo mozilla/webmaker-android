@@ -1,12 +1,12 @@
 package org.mozilla.webmaker.javascript;
 
 import android.app.Activity;
+import android.content.ActivityNotFoundException;
 import android.content.Context;
 import android.content.SharedPreferences;
 import android.content.Intent;
 import android.content.pm.PackageManager;
 import android.net.Uri;
-import android.os.Build;
 import android.util.Log;
 
 import com.google.android.gms.analytics.HitBuilders;
@@ -155,7 +155,7 @@ public class WebAppInterface {
                 if (elementActivity != null) {
                     elementActivity.dispatchCameraIntent();
                 }
-            } catch (Exception e) {
+            } catch (ActivityNotFoundException e) {
                 Log.e("CAMERA", "Attempted to dispatch camera intent.");
             }
         }
