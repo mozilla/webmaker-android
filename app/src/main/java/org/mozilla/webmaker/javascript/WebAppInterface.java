@@ -150,9 +150,13 @@ public class WebAppInterface {
     @JavascriptInterface
     public void getFromCamera() {
         if (cameraIsAvailable()) {
-            Element elementActivity = (Element) mContext;
-            if (elementActivity != null) {
-                elementActivity.dispatchCameraIntent();
+            try {
+                Element elementActivity = (Element) mContext;
+                if (elementActivity != null) {
+                    elementActivity.dispatchCameraIntent();
+                }
+            } catch (Exception e) {
+                Log.e("CAMERA", "Attempted to dispatch camera intent.");
             }
         }
     }
