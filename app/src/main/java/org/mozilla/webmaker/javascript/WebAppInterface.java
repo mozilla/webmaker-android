@@ -149,13 +149,11 @@ public class WebAppInterface {
 
     @JavascriptInterface
     public void getFromCamera() {
-        // Check to ensure camera is available from device
-        if (!cameraIsAvailable()) return;
-
-        // Dispatch intent
-        Element elementActivity = (Element) mContext;
-        if (elementActivity != null) {
-            elementActivity.dispatchCameraIntent();
+        if (cameraIsAvailable()) {
+            Element elementActivity = (Element) mContext;
+            if (elementActivity != null) {
+                elementActivity.dispatchCameraIntent();
+            }
         }
     }
 
