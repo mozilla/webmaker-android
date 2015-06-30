@@ -1,9 +1,11 @@
 package org.mozilla.webmaker.javascript;
 
 import android.app.Activity;
+import android.content.ActivityNotFoundException;
 import android.content.Context;
 import android.content.SharedPreferences;
 import android.content.Intent;
+import android.content.pm.PackageManager;
 import android.net.Uri;
 import android.util.Log;
 
@@ -137,10 +139,25 @@ public class WebAppInterface {
      * ---------------------------------------
      */
     @JavascriptInterface
+    public boolean cameraIsAvailable() {
+        final PackageManager pm = mContext.getPackageManager();
+        final boolean front = pm.hasSystemFeature(PackageManager.FEATURE_CAMERA_FRONT);
+        final boolean rear = pm.hasSystemFeature(PackageManager.FEATURE_CAMERA);
+
+        return front || rear;
+    }
+
+    @JavascriptInterface
     public void getFromCamera() {
-        Element elementActivity = (Element) mContext;
-        if (elementActivity != null) {
-            elementActivity.dispatchCameraIntent();
+        if (cameraIsAvailable()) {
+            try {
+                Element elementActivity = (Element) mContext;
+                if (elementActivity != null) {
+                    elementActivity.dispatchCameraIntent();
+                }
+            } catch (ActivityNotFoundException e) {
+                Log.e("CAMERA", "Attempted to dispatch camera intent.");
+            }
         }
     }
 

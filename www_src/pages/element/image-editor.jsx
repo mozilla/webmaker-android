@@ -62,7 +62,7 @@ var ImageEditor = React.createClass({
 
         <div className={classNames({overlay: true, active: this.state.showMenu})} onClick={this.toggleMenu}/>
         <div className={classNames({controls: true, active: this.state.showMenu})}>
-          <button onClick={this.onCameraClick}>
+          <button hidden={window.Android && !window.Android.cameraIsAvailable()} onClick={this.onCameraClick}>
             <img className="icon" src="../../img/take-photo.svg" />
             <p>Take Photo</p>
           </button>
