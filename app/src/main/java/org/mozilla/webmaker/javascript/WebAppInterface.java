@@ -140,16 +140,11 @@ public class WebAppInterface {
      */
     @JavascriptInterface
     public boolean cameraIsAvailable() {
-        PackageManager pm = mContext.getPackageManager();
-        boolean available;
+        final PackageManager pm = mContext.getPackageManager();
+        final boolean front = pm.hasSystemFeature(PackageManager.FEATURE_CAMERA_FRONT);
+        final boolean rear = pm.hasSystemFeature(PackageManager.FEATURE_CAMERA);
 
-        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.JELLY_BEAN_MR1) {
-            available = pm.hasSystemFeature(PackageManager.FEATURE_CAMERA_ANY);
-        } else {
-            available = pm.hasSystemFeature(PackageManager.FEATURE_CAMERA);
-        }
-
-        return available;
+        return front || rear;
     }
 
     @JavascriptInterface
