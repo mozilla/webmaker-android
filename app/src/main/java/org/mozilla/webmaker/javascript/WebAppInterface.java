@@ -4,7 +4,9 @@ import android.app.Activity;
 import android.content.Context;
 import android.content.SharedPreferences;
 import android.content.Intent;
+import android.content.pm.PackageManager;
 import android.net.Uri;
+import android.os.Build;
 import android.util.Log;
 
 import com.google.android.gms.analytics.HitBuilders;
@@ -137,7 +139,25 @@ public class WebAppInterface {
      * ---------------------------------------
      */
     @JavascriptInterface
+    public boolean cameraIsAvailable() {
+        PackageManager pm = mContext.getPackageManager();
+        boolean available;
+
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.JELLY_BEAN_MR1) {
+            available = pm.hasSystemFeature(PackageManager.FEATURE_CAMERA_ANY);
+        } else {
+            available = pm.hasSystemFeature(PackageManager.FEATURE_CAMERA);
+        }
+
+        return available;
+    }
+
+    @JavascriptInterface
     public void getFromCamera() {
+        // Check to ensure camera is available from device
+        if (!cameraIsAvailable()) return;
+
+        // Dispatch intent
         Element elementActivity = (Element) mContext;
         if (elementActivity != null) {
             elementActivity.dispatchCameraIntent();
