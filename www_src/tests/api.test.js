@@ -21,11 +21,11 @@ function createMockXhr(routes) {
   }
 }
 
-// Mock window.Android,
+// Mock window.Platform,
 // re-require api with xhrMock if provided,
 // override uris so they're easier to target
 function resetMocks(xhrMock) {
-  global.window.Android = {
+  global.window.Platform = {
     getUserSession: function () {
       return {
         user: {

@@ -1,10 +1,12 @@
 var xhr = require('xhr');
 var defaults = require('lodash.defaults');
-var {jsonToFormEncoded, parseJSON} = require('./jsonUtils');
-var router = require('./router');
 var assign = require('react/lib/Object.assign');
-var dispatcher = require('./dispatcher');
+
 var config = require('../config');
+var dispatcher = require('./dispatcher');
+var platform = require('./platform');
+var router = require('./router');
+var {jsonToFormEncoded, parseJSON} = require('./jsonUtils');
 
 function api(options, callback) {
 
@@ -41,13 +43,11 @@ function api(options, callback) {
     options.headers.Authorization = 'token ' + router.getUserSession().token;
   }
 
-  // Set cache key
+  // Caching
   var key = 'cache::' + options.method + '::' + options.uri;
-
-  // Use device cache if window.Android is available & options.useCache is true
-  if (window.Android && options.useCache === true && options.method === 'GET') {
+  if (options.useCache === true && options.method === 'GET') {
     console.log('Fetching from cache "' + key + '"');
-    var hit = window.Android.getMemStorage(key, true);
+    var hit = platform.getMemStorage(key, true);
     if (typeof hit === 'string') {
       return callback(null, JSON.parse(hit));
     }
@@ -68,10 +68,8 @@ function api(options, callback) {
       return callback(err);
     }
 
-    // Set cache if window.Android is available
-    if (window.Android) {
-      window.Android.setMemStorage(key, JSON.stringify(body), true);
-    }
+    // Set cache
+    platform.setMemStorage(key, JSON.stringify(body), true);
 
     // If there is a callback, forward the response body
     if (callback) {

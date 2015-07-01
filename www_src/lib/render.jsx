@@ -1,8 +1,11 @@
 var React = require('react');
+
 var Spindicator = require('../components/spindicator/spindicator.jsx');
 var ModalConfirm = require('../components/modal-confirm/modal-confirm.jsx');
 var ModalSwitch = require('../components/modal-switch/modal-switch.jsx');
 var Snackbar = require('../components/snackbar/snackbar.jsx');
+
+var platform = require('./platform');
 
 var Base = React.createClass({
   onResume: function () {
@@ -14,8 +17,8 @@ var Base = React.createClass({
   onBackPressed: function() {
     if (this.state.onBackPressed) {
       return this.state.onBackPressed();
-    } else if (window.Android) {
-      window.Android.goBack();
+    } else {
+      platform.goBack();
     }
   },
   jsComm: function (event) {

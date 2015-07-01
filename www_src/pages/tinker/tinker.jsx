@@ -42,7 +42,7 @@ var Tinker = React.createClass({
     this.load();
     this.props.update({
       onBackPressed: () => {
-        this.save(() => window.Android.goBack());
+        this.save(() => window.Platform.goBack());
       }
     });
   },
@@ -124,7 +124,7 @@ var Tinker = React.createClass({
         <div className="editor-flex-container">
           <div className="editor-preview">
             <PreviewComponent {...this.state.element} />
-            <button className="debug" onClick={this.save} hidden={window.Android}>DEBUG:SAVE</button>
+            <button className="debug" onClick={this.save} hidden={window.Platform}>DEBUG:SAVE</button>
           </div>
           <div className="color-preview">
             <code>color: {this.getEditorValue()};</code>

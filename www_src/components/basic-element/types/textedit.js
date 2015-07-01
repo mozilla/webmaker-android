@@ -142,7 +142,7 @@ module.exports = {
     // typing with the cursor placed at the end of an input element.
     //
     // See https://github.com/mozilla/webmaker-android/issues/2050 for more details.
-    if(!this._replaced && window.Android) {
+    if(!this._replaced && window.Platform) {
       value = value.replace(this._content, '');
       this._replaced = true;
     }

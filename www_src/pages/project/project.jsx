@@ -39,14 +39,14 @@ var Project = React.createClass({
       this.load();
     }
 
-    if (window.Android) {
-      window.Android.setMemStorage('state', JSON.stringify(this.state));
+    if (window.Platform) {
+      window.Platform.setMemStorage('state', JSON.stringify(this.state));
     }
   },
 
   componentDidMount: function () {
-    if (window.Android) {
-      var state = window.Android.getMemStorage('state');
+    if (window.Platform) {
+      var state = window.Platform.getMemStorage('state');
       if (this.state.params.mode === 'edit') {
         state = parseJSON(state);
         if (state.params && state.params.project === this.state.params.project) {

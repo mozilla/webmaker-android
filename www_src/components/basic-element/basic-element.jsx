@@ -140,8 +140,8 @@ var BasicElement = React.createClass({
 
   onLinkDestClick: function () {
     if (this.props.targetPageId) {
-      if (window.Android) {
-        window.Android.setView(`/users/${this.props.targetUserId}/projects/${this.props.targetProjectId}/pages/${this.props.targetPageId}`);
+      if (window.Platform) {
+        window.Platform.setView(`/users/${this.props.targetUserId}/projects/${this.props.targetProjectId}/pages/${this.props.targetPageId}`);
       }
     } else {
       dispatcher.fire('linkDestinationClicked', this.props);

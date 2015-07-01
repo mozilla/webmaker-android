@@ -53,8 +53,8 @@ var LinkEditor = React.createClass({
         console.error('There was an error updating the element', err);
       }
 
-      if (window.Android) {
-        window.Android.setView(
+      if (window.Platform) {
+        window.Platform.setView(
           `/users/${this.props.params.user}/projects/${this.props.params.project}/link`,
           JSON.stringify(metadata)
         );

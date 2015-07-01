@@ -38,8 +38,8 @@ module.exports = {
         reportError('There was an error updating the element', err);
       }
 
-      if (window.Android) {
-        window.Android.goBack();
+      if (window.Platform) {
+        window.Platform.goBack();
       }
     });
   }

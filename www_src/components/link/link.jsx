@@ -12,12 +12,12 @@ var Link = React.createClass({
     var props = assign({}, this.props, {
       className,
       onClick: (e) => {
-        if (window.Android) {
+        if (window.Platform) {
           e.preventDefault();
           if (this.props.external) {
-            window.Android.openExternalUrl(this.props.external);
+            window.Platform.openExternalUrl(this.props.external);
           } else if (this.props.url) {
-            window.Android.setView(this.props.url);
+            window.Platform.setView(this.props.url);
           }
         }
       }
