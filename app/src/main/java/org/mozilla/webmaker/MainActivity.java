@@ -93,7 +93,7 @@ public class MainActivity extends BaseActivity implements ActionBar.TabListener 
     @Override
     protected void onPause() {
         sendMessageToWebView("onPause");
-        super.onResume();
+        super.onPause();
     }
 
     @Override
