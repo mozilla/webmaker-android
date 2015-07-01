@@ -89,14 +89,28 @@ var RGB = React.createClass({
 });
 
 var ColorSpectrum = React.createClass({
+  getDefaultProps: function() {
+    return {
+      defaultColor: 'rgba(0, 0, 0, 0)'
+    };
+  },
   updateColor: function (color) {
     // Normalize any updates to rgba
     this.props.onChange(color.rgbaString());
   },
-  render: function () {
+  getColor: function(color, defaultColor) {
     // Convert raw color value to a Color instance
     // This way we can convert any format to hsb/rgba as needed
-    var color = Color(this.props.color);
+    try {
+      return Color(color);
+    } catch (e) {
+      // Our color was malformed or otherwise unspecified, so
+      // fall back to the default color.
+      return Color(defaultColor);
+    }
+  },
+  render: function () {
+    var color = this.getColor(this.props.color, this.props.defaultColor);
 
     return (<div>
       <div className="form-group" hidden={!this.props.HSB}>
