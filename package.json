@@ -6,7 +6,7 @@
     "build": "npm explore webmaker-core -- npm install && npm run copy:env && npm run build:core && npm run copy:core",
     "build:core": "npm explore webmaker-core -- npm run build",
     "copy:core": "rimraf app/src/main/assets/www/ && ncp node_modules/webmaker-core/dest/ app/src/main/assets/www/",
-    "copy:env": "ncp .env node_modules/webmaker-core/.env"
+    "copy:env": "node npm_tasks/copy-env.js"
   },
   "repository": {
     "type": "git",
