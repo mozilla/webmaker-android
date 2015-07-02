@@ -24,7 +24,9 @@ npm run build
 ```
 
 #### Android
-While the majority of `webmaker-android` is built using Web technologies, it runs within a native Android wrapper which comprises this codebase. To make changes or to test the app, we recommend you use [Android Studio](http://developer.android.com/sdk/index.html).
+
+This repository is home to the native Android wrapper for the Webmaker app. `webmaker-android` is a hybrid mobile application that is primarily web-based (HTML/CSS/JS) but uses this wrapper to communicate with the native Android SDK. To make changes or to test the app, we recommend you use [Android Studio](http://developer.android.com/sdk/index.html).
+
 
 - Compile the webview code with `npm run build`.
 - Install and configure [Android Studio](http://developer.android.com/sdk)
@@ -41,9 +43,9 @@ Each fragment within `webmaker-android` is actually just a web page! You can fin
 
 **NOTE:**
 
-For local development, it's recommended to use `npm link` with a local copy of `webmaker-core`, in which you'll do any webview related work separately.
+For local development, it's recommended to use `npm link` ([read more](https://docs.npmjs.com/cli/link)) with a local copy of [webmaker-core](https://github.com/mozilla/webmaker-core), in which you'll do any webview related work separately.
 
-When changes are compiled in `webmaker-core` you'll need to run `npm run copy:core` before building in Android Studio. Alternatively, you can create a symbolic link from `app/src/main/assets/www/` to `./node_modules/webmaker-core/dest/` to avoid having to run this extra command.
+When changes are compiled in [webmaker-core](https://github.com/mozilla/webmaker-core) you'll need to run `npm run copy:core` before building in Android Studio. Alternatively, you can create a symbolic link from `app/src/main/assets/www/` to `./node_modules/webmaker-core/dest/` to avoid having to run this extra command.
 
 ## Contact Us
 IRC: `#webmaker` on `irc.mozilla.org`
@@ -56,7 +58,7 @@ Forum: [https://groups.google.com/forum/#!forum/mozilla.webmaker](https://groups
 
 ### Changing configuration
 
-You can see all the default configuration in `config/defaults.env` (within `webmaker-core`). In order to change something, create a file called `.env` in your root directory and format configuration as follows:
+You can see all the default configuration in [config/defaults.env](https://github.com/mozilla/webmaker-core/blob/develop/config/defaults.env) (within `webmaker-core`). In order to change something, create a file called `.env` in your root directory and format configuration as follows:
 
 ```
 CONFIG_VALUE='blah'
