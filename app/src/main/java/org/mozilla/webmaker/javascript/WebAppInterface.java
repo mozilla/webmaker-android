@@ -22,6 +22,8 @@ import org.mozilla.webmaker.activity.Element;
 import org.mozilla.webmaker.router.Router;
 import org.mozilla.webmaker.storage.MemStorage;
 
+import java.util.Locale;
+
 public class WebAppInterface {
 
     protected Context mContext;
@@ -289,5 +291,15 @@ public class WebAppInterface {
     @JavascriptInterface
     public boolean isDebugBuild() {
         return BuildConfig.DEBUG;
+    }
+
+    /**
+     * ----------------------------------------
+     * Get System Locale
+     * ----------------------------------------
+     */
+    @JavascriptInterface
+    public String getSystemLocale() {
+        return Locale.getDefault().toString();
     }
 }
