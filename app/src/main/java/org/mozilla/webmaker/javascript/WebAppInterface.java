@@ -299,7 +299,7 @@ public class WebAppInterface {
      * ----------------------------------------
      */
     @JavascriptInterface
-    public String getSystemLocale() {
-        return Locale.getDefault().toString();
+    public String getSystemLanguage() {
+        return Locale.getDefault().toString().replace("_", "-");
     }
 }
