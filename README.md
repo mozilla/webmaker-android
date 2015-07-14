@@ -1,5 +1,7 @@
 ## Webmaker for Android
 
+# Please file all issues related to Webmaker Android at https://github.com/mozilla/webmaker-core/issues. You can use the android tag if your issue applies specifically to this repo or the Android platform.
+
 [![Build Status](https://travis-ci.org/mozilla/webmaker-android.svg?branch=develop)](https://travis-ci.org/mozilla/webmaker-android)
 
 Mozilla Webmaker's mission is to help enable a new generation of digital creators and webmakers, giving people the tools and skills they need to move from using the Web to actively making the Web. To this end, the Webmaker App is an entry point to the Webmaker community that provides a radically simple interface for creating mobile applications directly on device.
