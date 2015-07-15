@@ -299,7 +299,8 @@ public class WebAppInterface {
      * ----------------------------------------
      */
     @JavascriptInterface
-    public String getSystemLocale() {
-        return Locale.getDefault().toString();
+    public String getSystemLanguage() {
+        // Change underscores to dashes (The browser uses dashes instead)
+        return Locale.getDefault().toString().replace("_", "-");
     }
 }
