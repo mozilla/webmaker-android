@@ -25,6 +25,17 @@ npm install
 npm run build
 ```
 
+#### Specifying a dev environment
+
+In order to override default `webmaker-core` settings such as `id` and `api` endpoints, create an `.env` file in the webmaker-android root directory, and declare any enviroment overrides you need in that file, then (re)build the webmaker-android project using `npm run build`.
+
+For example, to run webmaker-android with a different API endpoint, you would make sure the `.env` file contains:
+```
+API_URI=http://alternative.api.endpoint
+```
+
+For more details on which environment variables are used by webmaker-core, please see the [webmaker-core default enviroment](https://github.com/mozilla/webmaker-core/blob/develop/config/defaults.env).
+
 #### Android
 
 This repository is home to the native Android wrapper for the Webmaker app. `webmaker-android` is a hybrid mobile application that is primarily web-based (HTML/CSS/JS) but uses this wrapper to communicate with the native Android SDK. To make changes or to test the app, we recommend you use [Android Studio](http://developer.android.com/sdk/index.html).
