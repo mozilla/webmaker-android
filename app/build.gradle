@@ -53,7 +53,7 @@ android {
     }
 }
 
-task npmRunBuild (type: NpmTask) {
+task npmRunBuild (type: NpmTask, dependsOn: ['npmInstall']) {
     args = ['run', 'build']
 }
 
