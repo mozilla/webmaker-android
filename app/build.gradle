@@ -8,8 +8,8 @@ android {
         applicationId "org.mozilla.webmaker"
         minSdkVersion 14
         targetSdkVersion 22
-        versionCode 5
-        versionName "1.0"
+        versionCode 7
+        versionName "1.1.0"
     }
 
     buildTypes {
