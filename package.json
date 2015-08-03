@@ -7,7 +7,8 @@
     "build": "node npm_tasks/explore.js webmaker-core -- npm install && npm run copy:env && npm run build:core && npm run copy:core",
     "build:core": "node npm_tasks/explore.js webmaker-core -- npm run build",
     "copy:core": "rimraf app/src/main/assets/www/ && mkdirp app/src/main/assets/www/ && ncp node_modules/webmaker-core/dest/ app/src/main/assets/www/",
-    "copy:env": "node npm_tasks/copy-env.js"
+    "copy:env": "node npm_tasks/copy-env.js",
+    "test": "echo \"Test in webmaker-core\""
   },
   "repository": {
     "type": "git",
