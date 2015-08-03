@@ -19,9 +19,4 @@
 
     <string name="share_subject">Webmaker</string>
     <string name="share_body">Check out this project on Webmaker!</string>
-    <string name="share_url">https://beta.webmaker.org</string>
-
-    <!-- Google Analytics App Name & Id -->
-    <string name="ga_appName">Mobile App</string>
-    <string name="ga_appId">97402987</string>
 </resources>

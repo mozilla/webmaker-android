@@ -1,5 +1,7 @@
 ## Webmaker for Android
 
+# Please file all issues related to Webmaker Android at https://github.com/mozilla/webmaker-core/issues. You can use the android tag if your issue applies specifically to this repo or the Android platform.
+
 [![Build Status](https://travis-ci.org/mozilla/webmaker-android.svg?branch=develop)](https://travis-ci.org/mozilla/webmaker-android)
 
 Mozilla Webmaker's mission is to help enable a new generation of digital creators and webmakers, giving people the tools and skills they need to move from using the Web to actively making the Web. To this end, the Webmaker App is an entry point to the Webmaker community that provides a radically simple interface for creating mobile applications directly on device.
@@ -13,21 +15,33 @@ Before you jump into the code you'll want to download, install, and configure th
 
 - [Android Studio](http://developer.android.com/sdk)
 - [Node 0.12+](https://nodejs.org/) w/ ES6 ("harmony") features enabled
-- [NPM 2.6+](https://www.npmjs.com/)
+- [NPM 2.11+](https://www.npmjs.com/) (comes bundled with node)
 
 #### Clone & Install Dependencies
 ```bash
 git clone https://github.com/mozilla/webmaker-android
 cd webmaker-android
 npm install
+npm run build
 ```
 
+#### Specifying a dev environment
+
+In order to override default `webmaker-core` settings such as `id` and `api` endpoints, create an `.env` file in the webmaker-android root directory, and declare any enviroment overrides you need in that file, then (re)build the webmaker-android project using `npm run build`.
+
+For example, to run webmaker-android with a different API endpoint, you would make sure the `.env` file contains:
+```
+API_URI=http://alternative.api.endpoint
+```
+
+For more details on which environment variables are used by webmaker-core, please see the [webmaker-core default enviroment](https://github.com/mozilla/webmaker-core/blob/develop/config/defaults.env).
+
 #### Android
-While the majority of `webmaker-android` is built using Web technologies, it runs within a native Android wrapper that is included as part of this codebase. If you would like to make changes to the wrapper or if you'd like to test the app, we recommend you use [Android Studio](http://developer.android.com/sdk/index.html).
 
-If you make a change regarding activities within this native Android wrapper, you will need to update the ```res/xml/app_tracker.xml``` file to create a display name for that new activity, in Google Analytics.
+This repository is home to the native Android wrapper for the Webmaker app. `webmaker-android` is a hybrid mobile application that is primarily web-based (HTML/CSS/JS) but uses this wrapper to communicate with the native Android SDK. To make changes or to test the app, we recommend you use [Android Studio](http://developer.android.com/sdk/index.html).
 
-- Create the built assets with `npm run build`
+
+- Compile the webview code with `npm run build`.
 - Install and configure [Android Studio](http://developer.android.com/sdk)
 - Open Android Studio and select "Import Project"
 - If Android Studio asks, choose "Create project from existing sources"
@@ -35,14 +49,16 @@ If you make a change regarding activities within this native Android wrapper, yo
 
 Once you have the project open, you can run it within an emulator or on any Android device with USB debugging enabled by selecting "Run 'app'" from the "Run" dropdown menu. For more information, please check out the [Android SDK documentation](http://developer.android.com/training/index.html).
 
+Because much of the application logic takes place in WebViews, you'll likely want to set up [Remote debugging on Android with Chrome](https://developer.chrome.com/devtools/docs/remote-debugging).
+
 #### Web
-Each fragment within `webmaker-android` is actually just a web page! You can find all of the js, css, and static assets in the `./www_src/` directory. Static files in `./www_src/static/` will be copied to the main directory during build.
+Each fragment within `webmaker-android` is actually just a web page! You can find all of the js, css, and static assets in the `webmaker-core` module. Static files in `./node_modules/webmaker-core/src/dest/` will be copied up to this Android wrapper as part of `npm run build`.
 
-To run and develop in a web browser without testing on device, simply run
+**NOTE:**
 
-```bash
-npm start
-```
+For local development, it's recommended to use `npm link` ([read more](https://docs.npmjs.com/cli/link)) with a local copy of [webmaker-core](https://github.com/mozilla/webmaker-core), in which you'll do any webview related work separately.
+
+When changes are compiled in [webmaker-core](https://github.com/mozilla/webmaker-core) you'll need to run `npm run copy:core` before building in Android Studio. Alternatively, you can create a symbolic link from `app/src/main/assets/www/` to `./node_modules/webmaker-core/dest/` to avoid having to run this extra command.
 
 ## Contact Us
 IRC: `#webmaker` on `irc.mozilla.org`
@@ -55,21 +71,10 @@ Forum: [https://groups.google.com/forum/#!forum/mozilla.webmaker](https://groups
 
 ### Changing configuration
 
-You can see all the default configuration in `config/defaults.env`. In order to change something, create a file called `.env` in your root directory and format configuration as follows:
+You can see all the default configuration in [config/defaults.env](https://github.com/mozilla/webmaker-core/blob/develop/config/defaults.env) (within `webmaker-core`). In order to change something, create a file called `.env` in your root directory and format configuration as follows:
 
 ```
 CONFIG_VALUE='blah'
-
-```
-
-### Using configuration in js
-
-In order to access config values, simply require `config.js` (in the `www_src/`).
-
-```js
-var config = require('../config.js');
-
-console.log(config.CLIENT_ID);
 
 ```
 
@@ -77,53 +82,18 @@ console.log(config.CLIENT_ID);
 
 You will need a production `CLIENT_ID` for the id.webmaker.org OAuth server to run the app in production mode. Ask @cade or @k88hudson on irc.
 
-If you are deploying/creating a build that should use production configuration, add the following to your `.env` before running `npm run build` or `npm start`:
+If you are deploying/creating a build that should use production configuration, add the following to your `.env` before running `npm run build`.
 
 ```
 NODE_ENV='PRODUCTION'
 CLIENT_ID='xxxxxx'
 ```
 
-## Adding New Pages or Components
-
-There are a few standards to bear in mind when adding new pages or components to the project.
-
-Components are added to the `www_src/components` directory. Pages are added to `www_src/pages`. Each component or page needs its own subdirectory, JSX file, and LESS file. All three should share a common name.
-
-For example:
-
-```
-www_src/components/link/
-├── link.jsx
-└── link.less
-```
-
-*Be sure to add the LESS file as an import in `www_src/main.less` so that it gets compiled!*
-
-Component markup should contain a top-level class name that corresponds to its filename (eg: `.link` for `link`). Pages should similarly have a top-level ID (eg: `#editor` for `editor`).
-
-File names are hyphenated lowercase. For example: `section-2.jsx`.
-
 ## Network Assets
 
 Webmaker for Android attempts to use network resources as sparingly as possible. In addition, it is important to cover failure and loading states gracefully at all times. To this end, we have a few React components and libraries included in the project to help make this easier:
 
-#### API Requests
-The `./lib/api.js` module is the primary way in which you should interact with api.webmaker.org. This module can use Android's `SharedPreferences` API to cache API requests thus reducing network requests. If you would like to use the cache, you can send `useCache: true` to the module:
 
-```js
-var api = require('./lib/api.js');
-
-api({
-    uri: '/discover',
-    useCache: true
-}, function (err, results) {
-    // do stuff w/ cached results if found!
-});
-```
-
-#### Loading Images
-Any time you are loading images over the network, we recommend that you use the `<ImageLoader>` react component. This gives you access to important events like loading and error states as well as a hook for providing a loading animation. Full documentation can be found here: https://github.com/hzdg/react-imageloader
 
 ## Interacting with Android APIs
 

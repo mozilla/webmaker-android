@@ -1,9 +1,11 @@
 package org.mozilla.webmaker.javascript;
 
 import android.app.Activity;
+import android.content.ActivityNotFoundException;
 import android.content.Context;
 import android.content.SharedPreferences;
 import android.content.Intent;
+import android.content.pm.PackageManager;
 import android.net.Uri;
 import android.util.Log;
 
@@ -19,6 +21,8 @@ import org.mozilla.webmaker.BaseActivity;
 import org.mozilla.webmaker.activity.Element;
 import org.mozilla.webmaker.router.Router;
 import org.mozilla.webmaker.storage.MemStorage;
+
+import java.util.Locale;
 
 public class WebAppInterface {
 
@@ -80,6 +84,11 @@ public class WebAppInterface {
     }
 
     @JavascriptInterface
+    public void resetSharedPreferences() {
+        mPrefs.edit().clear().commit();
+    }
+
+    @JavascriptInterface
     public void setUserSession(String userData) {
         SharedPreferences.Editor editor = mUserPrefs.edit();
         editor.putString("session", userData);
@@ -132,10 +141,25 @@ public class WebAppInterface {
      * ---------------------------------------
      */
     @JavascriptInterface
+    public boolean cameraIsAvailable() {
+        final PackageManager pm = mContext.getPackageManager();
+        final boolean front = pm.hasSystemFeature(PackageManager.FEATURE_CAMERA_FRONT);
+        final boolean rear = pm.hasSystemFeature(PackageManager.FEATURE_CAMERA);
+
+        return front || rear;
+    }
+
+    @JavascriptInterface
     public void getFromCamera() {
-        Element elementActivity = (Element) mContext;
-        if (elementActivity != null) {
-            elementActivity.dispatchCameraIntent();
+        if (cameraIsAvailable()) {
+            try {
+                Element elementActivity = (Element) mContext;
+                if (elementActivity != null) {
+                    elementActivity.dispatchCameraIntent();
+                }
+            } catch (ActivityNotFoundException e) {
+                Log.e("CAMERA", "Attempted to dispatch camera intent.");
+            }
         }
     }
 
@@ -267,5 +291,16 @@ public class WebAppInterface {
     @JavascriptInterface
     public boolean isDebugBuild() {
         return BuildConfig.DEBUG;
+    }
+
+    /**
+     * ----------------------------------------
+     * Get System Locale
+     * ----------------------------------------
+     */
+    @JavascriptInterface
+    public String getSystemLanguage() {
+        // Change underscores to dashes (The browser uses dashes instead)
+        return Locale.getDefault().toString().replace("_", "-");
     }
 }

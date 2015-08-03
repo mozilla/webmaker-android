@@ -8,8 +8,8 @@ android {
         applicationId "org.mozilla.webmaker"
         minSdkVersion 14
         targetSdkVersion 22
-        versionCode 5
-        versionName "1.0"
+        versionCode 7
+        versionName "1.1.0"
     }
 
     buildTypes {
@@ -64,5 +64,5 @@ dependencies {
     compile 'com.android.support:support-v13:22.1.1'
     compile 'com.android.support:appcompat-v7:22.1.1'
     compile 'com.google.android.gms:play-services-analytics:7.3.0'
-    compile 'org.xwalk:xwalk_core_library:13.42.319.11'
+    compile 'org.xwalk:xwalk_core_library:13.42.319.12'
 }
