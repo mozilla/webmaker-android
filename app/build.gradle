@@ -57,6 +57,16 @@ task npmRunBuild (type: NpmTask, dependsOn: ['npmInstall']) {
     args = ['run', 'build']
 }
 
+task npmRunCopyCore (type: NpmTask, dependsOn: ['npmInstall']) {
+    args = ['run', 'copy:core']
+}
+
+tasks.whenTaskAdded { task ->
+    if (task.name == 'assembleProductionRelease') {
+        task.dependsOn npmRunBuild
+    }
+}
+
 repositories {
     mavenCentral()
     maven {
@@ -79,4 +89,4 @@ node {
     download = true
 }
 
-preBuild.dependsOn npmRunBuild
+preBuild.dependsOn npmRunCopyCore
