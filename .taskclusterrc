@@ -1,8 +1,17 @@
 ---
 tasks:
   - payload: 
-     image: "mozilla:webmaker-android"
+     image: "ubuntu:latest"
      command: 
-       - "gradle test"
+       - "/bin/bash"
        - "-c"
        - "echo 'just this easy'"
+  - extra:
+      github_events:
+        - push
+    payload:
+      image: "ubuntu:latest"
+      command:
+        - "/bin/bash"
+        - "-c"
+        - "echo 'I only run on pushes'"
