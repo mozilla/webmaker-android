@@ -3,7 +3,7 @@ package org.mozilla.webmaker;
 import android.app.Activity;
 import android.content.SharedPreferences;
 
-import org.mozilla.webmaker.javascript.WebAppInterface;
+import org.mozilla.webmaker.web.javascript.WebAppInterface;
 
 public class BaseActivity extends Activity {
     public void goBack() {

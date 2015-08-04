@@ -10,7 +10,7 @@ import org.json.JSONException;
 import org.json.JSONObject;
 import org.mozilla.webmaker.R;
 import org.mozilla.webmaker.WebmakerActivity;
-import org.mozilla.webmaker.javascript.WebAppInterface;
+import org.mozilla.webmaker.web.javascript.WebAppInterface;
 import org.mozilla.webmaker.router.Router;
 import org.mozilla.webmaker.util.Share;
 
