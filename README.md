@@ -58,7 +58,7 @@ Each fragment within `webmaker-android` is actually just a web page! You can fin
 
 For local development, it's recommended to use `npm link` ([read more](https://docs.npmjs.com/cli/link)) with a local copy of [webmaker-core](https://github.com/mozilla/webmaker-core), in which you'll do any webview related work separately.
 
-When changes are compiled in [webmaker-core](https://github.com/mozilla/webmaker-core) you'll need to run `npm run copy:core` before building in Android Studio. Alternatively, you can create a symbolic link from `app/src/main/assets/www/` to `./node_modules/webmaker-core/dest/` to avoid having to run this extra command.
+Gradle with automatically run `npm run copy:core` before building in Android Studio. This makes it convenient to watch your local copy of [webmaker-core](https://github.com/mozilla/webmaker-core) while you are testing on device or with an emulator.
 
 ## Contact Us
 IRC: `#webmaker` on `irc.mozilla.org`
