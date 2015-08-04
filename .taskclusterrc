@@ -1,0 +1,8 @@
+---
+tasks:
+  - payload: 
+     image: "mozilla:webmaker-android"
+     command: 
+       - "gradle test"
+       - "-c"
+       - "echo 'just this easy'"
