@@ -6,6 +6,8 @@ import android.content.Context;
 import android.content.SharedPreferences;
 import android.content.Intent;
 import android.content.pm.PackageManager;
+import android.net.ConnectivityManager;
+import android.net.NetworkInfo;
 import android.net.Uri;
 import android.util.Log;
 
@@ -303,4 +305,18 @@ public class WebAppInterface {
         // Change underscores to dashes (The browser uses dashes instead)
         return Locale.getDefault().toString().replace("_", "-");
     }
+
+    /**
+     * ----------------------------------------
+     * Determine network availability
+     * ----------------------------------------
+     */
+    @JavascriptInterface
+    public boolean isNetworkAvailable() {
+        ConnectivityManager cm = (ConnectivityManager) mContext.getSystemService(Context.CONNECTIVITY_SERVICE);
+        NetworkInfo activeNetwork = cm.getActiveNetworkInfo();
+
+        return activeNetwork != null && activeNetwork.isConnectedOrConnecting();
+    }
+
 }
