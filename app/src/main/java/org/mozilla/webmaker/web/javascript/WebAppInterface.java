@@ -1,4 +1,4 @@
-package org.mozilla.webmaker.javascript;
+package org.mozilla.webmaker.web.javascript;
 
 import android.app.Activity;
 import android.content.ActivityNotFoundException;
@@ -17,6 +17,7 @@ import org.mozilla.webmaker.BuildConfig;
 import org.json.JSONObject;
 import org.mozilla.webmaker.WebmakerApplication;
 import org.mozilla.webmaker.util.Share;
+import org.mozilla.webmaker.view.WebmakerWebView;
 import org.xwalk.core.JavascriptInterface;
 
 import org.mozilla.webmaker.BaseActivity;
@@ -36,21 +37,26 @@ public class WebAppInterface {
     protected String mPrefKey;
     protected String mPageState;
 
+    protected WebmakerAPI api;
+
     public static final String SHARED_PREFIX = "prefs::".concat(BuildConfig.VERSION_NAME);
     public static final String ROUTE_KEY = "route::data";
     public static final String USER_SESSION_KEY =  "user::session";
 
-    public WebAppInterface(Context context) {
-        this(context, null);
+    public WebAppInterface(WebmakerWebView view, Context context) {
+        this(view, context, null);
     }
 
-    public WebAppInterface(Context context, JSONObject routeParams) {
+    public WebAppInterface(WebmakerWebView view, Context context, JSONObject routeParams) {
         mContext = context;
         mActivity = (BaseActivity) context;
         mPrefKey = "::".concat(mContext.getClass().getSimpleName());
         mPrefs = mContext.getSharedPreferences(mPrefKey, 0);
         mUserPrefs = mContext.getSharedPreferences(USER_SESSION_KEY, 0);
         mRoute = routeParams;
+        api = WebmakerAPI.getInstance();
+        api.setView(view);
+        api.setActivity(mActivity);
         Log.v("wm", "getting state " + mPrefKey + ": " + mPageState);
     }
 
@@ -294,6 +300,14 @@ public class WebAppInterface {
     public boolean isDebugBuild() {
         return BuildConfig.DEBUG;
     }
+
+    /**
+     * ----------------------------------------
+     * Get a reference to the API class
+     * ----------------------------------------
+     */
+    @JavascriptInterface
+    public WebmakerAPI getAPI() { return api; }
 
     /**
      * ----------------------------------------
