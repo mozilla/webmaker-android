@@ -10,7 +10,7 @@ import org.xwalk.core.XWalkView;
 
 import org.mozilla.webmaker.R;
 import org.mozilla.webmaker.client.WebClient;
-import org.mozilla.webmaker.javascript.WebAppInterface;
+import org.mozilla.webmaker.web.javascript.WebAppInterface;
 
 public class WebmakerWebView extends XWalkView {
 
@@ -26,6 +26,6 @@ public class WebmakerWebView extends XWalkView {
         this.load("file:///android_asset/www/pages/" + pageName + "/index.html", null);
         this.setResourceClient(new WebClient(this));
         this.setBackgroundColor(getResources().getColor(R.color.light_gray));
-        this.addJavascriptInterface(new WebAppInterface(context, routeParams), "Platform");
+        this.addJavascriptInterface(new WebAppInterface(this, context, routeParams), "Platform");
     }
 }

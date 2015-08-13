@@ -1,6 +1,6 @@
 ## Webmaker for Android
 
-# Please file all issues related to Webmaker Android at https://github.com/mozilla/webmaker-core/issues. You can use the android tag if your issue applies specifically to this repo or the Android platform.
+#### Please file all issues related to Webmaker Android at https://github.com/mozilla/webmaker-core/issues. You can use the android tag if your issue applies specifically to this repo or the Android platform.
 
 [![Build Status](https://travis-ci.org/mozilla/webmaker-android.svg?branch=develop)](https://travis-ci.org/mozilla/webmaker-android)
 
@@ -40,7 +40,6 @@ For more details on which environment variables are used by webmaker-core, pleas
 
 This repository is home to the native Android wrapper for the Webmaker app. `webmaker-android` is a hybrid mobile application that is primarily web-based (HTML/CSS/JS) but uses this wrapper to communicate with the native Android SDK. To make changes or to test the app, we recommend you use [Android Studio](http://developer.android.com/sdk/index.html).
 
-
 - Compile the webview code with `npm run build`.
 - Install and configure [Android Studio](http://developer.android.com/sdk)
 - Open Android Studio and select "Import Project"
@@ -58,7 +57,7 @@ Each fragment within `webmaker-android` is actually just a web page! You can fin
 
 For local development, it's recommended to use `npm link` ([read more](https://docs.npmjs.com/cli/link)) with a local copy of [webmaker-core](https://github.com/mozilla/webmaker-core), in which you'll do any webview related work separately.
 
-When changes are compiled in [webmaker-core](https://github.com/mozilla/webmaker-core) you'll need to run `npm run copy:core` before building in Android Studio. Alternatively, you can create a symbolic link from `app/src/main/assets/www/` to `./node_modules/webmaker-core/dest/` to avoid having to run this extra command.
+Gradle will automatically run `npm run copy:core` before building in Android Studio. This makes it convenient to watch your local copy of [webmaker-core](https://github.com/mozilla/webmaker-core) while you are testing on device or with an emulator.
 
 ## Contact Us
 IRC: `#webmaker` on `irc.mozilla.org`
