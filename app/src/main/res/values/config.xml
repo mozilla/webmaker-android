@@ -1,7 +1,7 @@
 <resources>
-    <string name="share_url">https://beta.webmaker.org</string>
+    <string name="share_url" translatable="false">https://beta.webmaker.org</string>
 
     <!-- Google Analytics App Name & Id -->
-    <string name="ga_appName">Mobile App</string>
-    <string name="ga_appId">97402987</string>
+    <string name="ga_appName" translatable="false">Mobile App</string>
+    <string name="ga_appId" translatable="false">97402987</string>
 </resources>
