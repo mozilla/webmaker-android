@@ -5,7 +5,6 @@
     <string name="action_remix">Remix</string>
     <string name="action_settings">Settings</string>
     <string name="action_share">Share</string>
-    <string name="ga_appName" translatable="false"></string>
     <string name="share_body">Check out this project on Webmaker!</string>
     <string name="share_subject">Webmaker</string>
     <string name="title_activity_element">Options</string>
