@@ -160,7 +160,10 @@ public class WebmakerActivity extends BaseActivity {
         Bitmap bitmap = null;
 
         // Return if user exited without capturing / selecting an image
-        if (resultCode == 0) return;
+        if (resultCode == 0) {
+            view.load("javascript: window.onMediaCancel && window.onMediaCancel()", null);
+            return;
+        }
 
         // Handle camera activity
         if (requestCode == CAMERA_REQUEST_CODE) {
