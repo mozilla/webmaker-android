@@ -15,6 +15,7 @@ import com.google.android.gms.analytics.HitBuilders;
 
 import org.mozilla.webmaker.BuildConfig;
 import org.json.JSONObject;
+import org.mozilla.webmaker.WebmakerActivity;
 import org.mozilla.webmaker.WebmakerApplication;
 import org.mozilla.webmaker.util.Share;
 import org.mozilla.webmaker.view.WebmakerWebView;
@@ -161,9 +162,9 @@ public class WebAppInterface {
     public void getFromCamera() {
         if (cameraIsAvailable()) {
             try {
-                Element elementActivity = (Element) mContext;
-                if (elementActivity != null) {
-                    elementActivity.dispatchCameraIntent();
+                WebmakerActivity wActivity = (WebmakerActivity) mContext;
+                if (wActivity != null) {
+                    wActivity.dispatchCameraIntent();
                 }
             } catch (ActivityNotFoundException e) {
                 Log.e("CAMERA", "Attempted to dispatch camera intent.");
@@ -173,9 +174,9 @@ public class WebAppInterface {
 
     @JavascriptInterface
     public void getFromMedia() {
-        Element elementActivity = (Element) mContext;
-        if (elementActivity != null) {
-            elementActivity.dispatchMediaIntent();
+        WebmakerActivity wActivity = (WebmakerActivity) mContext;
+        if (wActivity != null) {
+            wActivity.dispatchMediaIntent();
         }
     }
 
