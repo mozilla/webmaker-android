@@ -8,7 +8,7 @@ import org.json.JSONException;
 
 import org.mozilla.webmaker.R;
 import org.mozilla.webmaker.WebmakerActivity;
-import org.mozilla.webmaker.router.Router;
+import org.mozilla.webmaker.router.SimpleRouter;
 import org.mozilla.webmaker.util.Share;
 
 public class Project extends WebmakerActivity {
@@ -47,10 +47,10 @@ public class Project extends WebmakerActivity {
         // Handle button press
         switch (item.getItemId()) {
             case R.id.action_play:
-                Router.sharedRouter().open("/users/" + userId + "/projects/" + id + "/play");
+                SimpleRouter.getSharedRouter().call("/users/" + userId + "/projects/" + id + "/play");
                 return true;
             case R.id.action_settings:
-                Router.sharedRouter().open("/users/" + userId + "/projects/" + id + "/settings");
+                SimpleRouter.getSharedRouter().call("/users/" + userId + "/projects/" + id + "/settings");
                 return true;
             case R.id.action_share:
                 Share.launchShareIntent(userId, id, this);
