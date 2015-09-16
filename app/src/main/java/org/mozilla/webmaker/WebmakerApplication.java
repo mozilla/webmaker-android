@@ -7,7 +7,7 @@ import com.google.android.gms.analytics.GoogleAnalytics;
 import com.google.android.gms.analytics.Tracker;
 
 import org.mozilla.webmaker.activity.*;
-import org.mozilla.webmaker.router.Router;
+import org.mozilla.webmaker.router.SimpleRouter;
 
 public class WebmakerApplication extends Application {
 
@@ -35,23 +35,23 @@ public class WebmakerApplication extends Application {
         tracker.enableAutoActivityTracking(true);
         tracker.enableExceptionReporting(true);
 
-        Router.sharedRouter().setContext(getApplicationContext());
-        Router.sharedRouter().map("/main", MainActivity.class);
-        Router.sharedRouter().map("/main/:tab", MainActivity.class);
+        SimpleRouter.getSharedRouter().setContext(getApplicationContext());
+        SimpleRouter.getSharedRouter().route("/main", MainActivity.class);
+        SimpleRouter.getSharedRouter().route("/main/:tab", MainActivity.class);
 
-        Router.sharedRouter().map("/login", Login.class);
-        Router.sharedRouter().map("/login/:mode", Login.class);
+        SimpleRouter.getSharedRouter().route("/login", Login.class);
+        SimpleRouter.getSharedRouter().route("/login/:mode", Login.class);
 
-        Router.sharedRouter().map("/style-guide", StyleGuide.class);
+        SimpleRouter.getSharedRouter().route("/style-guide", StyleGuide.class);
 
-        Router.sharedRouter().map("/users/:user/projects/:project", Project.class);
-        Router.sharedRouter().map("/users/:user/projects/:project/settings", ProjectSettings.class);
-        Router.sharedRouter().map("/users/:user/projects/:project/play", Play.class);
-        Router.sharedRouter().map("/users/:user/projects/:project/link", Link.class);
+        SimpleRouter.getSharedRouter().route("/users/:user/projects/:project", Project.class);
+        SimpleRouter.getSharedRouter().route("/users/:user/projects/:project/settings", ProjectSettings.class);
+        SimpleRouter.getSharedRouter().route("/users/:user/projects/:project/play", Play.class);
+        SimpleRouter.getSharedRouter().route("/users/:user/projects/:project/link", Link.class);
 
-        Router.sharedRouter().map("/users/:user/projects/:project/pages/:page", Page.class);
-        Router.sharedRouter().map("/users/:user/projects/:project/pages/:page/elements/:element/editor/:editor", Element.class);
-        Router.sharedRouter().map("/users/:user/projects/:project/pages/:page/elements/:element/propertyName/:propertyName", Tinker.class);
+        SimpleRouter.getSharedRouter().route("/users/:user/projects/:project/pages/:page", Page.class);
+        SimpleRouter.getSharedRouter().route("/users/:user/projects/:project/pages/:page/elements/:element/editor/:editor", Element.class);
+        SimpleRouter.getSharedRouter().route("/users/:user/projects/:project/pages/:page/elements/:element/propertyName/:propertyName", Tinker.class);
     }
 
     @Override

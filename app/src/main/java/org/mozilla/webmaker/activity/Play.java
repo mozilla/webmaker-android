@@ -10,8 +10,8 @@ import org.json.JSONException;
 import org.json.JSONObject;
 import org.mozilla.webmaker.R;
 import org.mozilla.webmaker.WebmakerActivity;
+import org.mozilla.webmaker.router.SimpleRouter;
 import org.mozilla.webmaker.web.javascript.WebAppInterface;
-import org.mozilla.webmaker.router.Router;
 import org.mozilla.webmaker.util.Share;
 
 public class Play extends WebmakerActivity {
@@ -106,7 +106,7 @@ public class Play extends WebmakerActivity {
                 view.load("javascript: window.createRemix && window.createRemix()", null);
                 return true;
             case R.id.action_edit:
-                Router.sharedRouter().open("/users/" + userId + "/projects/" + id);
+                SimpleRouter.getSharedRouter().call("/users/" + userId + "/projects/" + id);
                 return true;
             default:
                 return super.onOptionsItemSelected(item);
