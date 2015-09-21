@@ -6,14 +6,14 @@
   <string name="title_activity_project">প্রকল্প</string>
   <string name="title_activity_play">চালাও</string>
   <string name="title_activity_link">গন্তব্য নির্ধারণ</string>
-  <string name="title_activity_project_settings">প্রকল্প সেটিং</string>
+  <string name="title_activity_project_settings">প্রকল্প সেটিংস</string>
   <string name="title_activity_page">পাতা</string>
   <string name="title_activity_element">অপশন</string>
   <string name="title_activity_tinker">অপশন</string>
   <string name="title_activity_login">লগ ইন</string>
   <string name="title_activity_style_guide">স্টাইল গাইড</string>
   <string name="action_play">চালাও</string>
-  <string name="action_settings">সেটিং</string>
+  <string name="action_settings">সেটিংস</string>
   <string name="action_share">শেয়ার করুন</string>
   <string name="action_remix">রিমিক্স</string>
   <string name="share_subject">ওয়েবমেকার</string>
