@@ -214,6 +214,24 @@ public class WebAppInterface {
 
     /**
      * ---------------------------------------
+     * Setting the activity action bar title.
+     * ---------------------------------------
+     */
+
+    @JavascriptInterface
+    public void setTitle(final String title) {
+        final Activity activity = mActivity;
+        if (activity == null) return;
+        activity.runOnUiThread(new Runnable() {
+            @Override
+            public void run() {
+                activity.setTitle(title);
+            }
+        });
+    }
+
+    /**
+     * ---------------------------------------
      * Router
      * ---------------------------------------
      */
