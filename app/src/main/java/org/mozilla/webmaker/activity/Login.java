@@ -8,7 +8,7 @@ import android.view.Window;
 import org.json.JSONException;
 import org.mozilla.webmaker.R;
 import org.mozilla.webmaker.WebmakerActivity;
-import org.mozilla.webmaker.router.Router;
+import org.mozilla.webmaker.router.SimpleRouter;
 
 public class Login extends WebmakerActivity {
     public Login() {
@@ -19,7 +19,7 @@ public class Login extends WebmakerActivity {
     protected void onCreate(Bundle savedInstanceState) {
 
         if (isLoggedIn()) {
-            Router.sharedRouter().open("/main");
+            SimpleRouter.getSharedRouter().call("/main");
             finish();
         }
 
@@ -43,7 +43,7 @@ public class Login extends WebmakerActivity {
     @Override
     protected void onResume() {
         if (isLoggedIn()) {
-            Router.sharedRouter().open("/main");
+            SimpleRouter.getSharedRouter().call("/main");
             finish();
         }
         super.onResume();

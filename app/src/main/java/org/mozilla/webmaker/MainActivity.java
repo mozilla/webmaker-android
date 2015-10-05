@@ -9,7 +9,7 @@ import android.view.MenuItem;
 
 import org.mozilla.webmaker.adapter.SectionsPagerAdapter;
 import org.mozilla.webmaker.fragment.WebviewFragment;
-import org.mozilla.webmaker.router.Router;
+import org.mozilla.webmaker.router.SimpleRouter;
 import org.mozilla.webmaker.view.WebmakerWebView;
 
 
@@ -25,7 +25,7 @@ public class MainActivity extends BaseActivity implements ActionBar.TabListener 
     protected void onCreate(Bundle savedInstanceState) {
 
         if (!isLoggedIn()) {
-            Router.sharedRouter().open("/login");
+            SimpleRouter.getSharedRouter().call("/login");
             finish();
         }
 

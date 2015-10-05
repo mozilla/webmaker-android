@@ -1,4 +1,4 @@
-package org.mozilla.webmaker.router.exception;
+package org.mozilla.webmaker.router.object;
 /*
  * This file is part of SimpleRouter, licensed under the MIT License (MIT).
  *
@@ -23,11 +23,47 @@ package org.mozilla.webmaker.router.exception;
  * THE SOFTWARE.
  */
 
-public class RouteNotFoundException extends RuntimeException {
+import android.app.Activity;
+import android.os.Bundle;
 
-    private static final long serialVersionUID = -6217704860910858725L;
+import org.mozilla.webmaker.router.util.RouteCallback;
 
-    public RouteNotFoundException(String message) {
-        super(message);
+public class Route {
+
+    private String routeName;
+    private Bundle parameters;
+    private RouteCallback<Route> callback;
+    private Class<? extends Activity> targetClass;
+
+    public Route(String routeName) {
+        this.routeName = routeName;
+    }
+
+    public String getRouteName() {
+        return routeName;
+    }
+
+    public void setParameters(Bundle parameters) {
+        this.parameters = parameters;
+    }
+
+    public Bundle getParameters() {
+        return parameters;
+    }
+
+    public void setCallback(RouteCallback<Route> callback) {
+        this.callback = callback;
+    }
+
+    public RouteCallback<Route> getCallback() {
+        return callback;
+    }
+
+    public void setTargetClass(Class<? extends Activity> targetClass) {
+        this.targetClass = targetClass;
+    }
+
+    public Class<? extends Activity> getTargetClass() {
+        return targetClass;
     }
 }

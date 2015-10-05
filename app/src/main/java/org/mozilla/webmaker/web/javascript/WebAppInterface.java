@@ -17,13 +17,12 @@ import org.mozilla.webmaker.BuildConfig;
 import org.json.JSONObject;
 import org.mozilla.webmaker.WebmakerActivity;
 import org.mozilla.webmaker.WebmakerApplication;
+import org.mozilla.webmaker.router.SimpleRouter;
 import org.mozilla.webmaker.util.Share;
 import org.mozilla.webmaker.view.WebmakerWebView;
 import org.xwalk.core.JavascriptInterface;
 
 import org.mozilla.webmaker.BaseActivity;
-import org.mozilla.webmaker.activity.Element;
-import org.mozilla.webmaker.router.Router;
 import org.mozilla.webmaker.storage.MemStorage;
 
 import java.util.Locale;
@@ -215,6 +214,24 @@ public class WebAppInterface {
 
     /**
      * ---------------------------------------
+     * Setting the activity action bar title.
+     * ---------------------------------------
+     */
+
+    @JavascriptInterface
+    public void setTitle(final String title) {
+        final Activity activity = mActivity;
+        if (activity == null) return;
+        activity.runOnUiThread(new Runnable() {
+            @Override
+            public void run() {
+                activity.setTitle(title);
+            }
+        });
+    }
+
+    /**
+     * ---------------------------------------
      * Router
      * ---------------------------------------
      */
@@ -236,7 +253,7 @@ public class WebAppInterface {
         activity.runOnUiThread(new Runnable() {
             @Override
             public void run() {
-                Router.sharedRouter().open(url);
+                SimpleRouter.getSharedRouter().call(url);
             }
         });
     }
