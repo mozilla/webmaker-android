@@ -48,6 +48,8 @@ This repository is home to the native Android wrapper for the Webmaker app. `web
 
 Once you have the project open, you can run it within an emulator or on any Android device with USB debugging enabled by selecting "Run 'app'" from the "Run" dropdown menu. For more information, please check out the [Android SDK documentation](http://developer.android.com/training/index.html).
 
+If you can't compile the project, check the messages at the bottom of the Android Studio IDE. If this is the first time you've run an Android project, you may need to install an Android target OS. If so, there should be a link in the messages that will walk you through that. Afterwards, you'll probably need to install a virtual device for emulation. If you're using an x86 based development machine and virtual device, you'll probably have to install [Intel HAXM](https://software.intel.com/en-us/android/articles/intel-hardware-accelerated-execution-manager) as well.
+
 Because much of the application logic takes place in WebViews, you'll likely want to set up [Remote debugging on Android with Chrome](https://developer.chrome.com/devtools/docs/remote-debugging).
 
 #### Web
