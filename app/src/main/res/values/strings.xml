@@ -12,7 +12,7 @@
     <string name="title_activity_login">Login</string>
     <string name="title_activity_style_guide">Style Guide</string>
     <string name="title_activity_user_projects">User Projects</string>
-
+    <string name="title_activity_web_link">Link to Web</string>
     <string name="action_play">Play</string>
     <string name="action_settings">Settings</string>
     <string name="action_share">Share</string>
