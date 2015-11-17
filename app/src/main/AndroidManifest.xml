@@ -111,6 +111,15 @@
         </activity>
 
         <activity
+	    android:name=".activity.UserProjects"
+	    android:label="@string/title_activity_user_projects"
+	    android:screenOrientation="portrait" >
+	    <meta-data
+		android:name="android.support.PARENT_ACTIVITY"
+		android:value=".activity.UserProjects" />
+	</activity>
+
+	<activity
             android:name=".activity.StyleGuide"
             android:label="@string/title_activity_style_guide"
             android:screenOrientation="portrait" >

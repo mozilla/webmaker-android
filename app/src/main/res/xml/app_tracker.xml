@@ -14,4 +14,5 @@
     <screenName name="org.mozilla.webmaker.MainActivity">Main Activity</screenName>
     <screenName name="org.mozilla.webmaker.StyleGuide">Style Guide Activity</screenName>
     <screenName name="org.mozilla.webmaker.activity.Login">Login Activity</screenName>
+    <screenName name="org.mozilla.webmaker.activity.UserProjects">User Projects</screenName>
 </resources>

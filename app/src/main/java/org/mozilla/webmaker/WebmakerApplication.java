@@ -44,6 +44,7 @@ public class WebmakerApplication extends Application {
 
         SimpleRouter.getSharedRouter().route("/style-guide", StyleGuide.class);
 
+	SimpleRouter.getSharedRouter().route("/users/:user/projects", UserProjects.class);
         SimpleRouter.getSharedRouter().route("/users/:user/projects/:project", Project.class);
         SimpleRouter.getSharedRouter().route("/users/:user/projects/:project/settings", ProjectSettings.class);
         SimpleRouter.getSharedRouter().route("/users/:user/projects/:project/play", Play.class);

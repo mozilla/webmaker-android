@@ -14,6 +14,7 @@
     <string name="title_activity_play">Play</string>
     <string name="title_activity_project">Project</string>
     <string name="title_activity_project_settings">Project Settings</string>
+    <string name="title_activity_user_projects">User Projects</string>
     <string name="title_activity_style_guide">Style Guide</string>
     <string name="title_activity_tinker">Options</string>
     <string name="title_section1">Discover</string>
