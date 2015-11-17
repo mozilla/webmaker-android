@@ -19,4 +19,5 @@
 
     <string name="share_subject">Webmaker</string>
     <string name="share_body">Checa este proyecto en Webmaker</string>
+    <string name="title_activity_user_projects">User Projects</string>
 </resources>

@@ -18,4 +18,5 @@
 <string name="action_remix">রিমিক্স</string>
 <string name="share_subject">ওয়েবমেকার</string>
 <string name="share_body">এই প্রকল্প ওয়েবমেকারে দেখুন!</string>
+<string name="title_activity_user_projects">User Projects</string>
 </resources>
