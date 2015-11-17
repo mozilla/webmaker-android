@@ -18,4 +18,5 @@
   <string name="action_remix">Remixe</string>
   <string name="share_subject">Webmaker</string>
   <string name="share_body">Veja esse projeto no Webmaker!</string>
+  <string name="title_activity_user_projects">User Projects</string>
 </resources>
