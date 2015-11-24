@@ -19,4 +19,5 @@
     <string name="title_activity_tinker">Options</string>
     <string name="title_section1">Discover</string>
     <string name="title_section2">Make</string>
+    <string name="title_activity_web_link">Link to Web</string>
 </resources>

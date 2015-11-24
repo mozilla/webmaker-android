@@ -124,5 +124,11 @@
             android:label="@string/title_activity_style_guide"
             android:screenOrientation="portrait" >
         </activity>
+
+        <activity
+            android:name=".activity.WebLink"
+            android:label="@string/title_activity_web_link"
+            android:screenOrientation="portrait" >
+        </activity>
     </application>
 </manifest>
