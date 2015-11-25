@@ -1,6 +1,6 @@
 {
   "name": "webmaker-android",
-  "version": "1.5.1",
+  "version": "1.5.3",
   "description": "Webmaker for Android.",
   "scripts": {
     "postinstall": "npm start",
@@ -21,7 +21,7 @@
     "url": "https://github.com/mozilla/webmaker-android/issues"
   },
   "dependencies": {
-    "webmaker-core": "https://github.com/mozilla/webmaker-core.git#aa383f04b8645c7639c70b5b581d343069f94e09"
+    "webmaker-core": "https://github.com/mozilla/webmaker-core.git#6c1b8afbe0c1c02af750c667f7bafcf6215c085a"
   },
   "homepage": "https://github.com/mozilla/webmaker-android",
   "devDependencies": {
