@@ -84,7 +84,7 @@ dependencies {
 
 node {
     version = '4.2.3'
-    npmVersion = '2.7.4'
+    npmVersion = '2.14.4'
     distBaseUrl = 'http://nodejs.org/dist'
     download = true
 }
