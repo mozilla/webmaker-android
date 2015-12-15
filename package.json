@@ -2,6 +2,16 @@
   "name": "webmaker-android",
   "version": "1.5.3",
   "description": "Webmaker for Android.",
+  "homepage": "https://github.com/mozilla/webmaker-android",
+  "author": "",
+  "license": "MPL-2.0",
+  "bugs": {
+    "url": "https://github.com/mozilla/webmaker-android/issues"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/mozilla/webmaker-android.git"
+  },
   "scripts": {
     "postinstall": "npm start",
     "start": "npm run build",
@@ -11,22 +21,16 @@
     "copy:env": "node npm_tasks/copy-env.js",
     "test": "echo \"Test in webmaker-core\""
   },
-  "repository": {
-    "type": "git",
-    "url": "https://github.com/mozilla/webmaker-android.git"
-  },
-  "author": "",
-  "license": "MPL-2.0",
-  "bugs": {
-    "url": "https://github.com/mozilla/webmaker-android/issues"
-  },
   "dependencies": {
     "webmaker-core": "https://github.com/mozilla/webmaker-core.git#6c1b8afbe0c1c02af750c667f7bafcf6215c085a"
   },
-  "homepage": "https://github.com/mozilla/webmaker-android",
   "devDependencies": {
     "mkdirp": "^0.5.1",
     "ncp": "^2.0.0",
     "rimraf": "^2.4.1"
+  },
+  "engines": {
+    "node": "^4.1.0",
+    "npm": "^2.7.4"
   }
 }

@@ -2,13 +2,13 @@ apply plugin: 'com.android.application'
 apply plugin: 'com.moowork.node'
 
 android {
-    compileSdkVersion 22
+    compileSdkVersion 23
     buildToolsVersion "21.1.2"
 
     defaultConfig {
         applicationId "org.mozilla.webmaker"
         minSdkVersion 14
-        targetSdkVersion 22
+        targetSdkVersion 23
         versionCode 20
         versionName "1.5.3"
     }
@@ -76,14 +76,14 @@ repositories {
 
 dependencies {
     compile fileTree(dir: 'libs', include: ['*.jar'])
-    compile 'com.android.support:support-v13:22.1.1'
-    compile 'com.android.support:appcompat-v7:22.2.1'
-    compile 'com.google.android.gms:play-services-analytics:7.5.0'
-    compile 'org.xwalk:xwalk_core_library:13.42.319.12'
+    compile 'com.android.support:support-v13:23.1.1'
+    compile 'com.android.support:appcompat-v7:23.1.1'
+    compile 'com.google.android.gms:play-services-analytics:8.3.0'
+    compile 'org.xwalk:xwalk_core_library:15.44.384.12'
 }
 
 node {
-    version = '0.12.2'
+    version = '4.2.3'
     npmVersion = '2.7.4'
     distBaseUrl = 'http://nodejs.org/dist'
     download = true
