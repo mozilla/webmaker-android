@@ -3,6 +3,6 @@
     <style name="AppTheme" parent="android:Theme.Material.Light.DarkActionBar">
         <item name="android:colorPrimary">@color/blue</item>
         <item name="android:colorPrimaryDark">@color/shadow_blue</item>
-        <item name="android:colorAccent">@color/white</item>
+        <item name="android:colorAccent">@color/action_bar_highlight</item>
     </style>
 </resources>
