@@ -50,6 +50,7 @@ public class WebmakerActivity extends BaseActivity {
         Bundle intentExtras = getIntent().getExtras();
         if (intentExtras != null) {
             try {
+                routeParams.put("tag", intentExtras.get("tag"));
                 routeParams.put("user", intentExtras.get("user"));
                 routeParams.put("project", intentExtras.get("project"));
                 routeParams.put("page", intentExtras.get("page"));
