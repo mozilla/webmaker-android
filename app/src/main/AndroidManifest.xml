@@ -130,5 +130,11 @@
             android:label="@string/title_activity_web_link"
             android:screenOrientation="portrait" >
         </activity>
+
+        <activity
+            android:name=".activity.TagList"
+            android:label="@string/title_activity_tag_list"
+            android:screenOrientation="portrait" >
+        </activity>
     </application>
 </manifest>
