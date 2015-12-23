@@ -9,8 +9,8 @@ android {
         applicationId "org.mozilla.webmaker"
         minSdkVersion 14
         targetSdkVersion 23
-        versionCode 20
-        versionName "1.5.3"
+        versionCode 21
+        versionName "1.6.0"
     }
 
     buildTypes {

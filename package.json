@@ -1,6 +1,6 @@
 {
   "name": "webmaker-android",
-  "version": "1.5.3",
+  "version": "1.6.0",
   "description": "Webmaker for Android.",
   "homepage": "https://github.com/mozilla/webmaker-android",
   "author": "",
@@ -22,7 +22,7 @@
     "test": "echo \"Test in webmaker-core\""
   },
   "dependencies": {
-    "webmaker-core": "https://github.com/mozilla/webmaker-core.git#6c1b8afbe0c1c02af750c667f7bafcf6215c085a"
+    "webmaker-core": "https://github.com/mozilla/webmaker-core.git#b045960da884292d02a32f9f1b6dd1809d72622d"
   },
   "devDependencies": {
     "mkdirp": "^0.5.1",
