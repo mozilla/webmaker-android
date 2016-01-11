@@ -13,7 +13,7 @@
     <string name="title_activity_style_guide">Style Guide</string>
     <string name="title_activity_user_projects">User Projects</string>
     <string name="title_activity_web_link">Link to Web</string>
-    <string name="title_activity_tag_list">Tags</string>
+    <string name="title_activity_tag_list"></string>
     <string name="action_play">Play</string>
     <string name="action_settings">Project Details</string>
     <string name="action_share">Share</string>
