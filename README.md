@@ -33,7 +33,7 @@ For example, to run webmaker-android with a different API endpoint, you would ma
 API_URI=http://alternative.api.endpoint
 ```
 
-For more details on which environment variables are used by webmaker-core, please see the [webmaker-core default enviroment](https://github.com/mozilla/webmaker-core/blob/develop/config/defaults.env).
+For more details on which environment variables are used by webmaker-core, please see the [webmaker-core default environment](https://github.com/mozilla/webmaker-core/blob/develop/config/defaults.env).
 
 #### Android
 
