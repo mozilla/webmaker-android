@@ -26,7 +26,7 @@ npm install
 
 #### Specifying a dev environment
 
-In order to override default `webmaker-core` settings such as `id` and `api` endpoints, create an `.env` file in the webmaker-android root directory, and declare any enviroment overrides you need in that file, then (re)build the webmaker-android project using `npm run build`.
+In order to override default `webmaker-core` settings such as `id` and `api` endpoints, create an `.env` file in the webmaker-android root directory, and declare any environment overrides you need in that file, then (re)build the webmaker-android project using `npm run build`.
 
 For example, to run webmaker-android with a different API endpoint, you would make sure the `.env` file contains:
 ```
